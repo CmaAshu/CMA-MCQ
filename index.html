@@ -106,7 +106,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start; /* Align items to start to accommodate image */
             border: 1px solid #dadce0; /* Google-style light border */
         }
 
@@ -115,11 +115,19 @@
             box-shadow: 0 10px 25px rgba(66, 133, 244, 0.15); /* Blueish glow on hover */
         }
 
+        .quiz-card-thumbnail {
+            width: 100%;
+            max-height: 160px; /* Adjust as needed */
+            object-fit: cover;
+            border-radius: 6px; /* Rounded corners for the image */
+            margin-bottom: 15px; /* Space below image */
+        }
+
         .quiz-card h3 {
             font-size: 1.4rem;
             font-weight: 600;
             color: #FBBC05; /* Google Yellow */
-            margin-bottom: 15px;
+            margin-bottom: 10px; /* Adjusted margin */
         }
 
         .quiz-card p {
@@ -138,6 +146,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: auto; /* Push button to the bottom if card content is short */
         }
 
         .quiz-card a:hover {
@@ -162,7 +171,7 @@
         .footer-credit a:hover {
             text-decoration: underline;
         }
-        .footer-credit .heart-icon { /* Renamed class for clarity */
+        .footer-credit .heart-icon { 
             display: inline-block;
             width: 22px; 
             height: 22px; 
@@ -175,14 +184,14 @@
             font-weight: 600;
             color: #34A853; /* Google Green for Jai Hind */
             margin-top: 15px; 
-            display: flex; /* For aligning text and flag image */
+            display: flex; 
             align-items: center;
             justify-content: center;
         }
-        .jai-hind img { /* Style for the flag image */
-            width: 28px; /* Adjust size as needed */
+        .jai-hind img { 
+            width: 28px; 
             height: auto;
-            margin-left: 8px; /* Space between text and flag */
+            margin-left: 8px; 
         }
 
 
@@ -224,6 +233,9 @@
             .quiz-card h3 {
                 font-size: 1.2rem;
             }
+             .quiz-card-thumbnail {
+                max-height: 140px; 
+            }
         }
          @media (max-width: 480px) {
             .main-title {
@@ -240,6 +252,9 @@
             }
             .logo {
                 width: 70px;
+            }
+            .quiz-card-thumbnail {
+                max-height: 120px;
             }
         }
     </style>
@@ -261,24 +276,28 @@
         <h2 class="group-title">Group I - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card">
+                <img src="P5.jpg" alt="Business Laws & Ethics Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 5: Business Laws & Ethics</h3>
                 <p>Review your grasp of various business laws and ethical considerations.</p>
                 <a href="law sets.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
+                <img src="P6.jpg" alt="Financial Accounting Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 6: Financial Accounting</h3>
                 <p>Dive into MCQs covering fundamental accounting concepts and standards.</p>
                 <a href="fin acc sets.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
+                <img src="P7_DT.jpg" alt="Direct & Indirect Taxation Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 7: Direct & Indirect Taxation</h3>
                 <p>Assess your understanding of direct tax laws and indirect tax (GST) provisions.</p>
                 <a href="dt sets.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
+                <img src="P8.jpg" alt="Cost Accounting Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 8: Cost Accounting</h3>
                 <p>Challenge yourself with MCQs on cost ascertainment, analysis, and control.</p>
                 <a href="cost sets.html">Start Quiz</a>
@@ -290,24 +309,28 @@
         <h2 class="group-title">Group II - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card">
+                <img src="P9.jpg" alt="Operations Management & Strategic Management Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 9: Operations Management & Strategic Management</h3>
                 <p>Tackle questions on operations, supply chain, and strategic planning.</p>
                 <a href="omsm sets.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
+                <img src="P10.jpg" alt="Corporate Accounting & Auditing Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 10: Corporate Accounting & Auditing</h3>
                 <p>Test your knowledge on corporate accounting principles and auditing standards.</p>
                 <a href="ca audit set.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
+                <img src="P11.jpg" alt="Financial Management & Business Data Analytics Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 11: Financial Management & Business Data Analytics</h3>
                 <p>Explore questions on financial decision-making and data analysis techniques.</p>
                 <a href="fmda set.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
+                <img src="P12.jpg" alt="Management Accounting Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 12: Management Accounting</h3>
                 <p>Engage with MCQs on management accounting tools and techniques for decision support.</p>
                 <a href="MA set.html">Start Quiz</a>
