@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICMAI MCQ Workout - Syllabus 2022 Groups</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text for dark background */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 900px;
+            text-align: center;
+            margin-bottom: 30px; /* Reduced margin */
+            padding: 20px;
+            background-color: #2d3748; /* Slightly lighter dark for header */
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .main-title {
+            font-size: 2.8rem; /* Larger, bolder title */
+            font-weight: 800; /* Extra bold */
+            color: #63b3ed; /* A bright blue for accent */
+            letter-spacing: -0.5px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            margin: 0;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: #a0aec0; /* Lighter grey for subtitle */
+            margin-top: 8px;
+        }
+
+        .group-container {
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 40px; /* Space between groups */
+        }
+
+        .group-title {
+            font-size: 2rem; /* Prominent group title */
+            font-weight: 700;
+            color: #90cdf4; /* Lighter blue for group titles */
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4a5568;
+        }
+
+        .quiz-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            width: 100%;
+        }
+
+        .quiz-card {
+            background-color: #2d3748; /* Card background */
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 1px solid #4a5568; /* Subtle border */
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(99, 179, 237, 0.3); /* Glow effect on hover */
+        }
+
+        .quiz-card h3 { /* Changed from h2 for semantic structure */
+            font-size: 1.4rem; /* Slightly adjusted */
+            font-weight: 600;
+            color: #90cdf4; /* Lighter blue for card titles */
+            margin-bottom: 15px;
+        }
+
+        .quiz-card p {
+            font-size: 0.95rem;
+            color: #cbd5e0; /* Lighter text for card description */
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .quiz-card a {
+            display: inline-block;
+            background-color: #4299e1; /* Blue button */
+            color: #ffffff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .quiz-card a:hover {
+            background-color: #3182ce; /* Darker blue on hover */
+            transform: scale(1.05);
+        }
+
+        .footer-credit {
+            margin-top: 30px; /* Adjusted margin */
+            padding: 15px;
+            font-size: 0.9em;
+            color: #718096; /* Muted color for footer */
+            text-align: center;
+            width: 100%;
+            max-width: 900px;
+        }
+        .footer-credit a {
+            color: #63b3ed;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .footer-credit a:hover {
+            text-decoration: underline;
+        }
+        .footer-credit svg {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 5px;
+            vertical-align: middle;
+            fill: #63b3ed;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .group-title {
+                font-size: 1.8rem;
+            }
+            .quiz-grid {
+                grid-template-columns: 1fr; /* Single column on smaller screens */
+            }
+            .quiz-card {
+                padding: 20px;
+            }
+            .quiz-card h3 {
+                font-size: 1.2rem;
+            }
+        }
+         @media (max-width: 480px) {
+            .main-title {
+                font-size: 1.8rem;
+            }
+            .group-title {
+                font-size: 1.5rem;
+            }
+             .header-container {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <h1 class="main-title">ICMAI MCQ WORKOUT</h1>
+        <p class="subtitle">Select a subject to start your MCQ practice session.</p>
+    </div>
+
+    <div class="group-container">
+        <h2 class="group-title">Group I - CMA Inter Syllabus 2022</h2>
+        <div class="quiz-grid">
+            <div class="quiz-card">
+                <h3>Paper 5: Business Laws & Ethics</h3>
+                <p>Review your grasp of various business laws and ethical considerations.</p>
+                <a href="law sets.html">Start Quiz</a>
+            </div>
+
+            <div class="quiz-card">
+                <h3>Paper 6: Financial Accounting</h3>
+                <p>Dive into MCQs covering fundamental accounting concepts and standards.</p>
+                <a href="fin acc sets.html">Start Quiz</a>
+            </div>
+
+            <div class="quiz-card">
+                <h3>Paper 7: Direct & Indirect Taxation</h3>
+                <p>Assess your understanding of direct tax laws and indirect tax (GST) provisions.</p>
+                <a href="dt sets.html">Start Quiz</a>
+            </div>
+
+            <div class="quiz-card">
+                <h3>Paper 8: Cost Accounting</h3>
+                <p>Challenge yourself with MCQs on cost ascertainment, analysis, and control.</p>
+                <a href="cost sets.html">Start Quiz</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="group-container">
+        <h2 class="group-title">Group II - CMA Inter Syllabus 2022</h2>
+        <div class="quiz-grid">
+            <div class="quiz-card">
+                <h3>Paper 9: Operations Management & Strategic Management</h3>
+                <p>Tackle questions on operations, supply chain, and strategic planning.</p>
+                <a href="omsm sets.html">Start Quiz</a>
+            </div>
+
+            <div class="quiz-card">
+                <h3>Paper 10: Corporate Accounting & Auditing</h3>
+                <p>Test your knowledge on corporate accounting principles and auditing standards.</p>
+                <a href="ca audit set.html">Start Quiz</a>
+            </div>
+
+            <div class="quiz-card">
+                <h3>Paper 11: Financial Management & Business Data Analytics</h3>
+                <p>Explore questions on financial decision-making and data analysis techniques.</p>
+                <a href="fmda set.html">Start Quiz</a>
+            </div>
+
+            <div class="quiz-card">
+                <h3>Paper 12: Management Accounting</h3>
+                <p>Engage with MCQs on management accounting tools and techniques for decision support.</p>
+                <a href="MA set.html">Start Quiz</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-credit">
+        <p>
+            Developed with
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m0-20.593l-.727.66c-1.795 1.629-3.326 3.699-4.608 5.502-1.612 2.269-2.418 4.168-2.418 6.002 0 3.012 1.945 4.189 3.571 4.189 1.001 0 1.945-.746 2.613-1.501l.169-.193.169.193c.668.755 1.612 1.501 2.613 1.501 1.626 0 3.571-1.177 3.571-4.189 0-1.833-.806-3.732-2.418-6.002-1.282-1.803-2.813-3.874-4.608-5.502l-.727-.66z"/></svg>
+            by <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank" rel="noopener noreferrer">Ashu</a>
+        </p>
+    </footer>
+
+</body>
+</html>
