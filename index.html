@@ -117,8 +117,8 @@
 
         .quiz-card-thumbnail {
             width: 100%;
-            max-height: 160px; /* Adjust as needed */
-            object-fit: cover;
+            height: auto; /* Display full intrinsic height, scaled by width */
+            /* removed max-height and object-fit: cover */
             border-radius: 6px; /* Rounded corners for the image */
             margin-bottom: 15px; /* Space below image */
         }
@@ -233,9 +233,6 @@
             .quiz-card h3 {
                 font-size: 1.2rem;
             }
-             .quiz-card-thumbnail {
-                max-height: 140px; 
-            }
         }
          @media (max-width: 480px) {
             .main-title {
@@ -252,9 +249,6 @@
             }
             .logo {
                 width: 70px;
-            }
-            .quiz-card-thumbnail {
-                max-height: 120px;
             }
         }
     </style>
