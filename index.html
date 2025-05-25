@@ -9,8 +9,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #1a202c; /* Dark background */
-            color: #e2e8f0; /* Light text for dark background */
+            background-color: #f8f9fa; /* Light gray background - Google style */
+            color: #202124; /* Dark gray text - Google style */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -20,56 +20,65 @@
             box-sizing: border-box;
         }
 
+        .header-wrapper {
+            width: 100%;
+            background-color: #ffffff; /* White header background */
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+        }
+
         .header-container {
             width: 100%;
             max-width: 900px;
-            text-align: center;
-            margin-bottom: 30px; /* Reduced margin */
-            padding: 20px;
-            background-color: #2d3748; /* Slightly lighter dark for header */
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            display: flex; /* Added flex layout for logo and title */
-            align-items: center; /* Vertically align logo and title */
-            justify-content: center; /* Center content */
-            flex-direction: column; /* Stack logo and title on smaller screens */
+            padding: 10px 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
 
         .logo {
-            width: 80px; /* Adjust size as needed */
+            width: 90px; /* Adjusted logo size */
             height: auto;
-            margin-bottom: 15px; /* Space between logo and title */
+            margin-right: 25px;
+        }
+
+        .header-text-content {
+            flex-grow: 1;
+            text-align: left;
         }
 
         .main-title {
-            font-size: 2.8rem; /* Larger, bolder title */
-            font-weight: 800; /* Extra bold */
-            color: #63b3ed; /* A bright blue for accent */
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: #4285F4; /* Google Blue */
             letter-spacing: -0.5px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
             margin: 0;
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            color: #a0aec0; /* Lighter grey for subtitle */
-            margin-top: 8px;
+            font-size: 1.05rem;
+            color: #5f6368; /* Google secondary text gray */
+            margin-top: 5px;
         }
 
         .group-container {
             width: 100%;
             max-width: 900px;
-            margin-bottom: 40px; /* Space between groups */
+            margin-bottom: 40px;
         }
 
         .group-title {
-            font-size: 2rem; /* Prominent group title */
+            font-size: 2rem;
             font-weight: 700;
-            color: #90cdf4; /* Lighter blue for group titles */
+            color: #34A853; /* Google Green */
             text-align: center;
             margin-bottom: 25px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #4a5568;
+            border-bottom: 2px solid #e0e0e0; /* Lighter border */
         }
 
         .quiz-grid {
@@ -80,40 +89,40 @@
         }
 
         .quiz-card {
-            background-color: #2d3748; /* Card background */
+            background-color: #ffffff; /* White card background */
             border-radius: 10px;
             padding: 25px;
             text-align: center;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); /* Softer card shadow */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border: 1px solid #4a5568; /* Subtle border */
+            border: 1px solid #dadce0; /* Google-style light border */
         }
 
         .quiz-card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 12px 30px rgba(99, 179, 237, 0.3); /* Glow effect on hover */
+            transform: translateY(-7px);
+            box-shadow: 0 10px 25px rgba(66, 133, 244, 0.15); /* Blueish glow on hover */
         }
 
-        .quiz-card h3 { /* Changed from h2 for semantic structure */
-            font-size: 1.4rem; /* Slightly adjusted */
+        .quiz-card h3 {
+            font-size: 1.4rem;
             font-weight: 600;
-            color: #90cdf4; /* Lighter blue for card titles */
+            color: #FBBC05; /* Google Yellow */
             margin-bottom: 15px;
         }
 
         .quiz-card p {
             font-size: 0.95rem;
-            color: #cbd5e0; /* Lighter text for card description */
+            color: #5f6368; /* Google secondary text gray */
             margin-bottom: 20px;
             flex-grow: 1;
         }
 
         .quiz-card a {
             display: inline-block;
-            background-color: #4299e1; /* Blue button */
+            background-color: #EA4335; /* Google Red */
             color: #ffffff;
             padding: 12px 25px;
             border-radius: 8px;
@@ -123,21 +132,21 @@
         }
 
         .quiz-card a:hover {
-            background-color: #3182ce; /* Darker blue on hover */
+            background-color: #d93025; /* Darker Google Red */
             transform: scale(1.05);
         }
 
         .footer-credit {
-            margin-top: 30px; /* Adjusted margin */
+            margin-top: 30px;
             padding: 15px;
             font-size: 0.9em;
-            color: #718096; /* Muted color for footer */
+            color: #5f6368; /* Google secondary text gray */
             text-align: center;
             width: 100%;
             max-width: 900px;
         }
         .footer-credit a {
-            color: #63b3ed;
+            color: #4285F4; /* Google Blue */
             text-decoration: none;
             font-weight: 500;
         }
@@ -146,22 +155,29 @@
         }
         .footer-credit svg {
             display: inline-block;
-            width: 18px;
-            height: 18px;
+            width: 22px; /* Increased heart size */
+            height: 22px; /* Increased heart size */
             margin-right: 5px;
             vertical-align: middle;
-            fill: #63b3ed;
+            fill: #EA4335; /* Changed heart color to Google Red */
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
+            .header-wrapper {
+                border-radius: 0 0 12px 12px;
+            }
             .header-container {
-                flex-direction: column; /* Stack on smaller screens */
+                flex-direction: column;
                 align-items: center;
+                text-align: center;
             }
             .logo {
                 margin-right: 0;
                 margin-bottom: 15px;
+            }
+            .header-text-content {
+                text-align: center;
             }
             .main-title {
                 font-size: 2.2rem;
@@ -173,7 +189,7 @@
                 font-size: 1.8rem;
             }
             .quiz-grid {
-                grid-template-columns: 1fr; /* Single column on smaller screens */
+                grid-template-columns: 1fr;
             }
             .quiz-card {
                 padding: 20px;
@@ -189,22 +205,28 @@
             .group-title {
                 font-size: 1.5rem;
             }
-             .header-container {
-                padding: 15px;
-                margin-bottom: 20px;
+             .header-wrapper {
+                padding: 10px 0;
+            }
+            .header-container {
+                padding: 10px 15px;
             }
             .logo {
-                width: 60px;
+                width: 70px;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="header-container">
-        <img src="lol.png" alt="ICMAI MCQ Workout Logo" class="logo">
-        <h1 class="main-title">ICMAI MCQ WORKOUT</h1>
-        <p class="subtitle">Select a subject to start your MCQ practice session.</p>
+    <div class="header-wrapper">
+        <div class="header-container">
+            <img src="lol.png" alt="ICMAI MCQ Workout Logo" class="logo">
+            <div class="header-text-content">
+                <h1 class="main-title">ICMAI MCQ WORKOUT</h1>
+                <p class="subtitle">Select a subject to start your MCQ practice session.</p>
+            </div>
+        </div>
     </div>
 
     <div class="group-container">
@@ -268,7 +290,7 @@
     <footer class="footer-credit">
         <p>
             Developed with
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402m0-20.593l-.727.66c-1.795 1.629-3.326 3.699-4.608 5.502-1.612 2.269-2.418 4.168-2.418 6.002 0 3.012 1.945 4.189 3.571 4.189 1.001 0 1.945-.746 2.613-1.501l.169-.193.169.193c.668.755 1.612 1.501 2.613 1.501 1.626 0 3.571-1.177 3.571-4.189 0-1.833-.806-3.732-2.418-6.002-1.282-1.803-2.813-3.874-4.608-5.502l-.727-.66z"/></svg>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
             by <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank" rel="noopener noreferrer">Ashu</a>
         </p>
     </footer>
