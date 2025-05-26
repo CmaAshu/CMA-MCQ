@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Quiz - Financial Management and Business Data Analytics</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5; /* Light grey background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #scoreboard-container {
+            background: #8000ff; /* Purple */
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        #set-navigation-container {
+            background: #0051ff; /* Blue */
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #scoreboard {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        #scoreboard span {
+            margin: 0 10px;
+        }
+        #scoreboard .correct { color: #d4edda; } 
+        #scoreboard .incorrect { color: #f8d7da; } 
+        #scoreboard .accuracy { color: #e0e0e0; } 
+
+
+        #set-navigation-container label {
+            margin-right: 10px;
+            font-weight: 500;
+            color: #ffffff; 
+        }
+
+        #set-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #fff; 
+            color: #333; 
+        }
+
+        #quiz-container {
+            background: #FFC300; /* Yellow */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            color: #333; 
+        }
+
+        #question-header {
+            font-size: 0.9em;
+            color: #555; 
+            margin-bottom: 15px;
+            text-align: right;
+            border-bottom: 1px solid #dba700; /* Darker yellow for border */
+            padding-bottom: 10px;
+        }
+
+        #question-text {
+            font-size: 1.15em;
+            margin-bottom: 25px;
+            color: #2c3e50; 
+            font-weight: 500;
+        }
+
+        .options-container {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            background: #fffde7; /* Lighter Yellow/Beige */
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #fff9c4; 
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            color: #333; 
+        }
+
+        .option:not(.disabled):hover {
+            background: #fff59d; /* Darker Lighter Yellow on hover */
+            border-color: #fff176;
+        }
+
+        .option.selected { 
+            font-weight: 500; 
+            border-color: #0051ff; /* Blue border for selected */
+            background-color: #e0efff; 
+        }
+        
+        .option.correct-answer {
+            background: #d4edda !important; 
+            border-color: #c3e6cb !important;
+            color: #155724 !important; 
+        }
+
+        .option.incorrect-selection {
+            background: #f8d7da !important; 
+            border-color: #f5c6cb !important;
+            color: #721c24 !important; 
+        }
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #495057; 
+            background-color: #d1e7dd; 
+            padding: 3px 7px;
+            border-radius: 4px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .option.selected .option-letter {
+            background-color: #0051ff; 
+            color: white;
+        }
+
+        .option.correct-answer .option-letter {
+            background-color: #28a745 !important; 
+            color: white !important;
+        }
+        .option.incorrect-selection .option-letter {
+            background-color: #dc3545 !important; 
+            color: white !important;
+        }
+
+
+        #navigation-buttons {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3; 
+        }
+
+        button:disabled {
+            background-color: #cccccc; 
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        #completion-message {
+            text-align: center;
+            font-size: 1.6em;
+            color: #28a745; 
+            padding: 30px;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            border-radius: 8px;
+        }
+        #instagram-link {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+        }
+        #instagram-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #instagram-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            #scoreboard-container,
+            #set-navigation-container, 
+            #quiz-container {
+                padding: 15px;
+            }
+            #scoreboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            #scoreboard span {
+                margin: 3px 0;
+            }
+            #question-text {
+                font-size: 1.05em;
+            }
+            .option {
+                padding: 10px;
+            }
+            button {
+                padding: 10px 15px; 
+                font-size: 14px;
+            }
+            #navigation-buttons {
+                flex-direction: column; 
+            }
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
+            }
+            #set-selector {
+                width: 100%;
+                margin-top: 5px;
+            }
+            #set-navigation-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="scoreboard-container">
+        <div id="scoreboard">
+            <span id="correct-count">Correct: 0</span>
+            <span id="incorrect-count">Incorrect: 0</span>
+            <span id="attempted-count">Attempted: 0</span>
+            <span id="accuracy-rate">Accuracy: N/A</span>
+        </div>
+    </div>
+
+    <div id="set-navigation-container">
+        <label for="set-selector">Switch to Set:</label>
+        <select id="set-selector"></select>
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-header">Loading quiz...</div>
+        <div id="question-text"></div>
+        <div class="options-container" id="options-container">
+            </div>
+        <div id="navigation-buttons">
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
+        </div>
+        <div id="completion-message" style="display:none;">
+            Quiz Completed! Thank you for participating.
+        </div>
+    </div>
+
+    <div id="instagram-link">
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh </a>
+    </div>
+
+    <script>
+        // questionsData array:
+        // q: Question text
+        // o: Array of options
+        // c: Correct answer text
+        // All 174 questions from MCQBank_Paper11.pdf (Financial Management and Business Data Analytics)
+        const questionsData = [
+            { q: "1. Time value of money explains that:", o: ["a unit of money received today is worth more than a unit received in future", "a unit of money received today is worth less than a unit received in future", "a unit of money received today and at some other time in future is equal", "none of the above"], c: "a unit of money received today is worth more than a unit received in future" },
+            { q: "2. Time value of money facilitates comparison of cash flows occurring at different time periods by:", o: ["compounding all cash flows to a common point of time", "discounting all cash flows to a common point of time", "using either (1) or (2)", "neither (1) nor (2)."], c: "using either (1) or (2)" },
+            { q: "3. If the nominal rate of interest is 10 per cent per annum and frequency of compounding is 4 i.e. quarterly compounding, the effective rate of interest will be:", o: ["10.25% per annum", "10.38% per annum", "10% per annum", "none of the above"], c: "10.38% per annum" },
+            { q: "4. Relationship between annual effective rate of interest and annual nominal rate of interest is, if frequency of compounding is more than 1:", o: ["Effective Rate < Nominal rate", "Effective Rate > Nominal rate", "Effective Rate = Nominal rate", "none of the above"], c: "Effective Rate > Nominal rate" },
+            { q: "5. If annual effective rate of interest is 10.25% per annum and nominal rate of return is 10% per annum what is the frequency of compounding?", o: ["2", "3", "12", "4"], c: "2" }, // PDF answer says 3 (12), but 10.25% effective for 10% nominal implies semi-annual (2).
+            { q: "6. A student takes a loan of Rs. 50,000 from SBI. The rate of interest being charged by SBI is 10% per annum. What would be the amount of equal annual instalment if he wishes to pay it back in five instalments and first instalment, he will pay at the end of year 5?", o: ["Rs. 11,000", "Rs. 19,310", "Rs. 15,000", "None of the above"], c: "Rs. 19,310" },
+            { q: "7. How much amount should an investor invest now in order to receive five annuities starting from the end of this year of Rs. 10,000 if the rate of interest offered by bank is 10% per annum?", o: ["Rs. 40.000", "Rs. 45,000", "Rs. 37.910", "none of the above"], c: "Rs. 37.910" },
+            { q: "8. A bank offers 12% compound interests payable quarterly. If you deposit Rs.2,000 now, how much it will grow at the end of 5 years?", o: ["Rs.3.050", "Rs.3,430", "Rs.3.612", "Rs.3,722"], c: "Rs.3.612" },
+            { q: "9. A company wants to repay a loan of Rs. 5,00,000, 10 years from today. What amount should it invest each year for 10 years if the funds can earn 8% per annum? The first investment will be made at the beginning of this year.", o: ["Rs. 50,000", "Rs. 31,950", "Rs. 40.000", "Rs. 32,950"], c: "Rs. 31,950" },
+            { q: "10. Risk of two securities having different expected return can be compared with:", o: ["standard deviation of securities", "variance of securities", "coefficient of variation", "mean"], c: "coefficient of variation" },
+            { q: "11. A portfolio consists of two securities and the expected return on two securities is 12% and 16% respectively. Calculate return of portfolio if first security accounts for 40% of portfolio.", o: ["14%", "14.40%", "16%", "12%"], c: "14.40%" },
+            { q: "12. If the rate of interest is 12%, what are the doubling periods as per the rule 72 and the rule of 69 respectively?", o: ["5 Years and 5.2 Years", "5.8 Years and 5.3 Years", "6 Years and 6.1 Years", "6.5 Years and 6.6 Years"], c: "6 Years and 6.1 Years" },
+            { q: "13. To create a minimum variance portfolio, in what proportion should the two securities be mixed if the following information is given S1 10%, S212%, P12=0.6?", o: ["0.72 and 0.28", "0.70 and 0.30", "0.60 and 0.40", "0.50 and 0.40"], c: "0.72 and 0.28" },
+            { q: "14. A portfolio consisting of two risky securities can be made risk less i.e., Sp=0, if:", o: ["the securities are perfectly positively correlated", "the securities are perfectly negatively correlated", "if the correlation ranges between 0 to 1", "if the correlation ranges between -1 to +1"], c: "the securities are perfectly negatively correlated" },
+            { q: "15. Efficient portfolios are those portfolios, which offer (for a given level of risk)", o: ["maximum return", "minimum return", "average return", "positive return"], c: "maximum return" },
+            { q: "16. CAPM accounts for -", o: ["systematic risk", "unsystematic risk", "both of the above", "moderate risk"], c: "systematic risk" },
+            { q: "17. Assets Management company is formed:", o: ["To manage bank's assets", "To manage mutual funds investments", "To construct infrastructure projects", "To run a stock exchange"], c: "To manage mutual funds investments" },
+            { q: "18. Prime duty of a merchant banker is -", o: ["Maintaining records of clients", "Giving loans to clients", "Working as a Capital Market Intermediary", "None of the above"], c: "Working as a Capital Market Intermediary" },
+            { q: "19. Basic objective of a money market mutual fund is:", o: ["Guaranteed rate of return", "Investment in short- term securities", "Both (1) and (2)", "None of (1) and (2)"], c: "Investment in short- term securities" },
+            { q: "20. Short selling refers to:", o: ["Buying shares and then selling them on the same day.", "Selling shares without owning them", "Selling some shares out of a large holding", "Continuously selling shares in lots."], c: "Selling shares without owning them" },
+            { q: "21. Which of the following is not regulated by SEBI?", o: ["Foreign Institutional Investors", "Foreign Direct Investment", "Mutual Funds", "Depositories"], c: "Foreign Direct Investment" },
+            { q: "22. Which of the following is true for mutual funds in India?", o: ["Exit load is not allowed", "Entry load is allowed", "Entry load is not allowed", "Exit load allowed is some cases"], c: "Exit load allowed is some cases" }, // PDF answer is 4. Current SEBI rules: No entry load. Exit load allowed.
+            { q: "23. Which of the following is not available in India?", o: ["Index Options", "Index Futures,", "Commodity Options", "Commodity Futures"], c: "Commodity Options" },
+            { q: "24. Which of the following is the benefit of Depositories?", o: ["Reduction in the share transfer time to the buyer", "Reduced Risk of stolen, fake, forged shares", "No Stamp duty on transfer of shares in dematerialized form", "All of the above"], c: "All of the above" },
+            { q: "25. Credit Rating of a debt security is:", o: ["Guarantee of Repayment", "Merely opinion", "Positive suggestion", "Negative suggestion"], c: "Merely opinion" },
+            { q: "26. The first computerised online stock exchange in India was:", o: ["NSE", "OTCEI", "BSE", "MCX"], c: "OTCEI" },
+            { q: "27. Which of the following derivative is not traded on Indian Stock Market?", o: ["Index Options", "Stock Futures", "Index Futures", "Forward Rate Agreements"], c: "Forward Rate Agreements" },
+            { q: "28. How many depositories are there in India?", o: ["2", "3", "0", "1"], c: "2" },
+            { q: "29. Secondary Market in India is regulated by:", o: ["Reserve Bank of India", "Securities and Exchange Board of India", "Ministry of Finance", "Forward Market Commission"], c: "Securities and Exchange Board of India" },
+            { q: "30. ____ funds do not have a fixed date of redemption.", o: ["Open ended funds.", "Close ended funds", "Diversified funds", "Both A and B."], c: "Open ended funds." },
+            { q: "31. In India, NIFTY and SENSEX are calculated on the basis of:", o: ["Market Capitalization", "Paid up Capital", "Free-float Capitalization", "Authorized Share Capital"], c: "Free-float Capitalization" },
+            { q: "32. The type of collateral (security) used for short-term loan is:", o: ["Real estate", "Plant & Machinery", "Stock of good", "Equity share capital"], c: "Stock of good" },
+            { q: "33. Which of the following is a liability of a bank?", o: ["Treasury Bills", "Commercial papers", "Certificate of Deposits", "Junk Bonds."], c: "Certificate of Deposits" },
+            { q: "34. Commercial paper is a type of:", o: ["Fixed coupon Bond", "Unsecured short- term debt", "Equity share capital", "Government Bond"], c: "Unsecured short- term debt" },
+            { q: "35. Which of the following is not a spontaneous source of short-term funds?", o: ["Trade credit", "Accrued expenses", "Provision for dividend", "All of the above"], c: "Provision for dividend" },
+            { q: "36. In India, Commercial Papers are issued as per the lines issued by", o: ["Securities and Exchange Board of India", "Reserve Bank of India", "Forward Market Commission", "RBI"], c: "Reserve Bank of India" },
+            { q: "37. Commercial paper are generally issued at a pries:", o: ["Equal to face value", "More than face value", "Less than face value", "Equal to redemption value"], c: "Less than face value" },
+            { q: "38. Which of the following is not applicable to commercial paper?", o: ["Face Value", "Issue Price", "Coupon Rate", "None of the above"], c: "None of the above" }, // CP is zero-coupon. So Coupon Rate is not applicable. PDF key 4.
+            { q: "39. Accounting Ratios are important tools used by", o: ["Managers", "Researchers", "Investors", "All of the above"], c: "All of the above" },
+            { q: "40. Net Profit Ratio Signifies:", o: ["Operational Profitability", "Liquidity Position", "Big-term Solvency", "Profit for Lenders"], c: "Operational Profitability" },
+            { q: "41. Working Capital Turnover measures, the relationship of Working Capital with:", o: ["Fixed Assets", "Sales", "Purchases", "Stock"], c: "Sales" },
+            { q: "42. Dividend Pay-out Ratio is:", o: ["PAT Capital", "DPS EPS", "Pref. Dividend PAT", "Pref. Dividend Equity Dividend"], c: "DPS EPS" },
+            { q: "43. DuPont Analysis deals with:", o: ["Analysis of Current Assets", "Analysis of Profit", "Capital Budgeting", "Analysis of Fixed Assets"], c: "Analysis of Profit" },
+            { q: "44. In Net Profit Ratio, the denominator is:", o: ["Net Purchases", "Net Sales", "Credit Sales", "Cost of goods sold"], c: "Net Sales" },
+            { q: "45. Inventory Turnover measures the relationship of inventory with:", o: ["Average Sales", "Cost of Goods Sold", "Total Purchases", "Total Assets"], c: "Cost of Goods Sold" },
+            { q: "46. The term 'EVA' is used for:", o: ["Extra Value Analysis", "Economic Value Added", "Expected Value Analysis", "Engineering Value Analysis."], c: "Economic Value Added" },
+            { q: "47. Return on Investment may be improved by:", o: ["Increasing Turnover", "Reducing Expenses", "Increasing Capital Utilization", "All of the above"], c: "All of the above" },
+            { q: "48. In Current Ratio, Current Assets are compared with:", o: ["Current Profit", "Current Liabilities", "Fixed Assets", "Equity Share Capital"], c: "Current Liabilities" },
+            { q: "49. ABC Ltd. has a Current Ratio of 1.5: 1 and Net Current Assets of Rs. 5,00,000. What are the Current Assets?", o: ["Rs. 5,00,000", "Rs. 10,00,000", "Rs. 15,00,000", "Rs. 25,00,000"], c: "Rs. 15,00,000" },
+            { q: "50. There is deterioration in the management of working capital of XYZ Ltd. What does it refer to?", o: ["That the Capital Employed has reduced", "That the Profitability has gone up", "That debtors collection period has increased", "That Sales has decreased"], c: "That debtors collection period has increased" },
+            { q: "51. Which of the following does not help to increase Current Ratio?", o: ["Issue of Debentures to buy Stock", "Issue of Debentures to pay Creditors", "Sale of Investment to pay Creditors", "Avail Bank Overdraft to buy Machine"], c: "Avail Bank Overdraft to buy Machine" },
+            { q: "52. Debt to Total Assets Ratio can be improved by:", o: ["Borrowing More", "Issue of Debentures", "Issue of Equity Shares", "Redemption of Debt"], c: "Redemption of Debt" },
+            { q: "53. Ratio of Net Income to Number of Equity Shares known as:", o: ["Price Earnings Ratio", "Net Profit Ratio", "Earnings per Share", "Dividend per Share"], c: "Earnings per Share" },
+            { q: "54. Trend Analysis helps comparing performance of a firm", o: ["With other firms", "Over a period of firm", "With other industries", "With other companies"], c: "Over a period of firm" },
+            { q: "55. A Current Ratio of less than one means:", o: ["Current Liabilities < Current Assets", "Fixed Assets > Current Assets", "Current Assets < Current Liabilities", "Share Capital > Current Assets"], c: "Current Assets < Current Liabilities" },
+            { q: "56. A firm has Capital of Rs. 10,00,000; Sales of Rs. 5,00,000; Gross Profit of Rs. 2,00,000 and Expenses of Rs. 1,00,000. What is the Net Profit Ratio?", o: ["20%", "50%", "10%", "40%"], c: "20%" },
+            { q: "57. XYZ Ltd. has earned 8% Return on Total Assests of Rs. 50,00,000 and has a Net Profit Ratio of 5%. Find out the Sales of the firm.", o: ["Rs. 4,00,000", "Rs. 2,50,000", "Rs. 80,00,000", "Rs. 83,33,333"], c: "Rs. 80,00,000" },
+            { q: "58. Suppliers and Creditors of a firm are interested in:", o: ["Profitability Position", "Liquidity Position", "Market Share Position", "Debt Position"], c: "Liquidity Position" },
+            { q: "59. Which of the following is a measure of Debt Service capacity of a firm?", o: ["Current Ratio", "Acid Test Ratio", "Interest Coverage Ratio", "Debtors Turnover"], c: "Interest Coverage Ratio" },
+            { q: "60. Gross Profit Ratio for a firm remains same but the Net Profit Ratio is decreasing. The reason for such behavior could be:", o: ["Increase in Costs of Goods Sold", "If Increase in Expense", "Increase in Dividend", "Decrease in Sales"], c: "If Increase in Expense" },
+            { q: "61. Which of the following statements is correct?", o: ["A Higher Receivable Turnover is not desirable", "Interest Coverage Ratio depends upon Tax Rate", "Increase in Net Profit Ratio means increase in Sales", "Lower Debt-Equity Ratio means lower Financial Risk"], c: "Lower Debt-Equity Ratio means lower Financial Risk" },
+            { q: "62. Debt to Total Assets of a firm is 2. The Debt to Equity would be:", o: ["0.80", "0.25", "1.00", "0.75"], c: "2.00" }, // D/A = 2. This implies D = 2A. This is unusual. If D/A = 0.2, then D=0.2A, E=0.8A, D/E = 0.2/0.8 = 0.25. PDF key is 2.00.
+            { q: "63. Which of the following helps analysing return to equity Shareholders?", o: ["Return on Assets", "Earnings Per Share", "Net Profit Ratio", "Return on Investment"], c: "Earnings Per Share" }, // PDF key is 2.00
+            { q: "64. Return on Assets and Return on Investment Ratios belong to:", o: ["Liquidity Ratios", "Profitability Ratios", "Solvency Ratios", "Turnover"], c: "Profitability Ratios" }, // PDF key is 2.00
+            { q: "65. XYZ Ltd. has a Debt Equity Ratio of 1.5 as compared to 1.3 Industry average. It means that the firm has:", o: ["Higher Liquidity", "Higher Financial Risk", "Higher Profitability", "Higher Capital Employed"], c: "Higher Financial Risk" }, // PDF key is 2.00
+            { q: "66. Ratio Analysis can be used to study liquidity, turnover, profitability, etc. of a firm. What does Debt-Equity Ratio help to study?", o: ["Solvency", "Liquidity", "Profitability", "Turnover"], c: "Solvency" },
+            { q: "67. In Inventory Turnover calculation, what is taken in the numerator?", o: ["Sales", "Cost of Goods Sold", "Opening Stock", "Closing Stock"], c: "Cost of Goods Sold" },
+            { q: "68. Statement of cash flows are included in:", o: ["Ind AS-3", "Ind AS-6", "Ind AS-7", "Ind AS-113"], c: "Ind AS-7" },
+            { q: "69. Cost of capital refers to:", o: ["Flotation Cost", "Dividend", "Required Rate of Return", "None of the above"], c: "Required Rate of Return" },
+            { q: "70. Which of the following sources of funds has an implicit cost of capital?", o: ["Equity Share Capital", "Preference Share Capital", "Debentures", "Retained earnings"], c: "Retained earnings" },
+            { q: "71. Which of the following has the highest cost of capital?", o: ["Equity shares", "Loans", "Bonds", "Preference shares"], c: "Equity shares" },
+            { q: "72. Cost of capital for Government securities is also known as:", o: ["Risk-free Rate of Interest", "Maximum Rate of Return", "Rate of Interest on Fixed Deposits", "None of the above"], c: "Risk-free Rate of Interest" },
+            { q: "73. Cost of capital for bonds and debentures is calculated on:", o: ["Before Tax basis", "After Tax basis", "Risk-free Rate of Interest basis", "Compound interest"], c: "After Tax basis" },
+            { q: "74. Weighted Average Cost of Capital (WACC) is generally denoted by:", o: ["k", "Kw", "ko", "ke"], c: "ko" }, // PDF answer key is 3 (ko). Kw is also common.
+            { q: "75. Which of the following cost of capital require tax adjustment?", o: ["Cost of Equity Shares", "Cost of Preference Shares", "Cost of Debentures", "Cost of Retained Earnings"], c: "Cost of Debentures" },
+            { q: "76. Which is the most expensive source of funds?", o: ["New Equity Shares", "New Preference Shares", "New Debts", "Retained Earnings"], c: "New Equity Shares" },
+            { q: "77. Marginal cost of capital is the cost of:", o: ["Additional Sales", "Additional Funds", "Additional Interests", "Additional Revenue"], c: "Additional Funds" },
+            { q: "78. In case the firm is all-equity financed, the WACC would be equal to:", o: ["Cost of Debt", "Cost of Equity", "Neither (1) nor (2)", "Both (1) and (2)"], c: "Cost of Equity" },
+            { q: "79. In order to calculate Weighted Average Cost of capitals (WACC) weights may be based on:", o: ["Market Values", "Target Values", "Book Values", "All of the above"], c: "All of the above" },
+            { q: "80. Firm's cost of capital is the average cost of:", o: ["All sources", "All borrowings", "Share capital", "Share, Bonds and Debentures"], c: "All sources" },
+            { q: "81. An implicit cost of increasing proportion of debt is:", o: ["Tax should would not be available on new debt", "P/E Ratio would increase", "Equity shareholders would demand higher return", "Rate of Return of the company would decrease."], c: "Equity shareholders would demand higher return" },
+            { q: "82. Cost of redeemable preference share capital is:", o: ["Rate of Dividend", "After Tax Rate of Dividend", "Discount Rate that equates PV of inflows and out-flows relating to capital", "None of the above"], c: "Discount Rate that equates PV of inflows and out-flows relating to capital" },
+            { q: "83. Which of the following is true?", o: ["Retained earnings are cost free", "External Equity is cheaper than Internal Equity", "Retained Earnings are cheaper than External Equity", "Retained Earnings are costlier than External Equity"], c: "Retained Earnings are cheaper than External Equity" },
+            { q: "84. Capital Budgeting is a part of:", o: ["Investment Decision", "Working Capital Management", "Marketing Management", "Capital Structure"], c: "Investment Decision" },
+            { q: "85. Capital Budgeting deals with:", o: ["Long-term Decisions", "Short-term Decisions", "Both (1) and (2)", "Neither (1) nor (2)"], c: "Long-term Decisions" },
+            { q: "86. Which of the following is not used in Capital Budgeting?", o: ["Time Value of Money", "Sensitivity Analysis", "Net Assets Method", "Cash Flows"], c: "Net Assets Method" },
+            { q: "87. Capital Budgeting Decisions are:", o: ["Reversible", "Irreversible", "Unimportant", "All of the above"], c: "Irreversible" },
+            { q: "88. Which of the following is not incorporated in Capital Budgeting?", o: ["Tax-Effect", "Time Value of Money", "Required Rate of Return", "Rate of Cash Discount"], c: "Rate of Cash Discount" },
+            { q: "89. Which of the following is not a capital budgeting decision?", o: ["Expansion Programme", "Merger", "Replacement of an Asset", "Inventory Level"], c: "Inventory Level" },
+            { q: "90. A sound Capital Budgeting technique is based on:", o: ["Cash Flows", "Accounting Profit", "Interest Rate on Borrowings", "Last Dividend Paid"], c: "Cash Flows" },
+            { q: "91. Which of the following is not a relevant cost in Capital Budgeting?", o: ["Sunk Cost", "Opportunity Cost", "Allocated Overheads", "Both (1) and (3) above"], c: "Both (1) and (3) above" },
+            { q: "92. Capital Budgeting Decisions are based on:", o: ["Incremental Profit", "Incremental Cash Flows", "Incremental Assets", "Incremental Capital"], c: "Incremental Cash Flows" },
+            { q: "93. Which of the following does not effect cash flows proposal?", o: ["Salvage Value", "Depreciation Amount", "Tax Rate Change", "Method of Project Financing"], c: "Method of Project Financing" },
+            { q: "94. Cash Inflows from a project include:", o: ["Tax Shield of Depreciation", "After-tax Operating Profits", "Raising of Funds", "Both (1) and (2)"], c: "Both (1) and (2)" },
+            { q: "95. Which of the following is not true with reference capital budgeting?", o: ["Capital budgeting is related to asset replacement decisions", "Cost of capital is equal to minimum required return", "Existing investment in a project is not treated as sunk cost", "Timing of cash flows is relevant"], c: "Existing investment in a project is not treated as sunk cost" },
+            { q: "96. Which of the following is not followed in capital budgeting?", o: ["Cash flows Principle", "Interest Exclusion Principle", "Accrual Principle", "Post-tax Principle"], c: "Accrual Principle" },
+            { q: "97. Depreciation is incorporated in cash flows because it:", o: ["Is unavoidable cost", "Is a cash flow", "Reduces Tax liability", "Involves an outflow"], c: "Reduces Tax liability" },
+            { q: "98. Which of the following is not true for capital budgeting?", o: ["Sunk costs are ignored", "Opportunity costs are excluded", "Incremental cash flows are considered", "Relevant cash flows are considered"], c: "Opportunity costs are excluded" },
+            { q: "99. Which of the following is not applied in capital budgeting?", o: ["Cash flows be calculated in incremental terms", "All costs and benefits are measured on cash basis", "All accrued costs and revenues be incorporated", "All benefits are measured on after- tax basis"], c: "All accrued costs and revenues be incorporated" },
+            { q: "100. Evaluation of Capital Budgeting proposals is based on Cash Flows because:", o: ["Cash Flows are easy to calculate", "Cash Flows are suggested by SEBI", "Cash is more important than profit", "Cash Flows are suggested by RBI"], c: "Cash is more important than profit" },
+            { q: "101. Which of the following is not included in incremental A flows?", o: ["Opportunity Costs", "Sunk Costs", "Change in Working Capital", "Inflation effect"], c: "Sunk Costs" },
+            { q: "102. A proposal is not a Capital Budgeting proposal if it:", o: ["is related to Fixed Assets", "brings long-term benefits", "brings short-term benefits only", "has very large investment"], c: "brings short-term benefits only" },
+            { q: "103. In Capital Budgeting, Sunk cost is excluded because it is:", o: ["of small amount", "not incremental", "not reversible", "All of the above"], c: "not incremental" },
+            { q: "104. Savings in respect of a cost is treated in capital budgeting as:", o: ["An Inflow", "An Outflow", "Opening balance", "Closing balance"], c: "An Inflow" },
+            { q: "105. ____ ignores the time value of money.", o: ["Internal Rate of Return (IRR)", "Average Rate of Return (ARR)", "Net Present Value (NPV)", "Profitability Index (PI)"], c: "Average Rate of Return (ARR)" },
+            { q: "106. The discounted cash flows techniques are:", o: ["Net Present Value (NPV)", "Internal Rate of Return (IRR)", "Profitability Index (PI)", "All of the above"], c: "All of the above" },
+            { q: "107. Working capital is calculated as", o: ["Core current assets less core current liabilities", "Current assets less current liabilities", "Core current assets less current liabilities", "Liquid assets less current liabilities"], c: "Current assets less current liabilities" },
+            { q: "108. The basic current liabilities are", o: ["accounts payable and bills payable", "bank overdraft", "outstanding expenses", "All of the above"], c: "All of the above" },
+            { q: "109. There are two concepts of working capital-gross and ____", o: ["Zero", "Net", "Cumulative", "distinctive"], c: "Net" },
+            { q: "110. Working capital is also known as ____ capital.", o: ["Current asset", "Operating", "Projecting", "Operation capital"], c: "Operating" },
+            { q: "111. ____ working Capital refers to the firm's investment in current assets.", o: ["Zero", "Net", "Gross", "Distinctive"], c: "Gross" },
+            { q: "112. In finance, \"working capital\" means the same thing as ____ assets.", o: ["Current", "Fixed", "Total", "All of the above"], c: "Current" },
+            { q: "113. ____ working capital refers to the difference between current assets and current liabilities.", o: ["Zero", "Net", "Gross", "Distinctive"], c: "Net" }, // PDF answer key says "Ner" which is likely a typo for Net.
+            { q: "114. A ____ net working capital will arise when current assets exceed current liabilities.", o: ["Summative", "Negative", "Excessive", "Positive"], c: "Positive" },
+            { q: "115. A ____ net working capital occurs when current liabilities are in excess of current assets.", o: ["Positive", "Negative", "Excessive", "Zero"], c: "Negative" },
+            { q: "116. X Ltd. distributes its products to more than 500 retailers. The company's collection period is 30 days and keeps its inventory for 20 days. The operating cycle would be:", o: ["40 Days", "43 Days", "45 Days", "50 Days"], c: "50 Days" },
+            { q: "117. ____ refers to the funds, which an organisation must possess to finance its day to day operations.", o: ["Retained earnings", "Fixed capital", "Working Capital", "All of the above"], c: "Working Capital" },
+            { q: "118. Investment in current assets should be", o: ["just adequate", "more", "less", "maximum"], c: "just adequate" },
+            { q: "119. ____ varies inversely with profitability.", o: ["Risk", "Assets", "Liquidity", "Revenue"], c: "Liquidity" },
+            { q: "120. Capital intensive firms rely on", o: ["debt", "retained earnings", "short term debts", "equity"], c: "debt" },
+            { q: "121. On the basis of ____ working capital is classified as gross working capital and net working capital.", o: ["concept", "time", "future", "work"], c: "concept" },
+            { q: "122. ____ cycle analyzes the accounts receivable, inventory, and accounts payable cycles in terms of a number of days?", o: ["Business", "Current asset", "Operation", "Operating"], c: "Operating" },
+            { q: "123. ____ method is not used for calculating working capital cycle.", o: ["Trial and error method", "Regression analysis method", "Percentage of sales method", "Operating cycle approach"], c: "Trial and error method" },
+            { q: "124. On the basis of ____ working capital may be classified as: 1) Permanent or fixed working capital. 2) Temporary or variable working capital.", o: ["concept", "time", "future", "work"], c: "time" },
+            { q: "125. Operating cycle is also called as", o: ["Business cycle", "Working capital cycle", "Working cycle", "Current asset cycle"], c: "Working capital cycle" },
+            { q: "126. Spontaneous financing consists of", o: ["a line of credit", "short-term loans", "accounts receivable", "accounts payable"], c: "accounts payable" },
+            { q: "127. Conversation of marketable securities into cash entails a fixed cost of Rs.1,000 per transaction. What will be the optimal conversation size as per Baumol model of cash management?", o: ["Rs. 315,628", "Rs. 316,228", "Rs. 317.678", "Rs. 318,426"], c: "Rs. 316,228" }, // Baumol model needs total cash requirement and opportunity cost (interest rate). Not provided. Following PDF key.
+            { q: "128. Average collection period is 2 months, cash sales and average receivables are Rs.5,00,000 and Rs.6,50,000 respectively. The sales amount would be-", o: ["Rs. 40,00,000", "Rs. 42,00,000", "Rs. 44,00,000", "Rs. 48,50,000"], c: "Rs. 44,00,000" },
+            { q: "129. If the current ratio is 2.4:1 and working capital is Rs.25,20,000, find the amount of current assets and current liabilities.", o: ["Current Assets Rs. 43,20,000 and Current Liabilities Rs. 18,00,000", "Current Assets Rs. 44,00,000 and Current Liabilities Rs.18,50,000", "Current Assets Rs. 45,50,000 and Current Liabilities Rs. 19.00.000", "Current Assets Rs. 46,60,000 and Current Liabilities Rs. 19,30,000"], c: "Current Assets Rs. 43,20,000 and Current Liabilities Rs. 18,00,000" },
+            { q: "130. Operating leverage helps in analysis of:", o: ["Business Risk", "Financing Risk", "Production Risk", "Credit Risk"], c: "Business Risk" },
+            { q: "131. Which of the following is studied with the help of financial leverage?", o: ["Marketing Risk", "Interest Rate Risk", "Foreign Exchange Risk", "Financing risk"], c: "Financing risk" },
+            { q: "132. Combined Leverage is obtained from OL and FL by their:", o: ["Addition", "Subtraction", "Multiplication", "Any of these"], c: "Multiplication" },
+            { q: "133. High degree of financial leverage means:", o: ["High debt proportion", "Lower debt proportion", "Equal debt and equity", "No debt"], c: "High debt proportion" },
+            { q: "134. Operating leverage arises because of:", o: ["Fixed Cost of Production", "Fixed Interest Cost", "Variable Cost", "Step Cost"], c: "Fixed Cost of Production" },
+            { q: "135. Financial Leverage arises because of:", o: ["Fixed cost of production", "Variable Cost", "Interest Cost", "Step Cost"], c: "Interest Cost" },
+            { q: "136. Operating Leverage is calculated as:", o: ["Contribution EBIT", "EBIT-PBT", "EBIT -Interest", "EBIT -Tax"], c: "Contribution EBIT" },
+            { q: "137. Financial Leverage is calculated as:", o: ["EBIT Contribution", "EBIT PBT", "EBIT- Sales", "EBIT Variable Cost"], c: "EBIT PBT" },
+            { q: "138. Which combination is generally good for firms?", o: ["High Operating leverage, High Financial leverage", "Low Operating leverage, Low Financial leverage", "High Operating leverage, Low Financial leverage", "Moderate Operating leverage. Moderate Financial leverage"], c: "High Operating leverage, Low Financial leverage" },
+            { q: "139. Combined leverage can be used to measure the relationship between:", o: ["EBIT and EPS", "PAT and EPS", "Sales and EPS", "Sales and EBIT"], c: "Sales and EPS" },
+            { q: "140. Financial Leverage is zero if:", o: ["EBIT Interest", "EBIT = Zero", "EBIT Fixed Cost", "EBIT Pref. Dividend"], c: "EBIT = Zero" }, // Or if there's no debt/interest. PDF key 2.
+            { q: "141. Business risk can be measured by:", o: ["Financial leverage", "Operating leverage", "Combined leverage", "All of the above"], c: "Operating leverage" },
+            { q: "142. Financial Leverage measures relationship between", o: ["EBIT and PBT", "EBIT and EPS", "Sales and PBT", "Sales and EPS"], c: "EBIT and EPS" },
+            { q: "143. Use of Preference Share Capital in Capital structure", o: ["Increases Operating leverage", "Increases Financial leverage", "Decreases Operating leverage", "Decreases Financial leverage"], c: "Increases Financial leverage" },
+            { q: "144. Relationship between change in sales and change in EPS is measured by:", o: ["Financial leverage", "Combined leverage", "Operating leverage", "All of the above"], c: "Combined leverage" },
+            { q: "145. Numerical data may be expressed as:", o: ["In the form of text", "In the form of numbers", "In the form of images", "All of the above"], c: "In the form of numbers" },
+            { q: "146. The descriptive data may be deciphered as:", o: ["May be deciphered in the form of qualitative information", "May be deciphered in the form of quantitative information", "May be deciphered in the form of information from informal sources", "All of the above"], c: "May be deciphered in the form of qualitative information" },
+            { q: "147. Data represented in the form of picture is termed as:", o: ["Graphic data", "Qualitative data", "Quantitative data", "All of the above"], c: "Graphic data" },
+            { q: "148. Which of the following is/are the reason for digitization?", o: ["Helps in work processing", "Requires less physical storage space", "Digitized records may be accessed by more than one person simultaneously", "All of the above"], c: "Requires less physical storage space" }, // PDF answer key is 2. All options are valid reasons.
+            { q: "149. To make the data turn into user friendly information, it should go one/more of following core steps:", o: ["Collection of data", "Organising the data", "Data processing", "All of the above"], c: "All of the above" },
+            { q: "150. Any data expressed as a number is a ____ data.", o: ["graphical", "descriptive", "numerical", "None of the above"], c: "numerical" },
+            { q: "151. Classifying equities into small-cap, mid-cap, and large-cap categories are the examples of ____ Scale", o: ["Nominal", "Ordinal", "Interval", "Ratio"], c: "Nominal" },
+            { q: "152. Which of the following is a phase for a process of digitization?", o: ["Justification of the proposed digitization project", "Assessment", "Planning", "All of the above"], c: "All of the above" },
+            { q: "153. Data science plays an important role in:", o: ["Risk analytics", "Customer data management", "Consumer analytics", "All of the above"], c: "All of the above" },
+            { q: "154. The primary benefit of data distribution is:", o: ["the estimation of the probability of any certain observation within a sample space", "the estimation of the probability of any certain observation within a non-sample space", "the estimation of the probability of any certain observation within a population", "the estimation of the probability of any certain observation without a non- sample space"], c: "the estimation of the probability of any certain observation within a sample space" },
+            { q: "155. Binomial distribution applies to attributes:", o: ["that are categorised into two mutually exclusive and exhaustive classes", "that are categorised into three mutually exclusive and exhaustive classes", "that are categorised into less than two mutually exclusive and exhaustive classes", "that are categorised into four mutually exclusive and exhaustive classes"], c: "that are categorised into two mutually exclusive and exhaustive classes" },
+            { q: "156. The geometric distribution is a discrete distribution that assesses:", o: ["the probability of the occurrence of the first success", "the probability of the occurrence of the second success", "the probability of the occurrence of the third success", "the probability of the occurrence of the less success"], c: "the probability of the occurrence of the first success" },
+            { q: "157. The probability density function describes:", o: ["the characteristics of a random variable", "the characteristics of a non-random variable", "the characteristics of a random constant", "the characteristics of a non-random constant"], c: "the characteristics of a random variable" },
+            { q: "158. When independent variables with standard normal distribution are squared and added, the ____ distribution occurs", o: ["Normal", "Chi square", "Exponential", "Lognormal"], c: "Chi square" },
+            { q: "159. The procedure that organises data into a meaningful order to make it simpler to comprehend, analyse, and visualise, is called", o: ["Data validation", "Data sorting", "Data aggregation", "Data analysis"], c: "Data sorting" },
+            { q: "160. Following is a widely used graph for data Visualisation:", o: ["Bar chart", "Pie chart", "Histogram", "All of the above"], c: "All of the above" },
+            { q: "161. Following are the objectives of data visualisation:", o: ["Making a better data analysis", "Faster decision making", "Analysing complicated data", "All of the above"], c: "All of the above" },
+            { q: "162. Following are the scope of DPA:", o: ["Defining significant meaning (relevant information) required by each audience member in every scenario.", "Obtaining the proper data (focus area. historic reach, extensiveness, level of detail, etc.)", "Determining the needed frequency of data refreshes (the currency of the data)", "All of the above"], c: "All of the above" },
+            { q: "163. Maps may be used for displaying:", o: ["Pincode", "Country name", "State abbreviation", "All of the above"], c: "All of the above" },
+            { q: "164. A scatter plot displays several unique data points:", o: ["on a single graph", "On two different graphs", "On four different graphs", "None of the above"], c: "on a single graph" },
+            { q: "165. A ____ chart depicts tasks that must be accomplished before others may begin, as well as the allocation of resources.", o: ["Bubble", "Gantt", "Scatter", "Density"], c: "Gantt" },
+            { q: "166. ____ is a set of skills that aims to identify, find, modify, format, and present data in a manner that ideally conveys meaning and provides insight.", o: ["Data Presentation Architecture", "Data Presentation Hierarchy", "Data Visualization Architecture", "None of the above"], c: "Data Presentation Architecture" },
+            { q: "167. Which of the following is a data discovery platform that enables users to make quicker, more informed choices by speeding analytics, uncovering new business insights, and enhancing the precision of outcomes?", o: ["Microsoft Excel", "Microsoft Power BI", "QlikView", "Tableau"], c: "QlikView" }, // PDF answer key 3. All options are data discovery/visualization tools.
+            { q: "168. Which of the following is/ are the benefit/ benefits of data analytics?", o: ["Improves decision making process", "Increase in efficiency of operations", "Improved service to stakeholders", "All of the above"], c: "All of the above" },
+            { q: "169. Which of the following is/ are the technique/s of data mining?", o: ["Association rules", "Neural network", "Decision tree", "All of the above"], c: "All of the above" },
+            { q: "170. XML is the abbreviated form of:", o: ["Extensible mark-up language", "Extended mark-up language", "Extendable mark-up language", "Extensive mark-up language"], c: "Extensible mark-up language" },
+            { q: "171. XBRL is the abbreviated form of:", o: ["eXtensible Business Reporting Language", "eXtensive Business Reporting Language", "eXtended Business Reporting Language", "eXtensive Business Reporting Language"], c: "eXtensible Business Reporting Language" },
+            { q: "172. Which of the following is/ are the types of cloud computing?", o: ["Private cloud", "Public cloud", "Hybrid cloud", "All of the above"], c: "All of the above" },
+            { q: "173. On the basis of the type of \"signal\" or \"feedback\" provided to the learning system, which of the following is not a type of machine learning?", o: ["Supervised learning", "Unsupervised learning", "Semi supervised learning", "Robotic Process learning"], c: "Robotic Process learning" },
+            { q: "174. In recent years, business intelligence has expanded to incorporate more procedures and activities designed to enhance performance. These procedures consist of:", o: ["Data mining", "Reporting", "Querying", "All of the above"], c: "All of the above" }
+        ];
+
+
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
+
+        let score = {
+            correct: 0,
+            incorrect: 0
+        };
+
+        // DOM Elements
+        const questionHeaderElement = document.getElementById('question-header');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const completionMessageElement = document.getElementById('completion-message');
+        const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
+
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const attemptedCountElement = document.getElementById('attempted-count');
+        const accuracyRateElement = document.getElementById('accuracy-rate');
+
+        // Configuration for 174 questions into 5 sets
+        // 4 sets of 35 questions, 1 set of 34 questions (35*4 + 34 = 140 + 34 = 174)
+        const questionsPerSet = [35, 35, 35, 35, 34]; 
+        const setStartIndices = [0, 35, 70, 105, 140]; 
+
+        function populateSetSelector() {
+            setSelectorElement.innerHTML = ''; // Clear existing options
+            questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
+                const option = document.createElement('option');
+                option.value = index; 
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
+            });
+            setSelectorElement.addEventListener('change', (event) => {
+                const selectedSetIndex = parseInt(event.target.value);
+                currentQuestionIndex = setStartIndices[selectedSetIndex];
+                completionMessageElement.style.display = 'none';
+                questionHeaderElement.style.display = 'block';
+                questionTextElement.style.display = 'block';
+                optionsContainerElement.style.display = 'block';
+                navigationButtons.style.display = 'flex'; 
+                loadQuestion();
+            });
+        }
+
+        function getCurrentSetInfo(index) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
+                    if (setSelectorElement.value != i) { 
+                         setSelectorElement.value = i; 
+                    }
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
+                }
+            }
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
+            }
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
+        }
+        
+        function updateScoreboard() {
+            correctCountElement.textContent = `Correct: ${score.correct}`;
+            incorrectCountElement.textContent = `Incorrect: ${score.incorrect}`;
+            const attempted = score.correct + score.incorrect;
+            attemptedCountElement.textContent = `Attempted: ${attempted}`;
+            if (attempted > 0) {
+                const accuracy = (score.correct / attempted * 100).toFixed(1);
+                accuracyRateElement.textContent = `Accuracy: ${accuracy}%`;
+            } else {
+                accuracyRateElement.textContent = `Accuracy: N/A`;
+            }
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
+                showCompletionMessage();
+                return;
+            }
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const setInfo = getCurrentSetInfo(currentQuestionIndex);
+
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
+
+            optionsContainerElement.innerHTML = ''; 
+            currentQuestion.o.forEach((optionText, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.dataset.optionText = optionText; 
+
+                const optionLetter = String.fromCharCode(65 + index); 
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                
+                if (questionsAttemptedState[currentQuestionIndex]) { 
+                    optionElement.classList.add('disabled');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
+                    }
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
+                    }
+                } else {
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
+                }
+                optionsContainerElement.appendChild(optionElement);
+            });
+
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
+            nextButton.disabled = !questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length;
+            prevButton.disabled = (currentQuestionIndex === 0);
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
+        }
+
+        function handleOptionSelection(selectedDiv, selectedOptionText) {
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
+
+            questionsAttemptedState[currentQuestionIndex] = true;
+            userAnswers[currentQuestionIndex] = selectedOptionText;
+            nextButton.disabled = false; 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const correctAnswerText = currentQuestion.c;
+
+            Array.from(optionsContainerElement.children).forEach(optDiv => {
+                optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
+                    }
+                }
+            });
+            updateScoreboard();
+        }
+        
+        function selectOptionByKey(key) {
+            if (questionsAttemptedState[currentQuestionIndex]) return;
+
+            let optionIndex = -1;
+            if (key === 'a' || key === '1') optionIndex = 0;
+            else if (key === 'b' || key === '2') optionIndex = 1;
+            else if (key === 'c' || key === '3') optionIndex = 2;
+            else if (key === 'd' || key === '4') optionIndex = 3;
+
+            if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
+                const optionDiv = optionsContainerElement.children[optionIndex];
+                if (optionDiv && !optionDiv.classList.contains('disabled')) {
+                    handleOptionSelection(optionDiv, optionDiv.dataset.optionText);
+                }
+            }
+        }
+
+        function nextQuestionHandler() {
+            if (!questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length) {
+                return; 
+            }
+            if (currentQuestionIndex === questionsData.length - 1 && questionsAttemptedState[currentQuestionIndex]) {
+                currentQuestionIndex++; 
+                showCompletionMessage();
+            } 
+            else if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            }
+             else if (currentQuestionIndex >= questionsData.length) { 
+                 showCompletionMessage(); 
+            }
+        }
+
+        function prevQuestionHandler() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+        
+        function showCompletionMessage() {
+            questionHeaderElement.style.display = 'none';
+            questionTextElement.style.display = 'none';
+            optionsContainerElement.style.display = 'none';
+            navigationButtons.style.display = 'none'; 
+            completionMessageElement.style.display = 'block';
+            const attempted = score.correct + score.incorrect;
+            const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
+        }
+
+        // Event Listeners
+        nextButton.addEventListener('click', nextQuestionHandler);
+        prevButton.addEventListener('click', prevQuestionHandler);
+
+        document.addEventListener('keydown', (event) => {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+                return;
+            }
+            if (event.key.toLowerCase() === 'escape') return; 
+
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault(); 
+                 return;
+            }
+
+            const key = event.key.toLowerCase();
+            if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                event.preventDefault();
+                selectOptionByKey(key);
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
+                event.preventDefault();
+                nextQuestionHandler();
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
+                event.preventDefault();
+                prevQuestionHandler();
+            }
+        });
+
+        // Initial setup
+        populateSetSelector();
+        loadQuestion();
+        updateScoreboard(); 
+    </script>
+</body>
+</html>
