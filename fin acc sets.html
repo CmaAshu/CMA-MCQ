@@ -10,7 +10,7 @@
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5;
+            background-color: #f0f2f5; /* Light grey background */
             color: #333;
             display: flex;
             flex-direction: column;
@@ -19,8 +19,8 @@
         }
 
         #scoreboard-container {
-            background: #9370DB; /* Purple */
-            color: #ffffff; /* White text for better contrast on purple */
+            background: #8000ff; /* Purple */
+            color: #ffffff;
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -31,8 +31,8 @@
         }
         
         #set-navigation-container {
-            background: #4169E1; /* Royal Blue */
-            color: #ffffff; /* White text for better contrast on blue */
+            background: #0051ff; /* Blue */
+            color: #ffffff;
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -73,7 +73,7 @@
         }
 
         #quiz-container {
-            background: #FFDAB9; /* Light Saffron (PeachPuff, a bit lighter than #FFC300 for better text contrast) */
+            background: #FFC300; /* Yellow */
             padding: 25px 30px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -85,10 +85,10 @@
 
         #question-header {
             font-size: 0.9em;
-            color: #4A4A4A; /* Darker grey for readability on light saffron */
+            color: #555; 
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #FFBFA0; /* Slightly darker saffron for border */
+            border-bottom: 1px solid #dba700; /* Darker yellow for border */
             padding-bottom: 10px;
         }
 
@@ -106,35 +106,37 @@
         .option {
             display: flex;
             align-items: center;
-            background: #FFF8E1; 
+            background: #fffde7; /* Lighter Yellow/Beige */
             padding: 12px 15px;
             margin-bottom: 12px;
             border-radius: 6px;
             cursor: pointer;
-            border: 1px solid #FFECB3; 
+            border: 1px solid #fff9c4; 
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
             color: #333; 
         }
 
         .option:not(.disabled):hover {
-            background: #FFF0C1; 
-            border-color: #FFE082;
+            background: #fff59d; /* Darker Lighter Yellow on hover */
+            border-color: #fff176;
         }
 
-        .option.selected {
+        .option.selected { 
             font-weight: 500; 
+            border-color: #0051ff; /* Blue border for selected */
+            background-color: #e0efff; 
         }
         
         .option.correct-answer {
             background: #d4edda !important; 
             border-color: #c3e6cb !important;
-            color: #155724 !important;
+            color: #155724 !important; 
         }
 
         .option.incorrect-selection {
             background: #f8d7da !important; 
             border-color: #f5c6cb !important;
-            color: #721c24 !important;
+            color: #721c24 !important; 
         }
         .option.disabled {
             cursor: not-allowed;
@@ -144,27 +146,33 @@
         .option-letter {
             font-weight: bold;
             margin-right: 10px;
-            color: #495057;
-            background-color: #FFECB3; 
+            color: #495057; 
+            background-color: #d1e7dd; 
             padding: 3px 7px;
             border-radius: 4px;
             min-width: 20px;
             text-align: center;
         }
         
+        .option.selected .option-letter {
+            background-color: #0051ff; 
+            color: white;
+        }
+
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important;
+            background-color: #28a745 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important;
+            background-color: #dc3545 !important; 
             color: white !important;
         }
 
 
         #navigation-buttons {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between; 
+            align-items: center;
             margin-top: 25px;
         }
 
@@ -180,20 +188,22 @@
             border-radius: 6px;
             cursor: pointer;
             transition: background-color 0.2s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        button:hover {
-            background-color: #0056b3;
+        button:hover:not(:disabled) {
+            background-color: #0056b3; 
         }
 
         button:disabled {
-            background-color: #cccccc;
+            background-color: #cccccc; 
             cursor: not-allowed;
+            box-shadow: none;
         }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745;
+            color: #28a745; 
             padding: 30px;
             border: 1px solid #c3e6cb;
             background-color: #d4edda;
@@ -234,8 +244,18 @@
                 padding: 10px;
             }
             button {
-                padding: 10px 20px;
-                font-size: 15px;
+                padding: 10px 15px; 
+                font-size: 14px;
+            }
+            #navigation-buttons {
+                flex-direction: column; 
+            }
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
             }
             #set-selector {
                 width: 100%;
@@ -269,7 +289,8 @@
         <div class="options-container" id="options-container">
             </div>
         <div id="navigation-buttons">
-            <button id="next-btn">Next Question</button>
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
         </div>
         <div id="completion-message" style="display:none;">
             Quiz Completed! Thank you for participating.
@@ -277,221 +298,236 @@
     </div>
 
     <div id="instagram-link">
-        Follow on Instagram: <a href="https://www.instagram.com/ashtoshkmr" target="_blank">Ash🔱tosh (@ashu.ig)</a>
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh </a>
     </div>
 
     <script>
+        // questionsData array:
+        // q: Question text
+        // o: Array of options
+        // c: Correct answer text
+        // All 144 questions from MCQBank_Paper6.pdf (Financial Accounting)
         const questionsData = [
-            // Set 1: Questions 1-36
             { q: "1. Which of the following is not a method of charging depreciation?", o: ["Sinking Fund Method", "Sum of years Digit Method", "Working hours Method", "Asset's Life-cycle Method"], c: "Asset's Life-cycle Method" },
-            { q: "2. A resource owned by the business with purpose of using it for generating future profit, is known as ____", o: ["Capital", "Asset", "Liability", "Surplus"], c: "Asset" },
-            { q: "3. Outward Invoice issued is a source document of ____", o: ["Purchase Book", "Sales Book", "Return Inward Book", "Return Outward Book"], c: "Sales Book" },
+            { q: "2. A resource owned by the business with purpose of using it for generating future profit, is known as", o: ["Capital", "Asset", "Liability", "Surplus"], c: "Asset" },
+            { q: "3. Outward Invoice issued is a source document of", o: ["Purchase Book", "Sales Book", "Return Inward Book", "Return Outward Book"], c: "Sales Book" },
             { q: "4. Which of the following is of capital nature?", o: ["Commission on purchases", "Cost of repairs", "Rent of factory", "Wages paid for installation of machinery"], c: "Wages paid for installation of machinery" },
             { q: "5. Which of the following is not a Fundamental Accounting Assumption?", o: ["Going Concern", "Consistency", "Accrual", "Materiality"], c: "Materiality" },
-            { q: "6. An obligation which may or may not materialize is a/an. ____", o: ["Loss", "Asset", "Contingent Liability", "None of the above"], c: "Contingent Liability" },
-            { q: "7. Which of the following is an example of Capital Expenditure?", o: ["Inventory of raw materials, work-in-progress and finished goods", "Insurance premium", "Taxes and legal expenses", "None of the above"], c: "None of the above" }, // Assuming wages for installation of machinery would be the prime example, which isn't listed here as a direct option.
+            { q: "6. An obligation which may or may not materialize is a/an.", o: ["Loss", "Asset", "Contingent Liability", "None of the above"], c: "Contingent Liability" },
+            { q: "7. Which of the following is an example of Capital Expenditure?", o: ["Inventory of raw materials, work-in-progress and finished goods", "Insurance premium", "Taxes and legal expenses", "None of the above"], c: "None of the above" },
             { q: "8. ____ is specially suited to mines, oil wells, quarries, sandpits and similar assets of a wasting character.", o: ["Depletion", "Depreciation", "Amortisation", "Dilapidation"], c: "Depletion" },
-            { q: "9. Which of the following account has a credit balance?", o: ["Plant and Equipment A/c", "Loans A/c", "Purchase A/c", "None of the above"], c: "Loans A/c" }, // Assuming Loans taken by the business.
+            { q: "9. Which of the following account has a credit balance?", o: ["Plant and Equipment A/c", "Loans A/c", "Purchase A/c", "None of the above"], c: "Loans A/c" },
             { q: "10. Which of the following is/are revenue expenditure?", o: ["Consumable Stores", "Taxes and legal expenses", "Rent of factory building", "All of Above"], c: "All of Above" },
             { q: "11. Which of the following purpose is served from the preparation of Trial Balance?", o: ["To check the arithmetical accuracy of the recorded transactions", "To ascertain the balance of any ledger account", "To facilitate the preparation of final accounts promptly", "All of the above"], c: "All of the above" },
             { q: "12. The basic principles of ____ concept is that business is assumed to exist for an indefinite period", o: ["Going Concern", "Business Entity", "Money Measurement", "None of the above"], c: "Going Concern" },
-            { q: "13. Purchase of a laptop for office use wrongly debited to Purchase Account. It is an error of ____", o: ["Omission", "Commission", "Principle", "Misposting"], c: "Principle" },
+            { q: "13. Purchase of a laptop for office use wrongly debited to Purchase Account. It is an error of", o: ["Omission", "Commission", "Principle", "Misposting"], c: "Principle" },
             { q: "14. Which of the following book is both a journal and a ledger?", o: ["Cash Book", "Sales Day Book", "Bills Receivable Book", "Journal Proper"], c: "Cash Book" },
-            { q: "15. Original cost of a machine is ₹1,50,000, residual value ₹10,000, if depreciation is charged @ 10% per annum under WDV method then depreciation for 3rd year will be ____", o: ["₹12,240", "₹11,340", "₹12,150", "₹14,000"], c: "₹12,150" },
-            { q: "16. Cost of Machine B is ₹90,000, Expenses incurred at the time of purchase to be capitalized is ₹10,000. Estimated Residual Value of Machine B is ₹20,000. Expected Useful Life is 8 years. Compute the amount depreciations under SLM method.", o: ["₹10,000", "₹20,000", "₹15,000", "₹5,000"], c: "₹10,000" }, // (90000+10000-20000)/8
-            { q: "17. If Capital on 01.01.2023 was ₹24,000. Capital on 31.12.2023 was ₹12,000. Profit /(Loss) during the year was ₹6,000 and Fresh Capital introduced was ₹1,200 Then the amount of drawings was ____", o: ["₹7,200", "₹12,000", "₹25,200", "₹19,200"], c: "₹19,200" }, // Op Cap + Add Cap + Profit - Drawings = Cl Cap => 24000 + 1200 + 6000 - D = 12000 => 31200 - D = 12000 => D = 19200
-            { q: "18. Journal entry of wages ₹10,000 paid for installation of machinery will be ____", o: ["Dr.Wages A/c and Cr. Cash A/c with ₹10,000", "Dr.Machinery A/c and Cr. Cash A/c with ₹10,000", "Dr.Machinery repairs A/c and Cr. Cash A/c with ₹10,000", "None of the above"], c: "Dr.Machinery A/c and Cr. Cash A/c with ₹10,000" },
-            { q: "19. Credit balance of a nominal account shows ____", o: ["Expenses of the business", "Loss in the business", "Income in the business", "Asset of the business"], c: "Income in the business" },
-            { q: "20. Which of the following will be recorded as Contra Entry in a Cash Book?", o: ["₹1,000 withdrawn from bank for personal use", "Cheque of ₹2,000 received from Mr.X lodged into bank on the same day", "Cheque of ₹3,000 received before from Mr.Y and now lodged into bank", "A customer directly deposited ₹4,000 in the bank account of the business"], c: "Cheque of ₹3,000 received before from Mr.Y and now lodged into bank" }, // Assuming three-column cash book and cheque was first recorded in cash column.
-            { q: "21. Goods purchased costing ₹60,000 and cash paid ₹45,000 after receipt of a cash discount of ₹9,000. What is the percentage of trade discount got?", o: ["15%", "10%", "7.50%", "25%"], c: "10%" }, // Cash Price before CD = 45000+9000 = 54000. List Price = 60000. Trade Discount = 60000-54000 = 6000. % = (6000/60000)*100 = 10%
-            { q: "22. Which of the following errors in an error of omission?", o: ["Sale ₹5,000 written in the purchase journal", "Wages paid to Shyam debited to his account", "The total of the sales journal has not been posted to the sales account", "None of the above"], c: "The total of the sales journal has not been posted to the sales account" }, // This is partial omission.
-            { q: "23. A credit sale of goods to Amir, worth ₹600 was recorded in Purchase Book. In the rectification entry ____", o: ["Amir will be debited by ₹600", "Purchase will be debited by ₹600", "Amir will be debited by ₹1,200", "Sales will be credited by ₹1,200"], c: "Amir will be debited by ₹1,200" }, // Rect: Amir Dr 1200, To Sales Cr 600, To Purchases Cr 600 (if purchase book was wrongly debited). More simply: Amir Dr 600, Sales Cr 600 (correct entry). Purchase Dr 600, Amir Cr 600 (wrong entry). Rect: Amir Dr 1200, To Sales Cr 600, To Purchase Cr 600.
-            { q: "24. Purchase of machinery worth ₹5,000 was omitted from accounts. The rectification entry is ____", o: ["Purchase A/c will be debited", "Cash A/c will be credited", "Machinery A/c will be credited", "None of the above"], c: "None of the above" }, // Rect: Machinery A/c Dr, To Cash/Supplier A/c Cr. So Machinery A/c will be debited.
-            { q: "25. Goods purchased from A for ₹2,000 passed through sales book. The rectification of this error results in ____", o: ["Decrease in Gross Profit", "No effect on Gross Profit", "Increase in Gross Profit", "Increase in Sundry Debtors"], c: "Decrease in Gross Profit" },
-            { q: "26. The Accommodation bill is drawn ____", o: ["to finance actual purchase or sale of goods.", "to facilitate trade transmission.", "when both parties are in need of funds.", "None of the above"], c: "when both parties are in need of funds." },
-            { q: "27. If any stock is taken by a co-venturer, it will be treated as ____", o: ["an income of the joint venture", "an expense of the joint venture", "to be ignored from joint venture", "it will be treated in the personal books of the co-venturer"], c: "an income of the joint venture" },
+            { q: "15. Original cost of a machine is ₹ 1,50,000, residual value ₹10,000, if depreciation is charged @ 10% per annum under WDV method then depreciation for 3rd year will be", o: ["₹ 12,240", "₹11,340", "₹12,150", "₹14,000"], c: "₹12,150" },
+            { q: "16. Cost of Machine B is ₹90,000, Expenses incurred at the time of purchase to be capitalized is ₹10,000. Estimated Residual Value of Machine B is 20,000. Expected Useful Life is 8 years. Compute the amount depreciations under SLM method.", o: ["₹10,000", "₹20,000", "₹15,000", "₹5,000"], c: "₹10,000" },
+            { q: "17. If Capital on 01.01.2023 was 24,000. Capital on 31.12.2023 is was 12,000. Profit /(Loss) during the year was ₹ 6,000 and Fresh Capital introduced was ₹1,200 Then the amount of drawings was", o: ["₹7,200", "₹12,000", "₹25,200", "₹19,200"], c: "₹19,200" },
+            { q: "18. Journal entry of wages ₹10,000 paid for installation of machinery will be", o: ["Dr.Wages A/c and Cr. Cash A/c with ₹10,000", "Dr.Machinery A/c and Cr. Cash A/c with ₹10,000", "Dr.Machinery repairs A/c and Cr. Cash A/c with ₹10,000", "None of the above"], c: "Dr.Machinery A/c and Cr. Cash A/c with ₹10,000" },
+            { q: "19. Credit balance of a nominal account shows", o: ["Expenses of the business", "Loss in the business", "Income in the business", "Asset of the business"], c: "Income in the business" },
+            { q: "20. Which of the following will be recorded as Contra Entry in a Cash Book?", o: ["₹1,000 withdrawn from bank for personal use", "Cheque of ₹2,000 received from Mr.X lodged into bank on the same day", "Cheque of ₹3,000 received before from Mr.Y and now lodged into bank", "A customer directly deposited 24,000 in the bank account of the business"], c: "Cheque of ₹3,000 received before from Mr.Y and now lodged into bank" },
+            { q: "21. Goods purchased costing ₹ 60,000 and cash paid ₹45,000 after receipt of a cash discount of ₹9,000. What is the percentage of trade discount got?", o: ["15%", "10%", "7.50%", "25%"], c: "10%" },
+            { q: "22. Which of the following errors in an error of omission?", o: ["Sale 25,000 written in the purchase journal", "Wages paid to Shyam debited to his account", "The total of the sales journal has not been posted to the sales account", "None of the above"], c: "The total of the sales journal has not been posted to the sales account" },
+            { q: "23. A credit sale of goods to Amir, worth ₹ 600 was recorded in Purchase Book. In the rectification entry", o: ["Amir will be debited by ₹600", "Purchase will be debited by ₹ 600", "Amir will be debited by ₹1,200", "Sales will be credited by ₹1,200"], c: "Amir will be debited by ₹1,200" },
+            { q: "24. Purchase of machinery worth ₹5,000 was omitted from accounts. The rectification entry is", o: ["Purchase A/c will be debited", "Cash A/c will be credited", "Machinery A/c will be credited", "None of the above"], c: "Cash A/c will be credited" }, // Rectification: Machinery A/c Dr, To Suspense A/c (if trial balance already prepared) or To Cash/Bank/Supplier A/c if not yet paid. PDF key is 2.
+            { q: "25. Goods purchased from A for ₹2,000 passed through sales book. The rectification of this error results in", o: ["Decrease in Gross Profit", "No effect on Gross Profit", "Increase in Gross Profit", "Increase in Sundry Debtors"], c: "Decrease in Gross Profit" },
+            { q: "26. The Accommodation bill is drawn", o: ["to finance actual purchase or sale of goods.", "to facilitate trade transmission.", "when both parties are in need of funds.", "None of the above"], c: "when both parties are in need of funds." },
+            { q: "27. If any stock is taken by a co-venturer, it will be treated as", o: ["an income of the joint venture", "an expense of the joint venture", "to be ignored from joint venture", "it will be treated in the personal books of the co-venturer"], c: "an income of the joint venture" },
             { q: "28. Kuntal draws a bill on shyam for Rs. 7,000. Kuntal endorsed it to Ram. Ram endorsed it to Rahim. The payee of the bill will be:", o: ["Kuntal", "Ram", "Shyam", "Rahim"], c: "Rahim" },
-            { q: "29. A and B purchased a piece of land for ₹30,000 and sold it for ₹60,000 in 2022. Originally A had contributed ₹12,000 and B ₹8,000. The profit on venture will be ____", o: ["₹30,000", "₹20,000", "₹60,000", "₹10,000"], c: "₹30,000" }, // Profit = 60000-30000 = 30000
+            { q: "29. A and B purchased a piece of land for ₹30,000 and sold it for 260,000 in 2022. Originally A had contributed 12,000 and B ₹8,000. The profit on venture will be", o: ["₹30,000", "₹20,000", "₹60,000", "₹ 10,000"], c: "₹30,000" },
             { q: "30. Which of the following is/are the basic features of a Joint Venture", o: ["The profit or loss on joint venture is shared between the co-venturers in the agreed ratio", "The co-venturers may or may not contribute initial capital", "The JV is dissolved once the purpose of the business is over", "All of the above"], c: "All of the above" },
-            { q: "31. The person to whom bill is endorsed is known as ____", o: ["Endorsee", "Drawee", "Drawer", "None of the above"], c: "Endorsee" },
-            { q: "32. A and B enter into a joint venture sharing profit and losses in the ratio of 3:2. A purchased goods costing ₹2,00,000. B sold 95% goods for ₹2,50,000. A is entitled to get 1% commission on purchase and B is entitled to get 5% commission on sales. A drew a bill on B for an amount equivalent to 80% of original cost of goods. A got it discounted at ₹1,50,000. What is A's share of profit?", o: ["₹15,300", "₹21,300", "₹18,900", "₹15,000"], c: "₹21,300" },
+            { q: "31. The person to whom bill is endorsed is known as", o: ["Endorsee", "Drawee", "Drawer", "None of the above"], c: "Endorsee" },
+            { q: "32. A and B enter into a joint venture sharing profit and losses in the ratio of 3:2. A purchased goods costing ₹2,00,000. B sold 95% goods for 2,50,000. A is entitled to get 1% commission on purchase and B is entitled to get 5% commission on sales. A drew a bill on B for an amount equivalent to 80% of original cost of goods. A got it discounted at ₹1,50,000. What is A's share of profit?", o: ["₹15,300", "₹ 21,300", "₹18,900", "₹ 15,000"], c: "₹ 21,300" },
             { q: "33. Which of the following commission is allowed by the consignor to the consignee to encourage the consignee for putting-up hard work in introducing new product in the market?", o: ["Del-credere Commission", "Over-riding Commission", "Hard work Commission", "Ordinary Commission"], c: "Over-riding Commission" },
-            { q: "34. X draws a bill on Y for ₹1,80,000 for mutual accommodation in the ratio of 2:1. X got it discounted for ₹1,69,200 and remitted 1/3rd of the proceeds to Y. How much money should be remitted by X to Y at the time of maturity so as to enable Y to honour the bill?", o: ["₹1,20,000", "₹1,15,200", "₹1,16,800", "₹1,20,400"], c: "₹1,20,000" }, // Y's share of bill is 1/3 * 180000 = 60000. Y received 1/3 of proceeds = 169200/3 = 56400. Y needs 60000 - 56400 = 3600 from X. X needs to pay 2/3 of bill = 120000.
-            { q: "35. Raju draws a bill on Sampat on 25th October, 2021 for 90 days, the maturity date of the bill will be ____", o: ["27th January, 2022", "26th January, 2022", "25th January, 2022", "28th January, 2022"], c: "25th January, 2022" }, // Oct: 6 days, Nov: 30, Dec: 31, Jan: 23. Total 90. 23rd Jan + 3 grace days = 26th Jan. If 26th is public holiday, then 25th.
+            { q: "34. X draws a bill on Y for ₹ 1,80,000 for mutual accommodation in the ratio of 2:1. X got it discounted for ₹ 1,69,200 and remitted 1/3rd of the proceeds to Y. How much money should be remitted by X to Y at the time of maturity so as to enable Y to honour the bill?", o: ["₹ 120,000", "₹115.200", "₹116,800", "₹ 120,400"], c: "₹ 120,000" },
+            { q: "35. Raju draws a bill on Sampat on 25th October, 2021 for 90 days, the maturity date of the bill will be", o: ["27th January, 2022", "26th January, 2022", "25th January, 2022", "28th January, 2022"], c: "25th January, 2022" },
             { q: "36. Which class of account is Consignment Account?", o: ["Personal Account", "Real Account", "Representative Personal Account", "Nominal Account"], c: "Nominal Account" },
-
-            // Set 2: Questions 37-72
-            { q: "37. On dishonor of a bill of exchange that has been discounted, noting charges are initially paid by ____", o: ["Bank", "Drawer", "Drawee", "Acceptor"], c: "Bank" },
-            { q: "38. Miss V draws a genuine trade bill of ₹25,000 for 6 months on Mr. M. After holding the bill for 1.5 months, as a result of unexpected requirement of cash, she immediately discounts the bill with the bank@ 10% p.a. The amount of the discount on bill IS ____", o: ["₹1,250", "₹2,500", "₹937.50", "₹625"], c: "₹937.50" }, // Discount for 4.5 months. 25000 * 10/100 * 4.5/12 = 937.5
-            { q: "39. On January 01, 2023, Mr. S drew a six months bill on Mr. H for ₹15,000 for mutual accommodation and the bill was duly accepted by Mr. H. Mr. S discounted the bill on the same day with a bank at 10% p.a. and remitted one third proceeds to Mr. H. The discount to be borne by Mr. S is ____", o: ["₹1,000", "₹500", "₹750", "₹1,250"], c: "₹500" }, // Total discount = 15000 * 10/100 * 6/12 = 750. S's share of discount (if proceeds shared, discount usually shared in bill ratio, which is not given, assuming S bears his share of benefit received. If bill is for mutual accom, and proceeds shared 2/3 and 1/3, discount also shared. S bears 2/3 of 750 = 500)
-            { q: "40. A proforma invoice is sent by ____", o: ["Consignee to Consignor", "Consignor to Consignee", "Debtors to Consignee", "Debtors Consignor"], c: "Consignor to Consignee" },
-            { q: "41. The nature of Consignment A/c and Consignee's A/c will be ____", o: ["nominal and personal respectively", "real and nominal respectively", "personal and real respectively", "nominal and real respectively"], c: "nominal and personal respectively" },
-            { q: "42. K of Kolkata sends out 400 bags of jute to T of Tamilnadu costing ₹200 each. Consignor expenses ₹2,000. Y's non-selling expenses is ₹2,000 and selling expenses is ₹1,000. 300 bags were sold by Y. Value of consignment stock is ____", o: ["₹20,400", "₹20,200", "₹22,000", "₹21,000"], c: "₹21,000" }, // Cost of 100 bags = 100*200 = 20000. Prop Consignor Exp = (2000/400)*100 = 500. Prop Consignee Non-Selling Exp = (2000/400)*100 = 500. Total = 20000+500+500 = 21000.
-            { q: "43. Goods will be sent on consignment at invoice price which is 20% above cost. 1/5th of the goods costing ₹60,000 were damaged in transit. Find out invoice price of the goods sent on consignment basis.", o: ["₹3,75,000", "₹3,00,000", "₹3,60,000", "None of these"], c: "₹3,60,000" }, // Total cost of goods = 60000 * 5 = 300000. Invoice price = 300000 * 1.20 = 360000.
-            { q: "44. X of Kolkata sends out 100 boxes to Y of Delhi costing ₹200 each. Consignor's expenses: ₹4,000. Consignee's expenses: non-selling ₹900 and selling ₹500. 1/10th of the boxes were lost in transit. 2/3rd of the boxes received by consignee were sold. The amount of consignment stock will be ____", o: ["₹7,200", "₹7,500", "₹7,000", "₹6,000"], c: "₹7,500" }, // Goods received = 90. Sold = 2/3 * 90 = 60. Stock = 30 boxes. Cost of 30 = 30*200 = 6000. Prop Consignor Exp = (4000/100)*30 = 1200. Prop Consignee Non-Selling = (900/90)*30 = 300. Total = 6000+1200+300 = 7500.
-            { q: "45. A sends out goods costing ₹2,00,000 to B. Consignor's expenses ₹5,000. Consignee's expenses in relation to sales ₹3,000. 4/5th of goods were sold at 20% above cost. The profit on consignment will be ____", o: ["₹25,000", "₹31,000", "₹25,200", "(₹5,000)"], c: "₹25,000" }, // Cost of goods sold = 200000 * 4/5 = 160000. Sales = 160000 * 1.20 = 192000. Consignor Exp for COGS = 5000 * 4/5 = 4000. Consignee selling exp = 3000. Profit = 192000 - 160000 - 4000 - 3000 = 25000.
-            { q: "46. X of Kolkata send out certain goods at cost + 25%. Invoice value of goods sends out ₹2,00,000. 4/5th of the goods were sold by consignee at ₹1,76,000. Commission 2% upto invoice value & 10% of any surplus above invoice value. Amount of commission is ____", o: ["₹4,800", "₹5,200", "₹3,200", "₹1,600"], c: "₹4,800" }, // Invoice value of goods sold = 200000 * 4/5 = 160000. Surplus = 176000 - 160000 = 16000. Commission = (160000 * 2/100) + (16000 * 10/100) = 3200 + 1600 = 4800.
-            { q: "47. X of Kolkata send out goods costing ₹1,00,000 to Y of Delhi. 3/5th of the goods were sold by consignee for Rs. 70,000. Commission 2% on sales if sales are at cost price, 5% if sales are 20% above cost price. If sales are more than 20% above cost, then commission is 2% on sales plus 20% of the amount which exceeds 20% above cost price. The amount of Commission will be:", o: ["₹2,833", "₹2,900", "₹3,000", "₹2,800"], c: "₹2,833" }, // Cost of goods sold = 100000 * 3/5 = 60000. Sales = 70000. 20% above cost = 60000 * 1.2 = 72000. Sales are less than 20% above cost. This question's commission structure is complex and the options don't seem to align perfectly with a straightforward interpretation. Assuming the question implies a tiered commission that is not fully clear, or the PDF answer key is based on a specific calculation. PDF answer is 2833. (70000 * 2/100) + ( (70000 - (60000*1.2) )*20/100 ) if sales > 20% above cost. Here sales < 20% above cost. If simply 2% on sales: 1400. If 5% on sales (assuming it's > cost but < 20% above cost): 3500. The options are tricky. Let's stick to the PDF answer.
+            { q: "37. On dishonor of a bill of exchange that has been discounted, noting charges are initially paid by", o: ["Bank", "Drawer", "Drawee", "Acceptor"], c: "Bank" },
+            { q: "38. Miss V draws a genuine trade bill of ₹25,000 for 6 months on Mr. M. After holding the bill for 1.5 months, as a result of unexpected requirement of cash, she immediately discounts the bill with the bank@ 10% p.a. The amount of the discount on bill IS", o: ["₹ 1,250", "₹2,500", "₹937.50", "₹625"], c: "₹937.50" },
+            { q: "39. On January 01, 2023, Mr. S drew a six months bill on Mr. H for 15,000 for mutual accommodation and the bill was duly accepted by Mr. H. Mr. S discounted the bill on the same day with a bank at 10% p.a. and remitted one third proceeds to Mr. H. The discount to be borne by Mr. S is", o: ["₹ 1,000", "₹500", "₹750", "₹1,250"], c: "₹500" },
+            { q: "40. A proforma invoice is sent by", o: ["Consignee to Consignor", "Consignor to Consignee", "Debtors to Consignee", "Debtors Consignor"], c: "Consignor to Consignee" },
+            { q: "41. The nature of Consignment A/c and Consignee's A/c will be", o: ["nominal and personal respectively", "real and nominal respectively", "personal and real respectively", "nominal and real respectively"], c: "nominal and personal respectively" },
+            { q: "42. K of Kolkata sends out 400 bags of jute to T of Tamilnadu costing 200 each. Consignor expenses 2,000. Y's non-selling expenses is 2,000 and selling expenses is ₹1,000. 300 bags were sold by Y. Value of consignment stock is", o: ["₹20,400", "₹20,200", "₹22,000", "₹ 21,000"], c: "₹ 21,000" },
+            { q: "43. Goods will be sent on consignment at invoice price which is 20% above cost. 1/5th of the goods costing ₹ 60,000 were damaged in transit. Find out invoice price of the goods sent on consignment basis.", o: ["₹375,000", "₹ 300,000", "₹360,000", "None of these"], c: "₹360,000" },
+            { q: "44. X of Kolkata sends out 100 boxes to Y of Delhi costing ₹ 200 each. Consignor's expenses: ₹4,000. Consignee's expenses: non-selling ₹ 900 and selling ₹ 500. 1/10th of the boxes were lost in transit. 2/3rd of the boxes received by consignee were sold. The amount of consignment stock will be", o: ["₹7,200", "₹ 7,500", "₹7.000", "₹6.000"], c: "₹ 7,500" },
+            { q: "45. A sends out goods costing ₹2,00,000 to B. Consignor's expenses 25,000. Consignor's expenses in relation to sales ₹3,000. 4/5th of goods were sold at 20% above cost. The profit on consignment will be", o: ["₹25,000", "₹31,000", "₹25.200", "(₹5,000)"], c: "₹25,000" },
+            { q: "46. X of Kolkata send out certain goods at cost + 25%. Invoice value of goods sends out ₹2,00,000. 4/5th of the goods were sold by consignee at 1,76,000. Commission 2% upto invoice value & 10% of any surplus above invoice value. Amount of commission is", o: ["₹4,800", "₹5,200", "₹3,200", "₹1,600"], c: "₹4,800" },
+            { q: "47. X of Kolkata send out goods costing ₹1,00,000 to Y of Delhi. 3/5th of the goods were sold by consignee for Rs. 70,000. Commission exceeds cost price. The amount of Commission will be:", o: ["₹2,833", "₹2,900", "₹3,000", "₹2,800"], c: "₹2,833" },
             { q: "48. Any account sale is the periodical summary statement sent by the ____ to the ____", o: ["Consignor, Consignee", "Consignee, Consignor", "Buyer, Seller", "Seller, Buyer"], c: "Consignee, Consignor" },
-            { q: "49. Account sales ____", o: ["Have a very particular format", "Does not have a specific format", "Must be prepared by law", "Given by consignor to consignee"], c: "Does not have a specific format" },
-            { q: "50. X sends out good to Y, costing ₹1,50,000 to Y. goods are to be sold at cost +33 1/3%. The consignor asked consignee to pay an advance for an amount equivalent to 60% of sales value. The amount of advance will be:", o: ["₹1,20,000", "₹1,00,000", "₹1,50,000", "None of these"], c: "₹1,20,000" }, // Sales value = 150000 * (1 + 1/3) = 150000 * 4/3 = 200000. Advance = 200000 * 60% = 120000.
+            { q: "49. Account sales", o: ["Have a very particular format", "Does not have a specific format", "Must be prepared by law", "Given by consignor to consignee"], c: "Does not have a specific format" },
+            { q: "50. X sends out good to Y, costing 1,50,000 to Y. goods are to be sold at cost +33 1/3%. The consignor asked consignee to pay an advance for an amount equivalent to 60% of sales value. The amount of advance will be:", o: ["₹120.000", "₹100,000", "₹ 150.000", "None of these"], c: "₹120.000" },
             { q: "51. Which of these accounts is not a part of double entry system?", o: ["Memorandum A/c", "Joint Bank A/c", "Joint Venture A/c", "Co-venture's A/c"], c: "Memorandum A/c" },
-            { q: "52. A purchased goods costing ₹1,00,000. B sold the goods for ₹1,50,000. Profit sharing ratio between A and B equal. If same sets of books is maintained, what will be the final remittance?", o: ["B will remit ₹1,25,000 to A", "B will remit ₹1,50,000 to A", "A will remit ₹1,00,000 to B", "B will remit ₹25,000 to A"], c: "B will remit ₹1,25,000 to A" }, // Profit = 50000. B's share = 25000. B has sales proceeds of 150000. B should remit to A: A's capital (100000) + A's profit share (25000) = 125000. OR B remits sales proceeds (150000) - B's profit share (25000) = 125000.
-            { q: "53. A and B entered into a joint venture agreement to share the profits and losses in the ratio of 2:1. A supplied 100 ratio sets worth ₹1,00,000 to B incurring expenses of ₹5,000 for freight and issuance. B sold the 95 ratio sets for ₹1,20,000. 5 radio sets were taken over by B. The profit a/loss on venture will be ____", o: ["Profit of ₹20,000", "Profit of ₹15,000", "Loss of ₹20,000", "Profit of ₹20,250"], c: "Profit of ₹20,250" }, // Cost of 100 sets = 100000 + 5000 = 105000. Cost per set = 1050. Value of 5 sets taken by B = 5*1050 = 5250. Total Realization = 120000 (sales) + 5250 (taken over) = 125250. Profit = 125250 - 105000 = 20250.
-            { q: "54. A purchased goods costing ₹42,500. B sold goods costing ₹40,000 at ₹50,000. Balance goods were taken over by A at ₹4,000. The profit on joint venture is ____", o: ["₹11,500", "₹7,500", "₹3,500", "Nil"], c: "₹11,500" }, // Cost of goods sold = 40000. Cost of goods taken by A = 42500-40000 = 2500. Realization = 50000 (sales) + 4000 (taken by A) = 54000. Total cost = 42500. Profit = 54000 - 42500 = 11500. (PDF option for A taking over goods is ₹4,000, not 24,000 as in some similar questions)
-            { q: "55. A purchased 1000 kg of rice costing ₹200 each. Carriage ₹2,000 insurance ₹3,000. 4/5th of the boxes were sold by B at ₹250 per boxes. Remaining stock were taken over by B at cost. The amount of stock taken over will be ____", o: ["₹40,000", "₹41,000", "₹50,000", "₹50,200"], c: "₹41,000" }, // Total cost = 1000*200 + 2000 + 3000 = 200000 + 5000 = 205000. Cost per kg = 205000/1000 = 205. Stock taken over = 1/5 * 1000 = 200kg. Value = 200 * 205 = 41000.
-            { q: "56. The party who is ordered to pay the amount is known as ____", o: ["Payee", "Drawer", "Drawee", "Endorsee"], c: "Drawee" },
-            { q: "57. Retirement of a Bill means ____", o: ["Discounting a Bill", "Dishonour of a Bill", "Renewal of a Bill", "Payment made before due dates"], c: "Payment made before due dates" },
+            { q: "52. A purchased goods costing 1,00,000. B sold the goods for 1,50,000. Profit sharing ratio between A and B equal. If same sets of books is maintained, what will be the final remittance?", o: ["B will remit ₹1,25,000 to A", "B will remit ₹ 1,50,000 to A", "A will remit ₹1,00,000 to B", "B will remit ₹25,000 to A"], c: "B will remit ₹1,25,000 to A" },
+            { q: "53. A and B entered into a joint venture agreement to share the profits and losses in the ratio of 2:1. A supplied 100 ratio sets worth 1,00,000 to B incurring expenses of ₹5,000 for freight and issuance. B sold the 95 ratio sets for ₹1,20,000. 5 radio sets were taken over by B. The profit a/loss on venture will be", o: ["Profit of ₹20,000", "Profit of ₹15,000", "Loss of ₹20,000", "Profit of ₹20.250"], c: "Profit of ₹20.250" }, // PDF answer key is 4. Calculation: Sales (95*120000/95) 120000 + B's takeover (5 * (100000/100)) 5000 = 125000. Cost 100000 + Exp 5000 = 105000. Profit = 20000.
+            { q: "54. A purchased goods costing ₹ 42,500. B sold goods costing ₹40,000 at ₹50,000. Balance goods were taken over by A at 24,000. The profit on joint venture is", o: ["₹11,500", "₹ 7,500", "₹3.500", "Nil"], c: "₹11,500" },
+            { q: "55. A purchased 1000 kg of rice costing ₹ 200 each. Carriage ₹2,000 insurance ₹3,000. 4/5th of the boxes were sold by B at ₹ 250 per boxes. Remaining stock were taken over by B at cost. The amount of stock taken over will be", o: ["₹40,000", "₹ 41,000", "₹50,000", "₹50.200"], c: "₹ 41,000" },
+            { q: "56. The party who is ordered to pay the amount is known as", o: ["Payee", "Drawer", "Drawee", "Endorsee"], c: "Drawee" },
+            { q: "57. Retirement of a Bill means", o: ["Discounting a Bill", "Dishonour of a Bill", "Renewal of a Bill", "Payment made before due dates"], c: "Payment made before due dates" },
             { q: "58. X draws a bill on Y for ₹3000. X endorsed to Z. Y will pay the amount of the bill to:", o: ["X", "Z", "To himself", "None"], c: "Z" },
-            { q: "59. X sold goods to Y for ₹3,00,000. ½ of the amount will be received in cash and the balance through a B/R. For what amount X should draw a bill on Y.", o: ["₹1,50,000", "₹3,00,000", "₹1,00,000", "₹1,20,000"], c: "₹1,50,000" },
-            { q: "60. On 1st April, Mr. A sold goods of ₹10,000 to B and drew a bill for 3 months. Mr. A discounted the bill with bank at 15%. Amount of discount will be?", o: ["₹125", "₹250", "₹375", "None of these"], c: "₹375" }, // 10000 * 15/100 * 3/12 = 375
-            { q: "61. At the end of the accounting year the capital expenditures are shown in the ____", o: ["assets side of the Balance Sheet", "liabilities side of the Balance Sheet", "debit side of the Profit and Loss A/c", "credit side of the Profit and Loss A/c"], c: "assets side of the Balance Sheet" },
-            { q: "62. If average inventory is ₹1,25,000 and closing inventory is ₹10,000 less than opening inventory then the value of closing inventory will be ____", o: ["₹1,35,000", "₹1,15,000", "₹1,30,000", "₹1,20,000"], c: "₹1,20,000" }, // (Op + Cl)/2 = 125000. Op - Cl = 10000 => Op = Cl + 10000. (Cl+10000+Cl)/2 = 125000 => 2Cl+10000 = 250000 => 2Cl = 240000 => Cl = 120000.
-            { q: "63. As on 31st March, 2023 debtors and additional bad debts are ₹8,00,000 and ₹10,000 respectively. If the provision for bad debts is made at 5% on debtors then amount of such provision will be ____", o: ["₹40,000", "₹50,000", "₹39,500", "₹40,500"], c: "₹39,500" }, // Debtors after add. bad debts = 800000 - 10000 = 790000. Provision = 790000 * 5% = 39500.
-            { q: "64. Income and Expenditure Account is a ____", o: ["Nominal Account", "Real Account", "Personal Account", "Artificial Personal Account"], c: "Nominal Account" },
-            { q: "65. Receipts and Payments account is a ____", o: ["Nominal Account", "Real Account", "Personal Account", "Artificial Personal Account"], c: "Real Account" },
-            { q: "66. Income statement of a Charitable Institution is known as ____", o: ["Statement of profit and loss", "Receipts and Payments Account", "Income and Expenditure Account", "Profit and Loss Account"], c: "Income and Expenditure Account" },
+            { q: "59. X sold goods to Y for ₹3,00,000. ½ of the amount will be received in cash and the balance through a B/R. For what amount X should draw a bill on Y.", o: ["₹150,000", "₹300,000", "₹100,000", "₹120,000"], c: "₹150,000" },
+            { q: "60. On 1st April, Mr. A sold goods of ₹10,000 to B and drew a bill for 3 months. Mr. A discounted the bill with bank at 15%. Amount of discount will be?", o: ["₹125", "₹ 250", "₹375", "None of these"], c: "₹375" },
+            { q: "61. At the end of the accounting year the capital expenditures are shown in the", o: ["assets side of the Balance Sheet", "liabilities side of the Balance Sheet", "debit side of the Profit and Loss A/c", "credit side of the Profit and Loss A/c"], c: "assets side of the Balance Sheet" },
+            { q: "62. If average inventory is ₹1,25,000 and closing inventory is ₹ 10,000 less than opening inventory then the value of closing inventory will be", o: ["₹135,000", "₹115,000", "₹130,000", "₹120,000"], c: "₹120,000" }, // PDF key is 4. (O+C)/2 = Avg. O-C=10000. So O=C+10000. (C+10000+C)/2 = 125000. 2C+10000 = 250000. 2C=240000. C=120000.
+            { q: "63. As on 31st March, 2023 debtors and additional bad debts are ₹8,00,000 and ₹10,000 respectively. If the provision for bad debts is made at 5% on debtors then amount of such provision will be", o: ["₹40.000", "₹50,000", "₹39,500", "₹40.500"], c: "₹39,500" },
+            { q: "64. Income and Expenditure Account is a", o: ["Nominal Account", "Real Account", "Personal Account", "Artificial Personal Account"], c: "Nominal Account" },
+            { q: "65. Receipts and Payments account is a", o: ["Nominal Account", "Real Account", "Personal Account", "Artificial Personal Account"], c: "Real Account" },
+            { q: "66. Income statement of a Charitable Institution is known as", o: ["Statement of profit and loss", "Receipts and Payments Account", "Income and Expenditure Account", "Profit and Loss Account"], c: "Income and Expenditure Account" },
             { q: "67. ____ is similar to the Profit and loss A/c", o: ["Income and Expenditure A/c", "Receipts and Payments A/c", "Balance Sheet", "None of the Above"], c: "Income and Expenditure A/c" },
-            { q: "68. From the following details estimate the capital as on 31.03.2023. Capital as on 01.04.2022-₹4,10,000. Drawings ₹40,000, Profit during the year ₹50,000", o: ["₹4,10,000", "₹4,50,000", "₹4,20,000", "₹4,10,000"], c: "₹4,20,000" }, // 410000 - 40000 + 50000 = 420000. (Note: PDF Q has profit 50k, answer key implies this)
-            { q: "69. Which of the following item does not match with receipts and payments account?", o: ["It is a summarized cash book", "Transactions are recorded in it on cash basis", "It records revenue transactions only", "It serves the purpose of a real account"], c: "It records revenue transactions only" }, // It records both revenue and capital.
-            { q: "70. Income & Expenditure A/c shows subscriptions ₹10,000; Subscriptions accrued in the beginning of the year and at the end of the year were ₹1,000 and ₹1,500 respectively. The figure of subscription received appear in receipts and payments account will be:", o: ["₹9,500", "₹10,000", "₹10,500", "₹12,000"], c: "₹9,500" }, // Received = Income + O/s (beg) - O/s (end) = 10000 + 1000 - 1500 = 9500.
-            { q: "71. A Charitable Institution has 250 members with a annual subscription of ₹5,000 each. The subscription received during 2021-22 were ₹11,25,000, which include Rs. 65,000 and ₹25,000 for the years of 2020-21 and 2022-23 respectively. Amount of outstanding subscription for the 2021-22 will be ____", o: ["₹90,000", "₹1,25,000", "₹2,15,000", "₹1,90,000"], c: "₹2,15,000" }, // Total due for 21-22 = 250*5000 = 1250000. Received for 21-22 = 1125000 - 65000 - 25000 = 1035000. O/s for 21-22 = 1250000 - 1035000 = 215000.
-            { q: "72. Opening Debtors, Collection from Debtors and Discount Allowed were ₹3,15,000; ₹18,30,000 and ₹35,000 respectively. If the closing debtors were 20% of credit sales of the period then closing debtors and credit sales would be ____", o: ["₹3,51,667 and ₹17,58,333", "₹3,63,333 and ₹18,16,667", "₹3,87,500 and ₹19,37,500", "₹3,10,000 and ₹15,50,000"], c: "₹3,87,500 and ₹19,37,500" }, // Let Cr Sales = S. Cl Debtors = 0.2S. Op Debtors + S - Collection - Discount = Cl Debtors. 315000 + S - 1830000 - 35000 = 0.2S. S - 1550000 = 0.2S. 0.8S = 1550000. S = 1937500. Cl Debtors = 0.2 * 1937500 = 387500.
-
-            // Set 3: Questions 73-108
-            { q: "73. In case of a Club, the excess of expenditure over income is called as ____", o: ["Surplus", "Deficit", "Capital Fund", "Investment in Fixed Assets"], c: "Deficit" },
-            { q: "74. Opening Inventory ₹9,600, Purchases less Return ₹11,850, Salaries ₹3,200, Wages Rs.750, Commission on Purchases ₹200, Carriage Outward ₹300, Sales ₹24,900, Closing Inventory ₹3,500, Carriage on purchases ₹1,000. Compute Gross Profit.", o: ["₹5,000", "₹6,500", "₹3,250", "₹3,200"], c: "₹5,000" }, // COGS = 9600+11850+200+1000-3500 = 19150. GP = 24900-19150 = 5750. PDF ans is 5000. Let's recheck. Is commission on purchase part of COGS? Yes. Carriage on purchase? Yes. PDF answer key is 1 (5000). If GP = 5000, COGS = 24900-5000 = 19900. My COGS is 19150. Difference of 750. Wages? Direct.
-            // COGS = Op Inv + Purchases + Direct Exp - Cl Inv. Direct Exp = Wages + Comm on Purch + Carriage on Purch = 750+200+1000 = 1950. COGS = 9600 + 11850 + 1950 - 3500 = 23400 - 3500 = 19900. GP = Sales - COGS = 24900 - 19900 = 5000. This matches.
-            { q: "75. Find out Gross profit/Loss :- Purchase ₹30,000, Sales ₹15,000, Carriage Inward ₹2,400, Opening stock ₹10,000, Purchase Returns ₹1,000,Closing stock ₹36,000", o: ["₹20,000", "₹10,000", "₹9,600", "₹10,600"], c: "₹9,600" }, // Net Purchase = 30000-1000 = 29000. COGS = 10000 + 29000 + 2400 - 36000 = 41400 - 36000 = 5400. GP = 15000 - 5400 = 9600.
-            { q: "76. Opening Stock ₹1,50,000, Cash Sales ₹1,20,000,Credit Sales ₹2,30,000, Closing Stock is Nil. Selling Price is 125% on Cost. Compute Purchases.", o: ["₹1,50,000", "₹1,40,000", "₹1,30,000", "₹1,20,000"], c: "₹1,30,000" }, // Total Sales = 120000+230000 = 350000. COGS = Sales / 1.25 = 350000 / 1.25 = 280000. COGS = Op Stock + Purchases - Cl Stock. 280000 = 150000 + P - 0. P = 280000 - 150000 = 130000.
-            { q: "77. Opening and Closing balance of Debtors are ₹30,000 and ₹40,000 respectively. Cash collected from debtors ₹2,40,000. Discount allowed is ₹15,000 for prompt payment. Bad Debts ₹10,000. The total goods sold on credit are ____", o: ["₹2,55,000", "₹2,45,000", "₹2,95,000", "₹2,75,000"], c: "₹2,75,000" }, // Cr Sales = Cl Debtors - Op Debtors + Cash Coll + Disc Allow + Bad Debts = 40000 - 30000 + 240000 + 15000 + 10000 = 10000 + 265000 = 275000.
-            { q: "78. If a trader's net sales amount to ₹18,000 and his gross profit is 60% of sales and his net profit is 40% of sales, his expenses are ____", o: ["₹10,780", "₹7,200", "₹3,600", "₹1,800"], c: "₹3,600" }, // GP = 18000 * 60% = 10800. NP = 18000 * 40% = 7200. Expenses = GP - NP = 10800 - 7200 = 3600.
-            { q: "79. A firm had a Capital Balance of ₹1,00,000 at the beginning of a year. At the end of the year, the firm has total assets of ₹1,50,000 and total liabilities of ₹70,000. If the total withdrawals during the period were ₹30,000, what was the amount of net profit/net loss for the year?", o: ["₹10,000 profit", "₹20,000 loss", "₹50,000 loss", "₹10,000 loss"], c: "₹10,000 profit" }, // Cl Cap = Assets - Liab = 150000 - 70000 = 80000. Cl Cap = Op Cap + Profit - Drawings. 80000 = 100000 + P - 30000. 80000 = 70000 + P. P = 10000.
+            { q: "68. From the following details estimate the capital as on 31.03.2023. Capital as on 01.04.2022-₹4,10,000. Drawings ₹40.000, Profit during the year 250,000", o: ["₹410,000", "₹450,000", "₹420.000", "₹ 410,000"], c: "₹420.000" }, // Closing Cap = Op Cap + Profit - Drawings = 410000 + 50000 - 40000 = 420000
+            { q: "69. Which of the following item does not match with receipts and payments account?", o: ["It is a summarized cash book", "Transactions are recorded in it on cash basis", "It records revenue transactions only", "It serves the purpose of a real account"], c: "It records revenue transactions only" },
+            { q: "70. Income & Expenditure A/c shows subscriptions ₹10,000; Subscriptions accrued in the beginning of the year and at the end of the year were ₹1,000 and 1,500 respectively. The figure of subscription received appear in receipts and payments account will be:", o: ["₹9,500", "₹10,000", "₹ 10,500", "₹12,000"], c: "₹9,500" },
+            { q: "71. A Charitable Institution has 250 members with a annual subscription of ₹5,000 each. The subscription received during 2021-22 were ₹ 11,25,000, which include Rs. 65,000 and 25,000 for the years of 2020-21 and 2022-23 respectively. Amount of outstanding subscription for the 2021-22 will be", o: ["₹ 90.000", "₹125.000", "₹215,000", "₹190,000"], c: "₹215,000" },
+            { q: "72. Opening Debtors, Collection from Debtors and Discount Allowed were ₹3,15,000; ₹ 18,30,000 and ₹35,000 respectively. If the closing debtors were 20% of credit sales of the period then closing debtors and credit sales would be", o: ["₹3,51,667 and ₹17,58,333", "₹3,63.333 and ₹18,16,667", "₹3,87,500 and ₹ 19,37,500", "₹3,10,000 and ₹ 15,50,000"], c: "₹3,87,500 and ₹ 19,37,500" },
+            { q: "73. In case of a Club, the excess of expenditure over income is called as", o: ["Surplus", "Deficit", "Capital Fund", "Investment in Fixed Assets"], c: "Deficit" },
+            { q: "74. Opening Inventory ₹ 9,600, Purchases less Return ₹11,850, Salaries ₹3,200, Wages Rs.750, Commission on Purchases 200, Carriage Outward 300, Sales ₹ 24,900, Closing Inventory ₹3,500, Carriage on purchases ₹ 1,000. Compute Gross Profit.", o: ["₹ 5,000", "₹6,500", "₹3,250", "₹3,200"], c: "₹ 5,000" },
+            { q: "75. Find out Gross profit/Loss :- Purchase 30,000, Sales 15,000, Carriage Inward 2,400, Opening stock 10,000, Purchase Returns 1,000,Closing stock 36,000", o: ["₹20,000", "₹10,000", "₹9,600", "₹10,600"], c: "₹9,600" },
+            { q: "76. Opening Stock 1,50,000, Cash Sales ₹1,20,000,Credit Sales 2,30,000, Closing Stock is Nil. Selling Price is 125% on Cost. Compute Purchases.", o: ["₹150,000", "₹140,000", "₹130.000", "₹ 120,000"], c: "₹130.000" },
+            { q: "77. Opening and Closing balance of Debtors are ₹30,000 and ₹40,000 respectively. Cash collected from debtors ₹2,40,000. Discount allowed is ₹15,000 for prompt payment. Bad Debts ₹10,000. The total goods sold on credit are", o: ["₹255,000", "₹245,000", "₹295.000", "₹275,000"], c: "₹275,000" },
+            { q: "78. If a trader's net sales amount to ₹ 18,000 and his gross profit is 60% of sales and his net profit is 40% of sales, his expenses are", o: ["₹10,780", "₹7.200", "₹3,600", "₹1,800"], c: "₹3,600" },
+            { q: "79. A firm had a Capital Balance of ₹ 1,00,000 at the beginning of a year. At the end of the year, the firm has total assets of ₹1,50,000 and total liabilities of ₹70,000. If the total withdrawals during the period were ₹30,000, what was the amount of net profit/net loss for the year?", o: ["₹10,000 profit", "₹ 20,000 loss", "₹50,000 loss", "₹10,000 loss"], c: "₹10,000 profit" }, // PDF key is 1 (10k profit). Closing Cap = 150k-70k = 80k. Profit = ClCap - OpCap - AddCap + Draw = 80k - 100k - 0 + 30k = 10k (Loss). Question asks profit/loss. If it's a 10k loss, option 4.
             { q: "80. Which of the following is fixed asset?", o: ["Plant and machinery", "Stock", "Debtors", "Cash"], c: "Plant and machinery" },
-            { q: "81. A Trial balance as at 31st December contains the following information: 12% Bank loan ₹50,000, Interest paid ₹3,800, Interest debited to the Profit and Loss Account is:", o: ["₹6,000", "₹2,200", "₹9,800", "₹4,800"], c: "₹6,000" }, // Total Interest for year = 50000 * 12% = 6000.
-            { q: "82. The closing capital of Mr. X as on 31.03.2023 was ₹4,00,000.On 01.04.2022 his capital was Rs. ₹3,50,000. His net profit for the year ended 31.03.2023 was ₹1,00,000. He introduced ₹30,000 as additional capital in February, 2023. Find out th amount drawn by Mr.B for his personal expenses?", o: ["₹1,00,000", "₹80,000", "₹1,20,000", "₹1,50,000"], c: "₹80,000" }, // Cl Cap = Op Cap + Add Cap + Profit - Drawings. 400000 = 350000 + 30000 + 100000 - D. 400000 = 480000 - D. D = 80000.
-            { q: "83. In case of a Club, the excess of expenditure over income is called as ____", o: ["Surplus", "Deficit", "Capital Fund", "Investment in Fixed Assets"], c: "Deficit" }, // Repeat of Q73
-            { q: "84. Donation received for a specific purpose is a/an ____", o: ["Asset", "liabilities", "Revenue Receipts", "Capital Receipts"], c: "Capital Receipts" }, // More accurately, it's a liability until used for the specific purpose, or directly added to Capital Fund. PDF answer is Capital Receipt.
+            { q: "81. A Trial balance as at 31st December contains the following information: 12% Bank loan ₹50,000, Interest paid ₹3,800, Interest debited to the Profit and Loss Account is:", o: ["₹6,000", "₹2,200", "₹9,800", "₹4.800"], c: "₹6,000" },
+            { q: "82. The closing capital of Mr. X as on 31.03.2023 was ₹4,00,000.On 01.04.2022 his capital was Rs. 3,50,000. His net profit for the year ended 31.03.2023 was ₹1,00,000. He introduced ₹30,000 as additional capital in February, 2023. Find out th amount drawn by Mr.B for his personal expenses?", o: ["₹100,000", "₹80,000", "₹ 120.000", "₹150,000"], c: "₹80,000" },
+            { q: "83. In case of a Club, the excess of expenditure over income is called as", o: ["Surplus", "Deficit", "Capital Fund", "Investment in Fixed Assets"], c: "Deficit" },
+            { q: "84. Donation received for a specific purpose is a/an", o: ["Asset", "liabilities", "Revenue Receipts", "Capital Receipts"], c: "Capital Receipts" },
             { q: "85. Which of the following account is mainly prepared at the time of dissolution of the firm", o: ["Revaluation A/c", "Goodwill A/c", "Realization A/c", "Memorandum Revaluation A/c"], c: "Realization A/c" },
-            { q: "86. X and Y are partners with the capital of ₹50,000 and ₹30,000 respectively. Interest Payable on Capital is 10% p.a. If the profits earned by the firm is ₹4,800, what will be the Interest on Capital for X and Y?", o: ["₹5,000 and ₹3,000", "₹3,000 and ₹1,800", "No interest will be paid to the partners", "None of the above"], c: "₹3,000 and ₹1,800" }, // Total Int = 8000. Profit is 4800. Int allowed in ratio of capital: 5:3. X = 4800 * 5/8 = 3000. Y = 4800 * 3/8 = 1800.
-            { q: "87. X, Y and Z are partners in the ratio of 3:2:1. W is admitted with 1/6 th share in future profits. Z would retain his original shares. Find out the new profit sharing ratios of the partners.", o: ["3:2:1:6", "12:8:5:5", "3:2:1:1", "5:5:8:12"], c: "12:8:5:5" }, // Z's share = 1/6. W's share = 1/6. Remaining for X&Y = 1 - 1/6 - 1/6 = 4/6. X new = 4/6 * 3/5 = 12/30. Y new = 4/6 * 2/5 = 8/30. Z = 1/6 = 5/30. W = 1/6 = 5/30. Ratio 12:8:5:5.
-            { q: "88. A and B are currently partners in a firm sharing Profit/Loss in the ratio of 4:3. A new partner C is admitted and after his admission new profit sharing ratio between A, B and C becomes 5:3:2. What will be the sacrifice ratio of A and B after admission of C?", o: ["5:9", "5:3", "5:4", "5:1"], c: "5:9" }, // A sacrifice = 4/7 - 5/10 = (40-35)/70 = 5/70. B sacrifice = 3/7 - 3/10 = (30-21)/70 = 9/70. Ratio 5:9.
-            { q: "89. The share of Profits or Losses of Partners in absence of oral or written agreement will be ____", o: ["Equal", "In the ratio of their capital", "Agreed Ratio", "None of the above"], c: "Equal" },
-            { q: "90. In absence of specific provision in the Partnership deed at what rate of interest on Capital of the Partners would be allowed?", o: ["8%", "10%", "6%", "11%"], c: "6%" }, // This is for interest on loan. For interest on capital, if not agreed, then no interest. PDF answer is 6%. This is typically for interest on partner's loan. Assuming the question implies it is allowed but rate not specified.
-            { q: "91. Average Profit = ₹3,72,000. Normal rate of return=12%. Total Assets =₹68,00,000. Outside liabilities =₹42,00,000. Calculate the value of goodwill under capitalization method.", o: ["₹5,00,000", "₹6,00,000", "₹7,00,000", "₹8,00,000"], c: "₹5,00,000" }, // Capital Employed = 68L-42L = 26L. Normal Profit = 26L * 12% = 312000. Super Profit = 372000 - 312000 = 60000. Goodwill (Cap of SP) = 60000 / 0.12 = 500000.
-            { q: "92. The Profits of last 3 years are ₹42,000, ₹39,000 and ₹45,000. Find out the Goodwill of 2 years purchase.", o: ["₹42,000", "₹84,000", "₹1,26,000", "₹36,000"], c: "₹84,000" }, // Avg Profit = (42+39+45)/3 = 126/3 = 42000. Goodwill = 42000 * 2 = 84000.
+            { q: "86. X and Y are partners with the capital of ₹50,000 and ₹30,000 respectively. Interest Payable on Capital is 10% p.a. If the profits earned by the firm is ₹4,800, what will be the Interest on Capital for X and Y?", o: ["₹ 5,000 and ₹3,000", "₹3,000 and ₹1,800", "No interest will be paid to the partners", "None of the above"], c: "₹3,000 and ₹1,800" },
+            { q: "87. X, Y and Z are partners in the ratio of 3: 2:1. W is admitted with 1/6 th share in future profits. Z would retain his original shares. Find out the new profit sharing ratios of the partners.", o: ["3:2:1:6", "12:8:5:5", "3:2:1:1", "5:5:8:12"], c: "12:8:5:5" },
+            { q: "88. A and B are currently partners in a firm sharing Profit/Loss in the ratio of 4: 3. A new partner C is admitted and after his admission new profit sharing ratio between A, B and C becomes 5: 3:2. What will be the sacrifice ratio of A and B after admission of C?", o: ["5:09", "5:03", "5:04", "5:01"], c: "5:09" }, // Sacrifice A = 4/7 - 5/10 = (40-35)/70 = 5/70. Sacrifice B = 3/7 - 3/10 = (30-21)/70 = 9/70. Ratio 5:9.
+            { q: "89. The share of Profits or Losses of Partners in absence of oral or written agreement will be", o: ["Equal", "In the ratio of their capital", "Agreed Ratio", "None of the above"], c: "Equal" },
+            { q: "90. In absence of specific provision in the Partnership deed at what rate of interest on Capital of the Partners would be allowed?", o: ["8%", "10%", "6%", "11%"], c: "6%" }, // No interest on capital if not agreed. 6% on loan. PDF key is 3.
+            { q: "91. Average Profit =₹3,72,000 Normal rate of return=12% Total Assets =₹68.00.000 Outside liabilities =₹42,00,000 Calculate the value of goodwill under capitalization method.", o: ["₹500,000", "₹ 600,000", "₹700,000", "₹800,000"], c: "₹500,000" },
+            { q: "92. The Profits of last 3 years are 42,000, ₹39,000 and ₹ 45,000. Find out the Goodwill of 2 years purchase.", o: ["₹42,000", "₹84,000", "₹126,000", "₹36,000"], c: "₹84,000" },
             { q: "93. Excess of average profit earned by the Firm over and above its normal profit -", o: ["Total Profit", "Super Profit", "Normal returns", "Excess Profit"], c: "Super Profit" },
             { q: "94. Which of the following should be valued compulsory at the time of admission of a partner", o: ["Goodwill", "Plant & Machinery", "Land & Building", "Furniture & Fittings"], c: "Goodwill" },
-            { q: "95. X and Y share profits and losses in the ratio of 4:3. They admit Z in the Firm with 3/7th share which he gets 2/7th from X and 1/7th from Y. the new profit sharing ratio will be -", o: ["7:3:3", "2:2:3", "5:2:3", "2:3:3"], c: "2:2:3" }, // X new = 4/7 - 2/7 = 2/7. Y new = 3/7 - 1/7 = 2/7. Z = 3/7. Ratio 2:2:3.
-            { q: "96. A,B,C and D are partners sharing their profits and losses equally. They change their profit sharing to 2:2:1:1. How much will C sacrifice?", o: ["1/6", "1/12", "1/24", "1/2"], c: "1/12" }, // Old C = 1/4. New C = 1/6. Sacrifice = 1/4 - 1/6 = (3-2)/12 = 1/12.
-            { q: "97. X and Y are partners in a Firm with Capital of ₹18,000 and ₹20,000. Z was admitted for 1/3rd share in profits and brings ₹24,000 as Capital, calculate the amount goodwill:", o: ["₹24,000", "₹20,000", "₹15,000", "₹10,000"], c: "₹10,000" }, // Total capital based on Z = 24000 * 3 = 72000. Actual combined capital = 18000+20000+24000 = 62000. Hidden Goodwill = 72000-62000 = 10000.
-            { q: "98. A, B and C are Partners sharing profits equally. A retires and Goodwill appearing in the books at ₹3,000 is valued at ₹6,000. A will get credit of-", o: ["₹2,000", "₹3,000", "₹500", "₹1,000"], c: "₹1,000" }, // A's share in revalued goodwill = 6000 * 1/3 = 2000. Existing goodwill needs to be written off. A's share written off = 3000 * 1/3 = 1000 (Dr). Net credit for A = 2000 (from gaining partners) - 1000 (write-off) = 1000. Or, A gets 1/3 of increase (6000-3000) = 1000.
-            { q: "99. A, B and C are Partners with Capitals of ₹1,00,000, ₹75,000 and ₹50,000. On C's retirement his share is acquired by A and B in the ratio of 6:4 respectively. Calculate gaining ratio.", o: ["3:2", "2:2", "2:3", "None of these"], c: "3:2" }, // Gaining ratio is given as 6:4, which simplifies to 3:2.
-            { q: "100. A, B and C are partners sharing profits in the ratio of 2:2:1, on retirement of B, goodwill was valued as Rs.30,000. Find the contribution of A and C to compensate B.", o: ["Rs.20,000 and Rs.10,000", "Rs.8,000 and Rs.4,000", "Rs. 15,000 and Rs. 15,00", "No contribution"], c: "Rs.8,000 and Rs.4,000" }, // B's share of GW = 30000 * 2/5 = 12000. Gaining ratio of A:C is 2:1. A contributes 12000 * 2/3 = 8000. C contributes 12000 * 1/3 = 4000.
-            { q: "101. A, B and C are partners sharing profits and losses in the ratio 2:2:1. C died on 31st March 2022. The profits of the financial year ending 31st March 2022 is ₹64,000. The share of Deceased partner in the profits will be -", o: ["₹9,200", "₹12,800", "₹3,100", "₹6,100"], c: "₹12,800" }, // C's share = 64000 * 1/5 = 12800.
-            { q: "102. When goodwill is withdrawn by the partners ____ account is credited.", o: ["Cash", "Partners Capital A/c", "Partners Loan A/c", "Goodwill A/c"], c: "Cash" }, // Partners Capital A/c Dr, To Cash A/c Cr.
-            { q: "103. When Goodwill is to be written off after admission of a partner in which ratio it is transferred to Capital A/c of the Partners?", o: ["Sacrificing Ratio", "Equally", "New Profit Sharing Ratio", "Old Profit Sharing Ratio"], c: "New Profit Sharing Ratio" }, // If goodwill is raised and written off. If existing goodwill written off, then old ratio. PDF says New.
-            { q: "104. Section 32 of the Indian Partnership Act, 1932 a partner may retire ____", o: ["With the consent of all the existing partners", "In accordance with an express agreement by the partners", "By giving a written notice to all other partners of his intention to retire in case of 'Partnership at Will'", "All of the above"], c: "All of the above" },
-            { q: "105. Advertisement expenses are apportioned among departments in the proportion of ____", o: ["sales of each department", "purchases of each department", "no. of units sold by each department", "cost of sales of each department"], c: "sales of each department" },
+            { q: "95. X and Y share profits and losses in the ratio of 4:3. They admit Z in the Firm with 3/7th share which he gets 2/7th from X and 1/7th from Y. the new profit sharing ratio will be -", o: ["7:3:3", "2-2-3", "5:2:3", "2:3:3"], c: "2-2-3" }, // Xnew = 4/7 - 2/7 = 2/7. Ynew = 3/7 - 1/7 = 2/7. Z = 3/7. Ratio 2:2:3.
+            { q: "96. A,B,C and D are partners sharing their profits and losses equally. They change their profit sharing to 2:2:1:1. How much will C sacrifice?", o: ["1/6", "1/12", "1/24", "1/2"], c: "1/12" }, // C old = 1/4. C new = 1/6. Sacrifice = 1/4 - 1/6 = (3-2)/12 = 1/12.
+            { q: "97. X and Y are partners in a Firm with Capital of 18,000 and 20,000. Z was admitted for 1/3rd share in profits and brings 24,000 as Capital, calculate the amount goodwill:", o: ["₹24,000", "₹20,000", "₹ 15,000", "₹10,000"], c: "₹10,000" }, // PDF key is 4. Total capital based on Z = 24000*3 = 72000. Actual cap X+Y+Z = 18+20+24 = 62000. Goodwill = 72-62 = 10000.
+            { q: "98. A, B and C are Partners sharing profits equally. A retires and Goodwill appearing in the books at ₹3,000 is valued at ₹ 6,000. A will get credit of-", o: ["₹2,000", "₹3,000", "₹500", "₹1,000"], c: "₹1,000" }, // A's share of revalued GW = 6000/3 = 2000. Existing GW written off, A's share Dr 1000. Net credit 1000. PDF key 4.
+            { q: "99. A, B and C are Partners with Capitals of ₹1,00,000, ₹75,000 and 250,000. On C's retirement his share is acquired by A and B in the ratio of 6:4 respectively. Calculate gaining ratio.", o: ["3:2", "2:2", "2:3", "None of these"], c: "3:2" },
+            { q: "100. A, B and C are partners sharing profits in the ratio of 2;2:1, on retirement of B, goodwill was valued as Rs.30,000. Find the contribution of A and C to compensate B.", o: ["Rs.20,000 and Rs.10,000", "Rs.8,000 and Rs.4,000", "Rs. 15,000 and Rs. 15,00", "No contribution"], c: "Rs.8,000 and Rs.4,000" }, // B's share of GW = 30000 * 2/5 = 12000. Gaining ratio A:C = 2:1. A pays 12000*2/3=8000. C pays 12000*1/3=4000.
+            { q: "101. A, B and C are partners sharing profits and losses in the ratio 2:2:1. C died on 31st March 2022. The profits of the financial year ending 31st March 2022 is ₹ 64,000. The share of Deceased partner in the profits will be -", o: ["₹9.200", "₹12,800", "₹3,100", "₹6,100"], c: "₹12,800" },
+            { q: "102. When goodwill is withdrawn by the partners ____ account is credited.", o: ["Cash", "Partners Capital A/c", "Partners Loan A/c", "Goodwill A/c"], c: "Cash" },
+            { q: "103. When Goodwill is to be written off after admission of a partner in which ratio it is transferred to Capital A/c of the Partners?", o: ["Sacrificing Ratio", "Equally", "New Profit Sharing Ratio", "Old Profit Sharing Ratio"], c: "New Profit Sharing Ratio" },
+            { q: "104. Section 32 of the Indian Partnership Act, 1932 a partner may retire", o: ["With the consent of all the existing partners", "In accordance with an express agreement by the partners", "By giving a written notice to all other partners of his intention to retire in case of 'Partnership at Will", "All of the above"], c: "All of the above" },
+            { q: "105. Advertisement expenses are apportioned among departments in the proportion of", o: ["sales of each department", "purchases of each department", "no. of units sold by each department", "cost of sales of each department"], c: "sales of each department" },
             { q: "106. Which one is/are the method/s of Accounting for Branches ?", o: ["Final Accounts Method", "Debtors Method", "Stock and Debtors Method", "All of the above"], c: "All of the above" },
-            { q: "107. Bad debts are apportioned among departments in the proportion of ____", o: ["Sales of each department", "Number of units sold by each department", "Cost of sales of each department", "None of the above"], c: "Sales of each department" }, // If directly identifiable, then actual. Otherwise, sales.
-            { q: "108. Goods are transferred from Department X to Department Y at a price so as to include a profit of 33.33% on cost. If the value of closing stock of Department Y is ₹48,000, then the amount of stock reserve on closing stock will be ____", o: ["₹12,000", "₹9,000", "₹18,000", "₹16,000"], c: "₹12,000" }, // Profit = 1/3 on cost = 1/4 on invoice. Reserve = 48000 * 1/4 = 12000.
-
-            // Set 4: Questions 109-144
-            { q: "109. Goods are sent to the Branch at cost plus 25%. The loading on invoice price is ____", o: ["20%", "25%", "30%", "50%"], c: "20%" }, // Profit = 25% on cost = 1/4 on cost = 1/5 on invoice price = 20%.
-            { q: "110. In Hire Purchase system cash price plus interest is known as ____", o: ["Capital value of asset", "Book value of asset", "Hire purchase price of asset", "Hire purchase charges"], c: "Hire purchase price of asset" },
-            { q: "111. Excess of hire purchase price over cash price is known as ____", o: ["Installment", "Cash down payment", "Interest", "Capital value of asset"], c: "Interest" },
-            { q: "112. KCS purchased a machine from JPS on hire purchase system, whose cash price was ₹8,64,000.₹2,16,000 being paid on delivery and balance in three annual instalments of ₹2,88,000 each. The amount of interest included in first installment would be ____", o: ["₹72,000", "₹57,600", "₹1,08,000", "₹36,000"], c: "₹1,08,000" }, // Balance after DP = 864000-216000 = 648000. Total paid in inst = 288000*3 = 864000. Total interest = (216000+864000) - 864000 = 216000. This is complex. Interest rate is not given. PDF answer key is 108000.
-            { q: "113. Head office invoiced goods to its branch at 10% less than the catalogue price which is cost plus 20%. If the total invoiced goods during the year is ₹4,32,000, then the cost of such goods IS ____", o: ["₹4,00,000", "₹3,88,800", "₹3,45,600", "₹5,18,400"], c: "₹4,00,000" }, // Let Cost = C. Catalogue = 1.2C. Invoice = 1.2C * 0.9 = 1.08C. 1.08C = 432000. C = 432000/1.08 = 400000.
-            { q: "114. Goods are sent to branch at cost plus 50%. The loading on the invoice price is ____", o: ["50%", "33.33%", "25%", "20%."], c: "33.33%" }, // Profit = 50% on cost = 1/2 on cost = 1/3 on invoice = 33.33%.
-            { q: "115. The head office of a company sends goods to its branch at 150% of its cost price. If the value of goods received by branch is ₹7,50,000, then the cost of goods will be ____", o: ["₹6,00,000", "₹4,00,000", "₹6,25,000", "₹5,00,000"], c: "₹5,00,000" }, // Invoice = 1.5 * Cost. 750000 = 1.5 * Cost. Cost = 750000 / 1.5 = 500000.
-            { q: "116. Goods costing ₹2,00,000 wew insured for ₹1,00,000. out of which 3/4th were destroyed by fire. Calculate the amount of claim with average clause.", o: ["₹75,000", "₹1,00,000", "₹1,50,000", "₹2,00,000"], c: "₹75,000" }, // Actual loss = 200000 * 3/4 = 150000. Claim = (Policy Value / Value of Stock at fire) * Actual Loss. Assuming Value of stock at fire = 200000. Claim = (100000/200000)*150000 = 75000.
-            { q: "117. A plant worth ₹80,000 has been insured for ₹60,000, the loss on account of fire is ₹50,000. The insurance company will bear the loss to the extent of ____", o: ["₹37,500", "₹50,000", "₹60,000", "₹80,000"], c: "₹37,500" }, // Claim = (60000/80000)*50000 = 3/4 * 50000 = 37500.
-            { q: "118. Standard turnover is ____", o: ["Turnover during last 12 months immediately before the damage", "Turnover during that period of 12 months immediately before which corresponds with indemnity period.", "Unavoidable fixed expenses which have to be paid even if there is reduction in sale", "Turnover of the last accounting period immediately before damage."], c: "Turnover during that period of 12 months immediately before which corresponds with indemnity period." },
-            { q: "119. Departmental accounting helps in ____", o: ["Evaluation of trading results of each department separately", "Effective planning and control on each department", "Both 1 and 2", "None of the above"], c: "Both 1 and 2" },
-            { q: "120. If Department M transfers goods to Department N at a price of 50% above cost, what well be the amount of stock reserve on unsold stock worth ₹9,000 of Department N?", o: ["₹3,000", "₹4,500", "₹1,500", "₹2,500"], c: "₹3,000" }, // Profit = 50% on cost = 1/2 on cost = 1/3 on invoice. Reserve = 9000 * 1/3 = 3000.
-            { q: "121. The hire purchaser records the assets at its ____", o: ["Hire purchase price", "Amount paid to the vendor till date", "Cash price", "Total cost"], c: "Cash price" },
-            { q: "122. Depreciation on hire purchased asset is claimed by ____", o: ["Hire vendor", "Hire purchaser", "Either the hire vendor or the hire purchaser, as per theagreement", "None of these"], c: "Hire purchaser" },
-            { q: "123. While treating the abnormal loss under Stock and Debtors system of maintaining Branch accounts, loading on abnormal loss is transferred to ____", o: ["Branch Stock Account", "Branch Debtors Account", "Branch Stock Adjustment Account", "Branch Profit and Loss Account"], c: "Branch Stock Adjustment Account" },
-            { q: "124. Under Debtors System of maintaining branch accounts, which of the following appears in Branch Account?", o: ["Credit purchase", "Goods returned by debtors to branch", "Goods returned by debtors to H.O", "Goods sent to branch"], c: "Goods returned by debtors to branch" }, // Branch A/c is debited with goods sent, expenses. Credited with cash remitted, goods returned to HO, closing assets. Goods returned by debtors to branch reduces branch debtors.
-            { q: "125. Branches not keeping full system of accounting are called ____", o: ["Independent branches", "Partial branches", "Dependent branches", "None of these"], c: "Dependent branches" }, // PDF answer key says Independent. This seems incorrect. Dependent branches don't keep full system.
-            { q: "126. Assets are generally repossessed at a mutual agreed ____", o: ["value", "current price", "Installments due", "None of these"], c: "value" },
+            { q: "107. Bad debts are apportioned among departments in the proportion of", o: ["Sales of each department", "Number of units sold by each department", "Cost of sales of each department", "None of the above"], c: "Sales of each department" },
+            { q: "108. Goods are transferred from Department X to Department Y at a price so as to include a profit of 33.33% on cost. If the value of closing stock of Department Y is ₹ 48,000, then the amount of stock reserve on closing stock will be", o: ["₹12,000", "₹ 9,000", "₹18,000", "₹16,000"], c: "₹12,000" }, // Profit is 1/3 on cost = 1/4 on IP. 48000 * 1/4 = 12000.
+            { q: "109. Goods are sent to the Branch at cost plus 25%. The loading on invoice price is", o: ["20%", "25%", "30%", "50%"], c: "20%" }, // Cost 100, IP 125. Loading 25. Loading on IP = 25/125 = 1/5 = 20%.
+            { q: "110. In Hire Purchase system cash price plus interest is known as", o: ["Capital value of asset", "Book value of asset", "Hire purchase price of asset", "Hire purchase charges"], c: "Hire purchase price of asset" },
+            { q: "111. Excess of hire purchase price over cash price is known as", o: ["Installment", "Cash down payment", "Interest", "Capital value of asset"], c: "Interest" },
+            { q: "112. KCS purchased a machine from JPS on hire purchase system, whose cash price was ₹8,64,000.₹2,16,000 being paid on delivery and balance in three annual instalments of ₹2,88,000 each. The amount of interest included in first installment would be", o: ["₹72,000", "₹57,600", "₹108,000", "₹36,000"], c: "₹108,000" },
+            { q: "113. Head office invoiced goods to its branch at 10% less than the catalogue price which is cost plus 20%. If the total invoiced goods during the year is ₹4,32,000, then the cost of such goods IS", o: ["₹ 400,000", "₹388,800", "₹345.600", "₹518,400"], c: "₹ 400,000" }, // Let Cost=C. Catalogue=1.2C. Invoice=0.9*1.2C = 1.08C. 1.08C=432000. C=400000.
+            { q: "114. Goods are sent to branch at cost plus 50%. The loading on the invoice price is", o: ["50%", "33.33%", "25%", "20%."], c: "33.33%" }, // Cost 100, IP 150. Loading 50. Loading on IP = 50/150 = 1/3 = 33.33%.
+            { q: "115. The head office of a company sends goods to its branch at 150% of its cost price. If the value of goods received by branch is ₹7,50,000, then the cost of goods will be", o: ["₹ 600,000", "₹ 400,000", "₹625,000", "₹500,000"], c: "₹500,000" }, // IP = 1.5 * Cost. 750000 = 1.5 * Cost. Cost = 750000/1.5 = 500000.
+            { q: "116. Goods costing 2,00,000 wew insured for ₹1,00,000. out of which 3/4th were destroyed by fire. Calculate the amount of claim with average clause.", o: ["₹75,000", "₹ 100,000", "₹150,000", "₹200,000"], c: "₹75,000" }, // Loss = 200000 * 3/4 = 150000. Claim = Loss * (Insured Val / Actual Val) = 150000 * (100000/200000) = 75000.
+            { q: "117. A plant worth ₹ 80,000 has been insured for ₹60,000, the loss on account of fire is ₹50,000. The insurance company will bear the loss to the extent of", o: ["₹37,500", "₹50,000", "₹ 60,000", "₹80,000"], c: "₹37,500" }, // Claim = Loss * (Insured Val / Actual Val) = 50000 * (60000/80000) = 50000 * 3/4 = 37500.
+            { q: "118. Standard turnover is", o: ["Turnover during last 12 months immediately before the damage", "Turnover during that period of 12 months immediately before which corresponds with indemnity period.", "Unavoidable fixed expenses which have to be paid even if there is reduction in sale", "Turnover of the last accounting period immediately before damage."], c: "Turnover during that period of 12 months immediately before which corresponds with indemnity period." },
+            { q: "119. Departmental accounting helps in", o: ["Evaluation of trading results of each department separately", "Effective planning and control on each department", "Both 1 and 2", "None of the above"], c: "Both 1 and 2" },
+            { q: "120. If Department M transfers goods to Department N at a price of 50% above cost, what well be the amount of stock reserve on unsold stock worth ₹ 9,000 of Department N?", o: ["₹3.000", "₹ 4,500", "₹1,500", "₹2.500"], c: "₹3.000" }, // Profit is 50% on cost = 1/2 on cost = 1/3 on IP. 9000 * 1/3 = 3000.
+            { q: "121. The hire purchaser records the assets at its", o: ["Hire purchase price", "Amount paid to the vendor till date", "Cash price", "Total cost"], c: "Cash price" },
+            { q: "122. Depreciation on hire purchased asset is claimed by", o: ["Hire vendor", "Hire purchaser", "Either the hire vendor or the hire purchaser, as per theagreement", "None of these"], c: "Hire purchaser" },
+            { q: "123. While treating the abnormal loss under Stock and Debtors system of maintaining Branch accounts, loading on abnormal loss is transferred to", o: ["Branch Stock Account", "Branch Debtors Account", "Branch Stock Adjustment Account", "Branch Profit and Loss Account"], c: "Branch Stock Adjustment Account" },
+            { q: "124. Under Debtors System of maintaining branch accounts, which of the following appears in Branch Account?", o: ["Credit purchase", "Goods returned by debtors to branch", "Goods returned by debtors to H.O", "Goods sent to branch"], c: "Goods returned by debtors to branch" }, // PDF key is 2. Branch A/c is debited with Goods Sent, Cash Sales, Credit Sales (or Debtors). Credited with Remittances, Goods Returned to HO, etc.
+            { q: "125. Branches not keeping full system of accounting are called", o: ["Independent branches", "Partial branches", "Dependent branches", "None of these"], c: "Independent branches" }, // Dependent branches don't keep full system. PDF key is 1.
+            { q: "126. Assets are generally repossessed at a mutual agreed", o: ["value", "current price", "Installments due", "None of these"], c: "value" },
             { q: "127. CP Points sells Computers on Hire Purchase basis at cost plus 25%. Terms of sale are ₹10,000 down payment and eight monthly instalments of ₹5,000 each for each computer. Compute the HP Price per computer.", o: ["₹50,000", "₹40,000", "₹20,000", "₹10,000"], c: "₹50,000" }, // HP Price = 10000 + (8*5000) = 10000 + 40000 = 50000.
-            { q: "128. On 1st April 2022, a car company sold to A Bros, a Motorcar on Hire Purchase basis. Total Hire Purchase Price was ₹4,60,000 with down payment of ₹1,60,000. Balance amount was to be paid in three Annual Instalments of ₹1,00,000 each. The first instalment payble on 31st March, 2023. Cash Price was ₹4,00,000. compute the interest of second year.", o: ["₹30,000", "₹20,000", "₹10,000", "₹60,000"], c: "₹20,000" }, // Total Int = 460k-400k = 60k. Outstanding after DP = 400k-160k = 240k. Yr1 Int: (Rate not given, need to work backwards or use annuity). PDF answer key is 20000.
-            { q: "129. In January, a Firm took an insurance policy for ₹60 lakhs to insure goods in its godown against fire, subject to Average Clause.on 7th March, a Fire broke out destroying goods costing ₹44 lakhs. Stock in godown was estimated at ₹80 lakhs. Compute the amount of Insurance Claim.", o: ["₹60,00,000", "₹44,00,000", "₹33,00,000", "₹80,00,000"], c: "₹33,00,000" }, // Claim = (60L/80L) * 44L = 3/4 * 44L = 33L.
-            { q: "130. Accounting standard in India are issued by ____", o: ["Government of India", "Reserve Bank of India", "The Institute of Chartered Accountants of India", "The Institute of Accounting Standard of India"], c: "The Institute of Chartered Accountants of India" },
-            { q: "131. As per AS 10 'Property, Plant and Equipment', an enterprise holding investment properties should value Investment Property ____", o: ["As per fail value", "applying discounted cash flow model", "using cost model", "None of the above"], c: "using cost model" }, // AS 10 is for PPE. Investment property is AS 13 (or Ind AS 40). If it's PPE, cost model or revaluation. If it's Inv Prop under AS 13, cost model.
-            { q: "132. As per AS 16 all of the following are qualifying assets except ____", o: ["Manufacturing plants and power generation facilities", "Inventories that require substantial period of time", "Assets those are ready for sale", "None of the above"], c: "Assets those are ready for sale" },
-            { q: "133. All of the following costs are excluded while computing value of inventories except ____", o: ["Selling and distribution costs", "Allocated fixed production overheads based on normal capacity", "Abnormal wastage", "All of the above"], c: "Allocated fixed production overheads based on normal capacity" },
-            { q: "134. Which of the following is not a fundamental accounting assumption?", o: ["Consistancy", "Materiality", "Going Concern", "Accrual"], c: "Materiality" }, // Repeat of Q5.
+            { q: "128. On 1st April 2022, a car company sold to A Bros, a Motorcar on Hire Purchase basis. Total Hire Purchase Price was ₹4,60,000 with down payment of ₹ 1,60,000. Balance amount was to be paid in three Annual Instalments of ₹1,00,000 each. The first instalment payble on 31st March, 2023. Cash Price was ₹4,00,000. compute the interest of second year.", o: ["₹30,000", "₹20,000", "₹ 10,000", "₹ 60,000"], c: "₹20,000" },
+            { q: "129. In January, a Firm took an insurance policy for ₹ 60 lakhs to insure goods in its godown against fire, subject to Average Clause.on 7th March, a Fire broke out destroying goods costing 44 lakhs. Stock in godown was estimated at ₹80 lakhs. Compute the amount of Insurance Claim.", o: ["₹ 6,000,000", "₹4,400,000", "₹3,300,000", "₹8,000,000"], c: "₹3,300,000" }, // Claim = Loss * (Insured Val / Actual Val) = 44L * (60L/80L) = 44L * 3/4 = 33L.
+            { q: "130. Accounting standard in India are issued by", o: ["Government of India", "Reserve Bank of India", "The Institute of Chartered Accountants of India", "The Institute of Accounting Standard of India"], c: "The Institute of Chartered Accountants of India" },
+            { q: "131. As per AS 10 \"Property, Plant and Equipment', an enterprise holding investment properties should value Investment Property", o: ["As per fail value", "applying discounted cash flow model", "using cost model", "None of the above"], c: "using cost model" },
+            { q: "132. As per AS 16 all of the following are qualifying assets except", o: ["Manufacturing plants and power generation facilities", "Inventories that require substantial period of time", "Assets those are ready for sale", "None of the above"], c: "Assets those are ready for sale" },
+            { q: "133. All of the following costs are excluded while computing value of inventories except", o: ["Selling and distribution costs", "Allocated fixed production overheads based on normal capacity", "Abnormal wastage", "All of the above"], c: "Allocated fixed production overheads based on normal capacity" },
+            { q: "134. Which of the following is not a fundamental accounting assumption?", o: ["Consistancy", "Materiality", "Going Concern", "Accrual"], c: "Materiality" },
             { q: "135. As per AS 1, where a company should disclose its accounting policies?", o: ["In the Annual Report", "In the Auditor's Report", "In the CEO's letter to the shareholders", "In the notes to Financial Statement"], c: "In the notes to Financial Statement" },
             { q: "136. Full form of IFRS", o: ["Indian Financial Reporting Standards", "International Financial Reporting Standards", "International Financials Reporting Standards", "Indian Financial Reporting Standard"], c: "International Financial Reporting Standards" },
-            { q: "137. Areas involving different accounting policies by different enterprises is/are ____", o: ["Valuation of inventories", "Treatment of intangible assets", "Recognition of profit on long-term contracts", "All of these"], c: "All of these" },
-            { q: "138. An entity has acquired an Asset costing ₹1,00,000 for production of certain items to be sold by it. It is deductible equally over 2 years in the books of accounts. In Tax Law, ₹75,000 is deductible in year 1 and balance is deductible in year 2. Tax rate is 10%. In year 2, The entity should ____", o: ["Create DTL ₹2,500", "Reverse DTL ₹2,500", "Create DTA ₹2,500", "Reverse DTA ₹2,500"], c: "Reverse DTL ₹2,500" },
-            { q: "139. As per AS 22 an example of permanent difference is ____", o: ["Exempt Income", "Disallowed Expenses", "Enhanced Deduction", "All of these"], c: "All of these" },
-            { q: "140. Borrowing cost includes ____", o: ["Debenture Interest", "Preference Dividend", "Equity Dividend", "All of these"], c: "Debenture Interest" },
-            { q: "141. Grants which are in the nature of Promoter's Contribution is accounted under ____", o: ["Capital Approach", "Income Approach", "Any of 1 and 2", "None of these"], c: "Capital Approach" },
-            { q: "142. ₹10 lakhs Grant received for assets (life 10 years). Income credited to Profit and Loss A/c every year under Deferred Income Method is ____", o: ["₹1 lakhs", "Depends on the Depreciation Method used", "₹10 Lakhs", "Nil"], c: "Depends on the Depreciation Method used" }, // If grant related to depreciable asset, usually recognized as income over asset's life in proportion to depreciation. If deferred income method, then 1 lakh per year. PDF answer is "Depends on Dep Method".
-            { q: "143. According to AS 11 (Revised) the difference between the forward rate and the exchange rate at the date of transaction should be ____", o: ["Ignored", "Recognised as income or expense", "Adjusted to Shareholders' interests", "None of these"], c: "Recognised as income or expense" },
-            { q: "144. As per AS 11 Monetory Items excludes ____", o: ["Cash", "Receivables", "Payables", "Inventories"], c: "Inventories" }
+            { q: "137. Areas involving different accounting policies by different enterprises is/are", o: ["Valuation of inventories", "Treatment of intangible assets", "Recognition of profit on long-term contracts", "All of these"], c: "All of these" },
+            { q: "138. An entity has acquired an Asset costing ₹1,00,000 for production of certain items to be sold by it. It is deductible equally over 2 years in the books of accounts. In Tax Law, ₹ 75,000 is deductible in year 1 and balance is deductible in year 2. Tax rate is 10%. In year 2, The entity should", o: ["Create DTL ₹2,500", "Reverse DTL ₹2.500", "Create DTA ₹2.500", "Reverse DTA ₹2.500"], c: "Reverse DTL ₹2.500" },
+            { q: "139. As per AS 22 an example of permanent difference is", o: ["Exempt Income", "Disallowed Expenses", "Enhanced Deduction", "All of these"], c: "All of these" },
+            { q: "140. Borrowing cost includes", o: ["Debenture Interest", "Preference Dividend", "Equity Dividend", "All of these"], c: "Debenture Interest" },
+            { q: "141. Grants which are in the nature of Promoter's Contribution is accounted under", o: ["Capital Approach", "Income Approach", "Any of 1 and 2", "None of these"], c: "Capital Approach" },
+            { q: "142. 10 lakhs Grant received for assets (life 10 years). Income credited to Profit and Loss A/c every year under Deferred Income Method is", o: ["₹1 lakhs", "Depends on the Depreciation Method used", "₹10 Lakhs", "Nil"], c: "Depends on the Depreciation Method used" }, // If deferred income, then 1 lakh per year. If deducted from asset cost, then lower dep. PDF key is 2.
+            { q: "143. According to AS 11 (Revised) the difference between the forward rate and the exchange rate at the date of transaction should be", o: ["Ignored", "Recognised as income or expense", "Adjusted to Shareholders' interests", "None of these"], c: "Recognised as income or expense" },
+            { q: "144. As per AS 11 Monetory Items excludes", o: ["Cash", "Receivables", "Payables", "Inventories"], c: "Inventories" }
         ];
 
+
         let currentQuestionIndex = 0;
-        let questionAnswered = false; 
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
 
         let score = {
             correct: 0,
             incorrect: 0
         };
 
+        // DOM Elements
         const questionHeaderElement = document.getElementById('question-header');
         const questionTextElement = document.getElementById('question-text');
         const optionsContainerElement = document.getElementById('options-container');
         const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
         const completionMessageElement = document.getElementById('completion-message');
         const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
 
         const correctCountElement = document.getElementById('correct-count');
         const incorrectCountElement = document.getElementById('incorrect-count');
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
 
-        const questionsPerSet = [36, 36, 36, 36]; // 144 total questions, 4 sets of 36
-        const setStartIndices = [0, 36, 72, 108]; // Start index for each set
+        // Configuration for 144 questions into 5 sets
+        // 4 sets of 29 questions, 1 set of 28 questions (29*4 + 28 = 116 + 28 = 144)
+        const questionsPerSet = [29, 29, 29, 29, 28]; 
+        const setStartIndices = [0, 29, 58, 87, 116]; 
 
         function populateSetSelector() {
+            setSelectorElement.innerHTML = ''; // Clear existing options
             questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
                 const option = document.createElement('option');
                 option.value = index; 
-                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
-                setSelectorElement.appendChild(option);
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
             });
             setSelectorElement.addEventListener('change', (event) => {
                 const selectedSetIndex = parseInt(event.target.value);
                 currentQuestionIndex = setStartIndices[selectedSetIndex];
-                // Reset quiz elements for new set
                 completionMessageElement.style.display = 'none';
                 questionHeaderElement.style.display = 'block';
                 questionTextElement.style.display = 'block';
                 optionsContainerElement.style.display = 'block';
-                nextButton.style.display = 'inline-block';
+                navigationButtons.style.display = 'flex'; 
                 loadQuestion();
             });
         }
 
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
-            for (let i = 0; i < questionsPerSet.length; i++) {
-                cumulativeQuestions += questionsPerSet[i];
-                if (index < cumulativeQuestions) {
-                    if (setSelectorElement.value != i) { // Sync dropdown if navigating sequentially
-                         setSelectorElement.value = i;
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
+                    if (setSelectorElement.value != i) { 
+                         setSelectorElement.value = i; 
                     }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-            // Should not be reached if index is within bounds
-            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
+            }
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
         }
         
         function updateScoreboard() {
@@ -508,66 +544,87 @@
         }
 
         function loadQuestion() {
-            questionAnswered = false; 
-            if (currentQuestionIndex < questionsData.length) {
-                const currentQuestion = questionsData[currentQuestionIndex];
-                const setInfo = getCurrentSetInfo(currentQuestionIndex);
-
-                questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-                questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
-
-                optionsContainerElement.innerHTML = '';
-                currentQuestion.o.forEach((optionText, index) => {
-                    const optionElement = document.createElement('div');
-                    optionElement.classList.add('option');
-                    optionElement.dataset.optionText = optionText; 
-
-                    const optionLetter = String.fromCharCode(65 + index);
-                    optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
-                    
-                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
-                    optionsContainerElement.appendChild(optionElement);
-                });
-                nextButton.textContent = "Next Question";
-                nextButton.disabled = true; 
-            } else {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
                 showCompletionMessage();
+                return;
             }
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const setInfo = getCurrentSetInfo(currentQuestionIndex);
+
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+
+            optionsContainerElement.innerHTML = ''; 
+            currentQuestion.o.forEach((optionText, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.dataset.optionText = optionText; 
+
+                const optionLetter = String.fromCharCode(65 + index); 
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                
+                if (questionsAttemptedState[currentQuestionIndex]) { 
+                    optionElement.classList.add('disabled');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
+                    }
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
+                    }
+                } else {
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
+                }
+                optionsContainerElement.appendChild(optionElement);
+            });
+
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
+            nextButton.disabled = !questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length;
+            prevButton.disabled = (currentQuestionIndex === 0);
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
         }
 
         function handleOptionSelection(selectedDiv, selectedOptionText) {
-            if (questionAnswered) return; 
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
 
-            questionAnswered = true;
+            questionsAttemptedState[currentQuestionIndex] = true;
+            userAnswers[currentQuestionIndex] = selectedOptionText;
             nextButton.disabled = false; 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.c;
 
-            selectedDiv.classList.add('selected'); 
-
-            if (selectedOptionText === correctAnswerText) {
-                selectedDiv.classList.add('correct-answer');
-                score.correct++;
-            } else {
-                selectedDiv.classList.add('incorrect-selection');
-                score.incorrect++;
-                Array.from(optionsContainerElement.children).forEach(optDiv => {
-                    if (optDiv.dataset.optionText === correctAnswerText) {
-                        optDiv.classList.add('correct-answer');
-                    }
-                });
-            }
-            
             Array.from(optionsContainerElement.children).forEach(optDiv => {
                 optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
+                    }
+                }
             });
-
             updateScoreboard();
         }
         
         function selectOptionByKey(key) {
-            if (questionAnswered) return;
+            if (questionsAttemptedState[currentQuestionIndex]) return;
 
             let optionIndex = -1;
             if (key === 'a' || key === '1') optionIndex = 0;
@@ -584,45 +641,65 @@
         }
 
         function nextQuestionHandler() {
-            if (!questionAnswered && currentQuestionIndex < questionsData.length) {
+            if (!questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length) {
                 return; 
             }
-            currentQuestionIndex++;
-            loadQuestion();
+            if (currentQuestionIndex === questionsData.length - 1 && questionsAttemptedState[currentQuestionIndex]) {
+                currentQuestionIndex++; 
+                showCompletionMessage();
+            } 
+            else if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            }
+             else if (currentQuestionIndex >= questionsData.length) { 
+                 showCompletionMessage(); 
+            }
+        }
+
+        function prevQuestionHandler() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
         }
         
         function showCompletionMessage() {
             questionHeaderElement.style.display = 'none';
             questionTextElement.style.display = 'none';
             optionsContainerElement.style.display = 'none';
-            nextButton.style.display = 'none';
+            navigationButtons.style.display = 'none'; 
             completionMessageElement.style.display = 'block';
             const attempted = score.correct + score.incorrect;
             const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
-            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
-        nextButton.addEventListener('click', () => {
-            if(questionAnswered) { 
-                 nextQuestionHandler();
-            }
-        });
+        // Event Listeners
+        nextButton.addEventListener('click', nextQuestionHandler);
+        prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
-            if (currentQuestionIndex >= questionsData.length && event.key.toLowerCase() !== 'escape') { 
-                 if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === ' ') {
-                    event.preventDefault(); 
-                }
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
                 return;
+            }
+            if (event.key.toLowerCase() === 'escape') return; 
+
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault(); 
+                 return;
             }
 
             const key = event.key.toLowerCase();
             if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
                 event.preventDefault();
                 selectOptionByKey(key);
-            } else if ((key === 'enter' || key === ' ') && questionAnswered) { 
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
                 event.preventDefault();
                 nextQuestionHandler();
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
+                event.preventDefault();
+                prevQuestionHandler();
             }
         });
 
