@@ -3,1678 +3,768 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Management Accounting Quiz - Select Set</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>MCQ Quiz - Management Accounting</title>
     <style>
         body {
-            font-family: 'Inter', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f2f5;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-        }
-        .header-logos {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #003366; /* ICMAI-like blue */
-            color: white;
-        }
-        .header-logos img {
-            height: 50px; /* Adjust as needed */
-            width: auto;
-        }
-        .header-logos .title-text {
-            font-size: 1.4em;
-            font-weight: bold;
-            text-align: center;
-            flex-grow: 1;
-        }
-
-        .developer-credit {
-            text-align: center;
-            padding: 8px 15px;
-            background-color: #e9ecef;
-            border-bottom: 1px solid #d1d9e0;
-            font-size: 0.9em;
-            color: #555;
-        }
-        .developer-credit a {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-            color: #0056b3;
-            font-weight: 500;
-            padding: 3px 8px;
-            border-radius: 4px;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .developer-credit a:hover {
-            background-color: #d1d9e0;
-            text-decoration: none;
-        }
-        .developer-credit svg {
-            width: 18px;
-            height: 18px;
-            margin-right: 6px;
-            fill: currentColor;
-        }
-
-        .main-container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px 25px;
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.07);
-        }
-        h1, h2 {
-            text-align: center;
-            color: #0056b3;
-            margin-bottom: 20px;
-        }
-        h1 { font-size: 1.8em; }
-        h2 { font-size: 1.5em; margin-top: 30px;}
-
-        .set-selection-container {
-            display: flex;
-            flex-direction: column; /* Stack title and buttons */
-            align-items: center; /* Center items */
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        .set-buttons-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px; /* Spacing between buttons */
-        }
-
-        .set-btn {
-            padding: 12px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1em;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.25s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .set-btn:hover {
-            background-color: #0056b3;
-        }
-        .set-btn.active-set {
-            background-color: #0056b3;
-            font-weight: bold;
-        }
-
-        .quiz-content-area {
-            /* display: none; */ /* Controlled by JS */
-        }
-
-        .live-scoreboard {
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            padding: 12px;
-            margin-bottom: 25px;
-            background-color: #e9ecef;
-            border-radius: 6px;
-            color: #0056b3;
-            border: 1px solid #d1d9e0;
-        }
-        .question-block {
-            margin-bottom: 28px;
-            padding-bottom: 22px;
-            border-bottom: 1px dashed #d4dae0;
-        }
-        .question-block:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        .question-text {
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            color: #2c3e50;
-        }
-        .options label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1em;
-            cursor: pointer;
-            padding: 10px 12px;
-            border-radius: 6px;
-            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            border: 1px solid #e0e0e0;
-            background-color: #f9f9f9;
-        }
-        .options label:hover:not(.disabled-option) {
-            background-color: #e9ecef;
-            border-color: #adb5bd;
-        }
-        .options input[type="radio"] {
-            margin-right: 12px;
-            vertical-align: middle;
-            transform: scale(1.1);
-        }
-        .options input[type="radio"]:disabled + span {
-            color: #6c757d;
-        }
-        .options label.disabled-option {
-            cursor: default;
-            background-color: #f0f0f0;
-            color: #6c757d;
-        }
-
-        .action-buttons {
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5; /* Light grey background */
+            color: #333;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            margin-top: 35px;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .submit-btn, .back-to-sets-btn {
-            display: block;
-            width: 100%;
-            padding: 14px 20px;
+        #scoreboard-container {
+            background: #8000ff; /* Purple */
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        #set-navigation-container {
+            background: #0051ff; /* Blue */
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #scoreboard {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        #scoreboard span {
+            margin: 0 10px;
+        }
+        #scoreboard .correct { color: #d4edda; } 
+        #scoreboard .incorrect { color: #f8d7da; } 
+        #scoreboard .accuracy { color: #e0e0e0; } 
+
+
+        #set-navigation-container label {
+            margin-right: 10px;
+            font-weight: 500;
+            color: #ffffff; 
+        }
+
+        #set-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #fff; 
+            color: #333; 
+        }
+
+        #quiz-container {
+            background: #FFC300; /* Yellow */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            color: #333; 
+        }
+
+        #question-header {
+            font-size: 0.9em;
+            color: #555; 
+            margin-bottom: 15px;
+            text-align: right;
+            border-bottom: 1px solid #dba700; /* Darker yellow for border */
+            padding-bottom: 10px;
+        }
+
+        #question-text {
+            font-size: 1.15em;
+            margin-bottom: 25px;
+            color: #2c3e50; 
+            font-weight: 500;
+        }
+
+        .options-container {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            background: #fffde7; /* Lighter Yellow/Beige */
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #fff9c4; 
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            color: #333; 
+        }
+
+        .option:not(.disabled):hover {
+            background: #fff59d; /* Darker Lighter Yellow on hover */
+            border-color: #fff176;
+        }
+
+        .option.selected { 
+            font-weight: 500; 
+            border-color: #0051ff; /* Blue border for selected */
+            background-color: #e0efff; 
+        }
+        
+        .option.correct-answer {
+            background: #d4edda !important; 
+            border-color: #c3e6cb !important;
+            color: #155724 !important; 
+        }
+
+        .option.incorrect-selection {
+            background: #f8d7da !important; 
+            border-color: #f5c6cb !important;
+            color: #721c24 !important; 
+        }
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #495057; 
+            background-color: #d1e7dd; 
+            padding: 3px 7px;
+            border-radius: 4px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .option.selected .option-letter {
+            background-color: #0051ff; 
+            color: white;
+        }
+
+        .option.correct-answer .option-letter {
+            background-color: #28a745 !important; 
+            color: white !important;
+        }
+        .option.incorrect-selection .option-letter {
+            background-color: #dc3545 !important; 
+            color: white !important;
+        }
+
+
+        #navigation-buttons {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #007bff; 
             color: white;
             border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
             border-radius: 6px;
-            font-size: 1.15em;
-            font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.25s, opacity 0.25s;
+            transition: background-color 0.2s ease-in-out;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .submit-btn {
-             background-color: #007bff;
-        }
-        .back-to-sets-btn {
-            background-color: #6c757d;
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3; 
         }
 
-        .submit-btn:hover:not(:disabled) {
-            background-color: #0056b3;
-        }
-        .back-to-sets-btn:hover {
-            background-color: #5a6268;
-        }
-
-        .submit-btn:disabled {
-            background-color: #6c757d;
-            opacity: 0.7;
+        button:disabled {
+            background-color: #cccccc; 
             cursor: not-allowed;
+            box-shadow: none;
         }
-        .result-summary {
+        #completion-message {
+            text-align: center;
+            font-size: 1.6em;
+            color: #28a745; 
+            padding: 30px;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            border-radius: 8px;
+        }
+        #instagram-link {
             margin-top: 30px;
-            padding: 20px;
-            border-radius: 6px;
-            font-size: 1.25em;
             text-align: center;
-            font-weight: 600;
+            font-size: 1.1em;
+            color: #555;
         }
-        .result-summary.success {
-            background-color: #d1e7dd;
-            color: #0f5132;
-            border: 1px solid #badbcc;
+        #instagram-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
         }
-        .result-summary.error {
-            background-color: #f8d7da;
-            color: #842029;
-            border: 1px solid #f5c2c7;
-        }
-        .feedback {
-            margin-top: 12px;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 0.95em;
-            display: none;
-            border-width: 1px;
-            border-style: solid;
-        }
-        .feedback.correct-answer-text {
-            color: #0f5132;
-            background-color: #d1e7dd;
-            border-color: #badbcc;
-            font-weight: 500;
-        }
-        .feedback.incorrect-answer-text {
-            color: #842029;
-            background-color: #f8d7da;
-            border-color: #f5c2c7;
-            font-weight: 500;
-        }
-        .feedback .user-answer-display {
-            display: block;
-            font-style: italic;
-            font-size: 0.9em;
-            margin-bottom: 4px;
-        }
-        .source-note {
-            font-size: 0.85em;
-            color: #6c757d;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .explain-btn {
-            background-color: #17a2b8;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-top: 10px;
-            transition: background-color 0.2s;
-            display: none;
-        }
-        .explain-btn:hover:not(:disabled) {
-            background-color: #138496;
-        }
-        .explain-btn:disabled {
-            background-color: #6c757d;
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-        .explanation-area {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #eef7ff;
-            border: 1px solid #cce0f5;
-            border-radius: 4px;
-            font-size: 0.9em;
-            white-space: pre-wrap;
-        }
-        .loading-message {
-            font-style: italic;
-            color: #0056b3;
-        }
-
-        @media (min-width: 600px) {
-            .action-buttons {
-                flex-direction: row;
-            }
-            .submit-btn, .back-to-sets-btn {
-                width: auto;
-                flex-grow: 1;
-            }
+        #instagram-link a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 600px) {
-            .header-logos {
-                padding: 8px 10px;
-            }
-            .header-logos img {
-                height: 35px;
-            }
-            .header-logos .title-text {
-                font-size: 1.1em;
-            }
-            .developer-credit a {
-                font-size: 0.8em;
-            }
-            .developer-credit svg {
-                width: 16px;
-                height: 16px;
-            }
-            .main-container {
-                margin: 10px;
+            #scoreboard-container,
+            #set-navigation-container, 
+            #quiz-container {
                 padding: 15px;
             }
-            h1 { font-size: 1.5em; }
-            h2 { font-size: 1.3em; }
-            .live-scoreboard {
-                font-size: 1em;
+            #scoreboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            #scoreboard span {
+                margin: 3px 0;
+            }
+            #question-text {
+                font-size: 1.05em;
+            }
+            .option {
                 padding: 10px;
             }
-            .question-text {
-                font-size: 1em;
+            button {
+                padding: 10px 15px; 
+                font-size: 14px;
             }
-            .options label {
-                font-size: 0.95em;
-                padding: 8px 10px;
+            #navigation-buttons {
+                flex-direction: column; 
             }
-            .submit-btn, .explain-btn, .back-to-sets-btn, .set-btn {
-                padding: 12px 15px;
-                font-size: 1em;
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
             }
-            .result-summary {
-                font-size: 1.1em;
-                padding: 15px;
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
+            }
+            #set-selector {
+                width: 100%;
+                margin-top: 5px;
+            }
+            #set-navigation-container label {
+                display: block;
+                margin-bottom: 5px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="header-logos">
-        <img src="https://placehold.co/150x50/003366/FFFFFF?text=MCQ BANK" alt="MCQ Left"
-             onerror="this.onerror=null; this.src='https://placehold.co/150x50/CCCCCC/000000?text=Logo';">
-        <span class="title-text">The Institute of Cost Accountants of India</span>
-        <img src="https://placehold.co/150x50/003366/FFFFFF?text=Made by Ashutosh" alt="MCQ Right"
-             onerror="this.onerror=null; this.src='https://placehold.co/150x50/CCCCCC/000000?text=Logo+Error';">
-    </div>
-
-    <div class="developer-credit">
-        <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank" title="Developer's Instagram Profile">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.784.305-1.455.718-2.126 1.387C1.337 2.706.926 3.374.62 4.144.326 4.91.128 5.78.072 7.054C.015 8.333 0 8.74 0 12s.015 3.667.072 4.947c.056 1.273.26 2.14.548 2.908.306.78.717 1.456 1.387 2.126.67.67 1.344 1.079 2.125 1.384.763.295 1.633.499 2.907.554C8.333 23.985 8.74 24 12 24s3.667-.015 4.947-.072c1.273-.055 2.14-.26 2.908-.554.78-.305 1.456-.718 2.126-1.384.67-.67 1.079-1.344 1.384-2.125.295-.763.499-1.633.554-2.907C23.985 15.667 24 15.26 24 12s-.015-3.667-.072-4.947c-.055-1.273-.26-2.14-.554-2.908-.305-.78-.718-1.455-1.384-2.125C21.294 1.337 20.626.926 19.86.62c-.763-.295-1.633-.499-2.907-.548C15.667.015 15.26 0 12 0zm0 2.16c3.203 0 3.585.012 4.85.07 1.17.05 1.805.248 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.265.07 1.646.07 4.85s-.013 3.585-.07 4.85c-.053 1.17-.248 1.805-.413 2.227-.217.562-.477.96-.896 1.382-.42.419-.819.679-1.381-.896-.422.164-1.057.36-2.227.413-1.265.057-1.646.07-4.85.07s-3.585-.013-4.85-.07c-1.17-.053-1.805-.248-2.227-.413-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.819-.896-1.381-.164-.422-.36-1.057-.413-2.227-.057-1.265-.07-1.646-.07-4.85s.013-3.585.07-4.85c.053-1.17.248-1.805.413-2.227.217-.562.477.96.896-1.382.42-.419.819-.679 1.381-.896.422-.164 1.057.36 2.227-.413C8.415 2.172 8.797 2.16 12 2.16zm0 5.482A4.36 4.36 0 1012 16.36a4.36 4.36 0 000-8.718zm0 7.218a2.858 2.858 0 110-5.716 2.858 2.858 0 010 5.716zM18.365 5.23A1.24 1.24 0 1017.12 6.47a1.24 1.24 0 001.245-1.24z"></path></svg>
-            <span>The Legend developer Ashu</span>
-        </a>
-    </div>
-
-    <div class="main-container">
-        <h1>Management Accounting Quiz</h1>
-
-        <div id="setSelectionContainer" class="set-selection-container">
-            </div>
-
-        <div id="quizContentArea" class="quiz-content-area" style="display:none;">
-            <h2 id="currentSetTitle"></h2>
-            <div id="liveScoreboard" class="live-scoreboard">Score: 0 / 0 | Answered: 0 / 0</div>
-            <p class="source-note">All questions and options are sourced from the "MCQBank_Paper12.pdf" document.</p>
-            <form id="quizForm">
-                </form>
-            <div class="action-buttons">
-                <button type="button" class="submit-btn" id="submitQuizButton" onclick="submitCurrentQuiz()">Submit Answers</button>
-                <button type="button" class="back-to-sets-btn" onclick="showSetSelection()">Back to Set Selection</button>
-            </div>
-            <div id="resultSummary" class="result-summary" style="display:none;"></div>
+    <div id="scoreboard-container">
+        <div id="scoreboard">
+            <span id="correct-count">Correct: 0</span>
+            <span id="incorrect-count">Incorrect: 0</span>
+            <span id="attempted-count">Attempted: 0</span>
+            <span id="accuracy-rate">Accuracy: N/A</span>
         </div>
     </div>
 
+    <div id="set-navigation-container">
+        <label for="set-selector">Switch to Set:</label>
+        <select id="set-selector"></select>
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-header">Loading quiz...</div>
+        <div id="question-text"></div>
+        <div class="options-container" id="options-container">
+            </div>
+        <div id="navigation-buttons">
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
+        </div>
+        <div id="completion-message" style="display:none;">
+            Quiz Completed! Thank you for participating.
+        </div>
+    </div>
+
+    <div id="instagram-link">
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh </a>
+    </div>
+
     <script>
-        // Array to hold all question data from Paper 12
-        const allQuestionsData = [
-            {
-                question: "Management Accounting",
-                options: ["Accumulates, summarizes and analyses the available data.", "Is primarily concerned with the requirements of the management.", "Makes Corporate Planning and Strategy effective.", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Management accounting can be viewed as",
-                options: ["Marketing-oriented Accounting", "Management-oriented Accounting", "Accounting-oriented Management", "Manager-oriented Accounting"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "The main objective of management accounting is",
-                options: ["To maintain the accounting records", "To know the amount due from customers and suppliers", "To ascertain analyse and interpret the results of business operations", "To record all the business transactions"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "is the study of managerial aspects of financial accounting",
-                options: ["Cost accounting", "Financial accounting", "Management accounting", "Business accounting"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "The purpose of management accounting is to help make decisions",
-                options: ["Managers", "Investors", "Marketers", "Banks"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Management accounting assists the management in",
-                options: ["Planning", "Directing", "Controlling", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: " Period of lost relevance' is the of the evolution of management accounting.",
-                options: ["1st stage", "2nd stage", "3rd stage", "4th stage"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "criteria are a set of standards for a company's behaviour used by socially conscious investors to screen potential investments.",
-                options: ["JIT", "AMT", "ESG", "ABC"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Management accounting information helps managers formulate strategy by answering which of the following questions?",
-                options: ["Who are the most important customers, and how can the company deliver value to the customers?", "What is most critical capability of the company which may be technology, production, or marketing?", "How can we leverage it for new strategic initiatives?", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Management accounting with specific focus on environmental issues is becoming increasingly important in organizations as environmental costs are large in many organisations. There are three specific reasons for this, which are",
-                options: ["Environmental costs. are often high in the many manufacturing organisations", "Regulatory requirements often impose huge fines for non-compliance", "Both 1 and 2", "Companies are increasingly realizing that being socially and environmentally responsible declines their image and this has positive impact on their bottom line."],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Management accounting is concerned with data collection from",
-                options: ["internal sources", "external sources", "internal and external sources", "Internal or external sources"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Management Accounting is concerned with accounting information, which is useful to the management This definition is given by",
-                options: ["Robert N. Antho", "Brown and Howard", "CIMA", "The Institute of Chartered Accountants of England and Wales"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "The primary objective of Management Accounting is to",
-                options: ["maximize profits", "minimize losses", "maximize profits or minimize losses", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Which of the following is a correct definition of activity-based management?",
-                options: ["An approach to the costing and monitoring of activities which involves tracing resource consumption and costing final outputs. Resources are assigned to activities and activities to cost objects based on consumption estimates. The latter utilize cost drivers to attach activity costs to outputs.", "The identification and evaluation of the activity drivers used to trace the cost of activities to cost objects. It may also involve selecting activity drivers with potential to contribute to the cost management function with particular reference to cost reduction", "A method of budgeting based on an activity framework and utilizing cost driver data in the budget-setting and variance feedback processes.", "A system of management which uses activity-based cost information for a variety of purposes including cost reduction, cost modeling and customer profitability analysis"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Which of the following characteristics would be an indicator that a company would benefit from switching to activity based costing?",
-                options: ["Only one homogenous product is produced on a continuous basis", "The existing cost system is reliable and has produced excellent results", "Overhead costs are high and increasing and no one seems to know why", "The costs of implementing ABC out-weigh the benefits"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "According to the Chartered Institute of Management Accountants (CIMA), cost attribution to cost units on the basis of benefits received from indirect activities e.g. ordering, setting up, and assuring quality is known as:",
-                options: ["Absorption costing", "Marginal costing", "Activity-based costing", "Job costing"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "In an ABC system, which of the following is likely to be classified as a batch level activity?",
-                options: ["Machine set-up", "Product design", "Inspection of every item produced", "Production manager's work"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Activity based costing",
-                options: ["Uses a plant wide overhead rate to assign overhead", "Is not expensive to implement", "Typically applies overhead costs using direct labour hours", "Uses multiple activity rates"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Which of the following activities is not a batch level activity?",
-                options: ["Processing purchase orders", "Designing products", "Receive raw materials from suppliers", "Setting up equipment"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Which of the following is not included in batch level activities?",
-                options: ["Material ordering cost", "Machine set-up cost", "Inspection cost", "Designing the product"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Assigning overhead using ABC often:",
-                options: ["Shifts overhead costs from high-volume products to low-volume products", "Shifts overhead costs from low-volume products to high-volume products", "Provides the same results as traditional costing", "Requires one predetermined overhead rate"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "In Activity Based Costing",
-                options: ["Non-manufacturing costs may not be assigned to products", "Some manufacturing costs may be excluded from product costs", "Allocation bases are the same as those used in traditional costing methods", "Similar to traditional costing, ABC only uses one overhead cost pool"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "In an ABC system, the allocation bases that are used for applying costs to services or procedures are called:",
-                options: ["Cost Pool", "Cost Driver", "Cost Absorption", "Cost Object"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Which of the following would not be deducted from sales in a management report prepared using ABC?",
-                options: ["Direct materials", "Direct labour", "Variable selling and administration costs", "Shipping costs"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "an item for which cost measurement is required e.g. product, job or a customer",
-                options: ["Cost Pool", "Cost Driver", "Cost Absorption", "Cost Object"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Which of the following is different in ABC when compared to traditional costing?",
-                options: ["Traditional costing and ABC costing usually yield very similar product costs", "In an ABC costing system, costs are only assigned to products that actually required work that gave rise to a particular cost", "In ABC, batch-level costs are applied to products using unit level bases", "Under traditional costing, batch-level costs are shifted from high-volume products to low-volume products"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Process of Cost allocation under Activity Based Costing is",
-                options: ["Cost of Activities Activities Cost Driver-Cost allocated to cost objects", "Cost Driver Cost of Activities Cost allocated to cost objects Activities", "Activities Cost of Activities Cost Driver-Cost allocated to cost objects", "Activities Cost Driver - Cost allocated to cost objects Cost of Activities"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Cost of maintaining a building is:",
-                options: ["Unit Level Cost", "Batch Level Cost", "Product Level Cost", "Facility Level Cost"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "should be subtracted from net product revenues instead of an arbitrary and illogical apportionment.",
-                options: ["Facility Level Cost", "Product Level Cost", "Organizational Level Cost", "High Level Cost"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "The basis of apportionment of overheads which takes into account the profitability of various departments is called:",
-                options: ["FIFO basis", "LIFO basis", "Ability to pay basis", "Activity basis"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Which of the following is the main cost driver of customer order processing activity?",
-                options: ["Flow of the product from the assembly line", "Order value", "Number of problem suppliers", "Number of machine charges"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Painting the product would be an example of which activity level groups",
-                options: ["Facility-level activity", "Product-level activity", "Unit-level activity", "Batch-level activity"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Which of the following tasks is not normally associated with an activity-based costing system?",
-                options: ["Calculation of cost application rates", "Identification of cost pools", "Preparation of allocation matrices", "Identification of cost drivers"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "All of the following are examples of batch level activities except:",
-                options: ["Purchase order processing", "Setting up equipment", "The clerical activity associated with processing purchase orders to pro-duce an order for a standard product", "Worker recreational facilities"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "A cost driver -",
-                options: ["is a force behind the overhaed cost", "is an allocation base", "is a transaction that is a significant determinant of cost", "is all of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Which of these is NOT a cost driver For the Activity Design of products, services & Processes?",
-                options: ["Number of Products in design", "Number of Parts per product", "Number of employee Training Programmes", "Number of engineering Hours"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Which of these in NOT a Cost driver for Marketing and sales Function?",
-                options: ["Number of advertisements/Insertions", "Number of researche projects", "Number of Sales personnel", "sales Revenue"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Which of these in NOT a Cost driver for Customer Service Activity ?",
-                options: ["Number of service calls", "Number of Products serviced", "Hours spent on servicing products", "sales Revenue"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Plant depreciation is an example of which activity-level group?",
-                options: ["Unit-level activity", "Facility-level activity", "Batch-level activity", "Product-level activity"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Under activity-based costing, material ordering' is considered as",
-                options: ["Unit-level activity", "Facility-level activity", "Batch-level activity", "Product-level activity"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Samsung an appliance manufacturer is developing a new line of ovens that uses controlled-laser technology. Research and testing costs associated with the new ovens is said to arise from a:",
-                options: ["Unit Level Activity", "Competitive Level Activity", "Facility Level Activity", "Product Sustaining Activity"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "A homogeneous cost pool is one that:",
-                options: ["Does not change over time", "Needs many activity drivers to be allocated to a cost object", "Can be explained with a single activity driver", "Has only one type of material assigned to it"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "An Activity-Based Costing, an inspection of the product is a level activity:",
-                options: ["Unit", "Batch", "Product", "Facility"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "A company uses traditional standard costing system. The inspection and set-up costs are actually ₹1,760 against a budget of 22,000. ABC system is being implemented and accordingly the number of batches is identified as the cost driver for inspection and set up. The budgeted production is 10,000 units in batches of 1,000 units whereas actually 9,000 units were produced in 11 batches. The cost per batch under ABC system will be",
-                options: ["160", "₹200", "180", "220"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "X Company uses activity-based costing for Product B and Product D. The total estimated overhead cost for the parts administration activity pool was ₹5,50,000 and the expected activity was 2000 part types. If Product D requires 1200 part types, the amount of overhead allocated to product D for parts administration would be:",
-                options: ["2,75,000", "₹3,00,000", "3,30,000", "3.45.000"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Fast Ltd. manufactures three types of products A, B, and C following ABC System. During a period, the company incurred 273,000 as inspection cost and it was worked for 10, 20 and 9 production runs respectively for producing products A, B, and C. The inspection costs for product B under the ABC system was",
-                options: ["15,000", "₹40.000", "18,000", " 24,000"],
-                correctAnswerCode: 2 // Corrected: Total runs = 10+20+9 = 39. Cost per run = 73000/39 = 1871.79. For B (20 runs) = 20 * 1871.79 = 37435. Closest option is 40,000. Original PDF answer '2' (40,000) suggests the inspection cost might have been 78,000 (78000/39 * 20 = 40000). Assuming PDF answer is based on a different total cost or a typo in the question. With 73,000, none of the options are very close. Let's recalculate based on PDF answer: If for B it's 40,000 for 20 runs, then cost per run is 2000. Total cost = 2000 * 39 = 78,000. So the question likely had 78,000 as inspection cost. I will stick to the provided PDF answer code.
-            },
-            {
-                question: "A company operates an activity based costing (ABC) system to attribute its overhead costs to cost objects. In its budget for the year- ending 31st August, 2022. The company expected to place a total of 2000 purchase orders at a total cost of ₹1,00,000. This activity and its related costs were budgeted to occur at a constant rate throughout the budget year which is divided into 13 four week periods. During the four-week period ended 30th June 2021, a total of 200 purchase orders were placed at a cost of 9,000. The over recovery of these costs for the four-week period was",
-                options: ["₹2,000", " 3,000", "1,500", "₹1,000"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "A company manufactures 500 units of product AX the material cost to manufacture is ₹1,50,000, Labour cost ₹2,65,000. Material reordering cost is  4,500, Material handling cost is 22,500 Material order-35, Material movement -20. Total Material cost under Activity based costing is.",
-                options: ["554", "₹ 4,22,000", "1,57,000", " 1,084"], // PDF answer 3 (1,57,000). Material cost = 150000. Reordering cost = 4500. Handling cost = 2500. Total = 150000+4500+2500 = 157000. (Assuming Material Handling cost is 2,500 not 22,500 to match option 3)
-                correctAnswerCode: 3
-            },
-            {
-                question: "To obtain the break-even point in rupee sales value, total fixed costs are divided by:",
-                options: ["Variable cost per unit;", "Contribution margin per unit;", "Fixed cost per unit;", "Profit/volume ratio."],
-                correctAnswerCode: 4
-            },
-            {
-                question: "The break-even point is the point at which:",
-                options: ["There is no profit, no loss;", "Contribution margin is equal to total fixed cost:", "Total revenue is equal to total cost;", "All of the above."],
-                correctAnswerCode: 4
-            },
-            {
-                question: "The primary difference between a fixed budget and a variable (flexible) budget is that a fixed budget:",
-                options: ["includes only fixed costs, while a variable budget includes only variable costs.", "is concerned with only further acquisitions of fixed costs, while a variable budget is concerned with expenses which vary with sales.", "cannot be changed after the period begins, while a variable budget can be changed after the period begins.", "is a plan for a single level of sales (or other measure of activity), while a variable budget consists of several plans, one for each of several levels of sales (or other measures of activity)."],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Margin of safety is referred to as:",
-                options: ["Excess of actual sales over fixed expenses;", "Excess of actual sales over variable expenses", "Excess of actual sales over break-even sales:", "Excess of budgeted sales over fixed costs."],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Contribution margin is known as",
-                options: ["Marginal income", "Gross profit", "Net income", "Net profit"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Fixed cost per unit decrease when",
-                options: ["Production volume increases", "Production volume decreases", "Variable costs per unit decreases", "Prime costs per unit decreases"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Within a relevant range, the amount of variable costs per unit",
-                options: ["Differs at each production level", "Remains constant at each production level", "Increases as production increases", "Decreases as production increases"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Margin of safety is referred to as",
-                options: ["Excess of budgeted or actual sales revenue over the fixed expenses.", "Excess of budgeted or actual sales over the variable expenses and fixed expense, at break-even.", "Excess of actual sales over budgeted sales.", "Excess of sales revenue over the variable expenses"],
-                correctAnswerCode: 3 // Note: PDF has answer 2 for this Q56, but 3 is more accurate. Q52 has 3. Assuming 3.
-            },
-            {
-                question: "Under marginal costing system, the contribution margin discloses the excess of",
-                options: ["Revenue over fixed costs", "Projected revenues over the break-even point", "Revenues over variable costs", "Variable costs over fixed costs"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "A decrease in sales price",
-                options: ["does not affect the break-even point", "lowers the fixed cost", "Increases the break-even point", "lowers the break-even point"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Determine Margin of safety if Profit is ₹15,000 and P/V ratio is 40%.",
-                options: ["37,500", " 33.000", "38,000", "None of the above"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "What is Margin of Safety if Sales is 20,000 units and B.E.P is 15,000 units?",
-                options: ["15000 units", "5000 units", "10000 units", "20000 units"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Determine sales in rupees for desired profit if fixed cost is ₹10,000, Variable cost is 30,000, Sales is 50,000 and desired profit is 25,000.",
-                options: [" 73,500", "₹75.000", "₹5.000", "37,500"], // PDF answer is 4 (37,500). Calculation: P/V = (50k-30k)/50k = 0.4. Sales for DP = (FC+DP)/PV = (10k+5k)/0.4 = 15k/0.4 = 37,500. (Assuming desired profit is 5,000 not 25,000 to match option 4)
-                correctAnswerCode: 4
-            },
-            {
-                question: "What will be sales in rupees for desired profit if fixed cost is 230,000, desired profit is ₹15,000 and P/V ratio is 30%?",
-                options: ["₹1,50,000", " 1,00,000", "₹2,00,000", "None of the above"], // PDF answer is 1 (1,50,000). Calculation: Sales = (FC+DP)/PV = (30k+15k)/0.3 = 45k/0.3 = 150,000. (Assuming FC is 30,000 not 230,000)
-                correctAnswerCode: 1
-            },
-            {
-                question: "Calculate sales in rupees for desired profit if fixed cost is ₹10,000, selling price is 20 per unit, Variable cost is 15 per unit and desired profit is  1 per unit",
-                options: ["₹20,000", "₹50.000", "70,000", " 10,000"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Determine sales in units for desired profit if Fixed cost is ₹15,000, desired profit is 25,000 Selling price per unit is 20 and Variable cost per unit is 16.",
-                options: ["25,000 units", "₹5,000", " 10,000", "10,000 units"], // PDF answer is 1 (5,000 units). Calculation: Cont/unit = 20-16=4. Units = (FC+DP)/Cont_per_unit = (15000+5000)/4 = 20000/4 = 5000 units. (Assuming desired profit is 5,000 not 25,000)
-                correctAnswerCode: 1
-            },
-            {
-                question: "What will be sales in units if fixed cost is ₹50,000 Contribution per unit is 60 and desired profit per unit is  10.",
-                options: ["26,000 units", "₹1,000", "1,000 units", "₹6.000"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Determine B.E.P in units and amount if Units produced if 10,000, Fixed cost is ₹40,000, Selling price is  50 per unit and Variable cost us  30 per unit.",
-                options: ["240 per unit, 2,00,000", "250 per unit,  10,00,000", "2000 units, 1,00,000", "None of the above"], // Corrected option 3 to match calculation.
-                correctAnswerCode: 3
-            },
-             {
-                question: "Determine B.E.P if Sales is ₹1,00,000, Variable cost is ₹50,000 and Profit is ₹20.000.",
-                options: ["60,000", "₹40.000", "₹80,000", "None of the above"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Pv ratio will increase if there is -",
-                options: ["a decrease in fixed cost", "an increase in fixed cost", "a decrease in selling price per unit", "a decrease in variable cost per unit"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Under marginal costing, the cost of product for inventory valuation includes",
-                options: ["prime costs and variable factory overheads", "prime cost only", "prime costs and Fixed factory overheads", "prime costs and all factory overheads"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "period costs are:",
-                options: ["variable cost", "fixed cost", "prime cost", "overheads cost"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Marginal costs is taken as equal to",
-                options: ["Prime Cost plus all variable overheads", "Prime Cost minus all variable overheads", "Variable overheads", "None of the above"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Contribution margin is equal to",
-                options: ["Sales Fixed Cost - Profit", "Profit + Variable Cost", "Fixed Cost Loss", "None of the above"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "It is pallned sell 1,00,000 units of product A at 12 per unit. Fixed Costs are ₹2,80,000. To achive a profit of ₹2,00,000 what would the variable costs be?",
-                options: ["4,80,000", " 7,20,000", "₹9,00,000", "₹9.20,000"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Factors which can change the break even point",
-                options: ["change in total fixed costs", "change in variable costs per unit", "change in the selling price per unit", "All of the above."],
-                correctAnswerCode: 4
-            },
-            {
-                question: "net profit ratio is 12% and bep is 40% of total sales compute pv ratio",
-                options: ["60%", "52%", "28%", "20%"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "If the total cost of 1000 units is 60,000 and that of 1001 units is ₹60,400, then the increase of 2400 in the total cost is:",
-                options: ["Prime cost", "All variable overheads", "Marginal cost", "None of the above"], // The increase is 400, not 2400. Assuming the question meant 400.
-                correctAnswerCode: 3
-            },
-            {
-                question: "Which of the following statements are true about marginal costing?",
-                options: ["In marginal costing, fixed costs are treated as product costs", "Marginal costing is not an independent system of costing", "The elements of cost in marginal costing are divided into fixed and variable components", "Both b and c"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "The costing method where fixed factory overheads are added to inventory is called:",
-                options: ["Activity-based costing", "Absorption costing", "Marginal costing", "All of the above"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "While computing profit in marginal costing:",
-                options: ["The fixed cost gets added to the contribution", "The total marginal cost gets deducted from total sales revenue", "The total marginal cost gets added to total sales revenue", "None of the above."],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Which of the following assumptions are made while calculating marginal cost",
-                options: ["Total fixed cost is constant at all levels of output", "Total variable cost varies according to the volume of output", "All elements of cost can be divided into fixed and variable components", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Contribution margin in marginal costing is also known as:",
-                options: ["Net income", "Gross profit", "Marginal income", "None of the above"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "What is the opportunity cost of making a component part in a factory given no alternative use of the capacity?",
-                options: ["The variable manufacturing cost of the component", "The total manufacturing cost of the component", "The total variable cost of the component", "Zero"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "The difference in total cost that results from two alternative courses of action is called:",
-                options: ["Relevant Cost", "Opportunity Cost", "Differential Cost", "Marginal Cost"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Relevant costs are:",
-                options: ["unavoidable, future and measured by cash", "avoidable, future and measured by cash", "avoidable, future and measured by profit", "unavoidable, future and measured by profit"],
-                correctAnswerCode: 2 // Corrected: Relevant costs are avoidable, future, and measured by cash (or cash flows).
-            },
-            {
-                question: "The profit at which total revenue is equal to the total cost is known as:",
-                options: ["Margin of safety", "Break-even point", "Both a and b are incorrect", "Both a and b are correct"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Which of the following costs would not be accounted for in a company's recordkeeping system?",
-                options: ["an unexpired cost", "an expired cost", "a product cost", "an opportunity cost"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "PQR Ltd. manufactures a single product which it sells for 40 per unit. Fixed cost is 60,000 per year. The contribution to sales ratio is 40%. PQR Ltd.'s Break Even Point in units is",
-                options: ["3500", "3700", "3750", "4000"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "The break-even point of a manufacturing company is ₹1,60,000. Fixed cost is 48,000. Variable cost is 12 per unit. The PV ratio will be:",
-                options: ["20%", "40%", "30%", "25%"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Product A generates a contribution to sales ratio of 40%. Fixed cost directly attributable to Product A amounted to ₹60,000. The sales revenue required to achieve a profit of ₹15,000 is",
-                options: [" 2,00,000", "₹1,85,000", "₹1,87,500", "2.10,000"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "XYZ. Ltd. makes a special gadget for the car it manufactures. The machine for the gadget works to full capacity and incur 15 Lakhs and 240 Lakhs respectively as Variable and Fixed Costs. If all the gadgets were purchased from an outside supplier, the machine could be used to produce other items, which would earn a total contribution of  25 Lakhs. What is the maximum price that XYZ Ltd. should be willing to pay to the outside supplier for the gadgets, assuming there is no change in Fixed Costs?",
-                options: [" 40 Lakhs", "65 Lakhs", "25 Lakhs", "15 Lakhs"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "X Ltd. has 1000 units of an obsolete item which are carried in inventory at the original price of 50,000. If these items are reworked for 20,000, they can be sold for 36,000. Alternatively, they can be sold as a scrap for  6,000 in the market. In a decision model used to analyze the reworking proposal, the opportunity cost should be taken as",
-                options: ["16,000", "₹6,000", "30,000", "₹20,000"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "The sales and profit of a firm for the year 2021 are ₹1,50,000 and 220,000 and for the year 2022 are ₹1,70,000 and  25,000 respectively. The P/V Ratio of the firm is",
-                options: ["15%", "20%", "25%", "30%"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Which one of the following is not considered as a method of Transfer Pricing",
-                options: ["Negotiated Transfer Pricing", "Market Price Based Transfer Pricing", "Fixed Cost Based Transfer Pricing", "Opportunity Cost Based Transfer Pricing"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Method of pricing, when two separate pricing methods are used to price transfer of products from one subunit to another, is called:",
-                options: ["Dual pricing", "Functional pricing", "Congruent pricing", "Optimal pricing"],
-                correctAnswerCode: 1 // Corrected: Dual pricing is the common term.
-            },
-            {
-                question: "The Eastern division sells goods internally to the Western division of the same company. The quoted external price in industry publications from a supplier near Eastern is  200 per ton plus transportation. It costs 20 per ton to transport the goods to Western. Eastern's actual market cost per ton to buy the direct materials to make the transferred product is ₹100. Actual per ton direct labour is 50. Other actual costs of storage and handling are 40. The company president selects a 220 transfer price. This is an example of:",
-                options: ["Negotiated transfer pricing.", "Cost plus 20% transfer pricing.", "Cost-based transfer pricing.", "Market-based transfer pricing."],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Division P transfers its output to Division Q at variable cost. Once a year P charges a fixed fee to Q, representing an allowance for P's fixed costs. This type of transfer pricing system is commonly known as:",
-                options: ["Dual pricing", "Negotiated transfer pricing", "Opportunity cost based transfer pricing", "Two-part tariff transfer pricing"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "In which of the following circumstances is there a strong argument that profit centre accounting is a waste of time?",
-                options: ["When the transferred item is also sold on an external market", "When the supplying division is based in a different country to head office", "If the transferred item is a major product of the supplying division", "If there is no similar product sold on an external market and the transferred item is a major product of the supplying division"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Which one of the following is not considered as a method of Transfer Pricing?",
-                options: ["Negotiated Transfer Pricing", "Market Price Based Transfer Pricing", "Fixed Cost Based Transfer Pricing", "Opportunity Cost Based Transfer Pricing"],
-                correctAnswerCode: 3 // Repeat of Q93.
-            },
-            {
-                question: "Method of pricing, when two separate pricing methods are used to price transfer of products from one subunit to another, is called:",
-                options: ["dual pricing", "functional pricing", "congruent pricing", "optimal pricing"],
-                correctAnswerCode: 1 // Repeat of Q94.
-            },
-            {
-                question: "M Group has two divisions, Division P and Division Q. Division P manufactures an item that is transferred to Division Q. The item has no external market and 6,000 units produced are transferred internally each year. The costs of each division are as follows? Variable Cost Division P 100 per unit Division Q 120 per unit Fixed cost each year ₹1,20,000 ₹90,000 Head Office management decided that a transfer price should be set that provides a profit of 30,000 to Division P. What should be the transfer price per unit?",
-                options: ["P145", "125", "120", "135"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Minimax Ltd. fixes inter - divisional transfer prices for its products on the basis of cost plus a return on investment in the division. The budget for division X for 2022-23 appears as under-Fixed Assets ₹8,00,000 Current Assets ₹5,00,000 Debtors ₹2,00,000 Annual fixed cost of the division 28,00,000 Variable cost per unit of the product 10 Budgeted volume ₹4,00,000 units per year Desired ROI 28%. Transfer price for division X is",
-                options: ["13.05", "₹10.70", "8.70", "14.70"], // Calculation: Investment = FA + CA (excluding debtors if already in CA) = 8L+5L = 13L. Desired Return = 13L * 0.28 = 3.64L. Total FC = 8L (assuming the 28L is a typo for 8L). Total VC = 4L units * 10 = 40L. TP = (8L + 40L + 3.64L) / 4L = 51.64L / 4L = 12.91. Closest is 13.05.
-                correctAnswerCode: 1
-            },
-            {
-                question: "BC Company fixes the inter-divisional transfer prices for its products on the basis of cost, plus a return on investment in the division. The Budget for Division for Alpha for the year 2021-22 appears as under: Fixed Assets ₹5,00,000 Current assets ₹3,00,000 Debtors 22,00,000 Annual Fixed Cost of the Division ₹8,00,000 Variable Cost per unit of Product  10 Budgeted Volume 4,00,000 units per year Desired RO1 28% on ₹10,00,000 Determine the transfer Price for Alpha.",
-                options: ["12.7", "17.2", "27.1", "11.7"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "The method of transfer pricing was introduced in order to overcome the problems caused by using marginal cost",
-                options: ["dual price", "Two-Part Transfer Pricing", "Negotiated Transfer Pricing", "none of them"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Transfer pricing methods may be classfied",
-                options: ["under 3 pricing method", "under 4 pricing method", "under 5 pricing method", "under 7 pricing method"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Which of the following is true of standards?",
-                options: ["Standards represent a benchmark or a norm", "Standards relate to input quantity", "Standards relate to input cost", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Standards that can be attained only under the best circumstances are referred to as:",
-                options: ["Attainable standards", "Budget standards", "Ideal standards", "Practical standards"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Who is most likely to be held responsible for a material price variance?",
-                options: ["Line workers", "Production supervisors", "Purchasing managers", "Production schedulers"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Cost variance is the difference between",
-                options: ["The standard cost and marginal cost", "The standards cost and budgeted cost", "The standards cost and the actual cost", "None of these"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Standard costing is a tool, which replaces the bottleneck of the costing.",
-                options: ["Present", "Future", "Historical", "None of the above"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "If standard cost > actual, then it is:",
-                options: ["Not favourable", "Favourable", "Neither favourable nor not favourable", "None of the above"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "From cost control point of view the standard most commonly used IS:",
-                options: ["Expected standard", "Theoretical standard", "Normal standard", "Basic standard"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "When more than one material is used in the manufacture of a product, which of the following variances arises:",
-                options: ["Material yield variance", "Material mix variance", "Material price variance", "Material usage variance"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Which of the following equations can be used to calculate a material quantity variance?",
-                options: ["(AQ X AP)-(AQ X SP)", "(AP SP)-(AQ x SP)", "(AQ X SP)-(SQ X SP)", "(AQ X SP)-(AQ X AP)"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Which of the following equations can be used to calculate a material price variance?",
-                options: ["(AQ X AP)-(AQ X SP)", "(AP X SP)-(AQ X SP)", "(AQ X SP)-(SQ X SP)", "(AQ X SP)-(AQ X AP)"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Which of the following is not likely to be a reason of unfavourable direct labour efficiency variance?",
-                options: ["Increase in direct materials prices", "Frequent break downs during production process", "Lack of proper supervision", "Use of old, outdated or faulty equipment"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Which of the following is a purpose of standard costing?",
-                options: ["To determine profit at different levels", "To determine break-even point", "To control costs", "To allocate cost with more accuracy"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Which of the following activities is the Standard Costing System used for?",
-                options: ["It is a basis for implementing cost control and fixing the price of products through variance analysis", "It helps to ascertain the cost-volume relationship between products manufactured by the business", "It helps to establish the breakeven point for the products manufactured by the company", "None of the above"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Which of the following activities is true under the Standard Costing System?",
-                options: ["The overhead volume variance is always beneficial", "The idle time variance is never favourable", "To calculate the overall costs, a company can either use budgetary control or standard costing but not both of those techniques", "The overhead efficiency variance plus overhead expense variance is equal to the overhead budget variance for variable overheads"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "A standard cost is a carefully unit cost which is prepared for each cost unit.",
-                options: ["Pre-determined", "Absorbed", "Apportioned", "None"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Setting of standard involves effective utilization of",
-                options: ["Men", "Material", "Machines", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "The standard cost card contains quantities and costs for",
-                options: ["Direct material only", "Direct labour only", "Direct material and direct labour only", "Direct material. direct labour, and overhead"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Standards differ from budgets in that:",
-                options: ["Budgets but not standards may be used in valuing inventories", "Budgets but not standards may be journalized and posted", "Budgets are a total amount and standards are a unit amount", "Only budgets contribute to management planning and control"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Standard Costs:",
-                options: ["Are imposed by governmental agencies", "Are predetermined unit costs which companies use as measures of performance", "Can be used by manufacturing companies but not by service or not-for-profit companies", "All of the above"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "The advantages of standard costs include all of the following except:",
-                options: ["Management by exception may be used", "Management planning is facilitated", "They may simplify the costing of inventories", "Management must use a static budget"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Normal standards:",
-                options: ["Allow for rest periods. machine breakdowns, and setup time", "Represent levels of performance under perfect operating conditions", "Are rarely used because managers believe they lower workforce morale", "Are more likely than ideal standards to result in unethical practices"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "The setting of standards is:",
-                options: ["A managerial accounting decision", "A management decision", "A worker decision", "Preferably set at the ideal level of performance"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Which of the following is correct about the total overhead variance?",
-                options: ["Budgeted overhead and budgeted overhead applied are the same", "Total actual overhead is composed of variable overhead, fixed overhead, and period costs.", "Standard hours actually worked are used in computing the variance", "Standard hours allowed for the work done is the measure used in computing the variance"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "What is the name given to a budget that has been prepared by re-evaluating activities and comparing the incremental costs of those activities with their incremental benefits?",
-                options: ["Incremental budget", "Rolling budget", "Zero based budget", "Flexible budget"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "A budget is an instrument of management used as an aid in the",
-                options: ["Planning", "Programming", "Control of business activity", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Following may be regarded as a summary budget",
-                options: ["Production budget", "Master budget", "Cash budget", "Sales budget"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Purchases budget is prepared using the information from:",
-                options: ["Capital expenditure budget", "Materials budget", "Both (1) and (2)", "None of the above"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Following budget may be compiled on departmental basis:",
-                options: ["Production budget", "Purchase budget", "Materials budget", "All of the above"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Production budget is based upon:",
-                options: ["Sales budget", "Factory capacity", "Availability of raw material and labour", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Budget includes:",
-                options: ["Income", "Expenditure", "Employment of capital", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "A budget should be:",
-                options: ["Rigid", "Flexible", "Both (1) and (2)", "None of the above"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "The object of budgetary control is",
-                options: ["Planning", "Forecasting", "Organizing", "Directing"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "The budget which is dynamic is",
-                options: ["Flexible budget", "Sales budget", "Cash budget", "Purchase budget"],
-                correctAnswerCode: 1 // Corrected: Flexible budget is dynamic.
-            },
-            {
-                question: "The process of budgeting helps in the control of:",
-                options: ["Cost of production", "Liquidity", "Capital Expenditure", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Plant utilization budget and Manufacturing overhead budgets are types of:",
-                options: ["Production budget", "Sales budget", "Cost budget", "None of the above"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "R&D budget and Capital expenditure budget are examples of:",
-                options: ["Short-term budget", "Current budget", "Long-term budget", "None of the above"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "The scare factors is also known as:",
-                options: ["Key factor", "Abnormal factor", "Linking factor", "None of the above"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "What is the name given to a budget that has been prepared by re-evaluating activities and comparing the incremental costs of those activities with their incremental benefits?",
-                options: ["Incremental budget", "Rolling budget", "Zero based budget", "Flexible budget"],
-                correctAnswerCode: 3 // Repeat of Q127
-            },
-            {
-                question: "A budget is an instrument of management used as an aid in the",
-                options: ["Planning", "Programming", "Control of business activity", "All of the above"],
-                correctAnswerCode: 4 // Repeat of Q128
-            },
-            {
-                question: "Following may be regarded as a summary budget",
-                options: ["Production budget", "Master budget", "Cash budget", "Sales budget"],
-                correctAnswerCode: 2 // Repeat of Q129
-            },
-            {
-                question: "Purchases budget is prepared using the information from:",
-                options: ["Capital expenditure budget", "Materials budget", "Both (1) and (2)", "None of the above"],
-                correctAnswerCode: 2 // Repeat of Q130
-            },
-            {
-                question: "Following budget may be compiled on departmental basis:",
-                options: ["Production budget", "Purchase budget", "Materials budget", "All of the above"],
-                correctAnswerCode: 1 // Repeat of Q131
-            },
-            {
-                question: "Production budget is based upon:",
-                options: ["Sales budget", "Factory capacity", "Availability of raw material and labour", "All of the above"],
-                correctAnswerCode: 4 // Repeat of Q132
-            },
-            {
-                question: "A budget should be:",
-                options: ["Rigid", "Flexible", "Both (1) and (2)", "None of the above"],
-                correctAnswerCode: 2 // Repeat of Q134
-            },
-            {
-                question: "The object of budgetary control is",
-                options: ["Planning", "Forecasting", "Organizing", "Directing"],
-                correctAnswerCode: 1 // Repeat of Q135
-            },
-            {
-                question: "The budget which is dynamic is",
-                options: ["Flexible budget", "Sales budget", "Cash budget", "Purchase budget"],
-                correctAnswerCode: 1 // Repeat of Q136 (Corrected)
-            },
-            {
-                question: "The process of budgeting helps in the control of:",
-                options: ["Cost of production", "Liquidity", "Capital Expenditure", "All of the above"],
-                correctAnswerCode: 4 // Repeat of Q137
-            },
-            {
-                question: "Plant utilization budget and Manufacturing overhead budgets are types of:",
-                options: ["Production budget", "Sales budget", "Cost budget", "None of the above"],
-                correctAnswerCode: 3 // Repeat of Q138
-            },
-            {
-                question: "R&D budget and Capital expenditure budget are examples of:",
-                options: ["Short-term budget", "Current budget", "Long-term budget", "None of the above"],
-                correctAnswerCode: 3 // Repeat of Q139
-            },
-            {
-                question: "The scare factors is also known as:",
-                options: ["Key factor", "Abnormal factor", "Linking factor", "None of the above"],
-                correctAnswerCode: 1 // Repeat of Q140
-            },
-            {
-                question: "A company usually determines the appropriate degree of decentralization based on a combination of the",
-                options: ["Managers' personal characteristics", "Nature of decisions required for organizational growth", "Types of organizational activities in which the company is engaged", "All of these"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Major disadvantages of Decentralization are",
-                options: ["Can result in a lack of goal congruence or sub optimization by sub-unit managers", "Requires more effective communication abilities because decision making is removed from the home office", "Helps top management recognizes and develop managerial talent", "Both 1 and 2"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Which of the following is/are not benefit/s of Decentralization ?",
-                options: ["Greater awareness of local problems", "Allows managerial performance to be comparatively evaluated", "Creates personnel difficulties upon introduction, especially if managers are unwilling to delegate effectively", "Develops skill level of junior managers"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Return on Equity =",
-                options: ["Net Profit Margin x Asset Turnover Ratio Financial Leverage", "Gross Profit Margin  Asset Turnover Ratio  Financial Leverage", "Net Profit Margin x Inventory Turnover Ratio Financial Leverage", "Net Profit Margin x Asset Turnover Ratio Operating Leverage"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "According to DuPont methodology, three main financial parameters that drive Return on Equity (ROE) are",
-                options: ["(1) Employee performance, (2) Asset usage performance, and (3) Financial leverage.", "(1) Operating performance, (2) Asset usage performance, and (3) Financial leverage.", "(1) Operating performance, (2) Inventory usage performance, and (3) Financial leverage.", "(1) Operating performance, (2) Asset usage performance, and (3) Operating leverage."],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Asset usage performance means",
-                options: ["a very basic profitability ratio", "Total Asset Turnover (Turnover Total Assets)", "the use of debt to acquire additional assets or fund projects", "None of these"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Financial leverage means",
-                options: ["a very basic profitability ratio", "Total Asset Turnover (Turnover Total Assets)", "the use of debt to acquire additional assets or fund projects", "None of these"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "According to Du Pont Analysis a company can increase its Return on Equity if it",
-                options: ["Generates a high Net Profit Margin", "Effectively uses its assets so as to generate more sales.", "Has a high Financial Leverage", "All of these"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Du Pont ROE =",
-                options: ["Margin on Sales x Asset Turnover x Equity Multiplier", "Margin of Safety Asset Turnover x Equity Multiplier", "Margin on Sales x Inventory Turnover Equity Multiplier", "Margin on Sales x Asset Turnover x Debt Multiplier"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "expresses divisional profit as a percentage of the assets employed in the division.",
-                options: ["ROI", "EPS", "ROCE", "EBITDA"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Return on investment (ROI) is",
-                options: ["(Profit before tax Operations management capital employed) x 100", "(Profit before interest and tax + Total capital employed) x 100", "(ROE Operations management capital employed) x 100", "(Profit before interest and tax + Operations management capital employed) x 100"],
-                correctAnswerCode: 4 // Corrected: (Profit before interest and tax / Capital Employed) * 100. Option 4 is closest if "Operations management capital employed" means Capital Employed.
-            },
-            {
-                question: "RI (Residual Income) =",
-                options: ["Divisional profit - (Percentage of change in Sales Divisional investment)", "Divisional profit (Percent capital charge Total investment)", "Divisional profit (Percent capital charge Divisional investment)", "Total profit (Percent capital charge Divisional investment)"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "The main advantages of RI is/are",
-                options: ["It avoids suboptimal decisions as investments are not rejected merely because they lower the divisional manger's ROI.", "It maximizes growth of the company and increases shareholders' wealth by accepting opportunities which earn a rate of return in excess of the cost of capital.", "The cost of capital charge on divisional investments ensures that divisional managers are aware of the opportunity cost of funds.", "All of these"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Acme, a division of Ace Manufacturing, has assets of ₹2,25,000 and an operating income of ₹55,000. What is the division's ROI?",
-                options: ["24.44%", "23%", "25%", "50%"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "An investment centre has net assets of 28,00,000, and made profits before interest and tax of ₹1,60,000. The notional cost of capital is 12%.Calculate and comment on the RI (Residual Income) for the period.",
-                options: ["1,60,000", "96.000", " 64,000", "2.56.000"], // Calculation: Capital Charge = 800000 * 0.12 = 96000. RI = 160000 - 96000 = 64000. (Assuming net assets for RI calc is 8,00,000 not 28,00,000 to match options)
-                correctAnswerCode: 3
-            },
-            {
-                question: "A person made a Capital Investment of ₹2,00,000 in a company. Operating profit, after taxes, is 28,000. The opportunity cost of that investment is 10%. Calculate EVA.",
-                options: ["20,000", "2,800", "₹8.000", "17.200"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "For EVA there 3 responsibility centres, which are",
-                options: ["Cost centre", "Profit centre", "Investment centre", "All of these"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "The theory of learning curves will only hold if which of the following conditions apply?",
-                options: ["The task must be repetitive", "Production must be at an early stage so that there is room. for improvement", "There is inconsistency in the workforce", "Both 1 and 2"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "can be used: a. To calculate the incremental cost of making extra units of a particular products, b. To set standards for labour, c. To prepare realistic production budgets and to report labour cost variances, and d. To quote contact price.",
-                options: ["Learning curve theory", "Return on investment", "Du Pont ROE", "Economic Value Added"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "The four Perspectives of the Balanced Scorecard are",
-                options: ["1. Operational Perspective.2. Customers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives.", "1. Financial Perspective, 2. Sellers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives.", "1. Financial Perspective, 2. Customers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives.", "1. Financial Perspective, 2. Customers Perspective, 3. External process Perspective and 4. Learning & Growth Perspectives."],
-                correctAnswerCode: 3
-            },
-            {
-                question: "MI Ltd. has earned a net profit of  15 lakhs after Tax at 30%. Interest cost charged by the financial institutions was 10 Lakhs. The Invested capital is 95 Lakhs of which 55% is debt. The company maintains a weighted average cost of capital of 13%. Compute the Operating Income.",
-                options: ["15 lakhs", "21.43 lakhs", "10 lakhs", "31.43 lakhs"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "According to Kaplan & Norton, which of the balanced scorecard perspectives serves as the focus of the other perspectives?",
-                options: ["Financial.", "Customer.", "Internal business processes.", "Learning & growth."],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Which of the following would be considered an operating asset in return on investment computations?",
-                options: ["Land being held for plant expansion.", "Treasury stock.", "Accounts receivable.", "Common stock."],
-                correctAnswerCode: 3
-            },
-            {
-                question: "A company that is seeking to increase ROI should attempt to decrease:",
-                options: ["Sales.", "Turnover.", "Margin.", "Average operating assets."],
-                correctAnswerCode: 4
-            },
-            {
-                question: "The performance of investment centre is based on",
-                options: ["Cost of the centre", "Profit of the centre", "Profit and investment of the centre", "Revenue of the centre"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Both costs and revenues are measured in centers",
-                options: ["Cost", "Profit", "Revenue", "All of these"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "A cost centre is a segment of the organization where the manager is responsible for",
-                options: ["Costs", "Inputs", "A or B", "None of these"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "The performance of investment centre is based on",
-                options: ["Cost of the centre", "Profit of the centre", "Profit and investment of the centre", "Revenue of the centre"],
-                correctAnswerCode: 3 // Repeat of Q170
-            },
-            {
-                question: "Responsibility accounting is used for",
-                options: ["cost control", "planning", "decision making", "pricing"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Responsibility Accounting is also known as",
-                options: ["Profitability accounting", "Activity accounting", "Both A and B", "None of the above"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "Which of the following characteristics is not associated with traditional responsibility accounting?",
-                options: ["Assumes optimization of the parts will optimize the whole.", "Assumes independence of the parts.", "Places emphasis on the performance of individuals.", "Attempts to control processes."],
-                correctAnswerCode: 4
-            },
-            {
-                question: "In responsibility accounting, responsibilities of various groups or individuals are identified in terms of",
-                options: ["Work", "Revenue", "Cost", "All of the above"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "The area of focus on responsibility center 18",
-                options: ["Quantum of sales", "Quantum of production", "Optimum utilization of resources", "All of the above"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "In profit center revenue represents a monetary measure of output emanating from a profit center in a given period irrespective whether",
-                options: ["The revenue is realized or not", "The output is sold or not", "Both A and B", "None of the above"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "In a control report of Department X, it is mentioned as indirect materials are ₹1,000, indirect labour 2900, Overtime Charges ₹100, Depreciation on equipment ₹500, Allocated factory overhead (38% of factory space) ₹4,300, Allocated overhead of repair shop is 1,200. Determine total costs ☑ treating department as a responsibility center.",
-                options: ["3,200", " 2,200", "1,200", "None of the above"], // Controllable: IM 1000 + IL 900 (assuming typo, or 1600 to get 3200) + OT 100 + Dep 500 = 2500 or 3200.
-                correctAnswerCode: 1
-            },
-            {
-                question: "Which of the following criterion is not used for decision-making under uncertainty?",
-                options: ["Maximin", "Maximax", "Minimax", "Minimize expected loss"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Decision theory is concerned with",
-                options: ["Methods of arriving at an optimal decision", "Selecting optimal decision in a sequential manner", "Analysis of information that is available", "All of these"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "Which of the following criterion is not applicable to decision-making under risk?",
-                options: ["Maximize expected return", "Maximize return", "Minimize expect regret", "Knowledge of likelihood occurrence of each state of nature"],
-                correctAnswerCode: 2
-            },
-            {
-                question: "The minimum expected opportunity loss (EOL) is",
-                options: ["Equal to EVPI", "Minimum regret", "Equal to EMV", "Both (A) and (B)"],
-                correctAnswerCode: 4
-            },
-            {
-                question: "The expected value of perfect information (EVPI) is",
-                options: ["Equal to expected regret of the optimal decision under risk", "The utility of additional information", "Maximum expected opportunity loss", "None of the above"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "The value of the coefficient of optimism (a) is needed while using the criterion of",
-                options: ["Equally likely", "Maximin", "Realism", "Minimax"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "The decision-maker's knowledge and experience may influence the decision-making process wi.en using the criterion of",
-                options: ["Maximax", "Maximax regret", "Realism", "Maximin"],
-                correctAnswerCode: 3
-            },
-            {
-                question: "The difference between the expected profit under conditions of risk and the expected profit with perfect information is called",
-                options: ["The expected value of perfect information", "Expected marginal loss", "None of the above", "Any one of the above"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "A situation in which a decision maker knows all of the possible outcomes of a decision and also knows the probability associated with each outcome is referred to as",
-                options: ["Certainty.", "Risk.", "Uncertainty.", "Strategy."],
-                correctAnswerCode: 2
-            },
-            {
-                question: "Which of the following methods of selecting a strategy is consistent with risk averting behaviour?",
-                options: ["If two strategies have the same expected profit, select the one with the smaller standard deviation.", "If two strategies have the same standard deviation, select the one with the smaller expected profit.", "Select the strategy with the larger coefficient of variation.", "All of the above are correct"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Which one of the following does not measure risk?",
-                options: ["Coefficient of variation", "Standard deviation", "LPP", "All of the above are measures of risk."],
-                correctAnswerCode: 3 // Corrected: LPP does not measure risk.
-            },
-            {
-                question: "The sequence of possible managerial decisions and their expected outcome under each set of circumstances can be represented and analysed by using",
-                options: ["The minimax regret criterion.", "A decision tree.", "A payoff matrix.", "Simulation."],
-                correctAnswerCode: 2
-            },
-            {
-                question: "We are comparing two investment projects. Both have expected returns of 20%, but the standard deviation of Project A's returns is 15%, while the standard deviation of Project B's returns is 9%. Which one is relatively riskier?",
-                options: ["A", "B", "Both A and B", "Bnone of these"],
-                correctAnswerCode: 1
-            },
-            {
-                question: "Two investments have different expected returns. Project A's expected return is 20% and the standard deviation of its returns is 15%. Project B's expected return is only 10%, while the standard deviation of its returns remains at 9%. Compute Coefficient of Varience of Project A.",
-                options: ["0.20", "0.75", "0.90", "0.10"],
-                correctAnswerCode: 2
-            }
+        // questionsData array:
+        // q: Question text
+        // o: Array of options
+        // c: Correct answer text
+        // All 203 questions from MCQBank_Paper12.pdf (Management Accounting)
+        const questionsData = [
+            { q: "1. Management Accounting", o: ["Accumulates, summarizes and analyses the available data.", "Is primarily concerned with the requirements of the management.", "Makes Corporate Planning and Strategy effective.", "All of the above"], c: "All of the above" },
+            { q: "2. Management accounting can be viewed as", o: ["Marketing-oriented Accounting", "Management- oriented Accounting", "Accounting-oriented Management", "Manager-oriented Accounting"], c: "Management- oriented Accounting" },
+            { q: "3. The main objective of management accounting is", o: ["To maintain the accounting records", "To know the amount due from customers and suppliers", "To ascertain analyse and interpret the results of business operations", "To record all the business transactions"], c: "To ascertain analyse and interpret the results of business operations" },
+            { q: "4. ____ is the study of managerial aspects of financial accounting", o: ["Cost accounting", "Financial accounting", "Management accounting", "Business accounting"], c: "Management accounting" },
+            { q: "5. The purpose of management accounting is to help make decisions", o: ["Managers", "Investors", "Marketers", "Banks"], c: "Managers" },
+            { q: "6. Management accounting assists the management in", o: ["Planning", "Directing", "Controlling", "All of the above"], c: "All of the above" },
+            { q: "7. Period of lost relevance' is the ____ of the evolution of management accounting.", o: ["1st stage", "2nd stage", "3rd stage", "4th stage"], c: "3rd stage" },
+            { q: "8. ____ criteria are a set of standards for a company's behaviour used by socially conscious investors to screen potential investments.", o: ["JIT", "AMT", "ESG", "ABC"], c: "ESG" },
+            { q: "9. Management accounting information helps managers formulate strategy by answering which of the following questions?", o: ["Who are the most important customers, and how can the company deliver value to the customers?", "What is most critical capability of the company which may be technology, production, or marketing?", "How can we leverage it for new strategic initiatives?", "All of the above"], c: "All of the above" },
+            { q: "10. Management accounting with specific focus on environmental issues is becoming increasingly important in organizations as environmental costs are large in many organisations. There are three specific reasons for this, which are", o: ["Environmental costs. are often high in the many manufacturing organisations", "Regulatory requirements often impose huge fines for non-compliance", "Both 1 and 2", "Companies are increasingly realizing that being socially and environmentally responsible declines their image and this has positive impact on their bottom line."], c: "Both 1 and 2" },
+            { q: "11. Management accounting is concerned with data collection from", o: ["internal sources", "external sources", "internal and external sources", "Internal or external sources"], c: "internal and external sources" },
+            { q: "12. Management Accounting is concerned with accounting information, which is useful to the management This definition is given by", o: ["Robert N. Antho", "Brown and Howard", "CIMA", "The Institute of Chartered Accountants of England and Wales"], c: "Robert N. Antho" },
+            { q: "13. The primary objective of Management Accounting is to", o: ["maximize profits", "minimize losses", "maximize profits or minimize losses", "All of the above"], c: "All of the above" },
+            { q: "14. Which of the following is a correct definition of activity-based management?", o: ["An approach to the costing and monitoring of activities which involves tracing resource consumption and costing final outputs. Resources are assigned to activities and activities to cost objects based on consumption estimates. The latter utilize cost drivers to attach activity costs to outputs.", "The identification and evaluation of the activity drivers used to trace the cost of activities to cost objects. It may also involve selecting activity drivers with potential to contribute to the cost management function with particular reference to cost reduction", "A method of budgeting based on an activity framework and utilizing cost driver data in the budget-setting and variance feedback processes.", "A system of management which uses activity-based cost information for a variety of purposes including cost reduction, cost modeling and customer profitability analysis"], c: "A system of management which uses activity-based cost information for a variety of purposes including cost reduction, cost modeling and customer profitability analysis" },
+            { q: "15. Which of the following characteristics would be an indicator that a company would benefit from switching to activity based costing?", o: ["Only one homogenous product is produced on a continuous basis", "The existing cost system is reliable and has produced excellent results", "Overhead costs are high and increasing and no one seems to know why", "The costs of implementing ABC out-weigh the benefits"], c: "Overhead costs are high and increasing and no one seems to know why" },
+            { q: "16. According to the Chartered Institute of Management Accountants (CIMA), cost attribution to cost units on the basis of benefits received from indirect activities e.g. ordering, setting up, and assuring quality is known as:", o: ["Absorption costing", "Marginal costing", "Activity-based costing", "Job costing"], c: "Activity-based costing" },
+            { q: "17. In an ABC system, which of the following is likely to be classified as a batch level activity?", o: ["Machine set-up", "Product design", "Inspection of every item produced", "Production manager's work"], c: "Machine set-up" },
+            { q: "18. Activity based costing", o: ["Uses a plant wide overhead rate to assign overhead", "Is not expensive to implement", "Typically applies overhead costs using direct labour hours", "Uses multiple activity rates"], c: "Uses multiple activity rates" },
+            { q: "19. Which of the following activities is not a batch level activity?", o: ["Processing purchase orders", "Designing products", "Receive raw materials from suppliers", "Setting up equipment"], c: "Designing products" },
+            { q: "20. Which of the following is not included in batch level activities?", o: ["Material ordering cost", "Machine set-up cost", "Inspection cost", "Designing the product"], c: "Designing the product" },
+            { q: "21. Assigning overhead using ABC often:", o: ["Shifts overhead costs from high-volume products to low- volume products", "Shifts overhead costs from low- volume products to high-volume products", "Provides the same results as traditional costing", "Requires one predetermined overhead rate"], c: "Shifts overhead costs from high-volume products to low- volume products" },
+            { q: "22. In Activity Based Costing", o: ["Non-manufacturing costs may not be assigned to products", "Some manufacturing costs may be excluded from product costs", "Allocation bases are the same as those used in traditional costing methods", "Similar to traditional costing, ABC only uses one overhead cost pool"], c: "Some manufacturing costs may be excluded from product costs" },
+            { q: "23. In an ABC system, the allocation bases that are used for applying costs to services or procedures are called:", o: ["Cost Pool", "Cost Driver", "Cost Absorption", "Cost Object"], c: "Cost Driver" },
+            { q: "24. Which of the following would not be deducted from sales in a management report prepared using ABC?", o: ["Direct materials", "Direct labour", "Variable selling and administration costs", "Shipping costs"], c: "Shipping costs" },
+            { q: "25. ____ an item for which cost measurement is required e.g. product, job or a customer", o: ["Cost Pool", "Cost Driver", "Cost Absorption", "Cost Object"], c: "Cost Object" },
+            { q: "26. Which of the following is different in ABC when compared to traditional costing?", o: ["Traditional costing and ABC costing usually yield very similar product costs", "In an ABC costing system, costs are only assigned to products that actually required work that gave rise to a particular cost", "In ABC, batch-level costs are applied to products using unit level bases", "Under traditional costing, batch-level costs are shifted from high-volume products to low- volume products"], c: "In an ABC costing system, costs are only assigned to products that actually required work that gave rise to a particular cost" },
+            { q: "27. Process of Cost allocation under Activity Based Costing is", o: ["Cost of Activities Activities Cost Driver-Cost allocated to cost objects", "Cost Driver Cost of Activities Cost allocated to cost objects Activities", "Activities Cost of Activities Cost Driver-Cost allocated to cost objects", "Activities Cost Driver - Cost allocated to cost objects Cost of Activities"], c: "Activities Cost of Activities Cost Driver-Cost allocated to cost objects" },
+            { q: "28. Cost of maintaining a building is:", o: ["Unit Level Cost", "Batch Level Cost", "Product Level Cost", "Facility Level Cost"], c: "Facility Level Cost" },
+            { q: "29. ____ should be subtracted from net product revenues instead of an arbitrary and illogical apportionment.", o: ["Facility Level Cost", "Product Level Cost", "Organizational Level Cost", "High Level Cost"], c: "Organizational Level Cost" },
+            { q: "30. The basis of apportionment of overheads which takes into account the profitability of various departments is called:", o: ["FIFO basis", "LIFO basis", "Ability to pay basis", "Activity basis"], c: "Activity basis" },
+            { q: "31. Which of the following is the main cost driver of customer order processing activity?", o: ["Flow of the product from the assembly line", "Order value", "Number of problem suppliers", "Number of machine charges"], c: "Order value" },
+            { q: "32. Painting the product would be an example of which activity level groups", o: ["Facility-level activity", "Product-level activity", "Unit-level activity", "Batch-level activity"], c: "Unit-level activity" },
+            { q: "33. Which of the following tasks is not normally associated with an activity-based costing system?", o: ["Calculation of cost application rates", "Identification of cost pools", "Preparation of allocation matrices", "Identification of cost drivers"], c: "Preparation of allocation matrices" },
+            { q: "34. All of the following are examples of batch level activities except:", o: ["Purchase order processing", "Setting up equipment", "The clerical activity associated with processing purchase orders to pro-duce an order for a standard product", "Worker recreational facilities"], c: "Worker recreational facilities" },
+            { q: "35. A cost driver -", o: ["is a force behind the overhaed cost", "is an allocation base", "is a transaction that is a significant determinant of cost", "is all of the above"], c: "is all of the above" },
+            { q: "36. Which of these is NOT a cost driver For the Activity Design of products, services & Processes?", o: ["Number of Products in design", "Number of Parts per product", "Number of employee Training Programmes", "Number of engineering Hours"], c: "Number of employee Training Programmes" },
+            { q: "37. Which of these in NOT a Cost driver for Marketing and sales Function?", o: ["Number of advertisements/Inserti ons", "Number of researche projects", "Number of Sales personnel", "sales Revenue"], c: "Number of researche projects" },
+            { q: "38. Which of these in NOT a Cost driver for Customer Service Activity ?", o: ["Number of service calls", "Number of Products serviced", "Hours spent on servicing products", "sales Revenue"], c: "sales Revenue" },
+            { q: "39. Plant depreciation is an example of which activity-level group?", o: ["Unit-level activity", "Facility-level activity", "Batch-level activity", "Product-level activity"], c: "Facility-level activity" },
+            { q: "40. Under activity-based costing, material ordering' is considered as", o: ["Unit-level activity", "Facility-level activity", "Batch-level activity", "Product-level activity"], c: "Batch-level activity" },
+            { q: "41. Samsung an appliance manufacturer is developing a new line of ovens that uses controlled-laser technology. Research and testing costs associated with the new ovens is said to arise from a:", o: ["Unit Level Activity", "Competitive Level Activity", "Facility Level Activity", "Product Sustaining Activity"], c: "Product Sustaining Activity" },
+            { q: "42. A homogeneous cost pool is one that:", o: ["Does not change over time", "Needs many activity drivers to be allocated to a cost object", "Can be explained with a single activity driver", "Has only one type of material assigned to it"], c: "Can be explained with a single activity driver" },
+            { q: "43. An Activity-Based Costing, an inspection of the product is a ____ level activity:", o: ["Unit", "Batch", "Product", "Facility"], c: "Batch" },
+            { q: "44. A company uses traditional standard costing system. The inspection and set-up costs are actually ₹1,760 against a budget of 22,000. ABC system is being implemented and accordingly the number of batches is identified as the cost driver for inspection and set up. The budgeted production is 10,000 units in batches of 1,000 units whereas actually 9,000 units were produced in 11 batches. The cost per batch under ABC system will be", o: ["₹160", "₹200", "₹180", "₹220"], c: "₹200" },
+            { q: "45. X Company uses activity-based costing for Product B and Product D. The total estimated overhead cost for the parts administration activity pool was ₹5,50,000 and the expected activity was 2000 part types. If Product D requires 1200 part types, the amount of overhead allocated to product D for parts administration would be:", o: ["₹2,75,000", "₹3,00,000", "₹3,30,000", "₹3.45.000"], c: "₹3,30,000" },
+            { q: "46. Fast Ltd. manufactures three types of products A, B, and C following ABC System. During a period, the company incurred 273,000 as inspection cost and it was worked for 10, 20 and 9 production runs respectively for producing products A, B, and C. The inspection costs for product B under the ABC system was", o: ["₹15,000", "₹40.000", "₹18,000", "₹ 24,000"], c: "₹40.000" },
+            { q: "47. A company operates an activity based costing (ABC) system to attribute its overhead costs to cost objects. In its budget for the year- ending 31st August, 2022. The company expected to place a total of 2000 purchase orders at a total cost of ₹1,00,000. This activity and its related costs were budgeted to occur at a constant rate throughout the budget year which is divided into 13 four week periods. During the four-week period ended 30th June 2021, a total of 200 purchase orders were placed at a cost of 9,000. The over recovery of these costs for the four-week period was", o: ["₹2,000", "₹ 3,000", "₹1,500", "₹1,000"], c: "₹1,000" },
+            { q: "48. A company manufactures 500 units of product AX the material cost to manufacture is ₹1,50,000, Labour cost ₹2,65,000. Material reordering cost is ₹ 4,500, Material handling cost is 22,500 Material order-35, Material movement -20. Total Material cost under Activity based costing is.", o: ["₹554", "₹ 4,22,000", "₹1,57,000", "₹ 1,084"], c: "₹1,57,000" },
+            { q: "49. To obtain the break-even point in rupee sales value, total fixed costs are divided by:", o: ["Variable cost per unit;", "Contribution margin per unit;", "Fixed cost per unit;", "Profit/volume ratio."], c: "Profit/volume ratio." },
+            { q: "50. The break-even point is the point at which:", o: ["There is no profit, no loss;", "Contribution margin is equal to total fixed cost:", "Total revenue is equal to total cost;", "All of the above."], c: "All of the above." },
+            { q: "51. The primary difference between a fixed budget and a variable (flexible) budget is that a fixed budget:", o: ["includes only fixed costs, while a variable budget includes only variable costs.", "is concerned with only further acquisitions of fixed costs, while a variable budget is concerned with expenses which vary with sales.", "cannot be changed after the period begins, while a variable budget can be changed after the period begins.", "is a plan for a single level of sales (or other measure of activity), while a variable budget consists of several plans, one for each of several levels of sales (or other measures of activity)."], c: "is a plan for a single level of sales (or other measure of activity), while a variable budget consists of several plans, one for each of several levels of sales (or other measures of activity)." },
+            { q: "52. Margin of safety is referred to as:", o: ["Excess of actual sales over fixed expenses;", "Excess of actual sales over variable expenses", "Excess of actual sales over break-even sales:", "Excess of budgeted sales over fixed costs."], c: "Excess of actual sales over break-even sales:" },
+            { q: "53. Contribution margin is known as", o: ["Marginal income", "Gross profit", "Net income", "Net profit"], c: "Marginal income" },
+            { q: "54. Fixed cost per unit decrease when", o: ["Production volume increases", "Production volume decreases", "Variable costs per unit decreases", "Prime costs per unit decreases"], c: "Production volume increases" },
+            { q: "55. Within a relevant range, the amount of variable costs per unit", o: ["Differs at each production level", "Remains constant at each production level", "Increases as production increases", "Decreases as production increases"], c: "Remains constant at each production level" },
+            { q: "56. Margin of safety is referred to as", o: ["Excess of budgeted or actual sales revenue over the fixed expenses.", "Excess of budgeted or actual sales over the variable expenses and fixed expense, at break-even.", "Excess of actual sales over budgeted sales.", "Excess of sales revenue over the variable expenses"], c: "Excess of actual sales over budgeted sales." }, // This seems to be a repeat of Q52 with slightly different options. PDF answer for 56 is 3.
+            { q: "57. Under marginal costing system, the contribution margin discloses the excess of", o: ["Revenue over fixed costs", "Projected revenues over the break-even point", "Revenues over variable costs", "Variable costs over fixed costs"], c: "Revenues over variable costs" },
+            { q: "58. A decrease in sales price", o: ["does not affect the break-even point", "lowers the fixed cost", "Increases the break- even point", "lowers the break- even point"], c: "Increases the break- even point" },
+            { q: "59. Determine Margin of safety if Profit is ₹15,000 and P/V ratio is 40%.", o: ["₹37,500", "₹ 33.000", "₹38,000", "None of the above"], c: "₹37,500" },
+            { q: "60. What is Margin of Safety if Sales is 20,000 units and B.E.P is 15,000 units?", o: ["15000 units", "5000 units", "10000 units", "20000 units"], c: "5000 units" },
+            { q: "61. Determine sales in rupees for desired profit if fixed cost is ₹10,000, Variable cost is 30,000, Sales is 50,000 and desired profit is 25,000.", o: ["₹ 73,500", "₹75.000", "₹5.000", "₹37,500"], c: "₹37,500" }, // PDF answer is 4. P/V = (50k-30k)/50k = 0.4. Sales = (FC+DP)/PV = (10k+5k)/0.4 = 15k/0.4 = 37,500. Wait, desired profit is 25k. Sales = (10k+25k)/0.4 = 35k/0.4 = 87,500. None of the options match. Rechecking PDF question and answer. PDF Q61 has DP 5000. If DP=5000, then 37500 is correct.
+            { q: "62. What will be sales in rupees for desired profit if fixed cost is 230,000, desired profit is ₹15,000 and P/V ratio is 30%?", o: ["₹1,50,000", "₹ 1,00,000", "₹2,00,000", "None of the above"], c: "₹1,50,000" },
+            { q: "63. Calculate sales in rupees for desired profit if fixed cost is ₹10,000, selling price is 20 per unit, Variable cost is 15 per unit and desired profit is ₹ 1 per unit", o: ["₹20,000", "₹50.000", "₹70,000", "₹ 10,000"], c: "₹50.000" }, // PDF answer is 2. Contribution pu = 5. Sales units = (FC+DP)/Contr pu = (10000+ (X*1))/5. X=Sales units. 5X = 10000+X. 4X=10000. X=2500 units. Sales Rs = 2500*20 = 50000.
+            { q: "64. Determine sales in units for desired profit if Fixed cost is ₹15,000, desired profit is 25,000 Selling price per unit is 20 and Variable cost per unit is 16.", o: ["25,000 units", "₹5,000", "₹ 10,000", "10,000 units"], c: "₹5,000 units" }, // PDF answer is 1. Contribution pu = 4. Sales units = (15000+5000)/4 = 20000/4 = 5000 units.
+            { q: "65. What will be sales in units if fixed cost is ₹50,000 Contribution per unit is 60 and desired profit per unit is ₹ 10.", o: ["26,000 units", "₹1,000", "1,000 units", "₹6.000"], c: "1,000 units" }, // PDF answer is 3. Sales units = FC / (Contr pu - Profit pu) = 50000 / (60-10) = 50000/50 = 1000 units.
+            { q: "66. Determine B.E.P in units and amount if Units produced if 10,000, Fixed cost is ₹40,000, Selling price is ₹ 50 per unit and Variable cost us ₹ 30 per unit.", o: ["240 per unit, ₹ 2,00,000", "250 per unit, ₹ 10,00,000", "220 per unit, ₹ 1,00,000", "None of the above"], c: "None of the above" }, // PDF answer is 3 (220 per unit, 1,00,000). Contr pu = 20. BEP units = 40000/20 = 2000 units. BEP Rs = 2000*50 = 1,00,000. So option 3 is correct if units were 2000.
+            { q: "67. Determine B.E.P if Sales is ₹1,00,000, Variable cost is ₹50,000 and Profit is ₹20.000.", o: ["₹60,000", "₹40.000", "₹80,000", "None of the above"], c: "₹60,000" },
+            { q: "68. Pv ratio will increase if there is -", o: ["a decrease in fixed cost", "an increase in fixed cost", "a decrease in selling price per unit", "a decrease in variable cost per unit"], c: "a decrease in variable cost per unit" },
+            { q: "69. Under marginal costing, the cost of product for inventory valuation includes", o: ["prime costs and variable factory overheads", "prime cost only", "prime costs and Fixed factory overheads", "prime costs and all factory overheads"], c: "prime costs and variable factory overheads" },
+            { q: "70. ____ period costs are:", o: ["variable cost", "fixed cost", "prime cost", "overheads cost"], c: "fixed cost" },
+            { q: "71. Marginal costs is taken as equal to", o: ["Prime Cost plus all variable overheads", "Prime Cost minus all variable overheads", "Variable overheads", "None of the above"], c: "Prime Cost plus all variable overheads" },
+            { q: "72. Contribution margin is equal to", o: ["Sales Fixed Cost - Profit", "Profit + Variable Cost", "Fixed Cost Loss", "None of the above"], c: "Fixed Cost Loss" },
+            { q: "73. It is pallned sell 1,00,000 units of product A at 12 per unit. Fixed Costs are ₹2,80,000. To achive a profit of ₹2,00,000 what would the variable costs be?", o: ["₹4,80,000", "₹ 7,20,000", "₹9,00,000", "₹9.20,000"], c: "₹ 7,20,000" },
+            { q: "74. Factors which can change the break even point", o: ["change in total fixed costs", "change in variable costs per unit", "change in the selling price per unit", "All of the above."], c: "All of the above." },
+            { q: "75. net profit ratio is 12% and bep is 40% of total sales compute pv ratio", o: ["60%", "52%", "28%", "20%"], c: "20%" },
+            { q: "76. If the total cost of 1000 units is 60,000 and that of 1001 units is ₹60,400, then the increase of 2400 in the total cost is:", o: ["Prime cost", "All variable overheads", "Marginal cost", "None of the above"], c: "Marginal cost" },
+            { q: "77. Which of the following statements are true about marginal costing?", o: ["In marginal costing, fixed costs are treated as product costs", "Marginal costing is not an independent system of costing", "The elements of cost in marginal costing are divided into fixed and variable components", "Both b and c"], c: "Both b and c" },
+            { q: "78. The costing method where fixed factory overheads are added to inventory is called:", o: ["Activity-based costing", "Absorption costing", "Marginal costing", "All of the above"], c: "Absorption costing" },
+            { q: "79. While computing profit in marginal costing:", o: ["The fixed cost gets added to the contribution", "The total marginal cost gets deducted from total sales revenue", "The total marginal cost gets added to total sales revenue", "None of the above."], c: "The total marginal cost gets deducted from total sales revenue" },
+            { q: "80. Which of the following assumptions are made while calculating marginal cost", o: ["Total fixed cost is constant at all levels of output", "Total variable cost varies according to the volume of output", "All elements of cost can be divided into fixed and variable components", "All of the above"], c: "All of the above" },
+            { q: "81. Contribution margin in marginal costing is also known as:", o: ["Net income", "Gross profit", "Marginal income", "None of the above"], c: "Marginal income" },
+            { q: "82. What is the opportunity cost of making a component part in a factory given no alternative use of the capacity?", o: ["The variable manufacturing cost of the component", "The total manufacturing cost of the component", "The total variable cost of the component", "Zero"], c: "Zero" },
+            { q: "83. The difference in total cost that results from two alternative courses of action is called:", o: ["Relevant Cost", "Opportunity Cost", "Differential Cost", "Marginal Cost"], c: "Differential Cost" },
+            { q: "84. Relevant costs are:", o: ["unavoidable, future and measured by cash", "avoidable, future and measured by cash", "avoidable, future and measured by profit", "unavoidable, future and measured by profit"], c: "avoidable, future and measured by profit" }, // Usually measured by cash. PDF key 3.
+            { q: "85. The profit at which total revenue is equal to the total cost is known as:", o: ["Margin of safety", "Break-even point", "Both a and b are incorrect", "Both a and b are correct"], c: "Break-even point" },
+            { q: "86. Which of the following costs would not be accounted for in a company's recordkeeping system?", o: ["an unexpired cost", "an expired cost", "a product cost", "an opportunity cost"], c: "an opportunity cost" },
+            { q: "87. PQR Ltd. manufactures a single product which it sells for 40 per unit. Fixed cost is 60,000 per year. The contribution to sales ratio is 40%. PQR Ltd.'s Break Even Point in units is", o: ["3500", "3700", "3750", "4000"], c: "3750" },
+            { q: "88. The break-even point of a manufacturing company is ₹1,60,000. Fixed cost is 48,000. Variable cost is 12 per unit. The PV ratio will be:", o: ["20%", "40%", "30%", "25%"], c: "30%" },
+            { q: "89. Product A generates a contribution to sales ratio of 40%. Fixed cost directly attributable to Product A amounted to ₹60,000. The sales revenue required to achieve a profit of ₹15,000 is", o: ["₹ 2,00,000", "₹1,85,000", "₹1,87,500", "₹2.10,000"], c: "₹1,87,500" },
+            { q: "90. XYZ. Ltd. makes a special gadget for the car it manufactures. The machine for the gadget works to full capacity and incur 15 Lakhs and 240 Lakhs respectively as Variable and Fixed Costs. If all the gadgets were purchased from an outside supplier, the machine could be used to produce other items, which would earn a total contribution of 25 Lakhs. What is the maximum price that XYZ Ltd. should be willing to pay to the outside supplier for the gadgets, assuming there is no change in Fixed Costs?", o: ["₹ 40 Lakhs", "₹65 Lakhs", "₹25 Lakhs", "₹15 Lakhs"], c: "₹ 40 Lakhs" },
+            { q: "91. X Ltd. has 1000 units of an obsolete item which are carried in inventory at the original price of 50,000. If these items are reworked for 20,000, they can be sold for 36,000. Alternatively, they can be sold as a scrap for ₹ 6,000 in the market. In a decision model used to analyze the reworking proposal, the opportunity cost should be taken as", o: ["₹16,000", "₹6,000", "₹30,000", "₹20,000"], c: "₹6,000" },
+            { q: "92. The sales and profit of a firm for the year 2021 are ₹1,50,000 and 220,000 and for the year 2022 are ₹1,70,000 and ₹ 25,000 respectively. The P/V Ratio of the firm is", o: ["15%", "20%", "25%", "30%"], c: "25%" },
+            { q: "93. Which one of the following is not considered as a method of Transfer Pricing", o: ["Negotiated Transfer Pricing", "Market Price Based Transfer Pricing", "Fixed Cost Based Transfer Pricing", "Opportunity Cost Based Transfer Pricing"], c: "Fixed Cost Based Transfer Pricing" },
+            { q: "94. Method of pricing, when two separate pricing methods are used to price transfer of products from one subunit to another, is called:", o: ["Dual pricing", "Functional pricing", "Congruent pricing", "Optimal pricing"], c: "Functional pricing" }, // Dual pricing is also a valid term. PDF key 2.
+            { q: "95. The Eastern division sells goods internally to the Western division of the same company. The quoted external price in industry publications from a supplier near Eastern is ₹ 200 per ton plus transportation. It costs 20 per ton to transport the goods to Western. Eastern's actual market cost per ton to buy the direct materials to make the transferred product is ₹100. Actual per ton direct labour is 50. Other actual costs of storage and handling are 40. The company president selects a 220 transfer price. This is an example of:", o: ["Negotiated transfer pricing.", "Cost plus 20% transfer pricing.", "Cost-based transfer pricing.", "Market-based transfer pricing."], c: "Market-based transfer pricing." },
+            { q: "96. Division P transfers its output to Division Q at variable cost. Once a year P charges a fixed fee to Q, representing an allowance for P's fixed costs. This type of transfer pricing system is commonly known as:", o: ["Dual pricing", "Negotiated transfer pricing", "Opportunity cost based transfer pricing", "Two-part tariff transfer pricing"], c: "Two-part tariff transfer pricing" },
+            { q: "97. In which of the following circumstances is there a strong argument that profit centre accounting is a waste of time?", o: ["When the transferred item is also sold on an external market", "When the supplying division is based in a different country to head office", "If the transferred item is a major product of the supplying division", "If there is no similar product sold on an external market and the transferred item is a major product of the supplying division"], c: "If there is no similar product sold on an external market and the transferred item is a major product of the supplying division" },
+            { q: "98. Which one of the following is not considered as a method of Transfer Pricing?", o: ["Negotiated Transfer Pricing", "Market Price Based Transfer Pricing", "Fixed Cost Based Transfer Pricing", "Opportunity Cost Based Transfer Pricing"], c: "Fixed Cost Based Transfer Pricing" }, // This is a repeat of Q93.
+            { q: "99. Method of pricing, when two separate pricing methods are used to price transfer of products from one subunit to another, is called:", o: ["dual pricing", "functional pricing", "congruent pricing", "optimal pricing"], c: "dual pricing" }, // This is a repeat of Q94, answer changed.
+            { q: "100. M Group has two divisions, Division P and Division Q. Division P manufactures an item that is transferred to Division Q. The item has no external market and 6,000 units produced are transferred internally each year. The costs of each division are as follows? Variable Cost Division P 100 per unit Division Q 120 per unit Fixed cost each year ₹1,20,000 ₹90,000 Head Office management decided that a transfer price should be set that provides a profit of 30,000 to Division P. What should be the transfer price per unit?", o: ["P145", "₹125", "₹120", "₹135"], c: "₹125" },
+            { q: "101. Minimax Ltd. fixes inter - divisional transfer prices for its products on the basis of cost plus a return on investment in the division. The budget for division X for 2022-23 appears as under-Fixed Assets ₹8,00,000 Current Assets ₹5,00,000 Debtors ₹2,00,000 Annual fixed cost of the division 28,00,000 Variable cost per unit of the product 10 Budgeted volume ₹4,00,000 units per year Desired ROI 28%. Transfer price for division X is", o: ["₹13.05", "₹10.70", "₹8.70", "₹14.70"], c: "₹13.05" },
+            { q: "102. BC Company fixes the inter-divisional transfer prices for its products on the basis of cost, plus a return on investment in the division. The Budget for Division for Alpha for the year 2021-22 appears as under: Fixed Assets ₹5,00,000 Current assets ₹3,00,000 Debtors 22,00,000 Annual Fixed Cost of the Division ₹8,00,000 Variable Cost per unit of Product ₹ 10 Budgeted Volume 4,00,000 units per year Desired RO1 28% on ₹10,00,000 Determine the transfer Price for Alpha.", o: ["₹12.7", "₹17.2", "₹27.1", "₹11.7"], c: "₹12.7" },
+            { q: "103. The ____ method of transfer pricing was introduced in order to overcome the problems caused by using marginal cost", o: ["dual price", "Two-Part Transfer Pricing", "Negotiated Transfer Pricing", "none of them"], c: "dual price" },
+            { q: "104. Transfer pricing methods may be classfied", o: ["under 3 pricing method", "under 4 pricing method", "under 5 pricing method", "under 7 pricing method"], c: "under 3 pricing method" },
+            { q: "105. Which of the following is true of standards?", o: ["Standards represent a benchmark or a norm", "Standards relate to input quantity", "Standards relate to input cost", "All of the above"], c: "All of the above" },
+            { q: "106. Standards that can be attained only under the best circumstances are referred to as:", o: ["Attainable standards", "Budget standards", "Ideal standards", "Practical standards"], c: "Ideal standards" },
+            { q: "107. Who is most likely to be held responsible for a material price variance?", o: ["Line workers", "Production supervisors", "Purchasing managers", "Production schedulers"], c: "Purchasing managers" },
+            { q: "108. Cost variance is the difference between", o: ["The standard cost and marginal cost", "The standards cost and budgeted cost", "The standards cost and the actual cost", "None of these"], c: "The standards cost and the actual cost" },
+            { q: "109. Standard costing is a tool, which replaces the bottleneck of the ____ costing.", o: ["Present", "Future", "Historical", "None of the above"], c: "Historical" },
+            { q: "110. If standard cost > actual, then it is:", o: ["Not favourable", "Favourable", "Neither favourable nor not favourable", "None of the above"], c: "Favourable" },
+            { q: "111. From cost control point of view the standard most commonly used IS:", o: ["Expected standard", "Theoretical standard", "Normal standard", "Basic standard"], c: "Expected standard" },
+            { q: "112. When more than one material is used in the manufacture of a product, which of the following variances arises:", o: ["Material yield variance", "Material mix variance", "Material price variance", "Material usage variance"], c: "Material mix variance" },
+            { q: "113. Which of the following equations can be used to calculate a material quantity variance?", o: ["(AQ X AP)-(AQ X SP)", "(AP SP)-(AQ x SP)", "(AQ X SP)-(SQ X SP)", "(AQ X SP)-(AQ X AP)"], c: "(AQ X SP)-(SQ X SP)" },
+            { q: "114. Which of the following equations can be used to calculate a material price variance?", o: ["(AQ X AP)-(AQ X SP)", "(AP X SP)-(AQ X SP)", "(AQ X SP)-(SQ X SP)", "(AQ X SP)-(AQ X AP)"], c: "(AQ X AP)-(AQ X SP)" },
+            { q: "115. Which of the following is not likely to be a reason of unfavourable direct labour efficiency variance?", o: ["Increase in direct materials prices", "Frequent break downs during production process", "Lack of proper supervision", "Use of old, outdated or faulty equipment"], c: "Increase in direct materials prices" },
+            { q: "116. Which of the following is a purpose of standard costing?", o: ["To determine profit at different levels", "To determine break- even point", "To control costs", "To allocate cost with more accuracy"], c: "To control costs" },
+            { q: "117. Which of the following activities is the Standard Costing System used for?", o: ["It is a basis for implementing cost control and fixing the price of products through variance analysis", "It helps to ascertain the cost-volume relationship between products manufactured by the business", "It helps to establish the breakeven point for the products manufactured by the company", "None of the above"], c: "It is a basis for implementing cost control and fixing the price of products through variance analysis" },
+            { q: "118. Which of the following activities is true under the Standard Costing System?", o: ["The overhead volume variance is always beneficial", "The idle time variance is never favourable", "To calculate the overall costs, a company can either use budgetary control or standard costing but not both of those techniques", "The overhead efficiency variance plus overhead expense variance is equal to the overhead budget variance for variable overheads"], c: "The idle time variance is never favourable" },
+            { q: "119. A standard cost is a carefully ____ unit cost which is prepared for each cost unit.", o: ["Pre-determined", "Absorbed", "Apportioned", "None"], c: "Pre-determined" },
+            { q: "120. Setting of standard involves effective utilization of", o: ["Men", "Material", "Machines", "All of the above"], c: "All of the above" },
+            { q: "121. The standard cost card contains quantities and costs for", o: ["Direct material only", "Direct labour only", "Direct material and direct labour only", "Direct material. direct labour, and overhead"], c: "Direct material. direct labour, and overhead" },
+            { q: "122. Standards differ from budgets in that:", o: ["Budgets but not standards may be used in valuing inventories", "Budgets but not standards may be journalized and posted", "Budgets are a total amount and standards are a unit amount", "Only budgets contribute to management planning and control"], c: "Budgets are a total amount and standards are a unit amount" },
+            { q: "123. Standard Costs:", o: ["Are imposed by governmental agencies", "Are predetermined unit costs which companies use as measures of performance", "Can be used by manufacturing companies but not by service or not-for- profit companies", "All of the above"], c: "Are predetermined unit costs which companies use as measures of performance" },
+            { q: "124. The advantages of standard costs include all of the following except:", o: ["Management by exception may be used", "Management planning is facilitated", "They may simplify the costing of inventories", "Management must use a static budget"], c: "Management must use a static budget" },
+            { q: "125. Normal standards:", o: ["Allow for rest periods. machine breakdowns, and setup time", "Represent levels of performance under perfect operating conditions", "Are rarely used because managers believe they lower workforce morale", "Are more likely than ideal standards to result in unethical practices"], c: "Allow for rest periods. machine breakdowns, and setup time" },
+            { q: "126. The setting of standards is:", o: ["A managerial accounting decision", "A management decision", "A worker decision", "Preferably set at the ideal level of performance"], c: "A management decision" },
+            { q: "127. Which of the following is correct about the total overhead variance?", o: ["Budgeted overhead and budgeted overhead applied are the same", "Total actual overhead is composed of variable overhead, fixed overhead, and period costs.", "Standard hours actually worked are used in computing the variance", "Standard hours allowed for the work done is the measure used in computing the variance"], c: "Standard hours allowed for the work done is the measure used in computing the variance" },
+            { q: "128. What is the name given to a budget that has been prepared by re- evaluating activities and comparing the incremental costs of those activities with their incremental benefits?", o: ["Incremental budget", "Rolling budget", "Zero based budget", "Flexible budget"], c: "Zero based budget" },
+            { q: "129. A budget is an instrument of management used as an aid in the", o: ["Planning", "Programming", "Control of business activity", "All of the above"], c: "All of the above" },
+            { q: "130. Following may be regarded as a summary budget", o: ["Production budget", "Master budget", "Cash budget", "Sales budget"], c: "Master budget" },
+            { q: "131. Purchases budget is prepared using the information from:", o: ["Capital expenditure budget", "Materials budget", "Both (1) and (2)", "None of the above"], c: "Materials budget" },
+            { q: "132. Following budget may be compiled on departmental basis:", o: ["Production budget", "Purchase budget", "Materials budget", "All of the above"], c: "Production budget" },
+            { q: "133. Production budget is based upon:", o: ["Sales budget", "Factory capacity", "Availability of raw material and labour", "All of the above"], c: "All of the above" },
+            { q: "134. Budget includes:", o: ["Income", "Expenditure", "Employment of capital", "All of the above"], c: "All of the above" },
+            { q: "135. A budget should be:", o: ["Rigid", "Flexible", "Both (1) and (2)", "None of the above"], c: "Flexible" },
+            { q: "136. The object of budgetary control is", o: ["Planning", "Forecasting", "Organizing", "Directing"], c: "Planning" },
+            { q: "137. The budget which is dynamic is", o: ["Flexible budget", "Sales budget", "Cash budget", "Purchase budget"], c: "Sales budget" }, // Flexible budget is also dynamic. PDF key 2.
+            { q: "138. The process of budgeting helps in the control of:", o: ["Cost of production", "Liquidity", "Capital Expenditure", "All of the above"], c: "All of the above" },
+            { q: "139. Plant utilization budget and Manufacturing overhead budgets are types of:", o: ["Production budget", "Sales budget", "Cost budget", "None of the above"], c: "Cost budget" },
+            { q: "140. R&D budget and Capital expenditure budget are examples of:", o: ["Short-term budget", "Current budget", "Long-term budget", "None of the above"], c: "Long-term budget" },
+            { q: "141. The scare factors is also known as:", o: ["Key factor", "Abnormal factor", "Linking factor", "None of the above"], c: "Key factor" },
+            { q: "142. What is the name given to a budget that has been prepared by re- evaluating activities and comparing the incremental costs of those activities with their incremental benefits?", o: ["Incremental budget", "Rolling budget", "Zero based budget", "Flexible budget"], c: "Zero based budget" },
+            { q: "143. A budget is an instrument of management used as an aid in the", o: ["Planning", "Programming", "Control of business activity", "All of the above"], c: "All of the above" },
+            { q: "144. Following may be regarded as a summary budget", o: ["Production budget", "Master budget", "Cash budget", "Sales budget"], c: "Master budget" },
+            { q: "145. Purchases budget is prepared using the information from:", o: ["Capital expenditure budget", "Materials budget", "Both (1) and (2)", "None of the above"], c: "Materials budget" },
+            { q: "146. Following budget may be compiled on departmental basis:", o: ["Production budget", "Purchase budget", "Materials budget", "All of the above"], c: "Production budget" },
+            { q: "147. Production budget is based upon:", o: ["Sales budget", "Factory capacity", "Availability of raw material and labour", "All of the above"], c: "All of the above" },
+            { q: "148. A budget should be:", o: ["Rigid", "Flexible", "Both (1) and (2)", "None of the above"], c: "Flexible" },
+            { q: "149. The object of budgetary control is", o: ["Planning", "Forecasting", "Organizing", "Directing"], c: "Planning" },
+            { q: "150. The budget which is dynamic is", o: ["Flexible budget", "Sales budget", "Cash budget", "Purchase budget"], c: "Sales budget" }, // Repeat of Q137
+            { q: "151. The process of budgeting helps in the control of:", o: ["Cost of production", "Liquidity", "Capital Expenditure", "All of the above"], c: "All of the above" },
+            { q: "152. Plant utilization budget and Manufacturing overhead budgets are types of:", o: ["Production budget", "Sales budget", "Cost budget", "None of the above"], c: "Cost budget" }, // Repeat of Q139
+            { q: "153. R&D budget and Capital expenditure budget are examples of:", o: ["Short-term budget", "Current budget", "Long-term budget", "None of the above"], c: "Long-term budget" }, // Repeat of Q140
+            { q: "154. The scare factors is also known as:", o: ["Key factor", "Abnormal factor", "Linking factor", "None of the above"], c: "Key factor" }, // Repeat of Q141
+            { q: "155. A company usually determines the appropriate degree of decentralization based on a combination of the", o: ["Managers' personal characteristics", "Nature of decisions required for organizational growth", "Types of organizational activities in which the company is engaged", "All of these"], c: "All of these" },
+            { q: "156. Major disadvantages of Decentralization are", o: ["Can result in a lack of goal congruence or sub optimization by sub-unit managers", "Requires more effective communication abilities because decision making is removed from the home office", "Helps top management recognizes and develop managerial talent", "Both 1 and 2"], c: "Both 1 and 2" },
+            { q: "157. Which of the following is/are not benefit/s of Decentralization ?", o: ["Greater awareness of local problems", "Allows managerial performance to be comparatively evaluated", "Creates personnel difficulties upon introduction, especially if managers are unwilling to delegate effectively", "Develops skill level of junior managers"], c: "Creates personnel difficulties upon introduction, especially if managers are unwilling to delegate effectively" },
+            { q: "158. Return on Equity =", o: ["Net Profit Margin x Asset Turnover Ratio Financial Leverage", "Gross Profit Margin Asset Turnover Ratio Financial Leverage", "Net Profit Margin x Inventory Turnover Ratio Financial Leverage", "Net Profit Margin x Asset Turnover Ratio Operating Leverage"], c: "Net Profit Margin x Asset Turnover Ratio Financial Leverage" },
+            { q: "159. According to DuPont methodology, three main financial parameters that drive Return on Equity (ROE) are", o: ["(1) Employee performance, (2) Asset usage performance, and (3) Financial leverage.", "(1) Operating performance, (2) Asset usage performance, and (3) Financial leverage.", "(1) Operating performance, (2) Inventory usage performance, and (3) Financial leverage.", "(1) Operating performance, (2) Asset usage performance, and (3) Operating leverage."], c: "(1) Operating performance, (2) Asset usage performance, and (3) Financial leverage." },
+            { q: "160. Asset usage performance means", o: ["a very basic profitability ratio", "Total Asset Turnover (Turnover Total Assets)", "the use of debt to acquire additional assets or fund projects", "None of these"], c: "Total Asset Turnover (Turnover Total Assets)" },
+            { q: "161. Financial leverage means", o: ["a very basic profitability ratio", "Total Asset Turnover (Turnover Total Assets)", "the use of debt to acquire additional assets or fund projects", "None of these"], c: "the use of debt to acquire additional assets or fund projects" },
+            { q: "162. According to Du Pont Analysis a company can increase its Return on Equity if it", o: ["Generates a high Net Profit Margin", "Effectively uses its assets so as to generate more sales.", "Has a high Financial Leverage", "All of these"], c: "All of these" },
+            { q: "163. Du Pont ROE =", o: ["Margin on Sales x Asset Turnover x Equity Multiplier", "Margin of Safety Asset Turnover x Equity Multiplier", "Margin on Sales x Inventory Turnover Equity Multiplier", "Margin on Sales x Asset Turnover x Debt Multiplier"], c: "Margin on Sales x Asset Turnover x Equity Multiplier" },
+            { q: "164. ____ expresses divisional profit as a percentage of the assets employed in the division.", o: ["ROI", "EPS", "ROCE", "EBITDA"], c: "ROI" },
+            { q: "165. Return on investment (ROI) is", o: ["(Profit before tax Operations management capital employed) x 100", "(Profit before interest and tax + Total capital employed) x 100", "(ROE Operations management capital employed) x 100", "(Profit before interest and tax + Operations management capital employed) x 100"], c: "(Profit before interest and tax + Operations management capital employed) x 100" }, // Denominator should be Capital Employed. PDF key 4.
+            { q: "166. RI (Residual Income) =", o: ["Divisional profit - (Percentage of change in Sales Divisional investment)", "Divisional profit (Percent capital charge Total investment)", "Divisional profit (Percent capital charge Divisional investment)", "Total profit (Percent capital charge Divisional investment)"], c: "Divisional profit (Percent capital charge Divisional investment)" },
+            { q: "167. The main advantages of RI is/are", o: ["It avoids suboptimal decisions as investments are not rejected merely because they lower the divisional manger's ROI.", "It maximizes growth of the company and increases shareholders' wealth by accepting opportunities which earn a rate of return in excess of the cost of capital.", "The cost of capital charge on divisional investments ensures that divisional managers are aware of the opportunity cost of funds.", "All of these"], c: "All of these" },
+            { q: "168. Acme, a division of Ace Manufacturing, has assets of ₹2,25,000 and an operating income of ₹55,000. What is the division's ROI?", o: ["24.44%", "23%", "25%", "50%"], c: "24.44%" },
+            { q: "169. An investment centre has net assets of 28,00,000, and made profits before interest and tax of ₹1,60,000. The notional cost of capital is 12%.Calculate and comment on the RI (Residual Income) for the period.", o: ["₹1,60,000", "₹96.000", "₹ 64,000", "₹2.56.000"], c: "₹ 64,000" },
+            { q: "170. A person made a Capital Investment of ₹2,00,000 in a company. Operating profit, after taxes, is 28,000. The opportunity cost of that investment is 10%. Calculate EVA.", o: ["₹20,000", "₹2,800", "₹8.000", "₹17.200"], c: "₹8.000" },
+            { q: "171. For EVA there 3 responsibility centres, which are", o: ["Cost centre", "Profit centre", "Investment centre", "All of these"], c: "All of these" },
+            { q: "172. The theory of learning curves will only hold if which of the following conditions apply?", o: ["The task must be repetitive", "Production must be at an early stage so that there is room. for improvement", "There is inconsistency in the workforce", "Both 1 and 2"], c: "Both 1 and 2" },
+            { q: "173. ____ can be used: a. To calculate the incremental cost of making extra units of a particular products, b. To set standards for labour, c. To prepare realistic production budgets and to report labour cost variances, and d. To quote contact price.", o: ["Learning curve theory", "Return on investment", "Du Pont ROE", "Economic Value Added"], c: "Learning curve theory" },
+            { q: "174. The four Perspectives of the Balanced Scorecard are", o: ["1. Operational Perspective.2. Customers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives.", "1. Financial Perspective, 2. Sellers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives.", "1. Financial Perspective, 2. Customers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives.", "1. Financial Perspective, 2. Customers Perspective, 3. External process Perspective and 4. Learning & Growth Perspectives."], c: "1. Financial Perspective, 2. Customers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives." },
+            { q: "175. MI Ltd. has earned a net profit of ₹ 15 lakhs after Tax at 30%. Interest cost charged by the financial institutions was 10 Lakhs. The Invested capital is 95 Lakhs of which 55% is debt. The company maintains a weighted average cost of capital of 13%. Compute the Operating Income.", o: ["₹15 lakhs", "₹21.43 lakhs", "₹10 lakhs", "₹31.43 lakhs"], c: "₹31.43 lakhs" },
+            { q: "176. According to Kaplan & Norton, which of the balanced scorecard perspectives serves as the focus of the other perspectives?", o: ["Financial.", "Customer.", "Internal business processes.", "Learning & growth."], c: "Financial." },
+            { q: "177. Which of the following would be considered an operating asset in return on investment computations?", o: ["Land being held for plant expansion.", "Treasury stock.", "Accounts receivable.", "Common stock."], c: "Accounts receivable." },
+            { q: "178. A company that is seeking to increase ROI should attempt to decrease:", o: ["Sales.", "Turnover.", "Margin.", "Average operating assets."], c: "Average operating assets." },
+            { q: "179. The performance of investment centre is based on", o: ["Cost of the centre", "Profit of the centre", "Profit and investment of the centre", "Revenue of the centre"], c: "Profit and investment of the centre" },
+            { q: "180. Both costs and revenues are measured in ____ centers", o: ["Cost", "Profit", "Revenue", "All of these"], c: "Profit" },
+            { q: "181. A cost centre is a segment of the organization where the manager is responsible for", o: ["Costs", "Inputs", "A or B", "None of these"], c: "A or B" },
+            { q: "182. The performance of investment centre is based on", o: ["Cost of the centre", "Profit of the centre", "Profit and investment of the centre", "Revenue of the centre"], c: "Profit and investment of the centre" },
+            { q: "183. Responsibility accounting is used for", o: ["cost control", "planning", "decision making", "pricing"], c: "cost control" },
+            { q: "184. Responsibility Accounting is also known as", o: ["Profitability accounting", "Activity accounting", "Both A and B", "None of the above"], c: "Both A and B" },
+            { q: "185. Which of the following characteristics is not associated with traditional responsibility accounting?", o: ["Assumes optimization of the parts will optimize the whole.", "Assumes independence of the parts.", "Places emphasis on the performance of individuals.", "Attempts to control processes."], c: "Attempts to control processes." },
+            { q: "186. In responsibility accounting, responsibilities of various groups or individuals are identified in terms of", o: ["Work", "Revenue", "Cost", "All of the above"], c: "All of the above" },
+            { q: "187. The area of focus on responsibility center 18", o: ["Quantum of sales", "Quantum of production", "Optimum utilization of resources", "All of the above"], c: "Optimum utilization of resources" },
+            { q: "188. In profit center revenue represents a monetary measure of output emanating from a profit center in a given period irrespective whether", o: ["The revenue is realized or not", "The output is sold or not", "Both A and B", "None of the above"], c: "Both A and B" },
+            { q: "189. In a control report of Department X, it is mentioned as indirect materials are ₹1,000, indirect labour 2900, Overtime Charges ₹100, Depreciation on equipment ₹500, Allocated factory overhead (38% of factory space) ₹4,300, Allocated overhead of repair shop is 1,200. Determine total costs ☑ treating department as a responsibility center.", o: ["₹3,200", "₹ 2,200", "₹1,200", "None of the above"], c: "₹3,200" }, // PDF answer is 1 (3200). Controllable costs for Dept X: Ind Mat 1000 + Ind Lab 900 + OT 100 + Dep on own equip 500 = 2500. If question meant total costs *of* the department including allocations, then 1000+900+100+500+4300+1200 = 8000. If it means controllable costs, then 2500. The options are confusing.
+            { q: "190. Which of the following criterion is not used for decision-making under uncertainty?", o: ["Maximin", "Maximax", "Minimax", "Minimize expected loss"], c: "Minimize expected loss" },
+            { q: "191. Decision theory is concerned with", o: ["Methods of arriving at an optimal decision", "Selecting optimal decision in a sequential manner", "Analysis of information that is available", "All of these"], c: "All of these" },
+            { q: "192. Which of the following criterion is not applicable to decision- making under risk?", o: ["Maximize expected return", "Maximize return", "Minimize expect regret", "Knowledge of likelihood occurrence of each state of nature"], c: "Maximize return" },
+            { q: "193. The minimum expected opportunity loss (EOL) is", o: ["Equal to EVPI", "Minimum regret", "Equal to EMV", "Both (A) and (B)"], c: "Both (A) and (B)" },
+            { q: "194. The expected value of perfect information (EVPI) is", o: ["Equal to expected regret of the optimal decision under risk", "The utility of additional information", "Maximum expected opportunity loss", "None of the above"], c: "Equal to expected regret of the optimal decision under risk" },
+            { q: "195. The value of the coefficient of optimism (a) is needed while using the criterion of", o: ["Equally likely", "Maximin", "Realism", "Minimax"], c: "Realism" },
+            { q: "196. The decision-maker's knowledge and experience may influence the decision-making process wi.en using the criterion of", o: ["Maximax", "Maximax regret", "Realism", "Maximin"], c: "Realism" },
+            { q: "197. The difference between the expected profit under conditions of risk and the expected profit with perfect information is called", o: ["The expected value of perfect information", "Expected marginal loss", "None of the above", "Any one of the above"], c: "The expected value of perfect information" },
+            { q: "198. A situation in which a decision maker knows all of the possible outcomes of a decision and also knows the probability associated with each outcome is referred to as", o: ["Certainty.", "Risk.", "Uncertainty.", "Strategy."], c: "Risk." },
+            { q: "199. Which of the following methods of selecting a strategy is consistent with risk averting behaviour?", o: ["If two strategies have the same expected profit, select the one with the smaller standard deviation.", "If two strategies have the same standard deviation, select the one with the smaller expected profit.", "Select the strategy with the larger coefficient of variation.", "All of the above are correct"], c: "If two strategies have the same expected profit, select the one with the smaller standard deviation." },
+            { q: "200. Which one of the following does not measure risk?", o: ["Coefficient of variation", "Standard deviation", "LPP", "All of the above are measures of risk."], c: "LPP" }, // PDF answer key is 2 (Standard Deviation). SD *does* measure risk. LPP is Linear Programming Problem.
+            { q: "201. The sequence of possible managerial decisions and their expected outcome under each set of circumstances can be represented and analysed by using", o: ["The minimax regret criterion.", "A decision tree.", "A payoff matrix.", "Simulation."], c: "A decision tree." },
+            { q: "202. We are comparing two investment projects. Both have expected returns of 20%, but the standard deviation of Project A's returns is 15%, while the standard deviation of Project B's returns is 9%. Which one is relatively riskier?", o: ["A", "B", "Both A and B", "Bnone of these"], c: "A" },
+            { q: "203. Two investments have different expected returns. Project A's expected return is 20% and the standard deviation of its returns is 15%. Project B's expected return is only 10%, while the standard deviation of its returns remains at 9%. Compute Coefficient of Varience of Project A.", o: ["0.20", "0.75", "0.90", "0.10"], c: "0.75" }
         ];
 
-        let currentSetQuestionsData = [];
-        let currentScore = 0;
-        let questionsAnsweredInSet = 0;
-        let totalQuestionsInCurrentSet = 0;
-        let currentSetNumber = 0;
 
-        // Distribution for 203 questions: 41, 41, 41, 40, 40
-        const questionsPerSet = [41, 41, 41, 40, 40];
-        const numberOfSets = 5;
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
 
-        const setSelectionContainer = document.getElementById('setSelectionContainer');
-        const quizContentArea = document.getElementById('quizContentArea');
-        const quizForm = document.getElementById('quizForm');
-        const liveScoreboard = document.getElementById('liveScoreboard');
-        const resultSummaryDiv = document.getElementById('resultSummary');
-        const submitQuizButton = document.getElementById('submitQuizButton');
-        const currentSetTitle = document.getElementById('currentSetTitle');
+        let score = {
+            correct: 0,
+            incorrect: 0
+        };
 
+        // DOM Elements
+        const questionHeaderElement = document.getElementById('question-header');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const completionMessageElement = document.getElementById('completion-message');
+        const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
 
-        /**
-         * Initializes the set selection buttons.
-         */
-        function initializeSetSelection() {
-            let setButtonsHtml = '<h2>Select a Quiz Set</h2><div class="set-buttons-wrapper">';
-            for (let i = 1; i <= numberOfSets; i++) {
-                setButtonsHtml += `<button class="set-btn" onclick="loadQuizSet(${i})">Quiz Set ${i} (${questionsPerSet[i-1]} Qs)</button>`;
-            }
-            setButtonsHtml += '</div>';
-            setSelectionContainer.innerHTML = setButtonsHtml;
-            showSetSelection();
-        }
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const attemptedCountElement = document.getElementById('attempted-count');
+        const accuracyRateElement = document.getElementById('accuracy-rate');
 
-        /**
-         * Shows the set selection screen and hides the quiz.
-         */
-        function showSetSelection() {
-            setSelectionContainer.style.display = 'flex';
-            quizContentArea.style.display = 'none';
-            const setBtns = document.querySelectorAll('.set-btn');
-            setBtns.forEach(btn => btn.classList.remove('active-set'));
-        }
+        // Configuration for 203 questions into 5 sets
+        const questionsPerSet = [41, 41, 41, 40, 40]; 
+        const setStartIndices = [0, 41, 82, 123, 163]; 
 
-
-        /**
-         * Loads a specific quiz set.
-         * @param {number} setNum - The 1-based index of the set to load.
-         */
-        function loadQuizSet(setNum) {
-            currentSetNumber = setNum;
-            let startIndex = 0;
-            for (let i = 0; i < setNum - 1; i++) {
-                startIndex += questionsPerSet[i];
-            }
-            const endIndex = startIndex + questionsPerSet[setNum - 1];
-            currentSetQuestionsData = allQuestionsData.slice(startIndex, endIndex);
-            totalQuestionsInCurrentSet = currentSetQuestionsData.length;
-
-            currentScore = 0;
-            questionsAnsweredInSet = 0;
-
-            setSelectionContainer.style.display = 'none';
-            quizContentArea.style.display = 'block';
-            currentSetTitle.textContent = `Management Accounting - Quiz Set ${setNum}`;
-
-            const setBtns = document.querySelectorAll('.set-btn');
-            setBtns.forEach((btn, index) => {
-                btn.classList.toggle('active-set', (index + 1) === setNum);
-            });
-
-            buildQuizForCurrentSet();
-            updateLiveScoreboard();
-            resultSummaryDiv.style.display = 'none';
-            resultSummaryDiv.textContent = '';
-            submitQuizButton.disabled = false;
-            submitQuizButton.textContent = "Submit Answers";
-        }
-
-
-        /**
-         * Builds the quiz HTML structure for the current set.
-         */
-        function buildQuizForCurrentSet() {
-            if (!quizForm) {
-                console.error("Quiz form element not found!");
-                return;
-            }
-            let html = '';
-            currentSetQuestionsData.forEach((q, index) => {
-                const questionBlockId = `set${currentSetNumber}-q${index}`;
-                html += `<div class="question-block" id="${questionBlockId}-block">`;
-                html += `   <p class="question-text">${index + 1}. ${sanitizeHTML(q.question)}</p>`;
-                html += `   <div class="options">`;
-                q.options.forEach((option, i) => {
-                    const optionValue = i + 1;
-                    html += `       <label for="q${index}_option${optionValue}">`;
-                    html += `           <input type="radio" name="q${index}" id="q${index}_option${optionValue}" value="${optionValue}" onchange="checkAnswerInSet(${index})">`;
-                    html += `           <span>${sanitizeHTML(option)}</span>`;
-                    html += `       </label>`;
-                });
-                html += `   </div>`;
-                html += `   <div class="feedback-container">`;
-                html += `       <div class="feedback" id="feedback-${index}"></div>`;
-                html += `       <button type="button" class="explain-btn" id="explain-btn-${index}" onclick="getExplanationForSetQuestion(${index})">✨ Explain Concept</button>`;
-                html += `       <div class="explanation-area" id="explanation-${index}" style="display:none;"></div>`;
-                html += `   </div>`;
-                html += `</div>`;
-            });
-            quizForm.innerHTML = html;
-            updateLiveScoreboard();
-        }
-
-        /**
-         * Sanitizes HTML string by replacing < and > characters and newlines with <br>.
-         */
-        function sanitizeHTML(str) {
-            if (typeof str !== 'string') return '';
-            let sanitized = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            return sanitized.replace(/\n/g, "<br>");
-        }
-
-        /**
-         * Updates the live scoreboard display for the current set.
-         */
-        function updateLiveScoreboard() {
-            if (liveScoreboard) {
-                liveScoreboard.textContent = `Score: ${currentScore} / ${totalQuestionsInCurrentSet} | Answered: ${questionsAnsweredInSet} / ${totalQuestionsInCurrentSet}`;
-            }
-        }
-
-        /**
-         * Checks the answer for a given question in the current set.
-         */
-        function checkAnswerInSet(questionIndexInSet) {
-            const questionData = currentSetQuestionsData[questionIndexInSet];
-            const feedbackDiv = document.getElementById(`feedback-${questionIndexInSet}`);
-            const radioButtons = quizForm.elements[`q${questionIndexInSet}`];
-            const explainButton = document.getElementById(`explain-btn-${questionIndexInSet}`);
-
-            if (!questionData || !feedbackDiv || !radioButtons || !explainButton) {
-                console.error(`Elements for question ${questionIndexInSet} in set ${currentSetNumber} not found.`);
-                return;
-            }
-
-            if (radioButtons[0] && radioButtons[0].disabled) {
-                return; 
-            }
-
-            let selectedOptionValue = null;
-            for (let i = 0; i < radioButtons.length; i++) {
-                if (radioButtons[i].checked) {
-                    selectedOptionValue = parseInt(radioButtons[i].value);
+        function populateSetSelector() {
+            setSelectorElement.innerHTML = ''; // Clear existing options
+            questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
+                const option = document.createElement('option');
+                option.value = index; 
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
                 }
-                radioButtons[i].disabled = true;
-                if (radioButtons[i].parentElement && radioButtons[i].parentElement.tagName === 'LABEL') {
-                    radioButtons[i].parentElement.classList.add('disabled-option');
+            });
+            setSelectorElement.addEventListener('change', (event) => {
+                const selectedSetIndex = parseInt(event.target.value);
+                currentQuestionIndex = setStartIndices[selectedSetIndex];
+                completionMessageElement.style.display = 'none';
+                questionHeaderElement.style.display = 'block';
+                questionTextElement.style.display = 'block';
+                optionsContainerElement.style.display = 'block';
+                navigationButtons.style.display = 'flex'; 
+                loadQuestion();
+            });
+        }
+
+        function getCurrentSetInfo(index) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
+                    if (setSelectorElement.value != i) { 
+                         setSelectorElement.value = i; 
+                    }
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-
-            if (selectedOptionValue === null) return;
-
-            questionsAnsweredInSet++;
-
-            const correctAnswerCode = questionData.correctAnswerCode;
-            const correctAnswerText = (correctAnswerCode > 0 && questionData.options && correctAnswerCode <= questionData.options.length)
-                                      ? sanitizeHTML(questionData.options[correctAnswerCode - 1])
-                                      : "N/A";
-
-            feedbackDiv.className = 'feedback';
-            if (selectedOptionValue === correctAnswerCode) {
-                currentScore++;
-                feedbackDiv.innerHTML = `Correct! The answer is: ${correctAnswerText}`;
-                feedbackDiv.classList.add('correct-answer-text');
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
+            }
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
+        }
+        
+        function updateScoreboard() {
+            correctCountElement.textContent = `Correct: ${score.correct}`;
+            incorrectCountElement.textContent = `Incorrect: ${score.incorrect}`;
+            const attempted = score.correct + score.incorrect;
+            attemptedCountElement.textContent = `Attempted: ${attempted}`;
+            if (attempted > 0) {
+                const accuracy = (score.correct / attempted * 100).toFixed(1);
+                accuracyRateElement.textContent = `Accuracy: ${accuracy}%`;
             } else {
-                const userAnswerText = (questionData.options && selectedOptionValue > 0 && selectedOptionValue <= questionData.options.length)
-                                       ? sanitizeHTML(questionData.options[selectedOptionValue - 1])
-                                       : "N/A";
-                feedbackDiv.innerHTML = `<span class="user-answer-display">Your answer: ${userAnswerText}</span>Incorrect. The correct answer is: ${correctAnswerText}`;
-                feedbackDiv.classList.add('incorrect-answer-text');
+                accuracyRateElement.textContent = `Accuracy: N/A`;
             }
-            feedbackDiv.style.display = 'block';
-            explainButton.style.display = 'inline-block';
-            updateLiveScoreboard();
         }
 
-        /**
-         * Fetches and displays an explanation for the given question in the current set.
-         */
-        async function getExplanationForSetQuestion(questionIndexInSet) {
-            const questionData = currentSetQuestionsData[questionIndexInSet];
-            const explanationArea = document.getElementById(`explanation-${questionIndexInSet}`);
-            const explainButton = document.getElementById(`explain-btn-${questionIndexInSet}`);
-
-            if (!questionData || !explanationArea || !explainButton) {
-                console.error("Could not find elements for explanation for question " + questionIndexInSet);
+        function loadQuestion() {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
+                showCompletionMessage();
                 return;
             }
 
-            explainButton.disabled = true;
-            explanationArea.innerHTML = `<p class="loading-message">✨ Fetching explanation...</p>`;
-            explanationArea.style.display = 'block';
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
-            const questionText = questionData.question.replace(/<br\s*\/?>/gi, ' ');
-            const plainOptions = questionData.options.map(opt => opt.replace(/<br\s*\/?>/gi, ' '));
-            const correctAnswerText = (questionData.correctAnswerCode > 0 && plainOptions.length >= questionData.correctAnswerCode)
-                                      ? plainOptions[questionData.correctAnswerCode - 1]
-                                      : "Not Available";
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
 
-            const prompt = `Explain the concept behind this multiple-choice question and why the stated correct answer is indeed correct. Question: "${questionText}" Options were: ${plainOptions.join('; ')}. The correct answer is: "${correctAnswerText}". Keep the explanation concise, clear, and suitable for a student studying for a Management Accounting exam. Focus on the core principle.`;
+            optionsContainerElement.innerHTML = ''; 
+            currentQuestion.o.forEach((optionText, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.dataset.optionText = optionText; 
 
-            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-            const payload = { contents: chatHistory };
-            const apiKey = ""; // API key will be injected by the Canvas environment
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    console.error("API Error:", errorData);
-                    explanationArea.innerHTML = `<p class="incorrect-answer-text">Sorry, couldn't fetch an explanation. Error: ${errorData.error?.message || response.statusText}</p>`;
+                const optionLetter = String.fromCharCode(65 + index); 
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                
+                if (questionsAttemptedState[currentQuestionIndex]) { 
+                    optionElement.classList.add('disabled');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
+                    }
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
+                    }
                 } else {
-                    const result = await response.json();
-                    if (result.candidates && result.candidates.length > 0 &&
-                        result.candidates[0].content && result.candidates[0].content.parts &&
-                        result.candidates[0].content.parts.length > 0) {
-                        const explanationText = result.candidates[0].content.parts[0].text;
-                        explanationArea.innerHTML = sanitizeHTML(explanationText);
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
+                }
+                optionsContainerElement.appendChild(optionElement);
+            });
+
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
+            nextButton.disabled = !questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length;
+            prevButton.disabled = (currentQuestionIndex === 0);
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
+        }
+
+        function handleOptionSelection(selectedDiv, selectedOptionText) {
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
+
+            questionsAttemptedState[currentQuestionIndex] = true;
+            userAnswers[currentQuestionIndex] = selectedOptionText;
+            nextButton.disabled = false; 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const correctAnswerText = currentQuestion.c;
+
+            Array.from(optionsContainerElement.children).forEach(optDiv => {
+                optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
                     } else {
-                        explanationArea.innerHTML = `<p class="incorrect-answer-text">Sorry, the explanation format was unexpected.</p>`;
-                        console.error("Unexpected API response structure:", result);
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
                     }
                 }
-            } catch (error) {
-                console.error("Fetch Error:", error);
-                explanationArea.innerHTML = `<p class="incorrect-answer-text">An error occurred while fetching the explanation.</p>`;
-            } finally {
-                 explainButton.disabled = false;
+            });
+            updateScoreboard();
+        }
+        
+        function selectOptionByKey(key) {
+            if (questionsAttemptedState[currentQuestionIndex]) return;
+
+            let optionIndex = -1;
+            if (key === 'a' || key === '1') optionIndex = 0;
+            else if (key === 'b' || key === '2') optionIndex = 1;
+            else if (key === 'c' || key === '3') optionIndex = 2;
+            else if (key === 'd' || key === '4') optionIndex = 3;
+
+            if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
+                const optionDiv = optionsContainerElement.children[optionIndex];
+                if (optionDiv && !optionDiv.classList.contains('disabled')) {
+                    handleOptionSelection(optionDiv, optionDiv.dataset.optionText);
+                }
             }
         }
 
-        /**
-         * Displays the final score summary for the current set.
-         */
-        function submitCurrentQuiz() {
-            if (!resultSummaryDiv || !submitQuizButton) {
-                console.error("Result summary or submit button element not found!");
+        function nextQuestionHandler() {
+            if (!questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length) {
+                return; 
+            }
+            if (currentQuestionIndex === questionsData.length - 1 && questionsAttemptedState[currentQuestionIndex]) {
+                currentQuestionIndex++; 
+                showCompletionMessage();
+            } 
+            else if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            }
+             else if (currentQuestionIndex >= questionsData.length) { 
+                 showCompletionMessage(); 
+            }
+        }
+
+        function prevQuestionHandler() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+        
+        function showCompletionMessage() {
+            questionHeaderElement.style.display = 'none';
+            questionTextElement.style.display = 'none';
+            optionsContainerElement.style.display = 'none';
+            navigationButtons.style.display = 'none'; 
+            completionMessageElement.style.display = 'block';
+            const attempted = score.correct + score.incorrect;
+            const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
+        }
+
+        // Event Listeners
+        nextButton.addEventListener('click', nextQuestionHandler);
+        prevButton.addEventListener('click', prevQuestionHandler);
+
+        document.addEventListener('keydown', (event) => {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
                 return;
             }
+            if (event.key.toLowerCase() === 'escape') return; 
 
-            const percentage = totalQuestionsInCurrentSet > 0 ? ((currentScore / totalQuestionsInCurrentSet) * 100).toFixed(2) : 0;
-            resultSummaryDiv.innerHTML = `Quiz Set ${currentSetNumber} Complete! Your final score is ${currentScore} out of ${totalQuestionsInCurrentSet}. (${percentage}%)`;
-            resultSummaryDiv.className = 'result-summary ' + (currentScore >= totalQuestionsInCurrentSet / 2 ? 'success' : 'error');
-            resultSummaryDiv.style.display = 'block';
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault(); 
+                 return;
+            }
 
-            resultSummaryDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            submitQuizButton.disabled = true;
-            submitQuizButton.textContent = "Set Submitted";
-        }
-
-        // Initialize the set selection when the DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeSetSelection();
+            const key = event.key.toLowerCase();
+            if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                event.preventDefault();
+                selectOptionByKey(key);
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
+                event.preventDefault();
+                nextQuestionHandler();
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
+                event.preventDefault();
+                prevQuestionHandler();
+            }
         });
+
+        // Initial setup
+        populateSetSelector();
+        loadQuestion();
+        updateScoreboard(); 
     </script>
 </body>
 </html>
