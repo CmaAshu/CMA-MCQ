@@ -52,27 +52,59 @@
             text-align: left;
         }
 
+        /* --- Glowing Flashing Red Title --- */
+        @keyframes glowing-flashing-red {
+            0%, 100% {
+                color: #FF4136; /* Bright Red */
+                text-shadow: 0 0 3px #FF4136, 0 0 5px #FF4136, 0 0 7px #FF6347;
+                opacity: 1;
+            }
+            50% {
+                color: #FF6347; /* Lighter Red/Orange for flash */
+                text-shadow: 0 0 5px #FF6347, 0 0 8px #FF6347, 0 0 10px #FF8C69;
+                opacity: 0.85;
+            }
+        }
+
         .main-title {
             font-size: 2.6rem;
             font-weight: 800;
-            color: #4285F4; /* Google Blue */
             letter-spacing: -0.5px;
             margin: 0;
+            animation: glowing-flashing-red 1.8s infinite ease-in-out; 
         }
+        /* --- End Glowing Flashing Red Title --- */
 
         .subtitle {
             font-size: 1.05rem;
             color: #5f6368; /* Google secondary text gray */
             margin-top: 5px;
-            margin-bottom: 8px; /* Added margin below subtitle */
+            margin-bottom: 8px; 
+        }
+
+        /* --- Glowing Flashing Royal Blue Description --- */
+        @keyframes glowing-flashing-royal-blue {
+            0%, 100% {
+                color: #4169E1; /* Royal Blue */
+                text-shadow: 0 0 2px #4169E1, 0 0 4px #6495ED; /* Subtle glow */
+                opacity: 1;
+            }
+            50% {
+                color: #6495ED; /* Lighter Royal Blue for flash */
+                text-shadow: 0 0 3px #6495ED, 0 0 5px #87CEFA; /* Slightly more pronounced glow */
+                opacity: 0.9;
+            }
         }
 
         .description-paragraph {
             font-size: 0.95rem;
-            color: #5f6368;
-            margin-top: 8px; /* Space above this paragraph */
+            /* color: #5f6368; Replaced by animation */
+            margin-top: 8px; 
             line-height: 1.5;
+            font-weight: 600; /* Bold text */
+            animation: glowing-flashing-royal-blue 2s infinite ease-in-out; /* Apply animation */
         }
+        /* --- End Glowing Flashing Royal Blue Description --- */
 
         .group-container {
             width: 100%;
@@ -98,41 +130,40 @@
         }
 
         .quiz-card {
-            background-color: #ffffff; /* White card background */
+            background-color: #ffffff; 
             border-radius: 10px;
             padding: 25px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); /* Softer card shadow */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); 
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Align items to start to accommodate image */
-            border: 1px solid #dadce0; /* Google-style light border */
+            justify-content: flex-start; 
+            border: 1px solid #dadce0; 
         }
 
         .quiz-card:hover {
             transform: translateY(-7px);
-            box-shadow: 0 10px 25px rgba(66, 133, 244, 0.15); /* Blueish glow on hover */
+            box-shadow: 0 10px 25px rgba(66, 133, 244, 0.15); 
         }
 
         .quiz-card-thumbnail {
             width: 100%;
-            height: auto; /* Display full intrinsic height, scaled by width */
-            /* removed max-height and object-fit: cover */
-            border-radius: 6px; /* Rounded corners for the image */
-            margin-bottom: 15px; /* Space below image */
+            height: auto; 
+            border-radius: 6px; 
+            margin-bottom: 15px; 
         }
 
         .quiz-card h3 {
             font-size: 1.4rem;
             font-weight: 600;
             color: #FBBC05; /* Google Yellow */
-            margin-bottom: 10px; /* Adjusted margin */
+            margin-bottom: 10px; 
         }
 
         .quiz-card p {
             font-size: 0.95rem;
-            color: #5f6368; /* Google secondary text gray */
+            color: #5f6368; 
             margin-bottom: 20px;
             flex-grow: 1;
         }
@@ -146,7 +177,7 @@
             text-decoration: none;
             font-weight: 500;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: auto; /* Push button to the bottom if card content is short */
+            margin-top: auto; 
         }
 
         .quiz-card a:hover {
@@ -158,7 +189,7 @@
             margin-top: 30px;
             padding: 15px;
             font-size: 0.9em;
-            color: #5f6368; /* Google secondary text gray */
+            color: #5f6368; 
             text-align: center;
             width: 100%;
             max-width: 900px;
@@ -336,7 +367,7 @@
         <p>
             Developed with
             <svg class="heart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-            by <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank" rel="noopener noreferrer">Ashu</a>
+            by <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank" rel="noopener noreferrer">Ash🔱tosh</a>
         </p>
         <p class="jai-hind">जय हिन्द <img src="indian-flag.png" alt="Indian Flag"></p>
     </footer>
