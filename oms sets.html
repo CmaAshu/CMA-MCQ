@@ -3,880 +3,813 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Operations Management & Strategic Management Quiz - Select a Set</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>MCQ Quiz - Operations Management and Strategic Management</title>
     <style>
         body {
-            font-family: 'Inter', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f2f5;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-        }
-        .developer-credit {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #e9ecef;
-            border-bottom: 1px solid #d1d9e0;
-            margin-bottom: 15px;
-        }
-        .developer-credit a {
-            display: inline-flex;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5; /* Light grey background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            text-decoration: none;
-            color: #0056b3;
-            font-size: 0.9em;
-            font-weight: 500;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: background-color 0.2s ease-in-out;
+            min-height: 100vh;
         }
-        .developer-credit a:hover {
-            background-color: #d1d9e0;
-            text-decoration: none;
-        }
-        .developer-credit svg {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-            fill: currentColor;
-        }
-        .quiz-container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px 25px;
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.07);
-        }
-        h1 {
-            text-align: center;
-            color: #0056b3;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-        .set-selection-container {
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: #e9ecef;
+
+        #scoreboard-container {
+            background: #8000ff; /* Purple */
+            color: #ffffff;
+            padding: 15px 20px;
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
             text-align: center;
         }
-        .set-selection-container h2 {
+        
+        #set-navigation-container {
+            background: #0051ff; /* Blue */
+            color: #ffffff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
             margin-bottom: 15px;
-            font-size: 1.3em;
-            color: #343a40;
-        }
-        .set-button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            margin: 5px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .set-button:hover {
-            background-color: #0056b3;
-        }
-        .set-button.active-set {
-            background-color: #28a745;
-            font-weight: bold;
-        }
-        .set-button:disabled {
-            background-color: #6c757d;
-            cursor: not-allowed;
-        }
-        .live-scoreboard {
             text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            padding: 12px;
-            margin-bottom: 25px;
-            background-color: #e9ecef;
-            border-radius: 6px;
-            color: #0056b3;
-            border: 1px solid #d1d9e0;
         }
-        .question-block {
-            margin-bottom: 28px;
-            padding-bottom: 22px;
-            border-bottom: 1px dashed #d4dae0;
-        }
-        .question-block:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        .question-text {
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            color: #2c3e50;
-        }
-        .options label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1em;
-            cursor: pointer;
-            padding: 10px 12px;
-            border-radius: 6px;
-            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            border: 1px solid #e0e0e0;
-            background-color: #f9f9f9;
-        }
-        .options label:hover:not(.disabled-option) {
-            background-color: #e9ecef;
-            border-color: #adb5bd;
-        }
-        .options input[type="radio"] {
-            margin-right: 12px;
-            vertical-align: middle;
-            transform: scale(1.1);
-        }
-        .options input[type="radio"]:disabled + span {
-            color: #6c757d;
-        }
-        .options label.disabled-option {
-            cursor: default;
-            background-color: #f0f0f0;
-            color: #6c757d;
-        }
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 14px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.15em;
+
+        #scoreboard {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.95em;
             font-weight: 500;
+        }
+
+        #scoreboard span {
+            margin: 0 10px;
+        }
+        #scoreboard .correct { color: #d4edda; } 
+        #scoreboard .incorrect { color: #f8d7da; } 
+        #scoreboard .accuracy { color: #e0e0e0; } 
+
+
+        #set-navigation-container label {
+            margin-right: 10px;
+            font-weight: 500;
+            color: #ffffff; 
+        }
+
+        #set-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #fff; 
+            color: #333; 
+        }
+
+        #quiz-container {
+            background: #FFC300; /* Yellow */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            color: #333; 
+        }
+
+        #question-header {
+            font-size: 0.9em;
+            color: #555; 
+            margin-bottom: 15px;
+            text-align: right;
+            border-bottom: 1px solid #dba700; /* Darker yellow for border */
+            padding-bottom: 10px;
+        }
+
+        #question-text {
+            font-size: 1.15em;
+            margin-bottom: 25px;
+            color: #2c3e50; 
+            font-weight: 500;
+        }
+
+        .options-container {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            background: #fffde7; /* Lighter Yellow/Beige */
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 6px;
             cursor: pointer;
-            margin-top: 35px;
-            transition: background-color 0.25s, opacity 0.25s;
+            border: 1px solid #fff9c4; 
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            color: #333; 
+        }
+
+        .option:not(.disabled):hover {
+            background: #fff59d; /* Darker Lighter Yellow on hover */
+            border-color: #fff176;
+        }
+
+        .option.selected { 
+            font-weight: 500; 
+            border-color: #0051ff; /* Blue border for selected */
+            background-color: #e0efff; 
+        }
+        
+        .option.correct-answer {
+            background: #d4edda !important; 
+            border-color: #c3e6cb !important;
+            color: #155724 !important; 
+        }
+
+        .option.incorrect-selection {
+            background: #f8d7da !important; 
+            border-color: #f5c6cb !important;
+            color: #721c24 !important; 
+        }
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #495057; 
+            background-color: #d1e7dd; 
+            padding: 3px 7px;
+            border-radius: 4px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .option.selected .option-letter {
+            background-color: #0051ff; 
+            color: white;
+        }
+
+        .option.correct-answer .option-letter {
+            background-color: #28a745 !important; 
+            color: white !important;
+        }
+        .option.incorrect-selection .option-letter {
+            background-color: #dc3545 !important; 
+            color: white !important;
+        }
+
+
+        #navigation-buttons {
+            display: flex;
+            justify-content: space-between; 
+            align-items: center;
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .submit-btn:hover:not(:disabled) {
-            background-color: #0056b3;
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3; 
         }
-        .submit-btn:disabled {
-            background-color: #6c757d;
-            opacity: 0.7;
+
+        button:disabled {
+            background-color: #cccccc; 
             cursor: not-allowed;
+            box-shadow: none;
         }
-        .result-summary {
+        #completion-message {
+            text-align: center;
+            font-size: 1.6em;
+            color: #28a745; 
+            padding: 30px;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            border-radius: 8px;
+        }
+        #instagram-link {
             margin-top: 30px;
-            padding: 20px;
-            border-radius: 6px;
-            font-size: 1.25em;
             text-align: center;
-            font-weight: 600;
+            font-size: 1.1em;
+            color: #555;
         }
-        .result-summary.success {
-            background-color: #d1e7dd;
-            color: #0f5132;
-            border: 1px solid #badbcc;
+        #instagram-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
         }
-        .result-summary.error {
-            background-color: #f8d7da;
-            color: #842029;
-            border: 1px solid #f5c2c7;
+        #instagram-link a:hover {
+            text-decoration: underline;
         }
-        .feedback-container {
-            margin-top: 10px;
-        }
-        .feedback {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 0.95em;
-            display: none;
-            border-width: 1px;
-            border-style: solid;
-        }
-        .feedback.correct-answer-text {
-            color: #0f5132;
-            background-color: #d1e7dd;
-            border-color: #badbcc;
-            font-weight: 500;
-        }
-        .feedback.incorrect-answer-text {
-            color: #842029;
-            background-color: #f8d7da;
-            border-color: #f5c2c7;
-            font-weight: 500;
-        }
-        .feedback .user-answer-display {
-            display: block;
-            font-style: italic;
-            font-size: 0.9em;
-            margin-bottom: 4px;
-        }
-        .source-note {
-            font-size: 0.85em;
-            color: #6c757d;
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .explain-btn {
-            background-color: #17a2b8;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-top: 5px;
-            transition: background-color 0.2s;
-            display: none;
-        }
-        .explain-btn:hover {
-            background-color: #138496;
-        }
-        .explain-btn:disabled {
-            background-color: #6c757d;
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-        .explanation-area {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #eef7ff;
-            border: 1px solid #cce0f5;
-            border-radius: 4px;
-            font-size: 0.9em;
-            white-space: pre-wrap;
-        }
-        .loading-message {
-            font-style: italic;
-            color: #0056b3;
-        }
-        #quizArea {
-            min-height: 100px;
-        }
+
         @media (max-width: 600px) {
-            .developer-credit a { font-size: 0.8em; }
-            .developer-credit svg { width: 18px; height: 18px; }
-            .quiz-container { margin: 10px; padding: 15px; }
-            h1 { font-size: 1.5em; }
-            .set-selection-container h2 { font-size: 1.1em; }
-            .set-button { padding: 8px 12px; font-size: 0.9em; }
-            .live-scoreboard { font-size: 1em; padding: 10px; }
-            .question-text { font-size: 1em; }
-            .options label { font-size: 0.95em; padding: 8px 10px; }
-            .submit-btn, .explain-btn { padding: 12px 15px; font-size: 1.05em; }
-            .result-summary { font-size: 1.1em; padding: 15px; }
+            #scoreboard-container,
+            #set-navigation-container, 
+            #quiz-container {
+                padding: 15px;
+            }
+            #scoreboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            #scoreboard span {
+                margin: 3px 0;
+            }
+            #question-text {
+                font-size: 1.05em;
+            }
+            .option {
+                padding: 10px;
+            }
+            button {
+                padding: 10px 15px; 
+                font-size: 14px;
+            }
+            #navigation-buttons {
+                flex-direction: column; 
+            }
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
+            }
+            #set-selector {
+                width: 100%;
+                margin-top: 5px;
+            }
+            #set-navigation-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="developer-credit">
-        <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank" title="Developer's Instagram Profile">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.784.305-1.455.718-2.126 1.387C1.337 2.706.926 3.374.62 4.144.326 4.91.128 5.78.072 7.054C.015 8.333 0 8.74 0 12s.015 3.667.072 4.947c.056 1.273.26 2.14.548 2.908.306.78.717 1.456 1.387 2.126.67.67 1.344 1.079 2.125 1.384.763.295 1.633.499 2.907.554C8.333 23.985 8.74 24 12 24s3.667-.015 4.947-.072c1.273-.055 2.14-.26 2.908-.554.78-.305 1.456-.718 2.126-1.384.67-.67 1.079-1.344 1.384-2.125.295-.763.499-1.633.554-2.907C23.985 15.667 24 15.26 24 12s-.015-3.667-.072-4.947c-.055-1.273-.26-2.14-.554-2.908-.305-.78-.718-1.455-1.384-2.125C21.294 1.337 20.626.926 19.86.62c-.763-.295-1.633-.499-2.907-.548C15.667.015 15.26 0 12 0zm0 2.16c3.203 0 3.585.012 4.85.07 1.17.05 1.805.248 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.265.07 1.646.07 4.85s-.013 3.585-.07 4.85c-.053 1.17-.248 1.805-.413 2.227-.217.562-.477.96-.896 1.382-.42.419-.819.679-1.381.896-.422-.164-1.057.36-2.227.413-1.265.057-1.646.07-4.85.07s-3.585-.013-4.85-.07c-1.17-.053-1.805-.248-2.227-.413-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.819-.896-1.381-.164-.422-.36-1.057-.413-2.227-.057-1.265-.07-1.646-.07-4.85s.013-3.585.07-4.85c.053-1.17.248-1.805.413-2.227.217-.562.477-.96.896-1.382.42-.419.819-.679 1.381-.896.422-.164 1.057.36 2.227-.413C8.415 2.172 8.797 2.16 12 2.16zm0 5.482A4.36 4.36 0 1012 16.36a4.36 4.36 0 000-8.718zm0 7.218a2.858 2.858 0 110-5.716 2.858 2.858 0 010 5.716zM18.365 5.23A1.24 1.24 0 1017.12 6.47a1.24 1.24 0 001.245-1.24z"></path></svg>
-            <span>Developed by Ashu</span>
-        </a>
+    <div id="scoreboard-container">
+        <div id="scoreboard">
+            <span id="correct-count">Correct: 0</span>
+            <span id="incorrect-count">Incorrect: 0</span>
+            <span id="attempted-count">Attempted: 0</span>
+            <span id="accuracy-rate">Accuracy: N/A</span>
+        </div>
     </div>
-    <div class="quiz-container">
-        <h1>Operations Management & Strategic Management Quiz</h1>
 
-        <div id="setSelectionContainer" class="set-selection-container">
-            <h2>Select a Quiz Set</h2>
+    <div id="set-navigation-container">
+        <label for="set-selector">Switch to Set:</label>
+        <select id="set-selector"></select>
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-header">Loading quiz...</div>
+        <div id="question-text"></div>
+        <div class="options-container" id="options-container">
             </div>
+        <div id="navigation-buttons">
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
+        </div>
+        <div id="completion-message" style="display:none;">
+            Quiz Completed! Thank you for participating.
+        </div>
+    </div>
 
-        <div id="quizArea" style="display:none;"> <div id="liveScoreboard" class="live-scoreboard">Score: 0 / 0 | Answered: 0 / 0</div>
-            <p class="source-note">All questions and options are sourced from the "Paper9.pdf" document.</p>
-            <form id="quizForm">
-                </form>
-            <button type="button" class="submit-btn" id="submitButton" onclick="submitCurrentQuiz()">Submit Answers</button>
-            <div id="resultSummary" class="result-summary" style="display:none;"></div>
-        </div>
-        <div id="initialMessage" class="text-center p-5 bg-gray-100 rounded-md">
-            <p class="text-lg text-gray-700">Please select a quiz set above to begin.</p>
-        </div>
+    <div id="instagram-link">
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh </a>
     </div>
 
     <script>
-        // Array to hold all question data from Paper9.html
-        const allQuestionsData = [
-            { question: "Om deals with", options: ["both tangible and intangible product", "tangible product", "intangible services", "tangible product and intangible services"], correctAnswerCode: 4 },
-            { question: "one of the example of pure service:", options: ["teaching", "product service", "repairing service", "All of the above"], correctAnswerCode: 1 },
-            { question: "Objectives of operations management can be categorized into:", options: ["two", "three", "four", "seven"], correctAnswerCode: 1 },
-            { question: "One of the objective of operation management is:", options: ["product service", "Customer service", "planning", "None of them"], correctAnswerCode: 2 },
-            { question: "principal function of customer service are:", options: ["manufacture-supply-transport-service", "manufacture-transport-service-supply", "mafucture-service-transport- supply", "manufacture-transport-supply-service"], correctAnswerCode: 4 },
-            { question: "Conversion of inputs into outputs is known as:", options: ["Application of technology", "Operations management", "Manufacturing products", "Product."], correctAnswerCode: 2 },
-            { question: "The desired objective of Production and Operations Management is:", options: ["Use cheap machinery to produce", "To train unskilled workers to manufacture goods perfectly", "Optimal utilisation of available resources", "To earn good profits."], correctAnswerCode: 3 },
-            { question: "Which one of the following is not an activity under productions and operations management?", options: ["Location of facilities", "Plant layouts and Material Handling;", "Product Design;", "Market penetration;"], correctAnswerCode: 4 },
-            { question: "Operations management is concerned essentially with the utilization of resources. Utilisation of resources means:", options: ["Obtaining maximum effect from resources", "Minimising loss of resources,", "Minimising underutilisation or waste of resources", "All the above"], correctAnswerCode: 4 },
-            { question: "Which one of the following is not an objective of Operations Management?", options: ["To satisfy customers by providing right thing at the right place at the right time", "To satisfy customers by providing right thing at the right price at the right time", "To satisfy customers by providing right thing at the right price at right quality", "To satisfy customers by providing right thing with right design with desired features"], correctAnswerCode: 2 },
-            { question: "Productions and Operations Management distinguishes itself from other functions such as personnel, marketing, finance, etc. mainly by its primary concern:", options: ["Conversion by using intellectual properties of a concern;", "Conversion by using physical resources", "Conversion by using services provided by other functions", "Conversion by using machineries"], correctAnswerCode: 2 },
-            { question: "Four dimensions of competitiveness that measure the effectiveness of the operations function are:", options: ["Cost, Quality, Dependability as a supplier, Flexibility", "Price, worth, Dependability as a supplier, Productivity", "Quantity, Quality, Price, Worth", "Cost, Quality, Quantity, Price"], correctAnswerCode: 1 },
-            { question: "Generally the size of the order for production in Job production is:", options: ["Small", "Large", "Medium", "Very large"], correctAnswerCode: 1 },
-            { question: "The desired objective of Production and Operations Management is:", options: ["Use cheap machinery to produce", "To train unskilled workers to manufacture goods perfectly", "Optimal utilisation of available resources", "To earn good profits."], correctAnswerCode: 3 },
-            { question: "To decide work load for men and machines:", options: ["Medium range forecasting is used", "Short term forecasting is used", "Long range forecasting is used", "A combination of long range and medium range forecasting is used."], correctAnswerCode: 2 },
-            { question: "The act of assessing the future and make provisions for it is known as:", options: ["Planning", "Forecasting", "Assessment", "Scheduling"], correctAnswerCode: 2 },
-            { question: "The time horizon selected for forecasting depends on:", options: ["The salability of the product", "The selling capacity of Salesman", "Purpose for which forecast is made", "Time required for production cycle"], correctAnswerCode: 3 },
-            { question: "Important factor in forecasting production is:", options: ["Environmental changes", "Available capacity of machines", "Disposable income of the consumer", "Changes in the preference of the consumer."], correctAnswerCode: 2 },
-            { question: "Application of technology or process to the raw material to add use value is known as:", options: ["Product", "Production", "Application of technology", "Combination of technology and process."], correctAnswerCode: 2 },
-            { question: "In Production by disintegration the material undergoes:", options: ["Change in economic value only", "Change in physical and chemical characteristics", "Change in technology only", "None of the above"], correctAnswerCode: 2 },
-            { question: "Use of any process or procedure designed to transform a set of input elements into a set of output elements is known as:", options: ["Transformation process", "Transformation of input to output", "Production", "Technology change."], correctAnswerCode: 3 },
-            { question: "Which one of the following is the external factor impacting effective capacity?", options: ["Product standards", "Scheduling", "Motivation", "Product mix"], correctAnswerCode: 1 },
-            { question: "Increasing capacity utilisation depends on:", options: ["Ability to increase design capacity", "Ability to increase effective capacity", "Ability to increase capacity chunk", "Ability to increase resource endowments"], correctAnswerCode: 2 },
-            { question: "Which one of the following is not within the purview of Long Range planning?", options: ["Building a new facility", "Expanding the existing facility", "Moving to a new facility due to forecasted changes in demand", "Preparation of overtime budget for workforce"], correctAnswerCode: 4 },
-            { question: "The basic difference between slack and float time is that:", options: ["A slack is used with reference to events whereas float is used with reference to activities", "A float is used with reference to events whereas slack is used with reference to activities", "A slack is used with reference to critical path whereas float is used with reference to non-critical paths", "A slack is used with reference to scheduling whereas float is used with reference to crashing"], correctAnswerCode: 1 },
-            { question: "Which one of the following is not a factor in determining Economic Lot Size for manufacturing?", options: ["Production Schedule", "Usage rate", "Manufacturing Cost", "Cost of Deterioration"], correctAnswerCode: 1 },
-            { question: "Which one of the following is not a factor in planning service capacity?", options: ["Period of production", "Need to be near customers", "Inability to store services", "Degree of volatility of demand"], correctAnswerCode: 1 },
-            { question: "It is extra capacity used to offset demand uncertainty. This is:", options: ["Capacity Cushion = Actual output - Demand", "Capacity Cushion Capacity- Expected demand", "Capacity Tolerance Effective capacity - Actual output", "Capacity Cushion = Capacity - Effective Capacity"], correctAnswerCode: 2 },
-            { question: "Which one of the following is correct?", options: ["Capacity decision does not affect product lead times", "Capacity decisions must link backward & forward channels in the whole operation chain", "Expansionist strategy does not help a firm to reduce its costs and compete on price", "Wait & see strategy improves market share over the long run"], correctAnswerCode: 2 },
-            { question: "Leading capacity strategy:", options: ["Builds capacity in anticipation of increasing future demand", "Faces increasing demand with the undeutilised current capacity", "Builds capacity in anticipation of increasing product varieties", "Faces increasing consumption with unsold stock"], correctAnswerCode: 1 },
-            { question: "Which one of the following does not reduce effective capacity?", options: ["Paperwork required by Government regulatory agencies", "Pollution standard on products", "Efficient distributors", "Higher labour turnover"], correctAnswerCode: 3 },
-            { question: "Which one of the following is an operational factor that determines effective capacity?", options: ["Product standards", "Quality capabilities", "Learning rates", "Quality assurance"], correctAnswerCode: 4 },
-            { question: "Which one of the following is not a factor impacting effective capacity?", options: ["The design of facilities", "Product mix", "Layout of the work space", "Market share"], correctAnswerCode: 4 },
-            { question: "Benefits of high utilisation are realised only when:", options: ["Effective capacity is fully achieved", "There is high efficiency", "Breakdown maintenances are minimum", "There is demand for output"], correctAnswerCode: 4 },
-            { question: "Key to improving capacity utilisation is:", options: ["To increase effective capacity", "To increase design capacity", "To decrease effective capacity", "To increase maintenance frequency of the capacity"], correctAnswerCode: 1 },
-            { question: "Utilisation of an operation facility is measured by:", options: ["(Effective Capacity)/(Design Capacity)*100", "(Actual Output)/(Design Cpacity)*100", "(Actual output)/(Effective Capacity)*100", "(Design Capacity)/(Effective Capacity)* 100"], correctAnswerCode: 2 },
-            { question: "Efficiency of an operation facility is measured by:", options: ["(Effective Capacity)/(Design Capacity)*100", "(Actual Output)/(Design Cpacity)*100", "(Actual output)/(Effective Capacity)* 100", "(Design Capacity)/(Effective Capacity)*"], correctAnswerCode: 3 },
-            { question: "Out of Balance Capacity occurs:", options: ["When there is a gap between supply and demand", "When there is a gap between long term supply and long term demand", "When there is a gap between current and desired capacity", "When there is a gap between actual supply and EOQ supply"], correctAnswerCode: 3 },
-            { question: "The goal of capacity planning of an organisation is:", options: ["To achieve a match between its long term supply capabilities and the actual level of long term demand", "To achieve a level of operation so that supply failure could be maintained at ≤ 1% of long term demand", "To achieve a level of operation so that periodic mean operation remain within 95% of long term demand", "To achieve a match between its long term supply capabilities and the predicted level of long term demand"], correctAnswerCode: 4 },
-            { question: "Capacity refers to:", options: ["An upper limit or ceiling on the load that an operating unit can handle", "A range from a lower limit to an upper limit of load through which an operating unit could operate", "A limit on the load that an operating unit could handle only with 5% deviation", "An upper limit of load which an operating unit could break during emergency"], correctAnswerCode: 1 },
-            { question: "This denotes the highest output established by the actual trial runs of the productive machines installed. This is:", options: ["Design capacity", "Rated capacity", "Effective capacity", "Licensed capacity"], correctAnswerCode: 2 },
-            { question: "Which one of the following is not a key question in Capacity planning?", options: ["What kind of capacity is needed?", "What kind of facilities are needed?", "How much capacity is needed to match demand?", "When the capacity is it needed?"], correctAnswerCode: 2 },
-            { question: "Capacity Utilisation is:", options: ["The degree to which a resource such as equipment, space or the workforce is currently being used", "The degree to which a resource such as equipment, space or the workforce is currently being held as reserve", "The degree to which a resource such as equipment, space or the workforce is currently being used for achieving installed capacity", "The degree to which a resource such as equipment, space or the workforce is currently being used for achieving optimisation"], correctAnswerCode: 1 },
-            { question: "Actual Output cannot exceed effective capacity because of :", options: ["Problems of scheduling & balancing operations", "Rejection due to quality problems", "Need for periodic maintenance of equipment", "Changing product mix"], correctAnswerCode: 2 },
-            { question: "Need for periodic maintenance of equipment always makes", options: ["Licensed capacity > Installed capacity", "Installed capacity < Effective capacity", "Design capacity > Effective capacity", "Licensed capacity = Effective capacity"], correctAnswerCode: 3 },
-            { question: "If design capacity is reduced by allowances such as personal time and maintenance, the resultant capacity is:", options: ["Design capacity", "Effective capacity", "Installed capacity", "Licensed capacity"], correctAnswerCode: 2 },
-            { question: "This capacity is the maximum rate of output achieved under ideal conditions. This is:", options: ["Design capacity", "Effective capacity", "Installed capacity", "Licensed capacity"], correctAnswerCode: 1 },
-            { question: "Which one of the following is an output measure of Capacity?", options: ["Total capacity of AKC Motors in India is 300000 machine hours in a year", "Total Capacity of Z steel plant is 720000labour hours in a year", "The Aluminum giant XYZ produces 30mt in a day", "The oil conglomerate ABC has 80000gallon refinery size"], correctAnswerCode: 3 },
-            { question: "Which one of the following is a feature of input measure of capacity?", options: ["It is less applicable when the amount of customization and variety in the product mix increases", "It is used mainly in case of high volume processes such as car manufacturers", "Capacity is usually expressed as number of workstations or number of workers", "It is applicable when the firm provides a relatively small number of standardized services and products"], correctAnswerCode: 3 },
-            { question: "Which one of the following is not a feature of output measure of capacity?", options: ["It is applicable when the firm provides a relatively small number of standardized services and products", "It is used mainly in case of high volume processes such as car manufacturers", "It is generally used for low volume, flexible processes such as furniture maker", "It is less applicable when the amount of customization and variety in the product mix increases"], correctAnswerCode: 3 },
-            { question: "Which one of the following is a feature of wait and see strategy?", options: ["It facilitates a firm to compete on price", "It guards against inaccurate assumptions regarding competition", "It might increase the firm's market share", "It results economies of scale"], correctAnswerCode: 2 },
-            { question: "Which one of the following is not a feature of expansionist strategy?", options: ["It minimizes the chance of sales lost to insufficient capacity", "It stays ahead of demand", "It involves large infrequent jumps in capacity", "It lags behind demand"], correctAnswerCode: 4 },
-            { question: "The capacity cushion is:", options: ["The amount of licensed capacity a process uses to handle sudden increase in demand", "The amount of installed capacity a process uses to handle sudden increase in demand", "The amount of declared capacity a process uses to handle sudden increase in demand", "The amount of reserve capacity a process uses to handle sudden increase in demand"], correctAnswerCode: 4 },
-            { question: "Capacity decisions are strategic because:", options: ["Capacity decisions affect financing costs", "Capacity decisions can affect facility location", "Capacity at appropriate level facilitates easier management of product life cycle", "Capacity decisions can affect competitiveness"], correctAnswerCode: 4 },
-            { question: "Capacity decisions often involve", options: ["Long term irrevocable commitment of resources", "Short term irrevocable commitment of resources", "Long term revocable commitment of resources", "(b) & (c) above"], correctAnswerCode: 1 },
-            { question: "Long-term capacity plans are concerned with:", options: ["Overtime budgets", "Investments in new facilities", "Work force size", "Inventories"], correctAnswerCode: 2 },
-            { question: "Capacity planning procedure does not involve which one of the following?", options: ["Assess company situation and environment to analyse historical demand", "Translate future predictions of demand into physical capacity requirements", "Determine economic effects of alternative plans", "Selecting a capacity alternative most suited to achieve strategic mission of the firm."], correctAnswerCode: 1 },
-            { question: "Which one of the following is not affected by Capacity decisions?", options: ["Product lead times", "Operating Costs", "Customer Responsiveness", "Resource optimisation"], correctAnswerCode: 4 },
-            { question: "Capacity planning is a", options: ["Long term makeover decision that establishes a firm's overall level of resources", "Long term realignment decision that establishes a firm's overall level of resources", "Long term restructuring decision that establishes a firm's overall level of resources", "Long term strategic decision that establishes a firm's overall level of resources"], correctAnswerCode: 4 },
-            { question: "Which one of the following is the result of excess capacity?", options: ["Loss of customers", "Restricts growth", "Drain company's resources", "All of the above"], correctAnswerCode: 3 },
-            { question: "Aggregate Resource Planning becomes a challenge when demand fluctuates over the planning horizon. Under this case which one of the following is correct?", options: ["Demand forecasts are converted to resource requirements", "Producing at a constant rate and using inventory to absorb fluctuations in demand", "Resources necessary to meet demand over the time horizon are acquired", "Minor variations in demand are handled with overtime or under time"], correctAnswerCode: 2 },
-            { question: "The four step systematic approach to plan for long term capacity decisions does not involve:", options: ["Estimate future productivity requirement", "Estimate future capacity requirements", "Identify gaps by comparing requirements with available capacity", "Develop alternative plans for reducing the gaps"], correctAnswerCode: 1 },
-            { question: "In operation sequence if capacity of a facilty is lower than the capacities of other facilities in the sequence it is:", options: ["Unutilised operation", "Flexible operation", "Rigid operation", "Bootleneck operation"], correctAnswerCode: 4 },
-            { question: "Which one of the following is not an objective of MRP?", options: ["Inventory Reduction", "Realistic delivery commitments", "Reduction in the manufacturing and delivery lead times", "Reasonable production schedule"], correctAnswerCode: 4 },
-            { question: "Which one of the following is not a characteristics of Aggregate Planning?", options: ["Both output and sales should be expressed in a logical overall unit of measuring", "Acceptable forecast for the period covering the whole planning horizon", "A method of identification and fixing the relevant costs associated with the plant.", "Availability of alternatives for meeting the objective of the organization"], correctAnswerCode: 2 },
-            { question: "Which one of the following is correct with respect to long range forecast?", options: ["It is used to determine budgetary control over expenses", "It is used to determine dividend policy", "It is used to plan for capacity adjustments", "It is used to plan for material requirement"], correctAnswerCode: 3 }, // Corrected based on common understanding. PDF key was 4.
-            { question: "The card which is prepared by the dispatching department to book the labour involved in each operation is:", options: ["Labour card", "Wage card", "Credit card", "Job card"], correctAnswerCode: 4 },
-            { question: "One of the product examples for Line Layout is:", options: ["Repair Workshop", "Welding shop", "Engineering College", "Cement"], correctAnswerCode: 4 },
-            { question: "The following establishes time sequence of operations:", options: ["Routing", "Sequencing", "Scheduling", "Dispatching"], correctAnswerCode: 3 },
-            { question: "The act of going round the production shop to note down the progress of work and feedback the information is known as:", options: ["Follow up", "Dispatching", "Routing", "Trip card"], correctAnswerCode: 1 },
-            { question: "In aggregate planning one of the methods used to modification of supply is:", options: ["Advertising and sales promotion", "Development of complimentary products", "Backlogging", "Hiring and lay off of employees depending on the situation."], correctAnswerCode: 4 },
-            { question: "In aggregate planning, one of the methods in modification of demand is:", options: ["Differential Pricing", "Lay off of employees", "Over time working", "Sub-contracting."], correctAnswerCode: 1 },
-            { question: "One of the requirements of Aggregate Planning is:", options: ["Both output and sales should be expressed in a logical overall unit of measuring", "Appropriate time period", "List of all resources available", "List of operations required."], correctAnswerCode: 1 },
-            { question: "The study of relationship between the load on hand and capacity of the work centers is known as:", options: ["Scheduling", "Loading", "Routing", "Controlling."], correctAnswerCode: 2 },
-            { question: "Scheduling deals with:", options: ["Number of jobs to be done on a machine", "Number of machine tools used to do a job", "Different materials used in the product", "Fixing up starting and finishing times of each operation in doing a job."], correctAnswerCode: 4 },
-            { question: "Scheduling shows:", options: ["Total cost of production", "Total material cost", "Which resource should do which job and when", "The flow line of materials."], correctAnswerCode: 3 },
-            { question: "Final stage of production planning, where production activities are coordinated and projected on a time scale is known as:", options: ["Scheduling", "Loading", "Expediting", "Routing."], correctAnswerCode: 1 },
-            { question: "(Total station time/Cycle time Number of work stations) 100 is known as:", options: ["Line Efficiency", "Line smoothness", "Balance delay of line", "Station efficiency."], correctAnswerCode: 1 },
-            { question: "In solving a problem on LOB, the number of workstations required is given by:", options: ["Cycle time/Total time", "Cycle time/Element time", "Total time/Element time", "Total time/ Cycle time."], correctAnswerCode: 4 },
-            { question: "Number of product varieties that can be manufactured in Mass production is:", options: ["One only", "Two only", "Few varieties in large volumes", "Large varieties in small volumes."], correctAnswerCode: 3 },
-            { question: "Generally in continuous production the production is carried out to:", options: ["Customer's order", "Government orders only", "For stock and supply", "Few rich customers."], correctAnswerCode: 3 }, // Corrected based on common understanding. PDF key was 1.
-            { question: "Inventory cost per product in intermittent production is", options: ["Higher", "Lowest", "Medium", "Abnormal."], correctAnswerCode: 1 },
-            { question: "The material handling cost per unit of product in Continuous production is:", options: ["Highest compared to other systems", "Lower than other systems", "Negligible", "Cannot say."], correctAnswerCode: 2 },
-            { question: "Routing and Scheduling becomes relatively complicated in:", options: ["Job production", "Batch production", "Flow production", "Mass production"], correctAnswerCode: 2 },
-            { question: "Number of product varieties that can be manufactured in Job production is:", options: ["Limited to one or two only", "Large varieties of products", "One only", "None of the above."], correctAnswerCode: 2 },
-            { question: "In general number of product varities that can be manufactured in Flow production is:", options: ["One", "Ten to twenty varities", "Large varities", "Five only"], correctAnswerCode: 1 },
-            { question: "Generally the size of the order for production in Job production is:", options: ["Small", "Large", "Medium", "Very large"], correctAnswerCode: 1 },
-            { question: "For a marketing manager, the sales forecast is:", options: ["Estimate of the amount of unit sales or a specified future period", "Arranging the sales men to different segments of the market", "To distribute the goods through transport to satisfy the market demand", "To plan the sales methods."], correctAnswerCode: 1 },
-            { question: "Most suitable layout for Job production is:", options: ["Line layout", "Matrix layout", "Process layout", "Product layout."], correctAnswerCode: 3 },
-            { question: "Most suitable layout for Continuous production is:", options: ["Line layout", "Process Layout", "Group technology", "Matrix layout."], correctAnswerCode: 1 },
-            { question: "One of the important basic objectives of Inventory management is:", options: ["To calculate EOQ for all materials in the organisation", "To go in person to the market and purchase the materials", "To employ the available capital efficiently so as to yield maximum results", "Once materials are issued to the departments, personally check how they are used."], correctAnswerCode: 3 },
-            { question: "MRP stands for:", options: ["Material Requirement Planning", "Material Reordering Planning", "Material Requisition Procedure", "Material Recording Procedure."], correctAnswerCode: 1 },
-            { question: "In route sheet or operation layout, one has to show:", options: ["A list of Materials to be used", "A list of machine tools to be used", "Every work center and the operation to be done at that work center", "The cost of product."], correctAnswerCode: 3 },
-            { question: "A steel plant has a design capacity of 50,000 tons of steel per day effective capacity of 40,0000 tons of steel per day and actual output of 36,0000 tons of steel per day. Compute the efficiency of the plant.", options: ["90%", "72%", "80%", "110%"], correctAnswerCode: 1 }, // Assuming effective capacity is 40,000 (typo in question) and actual output 36,000 (typo). Efficiency = 36000/40000 = 90%. If 400,000 and 360,000, then 360k/400k = 90%.
-            { question: "A firm has four work centres A,B,C & D, in series with individual capacities in units per day shown in below: raw material A-380 B-360 C-340 D-400 Actual output 300, what is the efficiency system.", options: ["80.33%", "77.66%", "99%", "88.23%"], correctAnswerCode: 4 }, // System capacity is bottleneck = 340. Efficiency = Actual/System_Capacity = 300/340 = 88.23%.
-            { question: "The monthly requirement of raw material for a company is 3000 units The carrying cost is estimated to be 20% of the purchase price per unit, in addition to rs 2 per unit. The purchase price of raw material is rs 20 per unit. The ordering cost is Rs 25 per order. You are required to find EOQ.", options: ["458 units", "548 units", "448 units", "844 units"], correctAnswerCode: 2 }, // Carrying cost = (20*0.20) + 2 = 4+2 = 6 per unit per year (assuming monthly req * 12 for annual). Annual demand = 3000*12 = 36000. EOQ = sqrt((2*36000*25)/6) = sqrt(1800000/6) = sqrt(300000) = 547.7 approx 548.
-            { question: "EOQ is 102 units, maximum usage 200 units, maximum delivery period 8 weeks, minimum usage 50 units, minimum delevery period 6 weeks, calculate maximum level of stock.", options: ["1502 units", "1202 units", "1402 units", "1302 units"], correctAnswerCode: 3 }, // ROL = Max Usage * Max Period = 200 * 8 = 1600. Max Level = ROL + ROQ - (Min Usage * Min Period) = 1600 + 102 - (50*6) = 1702 - 300 = 1402.
-            { question: "M/s Kobo Bearing Ltd is committed to supply 24,000 bearings per annum to M/s Deluxe fans on a steady daily basis.It is estimated that it costs 10 paisa as inventory holding cost per bearing per month and that the setup cost per run of bearing manufacture is 324. What is the optimum run size for bearing manufacture ?", options: ["3600 units", "1200 units", "7200 units", "8400 units"], correctAnswerCode: 1 }, // Annual demand = 24000. Holding cost/unit/year = 0.10 * 12 = 1.2. Setup cost = 324. EBQ = sqrt((2*24000*324)/1.2) = sqrt(15552000/1.2) = sqrt(12960000) = 3600.
-            { question: "In general, medium range forecasting period will be approximately:", options: ["5 to 10 Years", "2 to 3 days", "3 to 6 months", "10 to 20 years."], correctAnswerCode: 3 },
-            { question: "To plan for future man power requirement:", options: ["Short term forecasting is used", "Long range forecasting is used", "Medium range forecasting is used", "There is no need to use forecasting, as future is uncertain."], correctAnswerCode: 2 },
-            { question: "Long range forecasting is useful in:", options: ["Plan for Research and Development", "To Schedule jobs in Job production", "In purchasing the material to meet the present production demand", "To assess manpower required in the coming month."], correctAnswerCode: 1 },
-            { question: "Medium range forecasting is useful in:", options: ["To assess the loading capacity of the machine", "To purchase a materials for next month", "To plan for-capacity adjustments", "To decide whether to receive production orders or not."], correctAnswerCode: 3 },
-            { question: "To decide work load for men and machines:", options: ["Medium range forecasting is used", "Short term forecasting is used", "Long range forecasting is used", "A combination of long range and medium range forecasting is used."], correctAnswerCode: 2 },
-            { question: "For production planning :", options: ["Shot term forecasting is useful", "Medium term forecasting is useful", "Long term forecasting is useful", "Forecasting is not useful."], correctAnswerCode: 1 },
-            { question: "Monthly demand for a component is 1000 units. Setting-up cost per batch is 120. Cost of manufacture per unit is 20. Rate of interest may be considered at 10% p.a. Calculate the EBQ.", options: ["1200 units", "1400 units", "1440 units", "1000 units"], correctAnswerCode: 1 }, // Annual Demand = 1000*12=12000. Carrying cost/unit/year = 20 * 10% = 2. EBQ = sqrt((2*12000*120)/2) = sqrt(2880000/2) = sqrt(1440000) = 1200.
-            { question: "Daily demand for a certain product is normally distributed with a mean of 60 and standard deviation of 7. The source of supply is reliable and maintain a constant lead time of six days. The cost of placing the order is 10 and annual holding costs are 0.50 per unit. There are no stock out costs, and unfilled orders are filled as soon as the order arrives. Assume sales occur over the entire 365 days of the year. Find the. Find the order quantity.", options: ["336 units", "936 units", "633 units", "393 units"], correctAnswerCode: 2 },
-            { question: "Consider the following item that is being managed using a fixed time period model with safety stock Weekly demand $(d)=50$ units Review cycle $(T)=3$ weeks Safety stock $(SS)=30$ units What are the average inventory turn for the item?", options: ["24.8 turns per year", "84.2 turns per year", "80 turns per year", "None of the above."], correctAnswerCode: 1 },
-            { question: "Addition of value to raw materials through application of technology is:", options: ["Product", "Production", "Advancement", "Transformation"], correctAnswerCode: 2 },
-            { question: "Cost reduction can be achieved through:", options: ["Work sampling", "Value analysis", "Quality assurance", "Supply chain management."], correctAnswerCode: 2 },
-            { question: "Production control is concerned with:", options: ["Passive assessment of plant performance", "Strict control on labours", "Good materials management", "Good product design."], correctAnswerCode: 1 },
-            { question: "The starting point of Production cycle is:", options: ["Product design", "Production Planning", "Routing", "Market research."], correctAnswerCode: 4 },
-            { question: "Variety reduction is generally known as:", options: ["Less varities", "Simplification", "Reduced varities", "None of the above."], correctAnswerCode: 2 },
-            { question: "Preferred numbers are used to:", options: ["To determine the number of varities that are to be manufactured", "To the test the design of the product", "To ascertain the quality level of the product", "To evaluate the production cost."], correctAnswerCode: 1 },
-            { question: "There are stages of Design thinking.", options: ["5", "3", "4", "2"], correctAnswerCode: 1 },
-            { question: "Generally in continuous production the production is carried out to:", options: ["Customer's order", "Government orders only", "For stock and supply", "Few rich customers."], correctAnswerCode: 3 },
-            { question: "The material handling cost per unit of product in Continuous production is:", options: ["Highest compared to other systems", "Lower than other systems", "Negligible", "Cannot say."], correctAnswerCode: 2 },
-            { question: "Routing and Scheduling becomes relatively complicated in:", options: ["Job production", "Batch production", "Flow production", "Mass production."], correctAnswerCode: 2 },
-            { question: "In Process Planning we plan:", options: ["Different machines required", "Different operations required", "We plan the flow of material in each department", "We design the product."], correctAnswerCode: 3 },
-            { question: "In Operation Planning", options: ["The planner plans each operation to be done at work centers and the sequence of operations", "Decide the tools to be used to perform the operations", "Decide the machine to be used to perform the operation", "Decide the materials to be used to produce the product"], correctAnswerCode: 1 },
-            { question: "One of the important production documents is:", options: ["Design sheet of the product", "List of materials", "Route card", "Control chart."], correctAnswerCode: 3 },
-            { question: "The scope of Production Planning and Control is:", options: ["Limited to Production of products only", "Limited to production of services only", "Limited to production of services and products only", "Unlimited, can be applied to any type of activity."], correctAnswerCode: 4 },
-            { question: "Which one of the following product is not suitable for flow shop scheduling?", options: ["Car", "Petrol", "Steel", "Invitation Card"], correctAnswerCode: 4 },
-            { question: "Which one of the following is a Sequencing rule for single facility?", options: ["EVPI", "DFA", "MAD", "LPT"], correctAnswerCode: 4 },
-            { question: "The main question in an assignment problem is:", options: ["How the assignments should be made in order that the total cost involved in activities is Iminimized", "How the assignments should be made in order that the total resources involved in activities is optimised", "How the assignments should be made in order that the total time involved in activities is minimized", "How the assignments should be made in order that inter dependence among all activities is minimized"], correctAnswerCode: 1 },
-            { question: "Linear Programming is a technique used for determining:", options: ["Production Programme", "Plant Layout", "Product Mix", "Manufacturing sequence"], correctAnswerCode: 3 },
-            { question: "In a linear programming model feasible solution is:", options: ["The basic solution to the general L.P problem", "Any solution that also satisfies the non-negative restrictions of the general L.P problem", "A solution which optimize (maximize or minimize) the objective function of a general L.P problem", "A basic solution to the system of equations if one or more of the basic variables become equal to zero"], correctAnswerCode: 2 },
-            { question: "Which one of the following is not a limitation of linear programming model?", options: ["Model can be applied only in situations where objective functions can be expressed in terms of linear expressions", "Model can be applied only when coefficients in the constraints equations must be completely known", "Model can be applied only to all real world problems which are not complex in nature", "Model cannot be applied to give a solution if management have conflicting multiple goals."], correctAnswerCode: 3 },
-            { question: "Which of the following is not a method for solving Assignment problem?", options: ["Complete Enumeration method", "Hungarian method", "Simplex method", "Natural method"], correctAnswerCode: 4 },
-            { question: "Simulation is the representation of a real life situation by different means. It is popular because-", options: ["It may be the only method available as it is difficult to observe the actual environment", "It may not be possible to develop a mathematical model", "Actual observation of a system may be too expensive or too disruptive", "All the above"], correctAnswerCode: 4 },
-            { question: "In sequencing it is the difference between the time remaining to due date and the remaining processing time. It is:", options: ["STR", "SOT", "SPT", "DDATE"], correctAnswerCode: 1 },
-            { question: "Selection of plant location is influenced by few factors. Which one of the following is not a factor?", options: ["Existence of Complementary Industries", "Availability of Labour", "Civic Amenities for Workers", "Government's EXIM Policy"], correctAnswerCode: 4 },
-            { question: "In a queuing system, the speed with which service is provided can be expressed in either of two ways-", options: ["Service start time and Service finish time", "Service rate and Service time", "Arrival rate and Service rate", "Service Inflow rate and Service outflow rate"], correctAnswerCode: 2 },
-            { question: "The most powerful and popular method for solving linear programming problem is:", options: ["Simplex method", "Graphical method", "Transportation method", "Assignment method"], correctAnswerCode: 1 },
-            { question: "One of the important charts used in Programme control is:", options: ["Material chart", "Gantt chart", "Route chart", "Inspection chart"], correctAnswerCode: 2 },
-            { question: "Issuing necessary orders, and taking necessary steps to ensure that the time targets set in the schedules are are effectively achieved is known as:", options: ["Routing", "Dispatching", "Scheduling", "Inspection."], correctAnswerCode: 2 },
-            { question: "Arrangement of machines depending on sequence of operations happens in:", options: ["Process Layout", "Product Layout", "Hybrid Layout", "Group Technology Layout."], correctAnswerCode: 2 },
-            { question: "Computers are used in Production control in this area:", options: ["Follow-up activity", "To control labour", "To disseminate information", "Loading, Scheduling and Assignment works."], correctAnswerCode: 4 },
-            { question: "Z-chart can be used to show:", options: ["Process used in production", "Quality level of the product", "Both the plan and the performance, and deviation from the plan", "To show cost structure of the product"], correctAnswerCode: 3 },
-            { question: "'Z' chart is a chart used in:", options: ["Programme control", "Job control", "Cost control", "Quality control."], correctAnswerCode: 1 },
-            { question: "One of the activities of expediting is:", options: ["To file the orders in sequence", "To decide the sequence of operation", "To record the actual production against the scheduled production", "To examine the tools used in production"], correctAnswerCode: 3 },
-            { question: "When work centers are used in optimal sequence to do the jobs, we can:", options: ["Minimise the set up time", "Minimise operation time", "Minimise the breakdown of machines", "Minimise the utility of facility."], correctAnswerCode: 1 },
-            { question: "The way in which we can assess the efficiency of the production plant is by:", options: ["Efficient dispatching", "By manufacturing a good product", "By comparing the actual performance with targets specified in the specified programme", "By efficient production planning."], correctAnswerCode: 3 },
-            { question: "The first stage of Production control is:", options: ["Dispatching", "Scheduling", "Routing", "Triggering of production operations and observing the progress and record the deviation"], correctAnswerCode: 4 },
-            { question: "Production planning in the intermediate range of time is termed as:", options: ["Production planning", "Long range production planning", "Scheduling", "Aggregate planning"], correctAnswerCode: 4 },
-            { question: "One of the principles of Scheduling is:", options: ["Principle of optimal product design", "Principle of selection of best material", "Principle of optimal operation sequence", "Principle of optimal cost."], correctAnswerCode: 3 },
-            { question: "One of the aims of loading is:", options: ["To finish the job as early as possible", "To minimise the material utilisation", "To improve the quality of product", "To keep operator idle time, material waiting time and ancillary machine time at minimum."], correctAnswerCode: 4 },
-            { question: "The cycle time selected in balancing a line must be:", options: ["Must be greater than the smallest time element given in the problem", "Must be less than the highest time element given in the problem", "Must be slightly greater than the highest time element given in the problem", "Left to the choice of the problem solver."], correctAnswerCode: 3 },
-            { question: "In solving a problem on LOB, the number of workstations required is given by:", options: ["Cycle time/Total time", "Cycle time/Element time", "Total time/Element time", "Total time/Cycle time."], correctAnswerCode: 4 },
-            { question: "Production planning deals with:", options: ["What production facilities is required and how these facilities should be laid out in space available", "What to produce and when to produce and where to sell", "What should be the demand for the product in future", "What is the life of the product?"], correctAnswerCode: 1 },
-            { question: "The first stage in production planning is:", options: ["Process Planning", "Factory Planning", "Operation Planning", "Layout planning."], correctAnswerCode: 2 },
-            { question: "In Process Planning we plan:", options: ["Different machines required", "Different operations required", "We plan the flow of material in each department", "We design the product."], correctAnswerCode: 3 },
-            { question: "Economies of scale occurs when", options: ["Single facility is used for multiple purposes", "Production or operating costs increase linearly with output levels", "Quantity discounts are not available for material purchases;", "Operating efficiency increases as workers gain experience"], correctAnswerCode: 4 },
-            { question: "In an organisation the production planning and control department comes under:", options: ["Planning department", "Manufacturing department", "Personal department", "R & D department."], correctAnswerCode: 2 },
-            { question: "In Job production system, we need:", options: ["More unskilled labours", "Skilled labours", "Semi-skilled labours", "Old people."], correctAnswerCode: 2 },
-            { question: "Wanda's Car Wash & dry is an automatic, five-minute operation with a single bay. On a typical Saturday morning, cars arrive at a mean rate of eight per hour, with arrivals tending to follow a Poisson distribution. Find The average time cars spend in line and service.", options: ["10 minutes", "20 minutes", "15 minutes", "None of the above."], correctAnswerCode: 1 },
-            { question: "A departmental store has one cashier. During the rush hours, customers arrive at a rate of 20 per hour. The average number of customers that can be handled by the cashier is 24 per hour. Assume the conditions for use of the single channel queuing model. Find out average customer spends in the system", options: ["10 customers", "5 customers", "15 customers", "20 customers"], correctAnswerCode: 2 },
-            { question: "As a tool service centre the arrival rate is two per hour and the service potential is three per hour. Simple queue conditions exist. The hourly wage paid to the attendant at the service centre is '1.50 per hour and the hourly cost of a machinist away from his work is 4. Calculate: The average time a machinist spends waiting for service.", options: ["0.777 hours", "0.667 hours", "0.600 hours", "0.700 hours"], correctAnswerCode: 2 },
-            { question: "The act of going round the production shop to note down the progress of work and feedback the information is known as:", options: ["Follow up", "Dispatching", "Routing", "Trip card."], correctAnswerCode: 1 },
-            { question: "Line of Best fit is another name given to:", options: ["Method of Least Squares", "Moving average method", "Semi average method", "Trend line method."], correctAnswerCode: 1 },
-            { question: "JIT stands for:", options: ["Just in time purchase", "Just in time production", "Just in time use of materials", "Just in time order receiving the material."], correctAnswerCode: 2 },
-            { question: "The lead-time is the time", options: ["To placeholders for materials", "Time of receiving materials", "Time between receipt of material and using materials", "Time between placing the order and receiving the materials."], correctAnswerCode: 4 },
-            { question: "Before thinking of routing, the production planner has to:", options: ["Decide the optimal allocation of available resources", "To decide what type of labour to be used", "To decide how much of material is required", "To count how many orders he has on his hand."], correctAnswerCode: 1 },
-            { question: "The quantities for which the planner has to prepare production plan are known as:", options: ["Optimal quantity of products", "Material planning", "Quantity planning", "Planning quantity standards."], correctAnswerCode: 4 },
-            { question: "The document, which is used to show planning quantity standards and production plan, is known as:", options: ["Planning specifications", "Route sheet", "Bill of materials", "Operation sheet."], correctAnswerCode: 1 },
-            { question: "The study of relationship between the load on hand and capacity of the work centers is known as:", options: ["Scheduling", "Loading", "Routing", "Controlling."], correctAnswerCode: 2 },
-            { question: "The method used in scheduling a project is:", options: ["A schedule of breakdown of orders", "Outline Master Programme", "PERT & CPM", "Schedule for large and integrated work."], correctAnswerCode: 3 },
-            { question: "Production planning in the intermediate range of time is termed as:", options: ["Production planning", "Long range production planning", "Scheduling", "Aggregate planning"], correctAnswerCode: 4 },
-            { question: "The act of releasing the production documents to production department is known as:", options: ["Routing", "Scheduling", "Expediting", "Dispatching."], correctAnswerCode: 4 },
-            { question: "The way in which we can assess the efficiency of the production plant is by:", options: ["Efficient dispatching", "By manufacturing a good product", "By comparing the actual performance with targets specified in the specified programme", "By efficient production planning."], correctAnswerCode: 3 },
-            { question: "Production control concerned with:", options: ["Passive assessment of plant performance", "Strict control on labours", "Good materials management", "Good product design"], correctAnswerCode: 1 },
-            { question: "Which one of the following is not a factor affecting productivity?", options: ["Product design", "Material handling system", "Inventory control", "Master production schedule"], correctAnswerCode: 4 },
-            { question: "Which one of the following is not correct?", options: ["Productivity can be improved by changing work methods", "Productivity relates to a fixed set of tools or conditions", "For countries, high productivity rates can reduce the risk of inflation", "Productivity measures are used to judge the effective use of resources"], correctAnswerCode: 2 },
-            { question: "Which one of the following is not a factor for determination of effective capacity?", options: ["Scheduling", "Labour turnover", "Union attitudes", "EOQ"], correctAnswerCode: 4 },
-            { question: "A device of expressing the ratio between outputs and the inputs of the resources in numerical terms is named as:", options: ["Productivity Index", "Efficiency Index", "Performance Index", "Resource Index"], correctAnswerCode: 1 },
-            { question: "Most important benefit to the consumer from efficient production system is:", options: ["He can save money", "He will have product of his choice easily available", "He gets increased use value in the product", "He can get the product on credit."], correctAnswerCode: 3 },
-            { question: "In Continuous manufacturing system, we need:", options: ["General purpose machines and Skilled labours", "Special machine tools and highly skilled labours", "Semi automatic machines and unskilled labours", "General purpose machines and unskilled labours"], correctAnswerCode: 2 },
-            { question: "The best way of improving the productivity of capital is:", options: ["Purchase automatic machines", "Effective Labour control", "To use good financial management", "Productivity of capital is to be increased through effective materials management."], correctAnswerCode: 4 },
-            { question: "There are two industries A and B manufacturing hose couplings. The standard time per piece is 15 minutes. The output of two small scale industries is 30 and 20 respectively per shift of 8 hours. Find the productivity of each per shift of 8 hours.", options: ["15/16, 5/8", "7/24,9 /16", "3/8,2/5", "none of the above"], correctAnswerCode: 1 },
-            { question: "Calculate the standard production per shift of 8 hours duration, with the following data: Observed time per unit 5 minutes, Rating Factor-120%, Total allowances $=30\%$ of normal time.", options: ["45.61 units", "54.61 units", "51.64 units", "61.54 units"], correctAnswerCode: 4 },
-            { question: "ISO 9004 only establishes guidelines related to:", options: ["operation", "design", "quality", "none of the above"], correctAnswerCode: 1 },
-            { question: "for Quality Assurance in Design, Production, Installation, and Servicing the model is used.", options: ["ISO 9002 Model", "ISO 9001 Model", "ISO 9003 Model", "none of the above"], correctAnswerCode: 2 },
-            { question: "for Quality Assurance in Production and Installation the model is be used.", options: ["ISO 9002 Model", "ISO 9001 Model", "ISO 9003 Model", "none of the above"], correctAnswerCode: 1 },
-            { question: "for Quality Assurance in Final Inspection Test the model is be used.", options: ["ISO 9002 Model", "ISO 9001 Model", "ISO 9003 Model", "none of the above"], correctAnswerCode: 3 },
-            { question: "A cement factory in Madhya Pradesh works 7 days a week in 3 shifts per days having maintenance in the first shift of around 2 hours. It has roughly 100 workers which produces only pozzolanic properties cement better known as PPC. The output per month is around 2500 tonnes of PPC. Find the productivity per worker?", options: ["20 tonnes", "30 tonnes", "25 tonnes", "15 tonnes"], correctAnswerCode: 3 },
-            { question: "The difference between product system and project system is:", options: ["Project system the equipment and machinery are fixed where as in product system they are movable", "In Product system the machinery and equipment are fixed and in project system they are not fixed", "Project system produces only standardized products and product system produces only unstandardised products", "Products cannot be stocked whereas projects can be stocked."], correctAnswerCode: 2 },
-            { question: "Fixing the flow lines of materials in production is known as:", options: ["Scheduling", "Loading", "Planning", "Routing."], correctAnswerCode: 4 },
-            { question: "The activity of specifying when to start the job and when to end the job is known as:", options: ["Plaining", "Scheduling", "Timing", "Follow-up."], correctAnswerCode: 3 }, // Corrected to Timing, as Scheduling is broader. PDF Key was 2.
-            { question: "A network:", options: ["Is a graphical representation of all the activities and events.", "Is a graphical representation of all the activities", "Is a graphical representation of all the events.", "All the above"], correctAnswerCode: 1 },
-            { question: "While evaluating existing or proposed service systems, operation manager:", options: ["Relate to potential customer dissatisfaction and costs:", "Relate cost of parallel facilities with single queue", "Relate cost of multiple queues with cost of serve", "Relate to potential customer satisfaction and service quality"], correctAnswerCode: 1 },
-            { question: "Probalistic time is dividded into:", options: ["3", "2", "4", "6"], correctAnswerCode: 1 },
-            { question: "Gantt Chart is a principal tool used in:", options: ["Scheduling", "Loading", "Planning", "Routing."], correctAnswerCode: 1 },
-            { question: "The event from where more than one activity starts-", options: ["Merge event", "Brust Event", "start event", "event nodes"], correctAnswerCode: 2 },
-            { question: "Free float means or is equal to-", options: ["Total float-Slack time of the head event", "Independent Float +Tail Slack", "Independent Float Head Slack", "PERT"], correctAnswerCode: 1 },
-            { question: "The critical path analysis is an important tool in production planning and", options: ["Loading", "scheduling", "Routing.", "All the above"], correctAnswerCode: 2 },
-            { question: "Final stage of production planning, where production activities are coordinated and projected on a time scale is known as:", options: ["Scheduling", "Loading", "Planning", "Routing"], correctAnswerCode: 1 },
-            { question: "One of the principles of Scheduling is:", options: ["Principle of optimal product design", "Principle of selection of best material", "Principle of optimal operation sequence", "Principle of optimal cost."], correctAnswerCode: 3 },
-            { question: "Which one of the following statements is NOT correct?", options: ["LFT is calculated from the LFT of the head event.", "Slack can be calculated by adding EFT and LFT of any job.", "EFT is the sum of the EST and the time of duration for any event", "The Total Project time is the shortest possible time required in completing the project."], correctAnswerCode: 2 },
-            { question: "With reference to project management, identify which of the following statement is NOT correct?", options: ["Gantt chart is a principal tool used in scheduling and also in some methods of loading.", "Routing is the first step in the production planning.", "The cost of any activity is proportional to its time of completion.", "The free float can be calculated by subtracting EFT from EST."], correctAnswerCode: 4 },
-            { question: "Issuing necessary orders, and taking necessary steps to ensure that the time targets set in the schedules are effectively achieved is known as:", options: ["Routing", "Dispatching", "Scheduling", "Inspection."], correctAnswerCode: 2 },
-            { question: "Which one of the following is the benefit of keeping standby machines?", options: ["Utilisation of Additional space", "Appropriate investment of additional capital", "Availability of Additional Depreciation", "Protection against a complete shutdown"], correctAnswerCode: 4 },
-            { question: "Preventive maintenance is useful in reducing:", options: ["Inspection Cost", "Shutdown Cost", "Cost of pre- mature replacement", "Set-up cost of machine"], correctAnswerCode: 2 },
-            { question: "When work centers are used in optimal sequence to do the jobs, we can:", options: ["Minimise the set up time", "Minimse operation time", "Minimise the break down of machines", "Minimise the utility of facility."], correctAnswerCode: 1 },
-            { question: "Preventive maintenance policy is justified only when", options: ["The average downtime and its cost is equal to the average time taken to carry out breakdown repairs", "The average downtime and its cost is greater than the average time taken to carry out breakdown repairs", "The average downtime and its cost is less than the average time taken to carry out breakdown repairs", "The average downtime t is less than the average time taken to carry out breakdown repairs"], correctAnswerCode: 2 },
-            { question: "Which one of the following is not correct?", options: ["Preventive maintenance reduces breakdowns and downtime", "Preventive maintenance increases number of large scale repairs", "Preventive maintenance Lower unit cost of the product manufactured,", "Preventive maintenance improves industrial relations"], correctAnswerCode: 2 },
-            { question: "Production department or maintenance department depending on the size of the plant generally takes up:", options: ["preventive maintenance work.", "capacity planning", "project maintenance", "all of them"], correctAnswerCode: 1 },
-            { question: "The main problem in maintenance analysis is to the overall cost of maintenance without sacrificing the objectives.", options: ["Stable", "plan", "minimise", "replace"], correctAnswerCode: 3 },
-            { question: "In some cases the and inconvenience due to breakdown of equipment is so high that standby equipment is kept.", options: ["cost", "loss", "time", "intervals"], correctAnswerCode: 2 },
-            { question: "while the equipment is running or during pre- planned shut-downs.", options: ["Routine maintenance", "preventive maintenance", "replacement", "break down maintenance"], correctAnswerCode: 1 },
-            { question: "Which one of the following is NOT the advantage of Preventive Maintenance?", options: ["Better product quality", "Greater safety to workers", "Increased breakdowns and downtime", "Fewer large-scale repairs"], correctAnswerCode: 3 },
-            { question: "Identify which one of the following is NOT the objective of the maintenance:", options: ["To keep all production facilities and allied facilities in an optimum working condition.", "To ensure specified accuracy to products and time schedule of delivery to customers", "To keep the down time of the machine at the maximum.", "To keep the production cycle within the stipulated range."], correctAnswerCode: 3 },
-            { question: "One of the objectives of maintenance is:", options: ["to prevent obsolescence", "to ensure spare parts management.", "to satisfy customers.", "to extend the useful life of Plant & Machinery without sacrificing the level of performance"], correctAnswerCode: 4 },
-            { question: "The monitoring, evaluating and disseminating of information from the external and internal environments to key people within the organisation is called:", options: ["Strategy Formulation", "Evaluation and control", "Strategy Implementation", "Environmental scanning"], correctAnswerCode: 4 },
-            { question: "The of a company state how managers and employees should conduct themselves.", options: ["values", "goals", "objectives", "vison"], correctAnswerCode: 1 },
-            { question: "are the day-to-day way in which an organisation operates and can be seen by people both inside and outside the organisation.", options: ["Performances", "Targets", "Behaviours", "Values"], correctAnswerCode: 3 },
-            { question: "Which among the following provide the standards for performance appraisal?", options: ["Mission", "Vision", "Values", "Objectives"], correctAnswerCode: 4 },
-            { question: "is concerned with complexity arising out of ambiguous and non-routine situations with organisation wide rather than operation-specific implications.", options: ["Operational management", "Business level strategy", "Strategic Management", "Functional level strategy"], correctAnswerCode: 3 },
-            { question: "refer to the job-specific goals of each individual employee.", options: ["Balanced Score Card", "Performance objectives", "Personal objectives", "Organisational genomics"], correctAnswerCode: 3 },
-            { question: "The balanced score card is a approach to performance management.", options: ["top-down", "bottom up", "indirect", "direct"], correctAnswerCode: 1 },
-            { question: "This provides the broad 'data' from which to identify key drivers of change,", options: ["SWOT analysis", "BCG matrix", "PESTEL analysis", "Critical Success Factors"], correctAnswerCode: 3 },
-            { question: "Environment is", options: ["complex", "dynamic", "Multi-faceted", "All of the above"], correctAnswerCode: 4 },
-            { question: "are the growth rate of the economy, interest rates, currency exchange rates, and inflation (or deflation) rates.", options: ["Macro-economic forces", "Demographic forces", "Technological forces", "Political forces"], correctAnswerCode: 1 },
-            { question: "are outcomes of changes in the characteristics of a population.", options: ["Macro-economic forces", "Demographic forces", "Technological forces", "Political forces"], correctAnswerCode: 2 },
-            { question: "What describes the categories of activities within and around an organisation, which together create a product or service?", options: ["SWOT analysis", "BCG framework", "Value Chain", "Brain storming"], correctAnswerCode: 3 },
-            { question: "transform these inputs into the final product or service.", options: ["Operations", "Inbound logistics", "Outbound logistics", "Service"], correctAnswerCode: 1 },
-            { question: "includes those activities that enhance or maintain the value of product or service, such as installation, repair, training and spares.", options: ["Operations", "Inbound logistics", "Outbound logistics", "Service"], correctAnswerCode: 4 },
-            { question: "are companies that are not currently competing in an industry, but have the capability to do so if they choose.", options: ["Established companies", "Potential competitors", "Rivals", "Competitors"], correctAnswerCode: 2 },
-            { question: "Absolute cost advantages arise from:", options: ["superior production operations and processes", "control of particular inputs required for production", "access to cheaper funds", "all of the above"], correctAnswerCode: 4 },
-            { question: "A is a business unit in a growing market, but not yet with high market share.", options: ["cash cow", "dog", "question mark", "star"], correctAnswerCode: 3 },
-            { question: "A is a combination of structures which could take the form of product and geographical divisions or functional and divisional structures operating in tandem.", options: ["Functional structure", "Matrix Structure", "Project based structure", "Transnational structure"], correctAnswerCode: 2 },
-            { question: "A combines the local responsiveness of the international subsidiary with the coordination advantages found in global product companies.", options: ["Functional structure", "Matrix Structure", "Project based structure", "Transnational structure"], correctAnswerCode: 4 },
-            { question: "Which among the following is true?", options: ["BPR has resulted in major gains in efficiency.", "BPR has resulted in major gains in speed", "BPR has resulted in major gains in quality.", "BPR has resulted in major gains in efficiency, quality and speed."], correctAnswerCode: 4 },
-            { question: "A is one where teams are created, undertake the work and are then dissolved.", options: ["Functional structure", "Matrix Structure", "Project based structure", "Transnational structure"], correctAnswerCode: 3 },
-            { question: "specifies what is to be accomplished by focusing on the end result.", options: ["Output control", "Behaviour control", "Premise control", "Implementation control"], correctAnswerCode: 1 },
-            { question: "is control achieved through the establishment of a comprehensive system of rules and procedures to direct the actions of divisions, functions, and individuals.", options: ["Output control", "Behaviour control", "Premise control", "Implementation control"], correctAnswerCode: 2 },
-            { question: "checks systemically and continuously whether the assumptions on which the strategy is based are still valid.", options: ["Output control", "Behaviour control", "Premise control", "Implementation control"], correctAnswerCode: 3 },
-            { question: "A is based on the primary activities that have to be undertaken by an organisation.", options: ["Functional structure", "Matrix Structure", "Project based structure", "Transnational structure"], correctAnswerCode: 1 },
-            { question: "This test is a catch-all category, indicating that the structure must fit legal, stakeholder, trade union or similar constraints.", options: ["The Feasibility Test", "The People Test", "The Parenting Advantage Test", "The Specialised Cultures Test"], correctAnswerCode: 1 },
-            { question: "In a fast-moving world, an important test to determine the extent to which a design will allow for change in the future is called?", options: ["The Feasibility Test", "The Flexibility Test", "The Parenting Advantage Test", "The Specialised Cultures Test"], correctAnswerCode: 2 },
-            { question: "Digital transformation drives change in:", options: ["customer experience", "operational processes", "business models", "all of the above"], correctAnswerCode: 4 },
-            { question: "The process of requires coordination across the entire organization, and involves business culture changes.", options: ["digital strategy", "digitisation", "digital transformation", "data aggregation"], correctAnswerCode: 3 },
-            { question: "Categorising and organising the digitised data and making it ready for application of further processes is called", options: ["Data aggregation", "Data management", "Workflow automation", "Process component"], correctAnswerCode: 2 },
-            { question: "Which among the following is not a characteristic of Big Data?", options: ["Variety", "Volume", "Velocity", "Invariability"], correctAnswerCode: 4 },
-            { question: "Data that can be stored, accessed and processed in the form of fixed format is called:", options: ["unstructured data", "semi-structured data", "structured data", "flexible data"], correctAnswerCode: 3 },
-            { question: "Which among the following is not a component of a block chain?", options: ["Distributed ledger technology", "Immutable record", "Smart contracts", "Increased threat"], correctAnswerCode: 4 },
-            { question: "Which among the following alternatives is not suited for Robotic process automation tools?", options: ["Repeatable", "Predictable interactions with IT applications", "Routine", "Unpredictable events"], correctAnswerCode: 4 },
-            { question: "is similar to referral programs.", options: ["Influencer Marketing", "Affiliate marketing", "Social Media Marketing Platforms", "Content marketing"], correctAnswerCode: 2 },
-            { question: "is a form of paid advertising that allows marketing teams to essentially purchase traffic to their website.", options: ["Influencer Marketing", "Affiliate marketing", "Pay-per-click", "Content marketing"], correctAnswerCode: 3 },
-            { question: "Forecasting the weather is an example of:", options: ["Narrow Al", "General Al/human- level", "Super Al", "Deep-learning"], correctAnswerCode: 1 }
+        // questionsData array:
+        // q: Question text
+        // o: Array of options
+        // c: Correct answer text
+        // All 248 questions from MCQBank_Paper9.pdf (Operations Management and Strategic Management)
+        const questionsData = [
+            { q: "1. Om deals with", o: ["both tangible and intangible product", "tangible product", "intangible services", "tangible product and intangible services"], c: "tangible product and intangible services" },
+            { q: "2. one of the example of pure service:", o: ["teaching", "product service", "repairing service", "All of the above"], c: "teaching" },
+            { q: "3. Objectives of operations management can be categorized into:", o: ["two", "three", "four", "seven"], c: "two" },
+            { q: "4. One of the objective of operation management is:", o: ["product service", "Customer service", "planning", "None of them"], c: "Customer service" },
+            { q: "5. principal function of customer service are:", o: ["manufacture-supply-transport-service", "manufacture-transport-service-supply", "mafucture-service-transport- supply", "manufacture-transport-supply-service"], c: "manufacture-transport-supply-service" },
+            { q: "6. Conversion of inputs into outputs is known as:", o: ["Application of technology", "Operations management", "Manufacturing products", "Product."], c: "Operations management" },
+            { q: "7. The desired objective of Production and Operations Management is:", o: ["Use cheap machinery to produce", "To train unskilled workers to manufacture goods perfectly", "Optimal utilisation of available resources", "To earn good profits."], c: "Optimal utilisation of available resources" },
+            { q: "8. Which one of the following is not an activity under productions and operations management?", o: ["Location of facilities", "Plant layouts and Material Handling;", "Product Design;", "Market penetration;"], c: "Market penetration;" },
+            { q: "9. Operations management is concerned essentially with the utilization of resources. Utilisation of resources means:", o: ["Obtaining maximum effect from resources", "Minimising loss of resources,", "Minimising underutilisation or waste of resources", "All the above"], c: "All the above" },
+            { q: "10. Which one of the following is not an objective of Operations Management?", o: ["To satisfy customers by providing right thing at the right place at the right time", "To satisfy customers by providing right thing at the right price at the right time", "To satisfy customers by providing right thing at the right price at right quality", "To satisfy customers by providing right thing with right design with desired features"], c: "To satisfy customers by providing right thing at the right price at the right time" },
+            { q: "11. Productions and Operations Management distinguishes itself from other functions such as personnel, marketing, finance, etc. mainly by its primary concern:", o: ["Conversion by using intellectual properties of a concern;", "Conversion by using physical resources", "Conversion by using services provided by other functions", "Conversion by using machineries"], c: "Conversion by using physical resources" },
+            { q: "12. Four dimensions of competitiveness that measure the effectiveness of the operations function are:", o: ["Cost, Quality, Dependability as a supplier, Flexibility", "Price, worth, Dependability as a supplier, Productivity", "Quantity, Quality, Price, Worth", "Cost, Quality, Quantity, Price"], c: "Cost, Quality, Dependability as a supplier, Flexibility" },
+            { q: "13. Generally the size of the order for production in Job production is:", o: ["Small", "Large", "Medium", "Very large"], c: "Small" },
+            { q: "14. The desired objective of Production and Operations Management is:", o: ["Use cheap machinery to produce", "To train unskilled workers to manufacture goods perfectly", "Optimal utilisation of available resources", "To earn good profits."], c: "Optimal utilisation of available resources" },
+            { q: "15. To decide work load for men and machines:", o: ["Medium range forecasting is used", "Short term forecasting is used", "Long range forecasting is used", "A combination of long range and medium range forecasting is used."], c: "Short term forecasting is used" },
+            { q: "16. The act of assessing the future and make provisions for it is known as:", o: ["Planning", "Forecasting", "Assessment", "Scheduling"], c: "Forecasting" },
+            { q: "17. The time horizon selected for forecasting depends on:", o: ["The salability of the product", "The selling capacity of Salesman", "Purpose for which forecast is made", "Time required for production cycle"], c: "Purpose for which forecast is made" },
+            { q: "18. Important factor in forecasting production is:", o: ["Environmental changes", "Available capacity of machines", "Disposable income of the consumer", "Changes in the preference of the consumer."], c: "Available capacity of machines" },
+            { q: "19. Application of technology or process to the raw material to add use value is known as:", o: ["Product", "Production", "Application of technology", "Combination of technology and process."], c: "Production" },
+            { q: "20. In Production by disintegration the material undergoes:", o: ["Change in economic value only", "Change in physical and chemical characteristics", "Change in technology only", "None of the above"], c: "Change in physical and chemical characteristics" },
+            { q: "21. Use of any process or procedure designed to transform a set of input elements into a set of output elements is known as:", o: ["Transformation process", "Transformation of input to output", "Production", "Technology change."], c: "Production" },
+            { q: "22. Which one of the following is the external factor impacting effective capacity?", o: ["Product standards", "Scheduling", "Motivation", "Product mix"], c: "Product standards" },
+            { q: "23. Increasing capacity utilisation depends on:", o: ["Ability to increase design capacity", "Ability to increase effective capacity", "Ability to increase capacity chunk", "Ability to increase resource endowments"], c: "Ability to increase effective capacity" },
+            { q: "24. Which one of the following is not within the purview of Long Range planning?", o: ["Building a new facility", "Expanding the existing facility", "Moving to a new facility due to forecasted changes in demand", "Preparation of overtime budget for workforce"], c: "Preparation of overtime budget for workforce" },
+            { q: "25. The basic difference between slack and float time is that:", o: ["A slack is used with reference to events whereas float is used with reference to activities", "A float is used with reference to events whereas slack is used with reference to activities", "A slack is used with reference to critical path whereas float is used with reference to non-critical paths", "A slack is used with reference to scheduling whereas float is used with reference to crashing"], c: "A slack is used with reference to events whereas float is used with reference to activities" },
+            { q: "26. Which one of the following is not a factor in determining Economic Lot Size for manufacturing?", o: ["Production Schedule", "Usage rate", "Manufacturing Cost", "Cost of Deterioration"], c: "Production Schedule" },
+            { q: "27. Which one of the following is not a factor in planning service capacity?", o: ["Period of production", "Need to be near customers", "Inability to store services", "Degree of volatility of demand"], c: "Period of production" },
+            { q: "28. It is extra capacity used to offset demand uncertainty. This is:", o: ["Capacity Cushion = Actual output - Demand", "Capacity Cushion Capacity- Expected demand", "Capacity Tolerance Effective capacity - Actual output", "Capacity Cushion = Capacity - Effective Capacity"], c: "Capacity Cushion Capacity- Expected demand" },
+            { q: "29. Which one of the following is correct?", o: ["Capacity decision does not affect product lead times", "Capacity decisions must link backward & forward channels in the whole operation chain", "Expansionist strategy does not help a firm to reduce its costs and compete on price", "Wait & see strategy improves market share over the long run"], c: "Capacity decisions must link backward & forward channels in the whole operation chain" },
+            { q: "30. Leading capacity strategy:", o: ["Builds capacity in anticipation of increasing future demand", "Faces increasing demand with the undeutilised current capacity", "Builds capacity in anticipation of increasing product varieties", "Faces increasing consumption with unsold stock"], c: "Builds capacity in anticipation of increasing future demand" },
+            { q: "31. Which one of the following does not reduce effective capacity?", o: ["Paperwork required by Government regulatory agencies", "Pollution standard on products", "Efficient distributors", "Higher labour turnover"], c: "Efficient distributors" },
+            { q: "32. Which one of the following is an operational factor that determines effective capacity?", o: ["Product standards", "Quality capabilities", "Learning rates", "Quality assurance"], c: "Quality assurance" },
+            { q: "33. Which one of the following is not a factor impacting effective capacity?", o: ["The design of facilities", "Product mix", "Layout of the work space", "Market share"], c: "Market share" },
+            { q: "34. Benefits of high utilisation are realised only when:", o: ["Effective capacity is fully achieved", "There is high efficiency", "Breakdown maintenances are minimum", "There is demand for output"], c: "There is demand for output" },
+            { q: "35. Key to improving capacity utilisation is:", o: ["To increase effective capacity", "To increase design capacity", "To decrease effective capacity", "To increase maintenance frequency of the capacity"], c: "To increase effective capacity" },
+            { q: "36. Utilisation of an operation facility is measured by:", o: ["(Effective Capacity)/(Design Capacity)*100", "(Actual Output)/(Design Cpacity)*100", "(Actual output)/(Effective Capacity)*100", "(Design Capacity)/(Effective Capacity)* 100"], c: "(Actual Output)/(Design Cpacity)*100" },
+            { q: "37. Efficiency of an operation facility is measured by:", o: ["(Effective Capacity)/(Design Capacity)*100", "(Actual Output)/(Design Cpacity)*100", "(Actual output)/(Effective Capacity)* 100", "(Design Capacity)/(Effective Capacity)*"], c: "(Actual output)/(Effective Capacity)* 100" },
+            { q: "38. Out of Balance Capacity occurs:", o: ["When there is a gap between supply and demand", "When there is a gap between long term supply and long term demand", "When there is a gap between current and desired capacity", "When there is a gap between actual supply and EOQ supply"], c: "When there is a gap between current and desired capacity" },
+            { q: "39. The goal of capacity planning of an organisation is:", o: ["To achieve a match between its long term supply capabilities and the actual level of long term demand", "To achieve a level of operation so that supply failure could be maintained at ≤ 1% of long term demand", "To achieve a level of operation so that periodic mean operation remain within 95% of long term demand", "To achieve a match between its long term supply capabilities and the predicted level of long term demand"], c: "To achieve a match between its long term supply capabilities and the predicted level of long term demand" },
+            { q: "40. Capacity refers to:", o: ["An upper limit or ceiling on the load that an operating unit can handle", "A range from a lower limit to an upper limit of load through which an operating unit could operate", "A limit on the load that an operating unit could handle only with 5% deviation", "An upper limit of load which an operating unit could break during emergency"], c: "An upper limit or ceiling on the load that an operating unit can handle" },
+            { q: "41. This denotes the highest output established by the actual trial runs of the productive machines installed. This is:", o: ["Design capacity", "Rated capacity", "Effective capacity", "Licensed capacity"], c: "Rated capacity" },
+            { q: "42. Which one of the following is not a key question in Capacity planning?", o: ["What kind of capacity is needed?", "What kind of facilities are needed?", "How much capacity is needed to match demand?", "When the capacity is it needed?"], c: "What kind of facilities are needed?" },
+            { q: "43. Capacity Utilisation is:", o: ["The degree to which a resource such as equipment, space or the workforce is currently being used", "The degree to which a resource such as equipment, space or the workforce is currently being held as reserve", "The degree to which a resource such as equipment, space or the workforce is currently being used for achieving installed capacity", "The degree to which a resource such as equipment, space or the workforce is currently being used for achieving optimisation"], c: "The degree to which a resource such as equipment, space or the workforce is currently being used" },
+            { q: "44. Actual Output cannot exceed effective capacity because of :", o: ["Problems of scheduling & balancing operations", "Rejection due to quality problems", "Need for periodic maintenance of equipment", "Changing product mix"], c: "Rejection due to quality problems" },
+            { q: "45. Need for periodic maintenance of equipment always makes", o: ["Licensed capacity > Installed capacity", "Installed capacity < Effective capacity", "Design capacity > Effective capacity", "Licensed capacity = Effective capacity"], c: "Design capacity > Effective capacity" },
+            { q: "46. If design capacity is reduced by allowances such as personal time and maintenance, the resultant capacity is:", o: ["Design capacity", "Effective capacity", "Installed capacity", "Licensed capacity"], c: "Effective capacity" },
+            { q: "47. This capacity is the maximum rate of output achieved under ideal conditions. This is:", o: ["Design capacity", "Effective capacity", "Installed capacity", "Licensed capacity"], c: "Design capacity" },
+            { q: "48. Which one of the following is an output measure of Capacity?", o: ["Total capacity of AKC Motors in India is 300000 machine hours in a year", "Total Capacity of Z steel plant is 720000labour hours in a year", "The Aluminum giant XYZ produces 30mt in a day", "The oil conglomerate ABC has 80000gallon refinery size"], c: "The Aluminum giant XYZ produces 30mt in a day" },
+            { q: "49. Which one of the following is a feature of input measure of capacity?", o: ["It is less applicable when the amount of customization and variety in the product mix increases", "It is used mainly in case of high volume processes such as car manufacturers", "Capacity is usually expressed as number of workstations or number of workers", "It is applicable when the firm provides a relatively small number of standardized services and products"], c: "Capacity is usually expressed as number of workstations or number of workers" },
+            { q: "50. Which one of the following is not a feature of output measure of capacity?", o: ["It is applicable when the firm provides a relatively small number of standardized services and products", "It is used mainly in case of high volume processes such as car manufacturers", "It is generally used for low volume, flexible processes such as furniture maker", "It is less applicable when the amount of customization and variety in the product mix increases"], c: "It is generally used for low volume, flexible processes such as furniture maker" },
+            { q: "51. Which one of the following is a feature of wait and see strategy?", o: ["It facilitates a firm to compete on price", "It guards against inaccurate assumptions regarding competition", "It might increase the firm's market share", "It results economies of scale"], c: "It guards against inaccurate assumptions regarding competition" },
+            { q: "52. Which one of the following is not a feature of expansionist strategy?", o: ["It minimizes the chance of sales lost to insufficient capacity", "It stays ahead of demand", "It involves large infrequent jumps in capacity", "It lags behind demand"], c: "It lags behind demand" },
+            { q: "53. The capacity cushion is:", o: ["The amount of licensed capacity a process uses to handle sudden increase in demand", "The amount of installed capacity a process uses to handle sudden increase in demand", "The amount of declared capacity a process uses to handle sudden increase in demand", "The amount of reserve capacity a process uses to handle sudden increase in demand"], c: "The amount of reserve capacity a process uses to handle sudden increase in demand" },
+            { q: "54. Capacity decisions are strategic because:", o: ["Capacity decisions affect financing costs", "Capacity decisions can affect facility location", "Capacity at appropriate level facilitates easier management of product life cycle", "Capacity decisions can affect competitiveness"], c: "Capacity decisions can affect competitiveness" },
+            { q: "55. Capacity decisions often involve", o: ["Long term irrevocable commitment of resources", "Short term irrevocable commitment of resources", "Long term revocable commitment of resources", "(b) & (c) above"], c: "Long term irrevocable commitment of resources" },
+            { q: "56. Long-term capacity plans are concerned with:", o: ["Overtime budgets", "Work force size", "Inventories", "Investments in new facilities"], c: "Investments in new facilities" },
+            { q: "57. Capacity planning procedure does not involve which one of the following?", o: ["Assess company situation and environment to analyse historical demand", "Translate future predictions of demand into physical capacity requirements", "Determine economic effects of alternative plans", "Selecting a capacity alternative most suited to achieve strategic mission of the firm."], c: "Assess company situation and environment to analyse historical demand" },
+            { q: "58. Which one of the following is not affected by Capacity decisions?", o: ["Product lead times", "Operating Costs", "Customer Responsiveness", "Resource optimisation"], c: "Resource optimisation" },
+            { q: "59. Capacity planning is a", o: ["Long term makeover decision that establishes a firm's overall level of resources", "Long term realignment decision that establishes a firm's overall level of resources", "Long term restructuring decision that establishes a firm's overall level of resources", "Long term strategic decision that establishes a firm's overall level of resources"], c: "Long term strategic decision that establishes a firm's overall level of resources" },
+            { q: "60. Which one of the following is the result of excess capacity?", o: ["Loss of customers", "Restricts growth", "Drain company's resources", "All of the above"], c: "Drain company's resources" },
+            { q: "61. Aggregate Resource Planning becomes a challenge when demand fluctuates over the planning horizon. Under this case which one of the following is correct?", o: ["Demand forecasts are converted to resource requirements", "Producing at a constant rate and using inventory to absorb fluctuations in demand", "Resources necessary to meet demand over the time horizon are acquired", "Minor variations in demand are handled with overtime or under time"], c: "Producing at a constant rate and using inventory to absorb fluctuations in demand" },
+            { q: "62. The four step systematic approach to plan for long term capacity decisions does not involve:", o: ["Estimate future productivity requirement", "Estimate future capacity requirements", "Identify gaps by comparing requirements with available capacity", "Develop alternative plans for reducing the gaps"], c: "Estimate future productivity requirement" },
+            { q: "63. In operation sequence if capacity of a facilty is lower than the capacities of other facilities in the sequence it is:", o: ["Unutilised operation", "Flexible operation", "Rigid operation", "Bootleneck operation"], c: "Bootleneck operation" },
+            { q: "64. Which one of the following is not an objective of MRP?", o: ["Inventory Reduction", "Realistic delivery commitments", "Reduction in the manufacturing and delivery lead times", "Reasonable production schedule"], c: "Reasonable production schedule" },
+            { q: "65. Which one of the following is not a characteristics of Aggregate Planning?", o: ["Both output and sales should be expressed in a logical overall unit of measuring", "Acceptable forecast for the period covering the whole planning horizon", "A method of identification and fixing the relevant costs associated with the plant.", "Availability of alternatives for meeting the objective of the organization"], c: "Acceptable forecast for the period covering the whole planning horizon" },
+            { q: "66. Which one of the following is correct with respect to long range forecast?", o: ["It is used to determine budgetary control over expenses", "It is used to determine dividend policy", "It is used to plan for capacity adjustments", "It is used to plan for material requirement"], c: "It is used to plan for material requirement" },
+            { q: "67. The card which is prepared by the dispatching department to book the labour involved in each operation is:", o: ["Labour card", "Wage card", "Credit card", "Job card"], c: "Job card" },
+            { q: "68. One of the product examples for Line Layout is:", o: ["Repair Workshop", "Welding shop", "Engineering College", "Cement"], c: "Cement" },
+            { q: "69. The following establishes time sequence of operations:", o: ["Routing", "Sequencing", "Scheduling", "Dispatching"], c: "Scheduling" },
+            { q: "70. The act of going round the production shop to note down the progress of work and feedback the information is known as:", o: ["Follow up", "Dispatching", "Routing", "Trip card"], c: "Follow up" },
+            { q: "71. In aggregate planning one of the methods used to modification of supply is:", o: ["Advertising and sales promotion", "Development of complimentary products", "Backlogging", "Hiring and lay off of employees depending on the situation."], c: "Hiring and lay off of employees depending on the situation." },
+            { q: "72. In aggregate planning, one of the methods in modification of demand is:", o: ["Differential Pricing", "Lay off of employees", "Over time working", "Sub-contracting."], c: "Differential Pricing" },
+            { q: "73. One of the requirements of Aggregate Planning is:", o: ["Both output and sales should be expressed in a logical overall unit of measuring", "Appropriate time period", "List of all resources available", "List of operations required."], c: "Both output and sales should be expressed in a logical overall unit of measuring" },
+            { q: "74. The study of relationship between the load on hand and capacity of the work centers is known as:", o: ["Scheduling", "Loading", "Routing", "Controlling."], c: "Loading" },
+            { q: "75. Scheduling deals with:", o: ["Number of jobs to be done on a machine", "Number of machine tools used to do a job", "Different materials used in the product", "Fixing up starting and finishing times of each operation in doing a job."], c: "Fixing up starting and finishing times of each operation in doing a job." },
+            { q: "76. Scheduling shows:", o: ["Total cost of production", "Total material cost", "Which resource should do which job and when", "The flow line of materials."], c: "Which resource should do which job and when" },
+            { q: "77. Final stage of production planning, where production activities are coordinated and projected on a time scale is known as:", o: ["Scheduling", "Loading", "Expediting", "Routing."], c: "Scheduling" },
+            { q: "78. (Total station time/Cycle time Number of work stations) 100 is known as:", o: ["Line Efficiency", "Line smoothness", "Balance delay of line", "Station efficiency."], c: "Line Efficiency" },
+            { q: "79. In solving a problem on LOB, the number of workstations required is given by:", o: ["Cycle time/Total time", "Cycle time/Element time", "Total time/Element time", "Total time/ Cycle time."], c: "Total time/ Cycle time." },
+            { q: "80. Number of product varieties that can be manufactured in Mass production is:", o: ["One only", "Two only", "Few varieties in large volumes", "Large varieties in small volumes."], c: "Few varieties in large volumes" },
+            { q: "81. Generally in continuous production the production is carried out to:", o: ["Customer's order", "Government orders only", "For stock and supply", "Few rich customers"], c: "Customer's order" },
+            { q: "82. Inventory cost per product in intermittent production is", o: ["Higher", "Lowest", "Medium", "Abnormal."], c: "Higher" },
+            { q: "83. The material handling cost per unit of product in Continuous production is:", o: ["Highest compared to other systems", "Lower than other systems", "Negligible", "Cannot say."], c: "Lower than other systems" },
+            { q: "84. Routing and Scheduling becomes relatively complicated in:", o: ["Job production", "Batch production", "Flow production", "Mass production"], c: "Batch production" },
+            { q: "85. Number of product varieties that can be manufactured in Job production is:", o: ["Limited to one or two", "Large varieties of products", "One only", "None of the above."], c: "Large varieties of products" },
+            { q: "86. In general number of product varities that can be manufactured in Flow production is:", o: ["One only", "Ten to twenty varities", "Large varities", "Five only"], c: "One only" },
+            { q: "87. Generally the size of the order for production in Job production is:", o: ["Small", "Large", "Medium", "Very large"], c: "Small" },
+            { q: "88. For a marketing manager, the sales forecast is:", o: ["Estimate of the amount of unit sales or a specified future period", "Arranging the sales men to different segments of the market", "To distribute the goods through transport to satisfy the market demand", "To plan the sales methods."], c: "Estimate of the amount of unit sales or a specified future period" },
+            { q: "89. Most suitable layout for Job production is:", o: ["Line layout", "Matrix layout", "Process layout", "Product layout."], c: "Process layout" },
+            { q: "90. Most suitable layout for Continuous production is:", o: ["Line layout", "Process Layout", "Group technology", "Matrix layout."], c: "Line layout" },
+            { q: "91. One of the important basic objectives of Inventory management is:", o: ["To calculate EOQ for all materials in the organisation", "To go in person to the market and purchase the materials", "To employ the available capital efficiently so as to yield maximum results", "Once materials are issued to the departments, personally check how they are used."], c: "To employ the available capital efficiently so as to yield maximum results" },
+            { q: "92. MRP stands for:", o: ["Material Requirement Planning", "Material Reordering Planning", "Material Requisition Procedure", "Material Recording Procedure."], c: "Material Requirement Planning" },
+            { q: "93. In route sheet or operation layout, one has to show:", o: ["A list of Materials to be used", "A list of machine tools to be used", "Every work center and the operation to be done at that work center", "The cost of product."], c: "Every work center and the operation to be done at that work center" },
+            { q: "94. A steel plant has a design capacity of 50,000 tons of steel per day effective capacity of 40,0000 tons of steel per day and actual output of 36,0000 tons of steel per day. Compute the efficiency of the plant.", o: ["90%", "72%", "80%", "110%"], c: "90%" },
+            { q: "95. A firm has four work centres A,B,C & D, in series with individual capacities in units per day shown in below: raw material A-380 B-360 C-340 D-400 Actual output 300, what is the efficiency system.", o: ["80.33%", "77.66%", "99%", "88.23%"], c: "88.23%" },
+            { q: "96. The monthly requirement of raw material for a company is 3000 units The carrying cost is estimated to be 20% of the purchase price per unit, in addition to rs 2 per unit. The purchase price of raw material is rs 20 per unit. The ordering cost is Rs 25 per order. You are required to find EOQ.", o: ["458 units", "548 units", "448 units", "844 units"], c: "548 units" },
+            { q: "97. EOQ is 102 units, maximum usage 200 units, maximum delivery period 8 weeks, minimum usage 50 units, minimum delevery period 6 weeks, calculate maximum level of stock.", o: ["1502 units", "1202 units", "1402 units", "1302 units"], c: "1402 units" },
+            { q: "98. M/s Kobo Bearing Ltd is committed to supply 24,000 bearings per annum to M/s Deluxe fans on a steady daily basis.It is estimated that it costs 10 paisa as inventory holding cost per bearing per month and that the setup cost per run of bearing manufacture is 324. What is the optimum run size for bearing manufacture ?", o: ["3600 units", "1200 units", "7200 units", "8400 units"], c: "3600 units" },
+            { q: "99. In general, medium range forecasting period will be approximately:", o: ["5 to 10 Years", "2 to 3 days", "3 to 6 months", "10 to 20 years."], c: "3 to 6 months" },
+            { q: "100. To plan for future man power requirement:", o: ["Short term forecasting is used", "Long range forecasting is used", "Medium range forecasting is used", "There is no need to use forecasting, as future is uncertain."], c: "Long range forecasting is used" },
+            { q: "101. Long range forecasting is useful in:", o: ["Plan for Research and Development", "To Schedule jobs in Job production", "In purchasing the material to meet the present production demand", "To assess manpower required in the coming month."], c: "Plan for Research and Development" },
+            { q: "102. Medium range forecasting is useful in:", o: ["To assess the loading capacity of the machine", "To purchase a materials for next month", "To plan for-capacity adjustments", "To decide whether to receive production orders or not."], c: "To plan for-capacity adjustments" },
+            { q: "103. To decide work load for men and machines:", o: ["Medium range forecasting is used", "Short term forecasting is used", "Long range forecasting is used", "A combination of long range and medium range forecasting is used."], c: "Short term forecasting is used" },
+            { q: "104. For production planning :", o: ["Shot term forecasting is useful", "Medium term forecasting is useful", "Long term forecasting is useful", "Forecasting is not useful."], c: "Shot term forecasting is useful" },
+            { q: "105. Monthly demand for a component is 1000 units. Setting-up cost per batch is 120. Cost of manufacture per unit is 20. Rate of interest may be considered at 10% p.a. Calculate the EBQ.", o: ["1200 units", "1400 units", "1440 units", "1000 units"], c: "1200 units" }, // PDF answer key is 1. EBQ = sqrt((2DS)/C) = sqrt((2*12000*120)/(20*0.1)) = sqrt(2880000/2) = sqrt(1440000) = 1200.
+            { q: "106. Daily demand for a certain product is normally distributed with a mean of 60 and standard deviation of 7. The source of supply is reliable and maintain a constant lead time of six days. The cost of placing the order is 10 and annual holding costs are 0.50 per unit. There are no stock out costs, and unfilled orders are filled as soon as the order arrives. Assume sales occur over the entire 365 days of the year. Find the. Find the order quantity.", o: ["336 units", "1936 units", "633 inits", "393 units"], c: "1936 units" }, // PDF answer key is 2. EOQ = sqrt((2*AnnualDemand*OrderCost)/HoldingCost) = sqrt((2*60*365*10)/0.5) = sqrt(876000) = 935.9 approx. This seems like a reorder point question or safety stock, not simple EOQ.
+            { q: "107. Consider the following item that is being managed using a fixed time period model with safety stock Weekly demand (d)=50 units Review cycle (T)=3 weeks Safety stock (SS)=30 units What are the average inventory turn for the item?", o: ["24.8 turns per year", "84.2 turns per year", "80 turns per year", "None of the above."], c: "24.8 turns per year" },
+            { q: "108. Addition of value to raw materials through application of technology is:", o: ["Product", "Production", "Advancement", "Transformation"], c: "Production" },
+            { q: "109. Cost reduction can be achieved through:", o: ["Work sampling", "Value analysis", "Quality assurance", "Supply chain management."], c: "Value analysis" },
+            { q: "110. Production control is concerned with:", o: ["Passive assessment of plant performance", "Strict control on labours", "Good materials management", "Good product design."], c: "Passive assessment of plant performance" },
+            { q: "111. The starting point of Production cycle is:", o: ["Product design", "Production Planning", "Routing", "Market research."], c: "Market research." },
+            { q: "112. Variety reduction is generally known as:", o: ["Less varities", "Simplification", "Reduced varities", "None of the above."], c: "Simplification" },
+            { q: "113. Preferred numbers are used to:", o: ["To determine the number of varities that are to be manufactured", "To the test the design of the product", "To ascertain the quality level of the product", "To evaluate the production cost."], c: "To determine the number of varities that are to be manufactured" },
+            { q: "114. There are ____ stages of Design thinking.", o: ["5", "3", "4", "2"], c: "5" },
+            { q: "115. Generally in continuous production the production is carried out to:", o: ["Customer's order", "Government orders only", "For stock and supply", "Few rich customers."], c: "For stock and supply" },
+            { q: "116. The material handling cost per unit of product in Continuous production is:", o: ["Highest compared to other systems", "Lower than other systems", "Negligible", "Cannot say."], c: "Lower than other systems" },
+            { q: "117. Routing and Scheduling becomes relatively complicated in:", o: ["Job production", "Batch production", "Flow production", "Mass production."], c: "Batch production" },
+            { q: "118. In Process Planning we plan:", o: ["Different machines required", "Different operations required", "We plan the flow of material in each department", "We design the product."], c: "We plan the flow of material in each department" },
+            { q: "119. In Operation Planning", o: ["The planner plans each operation to be done at work centers and the sequence of operations", "Decide the tools to be used to perform the operations", "Decide the machine to be used to perform the operation", "Decide the materials to be used to produce the product"], c: "The planner plans each operation to be done at work centers and the sequence of operations" },
+            { q: "120. One of the important production documents is:", o: ["Design sheet of the product", "List of materials", "Route card", "Control chart."], c: "Route card" },
+            { q: "121. The scope of Production Planning and Control is:", o: ["Limited to Production of products only", "Limited to production of services only", "Limited to production of services and products only", "Unlimited, can be applied to any type of activity."], c: "Unlimited, can be applied to any type of activity." },
+            { q: "122. Which one of the following product is not suitable for flow shop scheduling?", o: ["Car", "Petrol", "Steel", "Invitation Card"], c: "Invitation Card" },
+            { q: "123. Which one of the following is a Sequencing rule for single facility?", o: ["EVPI", "DFA", "MAD", "LPT"], c: "LPT" },
+            { q: "124. The main question in an assignment problem is:", o: ["How the assignments should be made in order that the total cost involved in activities is Iminimized", "How the assignments should be made in order that the total resources involved in activities is optimised", "How the assignments should be made in order that the total time involved in activities is minimized", "How the assignments should be made in order that inter dependence among all activities is minimized"], c: "How the assignments should be made in order that the total cost involved in activities is Iminimized" },
+            { q: "125. Linear Programming is a technique used for determining:", o: ["Production Programme", "Plant Layout", "Product Mix", "Manufacturing sequence"], c: "Product Mix" },
+            { q: "126. In a linear programming model feasible solution is:", o: ["The basic solution to the general L.P problem", "Any solution that also satisfies the non-negative restrictions of the general L.P problem", "A solution which optimize (maximize or minimize) the objective function of a general L.P problem", "A basic solution to the system of equations if one or more of the basic variables become equal to zero"], c: "Any solution that also satisfies the non-negative restrictions of the general L.P problem" },
+            { q: "127. Which one of the following is not a limitation of linear programming model?", o: ["Model can be applied only in situations where objective functions can be expressed in terms of linear expressions", "Model can be applied only when coefficients in the constraints equations must be completely known", "Model can be applied only to all real world problems which are not complex in nature", "Model cannot be applied to give a solution if management have conflicting multiple goals."], c: "Model can be applied only to all real world problems which are not complex in nature" },
+            { q: "128. Which of the following is not a method for solving Assignment problem?", o: ["Complete Enumeration method", "Hungarian method", "Simplex method", "Natural method"], c: "Natural method" },
+            { q: "129. Simulation is the representation of a real life situation by different means. It is popular because-", o: ["It may be the only method available as it is difficult to observe the actual environment", "It may not be possible to develop a mathematical model", "Actual observation of a system may be too expensive or too disruptive", "All the above"], c: "All the above" },
+            { q: "130. In sequencing it is the difference between the time remaining to due date and the remaining processing time. It is:", o: ["STR", "SOT", "SPT", "DDATE"], c: "STR" },
+            { q: "131. Selection of plant location is influenced by few factors. Which one of the following is not a factor?", o: ["Existence of Complementary Industries", "Availability of Labour", "Civic Amenities for Workers", "Government's EXIM Policy"], c: "Government's EXIM Policy" },
+            { q: "132. In a queuing system, the speed with which service is provided can be expressed in either of two ways-", o: ["Service start time and Service finish time", "Service rate and Service time", "Arrival rate and Service rate", "Service Inflow rate and Service outflow rate"], c: "Service rate and Service time" },
+            { q: "133. The most powerful and popular method for solving linear programming problem is:", o: ["Simplex method", "Graphical method", "Transportation method", "Assignment method"], c: "Simplex method" },
+            { q: "134. One of the important charts used in Programme control is:", o: ["Material chart", "Gantt chart", "Route chart", "Inspection chart"], c: "Gantt chart" },
+            { q: "135. Issuing necessary orders, and taking necessary steps to ensure that the time targets set in the schedules are are effectively achieved is known as:", o: ["Routing", "Dispatching", "Scheduling", "Inspection."], c: "Dispatching" },
+            { q: "136. Arrangement of machines depending on sequence of operations happens in:", o: ["Process Layout", "Product Layout", "Hybrid Layout", "Group Technology Layout."], c: "Product Layout" },
+            { q: "137. Computers are used in Production control in this area:", o: ["Follow-up activity", "To control labour", "To disseminate information", "Loading, Scheduling and Assignment works."], c: "Loading, Scheduling and Assignment works." },
+            { q: "138. Z-chart can be used to show:", o: ["Process used in production", "Quality level of the product", "Both the plan and the performance, and deviation from the plan", "To show cost structure of the product"], c: "Both the plan and the performance, and deviation from the plan" },
+            { q: "139. 'Z' chart is a chart used in:", o: ["Programme control", "Job control", "Cost control", "Quality control."], c: "Programme control" },
+            { q: "140. One of the activities of expediting is:", o: ["To file the orders in sequence", "To decide the sequence of operation", "To record the actual production against the scheduled production", "To examine the tools used in production"], c: "To record the actual production against the scheduled production" },
+            { q: "141. When work centers are used in optimal sequence to do the jobs, we can:", o: ["Minimise the set up time", "Minimise operation time", "Minimise the breakdown of machines", "Minimise the utility of facility."], c: "Minimise the set up time" },
+            { q: "142. The way in which we can assess the efficiency of the production plant is by:", o: ["Efficient dispatching", "By manufacturing a good product", "By comparing the actual performance with targets specified in the specified programme", "By efficient production planning."], c: "By comparing the actual performance with targets specified in the specified programme" },
+            { q: "143. The first stage of Production control is:", o: ["Dispatching", "Scheduling", "Routing", "Triggering of production operations and observing the progress and record the deviation"], c: "Triggering of production operations and observing the progress and record the deviation" },
+            { q: "144. Production planning in the intermediate range of time is termed as:", o: ["Production planning", "Long range production planning", "Scheduling", "Aggregate planning"], c: "Aggregate planning" },
+            { q: "145. One of the principles of Scheduling is:", o: ["Principle of optimal product design", "Principle of selection of best material", "Principle of optimal operation sequence", "Principle of optimal cost."], c: "Principle of optimal operation sequence" },
+            { q: "146. One of the aims of loading is:", o: ["To finish the job as early as possible", "To minimise the material utilisation", "To improve the quality of product", "To keep operator idle time, material waiting time and ancillary machine time at minimum."], c: "To keep operator idle time, material waiting time and ancillary machine time at minimum." },
+            { q: "147. The cycle time selected in balancing a line must be:", o: ["Must be greater than the smallest time element given in the problem", "Must be less than the highest time element given in the problem", "Must be slightly greater than the highest time element given in the problem", "Left to the choice of the problem solver."], c: "Must be slightly greater than the highest time element given in the problem" },
+            { q: "148. In solving a problem on LOB, the number of workstations required is given by:", o: ["Cycle time/Total time", "Cycle time/Element time", "Total time/Element time", "Total time/Cycle time."], c: "Total time/Cycle time." },
+            { q: "149. Production planning deals with:", o: ["What production facilities is required and how these facilities should be laid out in space available", "What to produce and when to produce and where to sell", "What should be the demand for the product in future", "What is the life of the product?"], c: "What production facilities is required and how these facilities should be laid out in space available" },
+            { q: "150. The first stage in production planning is:", o: ["Process Planning", "Factory Planning", "Operation Planning", "Layout planning."], c: "Factory Planning" },
+            { q: "151. In Process Planning we plan:", o: ["Different machines required", "Different operations required", "We plan the flow of material in each department", "We design the product."], c: "We plan the flow of material in each department" },
+            { q: "152. Economies of scale occurs when", o: ["Single facility is used for multiple purposes", "Production or operating costs increase linearly with output levels", "Quantity discounts are not available for material purchases;", "Operating efficiency increases as workers gain experience"], c: "Operating efficiency increases as workers gain experience" },
+            { q: "153. In an organisation the production planning and control department comes under:", o: ["Planning department", "Manufacturing department", "Personal department", "R & D department."], c: "Manufacturing department" },
+            { q: "154. In Job production system, we need:", o: ["More unskilled labours", "Skilled labours", "Semi-skilled labours", "Old people."], c: "Skilled labours" },
+            { q: "155. Wanda's Car Wash & dry is an automatic, five-minute operation with a single bay. On a typical Saturday morning, cars arrive at a mean rate of eight per hour, with arrivals tending to follow a Poisson distribution. Find The average time cars spend in line and service.", o: ["10 minutes", "20 minutes", "15 minutes", "None of the above."], c: "10 minutes" },
+            { q: "156. A departmental store has one cashier. During the rush hours, customers arrive at a rate of 20 per hour. The average number of customers that can be handled by the cashier is 24 per hour. Assume the conditions for use of the single channel queuing model. Find out average customer spends in the system", o: ["10 customers", "5 customers", "15 customers", "20 customers"], c: "5 customers" },
+            { q: "157. As a tool service centre the arrival rate is two per hour and the service potential is three per hour. Simple queue conditions exist. The hourly wage paid to the attendant at the service centre is '1.50 per hour and the hourly cost of a machinist away from his work is 4. Calculate: The average time a machinist spends waiting for service.", o: ["0.777 hours", "0.667 hours", "0.600 hours", "0.700 hours"], c: "0.667 hours" },
+            { q: "158. The act of going round the production shop to note down the progress of work and feedback the information is known as:", o: ["Follow up", "Dispatching", "Routing", "Trip card."], c: "Follow up" },
+            { q: "159. Line of Best fit is another name given to:", o: ["Method of Least Squares", "Moving average method", "Semi average method", "Trend line method."], c: "Method of Least Squares" },
+            { q: "160. JIT stands for:", o: ["Just in time purchase", "Just in time production", "Just in time use of materials", "Just in time order receiving the material."], c: "Just in time production" },
+            { q: "161. The lead-time is the time .", o: ["To placeholders for materials", "Time of receiving materials", "Time between receipt of material and using materials", "Time between placing the order and receiving the materials"], c: "Time between placing the order and receiving the materials" },
+            { q: "162. Before thinking of routing, the production planner has to:", o: ["Decide the optimal allocation of available resources", "To decide what type of labour to be used", "To decide how much of material is required", "To count how many orders he has on his hand."], c: "Decide the optimal allocation of available resources" },
+            { q: "163. The quantities for which the planner has to prepare production plan are known as:", o: ["Optimal quantity of products", "Material planning", "Quantity planning", "Planning quantity standards."], c: "Planning quantity standards." },
+            { q: "164. The document, which is used to show planning quantity standards and production plan, is known as:", o: ["Planning specifications", "Route sheet", "Bill of materials", "Operation sheet."], c: "Planning specifications" },
+            { q: "165. The study of relationship between the load on hand and capacity of the work centers is known as:", o: ["Scheduling", "Loading", "Routing", "Controlling."], c: "Loading" },
+            { q: "166. The method used in scheduling a project is:", o: ["A schedule of breakdown of orders", "Outline Master Programme", "PERT & CPM", "Schedule for large and integrated work."], c: "PERT & CPM" },
+            { q: "167. Production planning in the intermediate range of time is termed as:", o: ["Production planning", "Long range production planning", "Scheduling", "Aggregate planning."], c: "Aggregate planning." },
+            { q: "168. The act of releasing the production documents to production department is known as:", o: ["Routing", "Scheduling", "Expediting", "Dispatching."], c: "Dispatching." },
+            { q: "169. The way in which we can assess the efficiency of the production plant is by:", o: ["Efficient dispatching", "By manufacturing a good product", "By comparing the actual performance with targets specified in the specified programme", "By efficient production planning."], c: "By comparing the actual performance with targets specified in the specified programme" },
+            { q: "170. Production control concerned with:", o: ["Passive assessment of plant performance", "Strict control on labours", "Good materials management", "Good product design"], c: "Passive assessment of plant performance" },
+            { q: "171. Which one of the following is not a factor affecting productivity?", o: ["Product design", "Material handling system", "Inventory control", "Master production schedule"], c: "Master production schedule" },
+            { q: "172. Which one of the following is not correct?", o: ["Productivity can be improved by changing work methods", "Productivity relates to a fixed set of tools or conditions", "For countries, high productivity rates can reduce the risk of inflation", "Productivity measures are used to judge the effective use of resources"], c: "Productivity relates to a fixed set of tools or conditions" },
+            { q: "173. Which one of the following is not a factor for determination of effective capacity?", o: ["Scheduling", "Labour turnover", "Union attitudes", "EOQ"], c: "EOQ" },
+            { q: "174. A device of expressing the ratio between outputs and the inputs of the resources in numerical terms is named as:", o: ["Productivity Index", "Efficiency Index", "Performance Index", "Resource Index"], c: "Productivity Index" },
+            { q: "175. Most important benefit to the consumer from efficient production system is:", o: ["He can save money", "He will have product of his choice easily available", "He gets increased use value in the product", "He can get the product on credit."], c: "He gets increased use value in the product" },
+            { q: "176. In Continuous manufacturing system, we need:", o: ["General purpose machines and Skilled labours", "Special machine tools and highly skilled labours", "Semi automatic machines and unskilled labours", "General purpose machines and unskilled labours"], c: "Special machine tools and highly skilled labours" },
+            { q: "177. The best way of improving the productivity of capital is:", o: ["Purchase automatic machines", "Effective Labour control", "To use good financial management", "Productivity of capital is to be increased through effective materials management."], c: "Productivity of capital is to be increased through effective materials management." },
+            { q: "178. There are two industries A and B manufacturing hose couplings. The standard time per piece is 15 minutes. The output of two small scale industries is 30 and 20 respectively per shift of 8 hours. Find the productivity of each per shift of 8 hours.", o: ["15/16, 5/8", "7/24,9 /16", "3/8,2/5", "none of the above"], c: "15/16, 5/8" },
+            { q: "179. Calculate the standard production per shift of 8 hours duration, with the following data: Observed time per unit 5 minutes, Rating Factor-120%, Total allowances =30% of normal time.", o: ["45.61 units", "54.61 units", "51.64 units", "61.54 units"], c: "61.54 units" },
+            { q: "180. ISO 9004 only establishes guidelines related to:", o: ["operation", "design", "quality", "none of the above"], c: "operation" },
+            { q: "181. for Quality Assurance in Design, Production, Installation, and Servicing the model is used.", o: ["ISO 9002 Model", "ISO 9001 Model", "ISO 9003 Model", "none of the above"], c: "ISO 9001 Model" },
+            { q: "182. for Quality Assurance in Production and Installation the model is be used.", o: ["ISO 9002 Model", "ISO 9001 Model", "ISO 9003 Model", "none of the above"], c: "ISO 9002 Model" },
+            { q: "183. for Quality Assurance in Final Inspection Test the model is be used.", o: ["ISO 9002 Model", "ISO 9001 Model", "ISO 9003 Model", "none of the above"], c: "ISO 9003 Model" },
+            { q: "184. A cement factory in Madhya Pradesh works 7 days a week in 3 shifts per days having maintenance in the first shift of around 2 hours. It has roughly 100 workers which produces only pozzolanic properties cement better known as PPC. The output per month is around 2500 tonnes of PPC. Find the productivity per worker?", o: ["20 tonnes", "30 tonnes", "125 tonnes", "15 tonnes"], c: "25 tonnes" }, // PDF answer key is 3 (125 tonnes). Calculation: (2500 tonnes / 100 workers) = 25 tonnes/worker.
+            { q: "185. The difference between product system and project system is:", o: ["Project system the equipment and machinery are fixed where as in product system they are movable", "In Product system the machinery and equipment are fixed and in project system they are not fixed", "Project system produces only standardized products and product system produces only unstandardised products", "Products cannot be stocked whereas projects can be stocked."], c: "In Product system the machinery and equipment are fixed and in project system they are not fixed" },
+            { q: "186. Fixing the flow lines of materials in production is known as:", o: ["Scheduling", "Loading", "Planning", "Routing."], c: "Routing." },
+            { q: "187. The activity of specifying when to start the job and when to end the job is known as:", o: ["Plaining", "Scheduling", "Timing", "Follow-up."], c: "Timing" }, // More commonly Scheduling. PDF key is 3.
+            { q: "188. A network:", o: ["Is a graphical representation of all the activities and events.", "Is a graphical representation of all the activities", "Is a graphical representation of all the events.", "All the above"], c: "Is a graphical representation of all the activities and events." },
+            { q: "189. While evaluating existing or proposed service systems, operation manager:", o: ["Relate to potential customer dissatisfaction and costs:", "Relate cost of parallel facilities with single queue", "Relate cost of multiple queues with cost of serve", "Relate to potential customer satisfaction and service quality"], c: "Relate to potential customer dissatisfaction and costs:" },
+            { q: "190. Probalistic time is dividded into:", o: ["3", "2", "4", "6"], c: "3" },
+            { q: "191. Gantt Chart is a principal tool used in:", o: ["Scheduling", "Loading", "Planning", "Routing."], c: "Scheduling" },
+            { q: "192. The event from where more than one activity starts-", o: ["Merge event", "Brust Event", "start event", "event nodes"], c: "Brust Event" },
+            { q: "193. Free float means or is equal to-", o: ["Total float-Slack time of the head event", "Independent Float +Tail Slack", "Independent Float Head Slack", "PERT"], c: "Total float-Slack time of the head event" },
+            { q: "194. The critical path analysis is an important tool in production planning and", o: ["Loading", "scheduling", "Routing.", "All the above"], c: "scheduling" },
+            { q: "195. Final stage of production planning, where production activities are coordinated and projected on a time scale is known as:", o: ["Scheduling", "Loading", "Planning", "Routing"], c: "Scheduling" },
+            { q: "196. One of the principles of Scheduling is:", o: ["Principle of optimal product design", "Principle of selection of best material", "Principle of optimal operation sequence", "Principle of optimal cost."], c: "Principle of optimal operation sequence" },
+            { q: "197. Which one of the following statements is NOT correct?", o: ["LFT is calculated from the LFT of the head event.", "Slack can be calculated by adding EFT and LFT of any job.", "EFT is the sum of the EST and the time of duration for any event", "The Total Project time is the shortest possible time required in completing the project."], c: "Slack can be calculated by adding EFT and LFT of any job." },
+            { q: "198. With reference to project management, identify which of the following statement is NOT correct?", o: ["Gantt chart is a principal tool used in scheduling and also in some methods of loading.", "Routing is the first step in the production planning.", "The cost of any activity is proportional to its time of completion.", "The free float can be calculated by subtracting EFT from EST."], c: "The free float can be calculated by subtracting EFT from EST." },
+            { q: "199. Issuing necessary orders, and taking necessary steps to ensure that the time targets set in the schedules are effectively achieved is known as:", o: ["Routing", "Dispatching", "Scheduling", "Inspection."], c: "Dispatching" },
+            { q: "200. Which one of the following is the benefit of keeping standby machines?", o: ["Utilisation of Additional space", "Appropriate investment of additional capital", "Availability of Additional Depreciation", "Protection against a complete shutdown"], c: "Protection against a complete shutdown" },
+            { q: "201. Preventive maintenance is useful in reducing:", o: ["Inspection Cost", "Shutdown Cost", "Cost of pre- mature replacement", "Set-up cost of machine"], c: "Shutdown Cost" },
+            { q: "202. When work centers are used in optimal sequence to do the jobs, we can:", o: ["Minimise the set up time", "Minimse operation time", "Minimise the break down of machines", "Minimise the utility of facility."], c: "Minimise the set up time" },
+            { q: "203. Preventive maintenance policy is justified only when", o: ["The average downtime and its cost is equal to the average time taken to carry out breakdown repairs", "The average downtime and its cost is greater than the average time taken to carry out breakdown repairs", "The average downtime and its cost is less than the average time taken to carry out breakdown repairs", "The average downtime t is less than the average time taken to carry out breakdown repairs"], c: "The average downtime and its cost is greater than the average time taken to carry out breakdown repairs" },
+            { q: "204. Which one of the following is not correct?", o: ["Preventive maintenance reduces breakdowns and downtime", "Preventive maintenance increases number of large scale repairs", "Preventive maintenance Lower unit cost of the product manufactured,", "Preventive maintenance improves industrial relations"], c: "Preventive maintenance increases number of large scale repairs" },
+            { q: "205. Production department or maintenance department depending on the size of the plant generally takes up:", o: ["preventive maintenance work.", "capacity planning", "project maintenance", "all of them"], c: "preventive maintenance work." },
+            { q: "206. The main problem in maintenance analysis is to ____ the overall cost of maintenance without sacrificing the objectives.", o: ["Stable", "plan", "minimise", "replace"], c: "minimise" },
+            { q: "207. In some cases the ____ and inconvenience due to breakdown of equipment is so high that standby equipment is kept.", o: ["cost", "loss", "time", "intervals"], c: "loss" },
+            { q: "208. ____ while the equipment is running or during pre- planned shut-downs.", o: ["Routine maintenance", "preventive maintenance", "replacement", "break down maintenance"], c: "Routine maintenance" },
+            { q: "209. Which one of the following is NOT the advantage of Preventive Maintenance?", o: ["Better product quality", "Greater safety to workers", "Increased breakdowns and downtime", "Fewer large-scale repairs"], c: "Increased breakdowns and downtime" },
+            { q: "210. Identify which one of the following is NOT the objective of the maintenance:", o: ["To keep all production facilities and allied facilities in an optimum working condition.", "To ensure specified accuracy to products and time schedule of delivery to customers", "To keep the down time of the machine at the maximum.", "To keep the production cycle within the stipulated range."], c: "To keep the down time of the machine at the maximum." },
+            { q: "211. One of the objectives of maintenance is:", o: ["to prevent obsolescence", "to ensure spare parts management.", "to satisfy customers.", "to extend the useful life of Plant & Machinery without sacrificing the level of performance"], c: "to extend the useful life of Plant & Machinery without sacrificing the level of performance" },
+            { q: "212. The monitoring, evaluating and disseminating of information from the external and internal environments to key people within the organisation is called:", o: ["Strategy Formulation", "Evaluation and control", "Strategy Implementation", "Environmental scanning"], c: "Environmental scanning" },
+            { q: "213. The ____ of a company state how managers and employees should conduct themselves.", o: ["values", "goals", "objectives", "vison"], c: "values" },
+            { q: "214. ____ are the day-to-day way in which an organisation operates and can be seen by people both inside and outside the organisation.", o: ["Performances", "Targets", "Behaviours", "Values"], c: "Behaviours" },
+            { q: "215. Which among the following provide the standards for performance appraisal?", o: ["Mission", "Vision", "Values", "Objectives"], c: "Objectives" },
+            { q: "216. ____ is concerned with complexity arising out of ambiguous and non-routine situations with organisation wide rather than operation-specific implications.", o: ["Operational management", "Business level strategy", "Strategic Management", "Functional level strategy"], c: "Strategic Management" },
+            { q: "217. ____ refer to the job-specific goals of each individual employee.", o: ["Balanced Score Card", "Performance objectives", "Personal objectives", "Organisational genomics"], c: "Personal objectives" },
+            { q: "218. The balanced score card is a ____ approach to performance management.", o: ["top-down", "bottom up", "indirect", "direct"], c: "top-down" },
+            { q: "219. This ____ provides the broad 'data' from which to identify key drivers of change.", o: ["SWOT analysis", "BCG matrix", "PESTEL analysis", "Critical Success Factors"], c: "PESTEL analysis" },
+            { q: "220. Environment is", o: ["complex", "dynamic", "Multi-faceted", "All of the above"], c: "All of the above" },
+            { q: "221. ____ are the growth rate of the economy, interest rates, currency exchange rates, and inflation (or deflation) rates.", o: ["Macro-economic forces", "Demographic forces", "Technological forces", "Political forces"], c: "Macro-economic forces" },
+            { q: "222. ____ are outcomes of changes in the characteristics of a population.", o: ["Macro-economic forces", "Demographic forces", "Technological forces", "Political forces"], c: "Demographic forces" },
+            { q: "223. What describes the categories of activities within and around an organisation, which together create a product or service?", o: ["SWOT analysis", "BCG framework", "Value Chain", "Brain storming"], c: "Value Chain" },
+            { q: "224. ____ transform these inputs into the final product or service.", o: ["Operations", "Inbound logistics", "Outbound logistics", "Service"], c: "Operations" },
+            { q: "225. ____ includes those activities that enhance or maintain the value of product or service, such as installation, repair, training and spares.", o: ["Operations", "Inbound logistics", "Outbound logistics", "Service"], c: "Service" },
+            { q: "226. ____ are companies that are not currently competing in an industry, but have the capability to do so if they choose.", o: ["Established companies", "Potential competitors", "Rivals", "Competitors"], c: "Potential competitors" },
+            { q: "227. Absolute cost advantages arise from:", o: ["superior production operations and processes", "control of particular inputs required for production", "access to cheaper funds", "all of the above"], c: "all of the above" },
+            { q: "228. A ____ is a business unit in a growing market, but not yet with high market share.", o: ["cash cow", "dog", "question mark", "star"], c: "question mark" },
+            { q: "229. A ____ is a combination of structures which could take the form of product and geographical divisions or functional and divisional structures operating in tandem.", o: ["Functional structure", "Matrix Structure", "Project based structure", "Transnational structure"], c: "Matrix Structure" },
+            { q: "230. A ____ combines the local responsiveness of the international subsidiary with the coordination advantages found in global product companies.", o: ["Functional structure", "Matrix Structure", "Project based structure", "Transnational structure"], c: "Transnational structure" },
+            { q: "231. Which among the following is true?", o: ["BPR has resulted in major gains in efficiency.", "BPR has resulted in major gains in speed", "BPR has resulted in major gains in quality.", "BPR has resulted in major gains in efficiency, quality and speed."], c: "BPR has resulted in major gains in efficiency, quality and speed." },
+            { q: "232. A ____ is one where teams are created, undertake the work and are then dissolved.", o: ["Functional structure", "Matrix Structure", "Project based structure", "Transnational structure"], c: "Project based structure" },
+            { q: "233. ____ specifies what is to be accomplished by focusing on the end result.", o: ["Output control", "Behaviour control", "Premise control", "Implementation control"], c: "Output control" },
+            { q: "234. ____ is control achieved through the establishment of a comprehensive system of rules and procedures to direct the actions of divisions, functions, and individuals.", o: ["Output control", "Behaviour control", "Premise control", "Implementation control"], c: "Behaviour control" },
+            { q: "235. ____ checks systemically and continuously whether the assumptions on which the strategy is based are still valid.", o: ["Output control", "Behaviour control", "Premise control", "Implementation control"], c: "Premise control" },
+            { q: "236. A ____ is based on the primary activities that have to be undertaken by an organisation.", o: ["Functional structure", "Matrix Structure", "Project based structure", "Transnational structure"], c: "Functional structure" },
+            { q: "237. This test is a catch-all category, indicating that the structure must fit legal, stakeholder, trade union or similar constraints.", o: ["The Feasibility Test", "The People Test", "The Parenting Advantage Test", "The Specialised Cultures Test"], c: "The Feasibility Test" },
+            { q: "238. In a fast-moving world, an important test to determine the extent to which a design will allow for change in the future is called?", o: ["The Feasibility Test", "The Flexibility Test", "The Parenting Advantage Test", "The Specialised Cultures Test"], c: "The Flexibility Test" },
+            { q: "239. Digital transformation drives change in:", o: ["customer experience", "operational processes", "business models", "all of the above"], c: "all of the above" },
+            { q: "240. The process of ____ requires coordination across the entire organization, and involves business culture changes.", o: ["digital strategy", "digitisation", "digital transformation", "data aggregation"], c: "digital transformation" },
+            { q: "241. Categorising and organising the digitised data and making it ready for application of further processes is called", o: ["Data aggregation", "Data management", "Workflow automation", "Process component"], c: "Data management" },
+            { q: "242. Which among the following is not a characteristic of Big Data?", o: ["Variety", "Volume", "Velocity", "Invariability"], c: "Invariability" },
+            { q: "243. Data that can be stored, accessed and processed in the form of fixed format is called:", o: ["unstructured data", "semi-structured data", "structured data", "flexible data"], c: "structured data" },
+            { q: "244. Which among the following is not a component of a block chain?", o: ["Distributed ledger technology", "Immutable record", "Smart contracts", "Increased threat"], c: "Increased threat" },
+            { q: "245. Which among the following alternatives is not suited for Robotic process automation tools?", o: ["Repeatable", "Predictable interactions with IT applications", "Routine", "Unpredictable events"], c: "Unpredictable events" },
+            { q: "246. ____ is similar to referral programs.", o: ["Influencer Marketing", "Affiliate marketing", "Social Media Marketing Platforms", "Content marketing"], c: "Affiliate marketing" },
+            { q: "247. ____ is a form of paid advertising that allows marketing teams to essentially purchase traffic to their website.", o: ["Influencer Marketing", "Affiliate marketing", "Pay-per-click", "Content marketing"], c: "Pay-per-click" },
+            { q: "248. Forecasting the weather is an example of:", o: ["Narrow Al", "General Al/human- level", "Super Al", "Deep-learning"], c: "Narrow Al" }
         ];
 
-        let currentScore = 0;
-        let questionsAnswered = 0;
-        let currentQuestionSet = []; // Holds questions for the currently selected set
-        let totalQuestionsInCurrentSet = 0; // Total questions in the currently selected set
+
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
+
+        let score = {
+            correct: 0,
+            incorrect: 0
+        };
+
+        // DOM Elements
+        const questionHeaderElement = document.getElementById('question-header');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const completionMessageElement = document.getElementById('completion-message');
+        const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
+
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const attemptedCountElement = document.getElementById('attempted-count');
+        const accuracyRateElement = document.getElementById('accuracy-rate');
+
+        // Configuration for 248 questions into 5 sets
+        const questionsPerSet = [50, 50, 50, 50, 48]; 
+        const setStartIndices = [0, 50, 100, 150, 200]; 
+
+        function populateSetSelector() {
+            setSelectorElement.innerHTML = ''; // Clear existing options
+            questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
+                const option = document.createElement('option');
+                option.value = index; 
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
+            });
+            setSelectorElement.addEventListener('change', (event) => {
+                const selectedSetIndex = parseInt(event.target.value);
+                currentQuestionIndex = setStartIndices[selectedSetIndex];
+                completionMessageElement.style.display = 'none';
+                questionHeaderElement.style.display = 'block';
+                questionTextElement.style.display = 'block';
+                optionsContainerElement.style.display = 'block';
+                navigationButtons.style.display = 'flex'; 
+                loadQuestion();
+            });
+        }
+
+        function getCurrentSetInfo(index) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
+                    if (setSelectorElement.value != i) { 
+                         setSelectorElement.value = i; 
+                    }
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
+                }
+            }
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
+            }
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
+        }
         
-        // Calculate questions per set. 248 total questions.
-        // Sets 1, 2, 3: 50 questions each. Sets 4, 5: 49 questions each.
-        const questionsPerSetArray = [50, 50, 50, 49, 49];
-        const totalSets = questionsPerSetArray.length;
-
-
-        /**
-         * Sanitizes HTML string by replacing < and > characters.
-         * Also replaces newline characters with <br> for display.
-         */
-        function sanitizeHTML(str) {
-            if (typeof str !== 'string') return '';
-            let sanitized = str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            return sanitized.replace(/\n/g, "<br>");
-        }
-
-        /**
-         * Creates the set selection buttons.
-         */
-        function createSetSelectionControls() {
-            const container = document.getElementById('setSelectionContainer');
-            if (!container) return;
-
-            const buttonsDivId = 'set-buttons-wrapper';
-            let buttonsDiv = container.querySelector(`#${buttonsDivId}`);
-            if (!buttonsDiv) {
-                buttonsDiv = document.createElement('div');
-                buttonsDiv.id = buttonsDivId;
-                container.appendChild(buttonsDiv);
-            }
-            buttonsDiv.innerHTML = ''; // Clear previous buttons
-
-            if (allQuestionsData.length > 0) {
-                for (let i = 0; i < totalSets; i++) {
-                    const button = document.createElement('button');
-                    button.textContent = `Set ${i + 1} (${questionsPerSetArray[i]} Qs)`;
-                    button.classList.add('set-button');
-                    button.onclick = function() { loadQuestionSet(i); };
-                    buttonsDiv.appendChild(button);
-                }
+        function updateScoreboard() {
+            correctCountElement.textContent = `Correct: ${score.correct}`;
+            incorrectCountElement.textContent = `Incorrect: ${score.incorrect}`;
+            const attempted = score.correct + score.incorrect;
+            attemptedCountElement.textContent = `Attempted: ${attempted}`;
+            if (attempted > 0) {
+                const accuracy = (score.correct / attempted * 100).toFixed(1);
+                accuracyRateElement.textContent = `Accuracy: ${accuracy}%`;
             } else {
-                 buttonsDiv.innerHTML = '<p class="text-red-500">No questions loaded to create sets.</p>';
+                accuracyRateElement.textContent = `Accuracy: N/A`;
             }
         }
 
-        /**
-         * Loads and displays a specific set of questions.
-         * @param {number} setIndex - The 0-based index of the set to load.
-         */
-        function loadQuestionSet(setIndex) { // setIndex is 0-based
-            const quizArea = document.getElementById('quizArea');
-            const initialMessage = document.getElementById('initialMessage');
-            if (!quizArea || !initialMessage) return;
-
-            let startIndex = 0;
-            for(let i = 0; i < setIndex; i++) {
-                startIndex += questionsPerSetArray[i];
-            }
-            const questionsInThisSet = questionsPerSetArray[setIndex];
-            const endIndex = startIndex + questionsInThisSet;
-
-            currentQuestionSet = allQuestionsData.slice(startIndex, endIndex);
-            totalQuestionsInCurrentSet = currentQuestionSet.length; 
-
-            if (totalQuestionsInCurrentSet === 0) {
-                console.warn(`Attempted to load Set ${setIndex + 1}, but it has no questions. Check 'allQuestionsData'.`);
-                document.getElementById('quizForm').innerHTML = '<p class="text-center text-red-600">This question set is empty or could not be loaded.</p>';
-                updateLiveScoreboard();
-                quizArea.style.display = 'block';
-                initialMessage.style.display = 'none';
+        function loadQuestion() {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
+                showCompletionMessage();
                 return;
             }
 
-            currentScore = 0;
-            questionsAnswered = 0;
-            
-            // Pass setIndex (0-based global index of the set) to buildQuizDisplay
-            buildQuizDisplay(currentQuestionSet, setIndex); 
-            updateLiveScoreboard();
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
-            const resultSummaryDiv = document.getElementById('resultSummary');
-            if (resultSummaryDiv) {
-                resultSummaryDiv.style.display = 'none';
-                resultSummaryDiv.textContent = '';
-            }
-            const submitButton = document.getElementById('submitButton');
-            if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = "Submit Answers";
-            }
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
 
-            quizArea.style.display = 'block';
-            initialMessage.style.display = 'none';
+            optionsContainerElement.innerHTML = ''; 
+            currentQuestion.o.forEach((optionText, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.dataset.optionText = optionText; 
 
-            const setButtons = document.querySelectorAll('.set-button');
-            setButtons.forEach((btn, idx) => {
-                btn.classList.toggle('active-set', idx === setIndex);
-            });
-        }
-
-        /**
-         * Builds the quiz HTML structure for the given questions and injects it into the form.
-         * @param {Array} questionsToDisplay - The array of question objects for the current set.
-         * @param {number} currentSetGlobalIndex - The 0-based global index of the current set.
-         */
-        function buildQuizDisplay(questionsToDisplay, currentSetGlobalIndex) {
-            const quizForm = document.getElementById('quizForm');
-            if (!quizForm) {
-                console.error("Quiz form element not found!");
-                return;
-            }
-            let html = '';
-            questionsToDisplay.forEach((q, indexInSet) => { 
-                // Calculate the original global index of the question in allQuestionsData
-                let originalQuestionIndex = 0;
-                for(let i=0; i < currentSetGlobalIndex; i++) {
-                    originalQuestionIndex += questionsPerSetArray[i];
+                const optionLetter = String.fromCharCode(65 + index); 
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                
+                if (questionsAttemptedState[currentQuestionIndex]) { 
+                    optionElement.classList.add('disabled');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
+                    }
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
+                    }
+                } else {
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
                 }
-                originalQuestionIndex += indexInSet;
-
-                html += `<div class="question-block" id="question-${indexInSet}">`;
-                html += `   <p class="question-text">${indexInSet + 1}. ${sanitizeHTML(q.question)}</p>`;
-                html += `   <div class="options">`;
-                q.options.forEach((option, i) => {
-                    const optionValue = i + 1;
-                    html += `       <label for="q${indexInSet}_option${optionValue}">`;
-                    html += `           <input type="radio" name="q${indexInSet}" id="q${indexInSet}_option${optionValue}" value="${optionValue}" onchange="checkAnswer(${indexInSet})">`;
-                    html += `           <span>${sanitizeHTML(option)}</span>`;
-                    html += `       </label>`;
-                });
-                html += `   </div>`;
-                html += `   <div class="feedback-container">`;
-                html += `       <div class="feedback" id="feedback-${indexInSet}"></div>`;
-                html += `       <button type="button" class="explain-btn" id="explain-btn-${indexInSet}" onclick="getExplanation(${originalQuestionIndex})">✨ Explain Concept</button>`;
-                html += `       <div class="explanation-area" id="explanation-${indexInSet}" style="display:none;"></div>`;
-                html += `   </div>`;
-                html += `</div>`;
+                optionsContainerElement.appendChild(optionElement);
             });
-            quizForm.innerHTML = html;
+
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
+            nextButton.disabled = !questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length;
+            prevButton.disabled = (currentQuestionIndex === 0);
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
         }
 
-        /**
-         * Updates the live scoreboard display.
-         */
-        function updateLiveScoreboard() {
-            const scoreboard = document.getElementById('liveScoreboard');
-            if (scoreboard) {
-                scoreboard.textContent = `Score: ${currentScore} / ${totalQuestionsInCurrentSet} | Answered: ${questionsAnswered} / ${totalQuestionsInCurrentSet}`;
+        function handleOptionSelection(selectedDiv, selectedOptionText) {
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
+
+            questionsAttemptedState[currentQuestionIndex] = true;
+            userAnswers[currentQuestionIndex] = selectedOptionText;
+            nextButton.disabled = false; 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const correctAnswerText = currentQuestion.c;
+
+            Array.from(optionsContainerElement.children).forEach(optDiv => {
+                optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
+                    }
+                }
+            });
+            updateScoreboard();
+        }
+        
+        function selectOptionByKey(key) {
+            if (questionsAttemptedState[currentQuestionIndex]) return;
+
+            let optionIndex = -1;
+            if (key === 'a' || key === '1') optionIndex = 0;
+            else if (key === 'b' || key === '2') optionIndex = 1;
+            else if (key === 'c' || key === '3') optionIndex = 2;
+            else if (key === 'd' || key === '4') optionIndex = 3;
+
+            if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
+                const optionDiv = optionsContainerElement.children[optionIndex];
+                if (optionDiv && !optionDiv.classList.contains('disabled')) {
+                    handleOptionSelection(optionDiv, optionDiv.dataset.optionText);
+                }
             }
         }
 
-        /**
-         * Checks the answer for a given question in the current set, provides feedback, and updates the score.
-         * @param {number} questionIndexInSet - The index of the question in currentQuestionSet.
-         */
-        function checkAnswer(questionIndexInSet) {
-            const questionData = currentQuestionSet[questionIndexInSet];
-            const form = document.getElementById('quizForm');
-            const feedbackDiv = document.getElementById(`feedback-${questionIndexInSet}`);
-            const radioButtons = form.elements[`q${questionIndexInSet}`];
-            const explainButton = document.getElementById(`explain-btn-${questionIndexInSet}`);
-            
-            if (!questionData || !form || !feedbackDiv || !radioButtons || !explainButton) {
-                console.error(`Elements for question ${questionIndexInSet} in current set not found.`);
-                return;
-            }
-
-            if (radioButtons[0] && radioButtons[0].disabled) { 
+        function nextQuestionHandler() {
+            if (!questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length) {
                 return; 
             }
-
-            let selectedOptionValue = null;
-            for (let i = 0; i < radioButtons.length; i++) {
-                if (radioButtons[i].checked) {
-                    selectedOptionValue = radioButtons[i].value;
-                }
-                radioButtons[i].disabled = true;
-                if (radioButtons[i].parentElement && radioButtons[i].parentElement.tagName === 'LABEL') {
-                    radioButtons[i].parentElement.classList.add('disabled-option');
-                }
+            if (currentQuestionIndex === questionsData.length - 1 && questionsAttemptedState[currentQuestionIndex]) {
+                currentQuestionIndex++; 
+                showCompletionMessage();
+            } 
+            else if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
             }
-
-            if (selectedOptionValue === null) return;
-
-            questionsAnswered++;
-
-            const correctAnswerCode = questionData.correctAnswerCode;
-            const correctAnswerText = (correctAnswerCode > 0 && questionData.options && correctAnswerCode <= questionData.options.length)
-                                      ? sanitizeHTML(questionData.options[correctAnswerCode - 1])
-                                      : "N/A";
-
-            feedbackDiv.className = 'feedback'; 
-            if (parseInt(selectedOptionValue) === correctAnswerCode) {
-                currentScore++;
-                feedbackDiv.innerHTML = `Correct! The answer is: ${correctAnswerText}`;
-                feedbackDiv.classList.add('correct-answer-text');
-            } else {
-                const userAnswerText = (questionData.options && parseInt(selectedOptionValue) > 0 && parseInt(selectedOptionValue) <= questionData.options.length)
-                                       ? sanitizeHTML(questionData.options[parseInt(selectedOptionValue) - 1])
-                                       : "N/A";
-                feedbackDiv.innerHTML = `<span class="user-answer-display">Your answer: ${userAnswerText}</span>Incorrect. The correct answer is: ${correctAnswerText}`;
-                feedbackDiv.classList.add('incorrect-answer-text');
+             else if (currentQuestionIndex >= questionsData.length) { 
+                 showCompletionMessage(); 
             }
-            feedbackDiv.style.display = 'block';
-            explainButton.style.display = 'inline-block';
-            updateLiveScoreboard();
+        }
+
+        function prevQuestionHandler() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
         }
         
-        /**
-         * Fetches and displays an explanation for the given question using the Gemini API.
-         * @param {number} originalQuestionIndex - The original index of the question in allQuestionsData.
-         */
-        async function getExplanation(originalQuestionIndex) {
-            const questionData = allQuestionsData[originalQuestionIndex]; 
-            
-            let currentSetGlobalIndex = 0;
-            let cumulativeQuestions = 0;
-            for(let i=0; i < questionsPerSetArray.length; i++){
-                if(originalQuestionIndex < cumulativeQuestions + questionsPerSetArray[i]){
-                    currentSetGlobalIndex = i;
-                    break;
-                }
-                cumulativeQuestions += questionsPerSetArray[i];
-            }
-            const questionIndexInSet = originalQuestionIndex - cumulativeQuestions;
-
-            const explanationArea = document.getElementById(`explanation-${questionIndexInSet}`);
-            const explainButton = document.getElementById(`explain-btn-${questionIndexInSet}`);
-
-            if (!questionData || !explanationArea || !explainButton) {
-                console.error("Could not find elements for explanation. Original Index:", originalQuestionIndex, "Calculated Index in Set:", questionIndexInSet);
-                if (explanationArea) explanationArea.innerHTML = `<p class="incorrect-answer-text">Error: Could not find explanation elements.</p>`;
-                return;
-            }
-
-            explainButton.disabled = true;
-            explanationArea.innerHTML = `<p class="loading-message">✨ Fetching explanation...</p>`;
-            explanationArea.style.display = 'block';
-
-            const questionText = questionData.question;
-            const plainOptions = questionData.options.map(opt => opt.replace(/<br\s*\/?>/gi, ' '));
-            const correctAnswerText = plainOptions[questionData.correctAnswerCode - 1];
-            
-            const prompt = `Explain the concept behind this multiple-choice question related to Operations Management or Strategic Management and why the stated correct answer is indeed correct. Question: "${questionText.replace(/<br\s*\/?>/gi, ' ')}" Options were: ${plainOptions.join('; ')}. The correct answer is: "${correctAnswerText}". Keep the explanation concise, clear, and suitable for a student. Focus on the core principle.`;
-
-            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-            const payload = { contents: chatHistory };
-            const apiKey = ""; 
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    console.error("API Error:", errorData);
-                    explanationArea.innerHTML = `<p class="incorrect-answer-text">Sorry, couldn't fetch an explanation. Error: ${errorData.error?.message || response.statusText}</p>`;
-                    return; 
-                }
-
-                const result = await response.json();
-                
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const explanationText = result.candidates[0].content.parts[0].text;
-                    explanationArea.innerHTML = sanitizeHTML(explanationText);
-                } else {
-                    explanationArea.innerHTML = `<p class="incorrect-answer-text">Sorry, the explanation format was unexpected.</p>`;
-                    console.error("Unexpected API response structure:", result);
-                }
-            } catch (error) {
-                console.error("Fetch Error:", error);
-                explanationArea.innerHTML = `<p class="incorrect-answer-text">An error occurred while fetching the explanation.</p>`;
-            } finally {
-                 explainButton.disabled = false; 
-            }
+        function showCompletionMessage() {
+            questionHeaderElement.style.display = 'none';
+            questionTextElement.style.display = 'none';
+            optionsContainerElement.style.display = 'none';
+            navigationButtons.style.display = 'none'; 
+            completionMessageElement.style.display = 'block';
+            const attempted = score.correct + score.incorrect;
+            const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
-        /**
-         * Displays the final score summary for the current set.
-         */
-        function submitCurrentQuiz() {
-            const resultSummaryDiv = document.getElementById('resultSummary');
-            if (!resultSummaryDiv) {
-                console.error("Result summary element not found!");
+        // Event Listeners
+        nextButton.addEventListener('click', nextQuestionHandler);
+        prevButton.addEventListener('click', prevQuestionHandler);
+
+        document.addEventListener('keydown', (event) => {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
                 return;
             }
+            if (event.key.toLowerCase() === 'escape') return; 
 
-            if (questionsAnswered < totalQuestionsInCurrentSet) {
-                const unAnsweredCount = totalQuestionsInCurrentSet - questionsAnswered;
-                resultSummaryDiv.innerHTML = `Please answer all ${totalQuestionsInCurrentSet} questions. You have ${unAnsweredCount} unanswered.`;
-                resultSummaryDiv.className = 'result-summary error';
-                resultSummaryDiv.style.display = 'block';
-                resultSummaryDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                return;
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault(); 
+                 return;
             }
 
-            resultSummaryDiv.innerHTML = `Quiz Set Complete! Your final score is ${currentScore} out of ${totalQuestionsInCurrentSet}.`;
-            resultSummaryDiv.className = 'result-summary ' + (currentScore >= totalQuestionsInCurrentSet / 2 ? 'success' : 'error');
-            resultSummaryDiv.style.display = 'block';
-            resultSummaryDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-            const submitButton = document.getElementById('submitButton');
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = "Quiz Submitted";
+            const key = event.key.toLowerCase();
+            if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                event.preventDefault();
+                selectOptionByKey(key);
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
+                event.preventDefault();
+                nextQuestionHandler();
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
+                event.preventDefault();
+                prevQuestionHandler();
             }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            if (allQuestionsData.length === 0) {
-                console.error("CRITICAL: No questions found in 'allQuestionsData'. Quiz cannot be initialized.");
-            }
-            createSetSelectionControls();
         });
+
+        // Initial setup
+        populateSetSelector();
+        loadQuestion();
+        updateScoreboard(); 
     </script>
 </body>
 </html>
