@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ICMAI MCQ Workout - Syllabus 2022 Groups</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa; /* Light gray background - Google style */
-            color: #202124; /* Dark gray text - Google style */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5; /* Light grey background from MA set */
+            color: #333; /* Default dark text */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -22,13 +21,13 @@
 
         .header-wrapper {
             width: 100%;
-            background-color: #ffffff; /* White header background */
+            background-color: #0051ff; /* Blue from MA set navigation */
             display: flex;
             justify-content: center;
             padding: 15px 0;
             margin-bottom: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .header-container {
@@ -41,11 +40,11 @@
         }
 
         .logo {
-            width: 130px; /* Increased logo size */
+            width: 160px; /* Increased logo size */
             height: auto;
             margin-right: 25px;
-            flex-shrink: 0; /* Prevent logo from shrinking */
-            border-radius: 8px; /* Optional: if you want rounded corners for the new logo */
+            flex-shrink: 0; 
+            border-radius: 8px; 
         }
 
         .header-text-content {
@@ -53,58 +52,28 @@
             text-align: left;
         }
 
-        /* --- Glowing Flashing Red Title --- */
-        @keyframes glowing-flashing-red {
-            0%, 100% {
-                color: #FF4136; /* Bright Red */
-                text-shadow: 0 0 3px #FF4136, 0 0 5px #FF4136, 0 0 7px #FF6347;
-                opacity: 1;
-            }
-            50% {
-                color: #FF6347; /* Lighter Red/Orange for flash */
-                text-shadow: 0 0 5px #FF6347, 0 0 8px #FF6347, 0 0 10px #FF8C69;
-                opacity: 0.85;
-            }
-        }
-
         .main-title {
-            font-size: 2.6rem;
-            font-weight: 800;
+            font-size: 2.4rem; 
+            font-weight: 700; 
+            color: #ffffff; 
             letter-spacing: -0.5px;
             margin: 0;
-            animation: glowing-flashing-red 1.8s infinite ease-in-out; 
         }
-        /* --- End Glowing Flashing Red Title --- */
 
         .subtitle {
-            font-size: 1.05rem;
-            color: #5f6368; /* Google secondary text gray */
+            font-size: 1rem;
+            color: #e0e0e0; 
             margin-top: 5px;
             margin-bottom: 8px; 
         }
 
-        /* --- Glowing Flashing Royal Blue Description --- */
-        @keyframes glowing-flashing-royal-blue {
-            0%, 100% {
-                color: #4169E1; /* Royal Blue */
-                text-shadow: 0 0 2px #4169E1, 0 0 4px #6495ED; /* Subtle glow */
-                opacity: 1;
-            }
-            50% {
-                color: #6495ED; /* Lighter Royal Blue for flash */
-                text-shadow: 0 0 3px #6495ED, 0 0 5px #87CEFA; /* Slightly more pronounced glow */
-                opacity: 0.9;
-            }
-        }
-
         .description-paragraph {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
+            color: #d1d1d1; 
             margin-top: 8px; 
             line-height: 1.5;
-            font-weight: 600; /* Bold text */
-            animation: glowing-flashing-royal-blue 2s infinite ease-in-out; /* Apply animation */
+            font-weight: 500; 
         }
-        /* --- End Glowing Flashing Royal Blue Description --- */
 
         .group-container {
             width: 100%;
@@ -113,13 +82,13 @@
         }
 
         .group-title {
-            font-size: 2rem;
+            font-size: 1.8rem; 
             font-weight: 700;
-            color: #34A853; /* Google Green */
+            color: #8000ff; /* Purple from MA set scoreboard */
             text-align: center;
             margin-bottom: 25px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0; /* Lighter border */
+            border-bottom: 2px solid #d1c4e9; /* Lighter purple/grey border */
         }
 
         .quiz-grid {
@@ -130,50 +99,45 @@
         }
 
         .quiz-card {
-            background-color: #ffffff; 
+            background-color: #FFC300; /* Yellow from MA set quiz container */
             border-radius: 10px;
-            padding: 25px;
+            padding: 20px; 
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07); 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; 
-            border: 1px solid #dadce0; 
+            justify-content: space-between; /* Ensures button stays at bottom */
+            border: 1px solid #e6ac00; /* Darker yellow border */
+            min-height: 200px; /* Ensure cards have some minimum height */
         }
 
         .quiz-card:hover {
             transform: translateY(-7px);
-            box-shadow: 0 10px 25px rgba(66, 133, 244, 0.15); 
-        }
-
-        .quiz-card-thumbnail {
-            width: 100%;
-            height: auto; 
-            border-radius: 6px; 
-            margin-bottom: 15px; 
+            box-shadow: 0 10px 25px rgba(128, 0, 255, 0.2); /* Purpleish glow on hover */
         }
 
         .quiz-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem; 
             font-weight: 600;
-            color: #FBBC05; /* Google Yellow */
+            color: #333; 
             margin-bottom: 10px; 
+            margin-top: 10px; 
         }
 
         .quiz-card p {
-            font-size: 0.95rem;
-            color: #5f6368; 
+            font-size: 0.9rem;
+            color: #444; 
             margin-bottom: 20px;
             flex-grow: 1;
         }
 
         .quiz-card a {
             display: inline-block;
-            background-color: #EA4335; /* Google Red */
+            background-color: #0051ff; 
             color: #ffffff;
-            padding: 12px 25px;
-            border-radius: 8px;
+            padding: 10px 20px; 
+            border-radius: 6px;
             text-decoration: none;
             font-weight: 500;
             transition: background-color 0.3s ease, transform 0.2s ease;
@@ -181,7 +145,7 @@
         }
 
         .quiz-card a:hover {
-            background-color: #d93025; /* Darker Google Red */
+            background-color: #003bb3; /* Darker blue */
             transform: scale(1.05);
         }
 
@@ -189,13 +153,13 @@
             margin-top: 30px;
             padding: 15px;
             font-size: 0.9em;
-            color: #5f6368; 
+            color: #555; 
             text-align: center;
             width: 100%;
             max-width: 900px;
         }
         .footer-credit a {
-            color: #4285F4; /* Google Blue */
+            color: #0051ff; /* Blue link */
             text-decoration: none;
             font-weight: 500;
         }
@@ -208,12 +172,12 @@
             height: 22px; 
             margin-right: 5px;
             vertical-align: middle;
-            fill: #EA4335; 
+            fill: #dc3545; /* Red for heart */
         }
         .jai-hind {
             font-size: 1.1em; 
             font-weight: 600;
-            color: #34A853; /* Google Green for Jai Hind */
+            color: #28a745; /* Green for Jai Hind */
             margin-top: 15px; 
             display: flex; 
             align-items: center;
@@ -224,7 +188,6 @@
             height: auto;
             margin-left: 8px; 
         }
-
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -237,7 +200,7 @@
                 text-align: center;
             }
             .logo {
-                width: 100px; /* Adjusted for smaller screens */
+                width: 120px; /* Adjusted for smaller screens */
                 margin-right: 0;
                 margin-bottom: 15px;
             }
@@ -245,33 +208,33 @@
                 text-align: center;
             }
             .main-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
             }
             .subtitle {
-                font-size: 1rem;
+                font-size: 0.95rem;
             }
             .description-paragraph {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
             }
             .group-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             .quiz-grid {
                 grid-template-columns: 1fr;
             }
             .quiz-card {
-                padding: 20px;
+                padding: 15px;
             }
             .quiz-card h3 {
-                font-size: 1.2rem;
+                font-size: 1.15rem;
             }
         }
          @media (max-width: 480px) {
             .main-title {
-                font-size: 1.8rem;
+                font-size: 1.7rem;
             }
             .group-title {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
              .header-wrapper {
                 padding: 10px 0;
@@ -280,7 +243,17 @@
                 padding: 10px 15px;
             }
             .logo {
-                width: 80px; /* Further adjustment for very small screens */
+                width: 100px; /* Further adjustment for very small screens */
+            }
+             .quiz-card h3 {
+                font-size: 1.1rem;
+            }
+            .quiz-card p {
+                font-size: 0.85rem;
+            }
+            .quiz-card a {
+                padding: 8px 15px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -289,7 +262,7 @@
 
     <div class="header-wrapper">
         <div class="header-container">
-            <img src="bvr.jpg" alt="MCQ Workout Brain Logo" class="logo">
+            <img src="brain.jpg" alt="MCQ Workout Brain Dumbbell Logo" class="logo">
             <div class="header-text-content">
                 <h1 class="main-title">ICMAI MCQ WORKOUT</h1>
                 <p class="subtitle">Select a subject to start your MCQ practice session.</p>
@@ -302,28 +275,24 @@
         <h2 class="group-title">Group I - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card">
-                <img src="P5.jpg" alt="Business Laws & Ethics Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 5: Business Laws & Ethics</h3>
                 <p>Review your grasp of various business laws and ethical considerations.</p>
                 <a href="law sets.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
-                <img src="P6.jpg" alt="Financial Accounting Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 6: Financial Accounting</h3>
                 <p>Dive into MCQs covering fundamental accounting concepts and standards.</p>
                 <a href="fin acc sets.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
-                <img src="P7_DT.jpg" alt="Direct & Indirect Taxation Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 7: Direct & Indirect Taxation</h3>
                 <p>Assess your understanding of direct tax laws and indirect tax (GST) provisions.</p>
                 <a href="dt sets.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
-                <img src="P8.jpg" alt="Cost Accounting Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 8: Cost Accounting</h3>
                 <p>Challenge yourself with MCQs on cost ascertainment, analysis, and control.</p>
                 <a href="cost sets.html">Start Quiz</a>
@@ -335,28 +304,24 @@
         <h2 class="group-title">Group II - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card">
-                <img src="P9.jpg" alt="Operations Management & Strategic Management Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 9: Operations Management & Strategic Management</h3>
                 <p>Tackle questions on operations, supply chain, and strategic planning.</p>
                 <a href="omsm sets.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
-                <img src="P10.jpg" alt="Corporate Accounting & Auditing Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 10: Corporate Accounting & Auditing</h3>
                 <p>Test your knowledge on corporate accounting principles and auditing standards.</p>
                 <a href="ca audit set.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
-                <img src="P11.jpg" alt="Financial Management & Business Data Analytics Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 11: Financial Management & Business Data Analytics</h3>
                 <p>Explore questions on financial decision-making and data analysis techniques.</p>
                 <a href="fmda set.html">Start Quiz</a>
             </div>
 
             <div class="quiz-card">
-                <img src="P12.jpg" alt="Management Accounting Thumbnail" class="quiz-card-thumbnail">
                 <h3>Paper 12: Management Accounting</h3>
                 <p>Engage with MCQs on management accounting tools and techniques for decision support.</p>
                 <a href="MA set.html">Start Quiz</a>
