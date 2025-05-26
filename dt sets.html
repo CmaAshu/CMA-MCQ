@@ -3,655 +3,676 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Direct and Indirect Taxation Quiz - Select a Set</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>MCQ Quiz - Direct and Indirect Taxation</title>
     <style>
         body {
-            font-family: 'Inter', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
             margin: 0;
-            padding: 0;
+            padding: 20px;
             background-color: #f0f2f5;
             color: #333;
-            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-        .quiz-container {
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px 25px;
-            border-radius: 10px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.07);
-        }
-        h1 {
-            text-align: center;
-            color: #0056b3; /* Tailwind: text-blue-700 */
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-        .set-selection-container {
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: #e9ecef; /* Tailwind: bg-gray-100 */
+
+        #scoreboard-container {
+            background: #9370DB; /* Purple */
+            color: #ffffff; /* White text for better contrast on purple */
+            padding: 15px 20px;
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
             text-align: center;
         }
-        .set-selection-container h2 {
+        
+        #set-navigation-container {
+            background: #4169E1; /* Royal Blue */
+            color: #ffffff; /* White text for better contrast on blue */
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
             margin-bottom: 15px;
-            font-size: 1.3em;
-            color: #343a40; /* Tailwind: text-gray-800 */
+            text-align: center;
         }
-        .set-button {
-            background-color: #007bff; /* Tailwind: bg-blue-500 */
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            margin: 5px;
+
+        #scoreboard {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        #scoreboard span {
+            margin: 0 10px;
+        }
+        /* Scoreboard text colors will be inherited from #scoreboard-container (white) */
+        /* Specific class colors for scores if needed, but white on purple should be fine */
+        #scoreboard .correct { color: #d4edda; } /* Lighter green on purple for emphasis */
+        #scoreboard .incorrect { color: #f8d7da; } /* Lighter red on purple for emphasis */
+        #scoreboard .accuracy { color: #e0e0e0; } /* Light grey/white for accuracy on purple */
+
+
+        #set-navigation-container label {
+            margin-right: 10px;
+            font-weight: 500;
+            color: #ffffff; /* Ensure label is white on blue */
+        }
+
+        #set-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #fff; /* Keep select dropdown background white */
+            color: #333; /* Text color for select options */
+        }
+
+        #quiz-container {
+            background: #FFC300; /* Light Saffron */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            color: #333; /* Default text color for quiz content */
+        }
+
+        #question-header {
+            font-size: 0.9em;
+            color: #555; /* Darker text for readability on saffron */
+            margin-bottom: 15px;
+            text-align: right;
+            border-bottom: 1px solid #e0ac00; /* Darker saffron for border */
+            padding-bottom: 10px;
+        }
+
+        #question-text {
+            font-size: 1.15em;
+            margin-bottom: 25px;
+            color: #2c3e50; /* Darker text for readability on saffron */
+            font-weight: 500;
+        }
+
+        .options-container {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            background: #FFF8E1; /* Very light cream for options, to contrast with saffron */
+            padding: 12px 15px;
+            margin-bottom: 12px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 1em;
+            border: 1px solid #FFECB3; /* Light gold border for options */
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            color: #333; /* Text color for options */
+        }
+
+        .option:not(.disabled):hover {
+            background: #FFF0C1; /* Slightly darker cream on hover */
+            border-color: #FFE082;
+        }
+
+        .option.selected {
+            font-weight: 500; 
+        }
+        
+        .option.correct-answer {
+            background: #d4edda !important; 
+            border-color: #c3e6cb !important;
+            color: #155724 !important;
+        }
+
+        .option.incorrect-selection {
+            background: #f8d7da !important; 
+            border-color: #f5c6cb !important;
+            color: #721c24 !important;
+        }
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #495057;
+            background-color: #FFECB3; /* Light gold for option letters */
+            padding: 3px 7px;
+            border-radius: 4px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .option.correct-answer .option-letter {
+            background-color: #28a745 !important;
+            color: white !important;
+        }
+        .option.incorrect-selection .option-letter {
+            background-color: #dc3545 !important;
+            color: white !important;
+        }
+
+
+        #navigation-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #007bff; /* Standard blue for button, or choose a contrasting color */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
             transition: background-color 0.2s ease-in-out;
         }
-        .set-button:hover {
-            background-color: #0056b3; /* Tailwind: hover:bg-blue-700 */
-        }
-        .set-button.active-set {
-            background-color: #28a745; /* Tailwind: bg-green-500 */
-            font-weight: bold;
-        }
-        .set-button:disabled {
-            background-color: #6c757d; /* Tailwind: bg-gray-500 */
-            cursor: not-allowed;
+
+        button:hover {
+            background-color: #0056b3;
         }
 
-        .live-scoreboard {
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #completion-message {
             text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            padding: 12px;
-            margin-bottom: 25px;
-            background-color: #e9ecef; /* Tailwind: bg-gray-100 */
-            border-radius: 6px;
-            color: #0056b3; /* Tailwind: text-blue-700 */
-            border: 1px solid #d1d9e0; /* Tailwind: border-gray-300 */
+            font-size: 1.6em;
+            color: #28a745;
+            padding: 30px;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            border-radius: 8px;
         }
-        .question-block {
-            margin-bottom: 28px;
-            padding-bottom: 22px;
-            border-bottom: 1px dashed #d4dae0; /* Tailwind: border-gray-300 */
-        }
-        .question-block:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        .question-text {
-            font-weight: 600;
-            margin-bottom: 15px;
-            font-size: 1.1em;
-            color: #2c3e50; /* Tailwind: text-gray-700 */
-        }
-        .options label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1em;
-            cursor: pointer;
-            padding: 10px 12px;
-            border-radius: 6px;
-            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            border: 1px solid #e0e0e0; /* Tailwind: border-gray-300 */
-            background-color: #f9f9f9; /* Tailwind: bg-gray-50 */
-        }
-        .options label:hover:not(.disabled-option) {
-            background-color: #e9ecef; /* Tailwind: hover:bg-gray-100 */
-            border-color: #adb5bd; /* Tailwind: hover:border-gray-400 */
-        }
-        .options input[type="radio"] {
-            margin-right: 12px;
-            vertical-align: middle;
-            transform: scale(1.1);
-        }
-        .options input[type="radio"]:disabled + span {
-            color: #6c757d; /* Tailwind: text-gray-500 */
-        }
-        .options label.disabled-option {
-            cursor: default;
-            background-color: #f0f0f0; /* Tailwind: bg-gray-200 */
-            color: #6c757d; /* Tailwind: text-gray-500 */
-        }
-
-        .submit-btn {
-            display: block;
-            width: 100%;
-            padding: 14px 20px;
-            background-color: #007bff; /* Tailwind: bg-blue-500 */
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.15em;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 35px;
-            transition: background-color 0.25s, opacity 0.25s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .submit-btn:hover:not(:disabled) {
-            background-color: #0056b3; /* Tailwind: hover:bg-blue-700 */
-        }
-        .submit-btn:disabled {
-            background-color: #6c757d; /* Tailwind: bg-gray-500 */
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
-        .result-summary {
+        #instagram-link {
             margin-top: 30px;
-            padding: 20px;
-            border-radius: 6px;
-            font-size: 1.25em;
             text-align: center;
-            font-weight: 600;
+            font-size: 1.1em;
+            color: #555;
         }
-        .result-summary.success {
-            background-color: #d1e7dd; /* Tailwind: bg-green-100 */
-            color: #0f5132; /* Tailwind: text-green-800 */
-            border: 1px solid #badbcc; /* Tailwind: border-green-300 */
+        #instagram-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
         }
-        .result-summary.error {
-            background-color: #f8d7da; /* Tailwind: bg-red-100 */
-            color: #842029; /* Tailwind: text-red-800 */
-            border: 1px solid #f5c2c7; /* Tailwind: border-red-300 */
-        }
-        .feedback {
-            margin-top: 12px;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 0.95em;
-            display: none; /* Initially hidden */
-            border-width: 1px;
-            border-style: solid;
-        }
-        .feedback.correct-answer-text {
-            color: #0f5132; /* Tailwind: text-green-800 */
-            background-color: #d1e7dd; /* Tailwind: bg-green-100 */
-            border-color: #badbcc; /* Tailwind: border-green-300 */
-            font-weight: 500;
-        }
-        .feedback.incorrect-answer-text {
-            color: #842029; /* Tailwind: text-red-800 */
-            background-color: #f8d7da; /* Tailwind: bg-red-100 */
-            border-color: #f5c2c7; /* Tailwind: border-red-300 */
-            font-weight: 500;
-        }
-        .feedback .user-answer-display {
-            display: block;
-            font-style: italic;
-            font-size: 0.9em;
-            margin-bottom: 4px;
-        }
-        .source-note {
-            font-size: 0.85em;
-            color: #6c757d; /* Tailwind: text-gray-500 */
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        #quizArea {
-            min-height: 100px; /* Placeholder height before quiz loads */
+        #instagram-link a:hover {
+            text-decoration: underline;
         }
 
-        /* Responsive adjustments */
         @media (max-width: 600px) {
-            .quiz-container { margin: 10px; padding: 15px; }
-            h1 { font-size: 1.5em; }
-            .set-selection-container h2 { font-size: 1.1em; }
-            .set-button { padding: 8px 12px; font-size: 0.9em; }
-            .live-scoreboard { font-size: 1em; padding: 10px; }
-            .question-text { font-size: 1em; }
-            .options label { font-size: 0.95em; padding: 8px 10px; }
-            .submit-btn { padding: 12px 15px; font-size: 1.05em; }
-            .result-summary { font-size: 1.1em; padding: 15px; }
+            #scoreboard-container,
+            #set-navigation-container, 
+            #quiz-container {
+                padding: 15px;
+            }
+            #scoreboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            #scoreboard span {
+                margin: 3px 0;
+            }
+            #question-text {
+                font-size: 1.05em;
+            }
+            .option {
+                padding: 10px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+            #set-selector {
+                width: 100%;
+                margin-top: 5px;
+            }
+            #set-navigation-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="quiz-container">
-        <h1>Direct and Indirect Taxation Quiz</h1>
+    <div id="scoreboard-container">
+        <div id="scoreboard">
+            <span id="correct-count">Correct: 0</span>
+            <span id="incorrect-count">Incorrect: 0</span>
+            <span id="attempted-count">Attempted: 0</span>
+            <span id="accuracy-rate">Accuracy: N/A</span>
+        </div>
+    </div>
 
-        <div id="setSelectionContainer" class="set-selection-container">
-            <h2>Select a Quiz Set</h2>
+    <div id="set-navigation-container">
+        <label for="set-selector">Switch to Set:</label>
+        <select id="set-selector"></select>
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-header">Loading quiz...</div>
+        <div id="question-text"></div>
+        <div class="options-container" id="options-container">
             </div>
-
-        <div id="quizArea" style="display:none;"> <div id="liveScoreboard" class="live-scoreboard">Score: 0 / 0 | Answered: 0 / 0</div>
-            <p class="source-note">All questions and options are sourced from the "MCQBank_Paper7.pdf" document.</p>
-            <form id="quizForm">
-                </form>
-            <button type="button" class="submit-btn" id="submitButton" onclick="submitCurrentQuiz()">Submit Answers</button>
-            <div id="resultSummary" class="result-summary" style="display:none;"></div>
+        <div id="navigation-buttons">
+            <button id="next-btn">Next Question</button>
         </div>
-        <div id="initialMessage" class="text-center p-5 bg-gray-100 rounded-md">
-            <p class="text-lg text-gray-700">Please select a quiz set above to begin.</p>
+        <div id="completion-message" style="display:none;">
+            Quiz Completed! Thank you for participating.
         </div>
+    </div>
 
+    <div id="instagram-link">
+        Follow on Instagram: <a href="https://www.instagram.com/ashtoshkmr" target="_blank">Ash🔱tosh (@ashu.ig)</a>
     </div>
 
     <script>
-        // Array to hold all question data from paper7.html
-        const allQuestionsData = [
-            { question: "Charging of income of the previous year in the same year is not mandatory for:", options: ["Shipping business of non-resident", "Persons leaving India", "Association formed for a particular event", "Discontinuation of business"], correctAnswerCode: 4 },
-            { question: "AB was born in England, his parents were born in India in 1952. His grand parents were born in South Africa. AB shall be a:", options: ["Person of Indian origin", "Foreign National", "Artificial Person", "Citizen of India"], correctAnswerCode: 2 },
-            { question: "Income accruing in Japan and received there is taxable in India in the case of:", options: ["Resident and Ordinarily Resident only", "Both Resident and Ordinarily Resident and Resident but not Ordinarily Resident", "Both Resident and Non-resident", "Non-resident"], correctAnswerCode: 1 },
-            { question: "Out of the following which one is not a capital receipt?", options: ["Dividend on investment", "Bonus Shares", "Sale of know-how", "Compensation received for vacating business place"], correctAnswerCode: 1 },
-            { question: "Which of the following is Casual Income?", options: ["Dividend income", "Winning from lotteries", "Interest received", "Pension received"], correctAnswerCode: 2 },
-            { question: "Which of the following receipt is not included in the term 'Income under the Income-tax Act, 1961?", options: ["Profits and gains of Business or Profession", "Profit in lieu of salary", "Dividend", "Reimbursement of travelling expenses"], correctAnswerCode: 4 },
-            { question: "A person is said to be a person of Indian origin if-", options: ["He or either of his parents were born in undivided India", "He or either of his siblings were born in undivided India", "He or either of his parents or either of his grandparents were born in undivided India", "He was born in India"], correctAnswerCode: 3 },
-            { question: "Income received in India in the previous year is taxable in the hands of-", options: ["Resident", "Non-Resident", "All assessee irrespective of residential status", "Not Ordinarily resident"], correctAnswerCode: 3 },
-            { question: "An individual is said to be resident in India if-", options: ["He has a house in India", "He is in India in the previous year for a period of 182 days or more", "He is in India for a period of 30 days or more during the previous year and for 365 or more days during 4 previous years immediately preceding the relevant previous year", "His parents are Indian citizen"], correctAnswerCode: 2 },
-            { question: "The incidence of taxation depends on the -", options: ["Residential status of the assessee", "Accommodation of the assessee", "Citizenship of the as assessee", "Marital status of the assessee"], correctAnswerCode: 1 },
-            { question: "Which of the following is an agriculture income?", options: ["Dividend paid by a company to its shareholders out of agricultural income", "Share of Profit of a Partner from a firm engaged in an agriculture operation", "Income from supply of water by an assessee from a tank in agriculture land", "Interest received by a money lender in the form of agricultural produce"], correctAnswerCode: 2 },
-            { question: "In case of an assessee engaged in the business of manufacturing of tea, his agricultural income is", options: ["60% of total receipt of the business", "60% of income of the business", "Nil", "40% of income of the business"], correctAnswerCode: 2 },
-            { question: "Income from saplings shall be considered as", options: ["Agricultural Income", "Business Income", "Partly agricultural income and partly business income", "Income from other sources"], correctAnswerCode: 1 },
-            { question: "An individual (aged 28 Years) born in India left for first time for employment in France on 30.10.2023. His visit outside India is for the first time. His residential status for the assessment year 2024-25 will be", options: ["Resident and ordinarily resident", "Resident but not ordinarily resident", "Non-resident", "Residential Status is not applicable"], correctAnswerCode: 1 }, // Corrected to ROR based on PDF key, though RNOR seems more appropriate if newly resident.
-            { question: "Income of ₹3,00,000 is received in Sri Lanka by an ordinarily resident of India. But later on ₹50,000 is remitted to India -", options: ["₹3,00,000 will be taxable", "₹3,50,000 will be taxable", "It is not taxable at all", "₹50,000 will be taxable"], correctAnswerCode: 1 },
-            { question: "An individual is said to be a resident in India in the previous year (in which the Feb month has 29 days) if he is in India in that year for a period of", options: ["182 days or more", "183 days or more", "70 days or more", "150 days or more"], correctAnswerCode: 1 },
-            { question: "Mr. X is engaged in growing and manufacturing tea in India. His income from this activity is ₹1,40,000. His agriculture income will be-", options: ["₹70,000", "₹84,000", "₹1,40,000", "₹56,000"], correctAnswerCode: 2 },
-            { question: "Which of the following is not taxable under head 'Salaries'?", options: ["Remuneration paid to the lecturer of a college for setting a question paper by a university.", "Salary received by a member of the Parliament.", "Commission received by an employee director of a company.", "Both (1) and (2) above"], correctAnswerCode: 4 },
-            { question: "If a domestic servant is engaged by the employer and salary is paid by him, the perquisite is:", options: ["Taxable in the hands of all employees", "Not taxable in the hands of both specified and non-specified employers", "Taxable in the hands of specified employees only", "Taxable to the extent of 120 per person in the hands of all employees."], correctAnswerCode: 3 },
-            { question: "Which of the following is taxable under the head 'salaries'?", options: ["Salary received by a Member of State Legislature.", "Commission received by an employee director of a company.", "Family pension received", "Both (1) and (2) above"], correctAnswerCode: 2 },
-            { question: "Who among the following is a specified employee?", options: ["A director of a company", "An employee drawing a salary of ₹15,000 p.m.", "A person who is an owner of equity shares carrying 10% voting power in the employer company.", "Both (1) and (2) above"], correctAnswerCode: 1 }, // Corrected to align with common understanding of "director" being specified.
-            { question: "Net Annual Value of a self-occupied property treated as such is:", options: ["Fair Rent", "Nil", "Reasonable Expected Rent as reduced by municipal tax paid during the previous year.", "None of the Above"], correctAnswerCode: 2 },
-            { question: "A house property located outside India is:", options: ["Taxable in hands of all assessee", "Taxable in hands of non resident assessee", "Taxable in hands of resident and ordinarily resident assessee", "Exempted from tax in India."], correctAnswerCode: 3 },
-            { question: "Following assessee(s) can considered a house property as self occupied:", options: ["Individual & HUF", "All assessee", "All assessee other than company", "All assessee other than firm"], correctAnswerCode: 1 },
-            { question: "Which of the following deductions is /are not allowed in case of a deemed to be let-out house?", options: ["New construction allowance", "Repairs", "Vacancy allowance", "All of the above"], correctAnswerCode: 4 },
-            { question: "Which of the following is not allowed as a deduction for computation of business Income?", options: ["Loss incurred due to theft in factory after working hours", "Anticipated future losses", "Loss caused by white ants", "Loss due to accidental fire in stock-in-trade"], correctAnswerCode: 2 },
-            { question: "The preliminary expenses that can be amortized under the Income Tax Act, 1961 has to be restricted to __ of the cost of project.", options: ["3%", "5%", "8%", "20%"], correctAnswerCode: 2 },
-            { question: "Expenditure on promotion of family planning is an allowance as deduction u/s. 36(1)(ix) of the Income Tax Act, 1961 in case of:", options: ["Individual", "Firm", "HUF", "Company"], correctAnswerCode: 4 },
-            { question: "In case of loss, a partnership firm may claim deduction in respect of remuneration to partner to the extent of:", options: ["₹1,50,000/-", "₹1,50,000/-or actual remuneration, whichever is lower", "₹1,50,000/- or 90% of book profit, whichever is lower", "Nil"], correctAnswerCode: 2 },
-            { question: "U/s 54, capital gain will be allowed as exemption if the house property under transfer is held for:", options: ["Less than 12 months preceding the date of transfer", "More than 12 months preceding the date of transfer", "Less than 36 months preceding the date of transfer", "More than 24 months preceding the date of transfer"], correctAnswerCode: 4 },
-            { question: "Personal effect do not cover the followings:", options: ["Immovable property", "Drawings", "Jewellery", "All of the above"], correctAnswerCode: 4 },
-            { question: "Profit on sale of rural agricultural land is:", options: ["Not taxable as it is agricultural income", "Not taxable under the head 'Capital gains but under the head Income from Other Sources'", "Not taxable as rural agricultural land is not considered as a capital asset", "Taxable if it is compulsorily acquired."], correctAnswerCode: 3 },
-            { question: "Cost of acquisition of self-generated asset is nil, the exception is:", options: ["Goodwill", "Route permit", "Bonus shares acquired before 01-04-2001", "Loom hours"], correctAnswerCode: 1 },
-            { question: "While computing taxable interest on delayed compensation, a standard deduction is allowed @:", options: ["50%", "30%", "15%", "Nil"], correctAnswerCode: 1 },
-            { question: "The provision of sec.56(2)(x) is applicable on:", options: ["All assessee", "Only on corporate assessee", "On an individual only", "On an individual and HUF only"], correctAnswerCode: 1 },
-            { question: "While computing income from other sources, deduction is not allowed to the assessee for:", options: ["Personal expenditure", "Direct tax", "Interest payable outside India without TDS", "All of the above"], correctAnswerCode: 4 },
-            { question: "Gift received by an individual in certain circumstances is not taxable, one of them is:", options: ["Any gift received from family friend", "Any gift received on the occasion of any marriage in the family", "Any gift received on the occasion of the marriage of the individual-assessee", "All of the above"], correctAnswerCode: 3 },
-            { question: "An individual purchased a painting on 01-11-2023 for ₹5,00,000 though fair market value of the asset is ₹5,25,000. Income taxable u/s 56(2)(x) is:", options: ["₹25,000 i.e.. difference between market value and actual consideration", "Nil as this is not gift", "Nil as difference between market value and actual consideration does not exceed ₹50,000", "The provision of sec. 56(2)(x) is not applicable for any transaction entered during P.Y. 2023-24"], correctAnswerCode: 3 },
-            { question: "Uncommuted Pension received by a Government Employee is-", options: ["Exempt", "Taxable", "Partially Taxable", "None of the above"], correctAnswerCode: 2 },
-            { question: "Salary received by the Partner of a Firm is charged under the head", options: ["Salaries", "Business Income", "Other Sources", "Its exempt from tax"], correctAnswerCode: 2 },
-            { question: "Interest credited to Statutory Provident Fund shall be-", options: ["Fully Exempt", "Exempt upto 12% p.a.", "Fully Taxable", "Exempt upto 9.5% p.a"], correctAnswerCode: 1 },
-            { question: "Interest credited to Recognized Provident Fund is", options: ["Fully Taxable", "Fully Exempt", "Exempt upto 12% of Salary", "Exempt upto 9.5% p.a."], correctAnswerCode: 4 },
-            { question: "The basis of chargeability of income under the head income from house property is:", options: ["Rental value", "Annual value", "Value fixed by the government", "None of the above"], correctAnswerCode: 2 },
-            { question: "\"A\" borrowed ₹5,00,000 at 12% p.a on 01-04-2015 for construction of house property which was completed on 15-03-2024 and let out. The amount is still unpaid. The deduction on account of interest for the previous year 2023-24 shall be-", options: ["₹60,000", "₹96,000", "₹1,80,000", "₹2,40,000"], correctAnswerCode: 2 },
-            { question: "Sums received by an employer from Keyman Insurance Policy taken on the life of the employee shall be-", options: ["Exempt", "Taxable under the head Business and Profession", "Taxable under the head Other Sources", "Taxable in the hand of the employee"], correctAnswerCode: 2 },
-            { question: "The cost of acquisition of shares under Employees Stock Option Scheme shall be-", options: ["Fair Market Value of Shares on the date of offer", "Fair Market Value of the shares on the date of exercise of option", "Fair Market Value of share on the date of vesting of option.", "Price at which it was offered to the employee."], correctAnswerCode: 2 },
-            { question: "Capital Gain, arising from compulsory acquisition of urban agricultural land, is:", options: ["Taxable", "Exempt", "Exempt if acquired by RBI or Central Government", "None of the above"], correctAnswerCode: 2 },
-            { question: "Where the entire block of the depreciable assets is transferred after 36 months, there will be-", options: ["Short-Term Capital Gain", "Long-Term Capital Gain", "Short-Term Capital Gain or Loss", "Long-Term Capital Gain or Loss"], correctAnswerCode: 3 },
-            { question: "Exemption under Section 54F shall not be allowed if the assessee, on the date of transfer, owns-", options: ["any Residential House", "a Residential House which is let out", "a Hose which is self occupied", "more than one Residential House"], correctAnswerCode: 4 },
-            { question: "Income under the head \"Income from Other Sources\" is taxable on", options: ["Due Basis", "Receipt Basis", "On the basis of method of accounting regularly employed by the Assessee", "None of the above."], correctAnswerCode: 3 },
-            { question: "Winning from Lotteries, Crossword Puzzles, Horse Races & Other Races, Card Game, etc. are casual income & hence-", options: ["fully exempt", "exempt upto ₹5,000", "fully taxable", "None of above"], correctAnswerCode: 3 },
-            { question: "Adi received ₹70,000 from his friend on the occasion of his birthday:", options: ["Entire amount of ₹70,000 is taxable", "₹25,000 is taxable", "The entire amount is exempt", "None of the above"], correctAnswerCode: 1 },
-            { question: "Commission received by a Director of the Company is charged under the head:", options: ["Salaries", "Business Income", "Other Sources", "Its exempt from tax"], correctAnswerCode: 1 },
-            { question: "Casual Income received by the Assessee is -", options: ["Fully Exempt", "Exempt upto ₹5,000", "Fully Taxable", "None of the above."], correctAnswerCode: 3 },
-            { question: "Mr. X's minor daughter earned ₹50,000 from his special talent. This income will be clubbed with -", options: ["The income of Mr. X", "The income of Mrs. X", "Mr. X or Mrs. X, whoever's income is higher", "It will not be clubbed"], correctAnswerCode: 4 },
-            { question: "Income arising to a minor married daughter shall be", options: ["assessed in the hands of minor married daughter", "clubbed with the income of that parent whose total income is higher", "Exempt from tax", "clubbed with the income of her spouse"], correctAnswerCode: 2 },
-            { question: "Unabsorbed business losses cannot be carried for more than -", options: ["7 assessment years", "8 assessment years", "10 assessment years", "12 assessment years"], correctAnswerCode: 2 },
-            { question: "Deduction u/s. 80JJA is available if the assessee:", options: ["Is engaged in scientific research", "Sets up an industrial unit in a backward area", "Is engaged in agriculture business", "Is engaged in the business of collecting and processing biodegradable waste."], correctAnswerCode: 4 },
-            { question: "Maximum limit for deduction u/s 80TTA is:", options: ["₹50.000", "₹10,000", "₹40,000", "₹25,000"], correctAnswerCode: 2 },
-            { question: "Advance tax is required to be paid by all assessee only if estimated advance tax liability is:", options: ["₹5,000 or more", "₹10,000 or more", "More than zero", "₹50,000 or more"], correctAnswerCode: 2 },
-            { question: "TDS is not required to be deducted u/s 194A if the amount of interest on loan does not exceed:", options: ["₹5,000", "₹2,500", "₹7,500", "₹20,000"], correctAnswerCode: 1 },
-            { question: "On salary, tax is required to be deducted at the time of:", options: ["Payment or crediting the employee, whichever is earlier", "Crediting the employee", "Payment", "Retirement of employee"], correctAnswerCode: 3 },
-            { question: "Where assessment has not been completed, belated income tax return for assessment year 2024-25 can be filed upto:", options: ["31.12.2024", "31.01.2025", "31.03.2025", "31.12.2025"], correctAnswerCode: 1 },
-            { question: "When assessment has not been completed, revised return can be filed within __ from the end of the relevant previous year.", options: ["9 months", "6 months", "12 months", "2 years"], correctAnswerCode: 1 },
-            { question: "Clubbing provisions under Sec. 64(1)(vi) are applicable where the asset is transferred by an individual for inadequate consideration to", options: ["Daughter's Husband", "Son's Wife", "Major Son", "Major Daughter"], correctAnswerCode: 2 },
-            { question: "As per Sec. 64(1A), income accruing to a minor shall be clubbed in the income of-", options: ["Father", "Mother", "Father or Mother at their option", "Parent whose income before this clubbing is greater"], correctAnswerCode: 4 },
-            { question: "Loss on account of owing & maintaining the race horses can be carried forward", options: ["for 8 years", "for 4 years", "indefinitely", "None of the above"], correctAnswerCode: 2 },
-            { question: "The maximum period for which Speculation Loss can be carried forward is:", options: ["4 Years", "8 Years", "Nil", "Any number of years"], correctAnswerCode: 1 },
-            { question: "Deduction u/s 80C in respect of LIP, contribution to provident fund etc., is allowed to -", options: ["any assessee", "an individual", "an individual or HUF", "an individual of HUF who is resident in India"], correctAnswerCode: 3 },
-            { question: "Deduction u/s 80D is allowed if the premium is paid to -", options: ["Life Insurance Corporation", "General Insurance Corporation or any other Insurer approved by the IRDA", "Life Insurance or General Insurance Corporation", "None of above."], correctAnswerCode: 2 },
-            { question: "Rebate in Tax u/s 87A, is applicable to:", options: ["Companies", "Individuals", "HUF", "Resident Individual"], correctAnswerCode: 4 },
-            { question: "Deduction u/s 80JJAA in respect of employment of new workers shall be allowed to-", options: ["any assessee to who Sec.44AB applies", "an Indian company", "an Indian Company or a person other than Company resident in India", "None of above"], correctAnswerCode: 1 },
-            { question: "The maximum amount which can be donated in cash for claiming deduction under section 80G for the P.Y. 2023-24 is -", options: ["₹5,000", "₹10,000", "₹15,000", "₹2,000"], correctAnswerCode: 4 },
-            { question: "Where a member of a HUF has converted or transferred his self-acquired property for inadequate consideration into joint family property, income arising there from is taxable.", options: ["As the income of the Transferor Member", "In the hand of the HUF", "In the hands of Karta of HUF", "Completely exempt from tax"], correctAnswerCode: 1 },
-            { question: "Advance Tax shall be payable by any person in respect of current income is", options: ["₹50,000 or more", "₹10,000 or more", "₹1,00,000 or more", "None of the above"], correctAnswerCode: 2 },
-            { question: "Liability to deduct tax at source in case on income from interest on securities arises at the time of-", options: ["Payment of interest", "Accrual of interest", "Credit of interest to the account of the payee/interest payable account or payment thereof whichever is earlier", "None of the above"], correctAnswerCode: 3 },
-            { question: "Who is empowered to make law for matters containing in List II of Schedule VII of the Constitution of India?", options: ["State Government", "Central Government", "Both Central and State Government", "None of the above"], correctAnswerCode: 1 },
-            { question: "Power to make laws with respect to goods and services tax has been given by the Constitution vide Article:", options: ["279A", "246A", "246", "365"], correctAnswerCode: 2 },
-            { question: "Indirect tax is:", options: ["Regressive in nature", "Progressive in nature", "Both (1) & (2)", "None of these"], correctAnswerCode: 1 },
-            { question: "Which one of the following is not an example of indirect tax types?", options: ["GST", "Customs Duty", "Income tax", "None of these"], correctAnswerCode: 3 },
-            { question: "In case of indirect tax, impact and incidence of tax fall on:", options: ["One person", "Different persons", "State Government", "None of these"], correctAnswerCode: 2 },
-            { question: "Levy of indirect tax on goods and services may leads to:", options: ["Inflation", "Deflation", "Reflection", "None of the above"], correctAnswerCode: 1 },
-            { question: "Levy and collection of Central indirect tax are dealt by:", options: ["CBIC", "CBDT", "NIC", "UGS"], correctAnswerCode: 1 },
-            { question: "In pre-GST regime, excise duty has been levied by ...... Government whereas VAT has been levied by ........ State Government on goods.", options: ["Central, State", "State, Central", "Central, Central", "State, State"], correctAnswerCode: 1 },
-            { question: "Cascading effect of tax means:", options: ["Tax on goods", "Tax on services", "Tax on Tax", "None of these"], correctAnswerCode: 3 },
-            { question: "Who is empowered to make law for matters containing in List I of Schedule VII of the Constitution of India?", options: ["State Government", "Central Government", "Both Central and State Government", "None of the above"], correctAnswerCode: 2 },
-            { question: "The items which will be taxable both under current central excise law and new GST even after the implementation of the GST Act:", options: ["Motor Spirit", "Alchoholic Liquor for Human Consumption", "Tobacco and Tobacco products", "Natural Gas"], correctAnswerCode: 3 },
-            { question: "Who is the chairman & Head of the GST Council Meeting?", options: ["Prime minister", "President", "Union Finance Minister", "State Finance Minister nomited by GST Council"], correctAnswerCode: 3 },
-            { question: "The IGST Act, 2017 extends to the:", options: ["Whole of India except the state of Jammu & Kashmir", "Whole of India", "Whole of India except the state of Jammu & Kashmir & Pondicherry", "None of the above"], correctAnswerCode: 2 },
-            { question: "Which of the following is the benefits of GST?", options: ["Creation of unified national market", "Boost to Make in India' initiative", "Reduction of compliance burden on taxpayers", "Buoyancy to the Government Revenue"], correctAnswerCode: 3 },
-            { question: "Which of the following taxes have been subsumed in GST?", options: ["Central sales tax", "Central excise duty", "VAT", "All of the above"], correctAnswerCode: 4 },
-            { question: "India has chosen ...... model of dual GST.", options: ["USA", "UK", "Canadian", "Japan"], correctAnswerCode: 3 },
-            { question: "Constitution Amendment Act, 2016 for GST was", options: ["80th", "101st", "122nd", "None of these"], correctAnswerCode: 2 },
-            { question: "The incidence of tax on tax is called", options: ["Tax Cascading", "Tax Pyramidding", "Tax evasion", "Indirect tax"], correctAnswerCode: 1 },
-            { question: "UTGST is applicable when:", options: ["Sold from Union territory", "Goods are purchased by Central Government", "Sold from one union territory to another union territory", "There is interstate supply"], correctAnswerCode: 1 },
-            { question: "Under which article of the Constitution of India, GST council has been constituted?", options: ["246", "246A", "279A", "265"], correctAnswerCode: 3 },
-            { question: "GSTN is:", options: ["51% government owned company with paid up capital of 10 crore", "50% government owned company with paid up capital of 10 crore", "100% government owned company with paid up capital of 10 crore", "None of the above"], correctAnswerCode: 1 }, // Corrected based on PDF key.
-            { question: "The term supply includes:", options: ["Sale", "Transfer", "Barter", "All of the above"], correctAnswerCode: 4 },
-            { question: "Which of the following activities or transactions shall be treated neither as supply of goods nor a supply of services?", options: ["Sale of land and building", "Lease of land", "Rent of building", "All of the above"], correctAnswerCode: 1 },
-            { question: "Gifts not exceeding ...... in value in a financial year by an employer to an employee shall not be treated as supply of goods or services or both.", options: ["₹50.000", "₹25,000", "₹30,000", "None of the above"], correctAnswerCode: 1 },
-            { question: "A hotel provides a 4-D/3-N package with the facility of breakfast. This is a ........", options: ["Mixed supply", "Composite supply", "Both mixed and composite supply", "None of the above"], correctAnswerCode: 2 },
-            { question: "Which of the following is/are the essential elements of a mixed supply?", options: ["Supply is made by taxable person to a recipient", "Supply consists of two or more individual supplies of goods or services or both or any combination thereof but it is not naturally bundled", "Supply is made for a single price", "All of the above"], correctAnswerCode: 4 },
-            { question: "In case of import of goods, which type(s) of GST is applicable?", options: ["CGST", "SGST", "Both CGST and SGST", "IGST"], correctAnswerCode: 4 },
-            { question: "Reverse charge means the liability to pay tax by the ...... of supply of goods or services or both.", options: ["recipient", "supplier", "partly by the recipient and partly by the supplier", "None of the above"], correctAnswerCode: 1 },
-            { question: "Which of the following can be issued by Government to exempt goods and/or services on which tax is leviable in exceptional cases?", options: ["Exemption Notification", "Special order", "Other notifications", "None of the above"], correctAnswerCode: 2 },
-            { question: "Renting of precincts of a religious place meant for general public owned or managed by a charitable or religious trust u/s 12AA of the Income Tax Act 1961 shall be exempt if:", options: ["Renting of rooms where per day charges are less then ₹1,000", "Renting of shops or other spaces for business or commerce where charges per month are less than ₹10,000", "Renting of premises, community halls or open area, where charges per day are less than ₹10,000", "All of the above"], correctAnswerCode: 4 },
-            { question: "For which of the following goods, the manufacturer is not allowed to opt for composition scheme:", options: ["Pan masala", "Ice cream", "Topical and manufactured tobacco substitutes", "All of the above"], correctAnswerCode: 4 },
-            { question: "The time of supply of goods, where supplier is liable to pay tax under forward charge shall be:", options: ["The date of actual issue of invoice by the supplier", "The last date on which he is required u/s 31(1) to issue the invoice with respect to the supply", "The date on which the supplier receives the payment with respect to the supply", "(a) or (b), whichever is earlier"], correctAnswerCode: 4 },
-            { question: "The transaction value for computation of value of supply can be rejected if -", options: ["The buyer and seller are related and price is not the sole consideration", "Products are sold at very low margins", "Maximum retail price is greater than the transaction value", "All of the above"], correctAnswerCode: 1 },
-            { question: "In case goods disposed off by way of free sample", options: ["recipient can claim ITC", "supplier can claim ITC", "supplier can not claim ITC", "ITC can be claimed if value is more than ₹1,000"], correctAnswerCode: 3 },
-            { question: "If the goods are received in installment then ITC can be availed", options: ["Proportionately on receipt of each installment", "100% ITC can be taken on receipt of first installment", "ITC can be taken on receipt of last installment", "50% ITC can be taken on receipt of first installment and balance 50% on receipt of last installment"], correctAnswerCode: 3 },
-            { question: "Person who is liable to be registered u/s 22 or 24 shall apply for registration in every such State or Union Territory in which he is so liable within:", options: ["30 days from the date on which he becomes liable to registration", "15 days from the date on which he becomes liable to registration", "17 days from the date on which he becomes liable to registration", "None of the above"], correctAnswerCode: 1 },
-            { question: "Tax invoice shall be prepared in ...... in case of supply of goods and in ...... in case of supply of services", options: ["Duplicate, Duplicate", "Duplicate, Triplicate", "Triplicate, Duplicate", "Triplicate, Triplicate"], correctAnswerCode: 3 },
-            { question: "Annual return is summary of:", options: ["GSTR 1", "GSTR 3B", "GSTR 4", "All of the above"], correctAnswerCode: 4 },
-            { question: "Payment of tax is required ...... filing return.", options: ["Before", "After", "Before or after", "Before or at the time of"], correctAnswerCode: 4 },
-            { question: "Aggregate turnover Limit for Opting Compounding Scheme is:", options: ["₹50 Lakh", "₹60 Lakh", "₹1 Crore", "₹1.5 Crore"], correctAnswerCode: 4 },
-            { question: "The calculation of the aggregate turnover to decide the Taxable Minimum Turnover will be based on:", options: ["State wise Turnover Basis", "All India Turnover basis", "State wise Turnover Excluding Export", "All India Turnover Excluding Export"], correctAnswerCode: 2 },
-            { question: "Certificate of registration is issued in which form?", options: ["GST REG-06", "GST REG-02 9", "GST REG-01", "GST REG-10"], correctAnswerCode: 1 },
-            { question: "Dealers who are not eligible for Compounding Scheme:", options: ["Exporters", "Importers", "Interstate Suppliers and those liable to remit tax on Rverse Charge basis", "Manufacturing dealers"], correctAnswerCode: 3 },
-            { question: "Various taxes have been subsumed in GST to make one nation one market for consumers. Out of following, determine which taxes have been subsumed in GST (i) basic customs duty levied under Customs Act, 1962, (ii) Taxes on lotteries, (iii) Taxes on advertisements", options: ["(ii)", "(ii) and (iii)", "(iii)", "(i).(ii) and (iii)"], correctAnswerCode: 2 },
-            { question: "Which of the following is not considered as 'goods' under the CGST Act, 2017 (i)Ten-paisa coin having sale value of ₹100, (ii) Shares of unlisted Company, (iii) Lottery Tickets", options: ["(i)", "(ii)", "(ii) and (iii)", "(i), (ii) and (iii)"], correctAnswerCode: 2 },
-            { question: "If tobacco leaves procured from Agriculturist by a registered person, the applicability of RCM will be:", options: ["Reverse charge is applicable as this is a notified service", "Reverse charge is applicable if ABC Travels is not registered", "Joint charge is applicable", "None of the above"], correctAnswerCode: 1 },
-            { question: "For a registered person threshold limits of turnover in the preceding financial year for opting composition scheme shall not exceeds:", options: ["₹20 lakh", "₹1.5 crore", "₹75 lakh", "None of the above"], correctAnswerCode: 2 },
-            { question: "A supply that consists of two or even more services would be classified as the provision that describes the variables that are subject to a higher rate of taxation, is called:", options: ["Composite", "Mixed", "Both (a) and (b)", "None of the above"], correctAnswerCode: 2 },
-            { question: "GST stands for Goods and Services Tax, and it is a tax system that covers a wide range of:", options: ["Goods", "Services", "Goods, companies and imports", "Products, systems, and exports"], correctAnswerCode: 3 },
-            { question: "Which of the following is the exclusions from the computation of aggregate turnover?", options: ["Value of taxable supplies", "value of exempt supplies", "Exports of goods or services or both", "Value of inward supplies on which tax is paid on reverse charge basis"], correctAnswerCode: 4 },
-            { question: "In case of Manufacturer (except Ice cream, pan masala, tobacco) for whom concessional rate applicable under composition scheme, the rate of tax is:", options: ["2.50%", "0.50%", "1%", "No composition for manufacturer"], correctAnswerCode: 3 },
-            { question: "Whether a registered person under composition scheme shall claim input tax credit?", options: ["yes", "no", "Input tax credit on inward supply of goods only can be claimed", "Input tax credit on inward supply of service only can be claimed"], correctAnswerCode: 2 },
-            { question: "What is time of supply of goods, in case of forward charge?", options: ["Date of issue of invoice", "Due date of issue of invoice", "Date of receipt of consideration by the supplier", "Earlier of (a) & (b)"], correctAnswerCode: 4 },
-            { question: "What is the time of supply of vouchers when the supply with respect to the voucher is identifiable?", options: ["Date of issue of voucher", "Date of redemption of voucher", "Earlier of (a) & (b)", "(a) & (b) whichever is later"], correctAnswerCode: 1 },
-            { question: "Which of the following shall not be included in value of supply?", options: ["GST", "Interest", "Late fee", "Commission"], correctAnswerCode: 1 },
-            { question: "The value of supply should include:", options: ["Any non-GST taxes, duties, cesses, fees charged separately by supplier", "Interest, late fee or penalty for delayed payment of any consideration for any supply", "Subsidies directly linked to the price except subsidies provided by the Central and State Government", "All of the above"], correctAnswerCode: 4 },
-            { question: "When can the transaction value be rejected for computation of value of supply?", options: ["When the buyer and seller are related and price is not the sole consideration", "When the buyer and seller are unrelated or price is not the sole consideration", "It can never be rejected", "When the goods are sold at very low margins"], correctAnswerCode: 1 },
-            { question: "What deductions are allowed from the transaction value?", options: ["Discounts offered to customers, subject to conditions", "Packing Charges, subject to conditions", "Amount paid by customer on behalf of the supplier, subject to conditions", "Freight charges incurred by the supplier for CIF terms of supply, subject to conditions"], correctAnswerCode: 1 },
-            { question: "Rule 30 of the CGST Rules inter alia provides value of supply of goods or services or both based on cost shall be ......% of cost of production or manufacture or the cost of acquisition of such goods or the cost of provision of such services", options: ["100", "10", "110", "120"], correctAnswerCode: 3 },
-            { question: "Where the goods being sent or taken on approval for sale or return are removed before the supply takes place, the invoice shall be issued:", options: ["before/at the time of supply", "6 months from the date of removal", "Earlier of (a) or (b)", "None of the above"], correctAnswerCode: 3 },
-            { question: "Which of the following is not a supply under the CGST Act, 2017?", options: ["Goods supplied free of cost by X & Sons to its agent for further supply to customer at ₹5,000 for which invoice will be issuedby the agent in his own name.", "Importation of accounting services (for business purposes) free of cost from a dependent father residing in US.", "An expensive watch gifted to an employee for ₹50,000. No other gifts provided to such employee during the entire financial year.", "A machinery disposed off free of cost on which input tax credithas been availed"], correctAnswerCode: 3 },
-            { question: "The term casual taxable person' includes:", options: ["A person occasionally supplying goods or services or both in a State or a Union territory where he has no fixed place of business.", "A person occasionally supplying goods or services or both in a State or a Union territory where he has fixed place of business", "Both (a) and (b)", "None of the above"], correctAnswerCode: 1 },
-            { question: "Mr. X of Delhi is participating in Hitex Furniture Expo in Haryana where he has no fixed place of business and exhibiting his products. During the expo, the said products will be sold to the people attending and intending to purchase such products. In such scenario, Mr. X shall obtain which of the following registration under the CGST Act, 2017?", options: ["Non-resident taxable person registration", "Casual taxable person registration", "Regular taxpayer registration", "No registration under GST required."], correctAnswerCode: 2 },
-            { question: "An exempt supply includes:", options: ["Supply of goods or services or both which attracts Nil rate of tax", "Non-taxable supply", "Supply of goods or services or both which are wholly exempt from tax under Section 11 of the CGST Act or under Section 6 of IGST Act", "All of the above"], correctAnswerCode: 4 },
-            { question: "Which of the following service is notified by Government for ECO?", options: ["services by way of transportation of passengers by a radio-taxi, motor cab, maxi cab and motor cycle", "services by way of providing accommodation in hotels, inns, guest houses, clubs, campsites or other commercial places meant for residential or lodging purposes, except where the person supplying such service through ECO is liable for registration under subsection 22(1) of the CGST Act", "services by way of house-keeping. such as plumbing, carpentering etc., except where the person supplying such service through ECO is liable for registration under section 22(1) of the CGST Act", "All of these"], correctAnswerCode: 4 },
-            { question: "A hotel owner provided accommodation in Haryana, through an electronic commerce operator Cool Trips. The hotel owner is not liable to get registered as per the provisions of section 22(1) of the CGST Act. Who is the person liable to pay GST in this case?", options: ["Hotel Owner", "ECO", "Customer", "Both by Hotel owner & ECO"], correctAnswerCode: 2 },
-            { question: "State the taxability of satellite launch services provided to both international and domestic customers by ANTRIX Corporation Limited (\"ANTRIX\") which is a wholly owned Government of India Company under the administrative control of Department of Space (DOS).", options: ["Taxable", "Not taxable", "Exempt", "None"], correctAnswerCode: 1 },
-            { question: "Zero rated supply includes:", options: ["Export of goods and services", "Supply of goods and services to a SEZ developer or SEZ Unit", "Supply of goods and services by a SEZ developer or SEZ Unit", "Both (1) and (2)"], correctAnswerCode: 4 },
-            { question: "A registered taxable person is eligible to claim refund in respect of export of goods and services in the following cases", options: ["Under bond, without payment of IGST and claim refund of unutilized input tax credit.", "On payment of IGST and claim refund of IGST paid on such goods and services", "None of the above", "Both (1) and (2)"], correctAnswerCode: 4 },
-            { question: "If place of supply in Territorial water, then what will considered as Place of supply?", options: ["Actual location (territorial Water)", "Principal Establishment of Supplier", "Any establishment of supplier of his choice", "coastal State or Union Territory where the nearest point of the appropriate baseline"], correctAnswerCode: 4 },
-            { question: "What is the time of supply of service if the invoice is issued within 30 days from the date of provision of service?", options: ["Date of issue of invoice", "Date on which the supplier receives payment", "Date of provision of service", "Earlier of (1) & (2)"], correctAnswerCode: 4 },
-            { question: "What is the time of supply of service in case of reverse charge mechanism?", options: ["Date of payment as entered in the books of account of the recipient", "Date immediately following 60 days from the date of issue of invoice", "Date of invoice", "Earlier of (1) & (2)"], correctAnswerCode: 4 },
-            { question: "Value of services rendered is ₹1,00,000/. Date of issue of invoice is 5th October 2023. Advance Received is ₹25,000/- on 20th September 2023. Balance amount received on 7th October 2023. What is the time of supply for ₹1,00,000?", options: ["5th October 2023 for ₹1,00,000/-", "20th September 2023 for ₹1,00,000/-", "20th September 2023-₹25,000/- and 5th October 2023 for ₹75,000/-", "20th September 2023-₹25,000/- and 7th October 2023 for ₹75,000/-"], correctAnswerCode: 3 },
-            { question: "Whether credit on inputs should be availed based on receipt of documents or receipt of goods", options: ["Receipt of goods", "Receipt of Documents", "Both", "Either receipt of documents or Receipt of goods"], correctAnswerCode: 3 },
-            { question: "The supply of goods to SEZ unit is treated as, ...... in the hands of the supplier:", options: ["Exempt Supply - Reversal of credit", "Deemed Taxable Supply - No reversal of credit", "Zero Rated supply", "Non-Taxable Supply Outside the Scope of GST"], correctAnswerCode: 3 },
-            { question: "On supply of OIDAR Services by a person located in taxable territory to a non-taxable online recipient. Who is liable to pay GST in this case?", options: ["Recipient", "Supplier", "Both", "None"], correctAnswerCode: 2 },
-            { question: "If location of supplier in Territorial water, then what will be considered as location of supplier?", options: ["Actual location (territorial Water)", "Principal Establishment of Supplier", "Any establishment of supplier of his choice", "Coastal State or Union Territory where the nearest point of the appropriate baseline"], correctAnswerCode: 4 },
-            { question: "The limit of exclusive economic zone of India is ...... from the nearest point of the baseline.", options: ["200 nautical miles", "12 nautical miles", "24 nautical miles", "None of the above"], correctAnswerCode: 1 },
-            { question: "Which of the following is a taxable event for imported goods?", options: ["Date on which the goods cross the customs barrier", "Date of presentation of bill of entry", "Date of entry into Indian territorial waters", "Unloading of imported goods at the customs port"], correctAnswerCode: 1 },
-            { question: "Basic custom duty on imported goods is levied at the rates specified in the:", options: ["First Schedule of the Customs Tariff Act, 1975", "Second Schedule of the Customs Tariff Act, 1975", "Customs Act", "Customs Manual"], correctAnswerCode: 1 },
-            { question: "For the purpose of computing IGST on imported goods, one of the following shall not be included in the value for computation:", options: ["GST Compensation Cess", "Social Welfare Surcharge", "Anti-dumping diuty", "None of the above"], correctAnswerCode: 1 },
-            { question: "Where the insurance amount is not available, for ascertaining the assessable value for customs duty, the percentage of FOB value to be taken is:", options: ["1%", "1.125%", "1.5%", "None of the above"], correctAnswerCode: 2 },
-            { question: "Where the transport charges is not available, for ascertaining the assessable value for customs duty, the percentage of FOB value to be taken is:", options: ["10%", "20%", "25%", "None of the above"], correctAnswerCode: 2 },
-            { question: "Transportation charges incurred by the importee for transporting goods from factory of the exporter to the port of exportation shall be included in the assessable value. Is this statement correct?", options: ["Yes", "No", "Yes, if such charges has been paid in foreign currency", "None of the above"], correctAnswerCode: 1 },
-            { question: "As per Section 2(31), person-in-charge means:", options: ["Vessel Master", "Train Conductor (or) Guard", "Vehicle Driver", "All of the above"], correctAnswerCode: 4 },
-            { question: "Goods which are same in all respects, including physical quantity is known as:", options: ["Identical Goods", "Similar Goods", "Alike Goods", "None of the above"], correctAnswerCode: 1 },
-            { question: "Buying commission shall be included in the assessable value. Is this statement correct?", options: ["No", "Yes", "Yes, if buying commission is paid in foreign currency", "None of the above"], correctAnswerCode: 1 },
-            { question: "Any article which is imported into India shall, in addition, be liable to integrated tax at such rate, not exceeding ......% as is leviable under section 5 of Integrated Goods and Services Tax Act, 2017 on a like article on its supply in India, on the value of the imported article as determined under subsection (8) or sub section 8(A).", options: ["20", "30", "40", "50"], correctAnswerCode: 3 },
-            { question: "Any article which is imported into India is also liable to a duty equal to the excise duty for the time being leviable on a like article if produced or manufactured in India. This duty is called as", options: ["Additional duty", "Countervailing Duty", "Special duty", "None of the above"], correctAnswerCode: 2 },
-            { question: "The maximum rate of additional duty is @ ......%", options: ["5", "4", "3", "2"], correctAnswerCode: 2 },
-            { question: "If which of the following conditions are satisfied, the Central Government may provide for the enhancement of the import duty?", options: ["The goods should be specified in the First Schedule", "The Central Government is satisfied that circumstances exist. which render it necessary for the enhancement of import duties", "Either 1 or 2", "Both 1 & 2"], correctAnswerCode: 4 },
-            { question: "Central Government can impose the safeguard duty if it is satisfied that:", options: ["Any article is imported into India in increased quantities", "Such increased importation is causing or threatening to cause serious injury to domestic industry", "Either 1 or 2", "Both 1 & 2"], correctAnswerCode: 4 },
-            { question: "The total period of levy of safeguard duty is restricted to ...... years:", options: ["5", "10", "6", "7"], correctAnswerCode: 2 },
-            { question: "An appeal filed under section 9B shall be accompanied by a fee of", options: ["₹10,000", "₹15,000", "₹50,000", "₹25,000"], correctAnswerCode: 2 },
-            { question: "As per section 14 of customs act, 1962, transaction value shall also include in addition to the price, anyamount paid or payable for costs and services, including", options: ["commissions and brokerage", "engineering", "royalties and licence fees", "all of the above"], correctAnswerCode: 4 },
-            { question: "As per section 14 of customs act, 1962, transaction value shall also include in addition to the price, any amount paid or payable for costs and services, including", options: ["costs of transportation to the place of importation", "insurance", "design work", "all of the above"], correctAnswerCode: 4 },
-            { question: "For imported goods, the conversion in value shall be done with reference to the rate of exchange prevalent on the date of filing of", options: ["bill of entry under section 46", "shipping bill (vessel or aircraft) under section 50", "bill of export (vehicle) under section 50.", "either 2 or 3"], correctAnswerCode: 1 },
-            { question: "For the purpose of customs valuation, \"rate of exchange\" means the rate of exchange notified by ...... shall be taken into account.", options: ["the Foreign Exchange Dealers Association of India", "CBIC", "the Reserve Bank of India", "none of the above"], correctAnswerCode: 2 },
-            { question: "Sub-section (2) of section 14 provides that the Board may fix for any class of imported goodsor export goods, having regard to the trend of value of such or like goods by notification in the Official Gazette if it is satisfied that it is necessary to do so. It is:", options: ["market value", "MRP", "transaction value", "tariff value"], correctAnswerCode: 4 },
-            { question: "The term \"similar goods\" means imported goods:", options: ["which although not alike in all respects, have like characteristics and like component materials which enable them to perform the same functions", "produced in the country in which the goods being valued were produced", "produced by the same person who produced the goods being valued", "all of the above"], correctAnswerCode: 4 },
-            { question: "The loading, unloading and handling charges associated with the delivery of the imported goods at the place of importation shall be", options: ["1% of customs FOB value", "cost of transport", "cost of insurance", "Actuals, or 1% of FOB if actuals not ascertainable"], correctAnswerCode: 4 },
-            { question: "Where the goods are sent back as such to the foreign country owing to which of the following reasonsit is considered as re-exportation? Goods not conforming to the specification of the order", options: ["Goods not permitted to be imported into the country on account of traderestriction", "Goods after being imported are temporarily retained in the country and later taken out of the country. In other words, the very objective of the importation was limited to temporary retention in India", "All the above", "Goods not conforming to the specification of the order"], correctAnswerCode: 3 },
-            { question: "Under Section 74(1) when goods capable of being easily identified, which have been imported into India and upon which any duty has been paid on importation ......% of duty be paid back.", options: ["50", "100", "98", "48"], correctAnswerCode: 3 },
-            { question: "As per notification, no drawback of import duty will be allowed in respect of which of the following goods, if they have been used after their importation in India?", options: ["Wearing Apparel", "Tea Chests", "Exposed cinematograph films passed by Board of Film Censors in India", "All the above"], correctAnswerCode: 4 },
-            { question: "CBIC has clarified that safeguard duties, anti-dumping duties and countervailing duties are rebatable as drawback in terms of section ...... of the Customs Act", options: ["74", "75", "76", "77"], correctAnswerCode: 2 }
+        const questionsData = [
+            // Set 1: Questions 1-36
+            { q: "1. Charging of income of the previous year in the same year is not mandatory for: ____", o: ["Shipping business of non-resident", "Persons leaving India", "Association formed for a particular event", "Discontinuation of business"], c: "Discontinuation of business" },
+            { q: "2. AB was born in England, his parents were born in India in 1952. His grand parents were born in South Africa. AB shall be a: ____", o: ["Person of Indian origin", "Foreign National", "Artificial Person", "Citizen of India"], c: "Foreign National" },
+            { q: "3. Income accruing in Japan and received there is taxable in India in the case of: ____", o: ["Resident and Ordinarily Resident only", "Both Resident and Ordinarily Resident and Resident but not Ordinarily Resident", "Both Resident and Non-resident", "Non-resident"], c: "Resident and Ordinarily Resident only" },
+            { q: "4. Out of the following which one is not a capital receipt?", o: ["Dividend on investment", "Bonus Shares", "Sale of know-how", "Compensation received for vacating business place"], c: "Dividend on investment" },
+            { q: "5. Which of the following is Casual Income?", o: ["Dividend income", "Winning from lotteries", "Interest received", "Pension received"], c: "Winning from lotteries" },
+            { q: "6. Which of the following receipt is not included in the term 'Income' under the Income-tax Act, 1961?", o: ["Profits and gains of Business or Profession", "Profit in lieu of salary", "Dividend", "Reimbursement of travelling expenses"], c: "Reimbursement of travelling expenses" },
+            { q: "7. A person is said to be a person of Indian origin if- ____", o: ["He or either of his parents were born in undivided India", "He or either of his siblings were born in undivided India", "He or either of his parents or either of his grandparents were born in undivided India", "He was born in India"], c: "He or either of his parents or either of his grandparents were born in undivided India" },
+            { q: "8. Income received in India in the previous year is taxable in the hands of- ____", o: ["Resident", "Non-Resident", "All assessee irrespective of residential status", "Not Ordinarily resident"], c: "All assessee irrespective of residential status" },
+            { q: "9. An individual is said to be resident in India if- ____", o: ["He has a house in India", "He is in India in the previous year for a period of 182 days or more", "He is in India for a period of 30 days or more during the previous year and for 365 or more days during 4 previous years immediately preceding the relevant previous year", "His parents are Indian citizen"], c: "He is in India in the previous year for a period of 182 days or more" },
+            { q: "10. The incidence of taxation depends on the - ____", o: ["Residential status of the assessee", "Accommodation of the assessee", "Citizenship of the assessee", "Marital status of the assessee"], c: "Residential status of the assessee" },
+            { q: "11. Which of the following is an agriculture income?", o: ["Dividend paid by a company to its shareholders out of agricultural income", "Share of Profit of a Partner from a firm engaged in an agriculture operation", "Income from supply of water by an assessee from a tank in agriculture land", "Interest received by a money lender in the form of agricultural produce"], c: "Share of Profit of a Partner from a firm engaged in an agriculture operation" },
+            { q: "12. In case of an assessee engaged in the business of manufacturing of tea, his agricultural income is ____", o: ["60% of total receipt of the business", "60% of income of the business", "Nil", "40% of income of the business"], c: "Nil" },
+            { q: "13. Income from saplings shall be considered as ____", o: ["Agricultural Income", "Business Income", "Partly agricultural income and partly business income", "Income from other sources"], c: "Agricultural Income" },
+            { q: "14. An individual (aged 28 Years) born in India left for first time for employment in France on 30.10.2023. His visit outside India is for the first time. His residential status for the assessment year 2024-25 will be ____", o: ["Resident and ordinarily resident", "Resident but not ordinarily resident", "Non-resident", "Residential Status is not applicable"], c: "Resident and ordinarily resident" },
+            { q: "15. Income of ₹3,00,000 is received in Sri Lanka by an ordinarily resident of India. But later on ₹50,000 is remitted to India - ____", o: ["₹3,00,000 will be taxable", "₹3,50,000 will be taxable", "It is not taxable at all", "₹50,000 will be taxable"], c: "₹3,00,000 will be taxable" },
+            { q: "16. An individual is said to be a resident in India in the previous year (in which the Feb month has 29 days) if he is in India in that year for a period of ____", o: ["182 days or more", "183 days or more", "70 days or more", "150 days or more"], c: "182 days or more" },
+            { q: "17. Mr. X is engaged in growing and manufacturing tea in India. His income from this activity is ₹1,40,000. His agriculture income will be- ____", o: ["₹70,000", "₹84,000", "₹1,40,000", "₹56,000"], c: "₹84,000" },
+            { q: "18. Which of the following is not taxable under head 'Salaries'?", o: ["Remuneration paid to the lecturer of a college for setting a question paper by a university.", "Salary received by a member of the Parliament.", "Commission received by an employee director of a company.", "Both (1) and (2) above"], c: "Both (1) and (2) above" },
+            { q: "19. If a domestic servant is engaged by the employer and salary is paid by him, the perquisite is: ____", o: ["Taxable in the hands of all employees", "Not taxable in the hands of both specified and non-specified employers", "Taxable in the hands of specified employees only", "Taxable to the extent of ₹120 per person in the hands of all employees."], c: "Taxable in the hands of specified employees only" },
+            { q: "20. Which of the following is taxable under the head 'salaries'?", o: ["Salary received by a Member of State Legislature.", "Commission received by an employee director of a company.", "Family pension received", "Both (1) and (2) above"], c: "Commission received by an employee director of a company." },
+            { q: "21. Who among the following is a specified employee?", o: ["A director of a company", "An employee drawing a salary of ₹15,000 p.m.", "A person who is an owner of equity shares carrying 10% voting power in the employer company.", "Both (1) and (2) above"], c: "Both (1) and (2) above" },
+            { q: "22. Net Annual Value of a self-occupied property treated as such is: ____", o: ["Fair Rent", "Nil", "Reasonable Expected Rent as reduced by municipal tax paid during the previous year.", "None of the Above"], c: "Nil" },
+            { q: "23. A house property located outside India is: ____", o: ["Taxable in hands of all assessee", "Taxable in hands of non resident assessee", "Taxable in hands of resident and ordinarily resident assessee", "Exempted from tax in India."], c: "Taxable in hands of resident and ordinarily resident assessee" },
+            { q: "24. Following assessee(s) can considered a house property as self occupied: ____", o: ["Individual & HUF", "All assessee", "All assessee other than company", "All assessee other than firm"], c: "Individual & HUF" },
+            { q: "25. Which of the following deductions is /are not allowed in case of a deemed to be let-out house?", o: ["New construction allowance", "Repairs", "Vacancy allowance", "All of the above"], c: "All of the above" },
+            { q: "26. Which of the following is not allowed as a deduction for computation of business Income?", o: ["Loss incurred due to theft in factory after working hours", "Anticipated future losses", "Loss caused by white ants", "Loss due to accidental fire in stock-in-trade"], c: "Anticipated future losses" },
+            { q: "27. The preliminary expenses that can be amortized under the Income Tax Act, 1961 has to be restricted to ____ of the cost of project.", o: ["3%", "5%", "8%", "20%"], c: "5%" },
+            { q: "28. Expenditure on promotion of family planning is an allowance as deduction u/s. 36(1)(ix) of the Income Tax Act, 1961 in case of: ____", o: ["Individual", "Firm", "HUF", "Company"], c: "Company" },
+            { q: "29. In case of loss, a partnership firm may claim deduction in respect of remuneration to partner to the extent of: ____", o: ["₹1,50,000/-", "₹1,50,000/- or actual remuneration, whichever is lower", "₹1,50,000/- or 90% of book profit, whichever is lower", "Nil"], c: "₹1,50,000/- or actual remuneration, whichever is lower" },
+            { q: "30. U/s 54, capital gain will be allowed as exemption if the house property under transfer is held for: ____", o: ["Less than 12 months preceding the date of transfer", "More than 12 months preceding the date of transfer", "Less than 36 months preceding the date of transfer", "More than 24 months preceding the date of transfer"], c: "More than 24 months preceding the date of transfer" },
+            { q: "31. Personal effect do not cover the followings: ____", o: ["Immovable property", "Drawings", "Jewellery", "All of the above"], c: "All of the above" },
+            { q: "32. Profit on sale of rural agricultural land is: ____", o: ["Not taxable as it is agricultural income", "Not taxable under the head 'Capital gains but under the head Income from Other Sources'", "Not taxable as rural agricultural land is not considered as a capital asset", "Taxable if it is compulsorily acquired."], c: "Not taxable as rural agricultural land is not considered as a capital asset" },
+            { q: "33. Cost of acquisition of self-generated asset is nil, the exception is: ____", o: ["Goodwill", "Route permit", "Bonus shares acquired before 01-04-2001", "Loom hours"], c: "Bonus shares acquired before 01-04-2001" },
+            { q: "34. While computing taxable interest on delayed compensation, a standard deduction is allowed @: ____", o: ["50%", "30%", "15%", "Nil"], c: "50%" },
+            { q: "35. The provision of sec.56(2)(x) is applicable on: ____", o: ["All assessee", "Only on corporate assessee", "On an individual only", "On an individual and HUF only"], c: "All assessee" },
+            { q: "36. While computing income from other sources, deduction is not allowed to the assessee for: ____", o: ["Personal expenditure", "Direct tax", "Interest payable outside India without TDS", "All of the above"], c: "All of the above" },
+            
+            // Set 2: Questions 37-72
+            { q: "37. Gift received by an individual in certain circumstances is not taxable, one of them is: ____", o: ["Any gift received from family friend", "Any gift received on the occasion of any marriage in the family", "Any gift received on the occasion of the marriage of the individual-assessee", "All of the above"], c: "Any gift received on the occasion of the marriage of the individual-assessee" },
+            { q: "38. An individual purchased a painting on 01-11-2023 for ₹5,00,000 though fair market value of the asset is ₹5,25,000. Income taxable u/s 56(2)(x) is: ____", o: ["₹25,000 i.e. difference between market value and actual consideration", "Nil as this is not gift", "Nil as difference between market value and actual consideration does not exceed ₹50,000", "The provision of sec. 56(2)(x) is not applicable for any transaction entered during P.Y. 2023-24"], c: "Nil as difference between market value and actual consideration does not exceed ₹50,000" },
+            { q: "39. Uncommuted Pension received by a Government Employee is- ____", o: ["Exempt", "Taxable", "Partially Taxable", "None of the above"], c: "Taxable" },
+            { q: "40. Salary received by the Partner of a Firm is charged under the head ____", o: ["Salaries", "Business Income", "Other Sources", "Its exempt from tax"], c: "Business Income" },
+            { q: "41. Interest credited to Statutory Provident Fund shall be- ____", o: ["Fully Exempt", "Exempt upto 12% p.a.", "Fully Taxable", "Exempt upto 9.5% p.a"], c: "Fully Exempt" },
+            { q: "42. Interest credited to Recognized Provident Fund is ____", o: ["Fully Taxable", "Fully Exempt", "Exempt upto 12% of Salary", "Exempt upto 9.5% p.a."], c: "Exempt upto 9.5% p.a." },
+            { q: "43. The basis of chargeability of income under the head income from house property is: ____", o: ["Rental value", "Annual value", "Value fixed by the government", "None of the above"], c: "Annual value" },
+            { q: "44. 'A' borrowed ₹5,00,000 at 12% p.a on 01-04-2015 for construction of house property which was completed on 15-03-2024 and let out. The amount is still unpaid. The deduction on account of interest for the previous year 2023-24 shall be- ____", o: ["₹60,000", "₹96,000", "₹1,80,000", "₹2,40,000"], c: "₹96,000" },
+            { q: "45. Sums received by an employer from Keyman Insurance Policy taken on the life of the employee shall be- ____", o: ["Exempt", "Taxable under the head Business and Profession", "Taxable under the head Other Sources", "Taxable in the hand of the employee"], c: "Taxable under the head Business and Profession" },
+            { q: "46. The cost of acquisition of shares under Employees Stock Option Scheme shall be- ____", o: ["Fair Market Value of Shares on the date of offer", "Fair Market Value of the shares on the date of exercise of option", "Fair Market Value of share on the date of vesting of option.", "Price at which it was offered to the employee."], c: "Fair Market Value of the shares on the date of exercise of option" },
+            { q: "47. Capital Gain, arising from compulsory acquisition of urban agricultural land, is: ____", o: ["Taxable", "Exempt", "Exempt if acquired by RBI or Central Government", "None of the above"], c: "Exempt" },
+            { q: "48. Where the entire block of the depreciable assets is transferred after 36 months, there will be- ____", o: ["Short-Term Capital Gain", "Long-Term Capital Gain", "Short-Term Capital Gain or Loss", "Long-Term Capital Gain or Loss"], c: "Short-Term Capital Gain or Loss" },
+            { q: "49. Exemption under Section 54F shall not be allowed if the assessee, on the date of transfer, owns- ____", o: ["any Residential House", "a Residential House which is let out", "a House which is self occupied", "more than one Residential House"], c: "more than one Residential House" },
+            { q: "50. Income under the head 'Income from Other Sources' is taxable on ____", o: ["Due Basis", "Receipt Basis", "On the basis of method of accounting regularly employed by the Assessee", "None of the above."], c: "On the basis of method of accounting regularly employed by the Assessee" },
+            { q: "51. Winning from Lotteries, Crossword Puzzles, Horse Races & Other Races, Card Game, etc. are casual income & hence- ____", o: ["fully exempt", "exempt upto ₹5,000", "fully taxable", "None of above"], c: "fully taxable" },
+            { q: "52. Adi received ₹70,000 from his friend on the occasion of his birthday: ____", o: ["Entire amount of ₹70,000 is taxable", "₹25,000 is taxable", "The entire amount is exempt", "None of the above"], c: "Entire amount of ₹70,000 is taxable" },
+            { q: "53. Commission received by a Director of the Company is charged under the head: ____", o: ["Salaries", "Business Income", "Other Sources", "Its exempt from tax"], c: "Salaries" },
+            { q: "54. Casual Income received by the Assessee is - ____", o: ["Fully Exempt", "Exempt upto ₹5,000", "Fully Taxable", "None of the above."], c: "Fully Taxable" },
+            { q: "55. Mr. X's minor daughter earned ₹50,000 from his special talent. This income will be clubbed with - ____", o: ["The income of Mr. X", "The income of Mrs. X", "Mr. X or Mrs. X, whoever's income is higher", "It will not be clubbed"], c: "It will not be clubbed" }, 
+            { q: "56. Income arising to a minor married daughter shall be ____", o: ["assessed in the hands of minor married daughter", "clubbed with the income of that parent whose total income is higher", "Exempt from tax", "clubbed with the income of her spouse"], c: "clubbed with the income of that parent whose total income is higher" },
+            { q: "57. Unabsorbed business losses cannot be carried for more than - ____", o: ["7 assessment years", "8 assessment years", "10 assessment years", "12 assessment years"], c: "8 assessment years" },
+            { q: "58. Deduction u/s. 80JJA is available if the assessee: ____", o: ["Is engaged in scientific research", "Sets up an industrial unit in a backward area", "Is engaged in agriculture business", "Is engaged in the business of collecting and processing biodegradable waste."], c: "Is engaged in the business of collecting and processing biodegradable waste." },
+            { q: "59. Maximum limit for deduction u/s 80TTA is: ____", o: ["₹50,000", "₹10,000", "₹40,000", "₹25,000"], c: "₹10,000" },
+            { q: "60. Advance tax is required to be paid by all assessee only if estimated advance tax liability is: ____", o: ["₹5,000 or more", "₹10,000 or more", "More than zero", "₹50,000 or more"], c: "₹10,000 or more" },
+            { q: "61. TDS is not required to be deducted u/s 194A if the amount of interest on loan does not exceed: ____", o: ["₹5,000", "₹2,500", "₹7,500", "₹20,000"], c: "₹5,000" }, 
+            { q: "62. On salary, tax is required to be deducted at the time of: ____", o: ["Payment or crediting the employee, whichever is earlier", "Crediting the employee", "Payment", "Retirement of employee"], c: "Payment" },
+            { q: "63. Where assessment has not been completed, belated income tax return for assessment year 2024-25 can be filed upto: ____", o: ["31.12.2024", "31.01.2025", "31.03.2025", "31.12.2025"], c: "31.12.2024" }, 
+            { q: "64. When assessment has not been completed, revised return can be filed within ____ from the end of the relevant previous year.", o: ["9 months", "6 months", "12 months", "19 months"], c: "9 months" }, 
+            { q: "65. Clubbing provisions under Sec. 64(1)(vi) are applicable where the asset is transferred by an individual for inadequate consideration to ____", o: ["Daughter's Husband", "Son's Wife", "Major Son", "Major Daughter"], c: "Son's Wife" },
+            { q: "66. As per Sec. 64(1A), income accruing to a minor shall be clubbed in the income of- ____", o: ["Father", "Mother", "Father or Mother at their option", "Parent whose income before this clubbing is greater"], c: "Parent whose income before this clubbing is greater" },
+            { q: "67. Loss on account of owing & maintaining the race horses can be carried forward ____", o: ["for 8 years", "for 4 years", "indefinitely", "None of the above"], c: "for 4 years" },
+            { q: "68. The maximum period for which Speculation Loss can be carried forward is: ____", o: ["4 Years", "8 Years", "Nil", "Any number of years"], c: "4 Years" },
+            { q: "69. Deduction u/s 80C in respect of LIP, contribution to provident fund etc., is allowed to - ____", o: ["any assessee", "an individual", "an individual or HUF", "an individual of HUF who is resident in India"], c: "an individual or HUF" },
+            { q: "70. Deduction u/s 80D is allowed if the premium is paid to - ____", o: ["Life Insurance Corporation", "General Insurance Corporation or any other Insurer approved by the IRDA", "Life Insurance or General Insurance Corporation", "None of above."], c: "General Insurance Corporation or any other Insurer approved by the IRDA" },
+            { q: "71. Rebate in Tax u/s 87A, is applicable to: ____", o: ["Companies", "Individuals", "HUF", "Resident Individual"], c: "Resident Individual" },
+            { q: "72. Deduction u/s 80JJAA in respect of employment of new workers shall be allowed to- ____", o: ["any assessee to who Sec.44AB applies", "an Indian company", "an Indian Company or a person other than Company resident in India", "None of above"], c: "any assessee to who Sec.44AB applies" },
+            
+            // Set 3: Questions 73-108
+            { q: "73. The maximum amount which can be donated in cash for claiming deduction under section 80G for the P.Y. 2023-24 is - ____", o: ["₹5,000", "₹10,000", "₹15,000", "₹2,000"], c: "₹2,000" },
+            { q: "74. Where a member of a HUF has converted or transferred his self-acquired property for inadequate consideration into joint family property, income arising there from is taxable. ____", o: ["As the income of the Transferor Member", "In the hand of the HUF", "In the hands of Karta of HUF", "Completely exempt from tax"], c: "As the income of the Transferor Member" },
+            { q: "75. Advance Tax shall be payable by any person in respect of current income is ____", o: ["₹50,000 or more", "₹10,000 or more", "₹1,00,000 or more", "None of the above"], c: "₹10,000 or more" },
+            { q: "76. Liability to deduct tax at source in case on income from interest on securities arises at the time of- ____", o: ["Payment of interest", "Accrual of interest", "Credit of interest to the account of the payee/interest payable account or payment thereof whichever is earlier", "None of the above"], c: "Credit of interest to the account of the payee/interest payable account or payment thereof whichever is earlier" },
+            { q: "77. Who is empowered to make law for matters containing in List II of Schedule VII of the Constitution of India?", o: ["State Government", "Central Government", "Both Central and State Government", "None of the above"], c: "State Government" },
+            { q: "78. Power to make laws with respect to goods and services tax has been given by the Constitution vide Article: ____", o: ["279A", "246A", "246", "365"], c: "246A" },
+            { q: "79. Indirect tax is: ____", o: ["Regressive in nature", "Progressive in nature", "Both (1) & (2)", "None of these"], c: "Regressive in nature" },
+            { q: "80. Which one of the following is not an example of indirect tax types?", o: ["GST", "Customs Duty", "Income tax", "None of these"], c: "Income tax" },
+            { q: "81. In case of indirect tax, impact and incidence of tax fall on: ____", o: ["One person", "Different persons", "State Government", "None of these"], c: "Different persons" },
+            { q: "82. Levy of indirect tax on goods and services may leads to: ____", o: ["Inflation", "Deflation", "Reflection", "None of the above"], c: "Inflation" },
+            { q: "83. Levy and collection of Central indirect tax are dealt by: ____", o: ["CBIC", "CBDT", "NIC", "UGS"], c: "CBIC" },
+            { q: "84. In pre-GST regime, excise duty has been levied by ____ Government whereas VAT has been levied by ____ State Government on goods.", o: ["Central, State", "State, Central", "Central, Central", "State, State"], c: "Central, State" },
+            { q: "85. Cascading effect of tax means: ____", o: ["Tax on goods", "Tax on services", "Tax on Tax", "None of these"], c: "Tax on Tax" },
+            { q: "86. Who is empowered to make law for matters containing in List I of Schedule VII of the Constitution of India?", o: ["State Government", "Central Government", "Both Central and State Government", "None of the above"], c: "Central Government" },
+            { q: "87. The items which will be taxable both under current central excise law and new GST even after the implementation of the GST Act: ____", o: ["Motor Spirit", "Alchoholic Liquor for Human Consumption", "Tobacco and Tobacco products", "Natural Gas"], c: "Tobacco and Tobacco products" },
+            { q: "88. Who is the chairman & Head of the GST Council Meeting?", o: ["Prime minister", "President", "Union Finance Minister", "State Finance Minister nomited by GST Council"], c: "Union Finance Minister" },
+            { q: "89. The IGST Act, 2017 extends to the: ____", o: ["Whole of India except the state of Jammu & Kashmir", "Whole of India", "Whole of India except the state of Jammu & Kashmir & Pondicherry", "None of the above"], c: "Whole of India" },
+            { q: "90. Which of the following is the benefits of GST?", o: ["Creation of unified national market", "Boost to Make in India' initiative", "Reduction of compliance burden on taxpayers", "Buoyancy to the Government Revenue"], c: "Reduction of compliance burden on taxpayers" },
+            { q: "91. Which of the following taxes have been subsumed in GST?", o: ["Central sales tax", "Central excise duty", "VAT", "All of the above"], c: "All of the above" },
+            { q: "92. India has chosen ____ model of dual GST.", o: ["USA", "UK", "Canadian", "Japan"], c: "Canadian" },
+            { q: "93. Constitution Amendment Act, 2016 for GST was ____", o: ["80th", "101st", "122nd", "None of these"], c: "101st" },
+            { q: "94. The incidence of tax on tax is called ____", o: ["Tax Cascading", "Tax Pyramidding", "Tax evasion", "Indirect tax"], c: "Tax Cascading" },
+            { q: "95. UTGST is applicable when: ____", o: ["Sold from Union territory", "Goods are purchased by Central Government", "Sold from one union territory to another union territory", "There is interstate supply"], c: "There is interstate supply" },
+            { q: "96. Under which article of the Constitution of India, GST council has been constituted?", o: ["246", "246A", "279A", "265"], c: "279A" },
+            { q: "97. GSTN is: ____", o: ["51% government owned company with paid up capital of ₹10 crore", "50% government owned company with paid up capital of ₹10 crore", "100% government owned company with paid up capital of ₹10 crore", "None of the above"], c: "51% government owned company with paid up capital of ₹10 crore" },
+            { q: "98. The term supply includes: ____", o: ["Sale", "Transfer", "Barter", "All of the above"], c: "All of the above" },
+            { q: "99. Which of the following activities or transactions shall be treated neither as supply of goods nor a supply of services?", o: ["Sale of land and building", "Lease of land", "Rent of building", "All of the above"], c: "Sale of land and building" },
+            { q: "100. Gifts not exceeding ____ in value in a financial year by an employer to an employee shall not be treated as supply of goods or services or both.", o: ["₹50,000", "₹25,000", "₹30,000", "None of the above"], c: "₹50,000" },
+            { q: "101. A hotel provides a 4-D/3-N package with the facility of breakfast. This is a ........", o: ["Mixed supply", "Composite supply", "Both mixed and composite supply", "None of the above"], c: "Composite supply" },
+            { q: "102. Which of the following is/are the essential elements of a mixed supply?", o: ["Supply is made by taxable person to a recipient", "Supply consists of two or more individual supplies of goods or services or both or any combination thereof but it is not naturally bundled", "Supply is made for a single price", "All of the above"], c: "All of the above" },
+            { q: "103. In case of import of goods, which type(s) of GST is applicable?", o: ["CGST", "SGST", "Both CGST and SGST", "IGST"], c: "IGST" },
+            { q: "104. Reverse charge means the liability to pay tax by the ____ of supply of goods or services or both.", o: ["recipient", "supplier", "partly by the recipient and partly by the supplier", "None of the above"], c: "recipient" },
+            { q: "105. Which of the following can be issued by Government to exempt goods and/or services on which tax is leviable in exceptional cases?", o: ["Exemption Notification", "Special order", "Other notifications", "None of the above"], c: "Special order" },
+            { q: "106. Renting of precincts of a religious place meant for general public owned or managed by a charitable or religious trust u/s 12AA of the Income Tax Act 1961 shall be exempt if: ____", o: ["Renting of rooms where per day charges are less then ₹1,000", "Renting of shops or other spaces for business or commerce where charges per month are less than ₹10,000", "Renting of premises, community halls or open area, where charges per day are less than ₹10,000", "All of the above"], c: "All of the above" },
+            { q: "107. For which of the following goods, the manufacturer is not allowed to opt for composition scheme:", o: ["Pan masala", "Ice cream", "Topical and manufactured tobacco substitutes", "All of the above"], c: "All of the above" },
+            { q: "108. The time of supply of goods, where supplier is liable to pay tax under forward charge shall be: ____", o: ["The date of actual issue of invoice by the supplier", "The last date on which he is required u/s 31(1) to issue the invoice with respect to the supply", "The date on which the supplier receives the payment with respect to the supply", "(a) or (b), whichever is earlier"], c: "(a) or (b), whichever is earlier" },
+
+            // Set 4: Questions 109-144
+            { q: "109. The transaction value for computation of value of supply can be rejected if - ____", o: ["The buyer and seller are related and price is not the sole consideration", "Products are sold at very low margins", "Maximum retail price is greater than the transaction value", "All of the above"], c: "The buyer and seller are related and price is not the sole consideration" },
+            { q: "110. In case goods disposed off by way of free sample ____", o: ["recipient can claim ITC", "supplier can claim ITC", "supplier can not claim ITC", "ITC can be claimed if value is more than ₹1,000"], c: "supplier can not claim ITC" },
+            { q: "111. If the goods are received in installment then ITC can be availed ____", o: ["Proportionately on receipt of each installment", "100% ITC can be taken on receipt of first installment", "ITC can be taken on receipt of last installment", "50% ITC can be taken on receipt of first installment and balance 50% on receipt of last installment"], c: "ITC can be taken on receipt of last installment" },
+            { q: "112. Person who is liable to be registered u/s 22 or 24 shall apply for registration in every such State or Union Territory in which he is so liable within: ____", o: ["30 days from the date on which he becomes liable to registration", "15 days from the date on which he becomes liable to registration", "17 days from the date on which he becomes liable to registration", "None of the above"], c: "30 days from the date on which he becomes liable to registration" },
+            { q: "113. Tax invoice shall be prepared in ____ in case of supply of goods and in ____ in case of supply of services", o: ["Duplicate, Duplicate", "Duplicate, Triplicate", "Triplicate, Duplicate", "Triplicate, Triplicate"], c: "Triplicate, Duplicate" },
+            { q: "114. Annual return is summary of: ____", o: ["GSTR 1", "GSTR 3B", "GSTR 4", "All of the above"], c: "All of the above" },
+            { q: "115. Payment of tax is required ____ filing return.", o: ["Before", "After", "Before or after", "Before or at the time of"], c: "Before or at the time of" },
+            { q: "116. Aggregate turnover Limit for Opting Compounding Scheme is: ____", o: ["₹50 Lakh", "₹60 Lakh", "₹1 Crore", "₹1.5 Crore"], c: "₹1.5 Crore" },
+            { q: "117. The calculation of the aggregate turnover to decide the Taxable Minimum Turnover will be based on: ____", o: ["State wise Turnover Basis", "All India Turnover basis", "State wise Turnover Excluding Export", "All India Turnover Excluding Export"], c: "All India Turnover basis" },
+            { q: "118. Certificate of registration is issued in which form?", o: ["GST REG-06", "GST REG-02", "GST REG-01", "GST REG-10"], c: "GST REG-06" },
+            { q: "119. Dealers who are not eligible for Compounding Scheme: ____", o: ["Exporters", "Importers", "Interstate Suppliers and those liable to remit tax on Reverse Charge basis", "Manufacturing dealers"], c: "Interstate Suppliers and those liable to remit tax on Reverse Charge basis" },
+            { q: "120. Various taxes have been subsumed in GST to make one nation one market for consumers. Out of following, determine which taxes have been subsumed in GST (i) basic customs duty levied under Customs Act, 1962, (ii) Taxes on lotteries, (iii) Taxes on advertisements", o: ["(ii)", "(ii) and (iii)", "(iii)", "(i).(ii) and (iii)"], c: "(ii) and (iii)" },
+            { q: "121. Which of the following is not considered as 'goods' under the CGST Act, 2017 (i)Ten-paisa coin having sale value of Rs 100, (ii) Shares of unlisted Company, (iii) Lottery Tickets", o: ["(i)", "(ii)", "(ii) and (iii)", "(i), (ii) and (iii)"], c: "(ii)" },
+            { q: "122. If tobacco leaves procured from Agriculturist by a registered person, the applicability of RCM will be: ____", o: ["Reverse charge is applicable as this is a notified service", "Reverse charge is applicable if ABC Travels is not registered", "Joint charge is applicable", "None of the above"], c: "Reverse charge is applicable as this is a notified service" },
+            { q: "123. For a registered person threshold limits of turnover in the preceding financial year for opting composition scheme shall not exceeds: ____", o: ["₹20 lakh", "₹1.5 crore", "₹75 lakh", "None of the above"], c: "₹1.5 crore" },
+            { q: "124. A supply that consists of two or even more services would be classified as the provision that describes the variables that are subject to a higher rate of taxation, is called: ____", o: ["Composite", "Mixed", "Both (a) and (b)", "None of the above"], c: "Mixed" },
+            { q: "125. GST stands for Goods and Services Tax, and it is a tax system that covers a wide range of: ____", o: ["Goods", "Services", "Goods, companies and imports", "Products, systems, and exports"], c: "Goods, companies and imports" },
+            { q: "126. Which of the following is the exclusions from the computation of aggregate turnover?", o: ["Value of taxable supplies", "value of exempt supplies", "Exports of goods or services or both", "Value of inward supplies on which tax is paid on reverse charge basis"], c: "Value of inward supplies on which tax is paid on reverse charge basis" },
+            { q: "127. In case of Manufacturer (except Ice cream, pan masala, tobacco) for whom concessional rate applicable under composition scheme, the rate of tax is: ____", o: ["2.50%", "0.50%", "1%", "No composition for manufacturer"], c: "1%" },
+            { q: "128. Whether a registered person under composition scheme shall claim input tax credit?", o: ["yes", "no", "Input tax credit on inward supply of goods only can be claimed", "Input tax credit on inward supply of service only can be claimed"], c: "no" },
+            { q: "129. What is time of supply of goods, in case of forward charge?", o: ["Date of issue of invoice", "Due date of issue of invoice", "Date of receipt of consideration by the supplier", "Earlier of (a) & (b)"], c: "Earlier of (a) & (b)" },
+            { q: "130. What is the time of supply of vouchers when the supply with respect to the voucher is identifiable?", o: ["Date of issue of voucher", "Date of redemption of voucher", "Earlier of (a) & (b)", "(a) & (b) whichever is later"], c: "Date of issue of voucher" },
+            { q: "131. Which of the following shall not be included in value of supply?", o: ["GST", "Interest", "Late fee", "Commission"], c: "GST" },
+            { q: "132. The value of supply should include: ____", o: ["Any non-GST taxes, duties, cesses, fees charged separately by supplier", "Interest, late fee or penalty for delayed payment of any consideration for any supply", "Subsidies directly linked to the price except subsidies provided by the Central and State Government", "All of the above"], c: "All of the above" },
+            { q: "133. When can the transaction value be rejected for computation of value of supply?", o: ["When the buyer and seller are related and price is not the sole consideration", "When the buyer and seller are unrelated or price is not the sole consideration", "It can never be rejected", "When the goods are sold at very low margins"], c: "When the buyer and seller are related and price is not the sole consideration" },
+            { q: "134. What deductions are allowed from the transaction value?", o: ["Discounts offered to customers, subject to conditions", "Packing Charges, subject to conditions", "Amount paid by customer on behalf of the supplier, subject to conditions", "Freight charges incurred by the supplier for CIF terms of supply, subject to conditions"], c: "Discounts offered to customers, subject to conditions" },
+            { q: "135. Rule 30 of the CGST Rules inter alia provides value of supply of goods or services or both based on cost shall be ____% of cost of production or manufacture or the cost of acquisition of such goods or the cost of provision of such services", o: ["100", "10", "110", "120"], c: "110" },
+            { q: "136. Where the goods being sent or taken on approval for sale or return are removed before the supply takes place, the invoice shall be issued: ____", o: ["before/at the time of supply", "6 months from the date of removal", "Earlier of (a) or (b)", "None of the above"], c: "Earlier of (a) or (b)" },
+            { q: "137. Which of the following is not a supply under the CGST Act, 2017?", o: ["Goods supplied free of cost by X & Sons to its agent for further supply to customer at ₹5,000 for which invoice will be issuedby the agent in his own name.", "Importation of accounting services (for business purposes) free of cost from a dependent father residing in US.", "An expensive watch gifted to an employee for ₹50,000. No other gifts provided to such employee during the entire financial year.", "A machinery disposed off free of cost on which input tax credithas been availed"], c: "An expensive watch gifted to an employee for ₹50,000. No other gifts provided to such employee during the entire financial year." },
+            { q: "138. The term casual taxable person' includes: ____", o: ["A person occasionally supplying goods or services or both in a State or a Union territory where he has no fixed place of business.", "A person occasionally supplying goods or services or both in a State or a Union territory where he has fixed place of business", "Both (a) and (b)", "None of the above"], c: "A person occasionally supplying goods or services or both in a State or a Union territory where he has no fixed place of business." },
+            { q: "139. Mr. X of Delhi is participating in Hitex Furniture Expo in Haryana where he has no fixed place of business and exhibiting his products. During the expo, the said products will be sold to the people attending and intending to purchase such products. In such scenario, Mr. X shall obtain which of the following registration under the CGST Act, 2017?", o: ["Non-resident taxable person registration", "Casual taxable person registration", "Regular taxpayer registration", "No registration under GST required."], c: "Casual taxable person registration" },
+            { q: "140. An exempt supply includes: ____", o: ["Supply of goods or services or both which attracts Nil rate of tax", "Non-taxable supply", "Supply of goods or services or both which are wholly exempt from tax under Section 11 of the CGST Act or under Section 6 of IGST Act", "All of the above"], c: "All of the above" },
+            { q: "141. Which of the following service is notified by Government for ECO?", o: ["services by way of transportation of passengers by a radio-taxi, motor cab, maxi cab and motor cycle", "services by way of providing accommodation in hotels, inns, guest houses, clubs, campsites or other commercial places meant for residential or lodging purposes, except where the person supplying such service through ECO is liable for registration under subsection 22(1) of the CGST Act", "services by way of house-keeping. such as plumbing, carpentering etc., except where the person supplying such service through ECO is liable for registration under section 22(1) of the CGST", "All of these"], c: "All of these" },
+            { q: "142. A hotel owner provided accommodation in Haryana, through an electronic commerce operator Cool Trips. The hotel owner is not liable to get registered as per the provisions of section 22(1) of the CGST Act. Who is the person liable to pay GST in this case?", o: ["Hotel Owner", "ECO", "Customer", "Both by Hotel owner & ECO"], c: "ECO" },
+            { q: "143. State the taxability of satellite launch services provided to both international and domestic customers by ANTRIX Corporation Limited ('ANTRIX') which is a wholly owned Government of India Company under the administrative control of Department of Space (DOS).", o: ["Taxable", "Not taxable", "Exempt", "None"], c: "Taxable" },
+            { q: "144. Zero rated supply includes: ____", o: ["Export of goods and services", "Supply of goods and services to a SEZ developer or SEZ Unit", "Supply of goods and services by a SEZ developer or SEZ Unit", "Both (1) and (2)"], c: "Both (1) and (2)" },
+            
+            // Set 5: Questions 145-181
+            { q: "145. A registered taxable person is eligible to claim refund in respect of export of goods and services in the following cases ____", o: ["Under bond, without payment of IGST and claim refund of unutilized input tax credit.", "On payment of IGST and claim refund of IGST paid on such goods and services", "None of the above", "Both (1) and (2)"], c: "Both (1) and (2)" },
+            { q: "146. If place of supply in Territorial water, then what will considered as Place of supply?", o: ["Actual location (territorial Water)", "Principal Establishment of Supplier", "Any establishment of supplier of his choice", "coastal State or Union Territory where the nearest point of the appropriate baseline"], c: "coastal State or Union Territory where the nearest point of the appropriate baseline" },
+            { q: "147. What is the time of supply of service if the invoice is issued within 30 days from the date of provision of service?", o: ["Date of issue of invoice", "Date on which the supplier receives payment", "Date of provision of service", "Earlier of (1) & (2)"], c: "Earlier of (1) & (2)" },
+            { q: "148. What is the time of supply of service in case of reverse charge mechanism?", o: ["Date of payment as entered in the books of account of the recipient", "Date immediately following 60 days from the date of issue of invoice", "Date of invoice", "Earlier of (1) & (2)"], c: "Earlier of (1) & (2)" },
+            { q: "149. Value of services rendered is ₹1,00,000/. Date of issue of invoice is 5th October 2023. Advance Received is ₹25,000/- on 20th September 2023. Balance amount received on 7th October 2023. What is the time of supply for ₹1,00,000?", o: ["5th October 2023 for ₹1,00,000/-", "20th September 2023 for ₹1,00,000/-", "20th September 2023 for ₹25,000/- and 5th October 2023 for ₹75,000/-", "20th September 2023 for ₹25,000/- and 7th October 2023 for ₹75,000/-"], c: "20th September 2023 for ₹25,000/- and 5th October 2023 for ₹75,000/-" },
+            { q: "150. Whether credit on inputs should be availed based on receipt of documents or receipt of goods", o: ["Receipt of goods", "Receipt of Documents", "Both", "Either receipt of documents or Receipt of goods"], c: "Both" },
+            { q: "151. The supply of goods to SEZ unit is treated as, ____ in the hands of the supplier:", o: ["Exempt Supply - Reversal of credit", "Deemed Taxable Supply - No reversal of credit", "Zero Rated supply", "Non-Taxable Supply Outside the Scope of GST"], c: "Zero Rated supply" },
+            { q: "152. On supply of OIDAR Services by a person located in taxable territory to a non-taxable online recipient. Who is liable to pay GST in this case?", o: ["Recipient", "Supplier", "Both", "None"], c: "Supplier" },
+            { q: "153. If location of supplier in Territorial water, then what will be considered as location of supplier?", o: ["Actual location (territorial Water)", "Principal Establishment of Supplier", "Any establishment of supplier of his choice", "Coastal State or Union Territory where the nearest point of the appropriate baseline"], c: "Coastal State or Union Territory where the nearest point of the appropriate baseline" },
+            { q: "154. The limit of exclusive economic zone of India is ____ from the nearest point of the baseline.", o: ["200 nautical miles", "12 nautical miles", "24 nautical miles", "None of the above"], c: "200 nautical miles" },
+            { q: "155. Which of the following is a taxable event for imported goods?", o: ["Date on which the goods cross the customs barrier", "Date of presentation of bill of entry", "Date of entry into Indian territorial waters", "Unloading of imported goods at the customs port"], c: "Date on which the goods cross the customs barrier" },
+            { q: "156. Basic custom duty on imported goods is levied at the rates specified in the: ____", o: ["First Schedule of the Customs Tariff Act, 1975", "Second Schedule of the Customs Tariff Act, 1975", "Customs Act", "Customs Manual"], c: "First Schedule of the Customs Tariff Act, 1975" },
+            { q: "157. For the purpose of computing IGST on imported goods, one of the following shall not be included in the value for computation: ____", o: ["GST Compensation Cess", "Social Welfare Surcharge", "Anti-dumping duty", "None of the above"], c: "GST Compensation Cess" },
+            { q: "158. Where the insurance amount is not available, for ascertaining the assessable value for customs duty, the percentage of FOB value to be taken is: ____", o: ["1%", "1.125%", "1.5%", "None of the above"], c: "1.125%" },
+            { q: "159. Where the transport charges is not available, for ascertaining the assessable value for customs duty, the percentage of FOB value to be taken is: ____", o: ["10%", "20%", "25%", "None of the above"], c: "20%" },
+            { q: "160. Transportation charges incurred by the importee for transporting goods from factory of the exporter to the port of exportation shall be included in the assessable value. Is this statement correct?", o: ["Yes", "No", "Yes, if such charges has been paid in foreign currency", "None of the above"], c: "Yes" },
+            { q: "161. As per Section 2(31), person-in-charge means: ____", o: ["Vessel Master", "Train Conductor (or) Guard", "Vehicle Driver", "All of the above"], c: "All of the above" },
+            { q: "162. Goods which are same in all respects, including physical quantity is known as: ____", o: ["Identical Goods", "Similar Goods", "Alike Goods", "None of the above"], c: "Identical Goods" },
+            { q: "163. Buying commission shall be included in the assessable value. Is this statement correct?", o: ["No", "Yes", "Yes, if buying commission is paid in foreign currency", "None of the above"], c: "No" },
+            { q: "164. Any article which is imported into India shall, in addition, be liable to integrated tax at such rate, not exceeding ____% as is leviable under section 5 of Integrated Goods and Services Tax Act, 2017 on a like article on its supply in India, on the value of the imported article as determined under subsection (8) or sub section 8(A).", o: ["20", "30", "40", "50"], c: "40" },
+            { q: "165. Any article which is imported into India is also liable to a duty equal to the excise duty for the time being leviable on a like article if produced or manufactured in India. This duty is called as ____", o: ["Additional duty", "Countervailing Duty", "Special duty", "None of the above"], c: "Additional duty" },
+            { q: "166. The maximum rate of additional duty is @ ____%", o: ["5", "4", "3", "2"], c: "4" },
+            { q: "167. If which of the following conditions are satisfied, the Central Government may provide for the enhancement of the import duty?", o: ["The goods should be specified in the First Schedule", "The Central Government is satisfied that circumstances exist. which render it necessary for the enhancement of import duties", "Either 1 or 2", "Both 1 & 2"], c: "Both 1 & 2" },
+            { q: "168. Central Government can impose the safeguard duty if it is satisfied that: ____", o: ["Any article is imported into India in increased quantities", "Such increased importation is causing or threatening to cause serious injury to domestic industry", "Either 1 or 2", "Both 1 & 2"], c: "Both 1 & 2" },
+            { q: "169. The total period of levy of safeguard duty is restricted to ____ years:", o: ["5", "10", "6", "7"], c: "10" },
+            { q: "170. An appeal filed under section 9B shall be accompanied by a fee of ____", o: ["₹10,000", "₹15,000", "₹50,000", "₹25,000"], c: "₹15,000" },
+            { q: "171. As per section 14 of customs act, 1962, transaction value shall also include in addition to the price, anyamount paid or payable for costs and services, including ____", o: ["commissions and brokerage", "engineering", "royalties and licence fees", "all of the above"], c: "all of the above" },
+            { q: "172. As per section 14 of customs act, 1962, transaction value shall also include in addition to the price, any amount paid or payable for costs and services, including ____", o: ["costs of transportation to the place of importation", "insurance", "design work", "all of the above"], c: "all of the above" },
+            { q: "173. For imported goods, the conversion in value shall be done with reference to the rate of exchange prevalent on the date of filing of ____", o: ["bill of entry under section 46", "shipping bill (vessel or aircraft) under section 50", "bill of export (vehicle) under section 50.", "either 2 or 3"], c: "bill of entry under section 46" },
+            { q: "174. For the purpose of customs valuation, 'rate of exchange' means the rate of exchange notified by ____ shall be taken into account.", o: ["the Foreign Exchange Dealers Association of India", "CBIC", "the Reserve Bank of India", "none of the above"], c: "CBIC" },
+            { q: "175. Sub-section (2) of section 14 provides that the Board may fix for any class of imported goodsor export goods, having regard to the trend of value of such or like goods by notification in the Official Gazette if it is satisfied that it is necessary to do so. It is: ____", o: ["market value", "MRP", "transaction value", "tariff value"], c: "tariff value" },
+            { q: "176. The term 'similar goods' means imported goods: ____", o: ["which although not alike in all respects, have like characteristics and like component materials which enable them to perform the same functions", "produced in the country in which the goods being valued were produced", "produced by the same person who produced the goods being valued", "all of the above"], c: "all of the above" },
+            { q: "177. The loading, unloading and handling charges associated with the delivery of the imported goods at the place of importation shall be ____", o: ["1% of customs FOB value", "cost of transport", "cost of insurance", "10"], c: "10" }, 
+            { q: "178. Where the goods are sent back as such to the foreign country owing to which of the following reasonsit is considered as re-exportation?", o: ["Goods not conforming to the specification of the order", "Goods not permitted to be imported into the country on account of traderestriction", "Goods after being imported are temporarily retained in the country and later taken out of the country. In other words, the very objective of the importation was limited to temporary retention in India", "All the above"], c: "All the above" },
+            { q: "179. Under Section 74(1) when goods capable of being easily identified, which have been imported into India and upon which any duty has been paid on importation ____% of duty be paid back.", o: ["50", "100", "98", "48"], c: "98" },
+            { q: "180. As per notification, no drawback of import duty will be allowed in respect of which of the following goods, if they have been used after their importation in India?", o: ["Wearing Apparel", "Tea Chests", "Exposed cinematograph films passed by Board of Film Censors in India", "All the above"], c: "All the above" },
+            { q: "181. CBIC has clarified that safeguard duties, anti-dumping duties and countervailing duties are rebatable as drawback in terms of section ____ of the Customs Act", o: ["74", "75", "76", "77"], c: "75" }
         ];
 
+        let currentQuestionIndex = 0;
+        let selectedOptionElement = null; 
+        let questionAnswered = false; 
 
-        let currentScore = 0;
-        let questionsAnswered = 0;
-        let currentQuestionSet = []; // Holds questions for the currently selected set
-        let totalQuestionsInCurrentSet = 0; // Total questions in the currently selected set
-        
-        // Calculate questions per set. 181 total questions.
-        // Set 1: 37 questions. Sets 2-5: 36 questions each.
-        const questionsPerSetArray = [37, 36, 36, 36, 36];
-        const totalSets = questionsPerSetArray.length;
+        let score = {
+            correct: 0,
+            incorrect: 0
+        };
 
+        const questionHeaderElement = document.getElementById('question-header');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const completionMessageElement = document.getElementById('completion-message');
+        const quizContainer = document.getElementById('quiz-container');
+        const setSelectorElement = document.getElementById('set-selector');
 
-        /**
-         * Sanitizes HTML string by replacing < and > characters.
-         */
-        function sanitizeHTML(str) {
-            if (typeof str !== 'string') return '';
-            return str.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const attemptedCountElement = document.getElementById('attempted-count');
+        const accuracyRateElement = document.getElementById('accuracy-rate');
+
+        const questionsPerSet = [36, 36, 36, 36, 37]; 
+        const setStartIndices = [0];
+        for (let i = 0; i < questionsPerSet.length -1; i++) {
+            setStartIndices.push(setStartIndices[i] + questionsPerSet[i]);
         }
 
-        /**
-         * Creates the set selection buttons.
-         */
-        function createSetSelectionControls() {
-            const container = document.getElementById('setSelectionContainer');
-            if (!container) return;
+        function populateSetSelector() {
+            questionsPerSet.forEach((num, index) => {
+                const option = document.createElement('option');
+                option.value = index; 
+                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
+                setSelectorElement.appendChild(option);
+            });
+            setSelectorElement.addEventListener('change', (event) => {
+                const selectedSetIndex = parseInt(event.target.value);
+                currentQuestionIndex = setStartIndices[selectedSetIndex];
+                completionMessageElement.style.display = 'none';
+                questionHeaderElement.style.display = 'block';
+                questionTextElement.style.display = 'block';
+                optionsContainerElement.style.display = 'block';
+                nextButton.style.display = 'inline-block';
+                loadQuestion();
+            });
+        }
 
-            const buttonsDivId = 'set-buttons-wrapper';
-            let buttonsDiv = container.querySelector(`#${buttonsDivId}`);
-            if (!buttonsDiv) {
-                buttonsDiv = document.createElement('div');
-                buttonsDiv.id = buttonsDivId;
-                container.appendChild(buttonsDiv);
-            }
-            buttonsDiv.innerHTML = ''; // Clear previous buttons
 
-            if (allQuestionsData.length > 0) {
-                for (let i = 0; i < totalSets; i++) {
-                    const button = document.createElement('button');
-                    button.textContent = `Set ${i + 1} (${questionsPerSetArray[i]} Qs)`;
-                    button.classList.add('set-button');
-                    button.onclick = function() { loadQuestionSet(i); };
-                    buttonsDiv.appendChild(button);
+        function getCurrentSetInfo(index) {
+            let cumulativeQuestions = 0;
+            for (let i = 0; i < questionsPerSet.length; i++) {
+                cumulativeQuestions += questionsPerSet[i];
+                if (index < cumulativeQuestions) {
+                    if (setSelectorElement.value != i) {
+                         setSelectorElement.value = i;
+                    }
+                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
                 }
+            }
+            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+        }
+        
+        function updateScoreboard() {
+            correctCountElement.textContent = `Correct: ${score.correct}`;
+            incorrectCountElement.textContent = `Incorrect: ${score.incorrect}`;
+            const attempted = score.correct + score.incorrect;
+            attemptedCountElement.textContent = `Attempted: ${attempted}`;
+            if (attempted > 0) {
+                const accuracy = (score.correct / attempted * 100).toFixed(1);
+                accuracyRateElement.textContent = `Accuracy: ${accuracy}%`;
             } else {
-                 buttonsDiv.innerHTML = '<p class="text-red-500">No questions loaded to create sets.</p>';
+                accuracyRateElement.textContent = `Accuracy: N/A`;
             }
         }
 
-        /**
-         * Loads and displays a specific set of questions.
-         * @param {number} setIndex - The 0-based index of the set to load.
-         */
-        function loadQuestionSet(setIndex) { // setIndex is 0-based
-            const quizArea = document.getElementById('quizArea');
-            const initialMessage = document.getElementById('initialMessage');
-            if (!quizArea || !initialMessage) return;
 
-            let startIndex = 0;
-            for(let i = 0; i < setIndex; i++) {
-                startIndex += questionsPerSetArray[i];
-            }
-            const questionsInThisSet = questionsPerSetArray[setIndex];
-            const endIndex = startIndex + questionsInThisSet;
+        function loadQuestion() {
+            questionAnswered = false; 
+            if (currentQuestionIndex < questionsData.length) {
+                const currentQuestion = questionsData[currentQuestionIndex];
+                const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
-            currentQuestionSet = allQuestionsData.slice(startIndex, endIndex);
-            totalQuestionsInCurrentSet = currentQuestionSet.length; // Should match questionsInThisSet
+                questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+                questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
 
-            if (totalQuestionsInCurrentSet === 0) {
-                console.warn(`Attempted to load Set ${setIndex + 1}, but it has no questions. Check 'allQuestionsData'.`);
-                document.getElementById('quizForm').innerHTML = '<p class="text-center text-red-600">This question set is empty or could not be loaded.</p>';
-                updateLiveScoreboard();
-                quizArea.style.display = 'block';
-                initialMessage.style.display = 'none';
-                return;
-            }
+                optionsContainerElement.innerHTML = '';
+                currentQuestion.o.forEach((optionText, index) => {
+                    const optionElement = document.createElement('div');
+                    optionElement.classList.add('option');
+                    optionElement.dataset.optionText = optionText; 
 
-            currentScore = 0;
-            questionsAnswered = 0;
-            
-            buildQuizDisplay(currentQuestionSet); // No need to pass setIndex here for building display
-            updateLiveScoreboard();
-
-            const resultSummaryDiv = document.getElementById('resultSummary');
-            if (resultSummaryDiv) {
-                resultSummaryDiv.style.display = 'none';
-                resultSummaryDiv.textContent = '';
-            }
-            const submitButton = document.getElementById('submitButton');
-            if (submitButton) {
-                submitButton.disabled = false;
-                submitButton.textContent = "Submit Answers";
-            }
-
-            quizArea.style.display = 'block';
-            initialMessage.style.display = 'none';
-
-            const setButtons = document.querySelectorAll('.set-button');
-            setButtons.forEach((btn, idx) => {
-                btn.classList.toggle('active-set', idx === setIndex);
-            });
-        }
-
-        /**
-         * Builds the quiz HTML structure for the given questions and injects it into the form.
-         * @param {Array} questionsToDisplay - The array of question objects for the current set.
-         */
-        function buildQuizDisplay(questionsToDisplay) {
-            const quizForm = document.getElementById('quizForm');
-            if (!quizForm) {
-                console.error("Quiz form element not found!");
-                return;
-            }
-            let html = '';
-            questionsToDisplay.forEach((q, indexInSet) => { 
-                html += `<div class="question-block" id="question-${indexInSet}">`;
-                html += `   <p class="question-text">${indexInSet + 1}. ${sanitizeHTML(q.question)}</p>`;
-                html += `   <div class="options">`;
-                q.options.forEach((option, i) => {
-                    const optionValue = i + 1;
-                    html += `       <label for="q${indexInSet}_option${optionValue}">`;
-                    html += `           <input type="radio" name="q${indexInSet}" id="q${indexInSet}_option${optionValue}" value="${optionValue}" onchange="checkAnswer(${indexInSet})">`;
-                    html += `           <span>${sanitizeHTML(option)}</span>`;
-                    html += `       </label>`;
+                    const optionLetter = String.fromCharCode(65 + index);
+                    optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                    
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
+                    optionsContainerElement.appendChild(optionElement);
                 });
-                html += `   </div>`;
-                html += `   <div class="feedback" id="feedback-${indexInSet}"></div>`;
-                html += `</div>`;
-            });
-            quizForm.innerHTML = html;
-        }
-
-        /**
-         * Updates the live scoreboard display.
-         */
-        function updateLiveScoreboard() {
-            const scoreboard = document.getElementById('liveScoreboard');
-            if (scoreboard) {
-                scoreboard.textContent = `Score: ${currentScore} / ${totalQuestionsInCurrentSet} | Answered: ${questionsAnswered} / ${totalQuestionsInCurrentSet}`;
+                nextButton.textContent = "Next Question";
+                nextButton.disabled = true; 
+            } else {
+                showCompletionMessage();
             }
         }
 
-        /**
-         * Checks the answer for a given question in the current set, provides feedback, and updates the score.
-         * @param {number} questionIndexInSet - The index of the question in currentQuestionSet.
-         */
-        function checkAnswer(questionIndexInSet) {
-            const questionData = currentQuestionSet[questionIndexInSet];
-            const form = document.getElementById('quizForm');
-            const feedbackDiv = document.getElementById(`feedback-${questionIndexInSet}`);
-            const radioButtons = form.elements[`q${questionIndexInSet}`];
+        function handleOptionSelection(selectedDiv, selectedOptionText) {
+            if (questionAnswered) return; 
+
+            questionAnswered = true;
+            nextButton.disabled = false; 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const correctAnswerText = currentQuestion.c;
+
+            selectedDiv.classList.add('selected'); 
+
+            if (selectedOptionText === correctAnswerText) {
+                selectedDiv.classList.add('correct-answer');
+                score.correct++;
+            } else {
+                selectedDiv.classList.add('incorrect-selection');
+                score.incorrect++;
+                Array.from(optionsContainerElement.children).forEach(optDiv => {
+                    if (optDiv.dataset.optionText === correctAnswerText) {
+                        optDiv.classList.add('correct-answer');
+                    }
+                });
+            }
             
-            if (!questionData || !form || !feedbackDiv || !radioButtons) {
-                console.error(`Elements for question ${questionIndexInSet} in current set not found.`);
-                return;
-            }
+            Array.from(optionsContainerElement.children).forEach(optDiv => {
+                optDiv.classList.add('disabled'); 
+            });
 
-            if (radioButtons[0] && radioButtons[0].disabled) {
+            updateScoreboard();
+        }
+        
+        function selectOptionByKey(key) {
+            if (questionAnswered) return;
+
+            let optionIndex = -1;
+            if (key === 'a' || key === '1') optionIndex = 0;
+            else if (key === 'b' || key === '2') optionIndex = 1;
+            else if (key === 'c' || key === '3') optionIndex = 2;
+            else if (key === 'd' || key === '4') optionIndex = 3;
+
+            if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
+                const optionDiv = optionsContainerElement.children[optionIndex];
+                if (optionDiv && !optionDiv.classList.contains('disabled')) {
+                    handleOptionSelection(optionDiv, optionDiv.dataset.optionText);
+                }
+            }
+        }
+
+
+        function nextQuestionHandler() {
+            if (!questionAnswered && currentQuestionIndex < questionsData.length) {
                 return; 
             }
-
-            let selectedOptionValue = null;
-            for (let i = 0; i < radioButtons.length; i++) {
-                if (radioButtons[i].checked) {
-                    selectedOptionValue = radioButtons[i].value;
-                }
-                radioButtons[i].disabled = true;
-                if (radioButtons[i].parentElement && radioButtons[i].parentElement.tagName === 'LABEL') {
-                    radioButtons[i].parentElement.classList.add('disabled-option');
-                }
-            }
-
-            if (selectedOptionValue === null) return;
-
-            questionsAnswered++;
-
-            const correctAnswerCode = questionData.correctAnswerCode;
-            const correctAnswerText = (correctAnswerCode > 0 && questionData.options && correctAnswerCode <= questionData.options.length)
-                                      ? sanitizeHTML(questionData.options[correctAnswerCode - 1])
-                                      : "N/A";
-
-            feedbackDiv.className = 'feedback'; 
-            if (selectedOptionValue == correctAnswerCode) {
-                currentScore++;
-                feedbackDiv.innerHTML = `Correct! The answer is: ${correctAnswerText}`;
-                feedbackDiv.classList.add('correct-answer-text');
-            } else {
-                const userAnswerText = (questionData.options && parseInt(selectedOptionValue) > 0 && parseInt(selectedOptionValue) <= questionData.options.length)
-                                       ? sanitizeHTML(questionData.options[parseInt(selectedOptionValue) - 1])
-                                       : "N/A";
-                feedbackDiv.innerHTML = `<span class="user-answer-display">Your answer: ${userAnswerText}</span>Incorrect. The correct answer is: ${correctAnswerText}`;
-                feedbackDiv.classList.add('incorrect-answer-text');
-            }
-            feedbackDiv.style.display = 'block';
-            updateLiveScoreboard();
+            currentQuestionIndex++;
+            loadQuestion();
         }
         
-        /**
-         * Displays the final score summary for the current set.
-         */
-        function submitCurrentQuiz() {
-            const resultSummaryDiv = document.getElementById('resultSummary');
-            if (!resultSummaryDiv) {
-                console.error("Result summary element not found!");
-                return;
-            }
-
-            if (questionsAnswered < totalQuestionsInCurrentSet) {
-                const unAnsweredCount = totalQuestionsInCurrentSet - questionsAnswered;
-                resultSummaryDiv.innerHTML = `Please answer all ${totalQuestionsInCurrentSet} questions. You have ${unAnsweredCount} unanswered.`;
-                resultSummaryDiv.className = 'result-summary error';
-                resultSummaryDiv.style.display = 'block';
-                resultSummaryDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                return;
-            }
-
-            resultSummaryDiv.innerHTML = `Quiz Set Complete! Your final score is ${currentScore} out of ${totalQuestionsInCurrentSet}.`;
-            resultSummaryDiv.className = 'result-summary ' + (currentScore >= totalQuestionsInCurrentSet / 2 ? 'success' : 'error');
-            resultSummaryDiv.style.display = 'block';
-            resultSummaryDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-            const submitButton = document.getElementById('submitButton');
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = "Quiz Submitted";
-            }
+        function showCompletionMessage() {
+            questionHeaderElement.style.display = 'none';
+            questionTextElement.style.display = 'none';
+            optionsContainerElement.style.display = 'none';
+            nextButton.style.display = 'none';
+            completionMessageElement.style.display = 'block';
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${((score.correct / (score.correct + score.incorrect || 1)) * 100).toFixed(1)}%`;
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            if (allQuestionsData.length === 0) {
-                console.error("CRITICAL: No questions found in 'allQuestionsData'. Quiz cannot be initialized.");
+        nextButton.addEventListener('click', () => {
+            if(questionAnswered) { 
+                 nextQuestionHandler();
             }
-            createSetSelectionControls();
         });
+
+        document.addEventListener('keydown', (event) => {
+            if (currentQuestionIndex >= questionsData.length && event.key.toLowerCase() !== 'escape') { 
+                 if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === ' ') {
+                    event.preventDefault(); 
+                }
+                return;
+            }
+
+            const key = event.key.toLowerCase();
+            if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                event.preventDefault();
+                selectOptionByKey(key);
+            } else if ((key === 'enter' || key === ' ') && questionAnswered) { 
+                event.preventDefault();
+                nextQuestionHandler();
+            }
+        });
+
+        populateSetSelector();
+        loadQuestion();
+        updateScoreboard(); 
     </script>
 </body>
 </html>
