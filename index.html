@@ -25,7 +25,7 @@
             display: flex;
             justify-content: center;
             padding: 15px 0;
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Adjusted margin */
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
@@ -34,22 +34,14 @@
             width: 100%;
             max-width: 900px;
             padding: 10px 20px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-        }
-
-        .logo {
-            width: 160px; /* Increased logo size */
-            height: auto;
-            margin-right: 25px;
-            flex-shrink: 0; 
-            border-radius: 8px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            text-align: center; 
         }
 
         .header-text-content {
-            flex-grow: 1;
-            text-align: left;
+            /* Styles adjusted by centering .header-container */
         }
 
         .main-title {
@@ -57,23 +49,78 @@
             font-weight: 700; 
             color: #ffffff; 
             letter-spacing: -0.5px;
-            margin: 0;
+            margin: 0 0 5px 0; 
         }
 
         .subtitle {
             font-size: 1rem;
             color: #e0e0e0; 
-            margin-top: 5px;
+            margin-top: 0; 
             margin-bottom: 8px; 
         }
 
         .description-paragraph {
             font-size: 0.9rem;
             color: #d1d1d1; 
-            margin-top: 8px; 
+            margin-top: 0; 
             line-height: 1.5;
             font-weight: 500; 
         }
+
+        /* --- Keyboard Shortcuts Guide Tile --- */
+        .shortcuts-guide-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .shortcuts-guide {
+            width: 100%;
+            max-width: 900px;
+            background-color: #08c74b; /* New Green background */
+            color: #ffffff; /* White text */
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid #06a33a; /* Darker green border */
+        }
+        .shortcuts-guide h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff; /* White title on green background */
+            margin-bottom: 12px;
+            text-align: center;
+            border-bottom: 1px solid #0acf5a; /* Lighter green separator */
+            padding-bottom: 8px;
+        }
+        .shortcuts-guide ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .shortcuts-guide li {
+            font-size: 0.9rem;
+            color: #f0f0f0; /* Light grey text for list items */
+            padding: 6px 0;
+            border-bottom: 1px dashed #0acf5a; /* Lighter green dashed separator */
+        }
+        .shortcuts-guide li:last-child {
+            border-bottom: none;
+        }
+        .shortcuts-guide li kbd { 
+            background-color: #e0f2f1; /* Very light teal/green for keys */
+            color: #004d40; /* Dark teal text for keys */
+            border: 1px solid #a7d7c5; /* Lighter teal border for keys */
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85em;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            margin: 0 3px;
+            display: inline-block; 
+        }
+        /* --- End Keyboard Shortcuts Guide Tile --- */
+
 
         .group-container {
             width: 100%;
@@ -84,11 +131,11 @@
         .group-title {
             font-size: 1.8rem; 
             font-weight: 700;
-            color: #8000ff; /* Purple from MA set scoreboard */
+            color: #8000ff; /* Purple for group titles */
             text-align: center;
             margin-bottom: 25px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #d1c4e9; /* Lighter purple/grey border */
+            border-bottom: 2px solid #d1c4e9; 
         }
 
         .quiz-grid {
@@ -99,7 +146,7 @@
         }
 
         .quiz-card {
-            background-color: #FFC300; /* Yellow from MA set quiz container */
+            background-color: #FFC300; 
             border-radius: 10px;
             padding: 20px; 
             text-align: center;
@@ -107,14 +154,14 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Ensures button stays at bottom */
-            border: 1px solid #e6ac00; /* Darker yellow border */
-            min-height: 200px; /* Ensure cards have some minimum height */
+            justify-content: space-between; 
+            border: 1px solid #e6ac00; 
+            min-height: 200px; 
         }
 
         .quiz-card:hover {
             transform: translateY(-7px);
-            box-shadow: 0 10px 25px rgba(128, 0, 255, 0.2); /* Purpleish glow on hover */
+            box-shadow: 0 10px 25px rgba(128, 0, 255, 0.2); 
         }
 
         .quiz-card h3 {
@@ -145,7 +192,7 @@
         }
 
         .quiz-card a:hover {
-            background-color: #003bb3; /* Darker blue */
+            background-color: #003bb3; 
             transform: scale(1.05);
         }
 
@@ -159,7 +206,7 @@
             max-width: 900px;
         }
         .footer-credit a {
-            color: #0051ff; /* Blue link */
+            color: #0051ff; 
             text-decoration: none;
             font-weight: 500;
         }
@@ -172,12 +219,12 @@
             height: 22px; 
             margin-right: 5px;
             vertical-align: middle;
-            fill: #dc3545; /* Red for heart */
+            fill: #dc3545; 
         }
         .jai-hind {
             font-size: 1.1em; 
             font-weight: 600;
-            color: #28a745; /* Green for Jai Hind */
+            color: #28a745; 
             margin-top: 15px; 
             display: flex; 
             align-items: center;
@@ -194,19 +241,6 @@
             .header-wrapper {
                 border-radius: 0 0 12px 12px;
             }
-            .header-container {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .logo {
-                width: 120px; /* Adjusted for smaller screens */
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            .header-text-content {
-                text-align: center;
-            }
             .main-title {
                 font-size: 2rem;
             }
@@ -214,6 +248,12 @@
                 font-size: 0.95rem;
             }
             .description-paragraph {
+                font-size: 0.85rem;
+            }
+            .shortcuts-guide h3 {
+                font-size: 1.15rem;
+            }
+            .shortcuts-guide li {
                 font-size: 0.85rem;
             }
             .group-title {
@@ -242,9 +282,6 @@
             .header-container {
                 padding: 10px 15px;
             }
-            .logo {
-                width: 100px; /* Further adjustment for very small screens */
-            }
              .quiz-card h3 {
                 font-size: 1.1rem;
             }
@@ -262,12 +299,22 @@
 
     <div class="header-wrapper">
         <div class="header-container">
-            <img src="brain.jpg" alt="MCQ Workout Brain Dumbbell Logo" class="logo">
             <div class="header-text-content">
                 <h1 class="main-title">ICMAI MCQ WORKOUT</h1>
                 <p class="subtitle">Select a subject to start your MCQ practice session.</p>
                 <p class="description-paragraph">This new MCQ quiz webpage is your dedicated platform to rigorously practice the official ICMAI-released Multiple Choice Question bank.</p>
             </div>
+        </div>
+    </div>
+
+    <div class="shortcuts-guide-wrapper">
+        <div class="shortcuts-guide">
+            <h3>Keyboard Shortcuts Guide</h3>
+            <ul>
+                <li>Select Option A/B/C/D: <kbd>A</kbd>/<kbd>B</kbd>/<kbd>C</kbd>/<kbd>D</kbd> or <kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd>/<kbd>4</kbd></li>
+                <li>Next Question: <kbd>Enter</kbd> or <kbd>&rarr;</kbd> (Right Arrow) or <kbd>Space</kbd></li>
+                <li>Previous Question: <kbd>/</kbd> (Forward Slash) or <kbd>&larr;</kbd> (Left Arrow)</li>
+            </ul>
         </div>
     </div>
 
