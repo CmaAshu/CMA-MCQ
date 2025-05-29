@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5; /* Light grey background from MA set */
-            color: #333; /* Default dark text */
+            background-color: #f0f2f5;
+            color: #333;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -17,15 +17,16 @@
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scrollbar during animations */
         }
 
         .header-wrapper {
             width: 100%;
-            background-color: #0051ff; /* Blue from MA set navigation */
+            background-color: #0051ff;
             display: flex;
             justify-content: center;
             padding: 15px 0;
-            margin-bottom: 20px; /* Adjusted margin */
+            margin-bottom: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
@@ -34,40 +35,35 @@
             width: 100%;
             max-width: 900px;
             padding: 10px 20px;
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            text-align: center; 
-        }
-
-        .header-text-content {
-            /* Styles adjusted by centering .header-container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .main-title {
-            font-size: 2.4rem; 
-            font-weight: 700; 
-            color: #ffffff; 
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #ffffff;
             letter-spacing: -0.5px;
-            margin: 0 0 5px 0; 
+            margin: 0 0 5px 0;
         }
 
         .subtitle {
             font-size: 1rem;
-            color: #e0e0e0; 
-            margin-top: 0; 
-            margin-bottom: 8px; 
+            color: #e0e0e0;
+            margin-top: 0;
+            margin-bottom: 8px;
         }
 
         .description-paragraph {
             font-size: 0.9rem;
-            color: #d1d1d1; 
-            margin-top: 0; 
+            color: #d1d1d1;
+            margin-top: 0;
             line-height: 1.5;
-            font-weight: 500; 
+            font-weight: 500;
         }
 
-        /* --- Keyboard Shortcuts Guide Tile --- */
         .shortcuts-guide-wrapper {
             width: 100%;
             display: flex;
@@ -77,50 +73,67 @@
         .shortcuts-guide {
             width: 100%;
             max-width: 900px;
-            background-color: #08c74b; /* New Green background */
-            color: #ffffff; /* White text */
+            background-color: #08c74b;
+            color: #ffffff;
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border: 1px solid #06a33a; /* Darker green border */
+            border: 1px solid #06a33a;
         }
         .shortcuts-guide h3 {
             font-size: 1.25rem;
             font-weight: 600;
-            color: #ffffff; /* White title on green background */
+            color: #ffffff;
             margin-bottom: 12px;
             text-align: center;
-            border-bottom: 1px solid #0acf5a; /* Lighter green separator */
+            border-bottom: 1px solid #0acf5a;
             padding-bottom: 8px;
         }
-        .shortcuts-guide ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        .shortcuts-guide ul { list-style: none; padding: 0; margin: 0; }
         .shortcuts-guide li {
-            font-size: 0.9rem;
-            color: #f0f0f0; /* Light grey text for list items */
-            padding: 6px 0;
-            border-bottom: 1px dashed #0acf5a; /* Lighter green dashed separator */
+            font-size: 0.9rem; color: #f0f0f0; padding: 6px 0;
+            border-bottom: 1px dashed #0acf5a;
         }
-        .shortcuts-guide li:last-child {
-            border-bottom: none;
+        .shortcuts-guide li:last-child { border-bottom: none; }
+        .shortcuts-guide li kbd {
+            background-color: #e0f2f1; color: #004d40; border: 1px solid #a7d7c5;
+            border-radius: 4px; padding: 2px 6px; font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85em; box-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+            margin: 0 3px; display: inline-block;
         }
-        .shortcuts-guide li kbd { 
-            background-color: #e0f2f1; /* Very light teal/green for keys */
-            color: #004d40; /* Dark teal text for keys */
-            border: 1px solid #a7d7c5; /* Lighter teal border for keys */
-            border-radius: 4px;
-            padding: 2px 6px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85em;
-            box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            margin: 0 3px;
-            display: inline-block; 
-        }
-        /* --- End Keyboard Shortcuts Guide Tile --- */
 
+        .group-choice-container {
+            width: 100%;
+            max-width: 900px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .group-choice-card {
+            background-color: #8000ff;
+            color: #ffffff;
+            padding: 30px 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #6a00cc;
+        }
+        .group-choice-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(128, 0, 255, 0.25);
+        }
+        .group-choice-card h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .group-choice-card p {
+            font-size: 0.95rem;
+            color: #e0e0e0;
+        }
 
         .group-container {
             width: 100%;
@@ -128,14 +141,30 @@
             margin-bottom: 40px;
         }
 
+        .back-button {
+            display: inline-block;
+            background-color: #6c757d;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
         .group-title {
-            font-size: 1.8rem; 
+            font-size: 1.8rem;
             font-weight: 700;
-            color: #8000ff; /* Purple for group titles */
+            color: #8000ff;
             text-align: center;
             margin-bottom: 25px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #d1c4e9; 
+            border-bottom: 2px solid #d1c4e9;
         }
 
         .quiz-grid {
@@ -146,158 +175,125 @@
         }
 
         .quiz-card {
-            background-color: #FFC300; 
+            background-color: #FFC300;
             border-radius: 10px;
-            padding: 20px; 
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; 
-            border: 1px solid #e6ac00; 
-            min-height: 200px; 
+            justify-content: space-between;
+            border: 1px solid #e6ac00;
+            min-height: 170px;
         }
 
         .quiz-card:hover {
             transform: translateY(-7px);
-            box-shadow: 0 10px 25px rgba(128, 0, 255, 0.2); 
+            box-shadow: 0 10px 25px rgba(128, 0, 255, 0.2);
         }
 
         .quiz-card h3 {
-            font-size: 1.3rem; 
+            font-size: 1.3rem;
             font-weight: 600;
-            color: #333; 
-            margin-bottom: 10px; 
-            margin-top: 10px; 
+            color: #333;
+            margin-bottom: 10px;
+            margin-top: 0;
         }
 
         .quiz-card p {
             font-size: 0.9rem;
-            color: #444; 
+            color: #444;
             margin-bottom: 20px;
             flex-grow: 1;
         }
 
         .quiz-card a {
             display: inline-block;
-            background-color: #0051ff; 
+            background-color: #0051ff;
             color: #ffffff;
-            padding: 10px 20px; 
+            padding: 10px 20px;
             border-radius: 6px;
             text-decoration: none;
             font-weight: 500;
             transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: auto; 
+            margin-top: auto;
         }
 
         .quiz-card a:hover {
-            background-color: #003bb3; 
+            background-color: #003bb3;
             transform: scale(1.05);
         }
 
         .footer-credit {
-            margin-top: 30px;
-            padding: 15px;
-            font-size: 0.9em;
-            color: #555; 
-            text-align: center;
-            width: 100%;
-            max-width: 900px;
+            margin-top: 30px; padding: 15px; font-size: 0.9em;
+            color: #555; text-align: center; width: 100%; max-width: 900px;
         }
-        .footer-credit a {
-            color: #0051ff; 
-            text-decoration: none;
-            font-weight: 500;
-        }
-        .footer-credit a:hover {
-            text-decoration: underline;
-        }
-        .footer-credit .heart-icon { 
-            display: inline-block;
-            width: 22px; 
-            height: 22px; 
-            margin-right: 5px;
-            vertical-align: middle;
-            fill: #dc3545; 
+        .footer-credit a { color: #0051ff; text-decoration: none; font-weight: 500; }
+        .footer-credit a:hover { text-decoration: underline; }
+        .footer-credit .heart-icon {
+            display: inline-block; width: 22px; height: 22px;
+            margin-right: 5px; vertical-align: middle; fill: #dc3545;
         }
         .jai-hind {
-            font-size: 1.1em; 
-            font-weight: 600;
-            color: #28a745; 
-            margin-top: 15px; 
-            display: flex; 
-            align-items: center;
-            justify-content: center;
+            font-size: 1.1em; font-weight: 600; color: #28a745;
+            margin-top: 15px; display: flex; align-items: center; justify-content: center;
         }
-        .jai-hind img { 
-            width: 28px; 
-            height: auto;
-            margin-left: 8px; 
+        .jai-hind img { width: 28px; height: auto; margin-left: 8px; }
+        
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
+        .animate-fadeInUp {
+            animation-name: fadeInUp;
+            animation-duration: 0.7s; /* Slightly longer duration */
+            animation-fill-mode: forwards; /* Keep state after animation */
+            animation-timing-function: ease-out;
+            opacity: 0; /* Start hidden, will be overridden by animation */
+        }
+        /* --- End Animations --- */
+
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .header-wrapper {
-                border-radius: 0 0 12px 12px;
-            }
-            .main-title {
-                font-size: 2rem;
-            }
-            .subtitle {
-                font-size: 0.95rem;
-            }
-            .description-paragraph {
-                font-size: 0.85rem;
-            }
-            .shortcuts-guide h3 {
-                font-size: 1.15rem;
-            }
-            .shortcuts-guide li {
-                font-size: 0.85rem;
-            }
-            .group-title {
-                font-size: 1.6rem;
-            }
-            .quiz-grid {
-                grid-template-columns: 1fr;
-            }
-            .quiz-card {
-                padding: 15px;
-            }
-            .quiz-card h3 {
-                font-size: 1.15rem;
-            }
+            .header-wrapper { border-radius: 0 0 12px 12px; }
+            .main-title { font-size: 2rem; }
+            .subtitle { font-size: 0.95rem; }
+            .description-paragraph { font-size: 0.85rem; }
+            .shortcuts-guide h3 { font-size: 1.15rem; }
+            .shortcuts-guide li { font-size: 0.85rem; }
+            .group-choice-container { grid-template-columns: 1fr; gap: 20px;}
+            .group-choice-card h2 { font-size: 1.5rem; }
+            .group-title { font-size: 1.6rem; }
+            .quiz-grid { grid-template-columns: 1fr; }
+            .quiz-card { padding: 15px; min-height: 160px; }
+            .quiz-card h3 { font-size: 1.15rem; }
         }
          @media (max-width: 480px) {
-            .main-title {
-                font-size: 1.7rem;
-            }
-            .group-title {
-                font-size: 1.4rem;
-            }
-             .header-wrapper {
-                padding: 10px 0;
-            }
-            .header-container {
-                padding: 10px 15px;
-            }
-             .quiz-card h3 {
-                font-size: 1.1rem;
-            }
-            .quiz-card p {
-                font-size: 0.85rem;
-            }
-            .quiz-card a {
-                padding: 8px 15px;
-                font-size: 0.9rem;
-            }
+            .main-title { font-size: 1.7rem; }
+            .group-title { font-size: 1.4rem; }
+            .header-wrapper { padding: 10px 0; }
+            .header-container { padding: 10px 15px; }
+            .group-choice-card { padding: 20px 15px; }
+            .group-choice-card h2 { font-size: 1.3rem; }
+            .quiz-card h3 { font-size: 1.1rem; }
+            .quiz-card p { font-size: 0.85rem; }
+            .quiz-card a { padding: 8px 15px; font-size: 0.9rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="header-wrapper">
+    <div class="header-wrapper animate-fadeInUp">
         <div class="header-container">
             <div class="header-text-content">
                 <h1 class="main-title">ICMAI MCQ WORKOUT</h1>
@@ -307,7 +303,7 @@
         </div>
     </div>
 
-    <div class="shortcuts-guide-wrapper">
+    <div class="shortcuts-guide-wrapper animate-fadeInUp" style="animation-delay: 0.2s;">
         <div class="shortcuts-guide">
             <h3>Keyboard Shortcuts Guide</h3>
             <ul>
@@ -318,7 +314,20 @@
         </div>
     </div>
 
-    <div class="group-container">
+    <div id="groupChoiceContainer" class="group-choice-container">
+        <div class="group-choice-card animate-fadeInUp" style="animation-delay: 0.4s;" onclick="showGroupSubjects('group1SubjectsContainer')">
+            <h2>Group I Subjects</h2>
+            <p>Click to view subjects for CMA Inter Group I</p>
+        </div>
+        <div class="group-choice-card animate-fadeInUp" style="animation-delay: 0.55s;" onclick="showGroupSubjects('group2SubjectsContainer')">
+            <h2>Group II Subjects</h2>
+            <p>Click to view subjects for CMA Inter Group II</p>
+        </div>
+    </div>
+
+
+    <div id="group1SubjectsContainer" class="group-container" style="display:none;">
+        <button class="back-button" onclick="showGroupSelection()">← Back to Group Selection</button>
         <h2 class="group-title">Group I - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card">
@@ -326,19 +335,16 @@
                 <p>Review your grasp of various business laws and ethical considerations.</p>
                 <a href="law sets.html">Start Quiz</a>
             </div>
-
             <div class="quiz-card">
                 <h3>Paper 6: Financial Accounting</h3>
                 <p>Dive into MCQs covering fundamental accounting concepts and standards.</p>
                 <a href="fin acc sets.html">Start Quiz</a>
             </div>
-
             <div class="quiz-card">
                 <h3>Paper 7: Direct & Indirect Taxation</h3>
                 <p>Assess your understanding of direct tax laws and indirect tax (GST) provisions.</p>
                 <a href="dt sets.html">Start Quiz</a>
             </div>
-
             <div class="quiz-card">
                 <h3>Paper 8: Cost Accounting</h3>
                 <p>Challenge yourself with MCQs on cost ascertainment, analysis, and control.</p>
@@ -347,7 +353,8 @@
         </div>
     </div>
 
-    <div class="group-container">
+    <div id="group2SubjectsContainer" class="group-container" style="display:none;">
+        <button class="back-button" onclick="showGroupSelection()">← Back to Group Selection</button>
         <h2 class="group-title">Group II - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card">
@@ -355,19 +362,16 @@
                 <p>Tackle questions on operations, supply chain, and strategic planning.</p>
                 <a href="omsm sets.html">Start Quiz</a>
             </div>
-
             <div class="quiz-card">
                 <h3>Paper 10: Corporate Accounting & Auditing</h3>
                 <p>Test your knowledge on corporate accounting principles and auditing standards.</p>
                 <a href="ca audit set.html">Start Quiz</a>
             </div>
-
             <div class="quiz-card">
                 <h3>Paper 11: Financial Management & Business Data Analytics</h3>
                 <p>Explore questions on financial decision-making and data analysis techniques.</p>
                 <a href="fmda set.html">Start Quiz</a>
             </div>
-
             <div class="quiz-card">
                 <h3>Paper 12: Management Accounting</h3>
                 <p>Engage with MCQs on management accounting tools and techniques for decision support.</p>
@@ -384,6 +388,44 @@
         </p>
         <p class="jai-hind">जय हिन्द <img src="indian-flag.png" alt="Indian Flag"></p>
     </footer>
+
+    <script>
+        function showGroupSubjects(groupIdToShow) {
+            document.getElementById('groupChoiceContainer').style.display = 'none';
+            document.getElementById('group1SubjectsContainer').style.display = 'none';
+            document.getElementById('group2SubjectsContainer').style.display = 'none';
+
+            const groupToShow = document.getElementById(groupIdToShow);
+            if (groupToShow) {
+                groupToShow.style.display = 'block';
+                // Add animation class to child quiz cards
+                const quizCards = groupToShow.querySelectorAll('.quiz-card');
+                quizCards.forEach((card, index) => {
+                    card.style.opacity = '0'; // Reset for animation if re-shown
+                    card.classList.add('animate-fadeInUp');
+                    card.style.animationDelay = `${index * 0.15}s`; // Stagger
+                });
+            }
+        }
+
+        function showGroupSelection() {
+            document.getElementById('groupChoiceContainer').style.display = 'grid';
+            document.getElementById('group1SubjectsContainer').style.display = 'none';
+            document.getElementById('group2SubjectsContainer').style.display = 'none';
+
+            // Optional: Reset animations on quiz cards if you want them to re-animate every time
+            const allQuizCards = document.querySelectorAll('.group-container .quiz-card');
+            allQuizCards.forEach(card => {
+                card.classList.remove('animate-fadeInUp');
+                card.style.opacity = ''; 
+                card.style.animationDelay = '';
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            showGroupSelection();
+        });
+    </script>
 
 </body>
 </html>
