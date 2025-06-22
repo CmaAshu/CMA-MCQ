@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ Quiz - Operations Management and Strategic Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5; /* Light grey background */
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +35,11 @@
         }
 
         #scoreboard-container {
-            background: #8000ff; /* Purple */
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
             color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +47,74 @@
         }
         
         #set-navigation-container {
-            background: #0051ff; /* Blue */
-            color: #ffffff;
+            background: linear-gradient(135deg, #04bf26, #ADFF2F);
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFC300; /* Yellow */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #555; 
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #dba700; /* Darker yellow for border */
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; 
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,65 +125,70 @@
         .option {
             display: flex;
             align-items: center;
-            background: #fffde7; /* Lighter Yellow/Beige */
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #fff9c4; 
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #fff59d; /* Darker Lighter Yellow on hover */
-            border-color: #fff176;
+            background: #fff59d;
+            border-color: #f2e70c;
         }
 
         .option.selected { 
-            font-weight: 500; 
-            border-color: #0051ff; /* Blue border for selected */
-            background-color: #e0efff; 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important; 
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important; 
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057; 
-            background-color: #d1e7dd; 
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
         .option.selected .option-letter {
-            background-color: #0051ff; 
+            background-color: var(--primary-blue); 
             color: white;
+            transform: scale(1.1);
         }
 
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important; 
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important; 
+            background-color: #ef4444 !important; 
             color: white !important;
         }
 
@@ -177,7 +201,7 @@
         }
 
         button {
-            background-color: #007bff; 
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -185,38 +209,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
+        }
+        
+        #prev-btn {
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3; 
+            background-color: #0637c9;
+            transform: translateY(-2px);
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
         button:disabled {
-            background-color: #cccccc; 
+            background-color: #4b5563; 
             cursor: not-allowed;
             box-shadow: none;
+            opacity: 0.6;
         }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745; 
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -302,11 +337,7 @@
     </div>
 
     <script>
-        // questionsData array:
-        // q: Question text
-        // o: Array of options
-        // c: Correct answer text
-        // All 248 questions from MCQBank_Paper9.pdf (Operations Management and Strategic Management)
+        // --- START OF QUESTION DATA ---
         const questionsData = [
             { q: "1. Om deals with", o: ["both tangible and intangible product", "tangible product", "intangible services", "tangible product and intangible services"], c: "tangible product and intangible services" },
             { q: "2. one of the example of pure service:", o: ["teaching", "product service", "repairing service", "All of the above"], c: "teaching" },
@@ -412,8 +443,8 @@
             { q: "102. Medium range forecasting is useful in:", o: ["To assess the loading capacity of the machine", "To purchase a materials for next month", "To plan for-capacity adjustments", "To decide whether to receive production orders or not."], c: "To plan for-capacity adjustments" },
             { q: "103. To decide work load for men and machines:", o: ["Medium range forecasting is used", "Short term forecasting is used", "Long range forecasting is used", "A combination of long range and medium range forecasting is used."], c: "Short term forecasting is used" },
             { q: "104. For production planning :", o: ["Shot term forecasting is useful", "Medium term forecasting is useful", "Long term forecasting is useful", "Forecasting is not useful."], c: "Shot term forecasting is useful" },
-            { q: "105. Monthly demand for a component is 1000 units. Setting-up cost per batch is 120. Cost of manufacture per unit is 20. Rate of interest may be considered at 10% p.a. Calculate the EBQ.", o: ["1200 units", "1400 units", "1440 units", "1000 units"], c: "1200 units" }, // PDF answer key is 1. EBQ = sqrt((2DS)/C) = sqrt((2*12000*120)/(20*0.1)) = sqrt(2880000/2) = sqrt(1440000) = 1200.
-            { q: "106. Daily demand for a certain product is normally distributed with a mean of 60 and standard deviation of 7. The source of supply is reliable and maintain a constant lead time of six days. The cost of placing the order is 10 and annual holding costs are 0.50 per unit. There are no stock out costs, and unfilled orders are filled as soon as the order arrives. Assume sales occur over the entire 365 days of the year. Find the. Find the order quantity.", o: ["336 units", "1936 units", "633 inits", "393 units"], c: "1936 units" }, // PDF answer key is 2. EOQ = sqrt((2*AnnualDemand*OrderCost)/HoldingCost) = sqrt((2*60*365*10)/0.5) = sqrt(876000) = 935.9 approx. This seems like a reorder point question or safety stock, not simple EOQ.
+            { q: "105. Monthly demand for a component is 1000 units. Setting-up cost per batch is 120. Cost of manufacture per unit is 20. Rate of interest may be considered at 10% p.a. Calculate the EBQ.", o: ["1200 units", "1400 units", "1440 units", "1000 units"], c: "1200 units" },
+            { q: "106. Daily demand for a certain product is normally distributed with a mean of 60 and standard deviation of 7. The source of supply is reliable and maintain a constant lead time of six days. The cost of placing the order is 10 and annual holding costs are 0.50 per unit. There are no stock out costs, and unfilled orders are filled as soon as the order arrives. Assume sales occur over the entire 365 days of the year. Find the. Find the order quantity.", o: ["336 units", "1936 units", "633 inits", "393 units"], c: "1936 units" },
             { q: "107. Consider the following item that is being managed using a fixed time period model with safety stock Weekly demand (d)=50 units Review cycle (T)=3 weeks Safety stock (SS)=30 units What are the average inventory turn for the item?", o: ["24.8 turns per year", "84.2 turns per year", "80 turns per year", "None of the above."], c: "24.8 turns per year" },
             { q: "108. Addition of value to raw materials through application of technology is:", o: ["Product", "Production", "Advancement", "Transformation"], c: "Production" },
             { q: "109. Cost reduction can be achieved through:", o: ["Work sampling", "Value analysis", "Quality assurance", "Supply chain management."], c: "Value analysis" },
@@ -491,10 +522,10 @@
             { q: "181. for Quality Assurance in Design, Production, Installation, and Servicing the model is used.", o: ["ISO 9002 Model", "ISO 9001 Model", "ISO 9003 Model", "none of the above"], c: "ISO 9001 Model" },
             { q: "182. for Quality Assurance in Production and Installation the model is be used.", o: ["ISO 9002 Model", "ISO 9001 Model", "ISO 9003 Model", "none of the above"], c: "ISO 9002 Model" },
             { q: "183. for Quality Assurance in Final Inspection Test the model is be used.", o: ["ISO 9002 Model", "ISO 9001 Model", "ISO 9003 Model", "none of the above"], c: "ISO 9003 Model" },
-            { q: "184. A cement factory in Madhya Pradesh works 7 days a week in 3 shifts per days having maintenance in the first shift of around 2 hours. It has roughly 100 workers which produces only pozzolanic properties cement better known as PPC. The output per month is around 2500 tonnes of PPC. Find the productivity per worker?", o: ["20 tonnes", "30 tonnes", "125 tonnes", "15 tonnes"], c: "25 tonnes" }, // PDF answer key is 3 (125 tonnes). Calculation: (2500 tonnes / 100 workers) = 25 tonnes/worker.
+            { q: "184. A cement factory in Madhya Pradesh works 7 days a week in 3 shifts per days having maintenance in the first shift of around 2 hours. It has roughly 100 workers which produces only pozzolanic properties cement better known as PPC. The output per month is around 2500 tonnes of PPC. Find the productivity per worker?", o: ["20 tonnes", "30 tonnes", "125 tonnes", "15 tonnes"], c: "25 tonnes" },
             { q: "185. The difference between product system and project system is:", o: ["Project system the equipment and machinery are fixed where as in product system they are movable", "In Product system the machinery and equipment are fixed and in project system they are not fixed", "Project system produces only standardized products and product system produces only unstandardised products", "Products cannot be stocked whereas projects can be stocked."], c: "In Product system the machinery and equipment are fixed and in project system they are not fixed" },
             { q: "186. Fixing the flow lines of materials in production is known as:", o: ["Scheduling", "Loading", "Planning", "Routing."], c: "Routing." },
-            { q: "187. The activity of specifying when to start the job and when to end the job is known as:", o: ["Plaining", "Scheduling", "Timing", "Follow-up."], c: "Timing" }, // More commonly Scheduling. PDF key is 3.
+            { q: "187. The activity of specifying when to start the job and when to end the job is known as:", o: ["Plaining", "Scheduling", "Timing", "Follow-up."], c: "Timing" },
             { q: "188. A network:", o: ["Is a graphical representation of all the activities and events.", "Is a graphical representation of all the activities", "Is a graphical representation of all the events.", "All the above"], c: "Is a graphical representation of all the activities and events." },
             { q: "189. While evaluating existing or proposed service systems, operation manager:", o: ["Relate to potential customer dissatisfaction and costs:", "Relate cost of parallel facilities with single queue", "Relate cost of multiple queues with cost of serve", "Relate to potential customer satisfaction and service quality"], c: "Relate to potential customer dissatisfaction and costs:" },
             { q: "190. Probalistic time is dividded into:", o: ["3", "2", "4", "6"], c: "3" },
