@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ Quiz - Cost and Management Audit (Paper 17)</title>
+    <title>MCQ Quiz - Cost and Management Audit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +35,11 @@
         }
 
         #scoreboard-container {
-            background: #9370DB; /* Purple */
-            color: #ffffff; 
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +47,74 @@
         }
         
         #set-navigation-container {
-            background: #4169E1; /* Royal Blue */
-            color: #ffffff; 
+            background: linear-gradient(135deg, #04bf26, #ADFF2F);
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFDAB9; /* Light Saffron (PeachPuff) */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #4A4A4A; 
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #FFBFA0; 
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; 
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,69 +125,83 @@
         .option {
             display: flex;
             align-items: center;
-            background: #FFF8E1; 
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #FFECB3; 
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #FFF0C1; 
-            border-color: #FFE082;
+            background: #fff59d;
+            border-color: #f2e70c;
+        }
+
+        .option.selected { 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important;
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important;
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
-        .option.user-selected-display { 
-            /* Styles to indicate this was the user's picked option when reviewing */
-        }
-
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057;
-            background-color: #FFECB3; 
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
+        .option.selected .option-letter {
+            background-color: var(--primary-blue); 
+            color: white;
+            transform: scale(1.1);
+        }
+
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important;
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important;
+            background-color: #ef4444 !important; 
             color: white !important;
         }
+
 
         #navigation-buttons {
             display: flex;
             justify-content: space-between; 
+            align-items: center;
             margin-top: 25px;
         }
 
         button {
-            background-color: #007bff; 
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -176,44 +209,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
         }
+        
         #prev-btn {
-            background-color: #6c757d; 
-        }
-       
-        #prev-btn:disabled, #next-btn:disabled {
-             background-color: #cccccc;
-            cursor: not-allowed;
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3;
+            background-color: #0637c9;
+            transform: translateY(-2px);
         }
-         #prev-btn:hover:not(:disabled) {
-            background-color: #5a6268;
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
-
+        button:disabled {
+            background-color: #4b5563; 
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.6;
+        }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745;
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -243,6 +281,16 @@
             button {
                 padding: 10px 15px; 
                 font-size: 14px;
+            }
+            #navigation-buttons {
+                flex-direction: column; 
+            }
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
             }
             #set-selector {
                 width: 100%;
@@ -276,8 +324,8 @@
         <div class="options-container" id="options-container">
             </div>
         <div id="navigation-buttons">
-            <button id="prev-btn">Previous Question</button>
-            <button id="next-btn">Next Question</button>
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
         </div>
         <div id="completion-message" style="display:none;">
             Quiz Completed! Thank you for participating.
@@ -285,74 +333,193 @@
     </div>
 
     <div id="instagram-link">
-        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh</a>
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh </a>
     </div>
 
     <script>
+        // --- START OF QUESTION DATA ---
         const questionsData = [
-            { q: "Cost Audit was first introduced in the year", o: ["1959", "1965", "1949", "1975"], c: "1965" },
-            { q: "Cost Audit was first introduced for industry", o: ["Cement", "Iron & Steel", "Jute", "Sugar"], c: "Cement" },
-            { q: "Govt. of India has issued order with respect to introduction of mandatory Cost Audit of Cost Records maintained by the Companies in the year", o: ["2008", "2009", "2011", "2014"], c: "2011" },
-            { q: "The report on the audit of cost records is submitted by the cost auditor to", o: ["Managing Director", "Finance Director", "Audit Committee", "Board of Directors"], c: "Board of Directors" },
-            { q: "The cost auditor of the company who is in default in compliance with section 148 shall be punishable in the manner as provided in", o: ["Section 139 of Companies Act, 2013", "sub-sections (1) to (3) of section 148 of Companies Act, 2013", "Section 143 of Companies Act, 2013", "sub-sections (2) to (5) of section 147 of Companies Act, 2013"], c: "sub-sections (2) to (5) of section 147 of Companies Act, 2013" },
-            { q: "Cost Audit represents true and fair view of the of any product.", o: ["Cost of sale", "Cost of raw material consumption", "Cost of production", "None of these"], c: "Cost of production" },
-            { q: "Cost Audit conducted by a Chartered Accountant", o: ["May be", "Can be", "Cannot be", "May not be"], c: "Cannot be" },
-            { q: "Which of the following are the objectives for which cost audit is undertaken?", o: ["To establish the accuracy of costing data.", "To ensure that cost accounting principles are governed by the management objectives and these are strictly adhered in preparing cost accounts.", "To reduce the amount of detailed checking by the external auditor if effective internal cost audit system is in operation.", "All of the above"], c: "All of the above" },
-            { q: "The applicability of cost audit under Companies (Cost Records & Audit) Rules, 2014 for regulated industries having overall annual turnover during immediate preceding financial year is", o: ["25.00 crores or more", "35.00 crores", "50.00 crores or more", "100.00 crores"], c: "50.00 crores or more" },
-            { q: "The Company has to upload CRA-4 electronically to the MCA under the rule of Companies (Cost Records & Audit) Rules, 2014", o: ["Rule 5 (1)", "Rule 6 (2)", "Rule 4 (6)", "Rule 6 (6)"], c: "Rule 6 (6)" },
-            { q: "The form in which the cost records shall be maintained", o: ["CRA-1", "CRA-2", "CRA-3", "CRA-4"], c: "CRA-1" },
-            { q: "Which of the following type of Electricity Company is under the purview of regulated sector?", o: ["Engaged in Generation", "Engaged in Transmission", "Engaged in Distribution & Supply", "All the above"], c: "All the above" },
-            { q: "Which one of the below is not a regulated industry?", o: ["Telecommunication", "Electricity", "Drugs & Pharmaceuticals", "Automobile"], c: "Automobile" },
-            { q: "Any casual vacancy in the office of a cost auditor, whether due to resignation, death or removal to be filled by the Board of Directors within days of occurrence of such vacancy.", o: ["30 days", "60 days", "90 days", "7 days"], c: "30 days" },
-            { q: "Machinery used in defense, space and atomic energy sector and fulfilling turnover criteria is under", o: ["regulated sector", "unregulated sector", "exempted by different statute", "not applicable category"], c: "unregulated sector" },
-            { q: "The Institute of Cost and Works Accountants of India (ICWAI) was renamed as \"The Institute of Cost Accountants of India\" in the year", o: ["2012", "2010", "2008", "2015"], c: "2012" },
-            { q: "For regulated sector cost audit requirement has been made subject to a turnover based threshold", o: ["25 Crores", "50 Crores", "35 Crores", "100 Crores"], c: "50 Crores" },
-            { q: "A company, engaged in construction business, is covered under the Companies (Cost Records and Audit) Rules, 2014 but does not include", o: ["outsourcing by a sub-contracting company", "a company working on BOT (Build, Operate, Transfer) mode", "a company working in a Special Economic Zone", "a project undertaken as EPC (Eng.. Procurement, Constn.) contract"], c: "a company working in a Special Economic Zone" },
-            { q: "As per Part D. Para 4 of the Companies (Cost Records and Audit) Rules, 2014, Value Addition and Distribution of Earnings are to be computed based on", o: ["Audited Financial Data", "Cost Record Data", "Unaudited Financial Data", "Both (A) and (B)"], c: "Audited Financial Data" },
-            { q: "CCRA-Rules, 2014 is applicable from the financial year commencing on or after", o: ["01.01.2014", "01.04.2014", "01.07.2014", "01.04.2015"], c: "01.04.2014" },
-            { q: "The Cost Auditor appointed has to render the cost audit report to the board of directors of the Company, as per the specified time limit, in Form", o: ["CRA-3", "CRA-1", "XBRL", "CRA-2"], c: "CRA-3" },
-            { q: "The cost records are to be maintained as specified in:", o: ["CRA3", "CRA1", "CRA 4", "CRA 2"], c: "CRA1" },
-            { q: "'Sugar and Industrial Alcohol' belong to sector for the purpose of Application of Cost Records.", o: ["Regulated", "Non-Regulated", "Both depending on circumstances", "None of above"], c: "Regulated" },
-            { q: "The Central Govt. released the CCRA - Rules, 2014 in pursuance to the powers vested with it U/s of the Companies Act, 2013", o: ["Section 469", "Section 148", "Section 465", "Section 469 and 148"], c: "Section 469 and 148" },
-            { q: "The CCRA-Rules, 2014 supersedes", o: ["Companies (Cost Accounting Records) Rules, 2011", "Companies (Cost Audit Report) Rules, 2011", "Cost Accounting Records (Telecommunication Industry) Rules, 2011", "All the above"], c: "All the above" },
-            { q: "The provisions related to maintenance of cost records were introduced in the year by amendment to the Companies Act, 1956.", o: ["1960", "1965", "1966", "1970"], c: "1965" },
-            { q: "The CCRA - Rules, 2014 is not applicable to", o: ["MSME", "Export oriented unit", "Private limited companies", "Units operating from SEZ"], c: "MSME" },
-            { q: "The cost audit report under CCRA- Rules, 2014 is to be submitted in", o: ["Form-3", "Form-4", "Form-1", "Form-2"], c: "Form-3" },
-            { q: "Which one of the below is not a regulated industry", o: ["Fertilizers", "Aluminium", "Sugar", "Petroleum products"], c: "Aluminium" },
-            { q: "As per the CAS 23, the activity of Overburden Removal that benefits the identified component of an ore to be mined by the entity is called as ......", o: ["Mining Activity", "Overburden Remova", "Stripping Activity", "Advance Stripping"], c: "Stripping Activity" },
-            { q: "Cost Information the organization to structure the cost, understand it and use it for communicating with the stakeholders.", o: ["Enables", "Disables", "Useful", "None of these"], c: "Enables" },
-            { q: "The appointment of Cost Auditor is defined under section of the Companies Act, 2013.", o: ["Section 148(2)", "Section 148(3)", "Section 144(3)", "Section 139"], c: "Section 148(3)" },
-            { q: "A cost accountant who fails comply with the provisions of sub-section (12) of Sec. 143 of the Companies Act, 2013, shall be punishable with fine of maximum", o: ["5.00 lakhs", "25.00 lakhs", "1.00 lakhs", "10.00 lakhs"], c: "25.00 lakhs" },
-            { q: "Cost auditor to report fraud under section of Companies Act, 2013.", o: ["Section 140(12)", "Section 148(2)", "Section 144(10)", "Section 143(12)"], c: "Section 143(12)" },
-            { q: "Any casual vacancy in the office of a cost auditor, shall be filled by the Board of Directors within days of occurrence of such vacancy.", o: ["180", "90", "30", "60"], c: "30" },
-            { q: "Which one of the following is not a professional misconduct in relation to Cost Accountants in Practice as per the Second Schedule of The CWA Act, 1959?", o: ["He/she fails to invite attention to any material departure from the generally accepted procedure of costing and pricing applicable to the circumstances", "He/she does not exercise due diligence or is grossly negligent in the conduct of his/her professional duties", "He/she fails to report a material misstatement known to him/her to appear in a cost or pricing statement with which he/she is concerned in a professional capacit", "In the opinion of the Council, he/she brings disrepute to the Profession or the Institute as a result of his/her action whether or not related to his/her professional work"], c: "In the opinion of the Council, he/she brings disrepute to the Profession or the Institute as a result of his/her action whether or not related to his/her professional work" },
-            { q: "Which of the following is not a Professional Misconduct as per the First Schedule of The CWA Act, 1959, in relation to the Cost Accountants in Practice?", o: ["Pays or allows or agrees to pay or allow, directly or indirectly, any share, commission or brokerage in the fees or profits of his/her professional work, to any person other than a member of the Institute or a partner or a retired partner or the legal representative of a deceased partner", "Enters into a partnership, in or outside India, with any person other than a Cost Accountant in Practice or such other person who is a member of any other professional body having such qualifications as may be prescribed", "Advertises his/her professional attainments or services or uses any designation or expression other than Cost Accountant on professional documents, visiting cards, letter heads or sign boards, unless it is a degree of a University established by law in India or recognised by the Central Government or a title indicating membership of The ICAI or any other institution that has been recognised by the Central Government or may be recognised by the Council", "Expresses his/her opinion on cost or pricing statements of any business or enterprise in which, $he/she$ his/her firm or a partner in his/her firm has substantial interest"], c: "Expresses his/her opinion on cost or pricing statements of any business or enterprise in which, $he/she$ his/her firm or a partner in his/her firm has substantial interest" },
-            { q: "The cost auditor to be appointed within days of the beginning of the financial year", o: ["90 days", "180 days", "6 months", "270 days"], c: "180 days" },
-            { q: "Relatives of any partner of the firm holding any security of or interest in the company of face value exceeding lakh can not be appointed as the Cost Auditor of that company.", o: ["One", "Two", "Three", "None of the above"], c: "One" },
-            { q: "Cost audit is to be conducted by a cost auditor who is a/an", o: ["Any indian resident", "Qualified Chartered accountant", "Qualified Company secretary", "Qualified cost and management accountant"], c: "Qualified cost and management accountant" },
-            { q: "The cost auditor is for forming and expressing an opinion on the cost statements.", o: ["Responsible", "Reasonable", "Irresponsible", "Assessing"], c: "Responsible" },
-            { q: "The cost auditing standards deal with the of the cost auditor.", o: ["Efficiency", "Effectiveness", "Qualifications", "Responsibility"], c: "Responsibility" },
-            { q: "Which of the following persons shall NOT be appointed as cost auditor of a company:", o: ["A person who has been appointed as auditor of the company for the respective period", "A person who is, or at any time during the preceding three years was a director. officer or in the employment of a director", "Both A&B", "None"], c: "Both A&B" },
-            { q: "Which of the following persons shall not be appointed as auditor of a company?", o: ["A person who has been appointed as auditor of the company", "A spouse of a director of the company", "A body corporate", "All of the above"], c: "All of the above" },
-            { q: "Which of the following particulars relating to wages and salaries be included in Cost Auditor's Report to the Director of the company?", o: ["Total wages and salaries paid", "Total man-days of direct labour available and actually worked", "A brief explanation for variances in item", "All of the above"], c: "All of the above" },
-            { q: "CAS-17 deals with", o: ["Royalty and Technical Knowhow fee", "Material Cost", "Research & Development Cost", "Interest & Financing charges"], c: "Interest & Financing charges" },
-            { q: "CAS 21 deals with", o: ["Cost of service cost centre", "Quality Control", "Capacity determination", "Cost classification"], c: "Quality Control" },
-            { q: "The foreign exchange component of imported material is converted at the rate on", o: ["Date of Payment", "Date of Delivery", "Date of Transaction", "Date of Use"], c: "Date of Transaction" },
-            { q: "Which of the following is not forming part of Cost of transportation?", o: ["Cost of transport", "Transit insurance", "Demurrage Charge", "Local Octroi charges"], c: "Demurrage Charge" },
-            { q: "Idle capacity is the difference between", o: ["Installed capacity and Actual Capacity Utilisation", "Installed capacity and Normal Capacity", "Abnormal Idle capacity and Normal Capacity", "Installed capacity and Normal Capacity"], c: "Installed capacity and Actual Capacity Utilisation" },
-            { q: "Which of the following is not part of the Employee Cost as per CAS-7?", o: ["Leave with Pay", "Medical benefits to the Employees and dependents", "Compensation for Lay off period", "Cost of Employees' stock option"], c: "Compensation for Lay off period" },
-            { q: "CAS 9 deals with", o: ["Direct Material Cost", "Indirect Material Cost", "Packing Material Cost", "Imported Material Cost"], c: "Packing Material Cost" },
-            { q: "The Institute of Cost and Works Accountants of India (ICWAI) was renamed as \"The Institute of Cost Accountants of India\" in the year", o: ["2012", "2010", "2008", "2015"], c: "2012" },
-            { q: "CAS-20 deals with", o: ["Royalty and Technical Knowhow fee", "Material Cost", "Research & Development Cost", "Financial Cost"], c: "Royalty and Technical Knowhow fee" },
-            { q: "As per CAS 2 Actual Capacity utilization shall be presented as a percentage of capacity.", o: ["Installed Capacity", "Practical Capacity", "Abnormal Loss (%)", "Actual Production"], c: "Installed Capacity" },
-            { q: "CAS 5 deals with", o: ["Equalized cost of transportation", "Captive consumption", "Capacity determination", "Cost classification"], c: "Equalized cost of transportation" }
+            { q: "1. Cost Audit was first introduced in the year", o: ["1959", "1965", "1949", "1975"], c: "1965" },
+            { q: "2. Cost Audit was first introduced for industry", o: ["Cement", "Iron & Steel", "Jute", "Sugar"], c: "Cement" },
+            { q: "3. Govt. of India has issued order with respect to introduction of mandatory Cost Audit of Cost Records maintained by the Companies in the year", o: ["2008", "2009", "2011", "2014"], c: "2011" },
+            { q: "4. The report on the audit of cost records is submitted by the cost auditor to", o: ["Managing Director", "Finance Director", "Audit Committee", "Board of Directors"], c: "Board of Directors" },
+            { q: "5. The cost auditor of the company who is in default in compliance with section 148 shall be punishable in the manner as provided in", o: ["Section 139 of Companies Act, 2013", "sub-sections (1) to (3) of section 148 of Companies Act, 2013", "Section 143 of Companies Act, 2013", "sub-sections (2) to (5) of section 147 of Companies Act, 2013"], c: "sub-sections (2) to (5) of section 147 of Companies Act, 2013" },
+            { q: "6. Cost Audit represents true and fair view of the of any product.", o: ["Cost of sale", "Cost of raw material consumption", "Cost of production", "None of these"], c: "Cost of production" },
+            { q: "7. Cost Audit conducted by a Chartered Accountant", o: ["May be", "Can be", "Cannot be", "May not be"], c: "Cannot be" },
+            { q: "8. Which of the following are the objectives for which cost audit is undertaken?", o: ["To establish the accuracy of costing data.", "To ensure that cost accounting principles are governed by the management objectives and these are strictly adhered in preparing cost accounts.", "To reduce the amount of detailed checking by the external auditor if effective internal cost audit system is in operation.", "All of the above"], c: "All of the above" },
+            { q: "9. The applicability of cost audit under Companies (Cost Records & Audit) Rules, 2014 for regulated industries having overall annual turnover during immediate preceding financial year is", o: ["25.00 crores or more", "35.00 crores", "50.00 crores or more", "100.00 crores"], c: "50.00 crores or more" },
+            { q: "10. The Company has to upload CRA-4 electronically to the MCA under the rule of Companies (Cost Records & Audit) Rules, 2014", o: ["Rule 5 (1)", "Rule 6 (2)", "Rule 4 (6)", "Rule 6 (6)"], c: "Rule 6 (6)" },
+            { q: "11. The form in which the cost records shall be maintained", o: ["CRA-1", "CRA-2", "CRA-3", "CRA-4"], c: "CRA-1" },
+            { q: "12. Which of the following type of Electricity Company is under the purview of regulated sector?", o: ["Engaged in Generation", "Engaged in Transmission", "Engaged in Distribution & Supply", "All the above"], c: "All the above" },
+            { q: "13. Which one of the below is not a regulated industry?", o: ["Telecommunication", "Electricity", "Drugs & Pharmaceuticals", "Automobile"], c: "Automobile" },
+            { q: "14. Any casual vacancy in the office of a cost auditor, whether due to resignation, death or removal to be filled by the Board of Directors within days of occurrence of such vacancy.", o: ["30 days", "60 days", "90 days", "7 days"], c: "30 days" },
+            { q: "15. Machinery used in defense, space and atomic energy sector and fulfilling turnover criteria is under", o: ["regulated sector", "unregulated sector", "exempted by different statute", "not applicable category"], c: "unregulated sector" },
+            { q: "16. The Institute of Cost and Works Accountants of India (ICWAI) was renamed as 'The Institute of Cost Accountants of India' in the year", o: ["2012", "2010", "2008", "2015"], c: "2012" },
+            { q: "17. For regulated sector cost audit requirement has been made subject to a turnover based threshold", o: ["25 Crores", "50 Crores", "35 Crores", "100 Crores"], c: "50 Crores" },
+            { q: "18. A company, engaged in construction business, is covered under the Companies (Cost Records and Audit) Rules, 2014 but does not include", o: ["outsourcing by a sub- contracting company", "a company working on BOT (Build, Operate, Transfer) mode", "a company working in a Special Economic Zone", "a project undertaken as EPC (Eng.. Procurement, Constn.) contract"], c: "a company working in a Special Economic Zone" },
+            { q: "19. As per Part D. Para 4 of the Companies (Cost Records and Audit) Rules, 2014, Value Addition and Distribution of Earnings are to be computed based on", o: ["Audited Financial Data", "Cost Record Data", "Unaudited Financial Data", "Both (A) and (B)"], c: "Audited Financial Data" },
+            { q: "20. CORA-Rules, 2014 is applicable from the financial year commencing on or after", o: ["01.01.2014", "01.04.2014", "01.07.2014", "01.04.2015"], c: "01.04.2014" },
+            { q: "21. The Cost Auditor appointed has to render the cost audit report to the board of directors of the Company, as per the specified time limit, in Form", o: ["CRA-3", "CRA-1", "XBRL", "CRA-2"], c: "CRA-3" },
+            { q: "22. The cost records are to be maintained as specified in:", o: ["CRA3", "CRA1", "CRA 4", "CRA 2"], c: "CRA1" },
+            { q: "23. Sugar and Industrial Alcohol' belong to sector for the purpose of Application of Cost Records.", o: ["Regulated", "Non-Regulated", "Both depending on circumstances", "None of above"], c: "Regulated" },
+            { q: "24. The Central Govt. released the CCRA - Rules, 2014 in pursuance to the powers vested with it U/s of the Companies Act, 2013", o: ["Section 469", "Section 148", "Section 465", "Section 469 and 148"], c: "Section 469 and 148" },
+            { q: "25. The CCRA-Rules, 2014 supersedes", o: ["Companies (Cost Accounting Records) Rules, 2011", "Companies (Cost Audit Report) Rules, 2011", "Cost Accounting Records (Telecommunication Industry) Rules, 2011", "All the above"], c: "All the above" },
+            { q: "26. The provisions related to maintenance of cost records were introduced in the year by amendment to the Companies Act, 1956.", o: ["1960", "1965", "1966", "1970"], c: "1965" },
+            { q: "27. The CCRA-Rules, 2014 is not applicable to", o: ["MSME", "Export oriented unit", "Private limited companies", "Units operating from SEZ"], c: "MSME" },
+            { q: "28. The cost audit report under CCRA- Rules, 2014 is to be submitted in", o: ["Form-3", "Form-4", "Form-1", "Form-2"], c: "Form-3" },
+            { q: "29. Which one of the below is not a regulated industry", o: ["Fertilizers", "Aluminium", "Sugar", "Petroleum products"], c: "Aluminium" },
+            { q: "30. As per the CAS 23, the activity of Overburden Removal that benefits the identified component of an ore to be mined by the entity is called as ......", o: ["Mining Activity", "Overburden Removal", "Stripping Activity", "Advance Stripping"], c: "Stripping Activity" },
+            { q: "31. Cost Information the organization to structure the cost, understand it and use it for communicating with the stakeholders.", o: ["Enables", "Disables", "Useful", "None of these"], c: "Enables" },
+            { q: "32. The appointment of Cost Auditor is defined under section of the Companies Act, 2013.", o: ["Section 148(2)", "Section 148(3)", "Section 144(3)", "Section 139"], c: "Section 148(3)" },
+            { q: "33. A cost accountant who fails comply with the provisions of sub- section (12) of Sec. 143 of the Companies Act, 2013, shall be punishable with fine of maximum", o: ["5.00 lakhs", "25.00 lakhs", "1.00 lakhs", "10.00 lakhs"], c: "25.00 lakhs" },
+            { q: "34. Cost auditor to report fraud under section of Companies Act, 2013.", o: ["Section 140(12)", "Section 148(2)", "Section 144(10)", "Section 143(12)"], c: "Section 143(12)" },
+            { q: "35. Any casual vacancy in the office of a cost auditor, shall be filled by the Board of Directors within days of occurrence of such vacancy.", o: ["180", "90", "30", "60"], c: "30" },
+            { q: "36. Which one of the following is not a professional misconduct in relation to Cost Accountants in Practice as per the Second Schedule of The CWA Act, 1959?", o: ["He/she fails to invite attention to any material departure from the generally accepted procedure of costing and pricing applicable to the circumstances", "He/she does not exercise due diligence or is grossly negligent in the conduct of his/her professional duties", "He/she fails to report a material misstatement known to him/her to appear in a cost or pricing statement with which he/she is concerned in a professional capacity", "In the opinion of the Council, he/she brings disrepute to the Profession or the Institute as a result of his/her action whether or not related to his/her professional work"], c: "In the opinion of the Council, he/she brings disrepute to the Profession or the Institute as a result of his/her action whether or not related to his/her professional work" },
+            { q: "37. Which of the following is not a Professional Misconduct as per the First Schedule of The CWA Act, 1959, in relation to the Cost Accountants in Practice?", o: ["Pays or allows or agrees to pay or allow, directly or indirectly, any share, commission or brokerage in the fees or profits of his/her professional work, to any person other than a member of the Institute or a partner or a retired partner or the legal representative of a deceased partner", "Enters into a partnership, in or outside India, with any person other than a Cost Accountant in Practice or such other person who is a member of any other professional body having such qualifications as may be prescribed", "Advertises his/her professional attainments or services or uses any designation or expression other than Cost Accountant on professional documents, visiting cards, letter heads or sign boards, unless it is a degree of a University established by law in India or recognised by the Central Government or a title indicating membership of The ICAI or any other institution that has been recognised by the Central Government or may be recognised by the Council", "Expresses his/her opinion on cost or pricing statements of any business or enterprise in which, he/she his/her firm or a partner in his/her firm has substantial interest"], c: "Expresses his/her opinion on cost or pricing statements of any business or enterprise in which, he/she his/her firm or a partner in his/her firm has substantial interest" },
+            { q: "38. The cost auditor to be appointed within days of the beginning of the financial year", o: ["90 days", "180 days", "6 months", "270 days"], c: "180 days" },
+            { q: "39. Relatives of any partner of the firm holding any security of or interest in the company of face value exceeding lakh can not be appointed as the Cost Auditor of that company.", o: ["One", "Two", "Three", "None of the above"], c: "One" },
+            { q: "40. Cost audit is to be conducted by a cost auditor who is a/an", o: ["Any indian resident", "Qualified Chartered accountant", "Qualified Company secretary", "Qualified cost and management accountant"], c: "Qualified cost and management accountant" },
+            { q: "41. The cost auditor is for forming and expressing an opinion on the cost statements.", o: ["Responsible", "Reasonable", "Irresponsible", "Assessing"], c: "Responsible" },
+            { q: "42. The cost auditing standards deal with the of the cost auditor.", o: ["Efficiency", "Effectiveness", "Qualifications", "Responsibility"], c: "Responsibility" },
+            { q: "43. Which of the following persons shall NOT be appointed as cost auditor of a company:", o: ["A person who has been appointed as auditor of the company for the respective period", "A person who is, or at any time during the preceding three years was a director. officer or in the employment of a director", "Both A&B", "None"], c: "Both A&B" },
+            { q: "44. Which of the following persons shall not be appointed as auditor of a company?", o: ["A person who has been appointed as auditor of the company", "A spouse of a director of the company", "A body corporate", "All of the above"], c: "All of the above" },
+            { q: "45. Which of the following particulars relating to wages and salaries be included in Cost Auditor's Report to the Director of the company?", o: ["Total wages and salaries paid", "Total man-days of direct labour available and actually worked", "A brief explanation for variances in item", "All of the above"], c: "All of the above" },
+            { q: "46. CAS-17 deals with", o: ["Royalty and Technical Knowhow fee", "Material Cost", "Research & Development Cost", "Interest & Financing charges"], c: "Interest & Financing charges" },
+            { q: "47. CAS 21 deals with", o: ["Cost of service cost centre", "Quality Control", "Capacity determination", "Cost classification"], c: "Quality Control" },
+            { q: "48. The foreign exchange component of imported material is converted at the rate on", o: ["Date of Payment", "Date of Delivery", "Date of Transaction", "Date of Use"], c: "Date of Transaction" },
+            { q: "49. Which of the following is not forming part of Cost of transportation?", o: ["Cost of transport", "Transit insurance", "Demurrage Charge", "Local Octroi charges"], c: "Demurrage Charge" },
+            { q: "50. Idle capacity is the difference between", o: ["Installed capacity and Actual Capacity Utilisation", "Installed capacity and Normal Capacity", "Abnormal Idle capacity and Normal Capacity", "Installed capacity and Normal Capacity"], c: "Installed capacity and Actual Capacity Utilisation" },
+            { q: "51. Which of the following is not part of the Employee Cost as per CAS-7?", o: ["Leave with Pay", "Medical benefits to the Employees and dependents", "Compensation for Lay off period", "Cost of Employees' stock option"], c: "Compensation for Lay off period" },
+            { q: "52. CAS 9 deals with", o: ["Direct Material Cost", "Indirect Material Cost", "Packing Material Cost", "Imported Material Cost"], c: "Packing Material Cost" },
+            { q: "53. The Institute of Cost and Works Accountants of India (ICWAI) was renamed as 'The Institute of Cost Accountants of India' in the year", o: ["2012", "2010", "2008", "2015"], c: "2012" },
+            { q: "54. CAS-20 deals with", o: ["Royalty and Technical Knowhow fee", "Material Cost", "Research & Development Cost", "Financial Cost"], c: "Royalty and Technical Knowhow fee" },
+            { q: "55. As per CAS 2 Actual Capacity utilization shall be presented as a percentage of capacity.", o: ["Installed Capacity", "Practical Capacity", "Abnormal Loss (%)", "Actual Production"], c: "Installed Capacity" },
+            { q: "56. CAS 5 deals with", o: ["Equalized cost of transportation", "Captive consumption", "Capacity determination", "Cost classification"], c: "Equalized cost of transportation" },
+            { q: "57. Cost Accounting Standard 8 is a Cost Accounting Standard on", o: ["Employee Cost", "Utilities Cost", "Pollution Control Cost", "Selling and Distribution Cost"], c: "Utilities Cost" },
+            { q: "58. Under the Generally Accepted Cost Accounting Principles, the cost of cane supplied from own farm to the sugar mill is treated as", o: ["Direct Materials Cost", "Indirect Materials Cost", "Production Overhead", "Administrative Overhead"], c: "Direct Materials Cost" },
+            { q: "59. The Cost Accounting Standard 15 is a Cost Accounting Standard on", o: ["Employee Cost", "Utilities Cost", "Pollution Control Cost", "Selling and Distribution Overheads Cost"], c: "Selling and Distribution Overheads Cost" },
+            { q: "60. Royalty paid on production 35,000, Job Charges 20,000, Special Design Charges 20,000, Software Development Charges related to Production 27,000, and Travelling abroad for Training ₹25,000 The Direct Expenses as per CAS 10 is", o: ["92,000", "1,00,000", "1,02,000", "1,27,000"], c: "1,02,000" },
+            { q: "61. As per Part D, Para 4 of the Companies (Cost Records and Audit) Rules, 2014, Value Addition and Distribution of Earnings are to be computed based on", o: ["Audited Financial Data", "Cost Record Data", "Unaudited Financial Data", "Both (A) and (B)"], c: "Audited Financial Data" },
+            { q: "62. Variances due to abnormal reasons. form part of cost as per GACAP.", o: ["Will Not", "Is", "Are", "Will"], c: "Will Not" },
+            { q: "63. Cost auditing standard deals with", o: ["Auditors responsibility", "Auditors power", "Auditors right", "Auditors flexibility"], c: "Auditors responsibility" },
+            { q: "64. Cost auditing standards preface to the standards on auditing. quality control review and related services rendered by the cost accountant has been issued by", o: ["ICAI", "ICMAI", "CAASB", "ICWAI"], c: "CAASB" },
+            { q: "65. Cost Auditing Standard 102 deals with", o: ["planning an Audit of Cost Statements", "Cost Audit Documentation", "knowledge of process and business", "overall objectives of the Independent Cost Auditor"], c: "Cost Audit Documentation" },
+            { q: "66. As per the Central Excise Valuation Rules 2000, the assessable value of goods used for captive consumption is", o: ["at actual cost of production of such goods", "at marginal cost of production of such goods", "at 110% of cost of production of such goods", "at market price of such goods"], c: "at 110% of cost of production of such goods" },
+            { q: "67. As per the Cost Auditing Standard 101, the risk of Material Misstatements has two components, viz.,", o: ["Inherent Risk and Control Risk", "Detection Risk and Audit Risk", "Material Risk and Implicit Risk", "Financial Risk and Explicit Risk"], c: "Inherent Risk and Control Risk" },
+            { q: "68. The objective of CAS-101 is to", o: ["Prepare cost records", "Prepare cost audit documentation", "Guide the members to make planning for the audit of cost statement", "Enable the cost auditor to have knowledge of the clients business"], c: "Guide the members to make planning for the audit of cost statement" },
+            { q: "69. Overall Objectives of the independent Cost Auditor and conduct of an Audit in accordance with Cost Auditing Standard is dealt in", o: ["Cost Auditing Standard 101", "Cost Auditing Standard 102", "Cost Auditing Standard 103", "Cost Auditing Standard 104"], c: "Cost Auditing Standard 103" },
+            { q: "70. CAS ensures the achievement of audit objectives with available resources and securing coordination with the auditee on audit work.", o: ["CAS-102", "CAS-104", "CAS-103", "CAS-101"], c: "CAS-101" },
+            { q: "71. Cost Accounting Standard 18 is a Cost Accounting Standard on", o: ["Royalty and Technical Knowhow fee", "Material Cost", "Research & Development Cost", "Financial Cost"], c: "Research & Development Cost" },
+            { q: "72. Cost Accounting Standard 21 is a Cost Accounting Standard on", o: ["Royalty and Technical Knowhow fee", "Material Cost", "Joint Costs", "Quality Control"], c: "Joint Costs" },
+            { q: "73. The procedures followed by the cost auditor to reduce the audit risk to an acceptable level will not detect a misstatement that exists and that could be material is", o: ["Inherent risk", "Detection risk", "Control risk", "None of these"], c: "Detection risk" },
+            { q: "74. CAS 104 enables the cost auditor", o: ["To have knowledge of the clients business", "Overall objectives of the cost auditor and the conduct of an audit", "Guide the members to prepare cost audit documentation", "Making plan for audit of cost statement"], c: "To have knowledge of the clients business" },
+            { q: "75. Requirements of CAS 104, the cost auditor shall", o: ["Comply with the relevant ethical requirements", "Have adequate level of understanding of the knowledge of business", "Prepare audit documentation", "None of these"], c: "Have adequate level of understanding of the knowledge of business" },
+            { q: "76. Penalty paid to PF authorities is in employee cost.", o: ["Included", "Excluded", "Based on individual case", "Partly included"], c: "Excluded" },
+            { q: "77. Demerit of Audit Programme is:", o: ["Rigidity", "Ignoring new areas", "Mechanized work", "All of these"], c: "All of these" },
+            { q: "78. Cost Auditor is appointed by:", o: ["Committee", "Board of Directors", "Board of Directors on recommendation from Audit Committee", "None of the above"], c: "Board of Directors on recommendation from Audit Committee" },
+            { q: "79. is a written plan containing details with regard to the conduct of a particular audit.", o: ["Note Book", "Audit Programme", "Audit files", "Audit Plan"], c: "Audit Programme" },
+            { q: "80. Verification of assets involves a critical examination of", o: ["Ownership", "Existence", "Both (a) & (b)", "None of the above"], c: "Both (a) & (b)" },
+            { q: "81. Arrange the following stages of an audit of cost statement in the correct sequence: A. Performing B. Planning C. Reporting", o: ["A.C.B", "A.B.C", "B.A.C", "B.C.A"], c: "B.A.C" },
+            { q: "82. During the planning stages of the final audit, the auditor believes that the probability of giving an inappropriate audit opinion is too high. How should the auditor amend the audit plan to resolve this issue ?", o: ["Increase in materiality level", "Decrease the inherent risk", "Decrease the detection risk", "Increase the inherent risk"], c: "Decrease the detection risk" },
+            { q: "83. Which of the following is not a type of audit opinion?", o: ["Qualified Opinion", "Adverse opinion", "Disclaimer opinion", "Reserved opinion"], c: "Reserved opinion" },
+            { q: "84. SA 230 stands for", o: ["Quality control for an audit of financial Statements", "Agreeing the terms of Audit engagements", "Audit Documentation", "Responsibility of Joint Auditor"], c: "Audit Documentation" },
+            { q: "85. SA 300 stands for", o: ["Responsibility of Joint Auditor", "Overall planning of audit", "Audit Planning", "None of the above"], c: "Audit Planning" },
+            { q: "86. XBRL is the abbreviated form of:", o: ["eXtensible Business Reporting Language", "eXtensive Business Reporting Language", "eXtended Business Reporting Language", "eXtensive Business Reporting Language"], c: "eXtensible Business Reporting Language" },
+            { q: "87. XML stands for what?", o: ["Extensible Markup languages", "XRL family of languages", "XML family of languages", "All of these"], c: "Extensible Markup languages" },
+            { q: "88. XBRL is a language based on:", o: ["XBL family of languages", "Qualified Report", "Interim Report", "Final Report"], c: "XML family of languages" },
+            { q: "89. If the auditor is satisfied for all five points, he will submit", o: ["Unqualified Report", "Production techniques", "Costing systems", "All of the above"], c: "Unqualified Report" },
+            { q: "90. Management auditor should have a thorough knowledge of", o: ["Financial Accounting", "Internally", "Externally", "Internally and externally"], c: "All of the above" },
+            { q: "91. A management auditor can recommend the most suitable system of flow of information", o: ["Management by exception", "Management by objectives", "Principles of delegation of authority.", "All of the above."], c: "Internally and externally" },
+            { q: "92. Management auditor should be well versed with", o: ["The management audit is made compulsory and statutory", "Management audit is a programme of one year.", "Management audit cannot be conducted by an independent person.", "No, time limit can be fixed for submission of the report under management audit."], c: "All of the above." },
+            { q: "93. Which of the following statements are true about management audit?", o: ["External", "Internal", "Both internal and external", "None of the above"], c: "No, time limit can be fixed for submission of the report under management audit." },
+            { q: "94. Cost audit is a verification of cost records to estimate the efficiency of a business", o: ["After the work of a statutory auditor ends", "Before the work of a statutory auditor begins", "Varies from firm to firm", "None of the above"], c: "Internal" },
+            { q: "95. The management auditor's work begins", o: ["Suggestion for targets", "Assistance to management", "Good staff relationship", "All of the above"], c: "Varies from firm to firm" },
+            { q: "96. Management audit is useful for", o: ["Problem solving", "Problem identification", "Problem definition", "Problem avoidance"], c: "All of the above" },
+            { q: "97. The main emphasis of Management Audit is:", o: ["Trend reports.", "Analytical report.", "Activity reports.", "All of the above."], c: "Problem identification" },
+            { q: "98. Which of the following is a kind of information report?", o: ["Information", "Employee", "Management.", "Capital."], c: "All of the above." },
+            { q: "99. The backbone of any organisation is", o: ["Informal reports.", "Formal reports", "Professional reports", "Business reports."], c: "Information" },
+            { q: "100. Which of these is usually written in a form of a memorandum?", o: ["Memorandum", "Special reports", "Summary", "Special facts"], c: "Informal reports." },
+            { q: "101. are to be presented after making an investigation of the problem which requires to be investigated.", o: ["Tabular Reports", "Descriptive Reporting", "Graphic Presentation", "All of the above"], c: "Special reports" },
+            { q: "102. is a very important method of presenting information to the management in a pictorial manner and attracts the eye of the recipient more quickly and forcibly.", o: ["Informative", "Interpretative", "Routine", "Progress"], c: "Graphic Presentation" },
+            { q: "103. report provides rationed findings", o: ["Facts", "Logical conclusion", "Objective evaluation", "Subjective evaluation"], c: "Interpretative" },
+            { q: "104. Which of these must be avoided in a technical report?", o: ["Intuition", "Belief", "Investigation", "Impression"], c: "Subjective evaluation" },
+            { q: "105. Reports present conclusions based on", o: ["Highest level downwards", "Lowest level upwards", "Either (a) or (b).", "none of the above"], c: "Investigation" },
+            { q: "106. As per Leslie R. Howard, a Management audit is an investigation of a business from the in order to ascertain whether sound management prevails throughout.", o: ["Time and Work Study", "Imposing Control System", "Forecasting and goal setting", "SWOT analysis"], c: "Highest level downwards" },
+            { q: "107. Important point in corporate planning is", o: ["Business Activity Audi", "Social Audit", "Service Audit", "None of Above"], c: "SWOT analysis" },
+            { q: "108. Consumer Service Audit is part of", o: ["Cost Audit Branch", "Audit Committee", "Management of Concern", "Central Government"], c: "Social Audit" },
+            { q: "109. Management Audit Report Submitted to:", o: ["his experience and acumen", "Auditors Working Paper.", "Physical Verification Sheet", "Information Provided by Management."], c: "Management of Concern" },
+            { q: "110. There are no fixed items of evidence to be checked by Management Auditor. A Management Auditor has to rely more on", o: ["Industry Goodwill.", "Employee loyalty.", "Shareholder's trust.", "All of these"], c: "his experience and acumen" },
+            { q: "111. What is the main factor to maintain corporate image?", o: ["Better motivated staff reduce operating costs.", "Increased brand value and reputation", "None of the above", "All of these"], c: "All of these" },
+            { q: "112. What is the business case for CSR?", o: ["Employees.", "Customers.", "Management.", "Depends upon the media."], c: "All of these" },
+            { q: "113. Who is starting point of bottom-up communication?", o: ["Have high standard of integrity.", "Should be a learned.", "Should gain the people's confidence easily.", "All of these."], c: "Employees." },
+            { q: "114. What is the essential trait of a PRO?", o: ["Mass persuasion.", "Mass awareness.", "Mass enlightenment.", "Mass prelude."], c: "All of these." },
+            { q: "115. Mass communication is the process of by spreading a message to the desired public.", o: ["Corporate Image.", "Institutional.", "Perception Oriented.", "Identity."], c: "Mass persuasion." },
+            { q: "116. Which type of advertising focuses on the basis of experience that customers have with a company?", o: ["Organisation's strategy.", "A strategy of its own.", "Both of above", "Depends upon the media."], c: "Perception Oriented." },
+            { q: "117. Which strategy influences internal communications?", o: ["Libel.", "Slander.", "Defamation.", "IPR violation."], c: "Both of above" },
+            { q: "118. What refers to the act of offense of saying something false or malicious that damages somebody's reputation?", o: ["Inspect the system and check that it is built as per specifications.", "Protect data from accidental or intentional loss.", "Ensure that the system processes data as it was designed to and that the results are reliable.", "Ensure the privacy of data processed by it."], c: "Slander." },
+            { q: "119. Control in the design of an information system is used to", o: ["Checks program correctness at certain points", "Divides a program into smaller parts.", "Breaks programs into portions at the end of each of which a check point program is executed.", "Finds points in a program where it is convenient to check it."], c: "Ensure that the system processes data as it was designed to and that the results are reliable." },
+            { q: "120. A check-point procedure", o: ["Inspect the system and check that it is built as per specifications.", "Protect data from accidental or intentional loss.", "Ensure that the system processes data as it was designed to and that the results are reliable.", "Ensure the privacy of data processed by it"], c: "Breaks programs into portions at the end of each of which a check point program is executed." },
+            { q: "121. Audit in the design of information system is used to", o: ["The inputs and the corresponding outputs are compared and checked for correctness.", "The programs and procedures are checked for correctness.", "Special synthetic data is input and outputs checked for correctness", "Programs are written to check the functioning of the computer."], c: "Inspect the system and check that it is built as per specifications." },
+            { q: "122. By auditing around the computer, we mean", o: ["Detect errors in a system.", "Enable auditing of a system.", "Localize the source of an error in a system.", "Trail a program."], c: "The inputs and the corresponding outputs are compared and checked for correctness." },
+            { q: "123. An audit trail is established in a system to", o: ["During regular operation of an information system", "When a system is initially implemented.", "Whenever errors are found in a computerized system", "Whenever management insists."], c: "Localize the source of an error in a system." },
+            { q: "124. Parallel runs are used", o: ["Inspect the system and check that it is built as per the specifications,", "Protect data and programs from accidental or intentional loss", "Ensure that the system processes data as it was designed to and that the results are reliable", "Ensure the privacy of data processed by it"], c: "When a system is initially implemented." },
+            { q: "125. Security in the design of information systems is used to", o: ["Prevent the spread of fire in the network", "Prevent unauthorized access by hackers.", "To scan for viruses in files.", "To extinguish fire spreading via network cables."], c: "Protect data and programs from accidental or intentional loss" },
+            { q: "126. A firewall is used in a system connected to a wide area network to", o: ["Internal check.", "Internal control", "Internal audit.", "Interim check"], c: "Prevent unauthorized access by hackers." },
+            { q: "127. Several checks & controls exercised in a business to ensure its efficient working is known as:", o: ["Internal control.", "Internal check.", "Internal audit.", "None of the above"], c: "Internal check." },
+            { q: "128. The work of one clerk is automatically checked by another clerk is called:", o: ["One and the same.", "Different.", "Internal control includes internal checks.", "None of the above."], c: "Internal check." },
+            { q: "129. Internal controls and internal checks are:", o: ["It is conducted at regular intervals.", "It may be carried out. on daily basis.", "It is needed when the organisation has a good internal control system.", "It is expensive."], c: "Internal control includes internal checks." },
+            { q: "130. Which of the following statements is not true about a continuous audit?", o: ["The art of recording the business transaction.", "An examination of the books of accounts.", "The act of establishing the accuracy of entries in the books of accounts.", "None of the above."], c: "It is needed when the organisation has a good internal control system." },
+            { q: "131. Verification is", o: ["To discover errors and frauds.", "To prevent errors and frauds.", "To verify statements.", "All the above"], c: "The act of establishing the accuracy of entries in the books of accounts." },
+            { q: "132. The main objectives of investigation is", o: ["His expert opinion about the accounts.", "A factual position about the accounts.", "A critical review of the accounts.", "Financial assistance"], c: "All the above" },
+            { q: "133. The company's auditor is expected to give", o: ["Tax evasion.", "Failure to correct known weakness in internal control system", "Adoption of conservative accounting principles", "High management turnover"], c: "His expert opinion about the accounts." },
+            { q: "134. Which of the following is not likely to be a fraud risk factor relating to management characteristics?", o: ["Shareholder", "Board of director", "Debtors", "Employees"], c: "Adoption of conservative accounting principles" },
+            { q: "135. Financial auditor submits reports to the", o: ["Final audit", "Internal audit", "Proprietary Audit", "Statutory audit"], c: "Shareholder" },
+            { q: "136. Audit under any statute in a country is called", o: ["Cost And Accounts Treatments", "Computer Assisted Audit Tools and Techniques", "Classification and Accounting of Tax Tools", "Computer Aided Audit Tools and Techniques"], c: "Statutory audit" },
+            { q: "137. CAATTS is also known as", o: ["Audit Note Nook", "Audit working papers", "Books to Accounts of Client", "Both (a) and (b)"], c: "Computer Assisted Audit Tools and Techniques" },
+            { q: "138. Auditor has got no lien on", o: ["Periodically", "Throughout the year", "Once in a year", "Once in Five years"], c: "Books to Accounts of Client" },
+            { q: "139. Internal audit is conducted", o: ["Internal control", "Internal audit", "Internal check", "Both (a) and (b)"], c: "Throughout the year" },
+            { q: "140. Test checking is done when there is an effective system of", o: ["Principle", "Compensating", "Clerical", "None of the above"], c: "Internal check" },
+            { q: "141. Treating revenue expenditure as capital expenditure is an example of error of", o: ["Ownership", "Existence", "All of these", "None of the above"], c: "Principle" },
+            { q: "142. Verification of assets involves a critical examination of", o: ["Societies Registration Act, 1860", "India Trust Act, 1882", "As Section 8 Company", "All of the above."], c: "All of these" },
+            { q: "143. NGO(s) are incorporated under", o: ["Involves", "Only concentrate", "Does not concentrate", "None of these"], c: "All of the above." },
+            { q: "144. Management audit on financial matters.", o: ["Suggest improvement in methods of operations", "Framing basic policies for the organisation", "Setting up an organizational framework", "None of these"], c: "Does not concentrate" },
+            { q: "145. The main objectives of management audit is to", o: ["Problem solving", "Problem identification", "Problem definition", "Problem avoidance"], c: "Suggest improvement in methods of operations" },
+            { q: "146. The main emphasis of Management Audit:", o: ["Routine investigation", "Non-routine investigation", "Auditing", "None of these"], c: "Problem identification" },
+            { q: "147. Management audit is normally presumed to be a into a performance of a manager or group of managers.", o: ["44AB of Income Tax Act", "143 of the Companies Act, 2013", "173 of the Companies Act, 2013", "134 of the Companies Act, 2013"], c: "Non-routine investigation" },
+            { q: "148. C&AG has the right to direct how the company's accounts shall be audited by the auditor and to give such auditor instructions regarding any matter relating to the performance of his functions as per section", o: ["Board of Directors", "Audit Committee", "C&AG", "CBDT"], c: "143 of the Companies Act, 2013" },
+            { q: "149. Who appoints the auditor for the Government Company?", o: ["Section 25 of the Companies Act, 1956.", "Section 8 of the Companies Act, 2013.", "Section 28 of the Companies Act, 2013.", "None of the above"], c: "C&AG" },
+            { q: "150. Non-Governmental Organisations can be incorporated as a company", o: ["Budgetary Procedure", "Expenditure Control", "Accounting System", "All of the above"], c: "Section 8 of the Companies Act, 2013." },
+            { q: "151. Financial Administration of Local Bodies includes", o: ["The practice of applying defined financial ratios to investigate a company's financial health.", "The use of law enforcement to subpoena financial records to determine unlawful actions.", "The application of investigative and analytical skills to resolve financial issues in a manner that meets standards required by courts of law", "The investigatory arm of the Securities and Exchange Commission."], c: "All of the above" },
+            { q: "152. Forensic Accounting is defined as:", o: ["Test of impossibility.", "Test of absurdity.", "Juxtaposition test.", "None of the above."], c: "The application of investigative and analytical skills to resolve financial issues in a manner that meets standards required by courts of law" },
+            { q: "153. When the auditor tests the documents by keeping them side by side then it is known as", o: ["Low-level management.", "Mid-level management.", "Senior level management", "All of the above"], c: "Juxtaposition test." },
+            { q: "154. As per the study of ACFE, the following category of individuals commit the highest frauds (in monetary terms),", o: ["Perjury", "Contempt.", "Treason..", "Fraud."], c: "Senior level management" },
+            { q: "155. If your actions are the result of misleading, intentional actions or inaction (including misleading statements and the omission of relevant information to gain an advantage, then you have committed:", o: ["The individual must know that the statement is untrue.", "There is an intent to deceive the victim.", "The victim relied on the statement & The victim is injured financially or otherwise.", "All of the above."], c: "Fraud." },
+            { q: "156. are the elements of fraud.", o: ["Phishing.", "Window dressing.", "Shot gunning.", "Skimming."], c: "All of the above." },
+            { q: "157. happens when the fraudster avails multiple loans for the same property simultaneously for a total amount over the actual value of the property", o: ["Red flag", "Green flag.", "Amber flag.", "White flag."], c: "Shot gunning." },
+            { q: "158. Significant increase in working capital borrowing as a percentage of turnover is a", o: ["Time dimension analysis.", "Space dimension analysis", "Both (a) & (b),", "None of the above."], c: "Red flag" },
+            { q: "159. The principle of 3D vision includes", o: ["SEBI.", "RBI.", "ICAL", "ACFE."], c: "Both (a) & (b)," },
+            { q: "160. 'Fraud is a deliberate act of omission or commission by any person, carried out in the course of a banking transaction or the books of accounts maintained manually or under computer system in banks, resulting into wrongful gain to any person for a temporary period or otherwise, with or without any monetary loss to the bank' is a definition given by:", o: ["Act No.15 of 2003", "Act No.22 of 2003", "Act No.11 of 2003", "Act No.3 of 2003"], c: "RBI." },
+            { q: "161. Prevention of Money-Laundering Act, 2002 is?", o: ["1st January 2002", "Ist July 2005", "1st June 2004", "1st November 2002"], c: "Act No.15 of 2003" },
+            { q: "162. Prevention of Money Laundering Act, 2002 came into force on?", o: ["Gold", "Palladium or rhodium", "Diamond", "Platinum"], c: "Ist July 2005" },
+            { q: "163. 'Precious metal' as defined by PMLA Act, 2002 does not include?", o: ["Section 3", "Section 2", "Section 1", "Section 11"], c: "Diamond" },
+            { q: "164. Offence of money laundering is defined in which section of PMLA Act, 2002", o: ["Section 3", "Section 7", "Section 4", "Section 10"], c: "Section 3" },
+            { q: "165. 'Punishment for money-laundering' is defined under which Section of PMLA Act 2002?", o: ["Seizure of property", "Attachment of Property", "Confiscation of Property", "Life Imprisonment"], c: "Section 4" },
+            { q: "166. Which of the following is not prescribed in the provision of the Prevention of Money Laundering Act, 2002?", o: ["60 days", "90 days", "120 days", "180 days"], c: "Life Imprisonment" },
+            { q: "167. As per section 5 of PMLA Act, 2002, the property can be provisionally attached for a period not exceeding from the date of the order?", o: ["Thirty days", "Sixty days", "Forty-five days", "Ninety days"], c: "180 days" },
+            { q: "168. Director or any other officer who provisionally attaches any property under PMLA Act, 2002, shall, within a period of days from such attachment, file a complaint stating the facts of such attachment before the Adjudicating Authority?", o: ["Administrative Authority", "Adjudicating Authority", "Appellate Authority", "Adjudicating Commission"], c: "Thirty days" },
+            { q: "169. Which among the following authority appointed by the Central Government shall exercise jurisdiction, powers, and authority conferred by or under the Prevention of Money Laundering Act, 2002?", o: ["Administrative Authority", "Adjudicating Authority", "Appellate Authority", "Adjudicating Commission"], c: "Adjudicating Authority" }
         ];
 
-        let userAnswers = new Array(questionsData.length).fill(null);
-        let questionsAttemptedFlags = new Array(questionsData.length).fill(false);
         let currentQuestionIndex = 0;
-        let score = { correct: 0, incorrect: 0 };
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
 
+        let score = {
+            correct: 0,
+            incorrect: 0
+        };
+
+        // DOM Elements
         const questionHeaderElement = document.getElementById('question-header');
         const questionTextElement = document.getElementById('question-text');
         const optionsContainerElement = document.getElementById('options-container');
@@ -360,58 +527,61 @@
         const prevButton = document.getElementById('prev-btn');
         const completionMessageElement = document.getElementById('completion-message');
         const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
 
         const correctCountElement = document.getElementById('correct-count');
         const incorrectCountElement = document.getElementById('incorrect-count');
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
-        
-        const questionsPerSet = [50, 50, 69]; 
-        const setStartIndices = [0, 50, 100]; 
 
+        // Configuration for 169 questions into 5 sets
+        const questionsPerSet = [34, 34, 34, 34, 33]; 
+        const setStartIndices = [0, 34, 68, 102, 136]; 
 
         function populateSetSelector() {
             setSelectorElement.innerHTML = ''; // Clear existing options
             questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
                 const option = document.createElement('option');
                 option.value = index; 
-                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
-                setSelectorElement.appendChild(option);
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
             });
             setSelectorElement.addEventListener('change', (event) => {
                 const selectedSetIndex = parseInt(event.target.value);
                 currentQuestionIndex = setStartIndices[selectedSetIndex];
-                displayQuizElements();
+                completionMessageElement.style.display = 'none';
+                questionHeaderElement.style.display = 'block';
+                questionTextElement.style.display = 'block';
+                optionsContainerElement.style.display = 'block';
+                navigationButtons.style.display = 'flex'; 
                 loadQuestion();
             });
         }
-        
-        function displayQuizElements() {
-            completionMessageElement.style.display = 'none';
-            questionHeaderElement.style.display = 'block';
-            questionTextElement.style.display = 'block';
-            optionsContainerElement.style.display = 'block';
-            document.getElementById('navigation-buttons').style.display = 'flex';
-        }
-
 
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
-            for (let i = 0; i < questionsPerSet.length; i++) {
-                cumulativeQuestions += questionsPerSet[i];
-                if (index < cumulativeQuestions) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
                     if (setSelectorElement.value != i) { 
-                         setSelectorElement.value = i;
+                         setSelectorElement.value = i; 
                     }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-            //This will handle the last set if the loop doesn't catch it
-            const lastSetIndex = questionsPerSet.length - 1;
-            if (setSelectorElement.value != lastSetIndex) {
-                setSelectorElement.value = lastSetIndex;
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
             }
-            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
         }
         
         function updateScoreboard() {
@@ -428,97 +598,92 @@
         }
 
         function loadQuestion() {
-            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
-            if (currentQuestionIndex >= questionsData.length) {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
                 showCompletionMessage();
                 return;
             }
-            displayQuizElements(); 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
             questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
 
-            optionsContainerElement.innerHTML = '';
-            const questionAlreadyAnswered = questionsAttemptedFlags[currentQuestionIndex];
-
+            optionsContainerElement.innerHTML = ''; 
             currentQuestion.o.forEach((optionText, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.classList.add('option');
                 optionElement.dataset.optionText = optionText; 
 
-                const optionLetter = String.fromCharCode(65 + index);
+                const optionLetter = String.fromCharCode(65 + index); 
                 optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
                 
-                if (questionAlreadyAnswered) {
+                if (questionsAttemptedState[currentQuestionIndex]) { 
                     optionElement.classList.add('disabled');
-                    if (optionText === currentQuestion.c) {
-                        optionElement.classList.add('correct-answer');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
                     }
-                    if (optionText === userAnswers[currentQuestionIndex] && optionText !== currentQuestion.c) {
-                        optionElement.classList.add('incorrect-selection');
-                    }
-                     if (optionText === userAnswers[currentQuestionIndex]) {
-                        optionElement.classList.add('user-selected-display');
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
                     }
                 } else {
                     optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
                 }
                 optionsContainerElement.appendChild(optionElement);
             });
+
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
             
-            prevButton.disabled = currentQuestionIndex === 0;
-            // MODIFICATION: Always enable the next button to allow skipping
-            nextButton.disabled = false; 
-            
-            if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            } else {
-                 nextButton.textContent = "Next Question";
+            nextButton.disabled = false;
+            if (currentQuestionIndex === questionsData.length - 1) {
+                nextButton.disabled = !questionsAttemptedState[currentQuestionIndex];
             }
+
+            prevButton.disabled = (currentQuestionIndex === 0);
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
         }
 
         function handleOptionSelection(selectedDiv, selectedOptionText) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return; 
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
 
-            questionsAttemptedFlags[currentQuestionIndex] = true;
+            questionsAttemptedState[currentQuestionIndex] = true;
             userAnswers[currentQuestionIndex] = selectedOptionText;
             nextButton.disabled = false; 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.c;
 
-            selectedDiv.classList.add('user-selected-display');
-
-            if (selectedOptionText === correctAnswerText) {
-                selectedDiv.classList.add('correct-answer');
-                score.correct++;
-            } else {
-                selectedDiv.classList.add('incorrect-selection');
-                score.incorrect++;
-                Array.from(optionsContainerElement.children).forEach(optDiv => {
-                    if (optDiv.dataset.optionText === correctAnswerText) {
-                        optDiv.classList.add('correct-answer');
-                    }
-                });
-            }
-            
             Array.from(optionsContainerElement.children).forEach(optDiv => {
-                const newOptDiv = optDiv.cloneNode(true);
-                optDiv.parentNode.replaceChild(newOptDiv, optDiv);
-                newOptDiv.classList.add('disabled');
+                optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
+                    }
+                }
             });
-
             updateScoreboard();
-             if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            }
         }
         
         function selectOptionByKey(key) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return;
+            if (questionsAttemptedState[currentQuestionIndex]) return;
 
             let optionIndex = -1;
             if (key === 'a' || key === '1') optionIndex = 0;
@@ -539,7 +704,9 @@
                 currentQuestionIndex++;
                 loadQuestion();
             } else {
-                showCompletionMessage();
+                 if (questionsAttemptedState[currentQuestionIndex]) {
+                    showCompletionMessage();
+                 }
             }
         }
 
@@ -554,34 +721,42 @@
             questionHeaderElement.style.display = 'none';
             questionTextElement.style.display = 'none';
             optionsContainerElement.style.display = 'none';
-            document.getElementById('navigation-buttons').style.display = 'none';
+            navigationButtons.style.display = 'none'; 
             completionMessageElement.style.display = 'block';
             const attempted = score.correct + score.incorrect;
             const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
-            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
+        // Event Listeners
         nextButton.addEventListener('click', nextQuestionHandler);
         prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+                return;
+            }
+            if (event.key.toLowerCase() === 'escape') return;
+
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault(); 
+                 return;
+            }
+
             const key = event.key.toLowerCase();
-            
-            // MODIFICATION: Allow skipping with keyboard shortcuts
-            if (key === 'arrowright' || key === ' ' || key === 'enter') {
+            if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                event.preventDefault();
+                selectOptionByKey(key);
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
                 event.preventDefault();
                 nextQuestionHandler();
-            } else if (key === 'arrowleft') {
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
                 event.preventDefault();
                 prevQuestionHandler();
-            } else if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
-                if (currentQuestionIndex < questionsData.length && !questionsAttemptedFlags[currentQuestionIndex]) {
-                    event.preventDefault();
-                    selectOptionByKey(key);
-                }
             }
         });
 
+        // Initial setup
         populateSetSelector();
         loadQuestion();
         updateScoreboard(); 
