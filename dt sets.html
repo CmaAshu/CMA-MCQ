@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ Quiz - Direct and Indirect Taxation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +35,11 @@
         }
 
         #scoreboard-container {
-            background: #9370DB; /* Purple */
-            color: #ffffff; /* White text for better contrast on purple */
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,73 +47,74 @@
         }
         
         #set-navigation-container {
-            background: #4169E1; /* Royal Blue */
-            color: #ffffff; /* White text for better contrast on blue */
+            background: linear-gradient(135deg, #04bf26, #ADFF2F);
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        /* Scoreboard text colors will be inherited from #scoreboard-container (white) */
-        /* Specific class colors for scores if needed, but white on purple should be fine */
-        #scoreboard .correct { color: #d4edda; } /* Lighter green on purple for emphasis */
-        #scoreboard .incorrect { color: #f8d7da; } /* Lighter red on purple for emphasis */
-        #scoreboard .accuracy { color: #e0e0e0; } /* Light grey/white for accuracy on purple */
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; /* Ensure label is white on blue */
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; /* Keep select dropdown background white */
-            color: #333; /* Text color for select options */
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFC300; /* Light Saffron */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; /* Default text color for quiz content */
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #555; /* Darker text for readability on saffron */
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #e0ac00; /* Darker saffron for border */
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; /* Darker text for readability on saffron */
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -108,70 +125,83 @@
         .option {
             display: flex;
             align-items: center;
-            background: #FFF8E1; /* Very light cream for options, to contrast with saffron */
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #FFECB3; /* Light gold border for options */
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; /* Text color for options */
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #FFF0C1; /* Slightly darker cream on hover */
-            border-color: #FFE082;
+            background: #fff59d;
+            border-color: #f2e70c;
         }
 
-        .option.selected {
-            font-weight: 500; 
+        .option.selected { 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important;
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important;
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057;
-            background-color: #FFECB3; /* Light gold for option letters */
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
+        .option.selected .option-letter {
+            background-color: var(--primary-blue); 
+            color: white;
+            transform: scale(1.1);
+        }
+
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important;
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important;
+            background-color: #ef4444 !important; 
             color: white !important;
         }
 
 
         #navigation-buttons {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between; 
+            align-items: center;
             margin-top: 25px;
         }
 
         button {
-            background-color: #007bff; /* Standard blue for button, or choose a contrasting color */
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -179,36 +209,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
+        }
+        
+        #prev-btn {
+            background-color: #374151;
         }
 
-        button:hover {
-            background-color: #0056b3;
+        button:hover:not(:disabled) {
+            background-color: #0637c9;
+            transform: translateY(-2px);
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
         button:disabled {
-            background-color: #cccccc;
+            background-color: #4b5563; 
             cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.6;
         }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745;
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -236,8 +279,18 @@
                 padding: 10px;
             }
             button {
-                padding: 10px 20px;
-                font-size: 15px;
+                padding: 10px 15px; 
+                font-size: 14px;
+            }
+            #navigation-buttons {
+                flex-direction: column; 
+            }
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
             }
             #set-selector {
                 width: 100%;
@@ -271,7 +324,8 @@
         <div class="options-container" id="options-container">
             </div>
         <div id="navigation-buttons">
-            <button id="next-btn">Next Question</button>
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
         </div>
         <div id="completion-message" style="display:none;">
             Quiz Completed! Thank you for participating.
@@ -283,8 +337,8 @@
     </div>
 
     <script>
+        // --- START OF QUESTION DATA ---
         const questionsData = [
-            // Set 1: Questions 1-36
             { q: "1. Charging of income of the previous year in the same year is not mandatory for: ____", o: ["Shipping business of non-resident", "Persons leaving India", "Association formed for a particular event", "Discontinuation of business"], c: "Discontinuation of business" },
             { q: "2. AB was born in England, his parents were born in India in 1952. His grand parents were born in South Africa. AB shall be a: ____", o: ["Person of Indian origin", "Foreign National", "Artificial Person", "Citizen of India"], c: "Foreign National" },
             { q: "3. Income accruing in Japan and received there is taxable in India in the case of: ____", o: ["Resident and Ordinarily Resident only", "Both Resident and Ordinarily Resident and Resident but not Ordinarily Resident", "Both Resident and Non-resident", "Non-resident"], c: "Resident and Ordinarily Resident only" },
@@ -296,16 +350,16 @@
             { q: "9. An individual is said to be resident in India if- ____", o: ["He has a house in India", "He is in India in the previous year for a period of 182 days or more", "He is in India for a period of 30 days or more during the previous year and for 365 or more days during 4 previous years immediately preceding the relevant previous year", "His parents are Indian citizen"], c: "He is in India in the previous year for a period of 182 days or more" },
             { q: "10. The incidence of taxation depends on the - ____", o: ["Residential status of the assessee", "Accommodation of the assessee", "Citizenship of the assessee", "Marital status of the assessee"], c: "Residential status of the assessee" },
             { q: "11. Which of the following is an agriculture income?", o: ["Dividend paid by a company to its shareholders out of agricultural income", "Share of Profit of a Partner from a firm engaged in an agriculture operation", "Income from supply of water by an assessee from a tank in agriculture land", "Interest received by a money lender in the form of agricultural produce"], c: "Share of Profit of a Partner from a firm engaged in an agriculture operation" },
-            { q: "12. In case of an assessee engaged in the business of manufacturing of tea, his agricultural income is ____", o: ["60% of total receipt of the business", "60% of income of the business", "Nil", "40% of income of the business"], c: "Nil" },
+            { q: "12. In case of an assessee engaged in the business of manufacturing of tea, his agricultural income is ____", o: ["60% of total receipt of the business", "60% of income of the business", "Nil", "40% of income of the business"], c: "60% of income of the business" },
             { q: "13. Income from saplings shall be considered as ____", o: ["Agricultural Income", "Business Income", "Partly agricultural income and partly business income", "Income from other sources"], c: "Agricultural Income" },
-            { q: "14. An individual (aged 28 Years) born in India left for first time for employment in France on 30.10.2023. His visit outside India is for the first time. His residential status for the assessment year 2024-25 will be ____", o: ["Resident and ordinarily resident", "Resident but not ordinarily resident", "Non-resident", "Residential Status is not applicable"], c: "Resident and ordinarily resident" },
+            { q: "14. An individual (aged 28 Years) born in India left for first time for employment in France on 30.10.2023. His visit outside India is for the first time. His residential status for the assessment year 2024-25 will be ____", o: ["Resident and ordinarily resident", "Resident but not ordinarily resident", "Non-resident", "Residential Status is not applicable"], c: "Resident but not ordinarily resident" },
             { q: "15. Income of ₹3,00,000 is received in Sri Lanka by an ordinarily resident of India. But later on ₹50,000 is remitted to India - ____", o: ["₹3,00,000 will be taxable", "₹3,50,000 will be taxable", "It is not taxable at all", "₹50,000 will be taxable"], c: "₹3,00,000 will be taxable" },
             { q: "16. An individual is said to be a resident in India in the previous year (in which the Feb month has 29 days) if he is in India in that year for a period of ____", o: ["182 days or more", "183 days or more", "70 days or more", "150 days or more"], c: "182 days or more" },
             { q: "17. Mr. X is engaged in growing and manufacturing tea in India. His income from this activity is ₹1,40,000. His agriculture income will be- ____", o: ["₹70,000", "₹84,000", "₹1,40,000", "₹56,000"], c: "₹84,000" },
             { q: "18. Which of the following is not taxable under head 'Salaries'?", o: ["Remuneration paid to the lecturer of a college for setting a question paper by a university.", "Salary received by a member of the Parliament.", "Commission received by an employee director of a company.", "Both (1) and (2) above"], c: "Both (1) and (2) above" },
             { q: "19. If a domestic servant is engaged by the employer and salary is paid by him, the perquisite is: ____", o: ["Taxable in the hands of all employees", "Not taxable in the hands of both specified and non-specified employers", "Taxable in the hands of specified employees only", "Taxable to the extent of ₹120 per person in the hands of all employees."], c: "Taxable in the hands of specified employees only" },
             { q: "20. Which of the following is taxable under the head 'salaries'?", o: ["Salary received by a Member of State Legislature.", "Commission received by an employee director of a company.", "Family pension received", "Both (1) and (2) above"], c: "Commission received by an employee director of a company." },
-            { q: "21. Who among the following is a specified employee?", o: ["A director of a company", "An employee drawing a salary of ₹15,000 p.m.", "A person who is an owner of equity shares carrying 10% voting power in the employer company.", "Both (1) and (2) above"], c: "Both (1) and (2) above" },
+            { q: "21. Who among the following is a specified employee?", o: ["A director of a company", "An employee drawing a salary of ₹15,000 p.m.", "A person who is an owner of equity shares carrying 10% voting power in the employer company.", "Both (1) and (2) above"], c: "A director of a company" },
             { q: "22. Net Annual Value of a self-occupied property treated as such is: ____", o: ["Fair Rent", "Nil", "Reasonable Expected Rent as reduced by municipal tax paid during the previous year.", "None of the Above"], c: "Nil" },
             { q: "23. A house property located outside India is: ____", o: ["Taxable in hands of all assessee", "Taxable in hands of non resident assessee", "Taxable in hands of resident and ordinarily resident assessee", "Exempted from tax in India."], c: "Taxable in hands of resident and ordinarily resident assessee" },
             { q: "24. Following assessee(s) can considered a house property as self occupied: ____", o: ["Individual & HUF", "All assessee", "All assessee other than company", "All assessee other than firm"], c: "Individual & HUF" },
@@ -321,8 +375,6 @@
             { q: "34. While computing taxable interest on delayed compensation, a standard deduction is allowed @: ____", o: ["50%", "30%", "15%", "Nil"], c: "50%" },
             { q: "35. The provision of sec.56(2)(x) is applicable on: ____", o: ["All assessee", "Only on corporate assessee", "On an individual only", "On an individual and HUF only"], c: "All assessee" },
             { q: "36. While computing income from other sources, deduction is not allowed to the assessee for: ____", o: ["Personal expenditure", "Direct tax", "Interest payable outside India without TDS", "All of the above"], c: "All of the above" },
-            
-            // Set 2: Questions 37-72
             { q: "37. Gift received by an individual in certain circumstances is not taxable, one of them is: ____", o: ["Any gift received from family friend", "Any gift received on the occasion of any marriage in the family", "Any gift received on the occasion of the marriage of the individual-assessee", "All of the above"], c: "Any gift received on the occasion of the marriage of the individual-assessee" },
             { q: "38. An individual purchased a painting on 01-11-2023 for ₹5,00,000 though fair market value of the asset is ₹5,25,000. Income taxable u/s 56(2)(x) is: ____", o: ["₹25,000 i.e. difference between market value and actual consideration", "Nil as this is not gift", "Nil as difference between market value and actual consideration does not exceed ₹50,000", "The provision of sec. 56(2)(x) is not applicable for any transaction entered during P.Y. 2023-24"], c: "Nil as difference between market value and actual consideration does not exceed ₹50,000" },
             { q: "39. Uncommuted Pension received by a Government Employee is- ____", o: ["Exempt", "Taxable", "Partially Taxable", "None of the above"], c: "Taxable" },
@@ -359,8 +411,6 @@
             { q: "70. Deduction u/s 80D is allowed if the premium is paid to - ____", o: ["Life Insurance Corporation", "General Insurance Corporation or any other Insurer approved by the IRDA", "Life Insurance or General Insurance Corporation", "None of above."], c: "General Insurance Corporation or any other Insurer approved by the IRDA" },
             { q: "71. Rebate in Tax u/s 87A, is applicable to: ____", o: ["Companies", "Individuals", "HUF", "Resident Individual"], c: "Resident Individual" },
             { q: "72. Deduction u/s 80JJAA in respect of employment of new workers shall be allowed to- ____", o: ["any assessee to who Sec.44AB applies", "an Indian company", "an Indian Company or a person other than Company resident in India", "None of above"], c: "any assessee to who Sec.44AB applies" },
-            
-            // Set 3: Questions 73-108
             { q: "73. The maximum amount which can be donated in cash for claiming deduction under section 80G for the P.Y. 2023-24 is - ____", o: ["₹5,000", "₹10,000", "₹15,000", "₹2,000"], c: "₹2,000" },
             { q: "74. Where a member of a HUF has converted or transferred his self-acquired property for inadequate consideration into joint family property, income arising there from is taxable. ____", o: ["As the income of the Transferor Member", "In the hand of the HUF", "In the hands of Karta of HUF", "Completely exempt from tax"], c: "As the income of the Transferor Member" },
             { q: "75. Advance Tax shall be payable by any person in respect of current income is ____", o: ["₹50,000 or more", "₹10,000 or more", "₹1,00,000 or more", "None of the above"], c: "₹10,000 or more" },
@@ -397,8 +447,6 @@
             { q: "106. Renting of precincts of a religious place meant for general public owned or managed by a charitable or religious trust u/s 12AA of the Income Tax Act 1961 shall be exempt if: ____", o: ["Renting of rooms where per day charges are less then ₹1,000", "Renting of shops or other spaces for business or commerce where charges per month are less than ₹10,000", "Renting of premises, community halls or open area, where charges per day are less than ₹10,000", "All of the above"], c: "All of the above" },
             { q: "107. For which of the following goods, the manufacturer is not allowed to opt for composition scheme:", o: ["Pan masala", "Ice cream", "Topical and manufactured tobacco substitutes", "All of the above"], c: "All of the above" },
             { q: "108. The time of supply of goods, where supplier is liable to pay tax under forward charge shall be: ____", o: ["The date of actual issue of invoice by the supplier", "The last date on which he is required u/s 31(1) to issue the invoice with respect to the supply", "The date on which the supplier receives the payment with respect to the supply", "(a) or (b), whichever is earlier"], c: "(a) or (b), whichever is earlier" },
-
-            // Set 4: Questions 109-144
             { q: "109. The transaction value for computation of value of supply can be rejected if - ____", o: ["The buyer and seller are related and price is not the sole consideration", "Products are sold at very low margins", "Maximum retail price is greater than the transaction value", "All of the above"], c: "The buyer and seller are related and price is not the sole consideration" },
             { q: "110. In case goods disposed off by way of free sample ____", o: ["recipient can claim ITC", "supplier can claim ITC", "supplier can not claim ITC", "ITC can be claimed if value is more than ₹1,000"], c: "supplier can not claim ITC" },
             { q: "111. If the goods are received in installment then ITC can be availed ____", o: ["Proportionately on receipt of each installment", "100% ITC can be taken on receipt of first installment", "ITC can be taken on receipt of last installment", "50% ITC can be taken on receipt of first installment and balance 50% on receipt of last installment"], c: "ITC can be taken on receipt of last installment" },
@@ -435,8 +483,6 @@
             { q: "142. A hotel owner provided accommodation in Haryana, through an electronic commerce operator Cool Trips. The hotel owner is not liable to get registered as per the provisions of section 22(1) of the CGST Act. Who is the person liable to pay GST in this case?", o: ["Hotel Owner", "ECO", "Customer", "Both by Hotel owner & ECO"], c: "ECO" },
             { q: "143. State the taxability of satellite launch services provided to both international and domestic customers by ANTRIX Corporation Limited ('ANTRIX') which is a wholly owned Government of India Company under the administrative control of Department of Space (DOS).", o: ["Taxable", "Not taxable", "Exempt", "None"], c: "Taxable" },
             { q: "144. Zero rated supply includes: ____", o: ["Export of goods and services", "Supply of goods and services to a SEZ developer or SEZ Unit", "Supply of goods and services by a SEZ developer or SEZ Unit", "Both (1) and (2)"], c: "Both (1) and (2)" },
-            
-            // Set 5: Questions 145-181
             { q: "145. A registered taxable person is eligible to claim refund in respect of export of goods and services in the following cases ____", o: ["Under bond, without payment of IGST and claim refund of unutilized input tax credit.", "On payment of IGST and claim refund of IGST paid on such goods and services", "None of the above", "Both (1) and (2)"], c: "Both (1) and (2)" },
             { q: "146. If place of supply in Territorial water, then what will considered as Place of supply?", o: ["Actual location (territorial Water)", "Principal Establishment of Supplier", "Any establishment of supplier of his choice", "coastal State or Union Territory where the nearest point of the appropriate baseline"], c: "coastal State or Union Territory where the nearest point of the appropriate baseline" },
             { q: "147. What is the time of supply of service if the invoice is issued within 30 days from the date of provision of service?", o: ["Date of issue of invoice", "Date on which the supplier receives payment", "Date of provision of service", "Earlier of (1) & (2)"], c: "Earlier of (1) & (2)" },
@@ -475,41 +521,51 @@
             { q: "180. As per notification, no drawback of import duty will be allowed in respect of which of the following goods, if they have been used after their importation in India?", o: ["Wearing Apparel", "Tea Chests", "Exposed cinematograph films passed by Board of Film Censors in India", "All the above"], c: "All the above" },
             { q: "181. CBIC has clarified that safeguard duties, anti-dumping duties and countervailing duties are rebatable as drawback in terms of section ____ of the Customs Act", o: ["74", "75", "76", "77"], c: "75" }
         ];
+        // --- END OF QUESTION DATA ---
+
 
         let currentQuestionIndex = 0;
-        let selectedOptionElement = null; 
-        let questionAnswered = false; 
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
 
         let score = {
             correct: 0,
             incorrect: 0
         };
 
+        // DOM Elements
         const questionHeaderElement = document.getElementById('question-header');
         const questionTextElement = document.getElementById('question-text');
         const optionsContainerElement = document.getElementById('options-container');
         const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
         const completionMessageElement = document.getElementById('completion-message');
-        const quizContainer = document.getElementById('quiz-container');
         const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
 
         const correctCountElement = document.getElementById('correct-count');
         const incorrectCountElement = document.getElementById('incorrect-count');
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
 
+        // Configuration for 181 questions into 5 sets
         const questionsPerSet = [36, 36, 36, 36, 37]; 
-        const setStartIndices = [0];
-        for (let i = 0; i < questionsPerSet.length -1; i++) {
-            setStartIndices.push(setStartIndices[i] + questionsPerSet[i]);
-        }
+        const setStartIndices = [0, 36, 72, 108, 144]; 
 
         function populateSetSelector() {
+            setSelectorElement.innerHTML = '';
             questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
                 const option = document.createElement('option');
                 option.value = index; 
-                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
-                setSelectorElement.appendChild(option);
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
             });
             setSelectorElement.addEventListener('change', (event) => {
                 const selectedSetIndex = parseInt(event.target.value);
@@ -518,24 +574,28 @@
                 questionHeaderElement.style.display = 'block';
                 questionTextElement.style.display = 'block';
                 optionsContainerElement.style.display = 'block';
-                nextButton.style.display = 'inline-block';
+                navigationButtons.style.display = 'flex'; 
                 loadQuestion();
             });
         }
 
-
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
-            for (let i = 0; i < questionsPerSet.length; i++) {
-                cumulativeQuestions += questionsPerSet[i];
-                if (index < cumulativeQuestions) {
-                    if (setSelectorElement.value != i) {
-                         setSelectorElement.value = i;
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
+                    if (setSelectorElement.value != i) { 
+                         setSelectorElement.value = i; 
                     }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
+            }
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
         }
         
         function updateScoreboard() {
@@ -551,74 +611,96 @@
             }
         }
 
-
         function loadQuestion() {
-            questionAnswered = false; 
-            if (currentQuestionIndex < questionsData.length) {
-                const currentQuestion = questionsData[currentQuestionIndex];
-                const setInfo = getCurrentSetInfo(currentQuestionIndex);
-
-                questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-                questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
-
-                optionsContainerElement.innerHTML = '';
-                currentQuestion.o.forEach((optionText, index) => {
-                    const optionElement = document.createElement('div');
-                    optionElement.classList.add('option');
-                    optionElement.dataset.optionText = optionText; 
-
-                    const optionLetter = String.fromCharCode(65 + index);
-                    optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
-                    
-                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
-                    optionsContainerElement.appendChild(optionElement);
-                });
-                nextButton.textContent = "Next Question";
-                nextButton.disabled = true; 
-            } else {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
                 showCompletionMessage();
+                return;
             }
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const setInfo = getCurrentSetInfo(currentQuestionIndex);
+
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
+
+            optionsContainerElement.innerHTML = ''; 
+            currentQuestion.o.forEach((optionText, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.dataset.optionText = optionText; 
+
+                const optionLetter = String.fromCharCode(65 + index); 
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                
+                if (questionsAttemptedState[currentQuestionIndex]) { 
+                    optionElement.classList.add('disabled');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
+                    }
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
+                    }
+                } else {
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
+                }
+                optionsContainerElement.appendChild(optionElement);
+            });
+
+            // *** CHANGE: Always enable the next button ***
+            nextButton.disabled = false; 
+            prevButton.disabled = (currentQuestionIndex === 0);
+            
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
         }
 
         function handleOptionSelection(selectedDiv, selectedOptionText) {
-            if (questionAnswered) return; 
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
 
-            questionAnswered = true;
-            nextButton.disabled = false; 
+            questionsAttemptedState[currentQuestionIndex] = true;
+            userAnswers[currentQuestionIndex] = selectedOptionText;
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.c;
 
-            selectedDiv.classList.add('selected'); 
-
-            if (selectedOptionText === correctAnswerText) {
-                selectedDiv.classList.add('correct-answer');
-                score.correct++;
-            } else {
-                selectedDiv.classList.add('incorrect-selection');
-                score.incorrect++;
-                Array.from(optionsContainerElement.children).forEach(optDiv => {
-                    if (optDiv.dataset.optionText === correctAnswerText) {
-                        optDiv.classList.add('correct-answer');
-                    }
-                });
-            }
-            
             Array.from(optionsContainerElement.children).forEach(optDiv => {
                 optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
+                    }
+                }
             });
-
             updateScoreboard();
         }
         
         function selectOptionByKey(key) {
-            if (questionAnswered) return;
+            if (questionsAttemptedState[currentQuestionIndex]) return;
 
             let optionIndex = -1;
-            if (key === 'a' || key === '1') optionIndex = 0;
-            else if (key === 'b' || key === '2') optionIndex = 1;
-            else if (key === 'c' || key === '3') optionIndex = 2;
-            else if (key === 'd' || key === '4') optionIndex = 3;
+            const keyLower = key.toLowerCase();
+            if (keyLower === 'a' || keyLower === '1') optionIndex = 0;
+            else if (keyLower === 'b' || keyLower === '2') optionIndex = 1;
+            else if (keyLower === 'c' || keyLower === '3') optionIndex = 2;
+            else if (keyLower === 'd' || keyLower === '4') optionIndex = 3;
 
             if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
                 const optionDiv = optionsContainerElement.children[optionIndex];
@@ -628,48 +710,63 @@
             }
         }
 
-
         function nextQuestionHandler() {
-            if (!questionAnswered && currentQuestionIndex < questionsData.length) {
-                return; 
+            // *** CHANGE: Removed check that prevents skipping ***
+            if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showCompletionMessage();
             }
-            currentQuestionIndex++;
-            loadQuestion();
+        }
+
+        function prevQuestionHandler() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
         }
         
         function showCompletionMessage() {
             questionHeaderElement.style.display = 'none';
             questionTextElement.style.display = 'none';
             optionsContainerElement.style.display = 'none';
-            nextButton.style.display = 'none';
+            navigationButtons.style.display = 'none'; 
             completionMessageElement.style.display = 'block';
-            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${((score.correct / (score.correct + score.incorrect || 1)) * 100).toFixed(1)}%`;
+            const attempted = score.correct + score.incorrect;
+            const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
-        nextButton.addEventListener('click', () => {
-            if(questionAnswered) { 
-                 nextQuestionHandler();
-            }
-        });
+        // Event Listeners
+        nextButton.addEventListener('click', nextQuestionHandler);
+        prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
-            if (currentQuestionIndex >= questionsData.length && event.key.toLowerCase() !== 'escape') { 
-                 if (event.key.toLowerCase() === 'enter' || event.key.toLowerCase() === ' ') {
-                    event.preventDefault(); 
-                }
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
                 return;
+            }
+            if (event.key.toLowerCase() === 'escape') return;
+
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault();
+                 return;
             }
 
             const key = event.key.toLowerCase();
             if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
                 event.preventDefault();
                 selectOptionByKey(key);
-            } else if ((key === 'enter' || key === ' ') && questionAnswered) { 
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
                 event.preventDefault();
                 nextQuestionHandler();
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
+                event.preventDefault();
+                prevQuestionHandler();
             }
         });
 
+        // Initial setup
         populateSetSelector();
         loadQuestion();
         updateScoreboard(); 
