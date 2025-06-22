@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ Quiz - Cost Accounting</title>
+    <title>MCQ Quiz - Direct and Indirect Taxation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5; /* Light grey background */
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +35,11 @@
         }
 
         #scoreboard-container {
-            background: #8c00ff; /* SlateBlue */
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
             color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +47,74 @@
         }
         
         #set-navigation-container {
-            background: #001aff; /* SteelBlue */
-            color: #ffffff;
+            background: linear-gradient(135deg, #04bf26, #ADFF2F);
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFC300; /* LemonChiffon */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #555; /* Darker grey for readability on light yellow */
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #eee8aa; /* PaleGoldenrod for border */
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; /* Dark Slate Gray */
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,78 +125,83 @@
         .option {
             display: flex;
             align-items: center;
-            background: #f5f5dc; /* Beige */
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #e0e0d1; /* Lighter Beige for border */
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #e6e6ca; /* Darker Beige on hover */
-            border-color: #d1d1b8;
+            background: #fff59d;
+            border-color: #f2e70c;
         }
 
-        .option.selected { /* Indicates the user's selection before revealing answer */
-            font-weight: 500; 
-            border-color: #4682b4; /* SteelBlue border for selected */
-            background-color: #e0efff; /* Light blueish tint for selected */
+        .option.selected { 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; /* Light Green */
-            border-color: #c3e6cb !important;
-            color: #155724 !important; /* Dark Green text */
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; /* Light Red */
-            border-color: #f5c6cb !important;
-            color: #721c24 !important; /* Dark Red text */
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057; /* Dark Grey */
-            background-color: #d1e7dd; /* Light green for correct by default, will be overridden */
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
         .option.selected .option-letter {
-            background-color: #4682b4; /* SteelBlue */
+            background-color: var(--primary-blue); 
             color: white;
+            transform: scale(1.1);
         }
 
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important; /* Green */
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important; /* Red */
+            background-color: #ef4444 !important; 
             color: white !important;
         }
 
 
         #navigation-buttons {
             display: flex;
-            justify-content: space-between; /* Aligns Prev to left, Next to right */
+            justify-content: space-between; 
             align-items: center;
             margin-top: 25px;
         }
 
         button {
-            background-color: #007bff; /* Primary Blue */
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -185,38 +209,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
+        }
+        
+        #prev-btn {
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3; /* Darker Blue */
+            background-color: #0637c9;
+            transform: translateY(-2px);
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
         button:disabled {
-            background-color: #cccccc; /* Grey for disabled */
+            background-color: #4b5563; 
             cursor: not-allowed;
             box-shadow: none;
+            opacity: 0.6;
         }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745; /* Green */
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -244,11 +279,11 @@
                 padding: 10px;
             }
             button {
-                padding: 10px 15px; /* Adjusted padding for smaller screens */
+                padding: 10px 15px; 
                 font-size: 14px;
             }
             #navigation-buttons {
-                flex-direction: column; /* Stack buttons on small screens */
+                flex-direction: column; 
             }
             #navigation-buttons button {
                 width: 100%;
@@ -298,312 +333,195 @@
     </div>
 
     <div id="instagram-link">
-        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4r" target="_blank">Ash🔱tosh </a>
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh </a>
     </div>
 
     <script>
-        // questionsData array:
-        // q: Question text
-        // o: Array of options
-        // c: Correct answer text
-        // All 295 questions from MCQBank_Paper8.pdf with corrected answers based on PDF answer key
+        // --- START OF QUESTION DATA ---
         const questionsData = [
-            { q: "1. Prime Cost is:", o: ["All costs incurred in manufacturing a product", "the total of direct costs", "the material cost of a product", "the cost of operating a department"], c: "the total of direct costs" },
-            { q: "2. A company employs three drivers to deliver goods to its customers. The salaries paid to these drivers are:", o: ["a part of prime cost", "a direct production expense", "a production overhead", "a selling & distribution overhead"], c: "a selling & distribution overhead" },
-            { q: "3. A company has to pay a Rs. 1 per unit royalty to the designer of a product which it manufactures and sells. The royalty charge would be classified in the company's accounts as a", o: ["Direct expense", "Production overhead", "Administrative overhead", "Selling overhead"], c: "Direct expense" },
-            { q: "4. ____ is a method of dealing with overheads which involves spreading common costs over cost centers on the basis of benefit received.", o: ["overhead absorption", "overhead apportionment", "overhead allocation", "overhead analysis"], c: "overhead apportionment" },
-            { q: "5. Which of the following classification is meant for distinction between direct cost and indirect cost?", o: ["Function", "Element", "Variability", "Controllability"], c: "Element" },
-            { q: "6. Which of the following is applicable for Cost Control?", o: ["It is related with the future", "It is a corrective function", "It ends when the targets are achieved", "It challenges the standards set"], c: "It ends when the targets are achieved" },
-            { q: "7. ____ is anything for which a separate measurement of cost is required", o: ["Cost driver", "Cost centre", "Cost unit", "Cost object"], c: "Cost object" },
-            { q: "8. Ticket counter in a Metro Station is an example of", o: ["Profit centre", "Investment centre", "Cost centre", "Revenue centre"], c: "Revenue centre" },
-            { q: "9. Which of the following is an example of functional classification of cost?", o: ["Direct labour cost", "Direct material cost", "Factory overhead", "Indirect material cost"], c: "Factory overhead" },
-            { q: "10. Absorption costing is also referred as", o: ["Historical costing", "Traditional costing", "Full costing", "All of the above terms"], c: "All of the above terms" },
-            { q: "11. the main purpose of cost accounting is", o: ["to maintain profit", "to help in inventory valuation", "to enter into price War with competitive firms", "to provide information to management for decision-making"], c: "to provide information to management for decision-making" },
-            { q: "12. ____ is anything for which a separate measurement is required", o: ["cost unit", "cost object", "cost driver", "cost sentre"], c: "cost object" },
-            { q: "13. Which of the following is true about Cost Control", o: ["It is a corrective function", "It challenges the set standards", "It ends when targets achieved", "It is concerned with future"], c: "It ends when targets achieved" },
-            { q: "14. Cost Units used in Power Sector is:", o: ["Kilo-meter (K.Μ.)", "Kilo-Watt-Hour (kWh)", "Number of Electric Points", "Machine Hours"], c: "Kilo-Watt-Hour (kWh)" },
-            { q: "15. Process Costing method is suitable for:", o: ["Transport Sector", "Chemical Industries", "Dam Construction", "Furniture-making"], c: "Chemical Industries" },
-            { q: "16. distinction between Direct Cost and Indirect Cost is an example of ____ classification.", o: ["By element", "By Function", "By controllability", "By Variability"], c: "By element" },
-            { q: "17. The advantage of using IT in Cost Accounting does not include", o: ["Single point data entry", "stock needs to be reconciled with goods received note", "reduction in multiplicity of documents", "integration of various functions."], c: "stock needs to be reconciled with goods received note" },
-            { q: "18. A taxi provider charges minimum Rs.80 thereafter Rs. 12 per kilometer of distance travelled, the behaviour of conveyance Cost is", o: ["fixed cost", "semi-variable", "variable", "administrative cost"], c: "semi-variable" },
-            { q: "19. A Ltd. Has three Production Departments, and each department has machines, which of the following cannot be treated as Cost Centre for cost allocation:", o: ["Machines under the production Production Department", "Pruction Departments", "Both Production Department and Machines", "A Ltd."], c: "A Ltd." },
-            { q: "20. Which of the following is an example of functional classification of cost?", o: ["Semi-variable costs", "Fixed Cost", "Administrative overhead", "indirect Overheads"], c: "Administrative overhead" },
-            { q: "21. Cost which are ascertained after they have been incurred are known as", o: ["sunk costs", "Imputed Costs", "Historical Costs", "Oppurtunity Costs"], c: "Historical Costs" },
-            { q: "22. Generally, for the purpose of Cost sheet preparation, costs are classified on the basis of -", o: ["Functions", "variablity", "relevance", "nature"], c: "Functions" },
-            { q: "23. Which of the following items is not excluded while preparing a cost sheet?", o: ["Goodwill written off", "provision for taxation", "property tax on factory building", "Transfer to reserves"], c: "property tax on factory building" },
-            { q: "24. What is prime cost", o: ["Total direct cost only", "Total Indirect Costs only", "Total Non-Production Costs", "Total Production Costs"], c: "Total direct cost only" },
-            { q: "25. Which of the following does not form part of prime cost", o: ["Cost of Packing", "cost of transportation paid to bring materials to factory", "GST paid on Raw materials (where input credit cannot be claimed)", "overtime premium paid to workers"], c: "Cost of Packing" },
-            { q: "26. Which of these is not an objective of Cost Accounting?", o: ["Ascertainment of Cost", "Determination of Selling Price", "Cost Control and Cost reduction", "Assisting Shareholders in decision making"], c: "Assisting Shareholders in decision making" },
-            { q: "27. Which of the following are direct expenses? (1) Cost of Special Designs, drawings or layout, (2) Hire of Tools or Equipment for a particular job. (3) Salesman's wages, (4) Rent, rates and Insurance of a factory,", o: ["(1) and (2)", "(1) and (3)", "(2) and (3)", "(3) and (4)"], c: "(1) and (2)" },
-            { q: "28. Salary paid to plant Supervisor is a part of", o: ["Direct expenses", "Factory Overheads", "Quality Control Cost", "administrative cost"], c: "Factory Overheads" },
-            { q: "29. Depreciation of Director's Laptop is treated as a part of:", o: ["Administration Overheads", "Factory Overheads", "IT infrastructure Cost", "Research & Development Cost"], c: "Administration Overheads" },
-            { q: "30. A manufacturing Company has set-up a lab for testing of products for compliance with standards. Salary of this Lab Staff are part of", o: ["Works Overheads", "Quality Control Cost", "Direct Expenses.", "Reearch & Development Cost"], c: "Quality Control Cost" },
-            { q: "31. Audit fees paid to external Statutory Auditors is part of", o: ["Administration Cost", "Production Cost", "Selling & distribution Costs", "Quality Costrol Cost"], c: "Administration Cost" },
-            { q: "32. Salary paid to factory stores is a part of", o: ["Factory Overheads", "Production Cost", "Direct Employee Cost", "Direct Material Cost"], c: "Factory Overheads" },
-            { q: "33. Canteen Expenses for factory workers are part of -", o: ["Factory Overheads", "Administration cost", "marketing cost", "direct expenses"], c: "Factory Overheads" },
-            { q: "34. A company pays Royalty to State Government on the basis of production, it is treated as:", o: ["Direct material cost", "Quality Control Cost", "Direct Expenses", "Administrative Overhead"], c: "Direct Expenses" },
-            { q: "35. Which of the following is not an element of Works Overhead?", o: ["Store Keeper's Salary", "Plant Manager's salary", "Sales Manager's Salary", "Product Inspector's Salary"], c: "Sales Manager's Salary" },
-            { q: "36. A profit centre is a centre", o: ["Where the manager has the responsibility of generating and maximising profits", "Which is concerned with earning an adequate Return on Investment", "Both of the above", "Which manages cost"], c: "Where the manager has the responsibility of generating and maximising profits" },
-            { q: "37. Responsibility Centre can be categorised into:", o: ["Cost Centres only", "Profit Centres only", "Investment Centres only", "Cost Centres, Profit Centres and Investment Centres"], c: "Cost Centres, Profit Centres and Investment Centres" },
-            { q: "38. Cost Unit is defined as:", o: ["Unit of quantity of product, service or time in relation to which costs may be ascertained or expressed", "A location, person or an item of equipment or a group of these for which costs are ascertained and used for cost control.", "Centres having the responsibility of generating and maximising profits", "Centres concerned with earning an adequate return on investment"], c: "Unit of quantity of product, service or time in relation to which costs may be ascertained or expressed" },
-            { q: "39. Fixed cost is a cost:", o: ["Which changes in total in proportion to changes in output", "which is partly fixed and partly variable in relation to output", "Which do not change in total during a given period despise changes in output", "which remains same for each unit of output"], c: "Which do not change in total during a given period despise changes in output" },
-            { q: "40. Uncontrollable costs are the costs which ____ be influenced by the action of a specified member of an undertaking.", o: ["can not", "can", "may or may not", "must"], c: "can not" },
-            { q: "41. Element/s of Cost of a product are:", o: ["Material only", "Labour only", "Expenses only", "Material, Labour and expenses"], c: "Material, Labour and expenses" },
-            { q: "42. Abnormal cost is the cost:", o: ["Cost normally incurred at a given level of output", "Cost not normally incurred at a given level of output", "Cost which is charged to customer", "Cost which is included in the cost of the product"], c: "Cost not normally incurred at a given level of output" },
-            { q: "43. Conversion cost includes cost of converting ____ into ____.", o: ["Raw material, WIP", "Raw material. Finished goods", "WIP, Finished goods", "Finished goods, Saleable goods"], c: "Raw material. Finished goods" },
-            { q: "44. Sunk costs are:", o: ["relevant for decision making", "Not relevant for decision making", "cost to be incurred in future", "future costs"], c: "Not relevant for decision making" },
-            { q: "45. Calculate the prime cost from the following information: Direct material purchased: Rs. 1,00,000 Direct material consumed: Rs. 90,000 Direct labour: Rs60,000 Direct expenses: Rs. 20,000 Manufacturing overheads: Rs. 30,000", o: ["Rs. 1,80,000", "Rs. 2,00,000", "Rs. 1,70,000", "Rs. 2,10,000"], c: "Rs. 1,70,000" },
-            { q: "46. Total cost of a product: Rs. 10,000 Profit: 25% on Selling Price Profit is:", o: ["Rs. 2.500", "Rs. 3,000", "Rs. 3,333", "Rs. 2,000"], c: "Rs. 3,333" },
-            { q: "47. Calculate cost of sales from the following: Net Works cost: Rs. 2,00,000 Office & Administration Overheads: Rs. 1,00,000 Opening stock of WIP: Rs. 10,000 Closing Stock of WIP: Rs. 20.000 Closing stock of finished goods: Rs. 30,000 There was no opening stock of finished goods. Selling overheads: Rs. 10,000", o: ["Rs. 2,70,000", "Rs. 2,80,000", "Rs. 3,00,000", "Rs. 3,20,000"], c: "Rs. 2,80,000" }, // As per PDF answer key
-            { q: "48. Which of the following is considered as normal loss of material?", o: ["Pilferage", "Loss due to accident", "Loss due to careless handling of material", "None of these"], c: "Loss due to careless handling of material" },
-            { q: "49. The most important element of cost is-", o: ["Material", "Labour", "Overheads", "All of these"], c: "Material" },
-            { q: "50. Direct material is a -", o: ["Adiministration Cost", "Selling and Distribution cost", "All of these", "None of these"], c: "None of these" },
-            { q: "51. Which of the following is considered as accounting record?", o: ["Bin Card", "Bill of material", "Store Ledger", "None of these"], c: "Store Ledger" },
-            { q: "52. Direct material can be classified as:", o: ["Fixed cost", "Semi-Variable cost", "Vaiable Cost", "Prime cost"], c: "Vaiable Cost" },
-            { q: "53. In which of the following methods of pricing, costs lag behind the current economic values?", o: ["Replacement price method", "Last in first out price method", "First in first out price method", "Weighted average price method"], c: "First in first out price method" },
-            { q: "54. In which of the following methods, issues of materials are priced at pre-determined rate?", o: ["Replacement price method", "Inflated price method", "Specific price method", "Standard price method"], c: "Standard price method" },
-            { q: "55. Which of the following methods smoothes out the effect of fluctuations when material prices fluctuate widely?", o: ["FIFO", "Simple Average", "LIFO", "Weighted average"], c: "Weighted average" },
-            { q: "56. In which of the following incentive plan of payment, wages on time basis are not Guaranteed?", o: ["Halsey plan", "Rowan plan", "Taylor's differential piece rate system", "Gantt's task and bonus system"], c: "Taylor's differential piece rate system" },
-            { q: "57. Cost of idle time arising due to non-availability of raw material is:", o: ["Charged to costing profit and loss A/c", "Charged to factory overheads", "Recovered by inflating the wage rate", "Ignored"], c: "Charged to costing profit and loss A/c" },
-            { q: "58. When overtime is required for meeting urgent orders, overtime premium should be", o: ["Charged to costing profit and loss A/c", "Charged to overhead costs", "Charged to respective jobs", "Ignored"], c: "Charged to overhead costs" },
-            { q: "59. Labour turnover is measured by", o: ["Number of workers replaced average number of workers", "Number of workers left/number in the beginning plus number at the end", "Number of workers joining/number in the beginning of the period", "All of these"], c: "Number of workers replaced average number of workers" },
-            { q: "60. Idle time is", o: ["Time spent by workers in factory", "Time spent by workers in office", "Time spent by workers off their work", "Time spent by workers on their job"], c: "Time spent by workers off their work" },
-            { q: "61. Over time is:", o: ["Actual hours being more than normal time", "Actual hours being more than standard time", "Standard hours being more than actual hours", "Actual hours being less than standard time"], c: "Actual hours being more than normal time" },
-            { q: "62. Labour productivity is measured by comparing", o: ["Total output with total man-hours", "Added value for the product with total wage cost", "Actual time and standard time", "All of the above"], c: "All of the above" },
-            { q: "63. If the time saved is less than 50% of the standard time, then the wages under Rowan and Halsey premium plan on comparison gives:", o: ["Equal wages under two plans", "More wages to workers under Halsey Plan than Rowan Plan", "More wages to workers under Rowan Plan than Halsey Plan", "None of the above"], c: "More wages to workers under Rowan Plan than Halsey Plan" },
-            { q: "64. Under Taylor's differential piece rate scheme, if a worker fails to complete the task within the standard time, then he is paid", o: ["83% of the piece work rate", "175% of the piece work rate", "67% of the piece work rate", "125% of the piece work rate"], c: "83% of the piece work rate" },
-            { q: "65. Direct Expenses ____ includes imputed cost.", o: ["Shall", "Shall not", "Shall be", "None of these"], c: "Shall not" },
-            { q: "66. Direct Expenses that does not meet the test of materiality can be ____ part of overhead.", o: ["Treated", "Not treated", "All of the these", "None of these"], c: "Treated" },
-            { q: "67. Example of Direct Expenses.", o: ["Rent", "Royalty charged on production", "Bonus to employee", "None of these"], c: "Royalty charged on production" },
-            { q: "68. The allotment of whole items of cost centres or cost unit is called", o: ["Cost allocation", "Cost apportionment", "Overhead absorption", "None of the above"], c: "Cost allocation" },
-            { q: "69. Directors remuneration and expenses form a part of:", o: ["Production overhead", "Administration overhead", "Selling overhead", "Distribution overhead"], c: "Administration overhead" },
-            { q: "70. Charging to a cost center those overheads that result solely for the existence of that cost Center is known as", o: ["Allocation", "Apportionment", "Absorption", "Allotment"], c: "Allocation" },
-            { q: "71. Absorption means:", o: ["Charging of overheads to cost centres", "Charging of overhead to cost units", "Charging of overheads to cost centres or cost units", "None of the above"], c: "Charging of overhead to cost units" },
-            { q: "72. When the amount of under or over absorption is significant, it should be disposed of by:", o: ["Transferring to costing profit and loss account", "The use of supplementary rates", "Carrying over as a deferred charge to the next accounting year", "None of the above"], c: "The use of supplementary rates" },
-            { q: "73. Selling and distribution overheads are absorbed on the basis of:", o: ["rate per unit.", "percentage on works cost.", "percentage on selling price of each unit.", "Any of the above"], c: "Any of the above" },
-            { q: "74. Primary packing cost is a part of:", o: ["Direct material cost", "Distribution overhead", "Selling overhead", "Production cost"], c: "Production cost" },
-            { q: "75. Normal capacity of a plant refers to the difference between:", o: ["Maximum capacity and practical capacity", "Maximum capacity and actual capacity", "Practical capacity and estimated idle capacity as revealed by long term sales trend", "Practical capacity and normal capacity"], c: "Practical capacity and estimated idle capacity as revealed by long term sales trend" },
-            { q: "76. When the amount of overhead absorbed is less than the amount of overhead incurred, it is called:", o: ["Under absorption of overhead", "Over absorption of overhead", "Proper absorption of overhead", "None of the above"], c: "Under absorption of overhead" },
-            { q: "77. ____ is a scientific and accurate method of factory overhead absorption.", o: ["Percentage of prime cost method", "Machine hour rate method", "Percentage of direct material cost method", "Percentage of direct labour cost method"], c: "Machine hour rate method" },
-            { q: "78. Which of these is not a Material control technique:", o: ["ABC Analysis", "Fixation of raw material levels", "Maintaining stores ledger", "Control over slow moving and non moving items"], c: "Maintaining stores ledger" },
-            { q: "79. Out of the following, what is not the work of purchase department:", o: ["Receiving purchase requisition", "Exploring the sources of material supply", "Preparation and execution of purchase orders", "Accounting for material received"], c: "Accounting for material received" },
-            { q: "80. Bin Card is a:", o: ["Quantitative as well as value wise records of material received, issued and balance;", "Quantitative record of material received, issued and balance", "Value wise records of material received, issued and balance", "a record of labour attendance"], c: "Quantitative record of material received, issued and balance" },
-            { q: "81. Stores Ledger is a:", o: ["Quantitative as well as value wise records of material received, issued and balance;", "Quantitative record of material received, issued and balance", "Value wise records of material received, issued and balance", "a record of labour attendance"], c: "Quantitative as well as value wise records of material received, issued and balance;" },
-            { q: "82. Re-order level is calculated as:", o: ["Maximum consumption x Maximum re-order period", "Minimum consumption x Minimum re-order period", "1/2 of (Minimum + Maximum consumption)", "Maximum level - Minimum level"], c: "Maximum consumption x Maximum re-order period" },
-            { q: "83. Economic order quantity is that quantity at which cost of holding and carrying inventory is", o: ["Maximum and equal", "Minimum and equal", "It can be maximum or minimum depending upon case to case.", "Minimum and unequal"], c: "Minimum and equal" },
-            { q: "84. ABC analysis is an inventory control technique in which:", o: ["Inventory levels are maintained", "Inventory is classified into A, B and C category with A being the highest quantity, lowest value.", "Inventory is classified into A, B and C Category with A being the lowest quantity, highest value", "Either b or c."], c: "Inventory is classified into A, B and C Category with A being the lowest quantity, highest value" },
-            { q: "85. Which one out of the following is not an inventory valuation method?", o: ["FIFO", "LIFO", "Weighted Average", "EOQ"], c: "EOQ" },
-            { q: "86. In case of rising prices (inflation), FIFO method will:", o: ["provide lowest value of closing stock and profit", "provide highest value of closing stock and profit", "provide highest value of closing stock but lowest value of profit", "provide highest value of profit but lowest value of closing stock"], c: "provide highest value of closing stock and profit" },
-            { q: "87. In case of rising prices (inflation), LIFO will:", o: ["provide lowest value of closing stock and profit", "provide highest value of closing stock and profit", "provide highest value of closing stock but lowest value of profit", "provide highest value of profit but lowest value of closing stock"], c: "provide lowest value of closing stock and profit" },
-            { q: "88. Calculate Re-order level from the following: Consumption per week: 100-200 units Delivery period: 14-28 days", o: ["5600 units", "800 units", "1400 units", "200 units"], c: "5600 units" },
-            { q: "89. Calculate EOQ (approx.) from the following details: Annual Consumption: 24000 units Ordering cost: Rs. 10 per order Purchase price: Rs. 100 per unit Carrying cost: 5%", o: ["310", "400", "290", "300"], c: "310" },
-            { q: "90. Calculate the value of closing stock from the following according to FIFO method: 1st January, 2024: Opening balance: 50 units @ Rs. 4 Receipts: 5th January, 2024: 100 units @ Rs. 5 12th January, 2024: 200 units @ Rs. 4.50 Issues: 2nd January, 2024: 30 units 18th January, 2024: 150 units", o: ["Rs. 765", "Rs. 805", "Rs. 786", "Rs. 700"], c: "Rs. 765" },
-            { q: "91. Calculate the value of closing stock from the following according to LIFO method: 1st January, 2024: Opening balance: 50 units @ Rs. 4 Receipts: 5th January, 2024: 100 units @ Rs. 5 12th January, 2024: 200 units @ Rs. 4.50 Issues: 2nd January, 2024: 30 units 18th January, 2024: 150 units", o: ["Rs. 765", "Rs. 805", "Rs. 786", "Rs. 700"], c: "Rs. 805" }, // Corrected
-            { q: "92. Calculate the value of closing stock from the following according to Weighted Average method: 1st January, 2024: Opening balance: 50 units @ Rs. 4 Receipts: 5th January, 2024: 100 units @ Rs. 5 12th January, 2024: 200 units @ Rs. 4.50 Issues: 2nd January, 2024: 30 units 18th January, 2024: 150 units", o: ["Rs. 765", "Rs. 805", "Rs. 786", "Rs. 700"], c: "Rs. 786" },
-            { q: "93. Cost of abnormal wastage is:", o: ["Charged to the product cost", "Charged to the profit & loss account", "charged partly to the product and partly profit & loss account", "not charged at all."], c: "Charged to the profit & loss account" },
-            { q: "94. Calculate re-order level from the following: Safety stock: 1000 units Consumption per week: 500 units It takes 12 weeks to reach material from the date of ordering.", o: ["1000 units", "6000 units", "3000 units", "7000 units"], c: "7000 units" },
-            { q: "95. From the following information, calculate the extra cost of material by following EOQ: Annual consumption: 45000 units Ordering cost per order: Rs.10 Carrying cost per unit per annum: Rs.10 Purchase price per unit: Rs.50 Re-order quantity at present: 45000 units There is discount of 10% per unit in case of purchase of 45000 units in bulk.", o: ["No saving", "Rs. 2,00,000", "Rs. 2,22,010", "Rs. 2,990"], c: "Rs. 2,990" },
-            { q: "96. Which of the following is an abnormal cause of Idle time:", o: ["Time taken by workers to travel the distance between the main gate of factory and place of their work", "Time lost between the finish of one job and starting of next job", "Time spent to meet their personal needs like taking lunch, tea etc", "Machine break downs"], c: "Machine break downs" },
-            { q: "97. If overtime is resorted to at the desire of the customer, then the overtime premium:", o: ["should be charged to costing profit and loss account;", "should not be charged at all", "should be charged to the job directly", "should be charged to the highest profit making department"], c: "should be charged to the job directly" },
-            { q: "98. Labour turnover means:", o: ["Turnover generated by labour", "Rate of change in composition of labour force during a specified period", "Either of the above", "Both of the above"], c: "Rate of change in composition of labour force during a specified period" },
-            { q: "99. Which of the following is not an avoidable cause of labour turnover:", o: ["Dissatisfaction with Job", "Lack of training facilities", "Low wages and allowances", "Disability, making a worker unfit for work"], c: "Disability, making a worker unfit for work" },
-            { q: "100. Costs associated with the labour turnover can be categorised into:", o: ["Preventive Costs only", "Replacement costs only", "Both of the above", "Machine costs"], c: "Both of the above" },
-            { q: "101. Calculate workers left and discharged from the following: Labour turnover rates are 20%, 10% and 6% respectively under Flux method, Replacement method and Separation method. No. of workers replaced during the quarter is 80.", o: ["112", "80", "48", "64"], c: "48" },
-            { q: "102. Calculate workers recruited and joined from the following: Labour turnover rates are 20%, 10% and 6% respectively under Flux method, Replacement method and Separation method. No. of workers replaced during the quarter is 80.", o: ["112", "80", "48", "64"], c: "112" },
-            { q: "103. Calculate the labour turnover rate according to replacement method from the following: No. of workers on the payroll: - At the beginning of the month: 500 At the end of the month: 600 During the month, 5 workers left, 20 workers were discharged and 75 workers were recruited. Of these, 10 workers were recruited in the vacancies of those leaving and while the rest were engaged for an expansion scheme.", o: ["4.55%", "1.82%", "6%", "3%"], c: "1.82%" },
-            { q: "104. Calculate the labour turnover rate according to Separation method from the following: No. of workers on the payroll: -At the beginning of the month: 500 At the end of the month: 600 During the month, 5 workers left, 20 workers were discharged and 75 workers were recruited. Of these, 10 workers were recruited in the vacancies of those leaving and while the rest were engaged for an expansion scheme.", o: ["4.55%", "1.82%", "6%", "3%"], c: "4.55%" },
-            { q: "105. A worker is allowed 60 hours to complete the job on a guaranteed wage of Rs. 10 per hour. Under the Rowan Plan, he gets an hourly wage of Rs. 12 per hour. For the same saving in time, how much he will get under the Halsey Plan?", o: ["Rs.720", "Rs.540", "Rs.600", "Rs.900"], c: "Rs.540" },
-            { q: "106. Overhead refers to:", o: ["Direct or Prime Cost", "All Indirect costs", "only Factory indirect costs", "Only indirect expenses"], c: "All Indirect costs" },
-            { q: "107. Allotment of whole item of cost to a cost centre or cost unit is known as:", o: ["Cost Apportionment", "Cost Allocation", "Cost Absorption", "Machine hour rate"], c: "Cost Allocation" },
-            { q: "108. Which of the following is not a method of cost absorption?", o: ["Percentage of direct material cost", "Machine hour rate", "Labour hour rate", "Repeated distribution method"], c: "Repeated distribution method" },
-            { q: "109. Service departments costs should be allocated to:", o: ["Only Service departments", "Only Production departments", "Both Production and service departments", "None of the production and service departments"], c: "Both Production and service departments" },
-            { q: "110. Most suitable basis for apportioning insurance of machine would be:", o: ["Floor Area", "Value of Machines", "No. of Workers", "No. of Machines"], c: "Value of Machines" },
-            { q: "111. Blanket overhead rate is:", o: ["One single overhead absorption rate for the whole factory", "Rate which is blank or nil rate", "rate in which multiple overhead rates are calculated for each production department, service department etc", "Always a machine hour rate"], c: "One single overhead absorption rate for the whole factory" },
-            { q: "112. AT Co makes a single product and is preparing its material usage budget for next year. Each unit of product requires 2kg of material, and 5,000 units of product are to be produced next year. Opening inventory of material is budgeted to be 800 kg and AT co budgets to increase material inventory at the end of next year by 20%. The material usage budget for next year is:", o: ["8,000 Kg", "9,840 kg", "10,000 Kg", "10,160 Kg"], c: "10,000 Kg" },
-            { q: "113. During a period 17, 500 labour hours were worked at a standard cost of Rs. 6.50 per hour. The labour efficiency variance was Rs. 7,800 favourable. How many standard hours were produced?", o: ["1200", "16300", "17500", "18700"], c: "18700" },
-            { q: "114. In most of the manufacturing industries, the most important element of cost is", o: ["material", "Labour", "overheads", "None of the above"], c: "material" },
-            { q: "115. Which of the following is NOT considered to be Normal loss of Materials ?", o: ["Loss due to accidents", "Pilferage", "Loss due to breaking the bulk", "Loss due to transfering of liquid materials fromcontainer to another"], c: "Loss due to breaking the bulk" },
-            { q: "116. Which of following is NOT considered as Normal loss of material?", o: ["evaporation due to prevalent weather conditions", "Loss due to pilferage", "Loss due to breaking the bulk", "Loss due to transferring of liquid materials from container to another"], c: "Loss due to pilferage" },
-            { q: "117. At the economic ordering quantity level, the following is true on an annual basis:", o: ["Ordering Cost is minimum", "Carrying Cost is minimum", "Ordering Cost is equal to the Carrying Cost", "Purchase Price is minimum"], c: "Ordering Cost is equal to the Carrying Cost" },
-            { q: "118. Continuous Stock Taking is a part of:", o: ["Annual Stock Taking", "Perpetual Inventory", "ABC Analysis", "Bin Cards"], c: "Perpetual Inventory" },
-            { q: "119. In which of the following methods, issues of materials are priced at pre-determined rate?", o: ["Inflated Price Method", "Standard price method", "Replacement Price Method", "Market Price Method"], c: "Standard price method" },
-            { q: "120. When Material prices Fluctuate widely, the method of pricing that gives absurd results is -", o: ["Simple Average Price", "Weighted Average price", "Moving Average Price", "Inflated Price"], c: "Inflated Price" }, // Corrected
-            { q: "121. When prices fluctuate widely, the method that will smooth out the effect of fluctuations is", o: ["Simple Average Price", "Weighted Average price", "FIFO", "LIFO"], c: "Weighted Average price" },
-            { q: "122. Under the FSN system of Inventory Control, Inventory is Classified on the basis of:", o: ["Volumne of materail consumption", "Frequently of usage of items of inventory", "Criticality of the item of inventory of production", "Value of Items of Inventory"], c: "Frequently of usage of items of inventory" },
-            { q: "123. Form used for making a formal request to the Purchasing Department to purchase materials is a-", o: ["material transfer note", "Purchase Requisition Note", "Shop Credit Note", "Material requisition note"], c: "Purchase Requisition Note" },
-            { q: "124. Classification of Materials on the basis of their Importance in Value is called:", o: ["EOQ Analysis", "Stock level analysis", "ABC Analysis", "Value analysis"], c: "ABC Analysis" },
-            { q: "125. For Return of Excess Materials from Production Department to stores, the document used is:", o: ["Material return note", "Stores debit note", "Material specification", "All the above (same)"], c: "All the above (same)" }, // Corrected
-            { q: "126. Which of the following is NOT related to a standard list of materials and components?", o: ["Consumption Statement", "bill of materials", "list", "Material list"], c: "Consumption Statement" },
-            { q: "127. Which of the following is NOT recorded on a Bin card?", o: ["material received from supplier", "material issued to production depts", "Inter department transfers", "Loss of materials"], c: "Inter department transfers" },
-            { q: "128. What is the formula for Re-order level?", o: ["Minimum Usage x minimum lead time", "Maximum Usage x maximum lead time", "Maximum Usage x minimum lead time", "Minimum Usage x maximum lead time"], c: "Maximum Usage x maximum lead time" },
-            { q: "129. (ROL+ROQ (-) minimum usage x minimum lead time) is the computation formula for....", o: ["Maximum level", "Minimum level", "Average level", "danger level"], c: "Maximum level" },
-            { q: "130. Inventory turnover ratio is expressed in", o: ["Rupees", "Percentage", "times", "Any of the above"], c: "times" },
-            { q: "131. Generally, a ____ T/o and ____ days Average Inventory held is preferable", o: ["High, less", "Low, high", "Low low", "high, high"], c: "High, less" },
-            { q: "132. Pricing of Materials in the order in which they are purchased is called ____ method", o: ["Specific Identification", "FIFO", "LIFO", "Orderly"], c: "FIFO" },
-            { q: "133. Landed cost of materials does not include.....", o: ["Cost of Containers", "Carriage Inwards", "Stock Insurance", "Unloading Charges"], c: "Stock Insurance" },
-            { q: "134. Cost of abnormal loss of materials is", o: ["Debited to costing P &L", "Credited to Costing P&L", "InCluded In Landed Cost", "Included in OH"], c: "Debited to costing P &L" },
-            { q: "135. Idle time is the time under which", o: ["Full wages are paid to workers", "No output is produced by the workers", "Both (a) and (b)", "None of the above"], c: "Both (a) and (b)" },
-            { q: "136. When a direct Worker is paid on a monthly fixed salary basis, the following is true:", o: ["There is no idle time lost", "There is no idle time cost", "Idle time cost is separated and treated as overhead", "salari is fully treated as factory overhead cost"], c: "There is no idle time lost" }, // Corrected
-            { q: "137. Time and Motion study is conducted by", o: ["Time Keeping Department", "Personnel Department", "Payroll Department", "Engineering Department"], c: "Engineering Department" },
-            { q: "138. Wages sheet is generally prepared by-", o: ["Time Keeping Department", "Personnel Department", "Payroll Department", "Engineering Department"], c: "Payroll Department" },
-            { q: "139. For reducing the labour cost per unit, which of the following factors is most important?", o: ["Low wage rate", "Longer hours of work", "Higher Productivity or Efficiency", "Strict control and supervison"], c: "Higher Productivity or Efficiency" },
-            { q: "140. Time Booking refers to a method wherein ____ of an employees is recorded", o: ["Attendance", "book keeping details", "Health Status", "Time spent on a particulars job"], c: "Time spent on a particulars job" },
-            { q: "141. Employee Cost includes", o: ["wages and salaries", "Allowances and incentives", "Payment for Overtime", "All of the above"], c: "All of the above" },
-            { q: "142. Standard Time of a job is 60 hours and guaranteed time rate is rs 90 per hour. What is the amount of wages under Rowan plan if job is completed in 48 hours?", o: ["rs 1620", "rs 1728", "rs 1800", "rs 1440"], c: "rs 1728" },
-            { q: "143. Standard Time of a job is 60 hours and guaranteed time rate is rs 90 per hour. What is the amount of wages under Halsey plan if job is completed in 48 hours?", o: ["rs 1620", "rs 1440", "rs 180", "rs 1728"], c: "rs 1440" }, // Corrected
-            { q: "144. If Overtime is required for meeting urgent orders, the Overtime premium should be charged as -", o: ["Respective job", "Over head Cost", "Costing P& L a/c", "None of above"], c: "Respective job" },
-            { q: "145. Keeping a rocord of total time spent by the worker inside the factory is called", o: ["Time keeping", "Time Booking", "Time Managing", "Time Recording"], c: "Time keeping" },
-            { q: "146. Wages attributable to Normal idle Time is treated as", o: ["Direct Wages", "Producction OH", "Either of the above", "None of the above"], c: "Either of the above" },
-            { q: "147. In the context of Labour Turnover, Number of Workers left and discharged is called-", o: ["Accession", "Replacement", "new replacement", "Separation"], c: "Separation" },
-            { q: "148. (Hours worked X Rate per hour) is the computation of wages under", o: ["Incentive System", "Piece rate System", "Attendance System", "Time rate System"], c: "Time rate System" },
-            { q: "149. Under Halsey System, generally Bonus is computed as ____ x (Time Saved x Rate per hour)", o: ["30%", "50%", "70%", "Actual Hrs/Std. Hrs"], c: "50%" },
-            { q: "150. A worker will earn ____ wages under Halsey and Rowan System, if time Saved equals -", o: ["Equal", "More under Halsey", "More under Rowan", "Cannot say"], c: "Equal" },
-            { q: "151. Labour Efficiency (based on time) is given by the Formula", o: ["Std Time/Actual Time", "Actual time/std time", "Idle Time/Std time", "Idle Time/Actual Time"], c: "Std Time/Actual Time" },
-            { q: "152. If wages per day of 8 hours is rs 500, std outputis 100 units. Actual Output is 120,piece rate wages-", o: ["rs 500", "rs 600", "rs 62.5", "rs 5"], c: "rs 600" },
-            { q: "153. If Std Time is 8 hours, Actual time is 6 hours,rate per hour is Rs. 100, Rwan Wages =", o: ["Rs. 600", "Rs. 150", "Rs. 750", "Rs. 700"], c: "Rs. 750" },
-            { q: "154. If Actual Output in 8 hours is 700 units, Standard Output is 90 units per hour, Efficiency Ratio is", o: ["97.22%", "102.86%", "100%", "77.78%"], c: "97.22%" },
-            { q: "155. Fixed over costs are not effected in monetary terms during a fiven period by a change in Output. But this statement is valid provided", o: ["Increase in Output is not Substantial", "Increase in Output is substantial", "Both (a) and (b)", "None of the above"], c: "Increase in Output is not Substantial" },
-            { q: "156. ____ Capacity is defined as actually utilised capacity of a plant.", o: ["theoretical", "Installed", "Practical", "Idle"], c: "Practical" },
-            { q: "157. Maximum Possible Productive Capacity of a plant when no operating time is lost is its:", o: ["Normal Capacity", "Practical Capacity", "Theoretical Capacity", "Capacity based on Sales Expectancy"], c: "Theoretical Capacity" },
-            { q: "158. Charging of common Overheads cost to various cost centres, using appropriate bases is known as -", o: ["Allocation", "Apportionment", "Absorption", "Re-Apportionment"], c: "Apportionment" },
-            { q: "159. Distribution of service Department Overheads Cost to production Departments using different assumptions and methods is known as", o: ["Allocation", "Apportionment", "Absorption", "Re- Apportionment"], c: "Re- Apportionment" },
-            { q: "160. ____ packing Cost is part of", o: ["Production cost", "Selling Cost", "Distribution Cost", "It may be any of the above"], c: "It may be any of the above" },
-            { q: "161. Which of the following is not treated as a Manufacturing Overhead ?", o: ["Lubricants", "Cotton Waste", "apportioned administration overheads", "Night Shift allowance paid to a factory Worker due to general work pressure"], c: "Night Shift allowance paid to a factory Worker due to general work pressure" },
-            { q: "162. The difference between Actual Factory Overhead and Absorbed Factory Overhead will be usually at the minimum level, provided pre-determined overhead rate is based on:", o: ["Maximum capacity", "Direct Labour Hours", "Machine Hours", "Normal Capacity"], c: "Normal Capacity" },
-            { q: "163. When Absorbed Overhead is Higher than the amount of Overhead incurred, it is called", o: ["Under absorption of overhead", "Over absorption of overhead", "Proper absorption of overhead", "reabsorption of overhead"], c: "Over absorption of overhead" },
-            { q: "164. Which of the following overhead cost may not be apportioned on the basis of Direct Wages?", o: ["Worker's Holiday pay", "Perquisites to workers", "ESI Contribution", "Managerial Salaries"], c: "Managerial Salaries" },
-            { q: "165. The following is an example of direct expenses as per CAS-10:", o: ["Special raw material which is a substantial part of the prime cost", "Travelling expenses to site.", "Overtime charges paid to direct worker to complete work before time.", "Catalogue of prices of finished products."], c: "Travelling expenses to site." },
-            { q: "166. CAS 21 stands for:", o: ["Capacity Determination", "Joint Cost", "Direct Expenses", "None of these"], c: "None of these" },
-            { q: "167. Standard deals with the cost of service cost center is:", o: ["CAS-9", "CAS-13", "CAS-16", "CAS22"], c: "CAS-13" },
-            { q: "168. Which standards deals with the principles and methods of determining depreciation and amortization cost?", o: ["CAS 9", "CAS 12", "CAS 15", "CAS 16"], c: "CAS 16" },
-            { q: "169. Which standards deals with determination of averages/equalized transportation cost?", o: ["CAS 5", "CAS 6", "CAS 9", "CAS 22"], c: "CAS 5" },
-            { q: "170. Which standard deals with the principles and methods of determining the manufacturing Cost of excisable goods?", o: ["CAS 2", "CAS 12", "CAS 15", "CAS 22"], c: "CAS 22" },
-            { q: "171. ____ deals with the principles and methods of determining the production or operation overheads.", o: ["CAS-3", "CAS-5", "CAS-9", "CAS-16"], c: "CAS-3" },
-            { q: "172. CAS 13 stands for:", o: ["Joint Cost", "Interest and financing charges", "Employee Cost", "Cost of Service cost centre"], c: "Cost of Service cost centre" },
-            { q: "173. Which of the following items is not included in preparation of cost sheet?", o: ["Carriage inward", "Purchase returns", "Sales Commission", "Interest paid"], c: "Interest paid" },
-            { q: "174. Which of the following items is not excluded while preparing a cost sheet?", o: ["Goodwill written off", "Provision for taxation", "Property tax on Factory building", "Transfer to reserves"], c: "Property tax on Factory building" },
-            { q: "175. Which of the following are direct expenses? (1) The cost of special designs, drawings or layouts, (2) The hire of tools or equipment for a particular job,(3) Salesman's wages, (4) Rent, rates and insurance of a factory", o: ["(1) and (2)", "(1) and (3)", "(1) and (4)", "(3) and (4)"], c: "(1) and (2)" },
-            { q: "176. What is prime cost?", o: ["Total direct cost only", "Total indirect costs only", "Total non-production costs", "Total production costs"], c: "Total direct cost only" },
-            { q: "177. Which of the following is not an element of works overhead?", o: ["Sales manager's salary", "Plant manager's salary", "Factory repairman's wages", "Product inspector's salary"], c: "Sales manager's salary" },
-            { q: "178. For the purpose of Cost Sheet preparation, costs are classified based on:", o: ["Functions", "Relevance", "Variability", "Nature"], c: "Functions" },
-            { q: "179. Salary paid to an office supervisor is a part of:", o: ["Direct expenses", "Administration cost", "Quality control cost", "Factory overheads"], c: "Administration cost" },
-            { q: "180. Audit fees paid to cost auditors is part of", o: ["Selling and distribution cost", "Production cost", "Administration cost", "Not recorded in the cost sheet"], c: "Administration cost" },
-            { q: "181. A company has set up a laboratory for testing of products for compliance with standards. Salary of this laboratory stuffs are part of:", o: ["Direct expenses", "Quality control cost", "Works overheads", "Research and development cost"], c: "Quality control cost" },
-            { q: "182. Canteen expenses for factory workers are part of:", o: ["Administration cost", "Factory overhead", "Marketing cost", "None of the above"], c: "Factory overhead" },
-            { q: "183. Which of the following does not form part of prime cost?", o: ["GST paid on raw materials (input credit can be claimed)", "Cost of transportation paid to bring materials to factory", "Cost of packing", "Overtime premium paid to workers"], c: "Overtime premium paid to workers" },
-            { q: "184. A company pays royalty to State Government on the basis of production, it is treated as:", o: ["Direct expenses", "Factory overheads", "Direct Material Cost", "Administration Cost"], c: "Direct expenses" },
-            { q: "185. In Reconciliation Statements, expenses shown only in financial accounts are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Added to costing profit"], c: "Added to costing profit" },
-            { q: "186. In Reconciliation Statement, expenses shown only in cost accounts are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Deducted from costing profit"], c: "Deducted from costing profit" },
-            { q: "187. In Reconciliation Statement, transfers to reserves are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Added to costing profit"], c: "Added to financial profit" }, // Corrected
-            { q: "188. In Reconciliation Statement, incomes shown only in financial accounts are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Deducted from costing profit"], c: "Added to financial profit" },
-            { q: "189. In Reconciliation Statement, Closing Stock undervalued in Financial Accounts is", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Added to costing profit"], c: "Added to financial profit" }, // Corrected
-            { q: "190. Under non-integrated accounting system:", o: ["Separate ledgers are maintained for cost and financial accounts", "Same ledger is maintained for cost and financial accounts by accountants", "(A) and (B) both", "None of the above"], c: "Separate ledgers are maintained for cost and financial accounts" },
-            { q: "191. Under non-integrated system of accounting, purchase of raw material is debited to:", o: ["Purchase account", "Material control account/stores ledger control account", "General ledger adjustment account", "None of the above"], c: "Material control account/stores ledger control account" },
-            { q: "192. When costing loss is Rs. 5,600, administrative overhead under-absorbed being Rs. 600, the loss as per financial accounts should be", o: ["Rs.5000", "Rs.5600", "Rs.6200", "None of the above"], c: "Rs.6200" },
-            { q: "193. Which of the following items should be added to costing profit to arrive at financial profit?", o: ["Income tax paid", "Over absorption of works overhead", "Interest paid on debentures", "All of the above"], c: "Over absorption of works overhead" },
-            { q: "194. Integral accounts eliminate the necessity of operating", o: ["Cost Ledger control accoun", "Store Ledger control account", "Overhead adjustment account", "None of the above"], c: "Cost Ledger control accoun" },
-            { q: "195. Under Non- integrated accounting system, the amount made to complete double entry is:", o: ["Finished goods control account", "Work in progress control account", "stores ledger control accounts", "General ledger adjustment account"], c: "General ledger adjustment account" },
-            { q: "196. Under the Non-Integrated Accounting System -", o: ["Same ledger is maintained for Cost and financial Accounts by Accountants", "Separate ledgers are maintained for Cost and Financial Accounts", "All transactions relating to incomes. Expenditures, Assets and Liabilities are completely recorderd", "Product-wise or department wise information is not maintained"], c: "Separate ledgers are maintained for Cost and Financial Accounts" },
-            { q: "197. Notional Costs -", o: ["May be included in Integrated Accounts", "may be Included in Non - Integrated accounts", "Cannot Be included in Non-intergrated Accounts", "are not accounted at all in Ingrated or Non-integrated Accounts"], c: "may be Included in Non - Integrated accounts" },
-            { q: "198. Which account is to be debited if materials worth rs 500 are returned to vendor under Non-Ingrated Accounts", o: ["Cost Ledger control account", "finished goods control Account", "WIP Control Account", "General ledger adjustment account"], c: "General ledger adjustment account" },
-            { q: "199. What is the journal Entry under Integrated System for recording Sales made?", o: ["No entry", "Dr sales, Cr General Ledger Adjustment", "Dr. cash or bank Cr. Sales", "Dr. General Ledger Adjsutment, Cr sales"], c: "Dr. General Ledger Adjsutment, Cr sales" }, // Corrected
-            { q: "200. Which of the following items is most likely to be included in Cost Accounts?", o: ["Notional Rent", "Donations", "Transfer to General Reserve", "Rent Receivable"], c: "Notional Rent" },
-            { q: "201. Job costing is used in:", o: ["Furniture making", "Repair shops", "Printing press", "All of the above"], c: "All of the above" },
-            { q: "202. In a job cost system, costs are accumulated", o: ["On a monthly basis", "By specific job", "By department or process", "By kind of material used"], c: "By specific job" },
-            { q: "203. The most suitable cost system where the products differ in type of material and work performed is:", o: ["Operating Costing", "Job costing", "Process costing", "All of these."], c: "Job costing" },
-            { q: "204. Cost Price is not fixed in case of:", o: ["Cost plus contracts", "Escalation clause", "De escalation clause", "All of the above"], c: "Cost plus contracts" },
-            { q: "205. Most of the expenses are direct in:", o: ["Job costing", "Batch costing", "Contact costing", "None of the above"], c: "Contact costing" },
-            { q: "206. Cost plus contract is usually entered into those cases where", o: ["Cost can be easily estimated", "Cost of certified and uncertified work", "Cost of certified work, cost of uncertified work and amount of profit transferred to Profit and Loss Account", "Determination of contract cost with reasonable accuracy is not possible"], c: "Determination of contract cost with reasonable accuracy is not possible" },
-            { q: "207. In order to determine cost of the products or services, different business firms follow:", o: ["Different techniques of costing", "Uniform costing", "Different methods of costing", "None of the above"], c: "Different methods of costing" },
-            { q: "208. In case product produced or jobs undertaken are of diverse system, the system of costing to be used should be:", o: ["Operating Costing", "Process Costing", "Job Costing", "None of the above"], c: "Job Costing" },
-            { q: "209. Job Costing is:", o: ["Suitable where similar products are produced on mass scale", "Methods of costing used for non-standard and non-repetitive products", "Technique of costing", "Applicable to all industries regardless of the products or services provided"], c: "Methods of costing used for non-standard and non-repetitive products" },
-            { q: "210. Batch costing is a type of:", o: ["Direct Costing", "Process Costing", "job Costing", "Differential Costing"], c: "job Costing" },
-            { q: "211. Batch costing is similar to that under job costing except with the difference that:", o: ["Process becomes a cost unit", "Job becomes a cost unit", "Batch become the cost unit instead of a job", "None of the above"], c: "Batch become the cost unit instead of a job" },
-            { q: "212. Economic batch quantity is that size of the batch of production where:", o: ["Carrying cost is minimum", "Set-up cost of machine is minimum", "Average cost is minimum", "Both A. and B"], c: "Both A. and B" },
-            { q: "213. Which of the following documents are used in job costing to record the issue of direct materials to a job?", o: ["Purchase order", "Purchase requisition", "Goods received note", "Material requisition"], c: "Material requisition" },
-            { q: "214. Which of the following statements is true?", o: ["Batch costing is a variant of jobs costing", "Job cost sheet may be used for estimating profit of jobs", "Job costing cannot be used in conjunction with marginal costing", "In cost plus contracts, the contractor runs a risk of incurring a loss"], c: "Job cost sheet may be used for estimating profit of jobs" },
-            { q: "215. Which of the statement is true?", o: ["Job costing can be suitably used for concerns producing any specific product uniformly", "Job costing cannot be used in companies applying standard costing", "Job cost sheet may be prepared to facilitate routing and scheduling of the job", "Neither A, nor B, nor C"], c: "Neither A, nor B, nor C" },
-            { q: "216. The type of process loss that should not be allowed to affect the cost of good units is called:", o: ["Standard LoSS", "Normal Loss", "Abnormal Loss", "Seasonal Loss"], c: "Abnormal Loss" },
-            { q: "217. Spoilage that occurs under inefficient operating conditions and is generally controllable is called", o: ["Normal defectives", "Abnormal spoilage", "Normal spoilage", "None of the above"], c: "Abnormal spoilage" },
-            { q: "218. In which of the following situations an abnormal gain in a process occurs:", o: ["When normal loss is equal to actual loss", "When the actual output is greater than the planned output", "When actual loss is more than the expected", "When actual loss is less than the expected loss"], c: "When the actual output is greater than the planned output" },
-            { q: "219. The value of abnormal loss is equal to:", o: ["Total cost of materials", "Total process cost less cost of scrap", "Total process cost less realisable value of normal loss less value of transferred out goods", "Total process cost less realisable value of normal loss"], c: "Total process cost less realisable value of normal loss" },
-            { q: "220. A process account is debited by abnormal gain, the value is determined as:", o: ["Equal to the value of good units less closing stock", "Equal to the value of normal loss", "Cost of good units less realisable value of normal loss", "Cost of good unit less realisable value of actual loss"], c: "Cost of good units less realisable value of normal loss" },
-            { q: "221. In sugar manufacturing industry molasses is also produced along with sugar. Molasses may be of small value as compared with the value of sugar and is known as:", o: ["Joint product", "Common product", "By-product", "None of them"], c: "By-product" },
-            { q: "222. Method of apportioning joint costs on the basis of output of each joint product at the point of split-offs is known as:", o: ["Physical unit method", "Sales value method", "Average cost method", "Marginal cost and contribution method"], c: "Physical unit method" },
-            { q: "223. The main purposes of accounting of joint products and by-products is to:", o: ["Determine the replacement cost", "Determine the opportunity cost", "Determine profit or loss on each product line", "None of the above"], c: "Determine profit or loss on each product line" },
-            { q: "224. Under net realisable value method of apportioning joint costs to joint products, the selling & distribution cost is:", o: ["Ignored", "Deducted from sales value", "Deducted from further processing", "Added to joint cost"], c: "Deducted from sales value" },
-            { q: "225. Which of the following is an example of by-product:", o: ["Mustard seeds and mustard oil", "Diesel and Petrol in an oil refinery", "Edible oils and oil cakes", "Curd and butter in a diary"], c: "Edible oils and oil cakes" },
-            { q: "226. Which of following methods can be used when the joint products are of unequal quantity and used for captive consumption:", o: ["Physical units method", "Net realisable value method", "Technical estimates, using market value of similar goods", "Market value at spit-off method"], c: "Technical estimates, using market value of similar goods" },
-            { q: "227. Cost of a particular service under operating costing is ascertained by preparing:", o: ["Cost sheet", "Process account", "Job cost sheet", "Production account"], c: "Job cost sheet" },
-            { q: "228. Operating costing is applicable to:", o: ["Hospitals", "Cinemas", "Transport undertaking", "All of the above"], c: "All of the above" },
-            { q: "229. Composite cost unit for a hospital is:", o: ["Per day", "Per bed", "Per patient day", "Per patient"], c: "Per patient day" },
-            { q: "230. Cost units used in power sector is called:", o: ["Number of hours", "Number of electric points", "Kilowatt-hour (KWH)", "Kilo meter (K.Μ.)"], c: "Kilowatt-hour (KWH)" },
-            { q: "231. Absolute Tonne-Km is an example of:", o: ["Composite unit for bus operation", "Composite unit of transport sector", "Composite unit for oil and natural gas", "Composite unit in power sector"], c: "Composite unit of transport sector" },
-            { q: "232. In process costing, a joint product is", o: ["a product which is later divided into many parts", "a product which is produced simultaneously with other products and is of similar value to at least one of the other products.", "A product which is produced simultaneously with other products but which is of a greater value than any of the other products.", "a product produced jointly with another organization"], c: "a product which is produced simultaneously with other products and is of similar value to at least one of the other products." },
-            { q: "233. Process B had no opening inventory. 13,500 units of raw material were transferred in at Rs. 4.50 per unit. Additional material at Rs.1.25per unit was added in process. Labour and overheads were Rs. 6.25 per completed unit and Rs. 2.50 per unit incomplete. If 11,750 completed units were transferred out, what was the closing inventory in Process B?", o: ["Rs. 6562.50", "Rs. 12,250.00", "Rs. 14,437.50", "Rs. 25,375.00"], c: "Rs. 14,437.50" },
-            { q: "234. A process costing system for J Co used an input of 3,500Kg of materials at Rs.20 per Kg and labour hours of 2,750 at Rs.25 per hour. Normal loss is 20% and losses can be sold at a scrap value of Rs.5per Kg. Output was 2,950 Kg. What is the value of the output?", o: ["Rs. 142,485", "Rs. 146,183", "Rs. 149,746", "Rs. 152.986"], c: "Rs. 142,485" },
-            { q: "235. In process costing, if an abnormal loss arises, the process account is generally", o: ["Debited with the scrap value of the abnormal loss units", "Debited with the full production cost of the abnormal loss. units", "Credited with the scrap value of the abnormal loss units", "Credited with the full production cost of the abnormal loss units"], c: "Credited with the full production cost of the abnormal loss units" },
-            { q: "236. Which of the following statements is/are correct? 1. A materials requisition note is used to record the issue of direct material to a specific job. 2. A typical job cost will contain actual costs for material, labour and production overheads, and non-production overheads are often added as a percentage of total production cost 3. The job costing method can be applied in costing batches", o: ["(1) only", "(1) and (2) only", "(1) and (3) only", "(2) and (3) only"], c: "(1) and (3) only" },
-            { q: "237. A job is budgeted to require 3,300 productive hours after incurring 25% idle time. If the total labour cost budgeted for the job is Rs.36,300. What is the labour cost per hour( to the nearest cent)?", o: ["Rs. 8.25", "Rs. 8.80", "Rs. 11.00", "Rs. 14.67"], c: "Rs. 8.25" },
-            { q: "238. A company calculates the prices of jobs by adding overheads to the prime cost and adding 30% to total costs as a profit margin. Job number Y256 was sold for Rs. 1690 and incurred overheads of Rs. 694. What was the prime cost of the job?", o: ["Rs. 489", "Rs. 606", "Rs. 996", "Rs. 1300"], c: "Rs. 606" },
-            { q: "239. State which of the following are the characteristics of service costing? 1. High levels of indirect costs as a proportion of total costs 2. Use of composite cost units 3. Use of equivalent units", o: ["(1) and (2) only", "(1) only", "(2) only", "(2) and (3) only"], c: "(1) and (2) only" },
-            { q: "240. Which of the following organisations should not be advised to use service costing?", o: ["Hospital", "Distribution service", "Maintenance division of a manufacturing company", "A light engineering company"], c: "Maintenance division of a manufacturing company" }, // Corrected
-            { q: "241. In case of joint products, the main objective of accounting of the cost is to apportion the joint costs incurred up to the split off point. For cost apportionment one company has chosen Physical Quantity Method. Three joint products 'A', 'B' and 'C' are produced in the same process. Up to the point of split off the total production of A, B and C is 60,000 kg, out of which 'A' produces 30,000 kg and joint costs are Rs. 3,60,000. Joint costs allocated to product A is:", o: ["Rs. 1.20.000", "Rs. 60,000", "Rs. 1,80,000", "None of the these"], c: "Rs. 1,80,000" },
-            { q: "242. A transport company is running five buses between two towns, which are 50 kms apart. Seating capacity of each bus is 50 passengers. Actually passengers carried by each bus were 75% of seating capacity. All buses ran on all days of the month. Each bus made one round trip per day. Passenger kms are:", o: ["2,81,250", "1,87,500", "5,62,500", "None of the above"], c: "5,62,500" },
-            { q: "243. The cost of a product under marginal costing system includes:", o: ["Prime cost plus variable overhead", "Prime cost plus fixed overhead", "Prime cost plus factory overhead", "Only prime cost"], c: "Prime cost plus variable overhead" },
-            { q: "244. The difference between absorption costing and marginal costing is in regard to the treatment of:", o: ["Direct materials", "Fixed overhead", "Prime cost", "Variable overhead"], c: "Fixed overhead" },
-            { q: "245. Fixed costs are treated as:", o: ["Overhead costs", "Prime costs", "Period costs", "Conversion costs"], c: "Period costs" },
-            { q: "246. When sales and production (in units) are same then profits under:", o: ["Marginal costing is lower than that of absorption costing", "Marginal costing is higher than that of absorption costing", "Marginal costing is equal to that of absorption costing", "None of the above"], c: "Marginal costing is equal to that of absorption costing" },
-            { q: "247. When sales exceeds production (in units) then profit under:", o: ["Marginal costing is higher than that of absorption costing", "Marginal costing is equal to that of absorption costing", "Marginal costing is lower than that of absorption costing", "None of the above"], c: "Marginal costing is higher than that of absorption costing" },
-            { q: "248. which of the following factors responsible for change in the break even point?", o: ["change in selling price", "change in variable cost", "change in fixed cost", "all of the above"], c: "all of the above" },
-            { q: "249. Variable cost -", o: ["Remains fixed in total", "Remains fixed per unit", "Varies per unit", "Nor increase or decrease"], c: "Remains fixed per unit" },
-            { q: "250. Marginal Costing technique follows the following basic of classification:", o: ["Element wise", "Function Wise", "Behaviour wise", "Identifiability wise"], c: "Behaviour wise" },
-            { q: "251. P/V ratio will increase if the:", o: ["There is a decrease in fixed cost", "There is an increase in fixed cost", "There is a decrease in selling price per unit.", "There is a decrease in variable cost per unit."], c: "There is a decrease in variable cost per unit." },
-            { q: "252. The technique of differential cost is adopted when:", o: ["To ascertain P/V ratio", "To ascertain marginal cost", "To ascertain cost per unit", "To make choice between two or more alternative courses of action"], c: "To make choice between two or more alternative courses of action" },
-            { q: "253. Which of the following would not be used to estimate standard direct material prices?", o: ["The availability of bulk purchase discounts", "Purchase contracts already agreed", "The forecast movement of prices in the market", "Performance standards in operation"], c: "Performance standards in operation" },
-            { q: "254. What is an attainable standard?", o: ["A standard which includes no allowance for losses, waste and inefficiencies. It represents the level of performance which is attainable under perfect operating conditions", "A standard which includes some allowance for losses, waste and inefficiencies. It represents the level of performance which is attainable. under efficient operating conditions", "A standard which is based on currently attainable operating conditions", "A standard which is kept unchanged, to show the trend in costs"], c: "A standard which includes some allowance for losses, waste and inefficiencies. It represents the level of performance which is attainable. under efficient operating conditions" },
-            { q: "255. Budgets are shown in-Terms:", o: ["Qualitative", "Quantitative", "Materialistic", "both (b) and (c)"], c: "both (b) and (c)" },
-            { q: "256. Which of the following is not an element of master budget?", o: ["Capital Expenditure Budget", "Production Schedule", "Operating Expenses Budget", "All above the above"], c: "Production Schedule" },
-            { q: "257. Which of the following is not a potential benefit of using a budget?", o: ["Enhanced coordination of firm activities", "More motivated managers", "Improved inter-departmental communication", "More accurate external financial statements"], c: "More accurate external financial statements" },
-            { q: "258. Which of the following is a long-term budget?", o: ["Master Budget", "Flexible Budget", "Cash Budget", "Capital Budget"], c: "Capital Budget" },
-            { q: "259. Materials become key factor, if", o: ["quota restrictions exist", "insufficient advertisement prevails", "there is low demand", "there is no problem with supplies of materials"], c: "quota restrictions exist" },
-            { q: "260. The difference between fixed cost and variable cost assumes significance in the preparation of the following budget:", o: ["Master Budget", "Flexible Budget", "Cash Budget", "Capital Budget"], c: "Flexible Budget" },
-            { q: "261. The budget that is prepared first of all is", o: ["Master budget", "Sales budget assuming that it is the key factor", "Cash Budget", "Capital expenditure budget"], c: "Sales budget assuming that it is the key factor" },
-            { q: "262. Sales budget is a", o: ["expenditure budget", "functional budget", "master budget", "None of these"], c: "functional budget" },
-            { q: "263. When a company wants to prepare a factory overhead budget in which the estimated costs are directly derived from the estimates of activity levels, which of the following budget should be prepared by the company?", o: ["Flexible budget", "Fixed budget", "Master budget", "R & D budget"], c: "Flexible budget" },
-            { q: "264. Which of the following budgets facilitates classification of fixed and variable costs:", o: ["Capital expenditure budget", "Flexible budget", "Cash budget", "Raw materials budget"], c: "Flexible budget" },
-            { q: "265. The entire budget organisation is controlled and headed by a senior executive known as:", o: ["General Manager", "Accountant", "Budget Controller", "None of the above"], c: "Budget Controller" },
-            { q: "266. Which of the following is a long-term budget?", o: ["Master Budget", "Flexible Budget", "Cash Budge", "Capital Budget"], c: "Capital Budget" },
-            { q: "267. A flexible budget requires a careful study of", o: ["Fixed, semi-fixed and variable expenses", "Past and current expenses", "Overheads, selling and administrative expenses", "None of these."], c: "Fixed, semi-fixed and variable expenses" },
-            { q: "268. The basic difference between a fixed budget and flexible budget is that a fixed budget", o: ["is concerned with a single level of activity, while flexible budget is prepared for different levels of activity", "Is concerned with fixed costs, while flexible budget is concerned with variable costs", "is fixed while flexible budget changes", "None of these"], c: "is concerned with a single level of activity, while flexible budget is prepared for different levels of activity" },
-            { q: "269. Which of the following is not a reason for an idle time variance?", o: ["Wage rate increase", "Machine breakdown", "Illness or injury to worker", "Non- availability of material"], c: "Wage rate increase" },
-            { q: "270. During September, 300 labour hours were worked for a total cost of Rs. 4800. The variable overhead expenditure variance was Rs. 600 (A). Overheads are assumed to be related to direct labour hours of active working. What was the standard cost per labour hour?", o: ["Rs. 14", "Rs. 16.50", "Rs. 17.50", "Rs. 18"], c: "Rs. 14" },
-            { q: "271. Which of the following would explain an adverse variable production overhead efficiency variance? 1. Employees were of a lower skill level than specified in the standard 2. Unexpected idle time resulted from a series of machine breakdown 3. Poor Quality material was difficult to process", o: ["(1), (2) and (3)", "(1) and (2)", "(2) and (3)", "(1) and (3)"], c: "(1) and (3)" },
-            { q: "272. Budgeted sales of X for March are 18000 units. At the end of the production process for X. 10% of production units are scrapped as defective. Opening inventories of X for March are budgeted to be 15000 units and closing inventories will be 11,400 units. All inventories of finished goods must have successfully passed the quality control check. The production budget for X for March, in units is:", o: ["12960", "14400", "15840", "16000"], c: "16000" },
-            { q: "273. CG Co manufactures a single product T. Budgeted production output of product T during June is 200 units. Each unit of product T requires 6 labour hours for completion and CG Co anticipates 20 per cent idle time. Labour is paid at a rate of Rs.7 per hour. The direct labour cost budget for March is", o: ["Rs. 6,720", "Rs. 8,400", "Rs. 10,080", "Rs. 10,500"], c: "Rs. 10,500" },
-            { q: "274. A Local Authority is preparing cash Budget for its refuse disposal department. Which of the following items would not be included in the cash budget?", o: ["Capital cost of a new collection vehicle", "Depreciation of the machinery", "Operatives wages", "Fuel for the collection Vehicles"], c: "Depreciation of the machinery" },
-            { q: "275. The actual output of 162,500 units and actual fixed costs of Rs. 87000 were exactly as budgeted. However, the actual expenditure of Rs. 300,000 was Rs. 18,000 over budget. What was the budget variable cost per unit?", o: ["Rs. 1.20", "Rs. 1.31", "Rs.1.42", "Rs. 1.50"], c: "Rs. 1.20" },
-            { q: "276. A ltd is a manufacturing company that has no production resource limitations for the foreseeable future. The Managing Director has asked the company mangers to coordinate the preparation of their budgets for the next financial year. In what order should the following budgets be prepared? 1) Sales budget (2) Cash budget (3) Production budget (4) Purchase budget (5) Finished goods inventory budget", o: ["(2), (3), (4), (5), (1)", "(1), (5), (3), (4), (2)", "(1), (4), (5), (3), (2)", "(4), (5), (3), (1), (2)"], c: "(1), (5), (3), (4), (2)" },
-            { q: "277. S produces and sells one product, P, for which the data are as follows: Selling price Rs. 28 Variable cost Rs. 16 Fixed cost Rs. 4 The fixed costs are based on a budgeted production and sales level of 25,000 units for the next period. Due to market changes both the selling price and the variable cost are expected to increase above the budgeted level in the next period. If the selling price and variable cost per unit increase by 10% and 8% respectively, by how much must sales volume change, compared with the original budgeted level, in order to achieve the original budgeted profit for the period?", o: ["10.1% decrease", "11.2% decrease", "13.3% decrease", "16.0% decrease"], c: "11.2% decrease" },
-            { q: "278. A company makes a single product and incurs fixed costs of Rs. 30,000 per annum. Variable cost per unit is Rs. 5 and each unit sells for Rs. 15. Annual sales demand is 7,000 units. The breakeven point is:", o: ["2,000 units", "3,000 units", "4.000 units", "6,000 units"], c: "3,000 units" },
-            { q: "279. A company manufactures a single product for which cost and selling price data are as follows: Selling price per unit - Rs. 12 Variable cost per unit - Rs. 8 Fixed cost for a period - Rs. 98,000 Budgeted sales for a period - 30,000 units The margin of safety, expressed as a percentage of budgeted sales,is:", o: ["20%", "25%", "72%", "125%"], c: "20%" },
-            { q: "280. A company's break even point is 6,000 units per annum. The selling price is Rs. 90 per unit and the variable cost is Rs. 40 per unit. What are the company's annual fixed costs?", o: ["Rs. 120", "Rs. 2,40,000", "Rs. 3,00,000", "Rs. 5,40,000"], c: "Rs. 3,00,000" },
-            { q: "281. After inviting tenders for supply of raw materials, two quotations are received as follows- Supplier P Rs. 2.20 per unit, Supplier Q Rs. 2.10 per unit plus Rs. 2,000 fixed charges irrespective of the units ordered. The order quantity for which the purchase price per unit will be the same-", o: ["22,000 units", "20,000 units", "21.000 units", "None of the above."], c: "20,000 units" },
-            { q: "282. The cost per unit of a product manufactured in a factory amounts to Rs. 160 (75% variable) when the production is 10,000 units. When production increases by 25%, the cost of production will be Rs. ____ per unit.", o: ["Rs. 145", "Rs. 150", "Rs. 152", "Rs. 140"], c: "Rs. 152" },
-            { q: "283. In 'make or buy' decision, it is profitable to buy from outside only when the supplier's price is below the firm's own", o: ["Fixed Cost", "Variable Cost", "Total Cost", "Prime Cost"], c: "Variable Cost" },
-            { q: "284. A budget which is prepared in a manner so as to give the budgeted cost for any level of activity is known as:", o: ["Master budget", "Zero base budget", "Functional budget", "Flexible budget"], c: "Flexible budget" },
-            { q: "285. ____ is a summary of all functional budgets in a capsule form.", o: ["Functional Budget", "Master Budget", "Long Period Budget", "Flexible Budget"], c: "Master Budget" },
-            { q: "286. ____ is a detailed budget of cash receipts and cash expenditure incorporating both revenue and capital items.", o: ["Cash Budget", "Capital Expenditure Budget", "Sales Budget", "Overhead Budget"], c: "Cash Budget" },
-            { q: "287. Following information is available of XYZ Limited for quarter ended June, 2023 Fixed cost Rs. 5,00,000 Variable cost Rs. 10 per unit Selling price Rs. 15 per unit Output level 1,50,000 units What will be amount of profit earned during the quarter using the marginal costing technique?", o: ["Rs. 2.50,000", "Rs. 10,00,000", "Rs. 5,00,000", "Rs. 17,50,000"], c: "Rs. 2.50,000" },
-            { q: "288. The P/v ratio of a company is 50% and margin of safety is 40%. If present sales is Rs. 30,00,000 then Break Even Point in Rs. will be:", o: ["Rs. 9,00,000", "Rs. 18,00,000", "Rs. 5,00,000", "None of the above"], c: "Rs. 18,00,000" },
-            { q: "289. Following information is available of PQR for year ended March, 2013: 4,000 units in process, 3,800 units output, 10% of input is normal wastage, Rs. 2.50 per unit is scrap value and Rs. 46,000 incurred towards total process cost then amount on account of abnormal gain to be transferred to Costing P&L will be:-", o: ["Rs. 2.500", "Rs. 2,000", "Rs. 4,000", "Rs. 3,500"], c: "Rs. 2.500" },
-            { q: "290. In element-wise classification of overheads, which one of the following is not included", o: ["Fixed overheads", "Indirect labour", "Indirect materials", "Indirect expenditure."], c: "Fixed overheads" },
-            { q: "291. When the sales increase from Rs. 40,000 to Rs. 60,000 and profit increases by Rs. 5,000, the P/V ratio is:", o: ["20%", "30%", "25%", "40%"], c: "25%" },
-            { q: "292. In activity based costing, costs are accumulated by activity. Such Accumulated Amounts are called -", o: ["Cost drivers", "Cost objects", "Cost pools", "Cost Benefits Analysis"], c: "Cost pools" },
-            { q: "293. Steps in ABC Include -", o: ["Identification of activities and their respective costs", "Identification of cost Driver of each activity and computation of an allocation rate per activity", "Allocation of Overhead Cost to products/services based on the activities involved", "all of the above"], c: "all of the above" },
-            { q: "294. Which of the following is not a benefit of ABC?", o: ["Accurate cost allocation", "Improved decision making", "Better control on activity and costs", "reduction of prime cost"], c: "reduction of prime cost" },
-            { q: "295. The key elements of Activity Based Budgeting are -", o: ["Type of Activity to be performed", "Quantity of activity to bee performed", "Cost of activity to be performed", "all of the above"], c: "all of the above" }
+            { q: "1. Charging of income of the previous year in the same year is not mandatory for: ____", o: ["Shipping business of non-resident", "Persons leaving India", "Association formed for a particular event", "Discontinuation of business"], c: "Discontinuation of business" },
+            { q: "2. AB was born in England, his parents were born in India in 1952. His grand parents were born in South Africa. AB shall be a: ____", o: ["Person of Indian origin", "Foreign National", "Artificial Person", "Citizen of India"], c: "Foreign National" },
+            { q: "3. Income accruing in Japan and received there is taxable in India in the case of: ____", o: ["Resident and Ordinarily Resident only", "Both Resident and Ordinarily Resident and Resident but not Ordinarily Resident", "Both Resident and Non-resident", "Non-resident"], c: "Resident and Ordinarily Resident only" },
+            { q: "4. Out of the following which one is not a capital receipt?", o: ["Dividend on investment", "Bonus Shares", "Sale of know-how", "Compensation received for vacating business place"], c: "Dividend on investment" },
+            { q: "5. Which of the following is Casual Income?", o: ["Dividend income", "Winning from lotteries", "Interest received", "Pension received"], c: "Winning from lotteries" },
+            { q: "6. Which of the following receipt is not included in the term 'Income' under the Income-tax Act, 1961?", o: ["Profits and gains of Business or Profession", "Profit in lieu of salary", "Dividend", "Reimbursement of travelling expenses"], c: "Reimbursement of travelling expenses" },
+            { q: "7. A person is said to be a person of Indian origin if- ____", o: ["He or either of his parents were born in undivided India", "He or either of his siblings were born in undivided India", "He or either of his parents or either of his grandparents were born in undivided India", "He was born in India"], c: "He or either of his parents or either of his grandparents were born in undivided India" },
+            { q: "8. Income received in India in the previous year is taxable in the hands of- ____", o: ["Resident", "Non-Resident", "All assessee irrespective of residential status", "Not Ordinarily resident"], c: "All assessee irrespective of residential status" },
+            { q: "9. An individual is said to be resident in India if- ____", o: ["He has a house in India", "He is in India in the previous year for a period of 182 days or more", "He is in India for a period of 30 days or more during the previous year and for 365 or more days during 4 previous years immediately preceding the relevant previous year", "His parents are Indian citizen"], c: "He is in India in the previous year for a period of 182 days or more" },
+            { q: "10. The incidence of taxation depends on the - ____", o: ["Residential status of the assessee", "Accommodation of the assessee", "Citizenship of the assessee", "Marital status of the assessee"], c: "Residential status of the assessee" },
+            { q: "11. Which of the following is an agriculture income?", o: ["Dividend paid by a company to its shareholders out of agricultural income", "Share of Profit of a Partner from a firm engaged in an agriculture operation", "Income from supply of water by an assessee from a tank in agriculture land", "Interest received by a money lender in the form of agricultural produce"], c: "Share of Profit of a Partner from a firm engaged in an agriculture operation" },
+            { q: "12. In case of an assessee engaged in the business of manufacturing of tea, his agricultural income is ____", o: ["60% of total receipt of the business", "60% of income of the business", "Nil", "40% of income of the business"], c: "60% of income of the business" },
+            { q: "13. Income from saplings shall be considered as ____", o: ["Agricultural Income", "Business Income", "Partly agricultural income and partly business income", "Income from other sources"], c: "Agricultural Income" },
+            { q: "14. An individual (aged 28 Years) born in India left for first time for employment in France on 30.10.2023. His visit outside India is for the first time. His residential status for the assessment year 2024-25 will be ____", o: ["Resident and ordinarily resident", "Resident but not ordinarily resident", "Non-resident", "Residential Status is not applicable"], c: "Resident but not ordinarily resident" },
+            { q: "15. Income of ₹3,00,000 is received in Sri Lanka by an ordinarily resident of India. But later on ₹50,000 is remitted to India - ____", o: ["₹3,00,000 will be taxable", "₹3,50,000 will be taxable", "It is not taxable at all", "₹50,000 will be taxable"], c: "₹3,00,000 will be taxable" },
+            { q: "16. An individual is said to be a resident in India in the previous year (in which the Feb month has 29 days) if he is in India in that year for a period of ____", o: ["182 days or more", "183 days or more", "70 days or more", "150 days or more"], c: "182 days or more" },
+            { q: "17. Mr. X is engaged in growing and manufacturing tea in India. His income from this activity is ₹1,40,000. His agriculture income will be- ____", o: ["₹70,000", "₹84,000", "₹1,40,000", "₹56,000"], c: "₹84,000" },
+            { q: "18. Which of the following is not taxable under head 'Salaries'?", o: ["Remuneration paid to the lecturer of a college for setting a question paper by a university.", "Salary received by a member of the Parliament.", "Commission received by an employee director of a company.", "Both (1) and (2) above"], c: "Both (1) and (2) above" },
+            { q: "19. If a domestic servant is engaged by the employer and salary is paid by him, the perquisite is: ____", o: ["Taxable in the hands of all employees", "Not taxable in the hands of both specified and non-specified employers", "Taxable in the hands of specified employees only", "Taxable to the extent of ₹120 per person in the hands of all employees."], c: "Taxable in the hands of specified employees only" },
+            { q: "20. Which of the following is taxable under the head 'salaries'?", o: ["Salary received by a Member of State Legislature.", "Commission received by an employee director of a company.", "Family pension received", "Both (1) and (2) above"], c: "Commission received by an employee director of a company." },
+            { q: "21. Who among the following is a specified employee?", o: ["A director of a company", "An employee drawing a salary of ₹15,000 p.m.", "A person who is an owner of equity shares carrying 10% voting power in the employer company.", "Both (1) and (2) above"], c: "A director of a company" },
+            { q: "22. Net Annual Value of a self-occupied property treated as such is: ____", o: ["Fair Rent", "Nil", "Reasonable Expected Rent as reduced by municipal tax paid during the previous year.", "None of the Above"], c: "Nil" },
+            { q: "23. A house property located outside India is: ____", o: ["Taxable in hands of all assessee", "Taxable in hands of non resident assessee", "Taxable in hands of resident and ordinarily resident assessee", "Exempted from tax in India."], c: "Taxable in hands of resident and ordinarily resident assessee" },
+            { q: "24. Following assessee(s) can considered a house property as self occupied: ____", o: ["Individual & HUF", "All assessee", "All assessee other than company", "All assessee other than firm"], c: "Individual & HUF" },
+            { q: "25. Which of the following deductions is /are not allowed in case of a deemed to be let-out house?", o: ["New construction allowance", "Repairs", "Vacancy allowance", "All of the above"], c: "All of the above" },
+            { q: "26. Which of the following is not allowed as a deduction for computation of business Income?", o: ["Loss incurred due to theft in factory after working hours", "Anticipated future losses", "Loss caused by white ants", "Loss due to accidental fire in stock-in-trade"], c: "Anticipated future losses" },
+            { q: "27. The preliminary expenses that can be amortized under the Income Tax Act, 1961 has to be restricted to ____ of the cost of project.", o: ["3%", "5%", "8%", "20%"], c: "5%" },
+            { q: "28. Expenditure on promotion of family planning is an allowance as deduction u/s. 36(1)(ix) of the Income Tax Act, 1961 in case of: ____", o: ["Individual", "Firm", "HUF", "Company"], c: "Company" },
+            { q: "29. In case of loss, a partnership firm may claim deduction in respect of remuneration to partner to the extent of: ____", o: ["₹1,50,000/-", "₹1,50,000/- or actual remuneration, whichever is lower", "₹1,50,000/- or 90% of book profit, whichever is lower", "Nil"], c: "₹1,50,000/- or actual remuneration, whichever is lower" },
+            { q: "30. U/s 54, capital gain will be allowed as exemption if the house property under transfer is held for: ____", o: ["Less than 12 months preceding the date of transfer", "More than 12 months preceding the date of transfer", "Less than 36 months preceding the date of transfer", "More than 24 months preceding the date of transfer"], c: "More than 24 months preceding the date of transfer" },
+            { q: "31. Personal effect do not cover the followings: ____", o: ["Immovable property", "Drawings", "Jewellery", "All of the above"], c: "All of the above" },
+            { q: "32. Profit on sale of rural agricultural land is: ____", o: ["Not taxable as it is agricultural income", "Not taxable under the head 'Capital gains but under the head Income from Other Sources'", "Not taxable as rural agricultural land is not considered as a capital asset", "Taxable if it is compulsorily acquired."], c: "Not taxable as rural agricultural land is not considered as a capital asset" },
+            { q: "33. Cost of acquisition of self-generated asset is nil, the exception is: ____", o: ["Goodwill", "Route permit", "Bonus shares acquired before 01-04-2001", "Loom hours"], c: "Bonus shares acquired before 01-04-2001" },
+            { q: "34. While computing taxable interest on delayed compensation, a standard deduction is allowed @: ____", o: ["50%", "30%", "15%", "Nil"], c: "50%" },
+            { q: "35. The provision of sec.56(2)(x) is applicable on: ____", o: ["All assessee", "Only on corporate assessee", "On an individual only", "On an individual and HUF only"], c: "All assessee" },
+            { q: "36. While computing income from other sources, deduction is not allowed to the assessee for: ____", o: ["Personal expenditure", "Direct tax", "Interest payable outside India without TDS", "All of the above"], c: "All of the above" },
+            { q: "37. Gift received by an individual in certain circumstances is not taxable, one of them is: ____", o: ["Any gift received from family friend", "Any gift received on the occasion of any marriage in the family", "Any gift received on the occasion of the marriage of the individual-assessee", "All of the above"], c: "Any gift received on the occasion of the marriage of the individual-assessee" },
+            { q: "38. An individual purchased a painting on 01-11-2023 for ₹5,00,000 though fair market value of the asset is ₹5,25,000. Income taxable u/s 56(2)(x) is: ____", o: ["₹25,000 i.e. difference between market value and actual consideration", "Nil as this is not gift", "Nil as difference between market value and actual consideration does not exceed ₹50,000", "The provision of sec. 56(2)(x) is not applicable for any transaction entered during P.Y. 2023-24"], c: "Nil as difference between market value and actual consideration does not exceed ₹50,000" },
+            { q: "39. Uncommuted Pension received by a Government Employee is- ____", o: ["Exempt", "Taxable", "Partially Taxable", "None of the above"], c: "Taxable" },
+            { q: "40. Salary received by the Partner of a Firm is charged under the head ____", o: ["Salaries", "Business Income", "Other Sources", "Its exempt from tax"], c: "Business Income" },
+            { q: "41. Interest credited to Statutory Provident Fund shall be- ____", o: ["Fully Exempt", "Exempt upto 12% p.a.", "Fully Taxable", "Exempt upto 9.5% p.a"], c: "Fully Exempt" },
+            { q: "42. Interest credited to Recognized Provident Fund is ____", o: ["Fully Taxable", "Fully Exempt", "Exempt upto 12% of Salary", "Exempt upto 9.5% p.a."], c: "Exempt upto 9.5% p.a." },
+            { q: "43. The basis of chargeability of income under the head income from house property is: ____", o: ["Rental value", "Annual value", "Value fixed by the government", "None of the above"], c: "Annual value" },
+            { q: "44. 'A' borrowed ₹5,00,000 at 12% p.a on 01-04-2015 for construction of house property which was completed on 15-03-2024 and let out. The amount is still unpaid. The deduction on account of interest for the previous year 2023-24 shall be- ____", o: ["₹60,000", "₹96,000", "₹1,80,000", "₹2,40,000"], c: "₹96,000" },
+            { q: "45. Sums received by an employer from Keyman Insurance Policy taken on the life of the employee shall be- ____", o: ["Exempt", "Taxable under the head Business and Profession", "Taxable under the head Other Sources", "Taxable in the hand of the employee"], c: "Taxable under the head Business and Profession" },
+            { q: "46. The cost of acquisition of shares under Employees Stock Option Scheme shall be- ____", o: ["Fair Market Value of Shares on the date of offer", "Fair Market Value of the shares on the date of exercise of option", "Fair Market Value of share on the date of vesting of option.", "Price at which it was offered to the employee."], c: "Fair Market Value of the shares on the date of exercise of option" },
+            { q: "47. Capital Gain, arising from compulsory acquisition of urban agricultural land, is: ____", o: ["Taxable", "Exempt", "Exempt if acquired by RBI or Central Government", "None of the above"], c: "Exempt" },
+            { q: "48. Where the entire block of the depreciable assets is transferred after 36 months, there will be- ____", o: ["Short-Term Capital Gain", "Long-Term Capital Gain", "Short-Term Capital Gain or Loss", "Long-Term Capital Gain or Loss"], c: "Short-Term Capital Gain or Loss" },
+            { q: "49. Exemption under Section 54F shall not be allowed if the assessee, on the date of transfer, owns- ____", o: ["any Residential House", "a Residential House which is let out", "a House which is self occupied", "more than one Residential House"], c: "more than one Residential House" },
+            { q: "50. Income under the head 'Income from Other Sources' is taxable on ____", o: ["Due Basis", "Receipt Basis", "On the basis of method of accounting regularly employed by the Assessee", "None of the above."], c: "On the basis of method of accounting regularly employed by the Assessee" },
+            { q: "51. Winning from Lotteries, Crossword Puzzles, Horse Races & Other Races, Card Game, etc. are casual income & hence- ____", o: ["fully exempt", "exempt upto ₹5,000", "fully taxable", "None of above"], c: "fully taxable" },
+            { q: "52. Adi received ₹70,000 from his friend on the occasion of his birthday: ____", o: ["Entire amount of ₹70,000 is taxable", "₹25,000 is taxable", "The entire amount is exempt", "None of the above"], c: "Entire amount of ₹70,000 is taxable" },
+            { q: "53. Commission received by a Director of the Company is charged under the head: ____", o: ["Salaries", "Business Income", "Other Sources", "Its exempt from tax"], c: "Salaries" },
+            { q: "54. Casual Income received by the Assessee is - ____", o: ["Fully Exempt", "Exempt upto ₹5,000", "Fully Taxable", "None of the above."], c: "Fully Taxable" },
+            { q: "55. Mr. X's minor daughter earned ₹50,000 from his special talent. This income will be clubbed with - ____", o: ["The income of Mr. X", "The income of Mrs. X", "Mr. X or Mrs. X, whoever's income is higher", "It will not be clubbed"], c: "It will not be clubbed" }, 
+            { q: "56. Income arising to a minor married daughter shall be ____", o: ["assessed in the hands of minor married daughter", "clubbed with the income of that parent whose total income is higher", "Exempt from tax", "clubbed with the income of her spouse"], c: "clubbed with the income of that parent whose total income is higher" },
+            { q: "57. Unabsorbed business losses cannot be carried for more than - ____", o: ["7 assessment years", "8 assessment years", "10 assessment years", "12 assessment years"], c: "8 assessment years" },
+            { q: "58. Deduction u/s. 80JJA is available if the assessee: ____", o: ["Is engaged in scientific research", "Sets up an industrial unit in a backward area", "Is engaged in agriculture business", "Is engaged in the business of collecting and processing biodegradable waste."], c: "Is engaged in the business of collecting and processing biodegradable waste." },
+            { q: "59. Maximum limit for deduction u/s 80TTA is: ____", o: ["₹50,000", "₹10,000", "₹40,000", "₹25,000"], c: "₹10,000" },
+            { q: "60. Advance tax is required to be paid by all assessee only if estimated advance tax liability is: ____", o: ["₹5,000 or more", "₹10,000 or more", "More than zero", "₹50,000 or more"], c: "₹10,000 or more" },
+            { q: "61. TDS is not required to be deducted u/s 194A if the amount of interest on loan does not exceed: ____", o: ["₹5,000", "₹2,500", "₹7,500", "₹20,000"], c: "₹5,000" }, 
+            { q: "62. On salary, tax is required to be deducted at the time of: ____", o: ["Payment or crediting the employee, whichever is earlier", "Crediting the employee", "Payment", "Retirement of employee"], c: "Payment" },
+            { q: "63. Where assessment has not been completed, belated income tax return for assessment year 2024-25 can be filed upto: ____", o: ["31.12.2024", "31.01.2025", "31.03.2025", "31.12.2025"], c: "31.12.2024" }, 
+            { q: "64. When assessment has not been completed, revised return can be filed within ____ from the end of the relevant previous year.", o: ["9 months", "6 months", "12 months", "19 months"], c: "9 months" }, 
+            { q: "65. Clubbing provisions under Sec. 64(1)(vi) are applicable where the asset is transferred by an individual for inadequate consideration to ____", o: ["Daughter's Husband", "Son's Wife", "Major Son", "Major Daughter"], c: "Son's Wife" },
+            { q: "66. As per Sec. 64(1A), income accruing to a minor shall be clubbed in the income of- ____", o: ["Father", "Mother", "Father or Mother at their option", "Parent whose income before this clubbing is greater"], c: "Parent whose income before this clubbing is greater" },
+            { q: "67. Loss on account of owing & maintaining the race horses can be carried forward ____", o: ["for 8 years", "for 4 years", "indefinitely", "None of the above"], c: "for 4 years" },
+            { q: "68. The maximum period for which Speculation Loss can be carried forward is: ____", o: ["4 Years", "8 Years", "Nil", "Any number of years"], c: "4 Years" },
+            { q: "69. Deduction u/s 80C in respect of LIP, contribution to provident fund etc., is allowed to - ____", o: ["any assessee", "an individual", "an individual or HUF", "an individual of HUF who is resident in India"], c: "an individual or HUF" },
+            { q: "70. Deduction u/s 80D is allowed if the premium is paid to - ____", o: ["Life Insurance Corporation", "General Insurance Corporation or any other Insurer approved by the IRDA", "Life Insurance or General Insurance Corporation", "None of above."], c: "General Insurance Corporation or any other Insurer approved by the IRDA" },
+            { q: "71. Rebate in Tax u/s 87A, is applicable to: ____", o: ["Companies", "Individuals", "HUF", "Resident Individual"], c: "Resident Individual" },
+            { q: "72. Deduction u/s 80JJAA in respect of employment of new workers shall be allowed to- ____", o: ["any assessee to who Sec.44AB applies", "an Indian company", "an Indian Company or a person other than Company resident in India", "None of above"], c: "any assessee to who Sec.44AB applies" },
+            { q: "73. The maximum amount which can be donated in cash for claiming deduction under section 80G for the P.Y. 2023-24 is - ____", o: ["₹5,000", "₹10,000", "₹15,000", "₹2,000"], c: "₹2,000" },
+            { q: "74. Where a member of a HUF has converted or transferred his self-acquired property for inadequate consideration into joint family property, income arising there from is taxable. ____", o: ["As the income of the Transferor Member", "In the hand of the HUF", "In the hands of Karta of HUF", "Completely exempt from tax"], c: "As the income of the Transferor Member" },
+            { q: "75. Advance Tax shall be payable by any person in respect of current income is ____", o: ["₹50,000 or more", "₹10,000 or more", "₹1,00,000 or more", "None of the above"], c: "₹10,000 or more" },
+            { q: "76. Liability to deduct tax at source in case on income from interest on securities arises at the time of- ____", o: ["Payment of interest", "Accrual of interest", "Credit of interest to the account of the payee/interest payable account or payment thereof whichever is earlier", "None of the above"], c: "Credit of interest to the account of the payee/interest payable account or payment thereof whichever is earlier" },
+            { q: "77. Who is empowered to make law for matters containing in List II of Schedule VII of the Constitution of India?", o: ["State Government", "Central Government", "Both Central and State Government", "None of the above"], c: "State Government" },
+            { q: "78. Power to make laws with respect to goods and services tax has been given by the Constitution vide Article: ____", o: ["279A", "246A", "246", "365"], c: "246A" },
+            { q: "79. Indirect tax is: ____", o: ["Regressive in nature", "Progressive in nature", "Both (1) & (2)", "None of these"], c: "Regressive in nature" },
+            { q: "80. Which one of the following is not an example of indirect tax types?", o: ["GST", "Customs Duty", "Income tax", "None of these"], c: "Income tax" },
+            { q: "81. In case of indirect tax, impact and incidence of tax fall on: ____", o: ["One person", "Different persons", "State Government", "None of these"], c: "Different persons" },
+            { q: "82. Levy of indirect tax on goods and services may leads to: ____", o: ["Inflation", "Deflation", "Reflection", "None of the above"], c: "Inflation" },
+            { q: "83. Levy and collection of Central indirect tax are dealt by: ____", o: ["CBIC", "CBDT", "NIC", "UGS"], c: "CBIC" },
+            { q: "84. In pre-GST regime, excise duty has been levied by ____ Government whereas VAT has been levied by ____ State Government on goods.", o: ["Central, State", "State, Central", "Central, Central", "State, State"], c: "Central, State" },
+            { q: "85. Cascading effect of tax means: ____", o: ["Tax on goods", "Tax on services", "Tax on Tax", "None of these"], c: "Tax on Tax" },
+            { q: "86. Who is empowered to make law for matters containing in List I of Schedule VII of the Constitution of India?", o: ["State Government", "Central Government", "Both Central and State Government", "None of the above"], c: "Central Government" },
+            { q: "87. The items which will be taxable both under current central excise law and new GST even after the implementation of the GST Act: ____", o: ["Motor Spirit", "Alchoholic Liquor for Human Consumption", "Tobacco and Tobacco products", "Natural Gas"], c: "Tobacco and Tobacco products" },
+            { q: "88. Who is the chairman & Head of the GST Council Meeting?", o: ["Prime minister", "President", "Union Finance Minister", "State Finance Minister nomited by GST Council"], c: "Union Finance Minister" },
+            { q: "89. The IGST Act, 2017 extends to the: ____", o: ["Whole of India except the state of Jammu & Kashmir", "Whole of India", "Whole of India except the state of Jammu & Kashmir & Pondicherry", "None of the above"], c: "Whole of India" },
+            { q: "90. Which of the following is the benefits of GST?", o: ["Creation of unified national market", "Boost to Make in India' initiative", "Reduction of compliance burden on taxpayers", "Buoyancy to the Government Revenue"], c: "Reduction of compliance burden on taxpayers" },
+            { q: "91. Which of the following taxes have been subsumed in GST?", o: ["Central sales tax", "Central excise duty", "VAT", "All of the above"], c: "All of the above" },
+            { q: "92. India has chosen ____ model of dual GST.", o: ["USA", "UK", "Canadian", "Japan"], c: "Canadian" },
+            { q: "93. Constitution Amendment Act, 2016 for GST was ____", o: ["80th", "101st", "122nd", "None of these"], c: "101st" },
+            { q: "94. The incidence of tax on tax is called ____", o: ["Tax Cascading", "Tax Pyramidding", "Tax evasion", "Indirect tax"], c: "Tax Cascading" },
+            { q: "95. UTGST is applicable when: ____", o: ["Sold from Union territory", "Goods are purchased by Central Government", "Sold from one union territory to another union territory", "There is interstate supply"], c: "There is interstate supply" },
+            { q: "96. Under which article of the Constitution of India, GST council has been constituted?", o: ["246", "246A", "279A", "265"], c: "279A" },
+            { q: "97. GSTN is: ____", o: ["51% government owned company with paid up capital of ₹10 crore", "50% government owned company with paid up capital of ₹10 crore", "100% government owned company with paid up capital of ₹10 crore", "None of the above"], c: "51% government owned company with paid up capital of ₹10 crore" },
+            { q: "98. The term supply includes: ____", o: ["Sale", "Transfer", "Barter", "All of the above"], c: "All of the above" },
+            { q: "99. Which of the following activities or transactions shall be treated neither as supply of goods nor a supply of services?", o: ["Sale of land and building", "Lease of land", "Rent of building", "All of the above"], c: "Sale of land and building" },
+            { q: "100. Gifts not exceeding ____ in value in a financial year by an employer to an employee shall not be treated as supply of goods or services or both.", o: ["₹50,000", "₹25,000", "₹30,000", "None of the above"], c: "₹50,000" },
+            { q: "101. A hotel provides a 4-D/3-N package with the facility of breakfast. This is a ........", o: ["Mixed supply", "Composite supply", "Both mixed and composite supply", "None of the above"], c: "Composite supply" },
+            { q: "102. Which of the following is/are the essential elements of a mixed supply?", o: ["Supply is made by taxable person to a recipient", "Supply consists of two or more individual supplies of goods or services or both or any combination thereof but it is not naturally bundled", "Supply is made for a single price", "All of the above"], c: "All of the above" },
+            { q: "103. In case of import of goods, which type(s) of GST is applicable?", o: ["CGST", "SGST", "Both CGST and SGST", "IGST"], c: "IGST" },
+            { q: "104. Reverse charge means the liability to pay tax by the ____ of supply of goods or services or both.", o: ["recipient", "supplier", "partly by the recipient and partly by the supplier", "None of the above"], c: "recipient" },
+            { q: "105. Which of the following can be issued by Government to exempt goods and/or services on which tax is leviable in exceptional cases?", o: ["Exemption Notification", "Special order", "Other notifications", "None of the above"], c: "Special order" },
+            { q: "106. Renting of precincts of a religious place meant for general public owned or managed by a charitable or religious trust u/s 12AA of the Income Tax Act 1961 shall be exempt if: ____", o: ["Renting of rooms where per day charges are less then ₹1,000", "Renting of shops or other spaces for business or commerce where charges per month are less than ₹10,000", "Renting of premises, community halls or open area, where charges per day are less than ₹10,000", "All of the above"], c: "All of the above" },
+            { q: "107. For which of the following goods, the manufacturer is not allowed to opt for composition scheme:", o: ["Pan masala", "Ice cream", "Topical and manufactured tobacco substitutes", "All of the above"], c: "All of the above" },
+            { q: "108. The time of supply of goods, where supplier is liable to pay tax under forward charge shall be: ____", o: ["The date of actual issue of invoice by the supplier", "The last date on which he is required u/s 31(1) to issue the invoice with respect to the supply", "The date on which the supplier receives the payment with respect to the supply", "(a) or (b), whichever is earlier"], c: "(a) or (b), whichever is earlier" },
+            { q: "109. The transaction value for computation of value of supply can be rejected if - ____", o: ["The buyer and seller are related and price is not the sole consideration", "Products are sold at very low margins", "Maximum retail price is greater than the transaction value", "All of the above"], c: "The buyer and seller are related and price is not the sole consideration" },
+            { q: "110. In case goods disposed off by way of free sample ____", o: ["recipient can claim ITC", "supplier can claim ITC", "supplier can not claim ITC", "ITC can be claimed if value is more than ₹1,000"], c: "supplier can not claim ITC" },
+            { q: "111. If the goods are received in installment then ITC can be availed ____", o: ["Proportionately on receipt of each installment", "100% ITC can be taken on receipt of first installment", "ITC can be taken on receipt of last installment", "50% ITC can be taken on receipt of first installment and balance 50% on receipt of last installment"], c: "ITC can be taken on receipt of last installment" },
+            { q: "112. Person who is liable to be registered u/s 22 or 24 shall apply for registration in every such State or Union Territory in which he is so liable within: ____", o: ["30 days from the date on which he becomes liable to registration", "15 days from the date on which he becomes liable to registration", "17 days from the date on which he becomes liable to registration", "None of the above"], c: "30 days from the date on which he becomes liable to registration" },
+            { q: "113. Tax invoice shall be prepared in ____ in case of supply of goods and in ____ in case of supply of services", o: ["Duplicate, Duplicate", "Duplicate, Triplicate", "Triplicate, Duplicate", "Triplicate, Triplicate"], c: "Triplicate, Duplicate" },
+            { q: "114. Annual return is summary of: ____", o: ["GSTR 1", "GSTR 3B", "GSTR 4", "All of the above"], c: "All of the above" },
+            { q: "115. Payment of tax is required ____ filing return.", o: ["Before", "After", "Before or after", "Before or at the time of"], c: "Before or at the time of" },
+            { q: "116. Aggregate turnover Limit for Opting Compounding Scheme is: ____", o: ["₹50 Lakh", "₹60 Lakh", "₹1 Crore", "₹1.5 Crore"], c: "₹1.5 Crore" },
+            { q: "117. The calculation of the aggregate turnover to decide the Taxable Minimum Turnover will be based on: ____", o: ["State wise Turnover Basis", "All India Turnover basis", "State wise Turnover Excluding Export", "All India Turnover Excluding Export"], c: "All India Turnover basis" },
+            { q: "118. Certificate of registration is issued in which form?", o: ["GST REG-06", "GST REG-02", "GST REG-01", "GST REG-10"], c: "GST REG-06" },
+            { q: "119. Dealers who are not eligible for Compounding Scheme: ____", o: ["Exporters", "Importers", "Interstate Suppliers and those liable to remit tax on Reverse Charge basis", "Manufacturing dealers"], c: "Interstate Suppliers and those liable to remit tax on Reverse Charge basis" },
+            { q: "120. Various taxes have been subsumed in GST to make one nation one market for consumers. Out of following, determine which taxes have been subsumed in GST (i) basic customs duty levied under Customs Act, 1962, (ii) Taxes on lotteries, (iii) Taxes on advertisements", o: ["(ii)", "(ii) and (iii)", "(iii)", "(i).(ii) and (iii)"], c: "(ii) and (iii)" },
+            { q: "121. Which of the following is not considered as 'goods' under the CGST Act, 2017 (i)Ten-paisa coin having sale value of Rs 100, (ii) Shares of unlisted Company, (iii) Lottery Tickets", o: ["(i)", "(ii)", "(ii) and (iii)", "(i), (ii) and (iii)"], c: "(ii)" },
+            { q: "122. If tobacco leaves procured from Agriculturist by a registered person, the applicability of RCM will be: ____", o: ["Reverse charge is applicable as this is a notified service", "Reverse charge is applicable if ABC Travels is not registered", "Joint charge is applicable", "None of the above"], c: "Reverse charge is applicable as this is a notified service" },
+            { q: "123. For a registered person threshold limits of turnover in the preceding financial year for opting composition scheme shall not exceeds: ____", o: ["₹20 lakh", "₹1.5 crore", "₹75 lakh", "None of the above"], c: "₹1.5 crore" },
+            { q: "124. A supply that consists of two or even more services would be classified as the provision that describes the variables that are subject to a higher rate of taxation, is called: ____", o: ["Composite", "Mixed", "Both (a) and (b)", "None of the above"], c: "Mixed" },
+            { q: "125. GST stands for Goods and Services Tax, and it is a tax system that covers a wide range of: ____", o: ["Goods", "Services", "Goods, companies and imports", "Products, systems, and exports"], c: "Goods, companies and imports" },
+            { q: "126. Which of the following is the exclusions from the computation of aggregate turnover?", o: ["Value of taxable supplies", "value of exempt supplies", "Exports of goods or services or both", "Value of inward supplies on which tax is paid on reverse charge basis"], c: "Value of inward supplies on which tax is paid on reverse charge basis" },
+            { q: "127. In case of Manufacturer (except Ice cream, pan masala, tobacco) for whom concessional rate applicable under composition scheme, the rate of tax is: ____", o: ["2.50%", "0.50%", "1%", "No composition for manufacturer"], c: "1%" },
+            { q: "128. Whether a registered person under composition scheme shall claim input tax credit?", o: ["yes", "no", "Input tax credit on inward supply of goods only can be claimed", "Input tax credit on inward supply of service only can be claimed"], c: "no" },
+            { q: "129. What is time of supply of goods, in case of forward charge?", o: ["Date of issue of invoice", "Due date of issue of invoice", "Date of receipt of consideration by the supplier", "Earlier of (a) & (b)"], c: "Earlier of (a) & (b)" },
+            { q: "130. What is the time of supply of vouchers when the supply with respect to the voucher is identifiable?", o: ["Date of issue of voucher", "Date of redemption of voucher", "Earlier of (a) & (b)", "(a) & (b) whichever is later"], c: "Date of issue of voucher" },
+            { q: "131. Which of the following shall not be included in value of supply?", o: ["GST", "Interest", "Late fee", "Commission"], c: "GST" },
+            { q: "132. The value of supply should include: ____", o: ["Any non-GST taxes, duties, cesses, fees charged separately by supplier", "Interest, late fee or penalty for delayed payment of any consideration for any supply", "Subsidies directly linked to the price except subsidies provided by the Central and State Government", "All of the above"], c: "All of the above" },
+            { q: "133. When can the transaction value be rejected for computation of value of supply?", o: ["When the buyer and seller are related and price is not the sole consideration", "When the buyer and seller are unrelated or price is not the sole consideration", "It can never be rejected", "When the goods are sold at very low margins"], c: "When the buyer and seller are related and price is not the sole consideration" },
+            { q: "134. What deductions are allowed from the transaction value?", o: ["Discounts offered to customers, subject to conditions", "Packing Charges, subject to conditions", "Amount paid by customer on behalf of the supplier, subject to conditions", "Freight charges incurred by the supplier for CIF terms of supply, subject to conditions"], c: "Discounts offered to customers, subject to conditions" },
+            { q: "135. Rule 30 of the CGST Rules inter alia provides value of supply of goods or services or both based on cost shall be ____% of cost of production or manufacture or the cost of acquisition of such goods or the cost of provision of such services", o: ["100", "10", "110", "120"], c: "110" },
+            { q: "136. Where the goods being sent or taken on approval for sale or return are removed before the supply takes place, the invoice shall be issued: ____", o: ["before/at the time of supply", "6 months from the date of removal", "Earlier of (a) or (b)", "None of the above"], c: "Earlier of (a) or (b)" },
+            { q: "137. Which of the following is not a supply under the CGST Act, 2017?", o: ["Goods supplied free of cost by X & Sons to its agent for further supply to customer at ₹5,000 for which invoice will be issuedby the agent in his own name.", "Importation of accounting services (for business purposes) free of cost from a dependent father residing in US.", "An expensive watch gifted to an employee for ₹50,000. No other gifts provided to such employee during the entire financial year.", "A machinery disposed off free of cost on which input tax credithas been availed"], c: "An expensive watch gifted to an employee for ₹50,000. No other gifts provided to such employee during the entire financial year." },
+            { q: "138. The term casual taxable person' includes: ____", o: ["A person occasionally supplying goods or services or both in a State or a Union territory where he has no fixed place of business.", "A person occasionally supplying goods or services or both in a State or a Union territory where he has fixed place of business", "Both (a) and (b)", "None of the above"], c: "A person occasionally supplying goods or services or both in a State or a Union territory where he has no fixed place of business." },
+            { q: "139. Mr. X of Delhi is participating in Hitex Furniture Expo in Haryana where he has no fixed place of business and exhibiting his products. During the expo, the said products will be sold to the people attending and intending to purchase such products. In such scenario, Mr. X shall obtain which of the following registration under the CGST Act, 2017?", o: ["Non-resident taxable person registration", "Casual taxable person registration", "Regular taxpayer registration", "No registration under GST required."], c: "Casual taxable person registration" },
+            { q: "140. An exempt supply includes: ____", o: ["Supply of goods or services or both which attracts Nil rate of tax", "Non-taxable supply", "Supply of goods or services or both which are wholly exempt from tax under Section 11 of the CGST Act or under Section 6 of IGST Act", "All of the above"], c: "All of the above" },
+            { q: "141. Which of the following service is notified by Government for ECO?", o: ["services by way of transportation of passengers by a radio-taxi, motor cab, maxi cab and motor cycle", "services by way of providing accommodation in hotels, inns, guest houses, clubs, campsites or other commercial places meant for residential or lodging purposes, except where the person supplying such service through ECO is liable for registration under subsection 22(1) of the CGST Act", "services by way of house-keeping. such as plumbing, carpentering etc., except where the person supplying such service through ECO is liable for registration under section 22(1) of the CGST", "All of these"], c: "All of these" },
+            { q: "142. A hotel owner provided accommodation in Haryana, through an electronic commerce operator Cool Trips. The hotel owner is not liable to get registered as per the provisions of section 22(1) of the CGST Act. Who is the person liable to pay GST in this case?", o: ["Hotel Owner", "ECO", "Customer", "Both by Hotel owner & ECO"], c: "ECO" },
+            { q: "143. State the taxability of satellite launch services provided to both international and domestic customers by ANTRIX Corporation Limited ('ANTRIX') which is a wholly owned Government of India Company under the administrative control of Department of Space (DOS).", o: ["Taxable", "Not taxable", "Exempt", "None"], c: "Taxable" },
+            { q: "144. Zero rated supply includes: ____", o: ["Export of goods and services", "Supply of goods and services to a SEZ developer or SEZ Unit", "Supply of goods and services by a SEZ developer or SEZ Unit", "Both (1) and (2)"], c: "Both (1) and (2)" },
+            { q: "145. A registered taxable person is eligible to claim refund in respect of export of goods and services in the following cases ____", o: ["Under bond, without payment of IGST and claim refund of unutilized input tax credit.", "On payment of IGST and claim refund of IGST paid on such goods and services", "None of the above", "Both (1) and (2)"], c: "Both (1) and (2)" },
+            { q: "146. If place of supply in Territorial water, then what will considered as Place of supply?", o: ["Actual location (territorial Water)", "Principal Establishment of Supplier", "Any establishment of supplier of his choice", "coastal State or Union Territory where the nearest point of the appropriate baseline"], c: "coastal State or Union Territory where the nearest point of the appropriate baseline" },
+            { q: "147. What is the time of supply of service if the invoice is issued within 30 days from the date of provision of service?", o: ["Date of issue of invoice", "Date on which the supplier receives payment", "Date of provision of service", "Earlier of (1) & (2)"], c: "Earlier of (1) & (2)" },
+            { q: "148. What is the time of supply of service in case of reverse charge mechanism?", o: ["Date of payment as entered in the books of account of the recipient", "Date immediately following 60 days from the date of issue of invoice", "Date of invoice", "Earlier of (1) & (2)"], c: "Earlier of (1) & (2)" },
+            { q: "149. Value of services rendered is ₹1,00,000/. Date of issue of invoice is 5th October 2023. Advance Received is ₹25,000/- on 20th September 2023. Balance amount received on 7th October 2023. What is the time of supply for ₹1,00,000?", o: ["5th October 2023 for ₹1,00,000/-", "20th September 2023 for ₹1,00,000/-", "20th September 2023 for ₹25,000/- and 5th October 2023 for ₹75,000/-", "20th September 2023 for ₹25,000/- and 7th October 2023 for ₹75,000/-"], c: "20th September 2023 for ₹25,000/- and 5th October 2023 for ₹75,000/-" },
+            { q: "150. Whether credit on inputs should be availed based on receipt of documents or receipt of goods", o: ["Receipt of goods", "Receipt of Documents", "Both", "Either receipt of documents or Receipt of goods"], c: "Both" },
+            { q: "151. The supply of goods to SEZ unit is treated as, ____ in the hands of the supplier:", o: ["Exempt Supply - Reversal of credit", "Deemed Taxable Supply - No reversal of credit", "Zero Rated supply", "Non-Taxable Supply Outside the Scope of GST"], c: "Zero Rated supply" },
+            { q: "152. On supply of OIDAR Services by a person located in taxable territory to a non-taxable online recipient. Who is liable to pay GST in this case?", o: ["Recipient", "Supplier", "Both", "None"], c: "Supplier" },
+            { q: "153. If location of supplier in Territorial water, then what will be considered as location of supplier?", o: ["Actual location (territorial Water)", "Principal Establishment of Supplier", "Any establishment of supplier of his choice", "Coastal State or Union Territory where the nearest point of the appropriate baseline"], c: "Coastal State or Union Territory where the nearest point of the appropriate baseline" },
+            { q: "154. The limit of exclusive economic zone of India is ____ from the nearest point of the baseline.", o: ["200 nautical miles", "12 nautical miles", "24 nautical miles", "None of the above"], c: "200 nautical miles" },
+            { q: "155. Which of the following is a taxable event for imported goods?", o: ["Date on which the goods cross the customs barrier", "Date of presentation of bill of entry", "Date of entry into Indian territorial waters", "Unloading of imported goods at the customs port"], c: "Date on which the goods cross the customs barrier" },
+            { q: "156. Basic custom duty on imported goods is levied at the rates specified in the: ____", o: ["First Schedule of the Customs Tariff Act, 1975", "Second Schedule of the Customs Tariff Act, 1975", "Customs Act", "Customs Manual"], c: "First Schedule of the Customs Tariff Act, 1975" },
+            { q: "157. For the purpose of computing IGST on imported goods, one of the following shall not be included in the value for computation: ____", o: ["GST Compensation Cess", "Social Welfare Surcharge", "Anti-dumping duty", "None of the above"], c: "GST Compensation Cess" },
+            { q: "158. Where the insurance amount is not available, for ascertaining the assessable value for customs duty, the percentage of FOB value to be taken is: ____", o: ["1%", "1.125%", "1.5%", "None of the above"], c: "1.125%" },
+            { q: "159. Where the transport charges is not available, for ascertaining the assessable value for customs duty, the percentage of FOB value to be taken is: ____", o: ["10%", "20%", "25%", "None of the above"], c: "20%" },
+            { q: "160. Transportation charges incurred by the importee for transporting goods from factory of the exporter to the port of exportation shall be included in the assessable value. Is this statement correct?", o: ["Yes", "No", "Yes, if such charges has been paid in foreign currency", "None of the above"], c: "Yes" },
+            { q: "161. As per Section 2(31), person-in-charge means: ____", o: ["Vessel Master", "Train Conductor (or) Guard", "Vehicle Driver", "All of the above"], c: "All of the above" },
+            { q: "162. Goods which are same in all respects, including physical quantity is known as: ____", o: ["Identical Goods", "Similar Goods", "Alike Goods", "None of the above"], c: "Identical Goods" },
+            { q: "163. Buying commission shall be included in the assessable value. Is this statement correct?", o: ["No", "Yes", "Yes, if buying commission is paid in foreign currency", "None of the above"], c: "No" },
+            { q: "164. Any article which is imported into India shall, in addition, be liable to integrated tax at such rate, not exceeding ____% as is leviable under section 5 of Integrated Goods and Services Tax Act, 2017 on a like article on its supply in India, on the value of the imported article as determined under subsection (8) or sub section 8(A).", o: ["20", "30", "40", "50"], c: "40" },
+            { q: "165. Any article which is imported into India is also liable to a duty equal to the excise duty for the time being leviable on a like article if produced or manufactured in India. This duty is called as ____", o: ["Additional duty", "Countervailing Duty", "Special duty", "None of the above"], c: "Additional duty" },
+            { q: "166. The maximum rate of additional duty is @ ____%", o: ["5", "4", "3", "2"], c: "4" },
+            { q: "167. If which of the following conditions are satisfied, the Central Government may provide for the enhancement of the import duty?", o: ["The goods should be specified in the First Schedule", "The Central Government is satisfied that circumstances exist. which render it necessary for the enhancement of import duties", "Either 1 or 2", "Both 1 & 2"], c: "Both 1 & 2" },
+            { q: "168. Central Government can impose the safeguard duty if it is satisfied that: ____", o: ["Any article is imported into India in increased quantities", "Such increased importation is causing or threatening to cause serious injury to domestic industry", "Either 1 or 2", "Both 1 & 2"], c: "Both 1 & 2" },
+            { q: "169. The total period of levy of safeguard duty is restricted to ____ years:", o: ["5", "10", "6", "7"], c: "10" },
+            { q: "170. An appeal filed under section 9B shall be accompanied by a fee of ____", o: ["₹10,000", "₹15,000", "₹50,000", "₹25,000"], c: "₹15,000" },
+            { q: "171. As per section 14 of customs act, 1962, transaction value shall also include in addition to the price, anyamount paid or payable for costs and services, including ____", o: ["commissions and brokerage", "engineering", "royalties and licence fees", "all of the above"], c: "all of the above" },
+            { q: "172. As per section 14 of customs act, 1962, transaction value shall also include in addition to the price, any amount paid or payable for costs and services, including ____", o: ["costs of transportation to the place of importation", "insurance", "design work", "all of the above"], c: "all of the above" },
+            { q: "173. For imported goods, the conversion in value shall be done with reference to the rate of exchange prevalent on the date of filing of ____", o: ["bill of entry under section 46", "shipping bill (vessel or aircraft) under section 50", "bill of export (vehicle) under section 50.", "either 2 or 3"], c: "bill of entry under section 46" },
+            { q: "174. For the purpose of customs valuation, 'rate of exchange' means the rate of exchange notified by ____ shall be taken into account.", o: ["the Foreign Exchange Dealers Association of India", "CBIC", "the Reserve Bank of India", "none of the above"], c: "CBIC" },
+            { q: "175. Sub-section (2) of section 14 provides that the Board may fix for any class of imported goodsor export goods, having regard to the trend of value of such or like goods by notification in the Official Gazette if it is satisfied that it is necessary to do so. It is: ____", o: ["market value", "MRP", "transaction value", "tariff value"], c: "tariff value" },
+            { q: "176. The term 'similar goods' means imported goods: ____", o: ["which although not alike in all respects, have like characteristics and like component materials which enable them to perform the same functions", "produced in the country in which the goods being valued were produced", "produced by the same person who produced the goods being valued", "all of the above"], c: "all of the above" },
+            { q: "177. The loading, unloading and handling charges associated with the delivery of the imported goods at the place of importation shall be ____", o: ["1% of customs FOB value", "cost of transport", "cost of insurance", "10"], c: "10" }, 
+            { q: "178. Where the goods are sent back as such to the foreign country owing to which of the following reasonsit is considered as re-exportation?", o: ["Goods not conforming to the specification of the order", "Goods not permitted to be imported into the country on account of traderestriction", "Goods after being imported are temporarily retained in the country and later taken out of the country. In other words, the very objective of the importation was limited to temporary retention in India", "All the above"], c: "All the above" },
+            { q: "179. Under Section 74(1) when goods capable of being easily identified, which have been imported into India and upon which any duty has been paid on importation ____% of duty be paid back.", o: ["50", "100", "98", "48"], c: "98" },
+            { q: "180. As per notification, no drawback of import duty will be allowed in respect of which of the following goods, if they have been used after their importation in India?", o: ["Wearing Apparel", "Tea Chests", "Exposed cinematograph films passed by Board of Film Censors in India", "All the above"], c: "All the above" },
+            { q: "181. CBIC has clarified that safeguard duties, anti-dumping duties and countervailing duties are rebatable as drawback in terms of section ____ of the Customs Act", o: ["74", "75", "76", "77"], c: "75" }
         ];
+        // --- END OF QUESTION DATA ---
 
 
         let currentQuestionIndex = 0;
@@ -630,17 +548,24 @@
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
 
-        const questionsPerSet = [37, 37, 37, 37, 37, 37, 37, 36]; 
-        const setStartIndices = [0, 37, 74, 111, 148, 185, 222, 259]; 
+        // Configuration for 181 questions into 5 sets
+        const questionsPerSet = [36, 36, 36, 36, 37]; 
+        const setStartIndices = [0, 36, 72, 108, 144]; 
 
         function populateSetSelector() {
+            setSelectorElement.innerHTML = '';
             questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
                 const option = document.createElement('option');
                 option.value = index; 
                 const startQ = setStartIndices[index] + 1;
-                const endQ = setStartIndices[index] + num;
-                option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
-                setSelectorElement.appendChild(option);
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
             });
             setSelectorElement.addEventListener('change', (event) => {
                 const selectedSetIndex = parseInt(event.target.value);
@@ -655,17 +580,22 @@
         }
 
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
-            for (let i = 0; i < questionsPerSet.length; i++) {
-                cumulativeQuestions += questionsPerSet[i];
-                if (index < cumulativeQuestions) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
                     if (setSelectorElement.value != i) { 
                          setSelectorElement.value = i; 
                     }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
+            }
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
         }
         
         function updateScoreboard() {
@@ -692,7 +622,7 @@
             const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
             questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
 
             optionsContainerElement.innerHTML = ''; 
             currentQuestion.o.forEach((optionText, index) => {
@@ -713,8 +643,7 @@
                             optionElement.classList.add('incorrect-selection');
                         }
                     }
-                    // Always show the correct answer if the question was attempted and the user's choice was not the correct one
-                    if (optionText === currentQuestion.c && userAnswers[currentQuestionIndex] !== currentQuestion.c) {
+                    if (optionText === currentQuestion.c) { 
                          optionElement.classList.add('correct-answer'); 
                     }
                 } else {
@@ -723,9 +652,11 @@
                 optionsContainerElement.appendChild(optionElement);
             });
 
-            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
-            nextButton.disabled = !questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length;
+            // *** CHANGE: Always enable the next button ***
+            nextButton.disabled = false; 
             prevButton.disabled = (currentQuestionIndex === 0);
+            
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
 
             questionHeaderElement.style.display = 'block';
             questionTextElement.style.display = 'block';
@@ -739,26 +670,22 @@
 
             questionsAttemptedState[currentQuestionIndex] = true;
             userAnswers[currentQuestionIndex] = selectedOptionText;
-            nextButton.disabled = false; 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.c;
 
             Array.from(optionsContainerElement.children).forEach(optDiv => {
                 optDiv.classList.add('disabled'); 
-                if (optDiv === selectedDiv) {
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
                     optDiv.classList.add('selected');
                     if (selectedOptionText === correctAnswerText) {
-                        optDiv.classList.add('correct-answer');
                         score.correct++;
                     } else {
-                        optDiv.classList.add('incorrect-selection');
+                        optDiv.classList.add('incorrect-selection'); 
                         score.incorrect++;
-                        Array.from(optionsContainerElement.children).forEach(innerOptDiv => {
-                            if (innerOptDiv.dataset.optionText === correctAnswerText) {
-                                innerOptDiv.classList.add('correct-answer');
-                            }
-                        });
                     }
                 }
             });
@@ -769,10 +696,11 @@
             if (questionsAttemptedState[currentQuestionIndex]) return;
 
             let optionIndex = -1;
-            if (key === 'a' || key === '1') optionIndex = 0;
-            else if (key === 'b' || key === '2') optionIndex = 1;
-            else if (key === 'c' || key === '3') optionIndex = 2;
-            else if (key === 'd' || key === '4') optionIndex = 3;
+            const keyLower = key.toLowerCase();
+            if (keyLower === 'a' || keyLower === '1') optionIndex = 0;
+            else if (keyLower === 'b' || keyLower === '2') optionIndex = 1;
+            else if (keyLower === 'c' || keyLower === '3') optionIndex = 2;
+            else if (keyLower === 'd' || keyLower === '4') optionIndex = 3;
 
             if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
                 const optionDiv = optionsContainerElement.children[optionIndex];
@@ -783,19 +711,12 @@
         }
 
         function nextQuestionHandler() {
-            if (!questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length) {
-                return; 
-            }
-            if (currentQuestionIndex === questionsData.length - 1 && questionsAttemptedState[currentQuestionIndex]) {
-                currentQuestionIndex++; 
-                showCompletionMessage();
-            } 
-            else if (currentQuestionIndex < questionsData.length - 1) {
+            // *** CHANGE: Removed check that prevents skipping ***
+            if (currentQuestionIndex < questionsData.length - 1) {
                 currentQuestionIndex++;
                 loadQuestion();
-            }
-             else if (currentQuestionIndex >= questionsData.length) { 
-                 showCompletionMessage(); 
+            } else {
+                showCompletionMessage();
             }
         }
 
@@ -817,13 +738,18 @@
             completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
+        // Event Listeners
         nextButton.addEventListener('click', nextQuestionHandler);
         prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+                return;
+            }
             if (event.key.toLowerCase() === 'escape') return;
-            if (completionMessageElement.style.display === 'block') {
-                 event.preventDefault(); 
+
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault();
                  return;
             }
 
@@ -834,7 +760,7 @@
             } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
                 event.preventDefault();
                 nextQuestionHandler();
-            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) {
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
                 event.preventDefault();
                 prevQuestionHandler();
             }
