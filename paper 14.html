@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ Quiz - Strategic Financial Management (Paper 14)</title>
+    <title>MCQ Quiz - Strategic Financial Management</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +35,11 @@
         }
 
         #scoreboard-container {
-            background: #9370DB; /* Purple */
-            color: #ffffff; 
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +47,74 @@
         }
         
         #set-navigation-container {
-            background: #4169E1; /* Royal Blue */
-            color: #ffffff; 
+            background: linear-gradient(135deg, #04bf26, #ADFF2F);
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFDAB9; /* Light Saffron (PeachPuff) */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #4A4A4A; 
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #FFBFA0; 
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; 
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,69 +125,83 @@
         .option {
             display: flex;
             align-items: center;
-            background: #FFF8E1; 
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #FFECB3; 
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #FFF0C1; 
-            border-color: #FFE082;
+            background: #fff59d;
+            border-color: #f2e70c;
+        }
+
+        .option.selected { 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important;
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important;
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
-        .option.user-selected-display { 
-            /* Styles to indicate this was the user's picked option when reviewing */
-        }
-
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057;
-            background-color: #FFECB3; 
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
+        .option.selected .option-letter {
+            background-color: var(--primary-blue); 
+            color: white;
+            transform: scale(1.1);
+        }
+
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important;
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important;
+            background-color: #ef4444 !important; 
             color: white !important;
         }
+
 
         #navigation-buttons {
             display: flex;
             justify-content: space-between; 
+            align-items: center;
             margin-top: 25px;
         }
 
         button {
-            background-color: #007bff; 
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -176,44 +209,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
         }
+        
         #prev-btn {
-            background-color: #6c757d; 
-        }
-       
-        #prev-btn:disabled, #next-btn:disabled {
-             background-color: #cccccc;
-            cursor: not-allowed;
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3;
+            background-color: #0637c9;
+            transform: translateY(-2px);
         }
-         #prev-btn:hover:not(:disabled) {
-            background-color: #5a6268;
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
-
+        button:disabled {
+            background-color: #4b5563; 
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.6;
+        }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745;
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -243,6 +281,16 @@
             button {
                 padding: 10px 15px; 
                 font-size: 14px;
+            }
+            #navigation-buttons {
+                flex-direction: column; 
+            }
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
             }
             #set-selector {
                 width: 100%;
@@ -276,8 +324,8 @@
         <div class="options-container" id="options-container">
             </div>
         <div id="navigation-buttons">
-            <button id="prev-btn">Previous Question</button>
-            <button id="next-btn">Next Question</button>
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
         </div>
         <div id="completion-message" style="display:none;">
             Quiz Completed! Thank you for participating.
@@ -285,116 +333,183 @@
     </div>
 
     <div id="instagram-link">
-        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh</a>
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh </a>
     </div>
 
     <script>
+        // --- START OF QUESTION DATA ---
         const questionsData = [
-            { q: "Relevant cost analysis or relevant costing is used for various managerial decisions, like", o: ["Make or buy decision", "Accepting or rejecting a special order", "Both 1 and 2", "Deciding sale quantity"], c: "Both 1 and 2" },
-            { q: "Average Rate of Return (ARR) =", o: ["(Average Annual Profit after Tax/Average Investment) x 100", "(Average Annual Profit after Tax/Opening Investment) x 100", "(Average Annual Profit before Tax/Average Investment) x 100", "(Average Annual Profit after Tax/Net Sales) x 100"], c: "(Average Annual Profit after Tax/Average Investment) x 100" },
-            { q: "A project with an initial investment of Rs.50 Lakh and life of 10 years, generates CFAT of Rs. 10 Lakh per annum. Calculate the Payback Reciprocal.", o: ["10%", "20%", "100%", "None of these"], c: "20%" },
-            { q: "A project requires an initial investment of Rs.3,00,000. It yields annual cash inflow of Rs.60,000 for 8 years. You are required to find out the pay-back period of the project.", o: ["8 years", "1 year", "5 years", "2 months"], c: "5 years" },
-            { q: "A project requires an initial investment of Rs.5,00,000. It yields annual cash inflow of Rs. 1,00,000 for 8 years. You are required to find out the pay-back profitability of the project.", o: ["Rs.3,00,000", "Rs.1,20,000", "Rs.8,00,000", "Rs.40,00,000"], c: "Rs.3,00,000" },
-            { q: "NPV at discounting rate of 10% Rs. 1250 and NPV at discounting rate of 11% Rs. (-) 200. The IRR of the proposal is", o: ["11.86%", "10.86%", "9.87%", "11.96%"], c: "10.86%" },
-            { q: "The Profitability Index of a project is 1.28 and its cost of investment is Rs. 2,50,000. The NPV of the project is", o: ["Rs. 75,000", "Rs. 80,000", "Rs. 70,000", "Rs. 65,000"], c: "Rs. 70,000" },
-            { q: "The IRR of a project is 10%. If the annual cash flow after tax is Rs.1,30,000 and project duration is 4 years, what is the initial investment in the project?", o: ["Rs.4,10,000", "Rs. 4,12,100", "Rs. 3,90,000", "Rs. 4,05,000"], c: "Rs. 4,12,100" },
-            { q: "Which of the following statements is/are true?", o: ["NPV is not useful for evaluating mutually exclusive projects.", "The result of the NPV technique is not effected by the discount rate used.", "Benefit-cost ratio helps in evaluating the projects which differ in initial outlays.", "The advantage of NPV criteria is that it remains the same for all possible reinvestment rates of intermediate cash flows."], c: "Benefit-cost ratio helps in evaluating the projects which differ in initial outlays." },
-            { q: "Terminal value of the projects' cash inflows means", o: ["The sum of the future cash flows after a particular period of time", "The present value of the projects future cash inflows", "The sum of the reinvested values of the cash inflows up to the end of the project life", "The sum of the reinvested values of the cash inflows up to the end of the project life minus initial outlay"], c: "The sum of the reinvested values of the cash inflows up to the end of the project life" },
-            { q: "IRR can be viewed as", o: ["Desired rate of return for the investment proposed", "Rate of return earned on the initial investment", "The discount rate at which the capital is procured", "Rate of return earned on the intermediate cash flows of the project"], c: "Rate of return earned on the initial investment" },
-            { q: "At IRR, NPV is", o: ["0", "1", "100", "-1"], c: "0" },
-            { q: "When NPV is zero, Pl is", o: ["0", "1", "100", "-1"], c: "1" },
-            { q: "Requirement of Social Cost Benefit Analysis is/are", o: ["Monetary Cost Benefit Analysis fails to consider the external effects of a project, which may be positive like development of infrastructure or negative like pollution and imbalance in environment.", "Taxes and subsidies are monetary costs and gains, but these are only transfer payments from social point of view and therefore irrelevant.", "Market prices used to measure costs and benefits in project analysis, do not represent social values due to imperfections in market.", "All of these"], c: "All of these" },
-            { q: "Which of the following techniques is the most suitable, when NPV and IRR lead to inconsistent ranking due to life disparity between two or more projects?", o: ["Modified Net Present Value.", "Modified Internal Rate of Return.", "Uniform Annual Equivalent Cost/Benefit.", "Discounted Payback Period."], c: "Uniform Annual Equivalent Cost/Benefit." },
-            { q: "The analyses investment opportunities involving a sequence of decisions over time.", o: ["Decision-tree Method", "Normal Probability Distribution", "Social Cost Benefit Analysis", "None of these"], c: "Decision-tree Method" },
-            { q: "Given, Investment Rs.1,00,000, Life 3 years, Annual Cash Inflows Rs.2,00,000, Annual Cash Outflows Rs.1,50,000, Appropriate Discount Rate 10%. Calculate NPV.", o: ["Rs.24,300", "Rs.23,400", "Rs.15,000", "Rs.60,000"], c: "Rs.24,300" },
-            { q: "Coefficient of variation", o: ["Is an absolute measure of risk", "Is a relative measure of risk", "Is given by mean expected return by standard deviation", "Is given by the product pro of mean expected return and standard deviation"], c: "Is a relative measure of risk" },
-            { q: "If nominal discounting rate is 15%, inflation rate is 5%, then real discounting rate will be", o: ["9.52%", "9.25%", "10.25%", "10.52%"], c: "9.52%" },
-            { q: "If expected NPV=Rs.1,20,000 and S.D=Rs.30,000 then coefficient of variation will be", o: ["25%", "20%", "30.00%", "50%"], c: "25%" },
-            { q: "Given, expected value of profit without perfect information = Rs.1,600 and expected value of perfect information = Rs.300, then expected value of profit with perfect information will be", o: ["Rs.1,300", "Rs.1,900", "Rs.950", "None of these"], c: "Rs.1,900" },
-            { q: "If project cost =Rs.12,000, Annual cash flow = Rs.4,500 Cost of capital=14% life=4 years, PVIFA (14%,4)=2.9137, then the sensitivity with respect to the project cost is", o: ["9.27%", "10.27%", "9.72%", "10.72%"], c: "9.27%" },
-            { q: "is an imitation of a real-world system using a mathematical model that captures the characteristic features of the system as it encounters random events in time.", o: ["Simulation", "Scenario analysis", "Sensitivity analysis", "None of these"], c: "Simulation" },
-            { q: "Limitations of Leasing are", o: ["The lessor generally imposes certain restrictions on the leased assets. The Lessee may not be permitted to make additions on alterations to suit his needs.", "A Financial Lease may entail a higher pay out obligation, if the equipment is not found useful subsequently, and the lessee opts for premature termination of the Lease arrangement.", "In most circumstances, the Lessee does not become the owner of the asset, and is thus deprived of the residual value of the asset.", "All of these"], c: "All of these" },
-            { q: "The major advantage of leasing is that it", o: ["Provides flexible financing", "Provides lower payments", "Avoids risk of obsolescence", "All of the above"], c: "All of the above" },
-            { q: "A finance lease is an agreement between an owner of an asset and a user of that asset wherein the:", o: ["usual risks and benefits of ownership are transferred to the user:", "legal title to property is transferred to the lessee when the first lease payment is made;", "ownership passes to the lessor on inception date of the lease:", "substantially all of the risks and benefits of ownership remain with the lessor."], c: "usual risks and benefits of ownership are transferred to the user:" },
-            { q: "A way to analyse whether debt or lease financing would be preferable is to:", o: ["compare the net present values under each alternative, using the cost of capital as the discount rate.", "compare the net present values under each alternative, using the after-tax cost of borrowing as the discount rate.", "compare the payback periods for each alternative.", "compare the effective interest costs involved for each alternative."], c: "compare the net present values under each alternative, using the after-tax cost of borrowing as the discount rate." },
-            { q: "Which of following clearly define the Leasing services?", o: ["One party agrees to rent property owned by another party", "It guarantees the lessee, also known as the tenant, use of the asset", "It guarantees the lessor, regular payments from the lease", "All of the above"], c: "All of the above" },
-            { q: "The type of lease that includes a third party, a lender, is called as which of the following?", o: ["Sale and leaseback", "Leveraged Lease", "Direct leasing arrangement", "Operating lease"], c: "Leveraged Lease" },
-            { q: "As per plan, the periodic lease rent will go on decreasing with a specified rate of decrease.", o: ["Stepped-up Plan", "Steppeddown -Plan", "Deferred Payment Plan", "Equal Periodic Plan"], c: "Steppeddown -Plan" },
-            { q: "As per plan, the periodic lease rent payable in the initial period would be less, fixed up in such a way to meet the nominal amount comparative to the cost of investment, the rest of the amount is payable in lump sum during the ending periods of the lease.", o: ["Balloon Payment Plan", "Steppeddown -Plan", "Deferred Payment Plan", "Equal Periodic Plan"], c: "Balloon Payment Plan" },
-            { q: "Which of the following is limitation of Leasing?", o: ["Sale and Leaseback", "No Dilution of Ownership", "Source of Financing", "High Pay-out"], c: "High Pay-out" },
-            { q: "Which of the following is/are the objective/s of Cross Border Leasing?", o: ["reduction of overall cost of financing through utilization of tax depreciation allowances by the lessor in order to reduce its taxable income.", "Depending on the structure, in some countries, the lessor can utilize very favourable 'Leveraged Lease' Financial Accounting treatment for the overall transaction.", "The lessor is often able to utilize non-recourse debt to finance a substantial portion of the equipment cost.", "All of the above"], c: "All of the above" },
-            { q: "A financial institution securitizes part of its balance sheet for main reasons.", o: ["3", "4", "2", "5"], c: "3" },
-            { q: "Securitization is beneficial from the view point of investors also. The potential attractions includes which of the following?", o: ["Ability to diversify into sectors of exposure that might not be available in the regular bond markets (for example, residential mortgages or project finance loans)", "Access to different (and sometimes superior) risk-reward profiles", "Access to sectors that are otherwise not open to them", "All of the above"], c: "All of the above" },
-            { q: "Which of the following parties is/are not involved in Securitisation?", o: ["Originator", "Arranger", "Investee", "Special Purpose Vehicle"], c: "Investee" },
-            { q: "In securitization who is the issuer of securities?", o: ["SPV", "Underwriter", "Depositer", "Insurer"], c: "SPV" },
-            { q: "The concept of securitisation is associated with", o: ["Capital market", "Money market.", "Debt market.", "Foreign exchange market."], c: "Debt market." },
-            { q: "Under 'securitisation process', original borrower is known as", o: ["SPV", "Obligor", "Originator", "Credit enhancer"], c: "Obligor" },
-            { q: "certificate under securitisation have multiple maturity structure.", o: ["Pass through certificate", "Pay through certificate", "Preferred stock certificate", "Interest only certificate"], c: "Pay through certificate" },
-            { q: "Fundamental Analysis necessiates which of the following?", o: ["Economic Analysis", "Economic Analysis Industry Analysis", "Content Analysis", "Both 1 and 2"], c: "Both 1 and 2" },
-            { q: "is the study and analysis of Security Price movements on the following assumptions: 1. There is a basic trend in the share price movements. 2. Such trend is repetitive. 3. Share prices have little relationship with Intrinsic Value and are based more on investor psychology and perception.", o: ["Fundamental Analysis", "Technical Analysis", "Economic Analysis", "Company Analysis"], c: "Technical Analysis" },
-            { q: "is a measure of a country's economic activity and is defined as the total amount of goods and services produced in a country in a year", o: ["Gross Domestic Product", "Business Cycles", "Growth Stocks", "Value Stocks"], c: "Gross Domestic Product" },
-            { q: "The major components of GDP are", o: ["Consumption Spending", "Government Budget and expenditure", "Consumption in the Process of Imports Distribution", "All of these"], c: "All of these" },
-            { q: "Balance of payment can be grouped into three broad accounts, which are", o: ["Trade account balance, Compulsorya ccount balances and Capital account balance", "Total account balance, Current account balances and Capital account balance", "Trade account balance, Current account balances and Assets account balance", "Trade account balance, Current account balances and Capital account balance"], c: "Trade account balance, Current account balances and Capital account balance" },
-            { q: "Which of the following techniques are not used in Economic Analysis?", o: ["Anticipatory Surveys", "Indicator Approach", "Economic Model Building Approach", "International Product Analysis"], c: "International Product Analysis" },
-            { q: "Which of the following factors are most sensitive to a firm's earnings to the business cycle?", o: ["Sensitivity of sales", "Combined Leverage", "Financial Leverage", "Both 1 and 3"], c: "Both 1 and 3" },
-            { q: "P/E=", o: ["Stock Price/EPS", "Share Price/Book Value per Share", "Dividend /Net Income", "None of these"], c: "Stock Price/EPS" },
-            { q: "Which of the following techniques are used in Company Analysis?", o: ["Correlation & Regression Analysis", "Time Series and Trend Analysis", "Decision Tree Analysis", "All of these"], c: "All of these" },
-            { q: "SWOT analysis involves an examination of a firm's strengths, weaknesses, opportunities and", o: ["turnovers", "threats", "scopes", "objectives"], c: "threats" },
-            { q: "Inventory Turnover Ratio", o: ["Returns from Operations/Average inventory", "Revenue from Operations/Average Net Fixed Assets", "Current Assets /Current Liabilities", "None of these"], c: "Returns from Operations/Average inventory" },
-            { q: "The stock price in the stock market", o: ["Hovers around the support level or resistance level", "Moves between the same support and resistance levels", "Moves between the changing support and resistance level", "Both (a) and (b)"], c: "Moves between the changing support and resistance level" },
-            { q: "A company has an ROE of 0.24 and book value of Rs.25.38. the EPS for this company is", o: ["6.09", "7.25", "6.94", "6.13"], c: "6.09" },
-            { q: "In the bull market", o: ["The stock prices are increasing", "Each peak is higher than the previous peak", "Each bottom is higher than the previous bottom", "Both 2 and 3"], c: "Both 2 and 3" },
-            { q: "If ROA is 0.195 and the leverage factor of 1.38, the ROE of the company is", o: ["0.279", "0.283", "0.254", "0.269"], c: "0.269" },
-            { q: "MN Limited is expected to grow at the rate of 8% per annum, which currently pays Rs.10 as dividend. For investments at this risk level, investor requires a return of 15% a year, what is the estimated value of the stock?", o: ["Rs.10.80", "Rs.154.29", "Rs.166.63", "None of these"], c: "Rs.154.29" },
-            { q: "A company's share is currently traded for Rs.80 per share. It is expected that a dividend of Rs.4 per share after one year will grow at 8% indefinitely. What is the expected return?", o: ["8%", "13%", "5%", "80%"], c: "13%" },
-            { q: "bond is issued at a discount and repaid at face value. No periodic interest is paid.", o: ["Bearer Bonds", "Puttable Bonds", "Zero Coupon Bond", "Registered Bonds"], c: "Zero Coupon Bond" },
-            { q: "bonds refer to the ability of the issuer to pay off a debt obligation prior to its maturity at the option of the issuer of debt.", o: ["Puttable Bonds", "Term Bonds", "Perpetual Bonds", "Callable Bonds"], c: "Callable Bonds" },
-            { q: "Consider a 10 year, 12% coupon bond with a par value of Rs. 10,000. Assume that the required yield on this bond is 13%. Find out the value of the bond.", o: ["Rs.3,601.10", "Rs.651.10", "Rs. 2,950", "None of these"], c: "Rs.3,601.10" },
-            { q: "A bond with a face value of Rs.1,000 provides 12% annual return and pays Rs. 1,050 at the time of maturity, which is 10 years from now. If the investor required rate of return 13%, at which price should the company issue the bond?", o: ["Rs.651.12", "Rs.309.75", "Rs.960.87", "Rs.970"], c: "Rs.960.87" },
-            { q: "Face value of a bond Rs.1,000, coupon rate 6%, Current market price Rs.900. Current Yield?", o: ["6%", "6.67%", "10%", "90%"], c: "6.67%" },
-            { q: "Default risk is nil in", o: ["Treasury bills", "IDBI bonds", "ICICI bonds", "Reliance bonds"], c: "Treasury bills" },
-            { q: "Value of the bond depends on", o: ["Coupon rate", "Expected yield to maturity", "Years to maturity", "All of the above"], c: "All of the above" },
-            { q: "By investing in bonds, a trader is subjecting himself to the following risks", o: ["Interest rate risk", "Default risk", "Reinvestment risk", "All of the above"], c: "All of the above" },
-            { q: "The current dividend, market price and the annual dividend growth rate of a company are Rs.2.50 per share, Rs.50 per share and 5%, respectively. The capitalization rate of the equity will be", o: ["0.0526", "0.10", "0.1050", "0.1025"], c: "0.1025" },
-            { q: "A company with PAT of Rs.40 Lakh, tax rate of 50%, RONW of 100%, reserves of Rs.30 lakh and a par value Rs.5 will have pre-tax EPS of", o: ["Rs. 4.00", "Rs. 40.00", "Rs. 36.00", "Rs. 42.00"], c: "Rs. 40.00" },
-            { q: "A stock with a dividend pay-out ratio of 45%, required rate of return is 15% and a constant growth rate of 10% will have a P/E ratio of", o: ["3 times", "9 times", "8 times", "7.5 times"], c: "9 times" },
-            { q: "The current price is Rs.100, the required rate of return is 20% and the dividend paid Rs.3.00 on a share of Rs. 10 face value. What is the expected growth rate?", o: ["15%", "16%", "18%", "17%"], c: "17%" },
-            { q: "According to the constant growth model, the next year's dividend is Rs.2.00, required rate of return is 15% and the growth rate is 10%, the market price would be", o: ["Rs. 50", "Rs. 45", "Rs. 40", "Rs. 48"], c: "Rs. 40" },
-            { q: "A Ltd. has I million AAA rated 12% bonds outstanding, maturity in 7 years from now. If the market interest rate is 14%, the price of the bond is (assume FV Rs.100) and coupons are payable annually", o: ["90.00", "91.46", "93.00", "94"], c: "91.46" },
-            { q: "You just purchased a 10-year maturity, semi-annual coupon bond for Rs.1,148.77 (face value Rs. 1,000), a coupon rate of 8% and a yield to maturity 6%. The bond is callable in four years at Rs. 1,080. what is the yield to call?", o: ["5.60%", "6.0%", "7.2%", "8.00%"], c: "8.00%" },
-            { q: "A 20-year maturity bond with a par value Rs.1,000 makes semi-annual payments at a coupon rate of 8%. The YTM is 9%. How much should you pay for the bond?", o: ["Rs.1,080", "Rs.1,000", "Rs.908", "Rs.966"], c: "Rs.908" },
-            { q: "A closed-end fund has a portfolio currently worth Rs.350 million. The fund has liabilities of Rs.5 million and 17 million units outstanding. What is the net asset value of the fund?", o: ["Rs.20.28", "Rs.20.29", "Rs.20.59", "Rs.29.17"], c: "Rs.20.29" },
-            { q: "If opening units 1,25,000 Units subscribe 2,00,000, Units redeem 50,000 then Closing units?", o: ["3,25,000 units", "2,75,000 units", "3,75,000 units", "2,50,000 units"], c: "2,75,000 units" },
-            { q: "The important role while establishing the mutual fund scheme is played by the", o: ["AMC", "Trustees", "Sponsors", "Custodians"], c: "Sponsors" },
-            { q: "Settlement are done at the instance of the", o: ["Custodian", "AMC", "Trustees", "Sponsors"], c: "AMC" },
-            { q: "Balanced funds have the following characteristics", o: ["They consist of equity and bonds in equal proportion", "They have moderate risk component", "They have above average growth potential", "None of the above"], c: "They have moderate risk component" },
-            { q: "Which among the following increases the NAV of a mutual fund scheme?", o: ["Value of investments", "Receivables", "Accrued income", "All of 1.2 and 3"], c: "All of 1.2 and 3" },
-            { q: "Which of the following benefits is not usually conferred by mutual funds?", o: ["Diversified investment portfolio", "Professional stock selection and asset management", "Tax benefits", "Assured returns"], c: "Assured returns" },
-            { q: "The mutual funds are likely to perform better in the market than a small investor because they", o: ["Depend on the technical analysis tools and have the expertise to use them", "Depend on the fundamental analysis which ensures the long-term performance of the fund", "Have access to better information, ability and infrastructure to utilize it", "None of the above"], c: "Have access to better information, ability and infrastructure to utilize it" },
-            { q: "Identify the statement that applies to open-end mutual funds", o: ["They do not redeem or issue shares", "Shares of such funds are traded on organized exchanges", "Their price can't fall below the NAV", "Exit from such funds involves selling shares to other investors."], c: "Shares of such funds are traded on organized exchanges" },
-            { q: "How much money would you need to purchase 400 shares of a mutual fund with a NAV of Rs. 55 per share and a 3% load?", o: ["Rs.22,000", "Rs.21,450", "Rs.23,200", "Rs.22,660"], c: "Rs.22,660" },
-            { q: "A mutual fund had average daily assets of Rs.500 million in the past year. During the year, the fund sold Rs.60 million of stock X and purchased Rs.90 million of stock Y. What was the fund's turnover ratio?", o: ["12%", "15%", "18%", "30%"], c: "12%" },
-            { q: "If opening units 10,000 Units subscribe 3000, Units redeem 1000 then Closing units?", o: ["10,000 units", "13,000 units", "12,000 units", "14,000 units"], c: "12,000 units" },
-            { q: "For a scheme to be defined as an equal fund, it must have a minimum", o: ["65% in Indian equities", "65% in equities", "51% Indian equities", "35% in Indian equities"], c: "65% in equities" },
-            { q: "If opening units 1,25,000 Units subscribe 2,00,000, Units redeem 50,000 then Closing units?", o: ["3,25,000 units", "2,75,000 units", "3,75,000 units", "2,50,000 units"], c: "2,75,000 units" },
-            { q: "For a scheme to be defined as an equal fund, it must have a minimum", o: ["65% in Indian equities", "65% in equities", "51% Indian equities", "35% in Indian equities"], c: "65% in equities" },
-            { q: "A portfolio having two risky securities can be turned risk less if", o: ["The securities are completely positively correlated", "If the correlation ranges between zero and one", "The securities are completely negatively correlated", "None of the above"], c: "The securities are completely negatively correlated" },
-            { q: "Total risk includes", o: ["Systematic risk only", "Unsystematic risk only", "Both a and b above", "Only diversifiable risks"], c: "Both a and b above" },
-            { q: "Risk of two securities with different expected return can be compared with", o: ["Coefficient of variation", "Standard deviation of securities", "Variance of securities", "None of the above"], c: "Coefficient of variation" },
-            { q: "A portfolio comprises two securities and the expected return on them is 12% and 16% respectively. Determine return of portfolio if first security constitutes 40% of total portfolio.", o: ["12.40%", "13.40%", "14.40%", "15.40%"], c: "14.40%" },
-            { q: "Mr. A invested Rs. 10,000 in a shares of XYZ Company 10 years ago, and that is shares (including reinvested dividends) are currently worth Rs.23,8000. Using this information, calculate total investment return of Mr. A", o: ["100%", "38%", "138%", "238%"], c: "138%" },
-            { q: "What is the annualized return of Mr. A based on the data of the above question?", o: ["8%", "9.06%", "10%", "11%"], c: "9.06%" },
-            { q: "Mr. X invested Rs. 10,000 in shares of XYZ Company 20 years ago, and that his shares (including reinvested dividends) are currently worth Rs. 18,800. Using this information, calculate total investment return of Mr. A.", o: ["100%", "38%", "58%", "88%"], c: "88%" },
-            { q: "Covariance between a stock and a market index and the variance of the market index were found to be 33.56 and 19.15 respectively. The beta of the stock is:", o: ["1.55", "1.75", "1.85", "2.05"], c: "1.75" },
-            { q: "Consider the information given below: Rate of inflation =5.1% Beta=0.85 Real rate of return =4.2% and Market return = 12.6% The risk premium for the above security will be-", o: ["2.50%", "2.65%", "2.805%", "2.95%"], c: "2.805%" },
-            { q: "The security market line's first point is riskless asset with a beta of zero and the second point on the line is beta of", o: ["1", "1.5", "2.0", "0.5"], c: "1" }
+            { q: "1. Relevant cost analysis or relevant costing is used for various managerial decisions, like", o: ["Make or buy decision", "Accepting or rejecting a special order", "Both 1 and 2", "Deciding sale quantity"], c: "Both 1 and 2" },
+            { q: "2. Average Rate of Return (ARR) =", o: ["(Average Annual Profit after Tax/Average Investment) x 100", "(Average Annual Profit after Tax/Opening Investment) x 100", "(Average Annual Profit before Tax/Average Investment) x 100", "(Average Annual Profit after Tax/Net Sales) x 100"], c: "(Average Annual Profit after Tax/Average Investment) x 100" },
+            { q: "3. A project with an initial investment of Rs.50 Lakh and life of 10 years, generates CFAT of Rs. 10 Lakh per annum. Calculate the Payback Reciprocal.", o: ["10%", "20%", "100%", "None of these"], c: "20%" },
+            { q: "4. A project requires an initial investment of Rs.3,00,000. It yields annual cash inflow of Rs.60,000 for 8 years. You are required to find out the pay-back period of the project.", o: ["8 years", "1 year", "5 years", "2 months"], c: "5 years" },
+            { q: "5. A project requires an initial investment of Rs.5,00,000. It yields annual cash inflow of Rs. 1,00,000 for 8 years. You are required to find out the pay-back profitability of the project.", o: ["Rs.3,00,000", "Rs.1,20,000", "Rs.8,00,000", "Rs.40,00,000"], c: "Rs.3,00,000" },
+            { q: "6. NPV at discounting rate of 10% Rs. 1250 and NPV at discounting rate of 11% Rs. (-) 200. The IRR of the proposal is", o: ["11.86%", "10.86%", "9.87%", "11.96%"], c: "10.86%" },
+            { q: "7. The Profitability Index of a project is 1.28 and its cost of investment is Rs. 2,50,000. The NPV of the project is", o: ["Rs. 75,000", "Rs. 80,000", "Rs. 70,000", "Rs. 65,000"], c: "Rs. 70,000" },
+            { q: "8. The IRR of a project is 10%. If the annual cash flow after tax is Rs.1,30,000 and project duration is 4 years, what is the initial investment in the project?", o: ["Rs.4,10,000", "Rs. 4,12,100", "Rs. 3,90,000", "Rs. 4,05,000"], c: "Rs. 4,12,100" },
+            { q: "9. Which of the following statements is/are true?", o: ["NPV is not useful for evaluating mutually exclusive projects.", "The result of the NPV technique is not effected by the discount rate used.", "Benefit-cost ratio helps in evaluating the projects which differ in initial outlays.", "The advantage of NPV criteria is that it remains the same for all possible reinvestment rates of intermediate cash flows."], c: "Benefit-cost ratio helps in evaluating the projects which differ in initial outlays." },
+            { q: "10. Terminal value of the projects' cash inflows means", o: ["The sum of the future cash flows after a particular period of time", "The present value of the projects future cash inflows", "The sum of the reinvested values of the cash inflows up to the end of the project life", "The sum of the reinvested values of the cash inflows up to the end of the project life minus initial outlay"], c: "The sum of the reinvested values of the cash inflows up to the end of the project life" },
+            { q: "11. IRR can be viewed as", o: ["Desired rate of return for the investment proposed", "Rate of return earned on the initial investment", "The discount rate at which the capital is procured", "Rate of return earned on the intermediate cash flows of the project"], c: "Rate of return earned on the initial investment" },
+            { q: "12. At IRR, NPV is", o: ["0", "1", "100", "-1"], c: "0" },
+            { q: "13. When NPV is zero, PI is", o: ["0", "1", "100", "-1"], c: "1" },
+            { q: "14. Requirement of Social Cost Benefit Analysis is/are", o: ["Monetary Cost Benefit Analysis fails to consider the external effects of a project, which may be positive like development of infrastructure or negative like pollution and imbalance in environment.", "Taxes and subsidies are monetary costs and gains, but these are only transfer payments from social point of view and therefore irrelevant.", "Market prices used to measure costs and benefits in project analysis, do not represent social values due to imperfections in market.", "All of these"], c: "All of these" },
+            { q: "15. Which of the following techniques is the most suitable, when NPV and IRR lead to inconsistent ranking due to life disparity between two or more projects?", o: ["Modified Net Present Value.", "Modified Internal Rate of Return.", "Uniform Annual Equivalent Cost/Benefit.", "Discounted Payback Period."], c: "Uniform Annual Equivalent Cost/Benefit." },
+            { q: "16. The analyses investment opportunities involving a sequence of decisions over time.", o: ["Decision-tree Method", "Normal Probability Distribution", "Social Cost Benefit Analysis", "None of these"], c: "Decision-tree Method" },
+            { q: "17. Given, Investment Rs.1,00,000, Life 3 years, Annual Cash Inflows Rs.2,00,000, Annual Cash Outflows Rs.1,50,000, Appropriate Discount Rate 10%. Calculate NPV.", o: ["Rs.24,300", "Rs.23,400", "Rs.15,000", "Rs.60,000"], c: "Rs.24,300" },
+            { q: "18. Coefficient of variation", o: ["Is an absolute measure of risk", "Is a relative measure of risk", "Is given by mean expected return by standard deviation", "Is given by the product pro of mean expected return and standard deviation"], c: "Is a relative measure of risk" },
+            { q: "19. If nominal discounting rate is 15%, inflation rate is 5%, then real discounting rate will be", o: ["9.52%", "9.25%", "10.25%", "10.52%"], c: "9.52%" },
+            { q: "20. If expected NPV=Rs.1,20,000 and S.D=Rs.30,000 then coefficient of variation will be", o: ["25%", "20%", "30.00%", "50%"], c: "25%" },
+            { q: "21. Given, expected value of profit without perfect information = Rs.1,600 and expected value of perfect information = Rs.300, then expected value of profit with perfect information will be", o: ["Rs.1,300", "Rs.1,900", "Rs.950", "None of these"], c: "Rs.1,900" },
+            { q: "22. If project cost =Rs.12,000, Annual cash flow = Rs.4,500 Cost of capital=14% life=4 years, PVIFA (14%,4)=2.9137, then the sensitivity with respect to the project cost is", o: ["9.27%", "10.27%", "9.72%", "10.72%"], c: "9.27%" },
+            { q: "23. is an imitation of a real-world system using a mathematical model that captures the characteristic features of the system as it encounters random events in time.", o: ["Simulation", "Scenario analysis", "Sensitivity analysis", "None of these"], c: "Simulation" },
+            { q: "24. Limitations of Leasing are", o: ["The lessor generally imposes certain restrictions on the leased assets. The Lessee may not be permitted to make additions on alterations to suit his needs.", "A Financial Lease may entail a higher pay out obligation, if the equipment is not found useful subsequently, and the lessee opts for premature termination of the Lease arrangement.", "In most circumstances, the Lessee does not become the owner of the asset, and is thus deprived of the residual value of the asset.", "All of these"], c: "All of these" },
+            { q: "25. The major advantage of leasing is that it", o: ["Provides flexible financing", "Provides lower payments", "Avoids risk of obsolescence", "All of the above"], c: "All of the above" },
+            { q: "26. A finance lease is an agreement between an owner of an asset and a user of that asset wherein the:", o: ["usual risks and benefits of ownership are transferred to the user:", "legal title to property is transferred to the lessee when the first lease payment is made;", "ownership passes to the lessor on inception date of the lease:", "substantially all of the risks and benefits of ownership remain with the lessor."], c: "usual risks and benefits of ownership are transferred to the user:" },
+            { q: "27. A way to analyse whether debt or lease financing would be preferable is to:", o: ["compare the net present values under each alternative, using the cost of capital as the discount rate.", "compare the net present values under each alternative, using the after-tax cost of borrowing as the discount rate.", "compare the payback periods for each alternative.", "compare the effective interest costs involved for each alternative."], c: "compare the net present values under each alternative, using the after-tax cost of borrowing as the discount rate." },
+            { q: "28. Which of following clearly define the Leasing services?", o: ["One party agrees to rent property owned by another party", "It guarantees the lessee, also known as the tenant, use of the asset", "It guarantees the lessor, regular payments from the lease", "All of the above"], c: "All of the above" },
+            { q: "29. The type of lease that includes a third party, a lender, is called as which of the following?", o: ["Sale and leaseback", "Leveraged Lease", "Direct leasing arrangement", "Operating lease"], c: "Leveraged Lease" },
+            { q: "30. As per plan, the periodic lease rent will go on decreasing with a specified rate of decrease.", o: ["Stepped-up Plan", "Steppeddown -Plan", "Deferred Payment Plan", "Equal Periodic Plan"], c: "Steppeddown -Plan" },
+            { q: "31. As per plan, the periodic lease rent payable in the initial period would be less, fixed up in such a way to meet the nominal amount comparative to the cost of investment, the rest of the amount is payable in lump sum during the ending periods of the lease.", o: ["Balloon Payment Plan", "Steppeddown -Plan", "Deferred Payment Plan", "Equal Periodic Plan"], c: "Balloon Payment Plan" },
+            { q: "32. Which of the following is limitation of Leasing?", o: ["Sale and Leaseback", "No Dilution of Ownership", "Source of Financing", "High Pay-out"], c: "High Pay-out" },
+            { q: "33. Which of the following is/are the objective/s of Cross Border Leasing?", o: ["reduction of overall cost of financing through utilization of tax depreciation allowances by the lessor in order to reduce its taxable income.", "Depending on the structure, in some countries, the lessor can utilize very favourable 'Leveraged Lease' Financial Accounting treatment for the overall transaction.", "The lessor is often able to utilize non- recourse debt to finance a substantial portion of the equipment cost.", "All of the above"], c: "All of the above" },
+            { q: "34. A financial institution securitizes part of its balance sheet for main reasons.", o: ["3", "4", "2", "5"], c: "3" },
+            { q: "35. Securitization is beneficial from the view point of investors also. The potential attractions includes which of the following?", o: ["Ability to diversify into sectors of exposure that might not be available in the regular bond markets (for example, residential mortgages or project finance loans)", "Access to different (and sometimes superior) risk- reward profiles", "Access to sectors that are otherwise not open to them", "All of the above"], c: "All of the above" },
+            { q: "36. Which of the following parties is/are not involved in Securitisation?", o: ["Originator", "Arranger", "Investee", "Special Purpose Vehicle"], c: "Investee" },
+            { q: "37. In securitization who is the issuer of securities?", o: ["SPV", "Underwriter", "Depositer", "Insurer"], c: "SPV" },
+            { q: "38. The concept of securitisation is associated with", o: ["Capital market", "Money market.", "Debt market.", "Foreign exchange market."], c: "Debt market." },
+            { q: "39. Under 'securitisation process', original borrower is known as", o: ["SPV", "Obligor", "Originator", "Credit enhancer"], c: "Obligor" },
+            { q: "40. certificate under securitisation have multiple maturity structure.", o: ["Pass through certificate", "Pay through certificate", "Preferred stock certificate", "Interest only certificate"], c: "Pay through certificate" },
+            { q: "41. Fundamental Analysis necessiates which of the following?", o: ["Economic Analysis", "Economic Analysis & Industry Analysis", "Content Analysis", "Both 1 and 2"], c: "Economic Analysis & Industry Analysis" },
+            { q: "42. is the study and analysis of Security Price movements on the following assumptions: 1. There is a basic trend in the share price movements. 2. Such trend is repetitive. 3. Share prices have little relationship with Intrinsic Value and are based more on investor psychology and perception.", o: ["Fundamental Analysis", "Technical Analysis", "Economic Analysis", "Company Analysis"], c: "Technical Analysis" },
+            { q: "43. is a measure of a country's economic activity and is defined as the total amount of goods and services produced in a country in a year", o: ["Gross Domestic Product", "Business Cycles", "Growth Stocks", "Value Stocks"], c: "Gross Domestic Product" },
+            { q: "44. The major components of GDP are", o: ["Consumption Spending", "Government Budget and expenditure", "Consumption in the Process of Imports Distribution", "All of these"], c: "All of these" },
+            { q: "45. Balance of payment can be grouped into three broad accounts, which are", o: ["Trade account balance, Compulsorya ccount balances and Capital account balance", "Total account balance, Current account balances and Capital account balance", "Trade account balance, Current account balances and Assets account balance", "Trade account balance, Current account balances and Capital account balance"], c: "Trade account balance, Current account balances and Capital account balance" },
+            { q: "46. Which of the following techniques are not used in Economic Analysis?", o: ["Anticipatory Surveys", "Indicator Approach", "Economic Model Building Approach", "International Product Analysis"], c: "International Product Analysis" },
+            { q: "47. Which of the following factors are most sensitive to a firm's earnings to the business cycle?", o: ["Sensitivity of sales", "Combined Leverage", "Financial Leverage", "Both 1 and 3"], c: "Both 1 and 3" },
+            { q: "48. P/E=", o: ["Stock Price/EPS", "Share Price/Book Value per Share", "Dividend /Net Income", "None of these"], c: "Stock Price/EPS" },
+            { q: "49. Which of the following techniques are used in Company Analysis?", o: ["Correlation & Regression Analysis", "Time Series and Trend Analysis", "Decision Tree Analysis", "All of these"], c: "All of these" },
+            { q: "50. SWOT analysis involves an examination of a firm's strengths, weaknesses, opportunities and", o: ["turnovers", "threats", "scopes", "objectives"], c: "threats" },
+            { q: "51. Inventory Turnover Ratio", o: ["Returns from Operations/Average inventory", "Revenue from Operations/Average Net Fixed Assets", "Current Assets /Current Liabilities", "None of these"], c: "Returns from Operations/Average inventory" },
+            { q: "52. The stock price in the stock market", o: ["Hovers around the support level or resistance level", "Moves between the same support and resistance levels", "Moves between the changing support and resistance level", "Both (a) and (b)"], c: "Moves between the changing support and resistance level" },
+            { q: "53. A company has an ROE of 0.24 and book value of Rs.25.38. the EPS for this company is", o: ["6.09", "7.25", "6.94", "6.13"], c: "6.09" },
+            { q: "54. In the bull market", o: ["The stock prices are increasing", "Each peak is higher than the previous peak", "Each bottom is higher than the previous bottom", "Both 2 and 3"], c: "Both 2 and 3" },
+            { q: "55. If ROA is 0.195 and the leverage factor of 1.38, the ROE of the company is", o: ["0.279", "0.283", "0.254", "0.269"], c: "0.269" },
+            { q: "56. MN Limited is expected to grow at the rate of 8% per annum, which currently pays Rs.10 as dividend. For investments at this risk level, investor requires a return of 15% a year, what is the estimated value of the stock?", o: ["Rs.10.80", "Rs.154.29", "Rs.166.63", "None of these"], c: "Rs.154.29" },
+            { q: "57. A company's share is currently traded for Rs.80 per share. It is expected that a dividend of Rs.4 per share after one year will grow at 8% indefinitely. What is the expected return?", o: ["8%", "13%", "5%", "80%"], c: "13%" },
+            { q: "58. bond is issued at a discount and repaid at face value. No periodic interest is paid.", o: ["Bearer Bonds", "Puttable Bonds", "Zero Coupon Bond", "Registered Bonds"], c: "Zero Coupon Bond" },
+            { q: "59. bonds refer to the ability of the issuer to pay off a debt obligation prior to its maturity at the option of the issuer of debt.", o: ["Puttable Bonds", "Term Bonds", "Perpetual Bonds", "Callable Bonds"], c: "Callable Bonds" },
+            { q: "60. Consider a 10 year, 12% coupon bond with a par value of Rs. 10,000. Assume that the required yield on this bond is 13%. Find out the value of the bond.", o: ["Rs.3,601.10", "Rs.651.10", "Rs. 2,950", "None of these"], c: "Rs.3,601.10" },
+            { q: "61. A bond with a face value of Rs.1,000 provides 12% annual return and pays Rs. 1,050 at the time of maturity, which is 10 years from now. If the investor required rate of return 13%, at which price should the company issue the bond?", o: ["Rs.651.12", "Rs.309.75", "Rs.960.87", "Rs.970"], c: "Rs.960.87" },
+            { q: "62. Face value of a bond Rs.1,000, coupon rate 6%, Current market price Rs.900. Current Yield?", o: ["6%", "6.67%", "10%", "90%"], c: "6.67%" },
+            { q: "63. Default risk is nil in", o: ["Treasury bills", "IDBI bonds", "ICICI bonds", "Reliance bonds"], c: "Treasury bills" },
+            { q: "64. Value of the bond depends on", o: ["Coupon rate", "Expected yield to maturity", "Years to maturity", "All of the above"], c: "All of the above" },
+            { q: "65. By investing in bonds, a trader is subjecting himself to the following risks", o: ["Interest rate risk", "Default risk", "Reinvestment risk", "All of the above"], c: "All of the above" },
+            { q: "66. The current dividend, market price and the annual dividend growth rate of a company are Rs.2.50 per share, Rs.50 per share and 5%, respectively. The capitalization rate of the equity will be", o: ["0.0526", "0.10", "0.1050", "0.1025"], c: "0.1025" },
+            { q: "67. A company with PAT of Rs.40 Lakh, tax rate of 50%, RONW of 100%, reserves of Rs.30 lakh and a par value Rs.5 will have pre-tax EPS of", o: ["Rs. 4.00", "Rs. 40.00", "Rs. 36.00", "Rs. 42.00"], c: "Rs. 40.00" },
+            { q: "68. A stock with a dividend pay-out ratio of 45%, required rate of return is 15% and a constant growth rate of 10% will have a P/E ratio of", o: ["3 times", "9 times", "8 times", "7.5 times"], c: "9 times" },
+            { q: "69. The current price is Rs.100, the required rate of return is 20% and the dividend paid Rs.3.00 on a share of Rs. 10 face value. What is the expected growth rate?", o: ["15%", "16%", "18%", "17%"], c: "17%" },
+            { q: "70. According to the constant growth model, the next year's dividend is Rs.2.00, required rate of return is 15% and the growth rate is 10%, the market price would be", o: ["Rs. 50", "Rs. 45", "Rs. 40", "Rs. 48"], c: "Rs. 40" },
+            { q: "71. A Ltd. has I million AAA rated 12% bonds outstanding, maturity in 7 years from now. If the market interest rate is 14%, the price of the bond is (assume FV Rs.100) and coupons are payable annually", o: ["90.00", "91.46", "93.00", "94"], c: "91.46" },
+            { q: "72. You just purchased a 10-year maturity, semi-annual coupon bond for Rs.1,148.77 (face value Rs. 1,000), a coupon rate of 8% and a yield to maturity 6%. The bond is callable in four years at Rs. 1,080. what is the yield to call?", o: ["5.60%", "6.0%", "7.2%", "8.00%"], c: "5.60%" },
+            { q: "73. A 20-year maturity bond with a par value Rs.1,000 makes semi- annual payments at a coupon rate of 8%. The YTM is 9%. How much should you pay for the bond?", o: ["Rs.1,080", "Rs.1,000", "Rs.908", "Rs.966"], c: "Rs.908" },
+            { q: "74. A closed-end fund has a portfolio currently worth Rs.350 million. The fund has liabilities of Rs.5 million and 17 million units outstanding. What is the net asset value of the fund?", o: ["Rs.20.28", "Rs.20.29", "Rs.20.59", "Rs.29.17"], c: "Rs.20.29" },
+            { q: "75. If opening units 1,25,000 Units subscribe 2,00,000, Units redeem 50,000 then Closing units?", o: ["3,25,000 units", "2,75,000 units", "3,75,000 units", "2,50,000 units"], c: "2,75,000 units" },
+            { q: "76. The important role while establishing the mutual fund scheme is played by the", o: ["AMC", "Trustees", "Sponsors", "Custodians"], c: "Sponsors" },
+            { q: "77. Settlement are done at the instance of the", o: ["Custodian", "AMC", "Trustees", "Sponsors"], c: "AMC" },
+            { q: "78. Balanced funds have the following characteristics", o: ["They consist of equity and bonds in equal proportion", "They have moderate risk component", "They have above average growth potential", "None of the above"], c: "They have moderate risk component" },
+            { q: "79. Which among the following increases the NAV of a mutual fund scheme?", o: ["Value of investments", "Receivables", "Accrued income", "All of 1.2 and 3"], c: "All of 1.2 and 3" },
+            { q: "80. Which of the following benefits is not usually conferred by mutual funds?", o: ["Diversified investment portfolio", "Professional stock selection and asset management", "Tax benefits", "Assured returns"], c: "Assured returns" },
+            { q: "81. The mutual funds are likely to perform better in the market than a small investor because they", o: ["Depend on the technical analysis tools and have the expertise to use them", "Depend on the fundamental analysis which ensures the long- term performance of the fund", "Have access to better information, ability and infrastructure to utilize it", "None of the above"], c: "Have access to better information, ability and infrastructure to utilize it" },
+            { q: "82. Identify the statement that applies to open-end mutual funds", o: ["They do not redeem or issue shares", "Shares of such funds are traded on organized exchanges", "Their price can't fall below the NAV", "Exit from such funds involves selling shares to other investors."], c: "Their price can't fall below the NAV" },
+            { q: "83. How much money would you need to purchase 400 shares of a mutual fund with a NAV of Rs. 55 per share and a 3% load?", o: ["Rs.22,000", "Rs.21,450", "Rs.23,200", "Rs.22,660"], c: "Rs.22,660" },
+            { q: "84. A mutual fund had average daily assets of Rs.500 million in the past year. During the year, the fund sold Rs.60 million of stock X and purchased Rs.90 million of stock Y. What was the fund's turnover ratio?", o: ["12%", "15%", "18%", "30%"], c: "12%" },
+            { q: "85. If opening units 10,000 Units subscribe 3000, Units redeem 1000 then Closing units?", o: ["10,000 units", "13,000 units", "12,000 units", "14,000 units"], c: "12,000 units" },
+            { q: "86. For a scheme to be defined as an equal fund, it must have a minimum", o: ["65% in Indian equities", "65% in equities", "51% Indian equities", "35% in Indian equities"], c: "65% in equities" },
+            { q: "87. If opening units 1,25,000 Units subscribe 2,00,000, Units redeem 50,000 then Closing units?", o: ["3,25,000 units", "2,75,000 units", "3,75,000 units", "2,50,000 units"], c: "2,75,000 units" },
+            { q: "88. For a scheme to be defined as an equal fund, it must have a minimum", o: ["65% in Indian equities", "65% in equities", "51% Indian equities", "35% in Indian equities"], c: "65% in equities" },
+            { q: "89. A portfolio having two risky securities can be turned risk less if", o: ["The securities are completely positively correlated", "If the correlation ranges between zero and one", "The securities are completely negatively correlated", "d. None of the above"], c: "The securities are completely negatively correlated" },
+            { q: "90. Total risk includes", o: ["Systematic risk only", "Unsystematic risk only", "Both a and b above", "Only diversifiable risks"], c: "Both a and b above" },
+            { q: "91. Risk of two securities with different expected return can be compared with", o: ["Coefficient of variation", "Standard deviation of securities", "Variance of securities", "None of the above"], c: "Coefficient of variation" },
+            { q: "92. A portfolio comprises two securities and the expected return on them is 12% and 16% respectively. Determine return of portfolio if first security constitutes 40% of total portfolio.", o: ["12.40%", "13.40%", "14.40%", "15.40%"], c: "14.40%" },
+            { q: "93. Mr. A invested Rs. 10,000 in a shares of XYZ Company 10 years ago, and that is shares (including reinvested dividends) are currently worth Rs.23,8000. Using this information, calculate total investment return of Mr. A", o: ["100%", "38%", "138%", "238%"], c: "138%" },
+            { q: "94. What is the annualized return of Mr. A based on the data of the above question?", o: ["8%", "9.06%", "10%", "11%"], c: "9.06%" },
+            { q: "95. Mr. X invested Rs. 10,000 in shares of XYZ Company 20 years ago, and that his shares (including reinvested dividends) are currently worth Rs.18,800. Using this information, calculate total investment return of Mr. A.", o: ["100%", "38%", "58%", "88%"], c: "88%" },
+            { q: "96. Covariance between a stock and a market index and the variance of the market index were found to be 33.56 and 19.15 respectively. The beta of the stock is:", o: ["1.55", "1.75", "1.85", "2.05"], c: "1.75" },
+            { q: "97. Consider the information given below: Rate of inflation =5.1% Beta=0.85 Real rate of return =4.2% and Market return = 12.6% The risk premium for the above security will be-", o: ["2.50%", "2.65%", "2.805%", "2.95%"], c: "2.805%" },
+            { q: "98. The security market line's first point is riskless asset with a beta of zero and the second point on the line is beta of", o: ["1", "1.5", "2.0", "0.5"], c: "1" },
+            { q: "99. Arbitrage portfolio", o: ["Offers profit potential with an amount of additional investment and risk.", "Offers profit potential without an amount of additional investment and risk.", "Is the most diversified portfolio.", "Is the most undiversified portfolio."], c: "Offers profit potential without an amount of additional investment and risk." },
+            { q: "100. In contrast to the CAPM, arbitrage pricing theory:", o: ["Requires that markets be in equilibrium", "Uses risk premiums based on micro variables", "Specifies the number and identifies specific factors that determine expected returns.", "Does not require the restrictive assumptions concerning the market portfolio."], c: "Does not require the restrictive assumptions concerning the market portfolio." },
+            { q: "101. The feature of the general version of the arbitrage pricing theory (APT) that offers the greatest potential advantage over the simple CAPM is the:", o: ["Identification of anticipated changes in production, inflation, and term structure of interest rates as key factors explaining the risk return relationship.", "Superior measurement of the risk free rate of return over historical time periods.", "Variability of coefficients of sensitivity to the APT factors for a given asset over time.", "Use of several factors instead of a single market-index to explain the risk- return relationship."], c: "Use of several factors instead of a single market-index to explain the risk- return relationship." },
+            { q: "102. Which of the following is a valid comparison between the APT and CAPM?", o: ["The CAPM applies to only well-diversified portfolios.", "The CAPM dominates the APT and econometric concerns appear to favor it", "The APT gets us to the expected return- beta relationship without requiring many of the unrealistic assumptions of the CAPM.", "Both theories differ on the expected return-beta relationship."], c: "The APT gets us to the expected return- beta relationship without requiring many of the unrealistic assumptions of the CAPM." },
+            { q: "103. The sum of an asset's systematic variance and its non-systematic variance of returns is equal to the asset's:", o: ["Beta.", "Total risk.", "Total variance.", "None"], c: "Total variance." },
+            { q: "104. The portfolio's risk premium is 12% and the standard deviation of market and the portfolio are 4 and 3, respectively. The fund's beta value is 1.5. The Treynor index is", o: ["3.0", "8.0", "4.0", "12"], c: "8.0" },
+            { q: "105. A portfolio manager realized an average annual return of 12%. The beta of the portfolio is 1.1 and the standard deviation of returns is 30%. The average annual return for the market index is 10% and the standard deviation of the market returns is 25%. The rf is 5%. Calculate Jensen's alpha for the portfolio.", o: ["0.50%", "0.5%", "1.50%", "1.5%"], c: "1.5%" },
+            { q: "106. A portfolio manager realized an average annual return of 15%. The beta of the portfolio is 1.2 and the standard deviation of return is 25%. The average annual return for the market index was 11% and the standard deviation of the market returns is 20%. The risk-free rate is 4%. Calculate the Sharpe ratio for the portfolio.", o: ["0.16", "0.44", "0.55", "0.64"], c: "0.44" },
+            { q: "107. Sharpe's measure of the portfolio performance is based on", o: ["Systematic risk of the portfolio", "Unsystematic risk of the portfolio", "Total risk of the portfolio", "Market risk of the portfolio"], c: "Total risk of the portfolio" },
+            { q: "108. Which of the following is the more appropriate measure of portfolio performance if you have only one mutual fund in your investment portfolio?", o: ["Jensen measure", "Sharpe measure", "Treynor measure", "Information ratio"], c: "Sharpe measure" },
+            { q: "109. Sharpe measure is best applicable when", o: ["Evaluating a portfolio to be mixed with a position in the passive benchmark portfolio", "Choosing among portfolios competing as the optional risky position", "Comparing with the desired performance based on a benchmark portfolio with actual performance", "Ranking many portfolios that will be mixed to form the optional risky portfolio"], c: "Choosing among portfolios competing as the optional risky position" },
+            { q: "110. Which of the following statement defines an efficient market?", o: ["Information is fully reflected in the stock prices", "The stock exchange is fully automated", "The stock exchange is fully automated", "Free entry and exit of investors"], c: "Information is fully reflected in the stock prices" },
+            { q: "111. In a weakly efficient market, the stock price reflects", o: ["The company's financial performance", "The past price of the scrip", "The demand for the scrip", "The past price and traded volume"], c: "The past price and traded volume" },
+            { q: "112. In the strong form of efficient market", o: ["All available information is reflected in prices", "All published information is reflected in prices", "Stock price reflects past price", "All information including insider information is reflected in prices"], c: "All information including insider information is reflected in prices" },
+            { q: "113. If markets are efficient, the security price provides", o: ["Inadequate return for taking up risk", "Normal return for the level of risk taken", "High return for the level of risk taken", "Both 2 and 3"], c: "Normal return for the level of risk taken" },
+            { q: "114. A run in the stock price is", o: ["A sequence of either a fall or rise in stock prices", "An uninterrupted sequence of either a rise or fall in stock prices", "An alternate sequence of stock price and volume movements", "A sequence of fall in price"], c: "An uninterrupted sequence of either a rise or fall in stock prices" },
+            { q: "115. The efficient market hypothesis suggests that investors should", o: ["Adopt an active portfolio management strategy", "Adopt a passive portfolio management strategy", "Use technical analysis as the basis for investment decisions", "Use fundamental analysis as the basis for investment decisions"], c: "Adopt a passive portfolio management strategy" },
+            { q: "116. Risk management is the process which includes", o: ["Risk identification", "Risk assessment", "Risk measurement", "All of the above"], c: "All of the above" },
+            { q: "117. Which of the following is not a part of Financial Risk?", o: ["Operational Risk", "Market Risk", "Credit Risk", "Liquidity Risk"], c: "Operational Risk" },
+            { q: "118. Which of the following is not a part of Market Risk?", o: ["Equity risk", "Inflation Risk", "Downgrade Risk", "Interest Rate Risk"], c: "Downgrade Risk" },
+            { q: "119. Which of the following is not a part of Credit Risk?", o: ["Default risk", "Downgrade risk", "Concentration risk", "Liquidity risk"], c: "Liquidity risk" },
+            { q: "120. Responses to risk includes", o: ["Risk avoidance", "Risk reduction", "Risk transfer", "All of the above"], c: "All of the above" },
+            { q: "121. There are -primary types of credit risk:", o: ["2", "3", "4", "5"], c: "3" },
+            { q: "122. is the risk of uncertain movements and adverse fluctuations in the financial market variables like security prices, commodity prices, interest rates and exchange rates.", o: ["Market risk or price risk", "Credit Risk", "Liquidity Risk", "None of these"], c: "Market risk or price risk" },
+            { q: "123. Responses to risk generally fall into which of the following categories?", o: ["Risk avoidance, Risk reduction, Risk escaping and Risk acceptance", "Risk avoidance, Risk reduction, Risk sharing or transfer and Risk acceptance", "Risk avoidance, Risk reduction, Risk intolerance and Risk acceptance", "Risk avoidance, Risk reduction, Risk creation and Risk acceptance"], c: "Risk avoidance, Risk reduction, Risk sharing or transfer and Risk acceptance" },
+            { q: "124. is the risk of change in the inflation rates changes the purchasing power.", o: ["Inflation Rate Risk", "Currency Risk", "Commodities Risk", "None of these"], c: "Inflation Rate Risk" },
+            { q: "125. Downgrade Risk", o: ["Is the chance that the spread between the risky bond and risk- free securities will vary after purchase.", "Is a chance that a rating agency will lower its rating on the issuer or the probability of loss from a fall in issuers rating because of deterioration in its financial condition.", "The risk of loss arising from sovereign state freezing foreign currency payments (transfer/ conversion risk) or when it defaults on its obligations.", "Is the chance of failing of an issuer to meet its obligations."], c: "Is a chance that a rating agency will lower its rating on the issuer or the probability of loss from a fall in issuers rating because of deterioration in its financial condition." },
+            { q: "126. An investor writes a three-month put on the stock of an oil company at an exercise price of Rs.275 per share at a premium of Rs.34. If the expiration date price is Rs.280, calculate the gain/loss of put writer.", o: ["Rs. 5", "-Rs.5", "Rs. 34", "None of these"], c: "Rs. 34" },
+            { q: "127. An investor buys 100 shares of a sugar mill at Rs.210 per share and at the same time writes a September Rs.250 call at a premium of Rs.20 per share. If the expiration date price is Rs.280, calculate the net gain/loss.", o: ["Rs.2000", "Rs.4000", "Rs.6000", "None of these"], c: "Rs.6000" },
+            { q: "128. If the share of BA Ltd. (F. V. Rs.10) quotes Rs.920 on NSE, and the 3 months futures price quotes at Rs.950, and the borrowing rate is given as 8% and the expected annual dividend yield is 15% p.a. payable before expiry, then the price of 3-month BA Ltd. futures would be", o: ["Rs.948.40", "Rs.939.90", "Rs. 938.50", "Rs.936.90"], c: "Rs.936.90" },
+            { q: "129. The stock of ABC Ltd. sells for Rs.210. The present value of exercise price and the value of call option are Rs.217.40 and Rs.9.60 respectively. What is the value of put option?", o: ["Rs.16.50", "Rs.22.00", "Rs.17.00", "Rs.18.00"], c: "Rs.17.00" },
+            { q: "130. In June 2022, a six month Call on Ritz Ltd.'s stock with an exercise price of Rs.25 sold for Rs.5. The stock price was Rs.20. The risk- free interest rate was 5% per annum. How much would you be willing to pay for a Put Option on Ritz Ltd.'s stock with same maturity and exercise price? [Given: PVIF (5%, 1/2 year) =0.9756]", o: ["Rs. 6.39", "Rs.9.39", "Rs. 2.39", "None of these"], c: "Rs.9.39" },
+            { q: "131. A buyer of forward contract will make profit if", o: ["Future price is lower than the forward price", "Future price is higher than the forward price", "Future price is equal to the forward price", "Both 1 and 3"], c: "Future price is higher than the forward price" },
+            { q: "132. Which of the following is/are underlying instrument(s) in a Forward Rate Agreement?", o: ["Interest rate", "Exchange rate", "Inflation rate", "Both 1 and 3"], c: "Interest rate" },
+            { q: "133. The market in which the futures price is greater than the spot price is referred to as", o: ["Basis", "Contango", "Backwardation", "Reverse Cash and carry arbitrage market"], c: "Contango" },
+            { q: "134. Buying and selling call or put option with the same strike price but different expiration dates is called", o: ["Long hedge", "Short hedge", "Horizontal option spread", "None of the above."], c: "Horizontal option spread" },
+            { q: "135. Maintenance margins deposited by an investor in a futures contract is", o: ["Greater than or equal to the initial margin", "Less than or equal to the initial margin", "Greater than the initial margin", "Less than the initial margin"], c: "Less than the initial margin" },
+            { q: "136. Backwardation occurs when", o: ["Current spot price > futures price", "Current spot price < futures", "Futures price < current spot price", "Futures price > current spot price"], c: "Futures price < current spot price" },
+            { q: "137. American options are those", o: ["Options which are traded on New York Stock Exchange", "That can be exercised at any time during a specified period", "That can be exercised only at the specified period", "That can be exercised even after the specified period"], c: "That can be exercised at any time during a specified period" },
+            { q: "138. The writer of the option is also known as a", o: ["Buyer of the option", "Holder of the option", "Seller of the option", "Mediator of the option"], c: "Seller of the option" },
+            { q: "139. Covered Call Writing means", o: ["Buying a stock and a put option and writing a call option on the asset already owned", "Buying a call option and stock and writing a put option", "Buying a call option and writing a put option", "Selling a call option and purchasing a stock"], c: "Selling a call option and purchasing a stock" },
+            { q: "140. Plain vanilla interest rate swaps involved", o: ["Fixed to fixed rate swap", "Fixed to floating rate swap", "Floating to floating rate swap", "Currency swap"], c: "Fixed to floating rate swap" },
+            { q: "141. Which of the following bonds are denominated in Yen?", o: ["Yankee", "Samurai", "Shibosai", "Both 2 and 3"], c: "Both 2 and 3" },
+            { q: "142. are underwritten and have a maturity of up to one year.", o: ["Note issuance facilities", "Medium-term notes", "Commercial paper", "ADRS"], c: "Note issuance facilities" },
+            { q: "143. is a private arrangement between lending banks and a borrower.", o: ["Club loan", "Multiple component facility", "Syndicated Euro credit", "All of the above"], c: "Club loan" },
+            { q: "144. A Yankee bond is", o: ["A dollar dominated bond issued for global market by a non-US entity", "A dollar denominated bond issued in the US by a non-US entity", "A dollar denominated bond issued by a US resident to a non-US investor", "A dollar denominated bond issued in US by a US resident"], c: "A dollar denominated bond issued in the US by a non-US entity" },
+            { q: "145. Shibosai bond is a bond", o: ["Denominated in ¥ and issued outside Japan", "Denominated in a currency other than and issued in Japan", "Denominated in Japanese ¥ and issued under private placement in Japan", "Denominated in ¥ and issued by a overseas corporate to the public in Japan"], c: "Denominated in Japanese ¥ and issued under private placement in Japan" },
+            { q: "146. Which of the following is/are advantage/s of ADRs?", o: ["Access to Large Capital", "Access to Foreign Exchange", "No Change in the Shareholding/voting pattern", "All of the above"], c: "All of the above" },
+            { q: "147. Which of the following is/are feature/s of GDRs?", o: ["Underlying Shares", "Globally Marketed", "Not negotiable", "Both 1 and 2"], c: "Both 1 and 2" },
+            { q: "148. An Indian company is planning to invest in US. The US inflation rate is expected to be 3% and that of India is expected to be 8% annually. If the spot rate currently is Rs.45/US $, what spot rate can you expect after 5 years?", o: ["Rs.56.09/US $", "Rs.57.00/US $", "Rs.57.04/US $", "Rs.57.13/USS"], c: "Rs.57.04/US $" },
+            { q: "149. The spot and 6 months forward rates of f in relation to the rupee (Rs./£): are Rs.77.9542/78.1255 and Rs.78.8550/9650 respectively. What will be the annualised forward margin (Premium with respect to Ask Price)?", o: ["2.31%", "2.15%", "1.80%", "1.59%"], c: "2.15%" },
+            { q: "150. The United States Dollar is selling in India at Rs.45.20. If the interest rate for a 6-months borrowing in India is 10% and the corresponding rate in USA is 4%, what would be the rate of forward premium/(discount)?", o: ["5.93%", "5.88%", "(5.17%)", "(5.52%)"], c: "5.88%" },
+            { q: "151. The sterling is trading at $1.6400 today. Inflation U.K. is 3.8% and that in U.S.A. is 2.9%. What would be the spot rate ($/£) after 2 years?", o: ["$1.6117", "$1.615", "$1.625", "None of the above"], c: "$1.6117" },
+            { q: "152. Components of digital infrastructure includes which of the following?", o: ["Data centers and networks", "Enterprise portals, platforms, systems, and software", "Cloud services", "All of these"], c: "All of these" },
+            { q: "153. Which of the following is not a potential benefit of Central Bank Digital Currencies?", o: ["Technological efficiency in storing and transacting with reduced cost", "Scope committing illegal activities like money laundering, tax evasion, terror financing", "Keeping track of transactions, exact location of money", "Providing a digital record of every transaction"], c: "Scope committing illegal activities like money laundering, tax evasion, terror financing" },
+            { q: "154. is unique. Non-fungible tokens can digitally represent any asset, including online-only assets like digital artwork and real assets such as real estate.", o: ["Non-Fungible Tokens", "Cryptocurrency", "Central Bank Digital Currencies", "None of these"], c: "Non-Fungible Tokens" },
+            { q: "155. Which of the following is not a component of Digital Finance Ecosystem?", o: ["Digital Infrastructure", "Digital Money", "Digital Liabilities", "Digital Financial Services"], c: "Digital Liabilities" },
+            { q: "156. NFT stands for", o: ["Non-Fungible Token", "Non-Fuel Token", "C. Non-Fractional Token", "D. Non- Fundamental Token"], c: "Non-Fungible Token" },
+            { q: "157. Digital Finance Cube has dimensions.", o: ["6", "4", "3", "2"], c: "3" },
+            { q: "158. In India, all payments are regulated by", o: ["RBI Act, 1934", "Banking Regulation Act, 1949", "Payment and Settlement Systems Act, 2007", "SBI Act, 1955"], c: "Payment and Settlement Systems Act, 2007" },
+            { q: "159. UPI stands for", o: ["United Payment Interface", "Unified Payment Interface", "Unique Payment Interface", "Utility Payment Interface"], c: "Unified Payment Interface" }
         ];
 
-        let userAnswers = new Array(questionsData.length).fill(null);
-        let questionsAttemptedFlags = new Array(questionsData.length).fill(false);
         let currentQuestionIndex = 0;
-        let score = { correct: 0, incorrect: 0 };
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
 
+        let score = {
+            correct: 0,
+            incorrect: 0
+        };
+
+        // DOM Elements
         const questionHeaderElement = document.getElementById('question-header');
         const questionTextElement = document.getElementById('question-text');
         const optionsContainerElement = document.getElementById('options-container');
@@ -402,58 +517,61 @@
         const prevButton = document.getElementById('prev-btn');
         const completionMessageElement = document.getElementById('completion-message');
         const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
 
         const correctCountElement = document.getElementById('correct-count');
         const incorrectCountElement = document.getElementById('incorrect-count');
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
-        
-        const questionsPerSet = [50, 50, 59]; 
-        const setStartIndices = [0, 50, 100]; 
 
+        // Configuration for 159 questions into 4 sets
+        const questionsPerSet = [40, 40, 40, 39]; 
+        const setStartIndices = [0, 40, 80, 120]; 
 
         function populateSetSelector() {
             setSelectorElement.innerHTML = ''; // Clear existing options
             questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
                 const option = document.createElement('option');
                 option.value = index; 
-                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
-                setSelectorElement.appendChild(option);
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
             });
             setSelectorElement.addEventListener('change', (event) => {
                 const selectedSetIndex = parseInt(event.target.value);
                 currentQuestionIndex = setStartIndices[selectedSetIndex];
-                displayQuizElements();
+                completionMessageElement.style.display = 'none';
+                questionHeaderElement.style.display = 'block';
+                questionTextElement.style.display = 'block';
+                optionsContainerElement.style.display = 'block';
+                navigationButtons.style.display = 'flex'; 
                 loadQuestion();
             });
         }
-        
-        function displayQuizElements() {
-            completionMessageElement.style.display = 'none';
-            questionHeaderElement.style.display = 'block';
-            questionTextElement.style.display = 'block';
-            optionsContainerElement.style.display = 'block';
-            document.getElementById('navigation-buttons').style.display = 'flex';
-        }
-
 
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
-            for (let i = 0; i < questionsPerSet.length; i++) {
-                cumulativeQuestions += questionsPerSet[i];
-                if (index < cumulativeQuestions) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
                     if (setSelectorElement.value != i) { 
-                         setSelectorElement.value = i;
+                         setSelectorElement.value = i; 
                     }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-            //This will handle the last set if the loop doesn't catch it
-            const lastSetIndex = questionsPerSet.length - 1;
-            if (setSelectorElement.value != lastSetIndex) {
-                setSelectorElement.value = lastSetIndex;
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
             }
-            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
         }
         
         function updateScoreboard() {
@@ -470,97 +588,92 @@
         }
 
         function loadQuestion() {
-            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
-            if (currentQuestionIndex >= questionsData.length) {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
                 showCompletionMessage();
                 return;
             }
-            displayQuizElements(); 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
             questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
 
-            optionsContainerElement.innerHTML = '';
-            const questionAlreadyAnswered = questionsAttemptedFlags[currentQuestionIndex];
-
+            optionsContainerElement.innerHTML = ''; 
             currentQuestion.o.forEach((optionText, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.classList.add('option');
                 optionElement.dataset.optionText = optionText; 
 
-                const optionLetter = String.fromCharCode(65 + index);
+                const optionLetter = String.fromCharCode(65 + index); 
                 optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
                 
-                if (questionAlreadyAnswered) {
+                if (questionsAttemptedState[currentQuestionIndex]) { 
                     optionElement.classList.add('disabled');
-                    if (optionText === currentQuestion.c) {
-                        optionElement.classList.add('correct-answer');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
                     }
-                    if (optionText === userAnswers[currentQuestionIndex] && optionText !== currentQuestion.c) {
-                        optionElement.classList.add('incorrect-selection');
-                    }
-                     if (optionText === userAnswers[currentQuestionIndex]) {
-                        optionElement.classList.add('user-selected-display');
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
                     }
                 } else {
                     optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
                 }
                 optionsContainerElement.appendChild(optionElement);
             });
+
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
             
-            prevButton.disabled = currentQuestionIndex === 0;
-            // MODIFICATION: Always enable the next button to allow skipping
-            nextButton.disabled = false; 
-            
-            if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            } else {
-                 nextButton.textContent = "Next Question";
+            nextButton.disabled = false;
+            if (currentQuestionIndex === questionsData.length - 1) {
+                nextButton.disabled = !questionsAttemptedState[currentQuestionIndex];
             }
+
+            prevButton.disabled = (currentQuestionIndex === 0);
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
         }
 
         function handleOptionSelection(selectedDiv, selectedOptionText) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return; 
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
 
-            questionsAttemptedFlags[currentQuestionIndex] = true;
+            questionsAttemptedState[currentQuestionIndex] = true;
             userAnswers[currentQuestionIndex] = selectedOptionText;
             nextButton.disabled = false; 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.c;
 
-            selectedDiv.classList.add('user-selected-display');
-
-            if (selectedOptionText === correctAnswerText) {
-                selectedDiv.classList.add('correct-answer');
-                score.correct++;
-            } else {
-                selectedDiv.classList.add('incorrect-selection');
-                score.incorrect++;
-                Array.from(optionsContainerElement.children).forEach(optDiv => {
-                    if (optDiv.dataset.optionText === correctAnswerText) {
-                        optDiv.classList.add('correct-answer');
-                    }
-                });
-            }
-            
             Array.from(optionsContainerElement.children).forEach(optDiv => {
-                const newOptDiv = optDiv.cloneNode(true);
-                optDiv.parentNode.replaceChild(newOptDiv, optDiv);
-                newOptDiv.classList.add('disabled');
+                optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
+                    }
+                }
             });
-
             updateScoreboard();
-             if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            }
         }
         
         function selectOptionByKey(key) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return;
+            if (questionsAttemptedState[currentQuestionIndex]) return;
 
             let optionIndex = -1;
             if (key === 'a' || key === '1') optionIndex = 0;
@@ -581,7 +694,9 @@
                 currentQuestionIndex++;
                 loadQuestion();
             } else {
-                showCompletionMessage();
+                 if (questionsAttemptedState[currentQuestionIndex]) {
+                    showCompletionMessage();
+                 }
             }
         }
 
@@ -596,34 +711,42 @@
             questionHeaderElement.style.display = 'none';
             questionTextElement.style.display = 'none';
             optionsContainerElement.style.display = 'none';
-            document.getElementById('navigation-buttons').style.display = 'none';
+            navigationButtons.style.display = 'none'; 
             completionMessageElement.style.display = 'block';
             const attempted = score.correct + score.incorrect;
             const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
-            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
+        // Event Listeners
         nextButton.addEventListener('click', nextQuestionHandler);
         prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+                return;
+            }
+            if (event.key.toLowerCase() === 'escape') return;
+
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault(); 
+                 return;
+            }
+
             const key = event.key.toLowerCase();
-            
-            // MODIFICATION: Allow skipping with keyboard shortcuts
-            if (key === 'arrowright' || key === ' ' || key === 'enter') {
+            if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                event.preventDefault();
+                selectOptionByKey(key);
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
                 event.preventDefault();
                 nextQuestionHandler();
-            } else if (key === 'arrowleft') {
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
                 event.preventDefault();
                 prevQuestionHandler();
-            } else if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
-                if (currentQuestionIndex < questionsData.length && !questionsAttemptedFlags[currentQuestionIndex]) {
-                    event.preventDefault();
-                    selectOptionByKey(key);
-                }
             }
         });
 
+        // Initial setup
         populateSetSelector();
         loadQuestion();
         updateScoreboard(); 
