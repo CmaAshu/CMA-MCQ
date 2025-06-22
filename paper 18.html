@@ -3,15 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ Quiz - Corporate Financial Reporting (Paper 18)</title>
+    <title>MCQ Quiz - Corporate Financial Reporting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +35,11 @@
         }
 
         #scoreboard-container {
-            background: #9370DB; /* Purple */
-            color: #ffffff; 
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +47,74 @@
         }
         
         #set-navigation-container {
-            background: #4169E1; /* Royal Blue */
-            color: #ffffff; 
+            background: linear-gradient(135deg, #04bf26, #ADFF2F);
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFDAB9; /* Light Saffron (PeachPuff) */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #4A4A4A; 
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #FFBFA0; 
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; 
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,69 +125,83 @@
         .option {
             display: flex;
             align-items: center;
-            background: #FFF8E1; 
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #FFECB3; 
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #FFF0C1; 
-            border-color: #FFE082;
+            background: #fff59d;
+            border-color: #f2e70c;
+        }
+
+        .option.selected { 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important;
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important;
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
-        .option.user-selected-display { 
-            /* Styles to indicate this was the user's picked option when reviewing */
-        }
-
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057;
-            background-color: #FFECB3; 
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
+        .option.selected .option-letter {
+            background-color: var(--primary-blue); 
+            color: white;
+            transform: scale(1.1);
+        }
+
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important;
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important;
+            background-color: #ef4444 !important; 
             color: white !important;
         }
+
 
         #navigation-buttons {
             display: flex;
             justify-content: space-between; 
+            align-items: center;
             margin-top: 25px;
         }
 
         button {
-            background-color: #007bff; 
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -176,44 +209,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
         }
+        
         #prev-btn {
-            background-color: #6c757d; 
-        }
-       
-        #prev-btn:disabled, #next-btn:disabled {
-             background-color: #cccccc;
-            cursor: not-allowed;
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3;
+            background-color: #0637c9;
+            transform: translateY(-2px);
         }
-         #prev-btn:hover:not(:disabled) {
-            background-color: #5a6268;
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
-
+        button:disabled {
+            background-color: #4b5563; 
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.6;
+        }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745;
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -243,6 +281,16 @@
             button {
                 padding: 10px 15px; 
                 font-size: 14px;
+            }
+            #navigation-buttons {
+                flex-direction: column; 
+            }
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
             }
             #set-selector {
                 width: 100%;
@@ -276,8 +324,8 @@
         <div class="options-container" id="options-container">
             </div>
         <div id="navigation-buttons">
-            <button id="prev-btn">Previous Question</button>
-            <button id="next-btn">Next Question</button>
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
         </div>
         <div id="completion-message" style="display:none;">
             Quiz Completed! Thank you for participating.
@@ -285,78 +333,123 @@
     </div>
 
     <div id="instagram-link">
-        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh</a>
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh </a>
     </div>
 
     <script>
+        // --- START OF QUESTION DATA ---
         const questionsData = [
-            { q: "Ind AS 113 stands for", o: ["Fair Value Measurement", "Consolidated Financial Statements", "Share Based payments", "Financial Instruments: Presentation"], c: "Fair Value Measurement" },
-            { q: "Share-based Payment is delt with by", o: ["101", "102", "113", "108"], c: "102" },
-            { q: "Ind AS shall be applied in: selecting and applying accounting policies, and accounting for changes in accounting policies, changes in accounting estimates and corrections of prior period errors.", o: ["12", "16", "8", "21"], c: "8" },
-            { q: "A Ltd. Has a machine whose original cost was Rs.45,000. The accumulated depreciation on the machine is Rs.15,000. Similar machine has recently been sold in the same locality at Rs. 25,000 with selling expenses Rs.2,000. Management determined the entity specific present value of future cash flows of the machine as Rs. 28,000. Find Recoverable amount.", o: ["Rs.23,000", "Rs.28,000", "Rs.25,000", "None of these"], c: "Rs.28,000" },
-            { q: "The major three approaches to valuation of shares are:", o: ["Income Approach", "Net Assets Approach", "Market Approach", "All of the above"], c: "All of the above" },
-            { q: "The major bases of asset valuation for a going concern:", o: ["Book Value", "Net Replacement Value", "Net Realisable Value", "All of the above"], c: "All of the above" },
-            { q: "The Income approach for Valuation of Shares includes the models/Techniques:", o: ["Discounted Cash Flow", "Dividend Discount Model", "Maintainable Profits Basis", "All of the above"], c: "All of the above" },
-            { q: "Some of the methods of Goodwill Valuation are", o: ["Capitalisation method", "Super profits method", "Average Maintainable Profits method", "All of the above"], c: "All of the above" },
-            { q: "The ways of determining the value of goodwill using the capitalisation approach", o: ["Capitalisation of Average Profits", "Capitalisation of Super Profits", "Both 1 and 2", "Capitalisation of Average Future maintainable profit"], c: "Both 1 and 2" },
-            { q: "The of an item of property, plant and equipment shall be recognised as an asset if, and only if: (i) it is probable that associated with the item will flow to the entity; and (ii) the of the item can be measured reliably.", o: ["cost, future economic benefits, cost", "future economic benefits, cost, future economic benefits", "cost, cost, cost", "future economic benefits, future economic benefits. future economic benefits"], c: "cost, future economic benefits, cost" },
-            { q: "Property Plant and Equipment (PPE) are initially recognized at", o: ["purchase price", "fair value", "cost", "future economic benefits"], c: "cost" },
-            { q: "Ind AS 113 establishes a fair value hierarchy that categorises into three levels of the inputs to valuation techniques for measuring fair value. The hierarchies are", o: ["inputs are quoted prices (unadjusted) in active markets for identical assets or liabilities that the entity can access at the measurement date.", "inputs are inputs other than quoted prices included within Level 1 that are observable for the asset or liability, either directly or indirectly.", "inputs are unobservable inputs for the asset or liability.", "All of the above"], c: "All of the above" },
-            { q: "As per Ind AS 113 three widely used valuation techniques are", o: ["market approach, cost approach and income approach", "market approach, cost approach and profit approach", "customer approach, cost approach and profit approach", "market approach, inventory approach and profit approach"], c: "market approach, cost approach and income approach" },
-            { q: "Which of the following is/are objective/s of Ind AS 113?", o: ["To set up a framework for measurement of fair value", "To specify requirements of disclosure of fair value measurement.", "Both 1 and 2", "None of these"], c: "Both 1 and 2" },
-            { q: "Changes in Accounting Estimates result from--", o: ["new information", "new developments", "they are not corrections of errors", "All of these"], c: "All of these" },
-            { q: "Mohini Ltd has 3 Segments namely X, Y, Z. The Total assets of the Company are Rs. 10,00 Crores. Segment X has Rs. 2 crores, Segment Y has Rs. 3 Crores and Segment Z has Rs. 5 crores. The Accountant contends that all the three Segments are Reportable Segments. In this case", o: ["X & Y segments are Reportable Segments", "Y & Z segments are Reportable Segments", "Z segment is a Reportable Segment", "All segments are Reportable Segments"], c: "All segments are Reportable Segments" },
-            { q: "If total external Revenue reported by Operating Segments constitutes of the Entity's Revenue, additional Operating Segments should be identified as Reportable Segments.", o: ["Less than 75%", "75% or less", "Less than 90%", "90% or less"], c: "Less than 75%" },
-            { q: "The term 'Chief Operating Decision-Maker' (CODM) identifies a -", o: ["Function", "Designation", "Person", "Title"], c: "Function" },
-            { q: "An Operating Segment is a component of an Entity that engages in business activities from which it -", o: ["May earn Revenues or incur Expenses", "May earn Revenues and incur Expenses", "Earns Revenues and incurs Expenses", "Earns Revenues or incurs Expenses"], c: "May earn Revenues and incur Expenses" },
-            { q: "An Opening Segment is a component of an Entity that engage in business activities from which it -", o: ["May earn Revenues", "May incur Expenses", "Either of the above", "Both 1 and 2"], c: "Both 1 and 2" },
-            { q: "Tax Depreciation is accelerated, i.e. Tax Depreciation is higher than Accounting Depreciation. The entity should recognize -", o: ["DTA", "DTL", "Both 1 and 2", "None of these"], c: "DTL" },
-            { q: "An Entity recognize a Liability of Rs.100 for Gratuity and Leave Encashment Expenses by creating a Provision. For Tax purposes, such amount will not be deductible until the Entity pays the same. Tax Rate is 25%. The Entity should -", o: ["Recognise DTA Rs.100", "Recognise DTL Rs.100", "Recognize DTA Rs.25", "Recognize DTL Rs.25"], c: "Recognize DTA Rs.25" },
-            { q: "Borrowing Costs directly attributable to of a Qualifying asset should be capitalized as part of the cost of that Asset.", o: ["Acquisition", "Construction", "Production", "All of these"], c: "All of these" },
-            { q: "Hari Ltd has purchased a Ship during the year on deferred payments basis, payable over next 10 years. This ship is", o: ["Qualifying asset as per Ind AS 23", "Non Qualifying Asset as per Ind As 23", "Qualifying Asset as per Ind AS 29", "Non qualifying Asset as per Ind AS 29"], c: "Qualifying asset as per Ind AS 23" },
-            { q: "are money held and assets and liabilities to be received or paid in fixed or determinable amounts of money.", o: ["Non Money Items", "Monetary Items", "Financial Items", "Current Items"], c: "Monetary Items" },
-            { q: "The major three approaches to valuation of shares are:", o: ["Income Approach", "Net Assets Approach", "Market Approach", "All of these"], c: "All of these" },
-            { q: "The ways of determining the value of goodwill using the capitalisation approach", o: ["Capitalisation of Average Profits", "Capitalisation of Super Profits", "Both 1 and 2", "Capitalisation of Average Future maintainable profit"], c: "Both 1 and 2" },
-            { q: "The major bases of asset valuation for a going concern:", o: ["Book Value", "Net Replacement Value", "Net Realisable Value", "All of these"], c: "All of these" },
-            { q: "Capital Employed is Rs.255 Lakhs; Annual average profits are Rs.57 Lakhs; Normal rate of return is 12%. The value of goodwill on the basis of Capitalization of super profits will be", o: ["Rs.220 Lakhs", "Rs.475 Lakhs", "Rs.6.84 Lakhs", "Rs.26.40 Lakhs"], c: "Rs.220 Lakhs" },
-            { q: "A firm values goodwill under 'Capitalisation of Profits' method Average profit of the firm for past 4 years has been determined at Rs.1,00,000 (before tax). Capital employed in the business is Rs.4,80,000 and its normal rate of return is 12%. Tax rate is 28% on average. Value of Goodwill based on capitalisation of average profit will be:", o: ["Rs. 1,20,000", "Rs.6,00,000", "Rs.5,00,000", "Rs.4,80,000"], c: "Rs.1,20,000" },
-            { q: "The Indian Accounting Standards relevant for recognition, measurement and disclosure of financial instruments are", o: ["Financial instruments: Presentation (Ind AS 32)", "Financial instruments: Disclosure (Ind AS 107)", "Financial instruments: (Ind AS 109)", "All of these"], c: "All of these" },
-            { q: "An is any contract that evidences a residual interest in the assets of an entity after deducting all of its liabilities.", o: ["Equity instrument", "Puttable instrument", "Financial instrument", "None of the above"], c: "Equity instrument" },
-            { q: "Ind As 109 deals with", o: ["Recognition and measurement of financial instruments and hedge accounting", "Presentation of financial instruments", "Disclosure of financial instruments", "None of the above"], c: "Recognition and measurement of financial instruments and hedge accounting" },
-            { q: "Non-Performing Asset (NPA) in case of Lease Rental and Hire-Purchase Assets if", o: ["Overdue for 9 Months as on 31st March 2016", "Overdue for 6 Months as on 31st March 2017", "Overdue for 3 Months as on 31st March 2018 and Onwards", "All of these"], c: "All of these" },
-            { q: "The term 'Public Funds' includes", o: ["Debentures", "Funds raised directly or indirectly through public deposits", "Bank Finance", "All of these"], c: "All of these" },
-            { q: "IND AS is applicable to NBFCs on and from", o: ["1.4.2016", "1.4.2017", "1.4.2015", "1.4.2018"], c: "1.4.2018" },
-            { q: "All NBFCs-ND which have an asset size of Rs.500 crore and above and all NBFCs-D shall maintain minimum Tier 1 Capital of", o: ["12%", "15%", "10%", "1%"], c: "10%" },
-            { q: "From the following particulars you are required to determine value of goodwill of ABX Ltd. Super Profit (Computed): Rs. 4,50,000 Normal rate of return 12% Present value of annuity of Rs.1 for 4 years @ 12%: 3.0374", o: ["Rs.13,66,830", "Rs.4,50,000", "Rs.37,50,000", "None of these"], c: "Rs.13,66,830" },
-            { q: "Super Profit Average Future Maintainable Profit -", o: ["Normal Profit", "Estimaded Profit", "Future Maintainable Profit", "Average Capital Employed"], c: "Normal Profit" },
-            { q: "The major bases of asset valuation for a going concern", o: ["Book Value", "Net Replacement Value", "Net Realisable Value", "All of these"], c: "All of these" },
-            { q: "X Ltd. granted a loan to Y Ltd. amounting to Rs.40 lakhs repayable in 2 years at Rs.46 lakhs. However, due to economic recession after 1 year the repayable amount has been revised at Rs.44 lakhs. Effective annual interest rate for such a loan is determined at 6% p.a. The loan processing cost was Rs.2 lakhs. X Ltd's accountant suggested to compute the amount to be charged as processing cost to the first year in the Profit and Loss A/c. Compute.", o: ["Rs.40 Lakhs", "Rs.2 Lakhs", "Rs. 42 Lakhs", "None of these"], c: "Rs. 42 Lakhs" },
-            { q: "The Indian Accounting Standards relevant for recognition, measurement and disclosure of financial instruments are", o: ["Financial instruments: Presentation (Ind AS 32)", "Financial instruments: Disclosure (Ind AS 107)", "Financial instruments: (Ind AS 109)", "All of these"], c: "All of these" },
-            { q: "Financial assets are", o: ["cash", "an equity instrument of another entity", "a contractual right", "All of these"], c: "All of these" },
-            { q: "Ind AS 109: Financial Instruments classifies the financial assets and financial liabilities into the following categories for recognition and measurement", o: ["Measured at fair value thought OCI", "Measured at amortized cost", "Measured at fair value through P & L", "All of these"], c: "All of these" },
-            { q: "Ind As 109 deals with", o: ["recognition and measurement of financial instruments and hedge accounting", "presentation of financial instruments", "disclosure of financial instruments", "None of these"], c: "recognition and measurement of financial instruments and hedge accounting" },
-            { q: "An is any contract that evidences a residual interest in the assets of an entity after deducting all of its liabilities.", o: ["equity instrument", "puttable instrument", "financial instrument", "None of these"], c: "equity instrument" },
-            { q: "Fair value is the amount for which an asset could be exchanged, or a liability settled, between knowledgeable, willing parties in an", o: ["fair transaction", "influenced transaction", "arm's length transaction", "All of these"], c: "arm's length transaction" },
-            { q: "A Ltd. acquires 80% of B Ltd. for Rs. 12,80,000 paid by equity at par. Fair Value (FV) of B's net assets at time of acquisition amounts Rs. 9,00,000. NCI is measured at proportionate net asset. The value of goodwill will be:", o: ["Rs. 3,00,000", "Rs.3,80,000", "Rs.4,50,000", "Rs.5,60,000"], c: "Rs.5,60,000" },
-            { q: "A Ltd. acquires 80% of B Ltd. for Rs. 10,00,000 paid by equity at par. Fair Value (FV) of B's net assets at time of acquisition amounts Rs.9,00,000. The value of goodwill based on NCI valued at proportionate fair value of identified net asset will be:", o: ["Rs.3,00,000", "Rs.2,80,000", "Rs.4.50,000", "Rs.5,00,000"], c: "Rs.2,80,000" },
-            { q: "On 1 January 2023 A Ltd. acquires 80 per cent of the equity interests of B Ltd in exchange of cash of Rs.600 lakhs. The identifiable assets are measured at Rs. 925 lakh and the liabilities assumed are measured at Rs.150 lakh. The fair value of the 20 per cent non-controlling interest in P is Rs.90 lakhs. The gain on bargain purchase will be -", o: ["Rs.90 Lakhs", "Rs.85 Lakhs", "Rs. 105 Lakhs", "Rs.75 Lakhs"], c: "Rs.85 Lakhs" },
-            { q: "A Ltd. takes over B Ltd. for Rs. 12,60,000. Fair Value (FV) of B's net assets at time of acquisition amounts Rs. 11,80,000. Calculate Goodwill.", o: ["Rs. 12,60,000", "Rs.80,000", "Rs. 11,80,000", "None of these"], c: "Rs.80,000" },
-            { q: "Q Ltd. acquired a 60% interest in R Ltd. on January 1, 2023. Q Ltd. paid Rs. 900 Lakhs in cash for their interest in R Ltd. The fair value of R Ltd.'s assets is Rs. 2,000 Lakhs, and the fair value of its liabilities is Rs. 1,000 Lakhs. If NCI is valued at proportionate net asset, value of Goodwill:", o: ["Rs. 300 Lakhs", "Rs.250 Lakhs", "Rs.400 Lakhs", "Rs. 350 Lakhs"], c: "Rs. 300 Lakhs" },
-            { q: "On March 31, 201X, A Ltd absorbed B Ltd. A Ltd. issued 60,000 equity shares (Rs.10 par value) that were trading at Rs.25 on March 31. The book value of B's net assets was Rs. 12,00,000, Equity Share Capital Rs.5,00,000 and Other Equity Rs.7,00,000 on March 31. The fair value of net assets of B Ltd. was assessed at Rs.13,00,000.", o: ["Rs.2,00,000", "Rs.15,00,000", "Rs.6,00,000", "None of these"], c: "Rs.2,00,000" },
-            { q: "As per Ind AS 103, while accounting and reporting for business combination goodwill is calculated as", o: ["Consideration + Non controlling Interest Net assets", "Consideration Non controlling Interest + Net assets", "Consideration Non controlling Interest Net assets", "Consideration + Non controlling Interest + Net assets"], c: "Consideration + Non controlling Interest Net assets" },
-            { q: "On 01.04.2020 Gold Ltd. acquired 75% share of Coal Ltd. at Rs.10,80,000, when the fair value of its net assets was Rs.10,00,000. During 01.4.2022 to 31.3.2023 Coal Ltd. made TCI Rs. 2,00,000. On 31.3.2023 Gold Ltd. purchased 15% holding from outsiders at Rs.2,20,000. Compute NCI at Proportionate net asset value.", o: ["Rs.1,80,000", "Rs.1,92,000", "Rs.2,46,000", "Rs.2.20,000"], c: "Rs.1,80,000" },
-            { q: "On 01.04.2020 Gold Ltd. acquired 75% share of Coal Ltd. at Rs.10,80,000, when the fair value of its net assets was 1000000. During 01.4.2022 to 31.3.2023 Coal Ltd made TCI Rs. 2,00,000. Оп 31.3.2023 Gold Ltd. purchased 15% holding from outsiders at Rs.2,20,000. Compute gain/loss credited/debited to Other Equity.", o: ["Loss of Rs.40,000", "Gain of Rs.40,000", "Loss of Rs.28,000", "Gain of Rs.28.000"], c: "Loss of Rs.28,000" },
-            { q: "D Ltd. has acquired 100% of the equity of F Ltd. on March 31, 2023. The purchase consideration comprises of an immediate payment of Rs. 10 lakhs and two further payments of Rs.1.21 lakhs if the Return on Equity exceeds 20% in each of the subsequent two financial years. A discount rate of 10% is used. Compute the value of total consideration at the acquisition date.", o: ["Rs.10 lakhs", "Rs.2.10 Lakhs", "Rs.12.10 Lakhs", "None of these"], c: "Rs.12.10 Lakhs" },
-            { q: "Entity A acquired 35% of Entity B on 01.04.2023 for Rs. 35,000. On 31.03.2024, fair value of shares of Entity B is Rs. 42,000, thus Rs.7,000 reported under OCI in 2023-24. On 01.07.2020 Entity A further acquired 40% stake in Entity B. Consideration paid is Rs. 60,000. Entity A identifies the net assets of Entity B at fair value of Rs. 1,20,000 at the acquisition date, value 35% shares at Rs. 45,000. NCI is valued at proportionate net assets. Compute the total amount to be transferred to P&L A/c of Entity A.", o: ["Rs.3,000", "Rs.10,000", "Rs.7,000", "Rs.45,000"], c: "Rs.10,000" },
-            { q: "On 1 January 2023 M Ltd. acquires 80 per cent of the equity interests of P Ltd. by issue of equity shares of paid-up value of Rs.200 Lakhs (market value Rs.480 Lakhs). The identifiable assets are measured at Rs.760 Lakhs and the liabilities assumed are measured at Rs.120 Lakhs. Compute Non-controlling Interest if measured at proportionate net asset value.", o: ["Rs.640 Lakhs", "Rs.760 Lakhs", "Rs.128 Lakhs", "Rs.480"], c: "Rs.128 Lakhs" },
-            { q: "On 1 January 2023 P Ltd. acquires 80 per cent of the equity interests of Q Ltd. by issue of equity shares of paid-up value of Rs.50 Lakhs (market value Rs. 120 Lakhs). The identifiable assets are measured at Rs.190 Lakhs and the liabilities assumed are measured at Rs.30 Lakhs. Non-controlling Interest is measured at proportionate net asset value. Compute the amount of Gain on Bargain Purchase.", o: ["Rs.8 Lakhs", "Rs.160 Lakhs", "Rs. 190 Lakhs", "Rs.32 Lakhs"], c: "Rs.8 Lakhs" }
+            { q: "1. Ind AS 113 stands for", o: ["Fair Value Measurement", "Consolidated Financial Statements", "Share Based payments", "Financial Instruments: Presentation"], c: "Fair Value Measurement" },
+            { q: "2. Share-based Payment is delt with by", o: ["101", "102", "113", "108"], c: "102" },
+            { q: "3. Ind AS shall be applied in: selecting and applying accounting policies, and accounting for changes in accounting policies, changes in accounting estimates and corrections of prior period errors.", o: ["12", "16", "8", "21"], c: "8" },
+            { q: "4. A Ltd. Has a machine whose original cost was Rs.45,000. The accumulated depreciation on the machine is Rs.15,000. Similar machine has recently been sold in the same locality at Rs. 25,000 with selling expenses Rs.2,000. Management determined the entity specific present value of future cash flows of the machine as Rs. 28,000. Find Recoverable amount.", o: ["Rs.23,000", "Rs.28,000", "Rs.25,000", "None of these"], c: "Rs.28,000" },
+            { q: "5. The major three approaches to valuation of shares are:", o: ["Income Approach", "Net Assets Approach", "Market Approach", "All of the above"], c: "All of the above" },
+            { q: "6. The major bases of asset valuation for a going concern:", o: ["Book Value", "Net Replacement Value", "Net Realisable Value", "All of the above"], c: "All of the above" },
+            { q: "7. The Income approach for Valuation of Shares includes the models/Techniques:", o: ["Discounted Cash Flow", "Dividend Discount Model", "Maintainable Profits Basis", "All of the above"], c: "All of the above" },
+            { q: "8. Some of the methods of Goodwill Valuation are", o: ["Capitalisation method", "Super profits method", "Average Maintainable Profits method", "All of the above"], c: "All of the above" },
+            { q: "9. The ways of determining the value of goodwill using the capitalisation approach", o: ["Capitalisation of Average Profits", "Capitalisation of Super Profits", "Both 1 and 2", "Capitalisation of Average Future maintainable profit"], c: "Both 1 and 2" },
+            { q: "10. The of an item of property, plant and equipment shall be recognised as an asset if, and only if: (i) it is probable that associated with the item will flow to the entity; and (ii) the of the item can be measured reliably.", o: ["cost, future economic benefits, cost", "future economic benefits, cost, future economic benefits", "cost, cost, cost", "future economic benefits, future economic benefits. future economic benefits"], c: "cost, future economic benefits, cost" },
+            { q: "11. Property Plant and Equipment (PPE) are initially recognized at", o: ["purchase price", "fair value", "cost", "future economic benefits"], c: "cost" },
+            { q: "12. Ind AS 113 establishes a fair value hierarchy that categorises into three levels of the inputs to valuation techniques for measuring fair value. The hierarchies are", o: ["inputs are quoted prices (unadjusted) in active markets for identical assets or liabilities that the entity can access at the measurement date.", "inputs are inputs other than quoted prices included within Level 1 that are observable for the asset or liability, either directly or indirectly.", "inputs are unobservable inputs for the asset or liability.", "All of the above"], c: "All of the above" },
+            { q: "13. As per Ind AS 113 three widely used valuation techniques are", o: ["market approach, cost approach and income approach", "market approach, cost approach and profit approach", "customer approach, cost approach and profit approach", "market approach, inventory approach and profit approach"], c: "market approach, cost approach and income approach" },
+            { q: "14. Which of the following is/are objective/s of Ind AS 113?", o: ["To set up a framework for measurement of fair value", "To specify requirements of disclosure of fair value measurement.", "Both 1 and 2", "None of these"], c: "Both 1 and 2" },
+            { q: "15. Changes in Accounting Estimates result from--", o: ["new information", "new developments", "they are not corrections of errors", "All of these"], c: "All of these" },
+            { q: "16. Mohini Ltd has 3 Segments namely X, Y, Z. The Total assets of the Company are Rs. 10,00 Crores. Segment X has Rs. 2 crores, Segment Y has Rs. 3 Crores and Segment Z has Rs. 5 crores. The Accountant contends that all the three Segments are Reportable Segments. In this case", o: ["X & Y segments are Reportable Segments", "Y & Z segments are Reportable Segments", "Z segment is a Reportable Segment", "All segments are Reportable Segments"], c: "All segments are Reportable Segments" },
+            { q: "17. If total external Revenue reported by Operating Segments constitutes of the Entity's Revenue, additional Operating Segments should be identified as Reportable Segments.", o: ["Less than 75%", "75% or less", "Less than 90%", "90% or less"], c: "Less than 75%" },
+            { q: "18. The term 'Chief Operating Decision-Maker' (CODM) identifies a -", o: ["Function", "Designation", "Person", "Title"], c: "Function" },
+            { q: "19. An Operating Segment is a component of an Entity that engages in business activities from which it -", o: ["May earn Revenues or incur Expenses", "May earn Revenues and incur Expenses", "Earns Revenues and incurs Expenses", "Earns Revenues or incurs Expenses"], c: "May earn Revenues and incur Expenses" },
+            { q: "20. An Opening Segment is a component of an Entity that engage in business activities from which it -", o: ["May earn Revenues", "May incur Expenses", "Either of the above", "Both 1 and 2"], c: "Both 1 and 2" },
+            { q: "21. Tax Depreciation is accelerated, i.e. Tax Depreciation is higher than Accounting Depreciation. The entity should recognize -", o: ["DTA", "DTL", "Both 1 and 2", "None of these"], c: "DTL" },
+            { q: "22. An Entity recognize a Liability of Rs.100 for Gratuity and Leave Encashment Expenses by creating a Provision. For Tax purposes, such amount will not be deductible until the Entity pays the same. Tax Rate is 25%. The Entity should -", o: ["Recognise DTA Rs.100", "Recognise DTL Rs.100", "Recognize DTA Rs.25", "Recognize DTL Rs.25"], c: "Recognize DTA Rs.25" },
+            { q: "23. Borrowing Costs directly attributable to of a Qualifying asset should be capitalized as part of the cost of that Asset.", o: ["Acquisition", "Construction", "Production", "All of these"], c: "All of these" },
+            { q: "24. Hari Ltd has purchased a Ship during the year on deferred payments basis, payable over next 10 years. This ship is", o: ["Qualifying asset as per Ind AS 23", "Non Qualifying Asset as per Ind As 23", "Qualifying Asset as per Ind AS 29", "Non qualifying Asset as per Ind AS 29"], c: "Non Qualifying Asset as per Ind As 23" },
+            { q: "25. are money held and assets and liabilities to be received or paid in fixed or determinable amounts of money.", o: ["Non Money Items", "Monetary Items", "Financial Items", "Current Items"], c: "Monetary Items" },
+            { q: "26. The major three approaches to valuation of shares are:", o: ["Income Approach", "Net Assets Approach", "Market Approach", "All of these"], c: "All of these" },
+            { q: "27. The ways of determining the value of goodwill using the capitalisation approach", o: ["Capitalisation of Average Profits", "Capitalisation of Super Profits", "Both 1 and 2", "Capitalisation of Average Future maintainable profit"], c: "Both 1 and 2" },
+            { q: "28. The major bases of asset valuation for a going concern:", o: ["Book Value", "Net Replacement Value", "Net Realisable Value", "All of these"], c: "All of these" },
+            { q: "29. Capital Employed is Rs.255 Lakhs; Annual average profits are Rs.57 Lakhs; Normal rate of return is 12%. The value of goodwill on the basis of Capitalization of super profits will be", o: ["Rs.220 Lakhs", "Rs.475 Lakhs", "Rs.6.84 Lakhs", "Rs.26.40 Lakhs"], c: "Rs.220 Lakhs" },
+            { q: "30. A firm values goodwill under 'Capitalisation of Profits' method Average profit of the firm for past 4 years has been determined at Rs.1,00,000 (before tax). Capital employed in the business is Rs.4,80,000 and its normal rate of return is 12%. Tax rate is 28% on average. Value of Goodwill based on capitalisation of average profit will be:", o: ["Rs. 1,20,000", "Rs.6,00,000", "Rs.5,00,000", "Rs.4,80,000"], c: "Rs.1,20,000" },
+            { q: "31. The Indian Accounting Standards relevant for recognition, measurement and disclosure of financial instruments are", o: ["Financial instruments: Presentation (Ind AS 32)", "Financial instruments: Disclosure (Ind AS 107)", "Financial instruments: (Ind AS 109)", "All of these"], c: "All of these" },
+            { q: "32. An is any contract that evidences a residual interest in the assets of an entity after deducting all of its liabilities.", o: ["Equity instrument", "Puttable instrument", "Financial instrument", "None of the above"], c: "Equity instrument" },
+            { q: "33. Ind As 109 deals with", o: ["Recognition and measurement of financial instruments and hedge accounting", "Presentation of financial instruments", "Disclosure of financial instruments", "None of the above"], c: "Recognition and measurement of financial instruments and hedge accounting" },
+            { q: "34. Non-Performing Asset (NPA) in case of Lease Rental and Hire- Purchase Assets if", o: ["Overdue for 9 Months as on 31st March 2016", "Overdue for 6 Months as on 31st March 2017", "Overdue for 3 Months as on 31st March 2018 and Onwards", "All of these"], c: "All of these" },
+            { q: "35. The term 'Public Funds' includes", o: ["Debentures", "Funds raised directly or indirectly through public deposits", "Bank Finance", "All of these"], c: "All of these" },
+            { q: "36. IND AS is applicable to NBFCs on and from", o: ["1.4.2016", "1.4.2017", "1.4.2015", "1.4.2018"], c: "1.4.2018" },
+            { q: "37. All NBFCs-ND which have an asset size of Rs.500 crore and above and all NBFCs-D shall maintain minimum Tier 1 Capital of", o: ["12%", "15%", "10%", "1%"], c: "10%" },
+            { q: "38. From the following particulars you are required to determine value of goodwill of ABX Ltd. Super Profit (Computed): Rs. 4,50,000 Normal rate of return 12% Present value of annuity of Rs.1 for 4 years @ 12%: 3.0374", o: ["Rs.13,66,830", "Rs.4,50,000", "", ""], c: "Rs.13,66,830" },
+            { q: "39. Super Profit Average Future Maintainable Profit -", o: ["Normal Profit", "Estimaded Profit", "Future Maintainable Profit", "Average Capital Employed"], c: "Normal Profit" },
+            { q: "40. The major bases of asset valuation for a going concern", o: ["Book Value", "Net Replacement Value", "Net Realisable Value", "All of these"], c: "All of these" },
+            { q: "41. X Ltd. granted a loan to Y Ltd. amounting to Rs.40 lakhs repayable in 2 years at Rs.46 lakhs. However, due to economic recession after 1 year the repayable amount has been revised at Rs.44 lakhs. Effective annual interest rate for such a loan is determined at 6% p.a. The loan processing cost was Rs.2 lakhs. X Ltd's accountant suggested to compute the amount to be charged as processing cost to the first year in the Profit and Loss A/c. Compute.", o: ["Rs.40 Lakhs", "Rs.2 Lakhs", "Rs. 42 Lakhs", "None of these"], c: "None of these" },
+            { q: "42. The Indian Accounting Standards relevant for recognition, measurement and disclosure of financial instruments are", o: ["Financial instruments: Presentation (Ind AS 32)", "Financial instruments: Disclosure (Ind AS 107)", "Financial instruments: (Ind AS 109)", "All of these"], c: "All of these" },
+            { q: "43. Financial assets are", o: ["cash", "an equity instrument of another entity", "a contractual right", "All of these"], c: "All of these" },
+            { q: "44. Ind AS 109: Financial Instruments classifies the financial assets and financial liabilities into the following categories for recognition and measurement", o: ["Measured at fair value thought OCI", "Measured at amortized cost", "Measured at fair value through P & L", "All of these"], c: "All of these" },
+            { q: "45. Ind As 109 deals with", o: ["recognition and measurement of financial instruments and hedge accounting", "presentation of financial instruments", "disclosure of financial instruments", "None of these"], c: "recognition and measurement of financial instruments and hedge accounting" },
+            { q: "46. An is any contract that evidences a residual interest in the assets of an entity after deducting all of its liabilities.", o: ["equity instrument", "puttable instrument", "financial instrument", "None of these"], c: "equity instrument" },
+            { q: "47. Fair value is the amount for which an asset could be exchanged, or a liability settled, between knowledgeable, willing parties in an", o: ["fair transaction", "influenced transaction", "arm's length transaction", "All of these"], c: "arm's length transaction" },
+            { q: "48. A Ltd. acquires 80% of B Ltd. for Rs. 12,80,000 paid by equity at par. Fair Value (FV) of B's net assets at time of acquisition amounts Rs. 9,00,000. NCI is measured at proportionate net asset. The value of goodwill will be:", o: ["Rs. 3,00,000", "Rs.3,80,000", "Rs.4,50,000", "Rs.5,60,000"], c: "Rs.5,60,000" },
+            { q: "49. A Ltd. acquires 80% of B Ltd. for Rs. 10,00,000 paid by equity at par. Fair Value (FV) of B's net assets at time of acquisition amounts Rs.9,00,000. The value of goodwill based on NCI valued at proportionate fair value of identified net asset will be:", o: ["Rs.3,00,000", "Rs.2,80,000", "Rs.4.50,000", "Rs.5,00,000"], c: "Rs.2,80,000" },
+            { q: "50. On 1 January 2023 A Ltd. acquires 80 per cent of the equity interests of B Ltd in exchange of cash of Rs.600 lakhs. The identifiable assets are measured at Rs. 925 lakh and the liabilities assumed are measured at Rs.150 lakh. The fair value of the 20 per cent non-controlling interest in P is Rs.90 lakhs. The gain on bargain purchase will be -", o: ["Rs.90 Lakhs", "Rs.85 Lakhs", "Rs. 105 Lakhs", "Rs.75 Lakhs"], c: "Rs.85 Lakhs" },
+            { q: "51. A Ltd. takes over B Ltd. for Rs. 12,60,000. Fair Value (FV) of B's net assets at time of acquisition amounts Rs. 11,80,000. Calculate Goodwill.", o: ["Rs. 12,60,000", "Rs.80,000", "Rs. 11,80,000", "None of these"], c: "Rs.80,000" },
+            { q: "52. Q Ltd. acquired a 60% interest in R Ltd. on January 1, 2023. Q Ltd. paid Rs. 900 Lakhs in cash for their interest in R Ltd. The fair value of R Ltd.'s assets is Rs. 2,000 Lakhs, and the fair value of its liabilities is Rs. 1,000 Lakhs. If NCI is valued at proportionate net asset, value of Goodwill:", o: ["Rs. 300 Lakhs", "Rs.250 Lakhs", "Rs.400 Lakhs", "Rs. 350 Lakhs"], c: "Rs. 300 Lakhs" },
+            { q: "53. On March 31, 201X, A Ltd absorbed B Ltd. A Ltd. issued 60,000 equity shares (Rs.10 par value) that were trading at Rs.25 on March 31. The book value of B's net assets was Rs. 12,00,000, Equity Share Capital Rs.5,00,000 and Other Equity Rs.7,00,000 on March 31. The fair value of net assets of B Ltd. was assessed at Rs.13,00,000.", o: ["Rs.2,00,000", "Rs.15,00,000", "Rs.6,00,000", "None of these"], c: "Rs.2,00,000" },
+            { q: "54. As per Ind AS 103, while accounting and reporting for business combination goodwill is calculated as", o: ["Consideration + Non controlling Interest Net assets", "Consideration Non controlling Interest + Net assets", "Consideration - Non controlling Interest - Net assets", "Consideration + Non controlling Interest + Net assets"], c: "Consideration + Non controlling Interest - Net assets" },
+            { q: "55. On 01.04.2020 Gold Ltd. acquired 75% share of Coal Ltd. at Rs.10,80,000, when the fair value of its net assets was Rs.10,00,000. During 01.4.2022 to 31.3.2023 Coal Ltd. made TCI Rs. 2,00,000. On 31.3.2023 Gold Ltd. purchased 15% holding from outsiders at Rs.2,20,000. Compute NCI at Proportionate net asset value.", o: ["Rs.1,80,000", "Rs.1,92,000", "Rs.2,46,000", "Rs.2,20,000"], c: "Rs.1,80,000" },
+            { q: "56. On 01.04.2020 Gold Ltd. acquired 75% share of Coal Ltd. at Rs.10,80,000, when the fair value of its net assets was 1000000. During 01.4.2022 to 31.3.2023 Coal Ltd made TCI Rs. 2,00,000. Оп 31.3.2023 Gold Ltd. purchased 15% holding from outsiders at Rs.2,20,000. Compute gain/loss credited/debited to Other Equity.", o: ["Loss of Rs.40,000", "Gain of Rs.40,000", "Loss of Rs.28,000", "Gain of Rs.28.000"], c: "Loss of Rs.40,000" },
+            { q: "57. D Ltd. has acquired 100% of the equity of F Ltd. on March 31, 2023. The purchase consideration comprises of an immediate payment of Rs. 10 lakhs and two further payments of Rs.1.21 lakhs if the Return on Equity exceeds 20% in each of the subsequent two financial years. A discount rate of 10% is used. Compute the value of total consideration at the acquisition date.", o: ["Rs.10 lakhs", "Rs.2.10 Lakhs", "Rs.12.10 Lakhs", "None of these"], c: "Rs.12.10 Lakhs" },
+            { q: "58. Entity A acquired 35% of Entity B on 01.04.2023 for Rs. 35,000. On 31.03.2024, fair value of shares of Entity B is Rs. 42,000, thus Rs.7,000 reported under OCI in 2023-24. On 01.07.2020 Entity A further acquired 40% stake in Entity B. Consideration paid is Rs. 60,000. Entity A identifies the net assets of Entity B at fair value of Rs. 1,20,000 at the acquisition date, value 35% shares at Rs. 45,000. NCI is valued at proportionate net assets. Compute the total amount to be transferred to P&L A/c of Entity A.", o: ["Rs.3,000", "Rs.10,000", "Rs.7,000", "Rs.45,000"], c: "Rs.10,000" },
+            { q: "59. On 1 January 2023 M Ltd. acquires 80 per cent of the equity interests of P Ltd. by issue of equity shares of paid-up value of Rs.200 Lakhs (market value Rs.480 Lakhs). The identifiable assets are measured at Rs.760 Lakhs and the liabilities assumed are measured at Rs.120 Lakhs. Compute Non-controlling Interest if measured at proportionate net asset value.", o: ["Rs.640 Lakhs", "Rs.760 Lakhs", "Rs.128 Lakhs", "Rs.480"], c: "Rs.128 Lakhs" },
+            { q: "60. On 1 January 2023 P Ltd. acquires 80 per cent of the equity interests of Q Ltd. by issue of equity shares of paid-up value of Rs.50 Lakhs (market value Rs. 120 Lakhs). The identifiable assets are measured at Rs.190 Lakhs and the liabilities assumed are measured at Rs.30 Lakhs. Non-controlling Interest is measured at proportionate net asset value. Compute the amount of Gain on Bargain Purchase.", o: ["Rs.8 Lakhs", "Rs.160 Lakhs", "Rs. 190 Lakhs", "Rs.32 Lakhs"], c: "Rs.8 Lakhs" },
+            { q: "61. A Ltd. acquires 80% shares of B Ltd. for Rs. 12,80,000. Fair Value (FV) of B Ltd.'s net assets at time of acquisition amounts Rs.14,80,000. Non-Controlling Interests are recognized at fair value. Compute Non-Controlling Interests.", o: ["Rs. 12,80,000", "Rs.3,20,000", "Rs.2,56,000", "Rs.10,24,000"], c: "Rs.3,20,000" },
+            { q: "62. The pooling of interest method is considered to involve which the following?", o: ["The assets and liabilities of the combining entities are reflected at their carrying amounts", "The assets and liabilities of the combining entities are reflected at their Net realisable value", "No adjustments are made to reflect fair values, or recognize any new assets or liabilities", "Both 1 and 3"], c: "Both 1 and 3" },
+            { q: "63. How is non-controlling interest shown in the financial statements of the acquirer at the time of a business combination under Ind AS 103?", o: ["It is shown as a liability", "It is shown as an item under equity", "It is not shown in balance sheet", "Non-controlling interest is not recognised."], c: "It is shown as an item under equity" },
+            { q: "64. As per Ind AS 103 , accounting and reporting for business combination is done under", o: ["Acquisition Method", "Purchase method", "Pooling of interest method", "None of these"], c: "Acquisition Method" },
+            { q: "65. When after business combination, acquiree ceases to exist, it is to be recorded in the books of the in one set only, in its stand-alone accounts.", o: ["acquirer", "acquiree", "both 1 and 2", "either 1 or 2"], c: "acquirer" },
+            { q: "66. Ind AS 103 has a wider scope than", o: ["AS 15", "AS 14", "AS 16", "AS 13"], c: "AS 14" },
+            { q: "67. At what value is non-controlling interest recorded in the books of the Acquiree at the time of a business combination transaction under Ind AS 103?", o: ["It is recognised at fair value only", "It is recognised at proportionate fair value of identified net assets only", "It is not recognised at all", "It is recognised either at fair value or at proportionate fair value of identified net assets."], c: "It is recognised either at fair value or at proportionate fair value of identified net assets." },
+            { q: "68. Consolidated financial statements are required to be prepared by an Ind AS complied company if it holds shares in the investee company", o: ["entailing 20% or more voting rights having significant influence over the investee company (called Associate as per Ind AS 28)", "entailing joint control over the investee company (called a Joint Venture as per Ind AS 28)", "entailing control over investee company (called subsidiary company as per Ind AS 110)", "All of these"], c: "All of these" },
+            { q: "69. requires that when consolidated financial statements are prepared the investor company shall also prepare individual/standalone financial statements, which are named as separate financial statements", o: ["Ind AS 27", "Ind AS 28", "Ind AS 110", "Ind AS 112"], c: "Ind AS 27" },
+            { q: "70. An investment entity is an entity that", o: ["obtains funds from one or more investors for the purpose of providing those investor(s) with investment management services", "commits to its investor(s) that its business purpose is to invest funds solely for returns from capital appreciation, investment income, or both", "measures and evaluates the performance of substantially all of its investments on a fair value basis", "All of these"], c: "All of these" },
+            { q: "71. Ind AS 103 states that the acquirer obtaining control over acquiree, recognises and measures in its consolidated financial statements at the acquisition date", o: ["the identifiable assets acquired, the liabilities assumed at Fair Value", "any non-controlling interest in the acquiree at Fair Value or at Proportionate Value", "the goodwill acquired in the business combination or a gain on bargain purchase", "All of these"], c: "All of these" },
+            { q: "72. As per Ind AS 112: Disclosure of Interests in Other Entities, an entity shall disclose information about significant judgements and assumptions it has made (and changes to those judgements and assumptions) in determining", o: ["that it has control of another entity, i.e. an investee as described in paragraphs 5 and 6 of Ind AS 110, Consolidated Financial Statements", "that it has joint control of an arrangement or significant influence over another entity", "the type of joint arrangement (i.e. joint operation or joint venture) when the arrangement has been structured through a separate vehicle", "All of these"], c: "All of these" },
+            { q: "73. is the contractually agreed sharing of control of an arrangement, which exists only when decisions about the relevant activities require the unanimous consent of the parties sharing control", o: ["Joint Control", "Joint Arrangement", "Joint Operation", "None of these"], c: "Joint Control" },
+            { q: "74. A joint arrangement is either a or a joint venture", o: ["joint operation", "joint control", "joint partnership", "None of these"], c: "joint operation" },
+            { q: "75. is a method of accounting whereby the investment is initially recognised at cost and adjusted thereafter for the post- acquisition change in the investors share of the investees net assets.", o: ["equity method", "pooling interest method", "purchase method", "None of these"], c: "equity method" },
+            { q: "76. Which of the following is not a type of joint arrangement recognised under Ind AS 111?", o: ["Joint Venture", "Joint Operation", "Joint Control Entity", "Joint Contribution Entity"], c: "Joint Contribution Entity" },
+            { q: "77. How is the investor's share of profit or loss from a joint venture recognised?", o: ["As a revenue", "As a liabilities", "As an expense", "As a part of equity"], c: "As a part of equity" },
+            { q: "78. An is an entity over which the investor has significant influence.", o: ["Associate", "Joint Venture", "Partnership", "All of these"], c: "Associate" },
+            { q: "79. The three pillars of sustainability are often referred to as", o: ["Planet-People - Profit", "People Planet - Profit", "People-Profit - Planet", "People-Plant- Profit"], c: "People Planet - Profit" },
+            { q: "80. A company required to furnish cost audit report and other documents to the Central Government under Section 148(6) of the Companies Act, 2013 and rules made thereunder, shall file such report and other documents using the XBRL taxonomy given in Annexure-III to the said Rule for the financial years on or after April 1, 2014 in e-Form specified under the Companies (Cost Records and Audit) Rules, 2014", o: ["CRA-2", "CRA-3", "CRA-4", "CRA-1"], c: "CRA-4" },
+            { q: "81. External benefits of sustainability reporting can include", o: ["Mitigating - or reversing-negative environmental, social and governance impacts", "Improving reputation and brand loyalty", "Enhanced perception on organisation's value", "All of the above"], c: "All of the above" },
+            { q: "82. In 4P Bottom Line Reporting bottom line relate business with happiness of stakeholders", o: ["first", "second", "third", "forth"], c: "forth" },
+            { q: "83. The key challenges for implementation of QBL reporting framework are", o: ["Awareness of relevant issues associated with QBL reporting", "Understanding stakeholder requirements", "Aligning QBL reporting with objectives and risks", "All of these"], c: "All of these" },
+            { q: "84. External benefits of sustainability reporting can include", o: ["Enhanced link. between financial and non-financial performance", "Improving reputation and brand loyalty", "Enhanced perception on organisation's value", "Both 2 and 3"], c: "Both 2 and 3" },
+            { q: "85. Which of the following is/are benefit/s of XBRL Reporting?", o: ["Automated Data Processing", "Improved reporting quality", "Cost and time savings", "All of these"], c: "All of these" },
+            { q: "86. XBRL stands for", o: ["eXtended Business Reporting Language", "eXtensible Business Reporting Language", "eXtensible Business Reporting Laws", "eXtended Business Reported Language"], c: "eXtensible Business Reporting Language" },
+            { q: "87. EVA=", o: ["NOPAT - (WACC Invested Capital)", "PAT - (WACC Invested Capital)", "EBIT - (WACC Invested Capital)", "None of these"], c: "NOPAT - (WACC Invested Capital)" },
+            { q: "88. report is an analytical tool for displaying human resources-related facts, insights, and metrics to improve workforce performance, recruiting procedures, and other important HR operations.", o: ["Environmental, Social and Governance", "Corporate Social Responsibility", "Human Resources", "Integrated"], c: "Human Resources" },
+            { q: "89. Corporate sustainability reporting helps companies to", o: ["assess and manage their sustainability impacts", "report their contributions to sustainable development", "integrate sustainability into their business strategies", "All of these"], c: "All of these" },
+            { q: "90. Which of the following is not a feature of Government Accounting?", o: ["Non-fund based Accounting", "Double Entry System", "Adherence to Government Regulations", "Transacting through Banks"], c: "Non-fund based Accounting" },
+            { q: "91. GASAB stands for", o: ["Government Accounting Standards Advisory Board", "Government Accounting Standards Applicability Board", "Government Auditing Standards Advisory Board", "Government Accounting for States Advisory Board"], c: "Government Accounting Standards Advisory Board" },
+            { q: "92. IGAS 2 is related to", o: ["Accounting and Classification of Grants-in-aid", "Guarantees given by Governments: Disclosure Requirements", "Government Investments in Equity", "None of the above"], c: "Guarantees given by Governments: Disclosure Requirements" },
+            { q: "93. Which of the following is not a general principal of Government Accounting?", o: ["Reporting of Utilisation of Public Funds", "Expenditures are classified under Sectors, major heads, minor heads, sub-heads and detailed heads of Accounts", "Budget Based", "Single Entry System"], c: "Single Entry System" },
+            { q: "94. Standards developed for accrual system of accounting in the Government are called the", o: ["Indian Government Accounting Standards", "Indian Government Reporting Standards", "Indian Government Financial Reporting Standards", "Indian Government Accounting and Reporting Standards"], c: "Indian Government Financial Reporting Standards" },
+            { q: "95. Which of the following is/are responsibility/responsibilities of GASAB?", o: ["Formulating and proposing standards that improve the usefulness of financial reports", "Keeping the standards up to date and reflect change in the Governmental environment", "Improving standard of Government accounting and financial reporting", "All of the above"], c: "All of the above" },
+            { q: "96. As per The Constitution of India, the Accounts of the Government are kept in", o: ["Consolidated Funds of India", "Public Accounts of India", "Contingency Funds of India", "All of the above"], c: "All of the above" },
+            { q: "97. The financial statements of the Union Government, State Governments and the Union Territories with legislature shall disclose the following details concerning Public Debt and other obligations", o: ["the opening balance, additions and discharges during the year, closing balance and net change in rupee terms with respect to internal debt", "the opening balance, additions and discharges during the year, closing balance and net change in rupee terms with respect to external debt, wherever applicable", "the opening balance, receipts and disbursements during the year, closing balance and net change in rupee terms with respect of other obligations", "All of the above"], c: "All of the above" },
+            { q: "98. Consolidated Fund of India is the fund referred to in of the Constitution of India", o: ["Article 266(1)", "Article 266(2)", "Article 266(3)", "Article 266(4)"], c: "Article 266(1)" },
+            { q: "99. The Financial Statements of the Union Government shall disclose the following details under 'Loans and Advances made by the Union Government' in the Annual Finance Accounts of the Union Government", o: ["the summary of Loans and Advances showing loanee group- wise details", "the summary of Loans and Advances showing Sector-wise details", "the summary of repayments in arrears from Governments and other loanee entities", "All of the above"], c: "All of the above" }
         ];
 
-        let userAnswers = new Array(questionsData.length).fill(null);
-        let questionsAttemptedFlags = new Array(questionsData.length).fill(false);
         let currentQuestionIndex = 0;
-        let score = { correct: 0, incorrect: 0 };
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
 
+        let score = {
+            correct: 0,
+            incorrect: 0
+        };
+
+        // DOM Elements
         const questionHeaderElement = document.getElementById('question-header');
         const questionTextElement = document.getElementById('question-text');
         const optionsContainerElement = document.getElementById('options-container');
@@ -364,58 +457,61 @@
         const prevButton = document.getElementById('prev-btn');
         const completionMessageElement = document.getElementById('completion-message');
         const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
 
         const correctCountElement = document.getElementById('correct-count');
         const incorrectCountElement = document.getElementById('incorrect-count');
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
-        
-        const questionsPerSet = [50, 49]; 
-        const setStartIndices = [0, 50]; 
 
+        // Configuration for 99 questions into 3 sets
+        const questionsPerSet = [33, 33, 33]; 
+        const setStartIndices = [0, 33, 66]; 
 
         function populateSetSelector() {
             setSelectorElement.innerHTML = ''; // Clear existing options
             questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
                 const option = document.createElement('option');
                 option.value = index; 
-                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
-                setSelectorElement.appendChild(option);
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
             });
             setSelectorElement.addEventListener('change', (event) => {
                 const selectedSetIndex = parseInt(event.target.value);
                 currentQuestionIndex = setStartIndices[selectedSetIndex];
-                displayQuizElements();
+                completionMessageElement.style.display = 'none';
+                questionHeaderElement.style.display = 'block';
+                questionTextElement.style.display = 'block';
+                optionsContainerElement.style.display = 'block';
+                navigationButtons.style.display = 'flex'; 
                 loadQuestion();
             });
         }
-        
-        function displayQuizElements() {
-            completionMessageElement.style.display = 'none';
-            questionHeaderElement.style.display = 'block';
-            questionTextElement.style.display = 'block';
-            optionsContainerElement.style.display = 'block';
-            document.getElementById('navigation-buttons').style.display = 'flex';
-        }
-
 
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
-            for (let i = 0; i < questionsPerSet.length; i++) {
-                cumulativeQuestions += questionsPerSet[i];
-                if (index < cumulativeQuestions) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
                     if (setSelectorElement.value != i) { 
-                         setSelectorElement.value = i;
+                         setSelectorElement.value = i; 
                     }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-            //This will handle the last set if the loop doesn't catch it
-            const lastSetIndex = questionsPerSet.length - 1;
-            if (setSelectorElement.value != lastSetIndex) {
-                setSelectorElement.value = lastSetIndex;
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
             }
-            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
         }
         
         function updateScoreboard() {
@@ -432,97 +528,92 @@
         }
 
         function loadQuestion() {
-            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
-            if (currentQuestionIndex >= questionsData.length) {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
                 showCompletionMessage();
                 return;
             }
-            displayQuizElements(); 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
             questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
 
-            optionsContainerElement.innerHTML = '';
-            const questionAlreadyAnswered = questionsAttemptedFlags[currentQuestionIndex];
-
+            optionsContainerElement.innerHTML = ''; 
             currentQuestion.o.forEach((optionText, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.classList.add('option');
                 optionElement.dataset.optionText = optionText; 
 
-                const optionLetter = String.fromCharCode(65 + index);
+                const optionLetter = String.fromCharCode(65 + index); 
                 optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
                 
-                if (questionAlreadyAnswered) {
+                if (questionsAttemptedState[currentQuestionIndex]) { 
                     optionElement.classList.add('disabled');
-                    if (optionText === currentQuestion.c) {
-                        optionElement.classList.add('correct-answer');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
                     }
-                    if (optionText === userAnswers[currentQuestionIndex] && optionText !== currentQuestion.c) {
-                        optionElement.classList.add('incorrect-selection');
-                    }
-                     if (optionText === userAnswers[currentQuestionIndex]) {
-                        optionElement.classList.add('user-selected-display');
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
                     }
                 } else {
                     optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
                 }
                 optionsContainerElement.appendChild(optionElement);
             });
+
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
             
-            prevButton.disabled = currentQuestionIndex === 0;
-            // MODIFICATION: Always enable the next button to allow skipping
-            nextButton.disabled = false; 
-            
-            if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            } else {
-                 nextButton.textContent = "Next Question";
+            nextButton.disabled = false;
+            if (currentQuestionIndex === questionsData.length - 1) {
+                nextButton.disabled = !questionsAttemptedState[currentQuestionIndex];
             }
+
+            prevButton.disabled = (currentQuestionIndex === 0);
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
         }
 
         function handleOptionSelection(selectedDiv, selectedOptionText) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return; 
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
 
-            questionsAttemptedFlags[currentQuestionIndex] = true;
+            questionsAttemptedState[currentQuestionIndex] = true;
             userAnswers[currentQuestionIndex] = selectedOptionText;
             nextButton.disabled = false; 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.c;
 
-            selectedDiv.classList.add('user-selected-display');
-
-            if (selectedOptionText === correctAnswerText) {
-                selectedDiv.classList.add('correct-answer');
-                score.correct++;
-            } else {
-                selectedDiv.classList.add('incorrect-selection');
-                score.incorrect++;
-                Array.from(optionsContainerElement.children).forEach(optDiv => {
-                    if (optDiv.dataset.optionText === correctAnswerText) {
-                        optDiv.classList.add('correct-answer');
-                    }
-                });
-            }
-            
             Array.from(optionsContainerElement.children).forEach(optDiv => {
-                const newOptDiv = optDiv.cloneNode(true);
-                optDiv.parentNode.replaceChild(newOptDiv, optDiv);
-                newOptDiv.classList.add('disabled');
+                optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
+                    }
+                }
             });
-
             updateScoreboard();
-             if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            }
         }
         
         function selectOptionByKey(key) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return;
+            if (questionsAttemptedState[currentQuestionIndex]) return;
 
             let optionIndex = -1;
             if (key === 'a' || key === '1') optionIndex = 0;
@@ -543,7 +634,9 @@
                 currentQuestionIndex++;
                 loadQuestion();
             } else {
-                showCompletionMessage();
+                 if (questionsAttemptedState[currentQuestionIndex]) {
+                    showCompletionMessage();
+                 }
             }
         }
 
@@ -558,34 +651,42 @@
             questionHeaderElement.style.display = 'none';
             questionTextElement.style.display = 'none';
             optionsContainerElement.style.display = 'none';
-            document.getElementById('navigation-buttons').style.display = 'none';
+            navigationButtons.style.display = 'none'; 
             completionMessageElement.style.display = 'block';
             const attempted = score.correct + score.incorrect;
             const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
-            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
+        // Event Listeners
         nextButton.addEventListener('click', nextQuestionHandler);
         prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+                return;
+            }
+            if (event.key.toLowerCase() === 'escape') return;
+
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault(); 
+                 return;
+            }
+
             const key = event.key.toLowerCase();
-            
-            // MODIFICATION: Allow skipping with keyboard shortcuts
-            if (key === 'arrowright' || key === ' ' || key === 'enter') {
+            if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                event.preventDefault();
+                selectOptionByKey(key);
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
                 event.preventDefault();
                 nextQuestionHandler();
-            } else if (key === 'arrowleft') {
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
                 event.preventDefault();
                 prevQuestionHandler();
-            } else if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
-                if (currentQuestionIndex < questionsData.length && !questionsAttemptedFlags[currentQuestionIndex]) {
-                    event.preventDefault();
-                    selectOptionByKey(key);
-                }
             }
         });
 
+        // Initial setup
         populateSetSelector();
         loadQuestion();
         updateScoreboard(); 
