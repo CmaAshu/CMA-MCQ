@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ Quiz - Financial Management and Business Data Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5; /* Light grey background */
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +35,11 @@
         }
 
         #scoreboard-container {
-            background: #8000ff; /* Purple */
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
             color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +47,74 @@
         }
         
         #set-navigation-container {
-            background: #0051ff; /* Blue */
-            color: #ffffff;
+            background: linear-gradient(135deg, #04bf26, #ADFF2F);
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFC300; /* Yellow */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #555; 
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #dba700; /* Darker yellow for border */
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; 
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,65 +125,70 @@
         .option {
             display: flex;
             align-items: center;
-            background: #fffde7; /* Lighter Yellow/Beige */
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #fff9c4; 
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #fff59d; /* Darker Lighter Yellow on hover */
-            border-color: #fff176;
+            background: #fff59d;
+            border-color: #f2e70c;
         }
 
         .option.selected { 
-            font-weight: 500; 
-            border-color: #0051ff; /* Blue border for selected */
-            background-color: #e0efff; 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important; 
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important; 
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057; 
-            background-color: #d1e7dd; 
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
         .option.selected .option-letter {
-            background-color: #0051ff; 
+            background-color: var(--primary-blue); 
             color: white;
+            transform: scale(1.1);
         }
 
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important; 
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important; 
+            background-color: #ef4444 !important; 
             color: white !important;
         }
 
@@ -177,7 +201,7 @@
         }
 
         button {
-            background-color: #007bff; 
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -185,38 +209,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
+        }
+        
+        #prev-btn {
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3; 
+            background-color: #0637c9;
+            transform: translateY(-2px);
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
         button:disabled {
-            background-color: #cccccc; 
+            background-color: #4b5563; 
             cursor: not-allowed;
             box-shadow: none;
+            opacity: 0.6;
         }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745; 
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -302,17 +337,13 @@
     </div>
 
     <script>
-        // questionsData array:
-        // q: Question text
-        // o: Array of options
-        // c: Correct answer text
-        // All 174 questions from MCQBank_Paper11.pdf (Financial Management and Business Data Analytics)
+        // --- START OF QUESTION DATA ---
         const questionsData = [
             { q: "1. Time value of money explains that:", o: ["a unit of money received today is worth more than a unit received in future", "a unit of money received today is worth less than a unit received in future", "a unit of money received today and at some other time in future is equal", "none of the above"], c: "a unit of money received today is worth more than a unit received in future" },
             { q: "2. Time value of money facilitates comparison of cash flows occurring at different time periods by:", o: ["compounding all cash flows to a common point of time", "discounting all cash flows to a common point of time", "using either (1) or (2)", "neither (1) nor (2)."], c: "using either (1) or (2)" },
             { q: "3. If the nominal rate of interest is 10 per cent per annum and frequency of compounding is 4 i.e. quarterly compounding, the effective rate of interest will be:", o: ["10.25% per annum", "10.38% per annum", "10% per annum", "none of the above"], c: "10.38% per annum" },
             { q: "4. Relationship between annual effective rate of interest and annual nominal rate of interest is, if frequency of compounding is more than 1:", o: ["Effective Rate < Nominal rate", "Effective Rate > Nominal rate", "Effective Rate = Nominal rate", "none of the above"], c: "Effective Rate > Nominal rate" },
-            { q: "5. If annual effective rate of interest is 10.25% per annum and nominal rate of return is 10% per annum what is the frequency of compounding?", o: ["2", "3", "12", "4"], c: "2" }, // PDF answer says 3 (12), but 10.25% effective for 10% nominal implies semi-annual (2).
+            { q: "5. If annual effective rate of interest is 10.25% per annum and nominal rate of return is 10% per annum what is the frequency of compounding?", o: ["2", "3", "12", "4"], c: "2" },
             { q: "6. A student takes a loan of Rs. 50,000 from SBI. The rate of interest being charged by SBI is 10% per annum. What would be the amount of equal annual instalment if he wishes to pay it back in five instalments and first instalment, he will pay at the end of year 5?", o: ["Rs. 11,000", "Rs. 19,310", "Rs. 15,000", "None of the above"], c: "Rs. 19,310" },
             { q: "7. How much amount should an investor invest now in order to receive five annuities starting from the end of this year of Rs. 10,000 if the rate of interest offered by bank is 10% per annum?", o: ["Rs. 40.000", "Rs. 45,000", "Rs. 37.910", "none of the above"], c: "Rs. 37.910" },
             { q: "8. A bank offers 12% compound interests payable quarterly. If you deposit Rs.2,000 now, how much it will grow at the end of 5 years?", o: ["Rs.3.050", "Rs.3,430", "Rs.3.612", "Rs.3,722"], c: "Rs.3.612" },
@@ -329,7 +360,7 @@
             { q: "19. Basic objective of a money market mutual fund is:", o: ["Guaranteed rate of return", "Investment in short- term securities", "Both (1) and (2)", "None of (1) and (2)"], c: "Investment in short- term securities" },
             { q: "20. Short selling refers to:", o: ["Buying shares and then selling them on the same day.", "Selling shares without owning them", "Selling some shares out of a large holding", "Continuously selling shares in lots."], c: "Selling shares without owning them" },
             { q: "21. Which of the following is not regulated by SEBI?", o: ["Foreign Institutional Investors", "Foreign Direct Investment", "Mutual Funds", "Depositories"], c: "Foreign Direct Investment" },
-            { q: "22. Which of the following is true for mutual funds in India?", o: ["Exit load is not allowed", "Entry load is allowed", "Entry load is not allowed", "Exit load allowed is some cases"], c: "Exit load allowed is some cases" }, // PDF answer is 4. Current SEBI rules: No entry load. Exit load allowed.
+            { q: "22. Which of the following is true for mutual funds in India?", o: ["Exit load is not allowed", "Entry load is allowed", "Entry load is not allowed", "Exit load allowed is some cases"], c: "Exit load allowed is some cases" },
             { q: "23. Which of the following is not available in India?", o: ["Index Options", "Index Futures,", "Commodity Options", "Commodity Futures"], c: "Commodity Options" },
             { q: "24. Which of the following is the benefit of Depositories?", o: ["Reduction in the share transfer time to the buyer", "Reduced Risk of stolen, fake, forged shares", "No Stamp duty on transfer of shares in dematerialized form", "All of the above"], c: "All of the above" },
             { q: "25. Credit Rating of a debt security is:", o: ["Guarantee of Repayment", "Merely opinion", "Positive suggestion", "Negative suggestion"], c: "Merely opinion" },
@@ -345,7 +376,7 @@
             { q: "35. Which of the following is not a spontaneous source of short-term funds?", o: ["Trade credit", "Accrued expenses", "Provision for dividend", "All of the above"], c: "Provision for dividend" },
             { q: "36. In India, Commercial Papers are issued as per the lines issued by", o: ["Securities and Exchange Board of India", "Reserve Bank of India", "Forward Market Commission", "RBI"], c: "Reserve Bank of India" },
             { q: "37. Commercial paper are generally issued at a pries:", o: ["Equal to face value", "More than face value", "Less than face value", "Equal to redemption value"], c: "Less than face value" },
-            { q: "38. Which of the following is not applicable to commercial paper?", o: ["Face Value", "Issue Price", "Coupon Rate", "None of the above"], c: "None of the above" }, // CP is zero-coupon. So Coupon Rate is not applicable. PDF key 4.
+            { q: "38. Which of the following is not applicable to commercial paper?", o: ["Face Value", "Issue Price", "Coupon Rate", "None of the above"], c: "None of the above" },
             { q: "39. Accounting Ratios are important tools used by", o: ["Managers", "Researchers", "Investors", "All of the above"], c: "All of the above" },
             { q: "40. Net Profit Ratio Signifies:", o: ["Operational Profitability", "Liquidity Position", "Big-term Solvency", "Profit for Lenders"], c: "Operational Profitability" },
             { q: "41. Working Capital Turnover measures, the relationship of Working Capital with:", o: ["Fixed Assets", "Sales", "Purchases", "Stock"], c: "Sales" },
@@ -369,10 +400,10 @@
             { q: "59. Which of the following is a measure of Debt Service capacity of a firm?", o: ["Current Ratio", "Acid Test Ratio", "Interest Coverage Ratio", "Debtors Turnover"], c: "Interest Coverage Ratio" },
             { q: "60. Gross Profit Ratio for a firm remains same but the Net Profit Ratio is decreasing. The reason for such behavior could be:", o: ["Increase in Costs of Goods Sold", "If Increase in Expense", "Increase in Dividend", "Decrease in Sales"], c: "If Increase in Expense" },
             { q: "61. Which of the following statements is correct?", o: ["A Higher Receivable Turnover is not desirable", "Interest Coverage Ratio depends upon Tax Rate", "Increase in Net Profit Ratio means increase in Sales", "Lower Debt-Equity Ratio means lower Financial Risk"], c: "Lower Debt-Equity Ratio means lower Financial Risk" },
-            { q: "62. Debt to Total Assets of a firm is 2. The Debt to Equity would be:", o: ["0.80", "0.25", "1.00", "0.75"], c: "2.00" }, // D/A = 2. This implies D = 2A. This is unusual. If D/A = 0.2, then D=0.2A, E=0.8A, D/E = 0.2/0.8 = 0.25. PDF key is 2.00.
-            { q: "63. Which of the following helps analysing return to equity Shareholders?", o: ["Return on Assets", "Earnings Per Share", "Net Profit Ratio", "Return on Investment"], c: "Earnings Per Share" }, // PDF key is 2.00
-            { q: "64. Return on Assets and Return on Investment Ratios belong to:", o: ["Liquidity Ratios", "Profitability Ratios", "Solvency Ratios", "Turnover"], c: "Profitability Ratios" }, // PDF key is 2.00
-            { q: "65. XYZ Ltd. has a Debt Equity Ratio of 1.5 as compared to 1.3 Industry average. It means that the firm has:", o: ["Higher Liquidity", "Higher Financial Risk", "Higher Profitability", "Higher Capital Employed"], c: "Higher Financial Risk" }, // PDF key is 2.00
+            { q: "62. Debt to Total Assets of a firm is 2. The Debt to Equity would be:", o: ["0.80", "0.25", "1.00", "0.75"], c: "2.00" },
+            { q: "63. Which of the following helps analysing return to equity Shareholders?", o: ["Return on Assets", "Earnings Per Share", "Net Profit Ratio", "Return on Investment"], c: "Earnings Per Share" },
+            { q: "64. Return on Assets and Return on Investment Ratios belong to:", o: ["Liquidity Ratios", "Profitability Ratios", "Solvency Ratios", "Turnover"], c: "Profitability Ratios" },
+            { q: "65. XYZ Ltd. has a Debt Equity Ratio of 1.5 as compared to 1.3 Industry average. It means that the firm has:", o: ["Higher Liquidity", "Higher Financial Risk", "Higher Profitability", "Higher Capital Employed"], c: "Higher Financial Risk" },
             { q: "66. Ratio Analysis can be used to study liquidity, turnover, profitability, etc. of a firm. What does Debt-Equity Ratio help to study?", o: ["Solvency", "Liquidity", "Profitability", "Turnover"], c: "Solvency" },
             { q: "67. In Inventory Turnover calculation, what is taken in the numerator?", o: ["Sales", "Cost of Goods Sold", "Opening Stock", "Closing Stock"], c: "Cost of Goods Sold" },
             { q: "68. Statement of cash flows are included in:", o: ["Ind AS-3", "Ind AS-6", "Ind AS-7", "Ind AS-113"], c: "Ind AS-7" },
@@ -381,7 +412,7 @@
             { q: "71. Which of the following has the highest cost of capital?", o: ["Equity shares", "Loans", "Bonds", "Preference shares"], c: "Equity shares" },
             { q: "72. Cost of capital for Government securities is also known as:", o: ["Risk-free Rate of Interest", "Maximum Rate of Return", "Rate of Interest on Fixed Deposits", "None of the above"], c: "Risk-free Rate of Interest" },
             { q: "73. Cost of capital for bonds and debentures is calculated on:", o: ["Before Tax basis", "After Tax basis", "Risk-free Rate of Interest basis", "Compound interest"], c: "After Tax basis" },
-            { q: "74. Weighted Average Cost of Capital (WACC) is generally denoted by:", o: ["k", "Kw", "ko", "ke"], c: "ko" }, // PDF answer key is 3 (ko). Kw is also common.
+            { q: "74. Weighted Average Cost of Capital (WACC) is generally denoted by:", o: ["k", "Kw", "ko", "ke"], c: "ko" },
             { q: "75. Which of the following cost of capital require tax adjustment?", o: ["Cost of Equity Shares", "Cost of Preference Shares", "Cost of Debentures", "Cost of Retained Earnings"], c: "Cost of Debentures" },
             { q: "76. Which is the most expensive source of funds?", o: ["New Equity Shares", "New Preference Shares", "New Debts", "Retained Earnings"], c: "New Equity Shares" },
             { q: "77. Marginal cost of capital is the cost of:", o: ["Additional Sales", "Additional Funds", "Additional Interests", "Additional Revenue"], c: "Additional Funds" },
@@ -420,7 +451,7 @@
             { q: "110. Working capital is also known as ____ capital.", o: ["Current asset", "Operating", "Projecting", "Operation capital"], c: "Operating" },
             { q: "111. ____ working Capital refers to the firm's investment in current assets.", o: ["Zero", "Net", "Gross", "Distinctive"], c: "Gross" },
             { q: "112. In finance, \"working capital\" means the same thing as ____ assets.", o: ["Current", "Fixed", "Total", "All of the above"], c: "Current" },
-            { q: "113. ____ working capital refers to the difference between current assets and current liabilities.", o: ["Zero", "Net", "Gross", "Distinctive"], c: "Net" }, // PDF answer key says "Ner" which is likely a typo for Net.
+            { q: "113. ____ working capital refers to the difference between current assets and current liabilities.", o: ["Zero", "Net", "Gross", "Distinctive"], c: "Net" },
             { q: "114. A ____ net working capital will arise when current assets exceed current liabilities.", o: ["Summative", "Negative", "Excessive", "Positive"], c: "Positive" },
             { q: "115. A ____ net working capital occurs when current liabilities are in excess of current assets.", o: ["Positive", "Negative", "Excessive", "Zero"], c: "Negative" },
             { q: "116. X Ltd. distributes its products to more than 500 retailers. The company's collection period is 30 days and keeps its inventory for 20 days. The operating cycle would be:", o: ["40 Days", "43 Days", "45 Days", "50 Days"], c: "50 Days" },
@@ -434,7 +465,7 @@
             { q: "124. On the basis of ____ working capital may be classified as: 1) Permanent or fixed working capital. 2) Temporary or variable working capital.", o: ["concept", "time", "future", "work"], c: "time" },
             { q: "125. Operating cycle is also called as", o: ["Business cycle", "Working capital cycle", "Working cycle", "Current asset cycle"], c: "Working capital cycle" },
             { q: "126. Spontaneous financing consists of", o: ["a line of credit", "short-term loans", "accounts receivable", "accounts payable"], c: "accounts payable" },
-            { q: "127. Conversation of marketable securities into cash entails a fixed cost of Rs.1,000 per transaction. What will be the optimal conversation size as per Baumol model of cash management?", o: ["Rs. 315,628", "Rs. 316,228", "Rs. 317.678", "Rs. 318,426"], c: "Rs. 316,228" }, // Baumol model needs total cash requirement and opportunity cost (interest rate). Not provided. Following PDF key.
+            { q: "127. Conversation of marketable securities into cash entails a fixed cost of Rs.1,000 per transaction. What will be the optimal conversation size as per Baumol model of cash management?", o: ["Rs. 315,628", "Rs. 316,228", "Rs. 317.678", "Rs. 318,426"], c: "Rs. 316,228" },
             { q: "128. Average collection period is 2 months, cash sales and average receivables are Rs.5,00,000 and Rs.6,50,000 respectively. The sales amount would be-", o: ["Rs. 40,00,000", "Rs. 42,00,000", "Rs. 44,00,000", "Rs. 48,50,000"], c: "Rs. 44,00,000" },
             { q: "129. If the current ratio is 2.4:1 and working capital is Rs.25,20,000, find the amount of current assets and current liabilities.", o: ["Current Assets Rs. 43,20,000 and Current Liabilities Rs. 18,00,000", "Current Assets Rs. 44,00,000 and Current Liabilities Rs.18,50,000", "Current Assets Rs. 45,50,000 and Current Liabilities Rs. 19.00.000", "Current Assets Rs. 46,60,000 and Current Liabilities Rs. 19,30,000"], c: "Current Assets Rs. 43,20,000 and Current Liabilities Rs. 18,00,000" },
             { q: "130. Operating leverage helps in analysis of:", o: ["Business Risk", "Financing Risk", "Production Risk", "Credit Risk"], c: "Business Risk" },
@@ -447,7 +478,7 @@
             { q: "137. Financial Leverage is calculated as:", o: ["EBIT Contribution", "EBIT PBT", "EBIT- Sales", "EBIT Variable Cost"], c: "EBIT PBT" },
             { q: "138. Which combination is generally good for firms?", o: ["High Operating leverage, High Financial leverage", "Low Operating leverage, Low Financial leverage", "High Operating leverage, Low Financial leverage", "Moderate Operating leverage. Moderate Financial leverage"], c: "High Operating leverage, Low Financial leverage" },
             { q: "139. Combined leverage can be used to measure the relationship between:", o: ["EBIT and EPS", "PAT and EPS", "Sales and EPS", "Sales and EBIT"], c: "Sales and EPS" },
-            { q: "140. Financial Leverage is zero if:", o: ["EBIT Interest", "EBIT = Zero", "EBIT Fixed Cost", "EBIT Pref. Dividend"], c: "EBIT = Zero" }, // Or if there's no debt/interest. PDF key 2.
+            { q: "140. Financial Leverage is zero if:", o: ["EBIT Interest", "EBIT = Zero", "EBIT Fixed Cost", "EBIT Pref. Dividend"], c: "EBIT = Zero" },
             { q: "141. Business risk can be measured by:", o: ["Financial leverage", "Operating leverage", "Combined leverage", "All of the above"], c: "Operating leverage" },
             { q: "142. Financial Leverage measures relationship between", o: ["EBIT and PBT", "EBIT and EPS", "Sales and PBT", "Sales and EPS"], c: "EBIT and EPS" },
             { q: "143. Use of Preference Share Capital in Capital structure", o: ["Increases Operating leverage", "Increases Financial leverage", "Decreases Operating leverage", "Decreases Financial leverage"], c: "Increases Financial leverage" },
@@ -455,7 +486,7 @@
             { q: "145. Numerical data may be expressed as:", o: ["In the form of text", "In the form of numbers", "In the form of images", "All of the above"], c: "In the form of numbers" },
             { q: "146. The descriptive data may be deciphered as:", o: ["May be deciphered in the form of qualitative information", "May be deciphered in the form of quantitative information", "May be deciphered in the form of information from informal sources", "All of the above"], c: "May be deciphered in the form of qualitative information" },
             { q: "147. Data represented in the form of picture is termed as:", o: ["Graphic data", "Qualitative data", "Quantitative data", "All of the above"], c: "Graphic data" },
-            { q: "148. Which of the following is/are the reason for digitization?", o: ["Helps in work processing", "Requires less physical storage space", "Digitized records may be accessed by more than one person simultaneously", "All of the above"], c: "Requires less physical storage space" }, // PDF answer key is 2. All options are valid reasons.
+            { q: "148. Which of the following is/are the reason for digitization?", o: ["Helps in work processing", "Requires less physical storage space", "Digitized records may be accessed by more than one person simultaneously", "All of the above"], c: "Requires less physical storage space" },
             { q: "149. To make the data turn into user friendly information, it should go one/more of following core steps:", o: ["Collection of data", "Organising the data", "Data processing", "All of the above"], c: "All of the above" },
             { q: "150. Any data expressed as a number is a ____ data.", o: ["graphical", "descriptive", "numerical", "None of the above"], c: "numerical" },
             { q: "151. Classifying equities into small-cap, mid-cap, and large-cap categories are the examples of ____ Scale", o: ["Nominal", "Ordinal", "Interval", "Ratio"], c: "Nominal" },
@@ -474,7 +505,7 @@
             { q: "164. A scatter plot displays several unique data points:", o: ["on a single graph", "On two different graphs", "On four different graphs", "None of the above"], c: "on a single graph" },
             { q: "165. A ____ chart depicts tasks that must be accomplished before others may begin, as well as the allocation of resources.", o: ["Bubble", "Gantt", "Scatter", "Density"], c: "Gantt" },
             { q: "166. ____ is a set of skills that aims to identify, find, modify, format, and present data in a manner that ideally conveys meaning and provides insight.", o: ["Data Presentation Architecture", "Data Presentation Hierarchy", "Data Visualization Architecture", "None of the above"], c: "Data Presentation Architecture" },
-            { q: "167. Which of the following is a data discovery platform that enables users to make quicker, more informed choices by speeding analytics, uncovering new business insights, and enhancing the precision of outcomes?", o: ["Microsoft Excel", "Microsoft Power BI", "QlikView", "Tableau"], c: "QlikView" }, // PDF answer key 3. All options are data discovery/visualization tools.
+            { q: "167. Which of the following is a data discovery platform that enables users to make quicker, more informed choices by speeding analytics, uncovering new business insights, and enhancing the precision of outcomes?", o: ["Microsoft Excel", "Microsoft Power BI", "QlikView", "Tableau"], c: "QlikView" },
             { q: "168. Which of the following is/ are the benefit/ benefits of data analytics?", o: ["Improves decision making process", "Increase in efficiency of operations", "Improved service to stakeholders", "All of the above"], c: "All of the above" },
             { q: "169. Which of the following is/ are the technique/s of data mining?", o: ["Association rules", "Neural network", "Decision tree", "All of the above"], c: "All of the above" },
             { q: "170. XML is the abbreviated form of:", o: ["Extensible mark-up language", "Extended mark-up language", "Extendable mark-up language", "Extensive mark-up language"], c: "Extensible mark-up language" },
