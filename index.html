@@ -14,7 +14,7 @@
             --primary-purple: #57039c;
             
             /* New user-defined colors */
-            --subject-tile-bg: #f5d905;
+            --subject-tile-bg: #FFC300;
             --quiz-button-bg: #0228fa;
             --kbd-button-bg: #04bf26;
 
@@ -120,10 +120,10 @@
             color: #ffffff;
             padding: 35px 30px; border-radius: 16px;
             text-align: center;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(4, 191, 38, 0.25);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), inset 0 0 20px rgba(242, 231, 12, 0.25);
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 2px solid var(--primary-green);
+            border: 2px solid var(--primary-yellow);
             background: var(--primary-purple);
             position: relative;
             overflow: hidden;
@@ -142,7 +142,7 @@
 
         .group-choice-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px var(--primary-green);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px var(--primary-yellow);
         }
         
         .group-choice-card:hover:before {
@@ -166,7 +166,7 @@
         .back-button:hover { background-color: #4b5563; /* Gray 600 */ transform: translateY(-2px); }
 
         .group-title {
-            font-size: 2.2rem; font-weight: 700; color: var(--primary-green);
+            font-size: 2.2rem; font-weight: 700; color: var(--primary-yellow);
             text-align: center; margin-bottom: 30px; padding-bottom: 15px;
             border-bottom: 2px solid var(--primary-blue);
         }
@@ -182,13 +182,13 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex; flex-direction: column; justify-content: space-between;
-            border: 1px solid #eab308; /* Yellow 600 border */
+            border: 1px solid #d97706; /* Amber 600 border */
             min-height: 190px;
         }
 
         .quiz-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(245, 217, 5, 0.3);
+            box-shadow: 0 12px 25px rgba(255, 195, 0, 0.3);
         }
 
         .quiz-card h3 {
@@ -215,7 +215,7 @@
             margin-top: 40px; padding: 20px; font-size: 0.9em;
             color: var(--medium-text); text-align: center; width: 100%; max-width: 900px;
         }
-        .footer-credit a { color: var(--primary-green); text-decoration: none; font-weight: 600; }
+        .footer-credit a { color: var(--primary-yellow); text-decoration: none; font-weight: 600; }
         .footer-credit a:hover { text-decoration: underline; }
         .footer-credit .heart-icon {
             display: inline-block; width: 20px; height: 20px;
