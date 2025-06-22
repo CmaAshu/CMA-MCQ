@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ Quiz - Management Accounting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5; /* Light grey background */
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +35,11 @@
         }
 
         #scoreboard-container {
-            background: #8000ff; /* Purple */
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
             color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +47,74 @@
         }
         
         #set-navigation-container {
-            background: #0051ff; /* Blue */
-            color: #ffffff;
+            background: linear-gradient(135deg, #04bf26, #ADFF2F);
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFC300; /* Yellow */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #555; 
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #dba700; /* Darker yellow for border */
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; 
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,65 +125,70 @@
         .option {
             display: flex;
             align-items: center;
-            background: #fffde7; /* Lighter Yellow/Beige */
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #fff9c4; 
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #fff59d; /* Darker Lighter Yellow on hover */
-            border-color: #fff176;
+            background: #fff59d;
+            border-color: #f2e70c;
         }
 
         .option.selected { 
-            font-weight: 500; 
-            border-color: #0051ff; /* Blue border for selected */
-            background-color: #e0efff; 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important; 
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important; 
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057; 
-            background-color: #d1e7dd; 
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
         .option.selected .option-letter {
-            background-color: #0051ff; 
+            background-color: var(--primary-blue); 
             color: white;
+            transform: scale(1.1);
         }
 
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important; 
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important; 
+            background-color: #ef4444 !important; 
             color: white !important;
         }
 
@@ -177,7 +201,7 @@
         }
 
         button {
-            background-color: #007bff; 
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -185,38 +209,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
+        }
+        
+        #prev-btn {
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3; 
+            background-color: #0637c9;
+            transform: translateY(-2px);
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
         button:disabled {
-            background-color: #cccccc; 
+            background-color: #4b5563; 
             cursor: not-allowed;
             box-shadow: none;
+            opacity: 0.6;
         }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745; 
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -302,11 +337,7 @@
     </div>
 
     <script>
-        // questionsData array:
-        // q: Question text
-        // o: Array of options
-        // c: Correct answer text
-        // All 203 questions from MCQBank_Paper12.pdf (Management Accounting)
+        // --- START OF QUESTION DATA ---
         const questionsData = [
             { q: "1. Management Accounting", o: ["Accumulates, summarizes and analyses the available data.", "Is primarily concerned with the requirements of the management.", "Makes Corporate Planning and Strategy effective.", "All of the above"], c: "All of the above" },
             { q: "2. Management accounting can be viewed as", o: ["Marketing-oriented Accounting", "Management- oriented Accounting", "Accounting-oriented Management", "Manager-oriented Accounting"], c: "Management- oriented Accounting" },
@@ -363,17 +394,17 @@
             { q: "53. Contribution margin is known as", o: ["Marginal income", "Gross profit", "Net income", "Net profit"], c: "Marginal income" },
             { q: "54. Fixed cost per unit decrease when", o: ["Production volume increases", "Production volume decreases", "Variable costs per unit decreases", "Prime costs per unit decreases"], c: "Production volume increases" },
             { q: "55. Within a relevant range, the amount of variable costs per unit", o: ["Differs at each production level", "Remains constant at each production level", "Increases as production increases", "Decreases as production increases"], c: "Remains constant at each production level" },
-            { q: "56. Margin of safety is referred to as", o: ["Excess of budgeted or actual sales revenue over the fixed expenses.", "Excess of budgeted or actual sales over the variable expenses and fixed expense, at break-even.", "Excess of actual sales over budgeted sales.", "Excess of sales revenue over the variable expenses"], c: "Excess of actual sales over budgeted sales." }, // This seems to be a repeat of Q52 with slightly different options. PDF answer for 56 is 3.
+            { q: "56. Margin of safety is referred to as", o: ["Excess of budgeted or actual sales revenue over the fixed expenses.", "Excess of budgeted or actual sales over the variable expenses and fixed expense, at break-even.", "Excess of actual sales over budgeted sales.", "Excess of sales revenue over the variable expenses"], c: "Excess of actual sales over budgeted sales." },
             { q: "57. Under marginal costing system, the contribution margin discloses the excess of", o: ["Revenue over fixed costs", "Projected revenues over the break-even point", "Revenues over variable costs", "Variable costs over fixed costs"], c: "Revenues over variable costs" },
             { q: "58. A decrease in sales price", o: ["does not affect the break-even point", "lowers the fixed cost", "Increases the break- even point", "lowers the break- even point"], c: "Increases the break- even point" },
             { q: "59. Determine Margin of safety if Profit is ₹15,000 and P/V ratio is 40%.", o: ["₹37,500", "₹ 33.000", "₹38,000", "None of the above"], c: "₹37,500" },
             { q: "60. What is Margin of Safety if Sales is 20,000 units and B.E.P is 15,000 units?", o: ["15000 units", "5000 units", "10000 units", "20000 units"], c: "5000 units" },
-            { q: "61. Determine sales in rupees for desired profit if fixed cost is ₹10,000, Variable cost is 30,000, Sales is 50,000 and desired profit is 25,000.", o: ["₹ 73,500", "₹75.000", "₹5.000", "₹37,500"], c: "₹37,500" }, // PDF answer is 4. P/V = (50k-30k)/50k = 0.4. Sales = (FC+DP)/PV = (10k+5k)/0.4 = 15k/0.4 = 37,500. Wait, desired profit is 25k. Sales = (10k+25k)/0.4 = 35k/0.4 = 87,500. None of the options match. Rechecking PDF question and answer. PDF Q61 has DP 5000. If DP=5000, then 37500 is correct.
+            { q: "61. Determine sales in rupees for desired profit if fixed cost is ₹10,000, Variable cost is 30,000, Sales is 50,000 and desired profit is 25,000.", o: ["₹ 73,500", "₹75.000", "₹5.000", "₹37,500"], c: "₹87,500" },
             { q: "62. What will be sales in rupees for desired profit if fixed cost is 230,000, desired profit is ₹15,000 and P/V ratio is 30%?", o: ["₹1,50,000", "₹ 1,00,000", "₹2,00,000", "None of the above"], c: "₹1,50,000" },
-            { q: "63. Calculate sales in rupees for desired profit if fixed cost is ₹10,000, selling price is 20 per unit, Variable cost is 15 per unit and desired profit is ₹ 1 per unit", o: ["₹20,000", "₹50.000", "₹70,000", "₹ 10,000"], c: "₹50.000" }, // PDF answer is 2. Contribution pu = 5. Sales units = (FC+DP)/Contr pu = (10000+ (X*1))/5. X=Sales units. 5X = 10000+X. 4X=10000. X=2500 units. Sales Rs = 2500*20 = 50000.
-            { q: "64. Determine sales in units for desired profit if Fixed cost is ₹15,000, desired profit is 25,000 Selling price per unit is 20 and Variable cost per unit is 16.", o: ["25,000 units", "₹5,000", "₹ 10,000", "10,000 units"], c: "₹5,000 units" }, // PDF answer is 1. Contribution pu = 4. Sales units = (15000+5000)/4 = 20000/4 = 5000 units.
-            { q: "65. What will be sales in units if fixed cost is ₹50,000 Contribution per unit is 60 and desired profit per unit is ₹ 10.", o: ["26,000 units", "₹1,000", "1,000 units", "₹6.000"], c: "1,000 units" }, // PDF answer is 3. Sales units = FC / (Contr pu - Profit pu) = 50000 / (60-10) = 50000/50 = 1000 units.
-            { q: "66. Determine B.E.P in units and amount if Units produced if 10,000, Fixed cost is ₹40,000, Selling price is ₹ 50 per unit and Variable cost us ₹ 30 per unit.", o: ["240 per unit, ₹ 2,00,000", "250 per unit, ₹ 10,00,000", "220 per unit, ₹ 1,00,000", "None of the above"], c: "None of the above" }, // PDF answer is 3 (220 per unit, 1,00,000). Contr pu = 20. BEP units = 40000/20 = 2000 units. BEP Rs = 2000*50 = 1,00,000. So option 3 is correct if units were 2000.
+            { q: "63. Calculate sales in rupees for desired profit if fixed cost is ₹10,000, selling price is 20 per unit, Variable cost is 15 per unit and desired profit is ₹ 1 per unit", o: ["₹20,000", "₹50.000", "₹70,000", "₹ 10,000"], c: "₹50.000" },
+            { q: "64. Determine sales in units for desired profit if Fixed cost is ₹15,000, desired profit is 25,000 Selling price per unit is 20 and Variable cost per unit is 16.", o: ["5,000 units", "₹5,000", "₹ 10,000", "10,000 units"], c: "5,000 units" },
+            { q: "65. What will be sales in units if fixed cost is ₹50,000 Contribution per unit is 60 and desired profit per unit is ₹ 10.", o: ["26,000 units", "₹1,000", "1,000 units", "₹6.000"], c: "1,000 units" },
+            { q: "66. Determine B.E.P in units and amount if Units produced if 10,000, Fixed cost is ₹40,000, Selling price is ₹ 50 per unit and Variable cost us ₹ 30 per unit.", o: ["2,000 units, ₹ 1,00,000", "250 per unit, ₹ 10,00,000", "220 per unit, ₹ 1,00,000", "None of the above"], c: "2,000 units, ₹ 1,00,000" },
             { q: "67. Determine B.E.P if Sales is ₹1,00,000, Variable cost is ₹50,000 and Profit is ₹20.000.", o: ["₹60,000", "₹40.000", "₹80,000", "None of the above"], c: "₹60,000" },
             { q: "68. Pv ratio will increase if there is -", o: ["a decrease in fixed cost", "an increase in fixed cost", "a decrease in selling price per unit", "a decrease in variable cost per unit"], c: "a decrease in variable cost per unit" },
             { q: "69. Under marginal costing, the cost of product for inventory valuation includes", o: ["prime costs and variable factory overheads", "prime cost only", "prime costs and Fixed factory overheads", "prime costs and all factory overheads"], c: "prime costs and variable factory overheads" },
@@ -391,7 +422,7 @@
             { q: "81. Contribution margin in marginal costing is also known as:", o: ["Net income", "Gross profit", "Marginal income", "None of the above"], c: "Marginal income" },
             { q: "82. What is the opportunity cost of making a component part in a factory given no alternative use of the capacity?", o: ["The variable manufacturing cost of the component", "The total manufacturing cost of the component", "The total variable cost of the component", "Zero"], c: "Zero" },
             { q: "83. The difference in total cost that results from two alternative courses of action is called:", o: ["Relevant Cost", "Opportunity Cost", "Differential Cost", "Marginal Cost"], c: "Differential Cost" },
-            { q: "84. Relevant costs are:", o: ["unavoidable, future and measured by cash", "avoidable, future and measured by cash", "avoidable, future and measured by profit", "unavoidable, future and measured by profit"], c: "avoidable, future and measured by profit" }, // Usually measured by cash. PDF key 3.
+            { q: "84. Relevant costs are:", o: ["unavoidable, future and measured by cash", "avoidable, future and measured by cash", "avoidable, future and measured by profit", "unavoidable, future and measured by profit"], c: "avoidable, future and measured by profit" },
             { q: "85. The profit at which total revenue is equal to the total cost is known as:", o: ["Margin of safety", "Break-even point", "Both a and b are incorrect", "Both a and b are correct"], c: "Break-even point" },
             { q: "86. Which of the following costs would not be accounted for in a company's recordkeeping system?", o: ["an unexpired cost", "an expired cost", "a product cost", "an opportunity cost"], c: "an opportunity cost" },
             { q: "87. PQR Ltd. manufactures a single product which it sells for 40 per unit. Fixed cost is 60,000 per year. The contribution to sales ratio is 40%. PQR Ltd.'s Break Even Point in units is", o: ["3500", "3700", "3750", "4000"], c: "3750" },
@@ -399,14 +430,14 @@
             { q: "89. Product A generates a contribution to sales ratio of 40%. Fixed cost directly attributable to Product A amounted to ₹60,000. The sales revenue required to achieve a profit of ₹15,000 is", o: ["₹ 2,00,000", "₹1,85,000", "₹1,87,500", "₹2.10,000"], c: "₹1,87,500" },
             { q: "90. XYZ. Ltd. makes a special gadget for the car it manufactures. The machine for the gadget works to full capacity and incur 15 Lakhs and 240 Lakhs respectively as Variable and Fixed Costs. If all the gadgets were purchased from an outside supplier, the machine could be used to produce other items, which would earn a total contribution of 25 Lakhs. What is the maximum price that XYZ Ltd. should be willing to pay to the outside supplier for the gadgets, assuming there is no change in Fixed Costs?", o: ["₹ 40 Lakhs", "₹65 Lakhs", "₹25 Lakhs", "₹15 Lakhs"], c: "₹ 40 Lakhs" },
             { q: "91. X Ltd. has 1000 units of an obsolete item which are carried in inventory at the original price of 50,000. If these items are reworked for 20,000, they can be sold for 36,000. Alternatively, they can be sold as a scrap for ₹ 6,000 in the market. In a decision model used to analyze the reworking proposal, the opportunity cost should be taken as", o: ["₹16,000", "₹6,000", "₹30,000", "₹20,000"], c: "₹6,000" },
-            { q: "92. The sales and profit of a firm for the year 2021 are ₹1,50,000 and 220,000 and for the year 2022 are ₹1,70,000 and ₹ 25,000 respectively. The P/V Ratio of the firm is", o: ["15%", "20%", "25%", "30%"], c: "25%" },
+            { q: "92. The sales and profit of a firm for the year 2021 are ₹1,50,000 and 220,000 and for the year 2022 are ₹1,70,000 and ₹ 25,000 respectively. The P/V Ratio of the firm is", o: ["15%", "20%", "25%", "30%"], c: "15%" },
             { q: "93. Which one of the following is not considered as a method of Transfer Pricing", o: ["Negotiated Transfer Pricing", "Market Price Based Transfer Pricing", "Fixed Cost Based Transfer Pricing", "Opportunity Cost Based Transfer Pricing"], c: "Fixed Cost Based Transfer Pricing" },
-            { q: "94. Method of pricing, when two separate pricing methods are used to price transfer of products from one subunit to another, is called:", o: ["Dual pricing", "Functional pricing", "Congruent pricing", "Optimal pricing"], c: "Functional pricing" }, // Dual pricing is also a valid term. PDF key 2.
+            { q: "94. Method of pricing, when two separate pricing methods are used to price transfer of products from one subunit to another, is called:", o: ["Dual pricing", "Functional pricing", "Congruent pricing", "Optimal pricing"], c: "Dual pricing" },
             { q: "95. The Eastern division sells goods internally to the Western division of the same company. The quoted external price in industry publications from a supplier near Eastern is ₹ 200 per ton plus transportation. It costs 20 per ton to transport the goods to Western. Eastern's actual market cost per ton to buy the direct materials to make the transferred product is ₹100. Actual per ton direct labour is 50. Other actual costs of storage and handling are 40. The company president selects a 220 transfer price. This is an example of:", o: ["Negotiated transfer pricing.", "Cost plus 20% transfer pricing.", "Cost-based transfer pricing.", "Market-based transfer pricing."], c: "Market-based transfer pricing." },
             { q: "96. Division P transfers its output to Division Q at variable cost. Once a year P charges a fixed fee to Q, representing an allowance for P's fixed costs. This type of transfer pricing system is commonly known as:", o: ["Dual pricing", "Negotiated transfer pricing", "Opportunity cost based transfer pricing", "Two-part tariff transfer pricing"], c: "Two-part tariff transfer pricing" },
             { q: "97. In which of the following circumstances is there a strong argument that profit centre accounting is a waste of time?", o: ["When the transferred item is also sold on an external market", "When the supplying division is based in a different country to head office", "If the transferred item is a major product of the supplying division", "If there is no similar product sold on an external market and the transferred item is a major product of the supplying division"], c: "If there is no similar product sold on an external market and the transferred item is a major product of the supplying division" },
-            { q: "98. Which one of the following is not considered as a method of Transfer Pricing?", o: ["Negotiated Transfer Pricing", "Market Price Based Transfer Pricing", "Fixed Cost Based Transfer Pricing", "Opportunity Cost Based Transfer Pricing"], c: "Fixed Cost Based Transfer Pricing" }, // This is a repeat of Q93.
-            { q: "99. Method of pricing, when two separate pricing methods are used to price transfer of products from one subunit to another, is called:", o: ["dual pricing", "functional pricing", "congruent pricing", "optimal pricing"], c: "dual pricing" }, // This is a repeat of Q94, answer changed.
+            { q: "98. Which one of the following is not considered as a method of Transfer Pricing?", o: ["Negotiated Transfer Pricing", "Market Price Based Transfer Pricing", "Fixed Cost Based Transfer Pricing", "Opportunity Cost Based Transfer Pricing"], c: "Fixed Cost Based Transfer Pricing" },
+            { q: "99. Method of pricing, when two separate pricing methods are used to price transfer of products from one subunit to another, is called:", o: ["dual pricing", "functional pricing", "congruent pricing", "optimal pricing"], c: "dual pricing" },
             { q: "100. M Group has two divisions, Division P and Division Q. Division P manufactures an item that is transferred to Division Q. The item has no external market and 6,000 units produced are transferred internally each year. The costs of each division are as follows? Variable Cost Division P 100 per unit Division Q 120 per unit Fixed cost each year ₹1,20,000 ₹90,000 Head Office management decided that a transfer price should be set that provides a profit of 30,000 to Division P. What should be the transfer price per unit?", o: ["P145", "₹125", "₹120", "₹135"], c: "₹125" },
             { q: "101. Minimax Ltd. fixes inter - divisional transfer prices for its products on the basis of cost plus a return on investment in the division. The budget for division X for 2022-23 appears as under-Fixed Assets ₹8,00,000 Current Assets ₹5,00,000 Debtors ₹2,00,000 Annual fixed cost of the division 28,00,000 Variable cost per unit of the product 10 Budgeted volume ₹4,00,000 units per year Desired ROI 28%. Transfer price for division X is", o: ["₹13.05", "₹10.70", "₹8.70", "₹14.70"], c: "₹13.05" },
             { q: "102. BC Company fixes the inter-divisional transfer prices for its products on the basis of cost, plus a return on investment in the division. The Budget for Division for Alpha for the year 2021-22 appears as under: Fixed Assets ₹5,00,000 Current assets ₹3,00,000 Debtors 22,00,000 Annual Fixed Cost of the Division ₹8,00,000 Variable Cost per unit of Product ₹ 10 Budgeted Volume 4,00,000 units per year Desired RO1 28% on ₹10,00,000 Determine the transfer Price for Alpha.", o: ["₹12.7", "₹17.2", "₹27.1", "₹11.7"], c: "₹12.7" },
@@ -444,7 +475,7 @@
             { q: "134. Budget includes:", o: ["Income", "Expenditure", "Employment of capital", "All of the above"], c: "All of the above" },
             { q: "135. A budget should be:", o: ["Rigid", "Flexible", "Both (1) and (2)", "None of the above"], c: "Flexible" },
             { q: "136. The object of budgetary control is", o: ["Planning", "Forecasting", "Organizing", "Directing"], c: "Planning" },
-            { q: "137. The budget which is dynamic is", o: ["Flexible budget", "Sales budget", "Cash budget", "Purchase budget"], c: "Sales budget" }, // Flexible budget is also dynamic. PDF key 2.
+            { q: "137. The budget which is dynamic is", o: ["Flexible budget", "Sales budget", "Cash budget", "Purchase budget"], c: "Sales budget" },
             { q: "138. The process of budgeting helps in the control of:", o: ["Cost of production", "Liquidity", "Capital Expenditure", "All of the above"], c: "All of the above" },
             { q: "139. Plant utilization budget and Manufacturing overhead budgets are types of:", o: ["Production budget", "Sales budget", "Cost budget", "None of the above"], c: "Cost budget" },
             { q: "140. R&D budget and Capital expenditure budget are examples of:", o: ["Short-term budget", "Current budget", "Long-term budget", "None of the above"], c: "Long-term budget" },
@@ -457,11 +488,11 @@
             { q: "147. Production budget is based upon:", o: ["Sales budget", "Factory capacity", "Availability of raw material and labour", "All of the above"], c: "All of the above" },
             { q: "148. A budget should be:", o: ["Rigid", "Flexible", "Both (1) and (2)", "None of the above"], c: "Flexible" },
             { q: "149. The object of budgetary control is", o: ["Planning", "Forecasting", "Organizing", "Directing"], c: "Planning" },
-            { q: "150. The budget which is dynamic is", o: ["Flexible budget", "Sales budget", "Cash budget", "Purchase budget"], c: "Sales budget" }, // Repeat of Q137
+            { q: "150. The budget which is dynamic is", o: ["Flexible budget", "Sales budget", "Cash budget", "Purchase budget"], c: "Sales budget" },
             { q: "151. The process of budgeting helps in the control of:", o: ["Cost of production", "Liquidity", "Capital Expenditure", "All of the above"], c: "All of the above" },
-            { q: "152. Plant utilization budget and Manufacturing overhead budgets are types of:", o: ["Production budget", "Sales budget", "Cost budget", "None of the above"], c: "Cost budget" }, // Repeat of Q139
-            { q: "153. R&D budget and Capital expenditure budget are examples of:", o: ["Short-term budget", "Current budget", "Long-term budget", "None of the above"], c: "Long-term budget" }, // Repeat of Q140
-            { q: "154. The scare factors is also known as:", o: ["Key factor", "Abnormal factor", "Linking factor", "None of the above"], c: "Key factor" }, // Repeat of Q141
+            { q: "152. Plant utilization budget and Manufacturing overhead budgets are types of:", o: ["Production budget", "Sales budget", "Cost budget", "None of the above"], c: "Cost budget" },
+            { q: "153. R&D budget and Capital expenditure budget are examples of:", o: ["Short-term budget", "Current budget", "Long-term budget", "None of the above"], c: "Long-term budget" },
+            { q: "154. The scare factors is also known as:", o: ["Key factor", "Abnormal factor", "Linking factor", "None of the above"], c: "Key factor" },
             { q: "155. A company usually determines the appropriate degree of decentralization based on a combination of the", o: ["Managers' personal characteristics", "Nature of decisions required for organizational growth", "Types of organizational activities in which the company is engaged", "All of these"], c: "All of these" },
             { q: "156. Major disadvantages of Decentralization are", o: ["Can result in a lack of goal congruence or sub optimization by sub-unit managers", "Requires more effective communication abilities because decision making is removed from the home office", "Helps top management recognizes and develop managerial talent", "Both 1 and 2"], c: "Both 1 and 2" },
             { q: "157. Which of the following is/are not benefit/s of Decentralization ?", o: ["Greater awareness of local problems", "Allows managerial performance to be comparatively evaluated", "Creates personnel difficulties upon introduction, especially if managers are unwilling to delegate effectively", "Develops skill level of junior managers"], c: "Creates personnel difficulties upon introduction, especially if managers are unwilling to delegate effectively" },
@@ -472,23 +503,23 @@
             { q: "162. According to Du Pont Analysis a company can increase its Return on Equity if it", o: ["Generates a high Net Profit Margin", "Effectively uses its assets so as to generate more sales.", "Has a high Financial Leverage", "All of these"], c: "All of these" },
             { q: "163. Du Pont ROE =", o: ["Margin on Sales x Asset Turnover x Equity Multiplier", "Margin of Safety Asset Turnover x Equity Multiplier", "Margin on Sales x Inventory Turnover Equity Multiplier", "Margin on Sales x Asset Turnover x Debt Multiplier"], c: "Margin on Sales x Asset Turnover x Equity Multiplier" },
             { q: "164. ____ expresses divisional profit as a percentage of the assets employed in the division.", o: ["ROI", "EPS", "ROCE", "EBITDA"], c: "ROI" },
-            { q: "165. Return on investment (ROI) is", o: ["(Profit before tax Operations management capital employed) x 100", "(Profit before interest and tax + Total capital employed) x 100", "(ROE Operations management capital employed) x 100", "(Profit before interest and tax + Operations management capital employed) x 100"], c: "(Profit before interest and tax + Operations management capital employed) x 100" }, // Denominator should be Capital Employed. PDF key 4.
-            { q: "166. RI (Residual Income) =", o: ["Divisional profit - (Percentage of change in Sales Divisional investment)", "Divisional profit (Percent capital charge Total investment)", "Divisional profit (Percent capital charge Divisional investment)", "Total profit (Percent capital charge Divisional investment)"], c: "Divisional profit (Percent capital charge Divisional investment)" },
+            { q: "165. Return on investment (ROI) is", o: ["(Profit before tax Operations management capital employed) x 100", "(Profit before interest and tax / Total capital employed) x 100", "(ROE Operations management capital employed) x 100", "(Profit before interest and tax + Operations management capital employed) x 100"], c: "(Profit before interest and tax / Total capital employed) x 100" },
+            { q: "166. RI (Residual Income) =", o: ["Divisional profit - (Percentage of change in Sales Divisional investment)", "Divisional profit (Percent capital charge Total investment)", "Divisional profit - (Percent capital charge * Divisional investment)", "Total profit (Percent capital charge Divisional investment)"], c: "Divisional profit - (Percent capital charge * Divisional investment)" },
             { q: "167. The main advantages of RI is/are", o: ["It avoids suboptimal decisions as investments are not rejected merely because they lower the divisional manger's ROI.", "It maximizes growth of the company and increases shareholders' wealth by accepting opportunities which earn a rate of return in excess of the cost of capital.", "The cost of capital charge on divisional investments ensures that divisional managers are aware of the opportunity cost of funds.", "All of these"], c: "All of these" },
             { q: "168. Acme, a division of Ace Manufacturing, has assets of ₹2,25,000 and an operating income of ₹55,000. What is the division's ROI?", o: ["24.44%", "23%", "25%", "50%"], c: "24.44%" },
-            { q: "169. An investment centre has net assets of 28,00,000, and made profits before interest and tax of ₹1,60,000. The notional cost of capital is 12%.Calculate and comment on the RI (Residual Income) for the period.", o: ["₹1,60,000", "₹96.000", "₹ 64,000", "₹2.56.000"], c: "₹ 64,000" },
+            { q: "169. An investment centre has net assets of 28,00,000, and made profits before interest and tax of ₹1,60,000. The notional cost of capital is 12%.Calculate and comment on the RI (Residual Income) for the period.", o: ["-₹1,76,000", "₹96.000", "₹ 64,000", "₹2.56.000"], c: "-₹1,76,000" },
             { q: "170. A person made a Capital Investment of ₹2,00,000 in a company. Operating profit, after taxes, is 28,000. The opportunity cost of that investment is 10%. Calculate EVA.", o: ["₹20,000", "₹2,800", "₹8.000", "₹17.200"], c: "₹8.000" },
             { q: "171. For EVA there 3 responsibility centres, which are", o: ["Cost centre", "Profit centre", "Investment centre", "All of these"], c: "All of these" },
             { q: "172. The theory of learning curves will only hold if which of the following conditions apply?", o: ["The task must be repetitive", "Production must be at an early stage so that there is room. for improvement", "There is inconsistency in the workforce", "Both 1 and 2"], c: "Both 1 and 2" },
             { q: "173. ____ can be used: a. To calculate the incremental cost of making extra units of a particular products, b. To set standards for labour, c. To prepare realistic production budgets and to report labour cost variances, and d. To quote contact price.", o: ["Learning curve theory", "Return on investment", "Du Pont ROE", "Economic Value Added"], c: "Learning curve theory" },
             { q: "174. The four Perspectives of the Balanced Scorecard are", o: ["1. Operational Perspective.2. Customers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives.", "1. Financial Perspective, 2. Sellers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives.", "1. Financial Perspective, 2. Customers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives.", "1. Financial Perspective, 2. Customers Perspective, 3. External process Perspective and 4. Learning & Growth Perspectives."], c: "1. Financial Perspective, 2. Customers Perspective, 3. Internal business process Perspective and 4. Learning & Growth Perspectives." },
-            { q: "175. MI Ltd. has earned a net profit of ₹ 15 lakhs after Tax at 30%. Interest cost charged by the financial institutions was 10 Lakhs. The Invested capital is 95 Lakhs of which 55% is debt. The company maintains a weighted average cost of capital of 13%. Compute the Operating Income.", o: ["₹15 lakhs", "₹21.43 lakhs", "₹10 lakhs", "₹31.43 lakhs"], c: "₹31.43 lakhs" },
+            { q: "175. MI Ltd. has earned a net profit of ₹ 15 lakhs after Tax at 30%. Interest cost charged by the financial institutions was 10 Lakhs. The Invested capital is 95 Lakhs of which 55% is debt. The company maintains a weighted average cost of capital of 13%. Compute the Operating Income.", o: ["₹21.43 lakhs", "₹15 lakhs", "₹10 lakhs", "₹31.43 lakhs"], c: "₹21.43 lakhs" },
             { q: "176. According to Kaplan & Norton, which of the balanced scorecard perspectives serves as the focus of the other perspectives?", o: ["Financial.", "Customer.", "Internal business processes.", "Learning & growth."], c: "Financial." },
             { q: "177. Which of the following would be considered an operating asset in return on investment computations?", o: ["Land being held for plant expansion.", "Treasury stock.", "Accounts receivable.", "Common stock."], c: "Accounts receivable." },
             { q: "178. A company that is seeking to increase ROI should attempt to decrease:", o: ["Sales.", "Turnover.", "Margin.", "Average operating assets."], c: "Average operating assets." },
             { q: "179. The performance of investment centre is based on", o: ["Cost of the centre", "Profit of the centre", "Profit and investment of the centre", "Revenue of the centre"], c: "Profit and investment of the centre" },
             { q: "180. Both costs and revenues are measured in ____ centers", o: ["Cost", "Profit", "Revenue", "All of these"], c: "Profit" },
-            { q: "181. A cost centre is a segment of the organization where the manager is responsible for", o: ["Costs", "Inputs", "A or B", "None of these"], c: "A or B" },
+            { q: "181. A cost centre is a segment of the organization where the manager is responsible for", o: ["Costs", "Inputs", "Costs or Inputs", "None of these"], c: "Costs or Inputs" },
             { q: "182. The performance of investment centre is based on", o: ["Cost of the centre", "Profit of the centre", "Profit and investment of the centre", "Revenue of the centre"], c: "Profit and investment of the centre" },
             { q: "183. Responsibility accounting is used for", o: ["cost control", "planning", "decision making", "pricing"], c: "cost control" },
             { q: "184. Responsibility Accounting is also known as", o: ["Profitability accounting", "Activity accounting", "Both A and B", "None of the above"], c: "Both A and B" },
@@ -496,7 +527,7 @@
             { q: "186. In responsibility accounting, responsibilities of various groups or individuals are identified in terms of", o: ["Work", "Revenue", "Cost", "All of the above"], c: "All of the above" },
             { q: "187. The area of focus on responsibility center 18", o: ["Quantum of sales", "Quantum of production", "Optimum utilization of resources", "All of the above"], c: "Optimum utilization of resources" },
             { q: "188. In profit center revenue represents a monetary measure of output emanating from a profit center in a given period irrespective whether", o: ["The revenue is realized or not", "The output is sold or not", "Both A and B", "None of the above"], c: "Both A and B" },
-            { q: "189. In a control report of Department X, it is mentioned as indirect materials are ₹1,000, indirect labour 2900, Overtime Charges ₹100, Depreciation on equipment ₹500, Allocated factory overhead (38% of factory space) ₹4,300, Allocated overhead of repair shop is 1,200. Determine total costs ☑ treating department as a responsibility center.", o: ["₹3,200", "₹ 2,200", "₹1,200", "None of the above"], c: "₹3,200" }, // PDF answer is 1 (3200). Controllable costs for Dept X: Ind Mat 1000 + Ind Lab 900 + OT 100 + Dep on own equip 500 = 2500. If question meant total costs *of* the department including allocations, then 1000+900+100+500+4300+1200 = 8000. If it means controllable costs, then 2500. The options are confusing.
+            { q: "189. In a control report of Department X, it is mentioned as indirect materials are ₹1,000, indirect labour 2900, Overtime Charges ₹100, Depreciation on equipment ₹500, Allocated factory overhead (38% of factory space) ₹4,300, Allocated overhead of repair shop is 1,200. Determine total costs ☑ treating department as a responsibility center.", o: ["₹2,500", "₹ 2,200", "₹1,200", "None of the above"], c: "₹2,500" },
             { q: "190. Which of the following criterion is not used for decision-making under uncertainty?", o: ["Maximin", "Maximax", "Minimax", "Minimize expected loss"], c: "Minimize expected loss" },
             { q: "191. Decision theory is concerned with", o: ["Methods of arriving at an optimal decision", "Selecting optimal decision in a sequential manner", "Analysis of information that is available", "All of these"], c: "All of these" },
             { q: "192. Which of the following criterion is not applicable to decision- making under risk?", o: ["Maximize expected return", "Maximize return", "Minimize expect regret", "Knowledge of likelihood occurrence of each state of nature"], c: "Maximize return" },
@@ -507,7 +538,7 @@
             { q: "197. The difference between the expected profit under conditions of risk and the expected profit with perfect information is called", o: ["The expected value of perfect information", "Expected marginal loss", "None of the above", "Any one of the above"], c: "The expected value of perfect information" },
             { q: "198. A situation in which a decision maker knows all of the possible outcomes of a decision and also knows the probability associated with each outcome is referred to as", o: ["Certainty.", "Risk.", "Uncertainty.", "Strategy."], c: "Risk." },
             { q: "199. Which of the following methods of selecting a strategy is consistent with risk averting behaviour?", o: ["If two strategies have the same expected profit, select the one with the smaller standard deviation.", "If two strategies have the same standard deviation, select the one with the smaller expected profit.", "Select the strategy with the larger coefficient of variation.", "All of the above are correct"], c: "If two strategies have the same expected profit, select the one with the smaller standard deviation." },
-            { q: "200. Which one of the following does not measure risk?", o: ["Coefficient of variation", "Standard deviation", "LPP", "All of the above are measures of risk."], c: "LPP" }, // PDF answer key is 2 (Standard Deviation). SD *does* measure risk. LPP is Linear Programming Problem.
+            { q: "200. Which one of the following does not measure risk?", o: ["Coefficient of variation", "Standard deviation", "LPP", "All of the above are measures of risk."], c: "LPP" },
             { q: "201. The sequence of possible managerial decisions and their expected outcome under each set of circumstances can be represented and analysed by using", o: ["The minimax regret criterion.", "A decision tree.", "A payoff matrix.", "Simulation."], c: "A decision tree." },
             { q: "202. We are comparing two investment projects. Both have expected returns of 20%, but the standard deviation of Project A's returns is 15%, while the standard deviation of Project B's returns is 9%. Which one is relatively riskier?", o: ["A", "B", "Both A and B", "Bnone of these"], c: "A" },
             { q: "203. Two investments have different expected returns. Project A's expected return is 20% and the standard deviation of its returns is 15%. Project B's expected return is only 10%, while the standard deviation of its returns remains at 9%. Compute Coefficient of Varience of Project A.", o: ["0.20", "0.75", "0.90", "0.10"], c: "0.75" }
@@ -643,7 +674,14 @@
             });
 
             nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
-            nextButton.disabled = !questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length;
+            
+            // Allow skipping questions by always enabling the next button if not on the last question
+            nextButton.disabled = false;
+            if (currentQuestionIndex === questionsData.length - 1) {
+                // Only disable finish button if last question is unanswered
+                nextButton.disabled = !questionsAttemptedState[currentQuestionIndex];
+            }
+
             prevButton.disabled = (currentQuestionIndex === 0);
 
             questionHeaderElement.style.display = 'block';
@@ -699,19 +737,11 @@
         }
 
         function nextQuestionHandler() {
-            if (!questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length) {
-                return; 
-            }
-            if (currentQuestionIndex === questionsData.length - 1 && questionsAttemptedState[currentQuestionIndex]) {
-                currentQuestionIndex++; 
-                showCompletionMessage();
-            } 
-            else if (currentQuestionIndex < questionsData.length - 1) {
+            if (currentQuestionIndex < questionsData.length - 1) {
                 currentQuestionIndex++;
                 loadQuestion();
-            }
-             else if (currentQuestionIndex >= questionsData.length) { 
-                 showCompletionMessage(); 
+            } else {
+                showCompletionMessage();
             }
         }
 
@@ -738,11 +768,13 @@
         prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
+            // Prevent interference with the dropdown
             if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
                 return;
             }
-            if (event.key.toLowerCase() === 'escape') return; 
+            if (event.key.toLowerCase() === 'escape') return;
 
+            // Don't do anything if the quiz is finished
             if (completionMessageElement.style.display === 'block') { 
                  event.preventDefault(); 
                  return;
