@@ -4,14 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ Quiz - Business Laws and Ethics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5; /* Light grey background */
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,11 +35,11 @@
         }
 
         #scoreboard-container {
-            background: #8000ff; /* Changed: Purple */
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
             color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +47,74 @@
         }
         
         #set-navigation-container {
-            background: #0051ff; /* Changed: Blue */
-            color: #ffffff;
+            background: linear-gradient(135deg, #04bf26, #ADFF2F);
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFC300; /* Changed: Yellow */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #555; 
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #dba700; /* Darker yellow for border */
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; 
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,65 +125,70 @@
         .option {
             display: flex;
             align-items: center;
-            background: #fffde7; /* Lighter Yellow/Beige */
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #fff9c4; 
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #fff59d; /* Darker Lighter Yellow on hover */
-            border-color: #fff176;
+            background: #fff59d;
+            border-color: #f2e70c;
         }
 
         .option.selected { 
-            font-weight: 500; 
-            border-color: #0051ff; /* Blue border for selected */
-            background-color: #e0efff; 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important; 
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important; 
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057; 
-            background-color: #d1e7dd; 
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
         .option.selected .option-letter {
-            background-color: #0051ff; 
+            background-color: var(--primary-blue); 
             color: white;
+            transform: scale(1.1);
         }
 
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important; 
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important; 
+            background-color: #ef4444 !important; 
             color: white !important;
         }
 
@@ -177,7 +201,7 @@
         }
 
         button {
-            background-color: #007bff; 
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -185,38 +209,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
+        }
+        
+        #prev-btn {
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3; 
+            background-color: #0637c9;
+            transform: translateY(-2px);
+        }
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
         button:disabled {
-            background-color: #cccccc; 
+            background-color: #4b5563; 
             cursor: not-allowed;
             box-shadow: none;
+            opacity: 0.6;
         }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745; 
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -302,16 +337,12 @@
     </div>
 
     <script>
-        // questionsData array:
-        // q: Question text
-        // o: Array of options
-        // c: Correct answer text
-        // All 300 questions from MCQBank_Paper5.pdf (Business Laws and Ethics)
+        // --- START OF QUESTION DATA ---
         const questionsData = [
             { q: "1. Right to Property is a:", o: ["Fundamental Right", "Fundamental Duty", "Constitutional Right", "None of the above"], c: "Constitutional Right" },
             { q: "2. The Constitution of India describes India as:", o: ["A federation", "Quasi-federal", "A Union of states", "None of the above"], c: "A Union of states" },
             { q: "3. Constitution is the:", o: ["Law of the land", "Administrative Law of the land", "Constitutional Law of the land", "None of the above"], c: "Law of the land" },
-            { q: "4. What is the chief source of legal authority in India?", o: ["People", "Constitution of India", "Parliament", "President of India"], c: "President of India" }, // Note: This answer is often debated; Constitution is generally considered the supreme source.
+            { q: "4. What is the chief source of legal authority in India?", o: ["People", "Constitution of India", "Parliament", "President of India"], c: "President of India" },
             { q: "5. Which of the following is described as the 'Soul of the Constitution ?", o: ["Fundamental Rights", "Fundamental Duties", "Directive Principles of State Policy", "Preamble"], c: "Preamble" },
             { q: "6. The Preamble to the Indian Constitution is based on", o: ["Philosophy of India", "Objectives Resolution drafted & moved by Pandit Nehru", "Indian Culture", "Religious Concept"], c: "Objectives Resolution drafted & moved by Pandit Nehru" },
             { q: "7. The term 'We' in Preamble means", o: ["Indian Government", "Supreme Courts", "Indian Parliament", "The People of India"], c: "The People of India" },
@@ -354,7 +385,7 @@
             { q: "44. An advertisement to sell a thing by auction is:", o: ["an offer", "An invitation to offer", "no offer at all", "a contract"], c: "An invitation to offer" },
             { q: "45. A makes an offer to B on 10th by a letter which reaches B on 12th. B posts letter of acceptance on 14th which reaches A on 16th. The communication of accetance is complete as against A on:", o: ["12th", "14th", "16th", "17th"], c: "14th" },
             { q: "46. An agreement made without consideration is:", o: ["Valid", "illegal", "voidable", "void"], c: "void" },
-            { q: "47. A promises to subscribe to a charity. The promise is a:", o: ["valid contract", "voidable contract", "void contract", "void agreement"], c: "void contract" }, // Note: Can be enforceable in some cases due to promissory estoppel, but generally void.
+            { q: "47. A promises to subscribe to a charity. The promise is a:", o: ["valid contract", "voidable contract", "void contract", "void agreement"], c: "void contract" },
             { q: "48. consideration in a contract:", o: ["may be past, present or future", "may be present or future only", "must be present only", "must be future only"], c: "may be past, present or future" },
             { q: "49. A promise to compensate, wholly or in part a person who has already voluntary done something for he promisor is", o: ["enforeceable", "not enforceable because it is without consideration", "void", "voidable"], c: "enforeceable" },
             { q: "50. Where consent is caused by fraud or misrepresentation the contract is", o: ["voidable at the option of the aggrieved party", "void", "enforeceable", "not affeted in any manner"], c: "voidable at the option of the aggrieved party" },
@@ -363,8 +394,8 @@
             { q: "53. A valuable consideration in the eyes of law may consist of:", o: ["Right, Interest, Profit or Benefit to one party", "Forbearance detriment, loss or responsibility by other person", "Either of (a) or (b)", "Both (a) or (b)"], c: "Both (a) or (b)" }, 
             { q: "54. An agreement with or by a minor is -", o: ["void", "voidable at the option of the minor", "Voidable at the option of the other party", "valid"], c: "void" },
             { q: "55. On attainning the age maturity a minor's agreement", o: ["can be ratified by him", "cannot be ratified by him", "becomes void", "becomes valid"], c: "cannot be ratified by him" },
-            { q: "56. A minor enters into a contract for the purchase of certain necessaries In such a case -", o: ["He can be sued for fraud", "He cannot be sued for fraud", "He is liable to return the money", "None of the above"], c: "He is liable to return the money" }, // More accurately, his estate is liable for necessaries.
-            { q: "57. contracts made before war with an alien enemy which are against public policy are", o: ["suspended and are revived after the war is over", "dissolved", "no affected at all", "void ab initio"], c: "suspended and are revived after the war is over" }, // Corrected: Was "dissolved"
+            { q: "56. A minor enters into a contract for the purchase of certain necessaries In such a case -", o: ["He can be sued for fraud", "He cannot be sued for fraud", "He is liable to return the money", "None of the above"], c: "He is liable to return the money" },
+            { q: "57. contracts made before war with an alien enemy which are against public policy are", o: ["suspended and are revived after the war is over", "dissolved", "no affected at all", "void ab initio"], c: "suspended and are revived after the war is over" },
             { q: "58. When a person positively asserts that a fact is true when his information does not warrant it to be so, thoughhe believes it to be true, there is", o: ["misrepresentation", "fraud", "undue influence", "coercion"], c: "misrepresentation" },
             { q: "59. A promise made without the intention of performing it amounts to", o: ["innocent misrepresentation", "fraud", "negligent misrepresentation", "wrongful misrepresentation"], c: "fraud" },
             { q: "60. A bailee has", o: ["a right of particular lien over the goods bailed", "a right of generation", "a right of both particulars and general lien", "no lien at all over the goods bailed"], c: "a right of particular lien over the goods bailed" },
@@ -384,20 +415,20 @@
             { q: "74. Anticipatory breach of a contract takes place", o: ["during the performance of the contract", "at the time when the performance is due", "before the performance is due", "at the time when the contract is entered into"], c: "before the performance is due" },
             { q: "75. Specific performance may be ordered by the court when", o: ["the contract is voidable", "damages are an adequate remedy", "damages are not an adequate remedy", "the contract is uncertain"], c: "damages are not an adequate remedy" },
             { q: "76. A undertakes to paint a picture of B.He dies before he paints the picture. The contract", o: ["is discharged by death", "becomes voidable at the option of B", "becomes voidable at the option of the legal representatives of A", "will have to be perforemed by the legal representatives of A"], c: "is discharged by death" },
-            { q: "77. A creditor agrees with his debtor and a third to accept that third party as his debtor", o: ["performance", "alteration", "waiver", "remission"], c: "waiver" }, // This is more accurately Novation. Waiver is usually unilateral.
-            { q: "78. A lends rs 500 to B.He later tells B that he need not repay the amount, the contract is discharged by", o: ["breach", "waiver", "novation", "performance"], c: "waiver" }, // Also known as Remission.
-            { q: "79. If a new contract is substituted in place of an existing contract, it is called", o: ["alteration", "rescission", "novation", "waiver"], c: "novation" }, // Corrected: Was "alteration"
+            { q: "77. A creditor agrees with his debtor and a third to accept that third party as his debtor", o: ["performance", "alteration", "waiver", "remission"], c: "waiver" },
+            { q: "78. A lends rs 500 to B.He later tells B that he need not repay the amount, the contract is discharged by", o: ["breach", "waiver", "novation", "performance"], c: "waiver" },
+            { q: "79. If a new contract is substituted in place of an existing contract, it is called", o: ["alteration", "rescission", "novation", "waiver"], c: "novation" },
             { q: "80. Which of the following are contingent contracts ?", o: ["contracts of insurance", "Contracts of guarantee", "wagering agreements", "(a) and (b)"], c: "(a) and (b)" },
-            { q: "81. An agreement to do impossible act is", o: ["void", "voidable", "illegal", "enforceable under certain circumstances"], c: "void" }, // Corrected: Was "voidable"
-            { q: "82. A wagering agreement is", o: ["forbidden by law", "immoral", "opposed to public policy", "None of these"], c: "forbidden by law" }, // More accurately, void. Some states may forbid.
-            { q: "83. The collateral transactions to an illegal agreement are", o: ["void", "illegal", "voidable", "not affected at all"], c: "void" }, // Corrected: Was "illegal". Collateral to illegal is often void (tainted).
-            { q: "84. A person enters into an agreement whereby he is bound to do something which is against his public or professional duty. The agreement is", o: ["void on the ground of public policy", "valid", "voidable", "Illegal"], c: "void on the ground of public policy" }, // Corrected: Was "voidable"
+            { q: "81. An agreement to do impossible act is", o: ["void", "voidable", "illegal", "enforceable under certain circumstances"], c: "void" },
+            { q: "82. A wagering agreement is", o: ["forbidden by law", "immoral", "opposed to public policy", "None of these"], c: "forbidden by law" },
+            { q: "83. The collateral transactions to an illegal agreement are", o: ["void", "illegal", "voidable", "not affected at all"], c: "void" },
+            { q: "84. A person enters into an agreement whereby he is bound to do something which is against his public or professional duty. The agreement is", o: ["void on the ground of public policy", "valid", "voidable", "Illegal"], c: "void on the ground of public policy" },
             { q: "85. The Negotiable Instruments Act, 1881 is an Act to define and amend the law relating to:", o: ["cheques", "bills of exchange", "promissory notes,", "All of the above"], c: "All of the above" },
             { q: "86. \"banker\" includes:", o: ["Any person acting as an employee of any bank and any post office saving bank.", "Any person acting as a banker and any post office saving bank", "Any person acting as an agent of any bank and any post office saving bank.", "Any person acting as a Managing Director of any bank and any post office saving bank"], c: "Any person acting as a banker and any post office saving bank" },
             { q: "87. Which is NOT an example of \"Promissory Note\":", o: ["I acknowledge myself to be indebted to B in 1,000, to be paid on demand, for value received.", "Mr B, LO.U 1,000.", "I promise to pay B or order 500", "None of the above"], c: "Mr B, LO.U 1,000." },
             { q: "88. In a Promissory Note, how many parties are involved:", o: ["1", "2", "3", "4"], c: "2" },
             { q: "89. Which is NOT correct about the \"Promissory Note\"", o: ["It contains a conditional undertaking.", "It contains the amount mentioned on it", "It is an instrument in writing.", "It is signed by the maker"], c: "It contains a conditional undertaking." },
-            { q: "90. The Negotiable Instruments Act, 1881 extends to:", o: ["Only to Capital cities of the States.", "The whole of India.", "The whole of India except the State of Jammu and Kashmir.", "The whole of India except the Union Territories."], c: "The whole of India." }, // As of 2019, J&K Reorganisation Act.
+            { q: "90. The Negotiable Instruments Act, 1881 extends to:", o: ["Only to Capital cities of the States.", "The whole of India.", "The whole of India except the State of Jammu and Kashmir.", "The whole of India except the Union Territories."], c: "The whole of India." },
             { q: "91. The Negotiable Instruments Act makes specific mention of three instruments namely cheque, bill of exchange and", o: ["Promissory note", "hundi", "bank draft", "customary note"], c: "Promissory note" },
             { q: "92. Which one of the following is not the characteristic of a negotiable instruments?", o: ["it must be in writing", "it must be freely transfereable", "it must be registered", "It must contain definite amount of money"], c: "it must be registered" }, 
             { q: "93. A bill of exchange is treated as dishonoured due to non-acceptance where the drawee", o: ["does not accept within 48 hours of presentment", "is incompetent to contract", "gives a conditional acceptance", "in all the above cases"], c: "in all the above cases" },
@@ -416,23 +447,23 @@
             { q: "106. After the dishonour of a negotiable instrument, the holder may get the fact of dishonour authenticated by a Notary Pblic. The 'noting may be done in case of", o: ["Promissory note", "bills of exchange", "cheque", "both (a) and (b)"], c: "both (a) and (b)" },
             { q: "107. A cheque is said to certain a special crossing when two parallel lines are drawn across the face of the cheque and writing between the lines the", o: ["name of some bank", "name of some bank and '& Co'", "a/c payee only", "in (a) and (b) cases"], c: "in (a) and (b) cases" },
             { q: "108. A Promissory Note must be", o: ["in writing", "unconditional", "signed by the maker", "all of the above"], c: "all of the above" }, 
-            { q: "109. A bill is discharged when its acceptor by negotiation back, becomes its holder", o: ["at maturity", "after maturity", "before maturity", "either (a) or (b)"], c: "before maturity" }, // Corrected: Was "either (a) or (b)"
+            { q: "109. A bill is discharged when its acceptor by negotiation back, becomes its holder", o: ["at maturity", "after maturity", "before maturity", "either (a) or (b)"], c: "before maturity" },
             { q: "110. The presentment for sight is required only in case of a promissory note. Which of the following note must be presented for sight?", o: ["a note payable at sight", "a note payable after sight", "a note payable on demand", "all of the above"], c: "a note payable after sight" },
-            { q: "111. A bill of exchange payable to bearer on demand is", o: ["valid", "voidable", "invalid", "none of these"], c: "invalid" }, // Corrected: Was "none of these". Section 13(2) Proviso of NI Act makes it void.
+            { q: "111. A bill of exchange payable to bearer on demand is", o: ["valid", "voidable", "invalid", "none of these"], c: "invalid" },
             { q: "112. The term 'customer' in relation to abanker, means a person who keeps with a banker", o: ["current account for six months", "deposit account for six months", "both accounts for six months", "either account irrespective of duration"], c: "either account irrespective of duration" },
             { q: "113. The payment of a negotiable instrument becomes due", o: ["at maturity", "before maturity", "after maturity", "on 3rd day of maturity"], c: "on 3rd day of maturity" },
             { q: "114. In case, the rate of interest is not specefied in the instrument, the interest payable is calculated at per annum rate of", o: ["six percent", "nine percent", "twelve percent", "eighteen percent"], c: "eighteen percent" },
-            { q: "115. An act of a firm means:", o: ["Any partner or agent of the firm which gives rise to a right enforceable by or against the firm", "Any act by all the partners", "Any omission by all the partners", "All of the above"], c: "Any act by all the partners" },// Corrected: Was "All of the above". Sec 2(a) defines it as "any act or omission by all the partners, or by any partner or agent of the firm which gives rise to a right enforceable by or against the firm." Option B is a subset. Option A is the most accurate definition. Let's stick to the user's correction for now.
+            { q: "115. An act of a firm means:", o: ["Any partner or agent of the firm which gives rise to a right enforceable by or against the firm", "Any act by all the partners", "Any omission by all the partners", "All of the above"], c: "Any act by all the partners" },
             { q: "116. Partnership is the relation between persons who have agreed to share the profits of a business carried on by all or any of them acting for all. Does it mean that losses are not shared?", o: ["A minor may be admitted in partnership, only for the profits, but he cannot share in losses.", "It also depends on the partnership agreement. A person may share the profits but may not share in losses.", "Sharing of profits also include losses (negative profits)", "All of the above."], c: "All of the above." },
             { q: "117. Where no provision is made by contract between the partners for the duration of their partnership, or for the determination of their partnership, the partnership is called as:", o: ["Particular partnership", "Partnership for a fixed term", "partnership at will", "None of the above"], c: "partnership at will" },
             { q: "118. What information shall be given to the Registrar of Firms by a registered partnership firm:", o: ["New opening/closing of the existing branch, if any.", "Change in the name of and address of the partner (s)/change in the constitution of the firm", "What there is change in the name of the firm or in location of the principal place of business", "All of the above."], c: "All of the above." },
             { q: "119. Who can inspect the Register and filed documents at the office of the Registrar:", o: ["Any Government servant", "The Partners of the firm", "The partners of the other firms", "Any person"], c: "Any person" },
             { q: "120. What are the right of partners after dissolution:", o: ["To have the surplus distributed among the partners or their representatives according to their rights", "To have business wound up after dissolution", "To have the property of the firm applied in payment of the debts and liabilities of the firm", "All of the above"], c: "All of the above" },
             { q: "121. Where any member of a firm has died or otherwise ceased to be a partner, and the surviving or continuing partners carry on the business of the firm with the property of the firm without any final settlement of accounts as between them and the outgoing partner or his estate is entitled at the option of himself or his representatives to such share of the profits made since he ceased to be a partner as may be attributable to the use of his share of the property of the firm or to interest at the rate of on the amount of his share in the property of the firm:", o: ["9% p.a.", "18% p.a", "6% p.a.", "12% p.a."], c: "6% p.a." },
-            { q: "122. The dissolution of partnership means:", o: ["It means the dissolution of partnership between all the partners of a firm", "It means the change in the relations of the partners", "It means the reconstitution of the firm.", "None of the above."], c: "It means the dissolution of partnership between all the partners of a firm" }, // Corrected: Was "It means the change in the relations of the partners". Dissolution of partnership between all partners is dissolution of firm.
+            { q: "122. The dissolution of partnership means:", o: ["It means the dissolution of partnership between all the partners of a firm", "It means the change in the relations of the partners", "It means the reconstitution of the firm.", "None of the above."], c: "It means the dissolution of partnership between all the partners of a firm" },
             { q: "123. In what circumstances a partner may retire:", o: ["In accordance with an express agreement by the partners", "Where the partnership is at will, by giving notice in writing to all the other partners of his intention to retire.", "With the consent of all the other partners", "All of the above."], c: "All of the above." },
             { q: "124. What would be the position, where a minor elect not to become a partner:", o: ["He shall be entitled to sue the partners for his share of the property and profits", "His rights and liabilities shall continue to be those of a minor under this section up to the date on which he gives public notice.", "His share shall not be liable for any acts of the firm done after the date of the notice.", "All of the above"], c: "All of the above" },
-            { q: "125. The maximum number of partners in a firm carrying on banking business cannot exeeds", o: ["5", "10", "15", "20"], c: "10" }, // Note: This is as per Companies Act, 2013, Rule 10 of Companies (Miscellaneous) Rules, 2014. Partnership Act itself does not specify max number.
+            { q: "125. The maximum number of partners in a firm carrying on banking business cannot exeeds", o: ["5", "10", "15", "20"], c: "10" },
             { q: "126. There is no provision in the partnership deed regarding the duration of pasrtnership This is", o: ["partnership at will", "partnership for an indefinite period", "patnership by ostoppel", "partnership not recognised by lwa"], c: "partnership at will" },
             { q: "127. registration of a firmunder the parnership act, 1932", o: ["compulsory", "not optional", "not necessary", "inevitable"], c: "not necessary" },
             { q: "128. A nominal partner is", o: ["liable for the debts of the firm", "not liable for the debts of the firm", "liable for a nominal sum", "one whose liability is primary"], c: "liable for the debts of the firm" },
@@ -442,12 +473,12 @@
             { q: "132. Where a partner is entitled to interest on capital subscribed by him such interest will be payable", o: ["only out of profit", "only out of capital", "out of profits or out of capital", "None of these"], c: "only out of profit" }, 
             { q: "133. A change in the nature of the busines of a can be made if", o: ["the majority of the partners agree", "the senior partners agree", "all the partners agree", "the working partners agree"], c: "all the partners agree" },
             { q: "134. in the absence of any agreement, interest on advances by a partner is", o: ["allowed at 15%", "allowed at 6%", "allowed at market rate of interest", "not allowed at all"], c: "allowed at 6%" },
-            { q: "135. An act of a firm means:", o: ["Any partner or agent of the firm which gives rise to a right enforceable by or against the firm", "Any act by all the partners", "Any omission by all the partners", "All of the above"], c: "Any act by all the partners" }, // Corrected: Was "All of the above". Same as Q115.
+            { q: "135. An act of a firm means:", o: ["Any partner or agent of the firm which gives rise to a right enforceable by or against the firm", "Any act by all the partners", "Any omission by all the partners", "All of the above"], c: "Any act by all the partners" },
             { q: "136. Partnership is the relation between persons who have agreed to share the profits of a business carried on by all or any of them acting for all. Does it mean that losses are not shared:", o: ["A minor may be admitted in partnership, only for the profits, but he cannot share in losses.", "It also depends on the partnership agreement. A person may share the profits but may not share in losses.", "Sharing of profits also include losses (negative profits)", "All of the above."], c: "All of the above." },
             { q: "137. Who can inspect the Register and filed documents at the office of the Registrar:", o: ["Any Government servant", "The Partners of the firm", "The partners of the other firms", "Any person"], c: "Any person" },
             { q: "138. What are the right of partners after dissolution:", o: ["To have the surplus distributed among the partners or their representatives according to their rights.", "To have business wound up after dissolution", "To have the property of the firm applied in payment of the debts and liabilities of the firm.", "All of the above"], c: "All of the above" },
             { q: "139. Where any member of a firm has died or otherwise ceased to be a partner, and the surviving or continuing partners carry on the business of the firm with the property of the firm without any final settlement of accounts as between them and the outgoing partner or his estate is entitled at the option of himself or his representatives to such share of the profits made since he ceased to be a partner as may be attributable to the use of his share of the property of the firm or to interest at the rate of on the amount of his share in the property of the firm:", o: ["nine per cent, per annum", "eighteen per cent, per annum", "six per cent per annurn", "twelve per cent, per annum"], c: "six per cent per annurn" },
-            { q: "140. The dissolution of partnership means:", o: ["It means the dissolution of partnership between all the partners of a firm", "It means the change in the relations of the partners", "It means the reconstitution of the firm.", "None of the above."], c: "It means the dissolution of partnership between all the partners of a firm" }, // Corrected: Was "It means the change in the relations of the partners". Same as Q122.
+            { q: "140. The dissolution of partnership means:", o: ["It means the dissolution of partnership between all the partners of a firm", "It means the change in the relations of the partners", "It means the reconstitution of the firm.", "None of the above."], c: "It means the dissolution of partnership between all the partners of a firm" },
             { q: "141. In what circumstances a partner may retire:", o: ["In accordance with an express agreement by the partners", "Where the partnership is at will, by giving notice in writing to all the other partners of his intention to retire.", "With the consent of all the other partners", "All of the above."], c: "All of the above." },
             { q: "142. What would be the position, where a minor elects not to become a partner:", o: ["He shall be entitled to sue the partners for his share of the property and profits.", "His rights and liabilities shall continue to be those of a minor under this section up to the date on which he gives public notice,", "His share shall not be liable for any acts of the firm done after the date of the notice.", "All of the above"], c: "All of the above" },
             { q: "143. After a partner's death the business is continued in the old firm name. Whether the legal heirs of the deceased partner are liable for any acts of the firm:", o: ["The continued use of the name or of the deceased partner's name as a part thereof shall not of itself make his legal representative or his estate liable for any act of the firm done after his death.", "If the estate of the deceased person's property is insufficient to make good, the personal assets of the legal heirs will be liable for any of the acts done by the firm.", "The estate of the deceased person is liable for any of the act done by the firm.", "The legal heirs of the deceased partners shall be liable for any of the act done by the firm after the demise of the partner"], c: "The continued use of the name or of the deceased partner's name as a part thereof shall not of itself make his legal representative or his estate liable for any act of the firm done after his death." },
@@ -457,7 +488,7 @@
             { q: "147. Where a partner has paid a premium on entering into partnership of a fixed term, and the firm is dissolved before the expiration of that term otherwise than by the death of a partner, whether any repayment of the premium is permissible:", o: ["He will not be entitled for repayment of the premium if the dissolution is mainly due to his own misconduct", "He will not be entitled for repayment of the premium if the dissolution is in pursuance of an agreement containing no provision for the return of the premium or any part of it", "He shall be entitled to repayment of the premium or of such part thereof as may be reasonable, regard being had to the terms upon which he became a partner and to the length of time during which he wasa partner", "All of the above"], c: "All of the above" },
             { q: "148. Whether a partner after dissolution of the partnership firm, carry on the business in the erstwhile business name of the firm", o: ["He can use the business name of the dissolved firm name, if he has brought the goodwill of the firm.", "He can't use the business name of the dissolved firm.", "He can use the business name of the dissolved firm, provided there was a contract between the partners of the dissolved firm", "Both the points mentioned at A and Care correct"], c: "Both the points mentioned at A and Care correct" },
             { q: "149. The State Government may appoint Registrars of Firms for the purposes of this Act, every Registrar shall be deemed", o: ["To be a Central Government Servant.", "To be a public servant within the meaning of section 21 of the Indian Penal Code", "To be State Government Servant", "To be a private servant"], c: "To be a public servant within the meaning of section 21 of the Indian Penal Code" },
-            { q: "150. Non-registration of a firm will not affect:", o: ["The right of the partner to sue for the dissolution of the firm, or for the accounts of the dissolved firm, or for share of the property of the dissolved firm.", "The right to any suit or claim of set-off not exceeding Rs. 100 in value", "The right of a firm or partners of a firm having no place of business in India.", "both (a) or (b)"], c: "both (a) or (b)" }, // Corrected: Was "The right to any suit or claim of set-off not exceeding Rs. 100 in value"
+            { q: "150. Non-registration of a firm will not affect:", o: ["The right of the partner to sue for the dissolution of the firm, or for the accounts of the dissolved firm, or for share of the property of the dissolved firm.", "The right to any suit or claim of set-off not exceeding Rs. 100 in value", "The right of a firm or partners of a firm having no place of business in India.", "both (a) or (b)"], c: "both (a) or (b)" },
             { q: "151. How a firm may be dissolved", o: ["A firm may be dissolved by the Court order.", "A firm may be dissolved by the certain contingencies", "A firm may be dissolved in accordance with a contract between the partners", "All of the above"], c: "All of the above" },
             { q: "152. Where a partner has become of unsound mind the court may dissolved", o: ["on the petition of any partner", "not dissolve the firm", "order the other partners to continue", "none of these"], c: "on the petition of any partner" },
             { q: "153. If the assets of a firm are insufficient to discharge to debts and liabilities of the firm, the partners shall bear the deficiency", o: ["in the profit-sharing ratio", "in the capital ratio", "equally", "as determined by the court"], c: "in the profit-sharing ratio" },
@@ -471,68 +502,68 @@
             { q: "161. How many designated partners are required in LLP:", o: ["At least two designated partners", "Seven designated partners", "Two designated partners", "At least seven designated partners"], c: "At least two designated partners" },
             { q: "162. The LLP shall file the Statement of Account and Solvency in the prescribed form. Which is this Form:", o: ["Form 8", "Form 7", "Form 6", "Form 5"], c: "Form 8" },
             { q: "163. Who is the authority to grant compounding of offence under the LLP Act:", o: ["The Registrar of Firms", "The Central Government", "The Registrar", "The Registrar of Co-operatives"], c: "The Central Government" },
-            { q: "164. What is the time limit within which LLP shall file Annual Return with the Registrar:", o: ["Within 30 days of closure of its financial year.", "Within 45 days of closure of its financial year.", "Within 60 days of closure of its financial year.", "Within 15 days of closure of its financial year."], c: "Within 60 days of closure of its financial year." }, // Corrected: Was "Within 30 days of closure of its financial year."
+            { q: "164. What is the time limit within which LLP shall file Annual Return with the Registrar:", o: ["Within 30 days of closure of its financial year.", "Within 45 days of closure of its financial year.", "Within 60 days of closure of its financial year.", "Within 15 days of closure of its financial year."], c: "Within 60 days of closure of its financial year." },
             { q: "165. Which of the following is true about a Limited Liability Partnership?", o: ["A Limited Liability Partnership is not a distinct entity from its partners", "A Limited Liability Partnership is a legal entity separate from its partners", "A Limited Liability Partnership is a body corporate", "Both b and c are correct"], c: "Both b and c are correct" },
             { q: "166. Which of the following is true about the number of designated partners required in a Limited Liability Partnership?", o: ["A Limited Liability Partnership can have at least two designated partners", "A Limited Liability Partnership can have at least three designated partners", "A Limited Liability Partnership can have at least seven designated partners", "A Limited Liability Partnership can have at least four designated partners"], c: "A Limited Liability Partnership can have at least two designated partners" }, 
             { q: "167. Every Limited Liability Partnership must maintain its books of accounts diligently. Those books of accounts should maintain", o: ["Particulars of the receipts and expenditures at the Limited Liability Partnership with the details of those transactions", "An inventory of the cost of goods purchased, work in progress, inventories, finished goods as well as the cost of goods sold", "A complete record of the assets and liabilities of the Limited Liability Partnership", "All of the above"], c: "All of the above" },
-            { q: "168. As per Sale of Goods Act, this is not included:", o: ["A Limited Liability Partnership should maintain its accounts at the branch office", "A Limited Liability Partnership should maintain its accounts at the corporate office", "A Limited Liability Partnership should maintain its accounts at the head office", "A Limited Liability Partnership should maintain its accounts at the registered office"], c: "A Limited Liability Partnership should maintain its accounts at the registered office" }, // Corrected: Was "A Limited Liability Partnership should maintain its accounts at the corporate office". The question seems to be about LLP Act, not Sale of Goods Act, and asks where accounts should be maintained. Registered office is the correct place.
-            { q: "169. As per Sale of Goods Act, this is not included:", o: ["A Limited Liability Partnership should maintain its books of accounts on the accrual basis", "A Limited Liability Partnership should maintain its books of accounts on the cash basis", "A Limited Liability Partnership should maintain its books of accounts based on the double-entry system of accounting", "All of the above"], c: "All of the above" }, // This question is also likely about LLP Act requirements for accounting.
+            { q: "168. As per Sale of Goods Act, this is not included:", o: ["A Limited Liability Partnership should maintain its accounts at the branch office", "A Limited Liability Partnership should maintain its accounts at the corporate office", "A Limited Liability Partnership should maintain its accounts at the head office", "A Limited Liability Partnership should maintain its accounts at the registered office"], c: "A Limited Liability Partnership should maintain its accounts at the registered office" },
+            { q: "169. As per Sale of Goods Act, this is not included:", o: ["A Limited Liability Partnership should maintain its books of accounts on the accrual basis", "A Limited Liability Partnership should maintain its books of accounts on the cash basis", "A Limited Liability Partnership should maintain its books of accounts based on the double-entry system of accounting", "All of the above"], c: "All of the above" },
             { q: "170. LLP shall file its Annual Return in which form:", o: ["Form 12", "Form 11", "Form 10", "Form 9"], c: "Form 11" },
             { q: "171. The audit of accounts of every LLP is not compulsory if its:", o: ["Turnover does not exceed in any financial year, Rs 40 lakh or whose contribution does not exceed Rs 25 lakh", "Turnover does not exceed, in any financial year, Rs 30 lakh, or whose contribution does not exceed Rs 25 lakh", "Turnover does not exceed, in any financial year, Rs 20 lakh, or whose contribution does not exceed Rs 25 lakh", "Turnover does not exceed, in any financial year, Rs 10 lakh, or whose contribution does not exceed Rs 25 lakh"], c: "Turnover does not exceed in any financial year, Rs 40 lakh or whose contribution does not exceed Rs 25 lakh" },
             { q: "172. The Limited Liability Partnership Act, 2008 came into force on", o: ["21st March 2009", "23rd March 2009", "31st March 2009", "30th March 2009"], c: "31st March 2009" },
             { q: "173. Which of the following cannot be converted into LLP?", o: ["Partnership firm", "Private company", "Listed company", "unlisted company"], c: "Listed company" },
             { q: "174. The approved name of LLP shall be valid for a period of from the date of approval:", o: ["1 Month", "2 Months", "3 months", "6 months"], c: "3 months" },
-            { q: "175. For the purpose of LLP, Resident in India means:", o: ["Person who has stayed in India for a period of not less than 182 days during the current year.", "Person who has stayed in India for a period of not less than 180 days during the immediately preceding one year.", "Person who has stayed in India for a period of not less than 181 days during the immediately preceding one year.", "Person who has stayed in India for a period of not less than 182 days during the immediately preceding one year."], c: "Person who has stayed in India for a period of not less than 182 days during the current year." }, // Corrected: Was "Person who has stayed in India for a period of not less than 182 days during the immediately preceding one year." Section 7(1) of LLP Act refers to "immediately preceding one year" for designated partner. The question is general "for the purpose of LLP". The definition in Income Tax Act is often used for residency, which is 182 days in current FY or other conditions. Given the options, "immediately preceding one year" is more specific to LLP Act for designated partners. Let's use the user's correction.
-            { q: "176. In which kind of partnership one partner has unlimited liability and other partner have limited liability?", o: ["Partnership-at-will", "Limited liability partnership", "General partnership", "Particular partnership"], c: "Limited liability partnership" }, // This is a characteristic of LLP itself, where partners have limited liability. The question might be poorly phrased or referring to older forms not common in India.
+            { q: "175. For the purpose of LLP, Resident in India means:", o: ["Person who has stayed in India for a period of not less than 182 days during the current year.", "Person who has stayed in India for a period of not less than 180 days during the immediately preceding one year.", "Person who has stayed in India for a period of not less than 181 days during the immediately preceding one year.", "Person who has stayed in India for a period of not less than 182 days during the immediately preceding one year."], c: "Person who has stayed in India for a period of not less than 182 days during the current year." },
+            { q: "176. In which kind of partnership one partner has unlimited liability and other partner have limited liability?", o: ["Partnership-at-will", "Limited liability partnership", "General partnership", "Particular partnership"], c: "Limited liability partnership" },
             { q: "177. Any change in the partners of a limited liability partnership:", o: ["May be made only with the permission of the Registrar.", "Shall not affect the existence, rights or liabilities of the limited liability partnership.", "Shall affect its existence.", "Shall affect the rights or liabilities of the limited liability partnership."], c: "Shall not affect the existence, rights or liabilities of the limited liability partnership." },
-            { q: "178. What is the filing fee for LLP in case where the contribution of LLP exceed Rs Five lakh but does not exceeds Rs Ten lakh:", o: ["Rs. 150.", "Rs. 200", "Rs.100.", "Rs. 50."], c: "Rs. 150." }, // Corrected: Was "Rs.150." (already correct, just ensuring exact match)
+            { q: "178. What is the filing fee for LLP in case where the contribution of LLP exceed Rs Five lakh but does not exceeds Rs Ten lakh:", o: ["Rs. 150.", "Rs. 200", "Rs.100.", "Rs. 50."], c: "Rs. 150." },
             { q: "179. A limited liability partnership shall, where a person becomes or ceases to be a partner and where there is any change in the name and address of the partner, file a notice with the Registrar:", o: ["Within thirty days from the date he becomes or ceases to be a partner.", "Within sixty days from the date he becomes or ceases to be a partner", "Within fifteen days from the date he becomes or ceases to be a partner.", "Within forty five days from the date he becomes or ceases to be a partner."], c: "Within thirty days from the date he becomes or ceases to be a partner." },
             { q: "180. Every limited liability partnership shall have atleast two designated partners who are individuals and at least one of them shall be:", o: ["An Indian resident", "A person of foreign national", "A resident inIndia", "A person having Indian Passport"], c: "A resident inIndia" },
             { q: "181. In terms of section 23 (2) of the LLP Act, 2008, every LLP shall file information with regard to the LLP agreement in the prescribed form, with the Registrar within thirty days of the date of information. What is the prescribed Form No.:", o: ["Form No.2", "Form No.3", "Form No. 4", "Form No. 1"], c: "Form No.3" }, 
-            { q: "182. maximum no. of persons in a LLP is", o: ["50", "100", "20", "No limit"], c: "No limit" }, // Corrected: Was "50"
+            { q: "182. maximum no. of persons in a LLP is", o: ["50", "100", "20", "No limit"], c: "No limit" },
             { q: "183. duration of LLP", o: ["is limited", "depends on the partnership agreement", "extends upto proper dissolution (perpetual succession)", "None of the above."], c: "extends upto proper dissolution (perpetual succession)" },
             { q: "184. The ____ is reponsible for doing all acts, matters and things as are required to be done by LLP as per the Act.", o: ["designated partner", "active partner", "designated director", "All the partners"], c: "designated partner" },
-            { q: "185. Which of the following enjoys separate legal entity status?", o: ["Partnership firm", "LLP", "Company", "Both b and e are correct"], c: "Both b and e are correct" }, // Assuming 'e' was a typo for 'c'.
-            { q: "186. What is the primary advantage of a limited liability partnership (LLP)?", o: ["Limited liability for all partners", "Unlimited liability for all partners", "tax advantages for partners", "Ease of formulation"], c: "Limited liability for all partners" }, // Corrected: Was "tax advantages for partners"
+            { q: "185. Which of the following enjoys separate legal entity status?", o: ["Partnership firm", "LLP", "Company", "Both b and e are correct"], c: "Both b and e are correct" },
+            { q: "186. What is the primary advantage of a limited liability partnership (LLP)?", o: ["Limited liability for all partners", "Unlimited liability for all partners", "tax advantages for partners", "Ease of formulation"], c: "Limited liability for all partners" },
             { q: "187. In an LLP, which of the following is true regarding the personal assets of partners?", o: ["Personal assets are fully protected from business liabilities", "Personal assets are liable fro business debts", "Personal assets are partially liable for business debts", "Personal assets are only liable if there is fraud"], c: "Personal assets are only liable if there is fraud" }, 
             { q: "188. Which document is required to establish an LLP", o: ["Articles of Association", "LLP Agreement", "Memorandum of Association", "Certificate of Incorporation"], c: "LLP Agreement" },
-            { q: "189. Who is responsible for the day-to-day management of an LLP", o: ["All partners equally", "The managing partner(s)", "An appointment board of directors", "A hired management team"], c: "All partners equally" }, // Or designated partners for compliance.
-            { q: "190. In an LLP, which partner is typically responsible for signing contract and legal documents on behalf of the partnership?", o: ["silent partner", "active partner", "Limited partner", "Managing partner"], c: "Managing partner" }, // More accurately, designated partners.
+            { q: "189. Who is responsible for the day-to-day management of an LLP", o: ["All partners equally", "The managing partner(s)", "An appointment board of directors", "A hired management team"], c: "All partners equally" },
+            { q: "190. In an LLP, which partner is typically responsible for signing contract and legal documents on behalf of the partnership?", o: ["silent partner", "active partner", "Limited partner", "Managing partner"], c: "Managing partner" },
             { q: "191. What type of professions are often required to form a Limited Liability Partnership (LLP) in certain jurisdictions?", o: ["Medical professionals", "Lawyers", "Chartered Accountants", "All of the above"], c: "All of the above" },
-            { q: "192. In an LLP, which partners are typically not involved in the day-to- day operations and decision making", o: ["Limited partners", "General partners", "Managing partner", "silent partners"], c: "Limited partners" }, // LLP partners are generally not 'limited' in the old sense; all can participate. This question might be confusing LLP with Limited Partnership.
-            { q: "193. What is the primary disadvantag of an LLP compared to a corporation?", o: ["Limited Liability for partners", "ease of formation", "lack of perpetual existence", "taxation"], c: "ease of formation" }, // LLP also has perpetual existence. Disadvantages can be compliance or state-specific rules.
+            { q: "192. In an LLP, which partners are typically not involved in the day-to- day operations and decision making", o: ["Limited partners", "General partners", "Managing partner", "silent partners"], c: "Limited partners" },
+            { q: "193. What is the primary disadvantag of an LLP compared to a corporation?", o: ["Limited Liability for partners", "ease of formation", "lack of perpetual existence", "taxation"], c: "ease of formation" },
             { q: "194. How many schedules are available in LLP act?", o: ["2 schedules", "4 schedules", "I schedules", "schedule not prescribed"], c: "4 schedules" },
-            { q: "195. Age of adolescent worker is-", o: ["10", "14", "18", "21"], c: "14" }, // As per Factories Act, an adolescent is one who has completed 14th year but not 18th.
+            { q: "195. Age of adolescent worker is-", o: ["10", "14", "18", "21"], c: "14" },
             { q: "196. Certificate of fitness to be young worker is to be granted by-", o: ["Occupier of the factory", "Inspector of the factory", "None of the above", "Certifying surgeon"], c: "Certifying surgeon" },
             { q: "197. White wash or color wash should be carried out atleast once in every period of-", o: ["14 months", "a) 24 months;", "48 months:", "60 months"], c: "14 months" },
             { q: "198. Where more than ____ workers are employed provision shall be made for cool drinking water during hot weather.", o: ["100", "250", "500", "1000"], c: "250" },
-            { q: "199. Shelter rooms with suitable lunch rooms are to be provided, if more than ____ workers are employed.", o: ["100", "250", "None of the above", "500"], c: "None of the above" }, // Factories Act: Canteen if >250, Rest rooms/lunch rooms if >150.
-            { q: "200. No female child shall be allowed to work in any factory except between-", o: ["8 a.m., and 7 p.m.;", "6 p.m., and 6 a.m.,", "6 a.m., and 7 p.m.,", "10 p.m. and 5 a.m.,"], c: "8 a.m., and 7 p.m.;" }, // Child labor is prohibited. Adolescent girls have restrictions.
+            { q: "199. Shelter rooms with suitable lunch rooms are to be provided, if more than ____ workers are employed.", o: ["100", "250", "None of the above", "500"], c: "None of the above" },
+            { q: "200. No female child shall be allowed to work in any factory except between-", o: ["8 a.m., and 7 p.m.;", "6 p.m., and 6 a.m.,", "6 a.m., and 7 p.m.,", "10 p.m. and 5 a.m.,"], c: "8 a.m., and 7 p.m.;" },
             { q: "201. Compensatory holidays are to be availed within ____ month.", o: ["1-month", "2 months", "9 months", "6 months"], c: "2 months" },
             { q: "202. Which one of the following amounts to safety measure?", o: ["Artificial humidification;", "Ventilation:", "First aid appliances", "Fencing of factory;"], c: "Fencing of factory;" }, 
             { q: "203. Identify from the following which is the power of Inspector of Factory.", o: ["Enter into any place ofa factory", "Make inquiry into any accident:", "All the above.", "Seize or take copies of any document:"], c: "All the above." },
-            { q: "204. Weekly holiday shall be", o: ["First day of the week;", "Last day of the week;", "Third day of the week;", "None of the above."], c: "First day of the week;" }, // Corrected: Was "Third day of the week;". Usually Sunday (first day of the week by convention in some contexts, or as specified).
-            { q: "205. Which does not amount to retirement?", o: ["Retrenchment;", "Resignation;", "Superannuation.", "Dismissal:"], c: "Superannuation." }, // Retrenchment, Resignation, Dismissal are forms of cessation of employment, not retirement. Superannuation is retirement. The question is "which does NOT amount to retirement". So A, B, D are not retirement. This question is tricky. If it means "which is a form of retirement", then C. If "which is NOT a form of retirement", then A, B, D. Given the original answer, it implies the former.
+            { q: "204. Weekly holiday shall be", o: ["First day of the week;", "Last day of the week;", "Third day of the week;", "None of the above."], c: "First day of the week;" },
+            { q: "205. Which does not amount to retirement?", o: ["Retrenchment;", "Resignation;", "Superannuation.", "Dismissal:"], c: "Superannuation." },
             { q: "206. Gratuity is payable to an employee-", o: ["On his superannuation;", "Retirement;", "Retrenchment;", "In all the above cases."], c: "In all the above cases." },
-            { q: "207. The gratuity is payable to an employee shall not exceed-", o: ["12 months pay;", "16 months pay;", "24 months pay.", "20 months pay"], c: "20 months pay" }, // Rs. 20 Lakhs is the current ceiling.
+            { q: "207. The gratuity is payable to an employee shall not exceed-", o: ["12 months pay;", "16 months pay;", "24 months pay.", "20 months pay"], c: "20 months pay" },
             { q: "208. The employer shall display an abstract of the Act and the Rules in Form No-", o: ["U", "H", "N", "0"], c: "U" },
             { q: "209. If sufficient cause is shown the appropriate Government may condone the delay in filing appeal against the order of the Controlling Authority, for-", o: ["30 days;", "60 days:", "90 days;", "No time limit."], c: "60 days:" },
-            { q: "210. Nomination is to be made by an employee-", o: ["Immediately on his appointment", "After completion of one year service:", "After he is made permanent;", "None of the above"], c: "After completion of one year service:" }, // For Gratuity, after 1 year. For PF, on joining.
-            { q: "211. Which one of the following is to be included in the definition of 'wage'?", o: ["Dearness allowance", "Overtime allowance", "Commission:", "House rent allowance."], c: "Dearness allowance" }, // Definition of wages varies by Act. For Gratuity Act, basic + DA.
+            { q: "210. Nomination is to be made by an employee-", o: ["Immediately on his appointment", "After completion of one year service:", "After he is made permanent;", "None of the above"], c: "After completion of one year service:" },
+            { q: "211. Which one of the following is to be included in the definition of 'wage'?", o: ["Dearness allowance", "Overtime allowance", "Commission:", "House rent allowance."], c: "Dearness allowance" },
             { q: "212. If an employer intends to close the business he is to send notice to the Controlling Authority within ____ before the intended closure.", o: ["10 days;", "30 days:", "60 days;", "90 days."], c: "60 days;" },
-            { q: "213. Nomination is to be filed in", o: ["Single form", "Duplicate", "Triplicate", "Quadruplicate."], c: "Duplicate" }, // For Gratuity, Form F in duplicate.
-            { q: "214. Which will not amount to service of notice under the rule?", o: ["Personal service:", "By registered post;", "By courier;", "Both a and b."], c: "Personal service:" }, // Corrected: Was "By courier;". Rules usually specify personal service or registered post as valid. Courier might not be.
+            { q: "213. Nomination is to be filed in", o: ["Single form", "Duplicate", "Triplicate", "Quadruplicate."], c: "Duplicate" },
+            { q: "214. Which will not amount to service of notice under the rule?", o: ["Personal service:", "By registered post;", "By courier;", "Both a and b."], c: "Personal service:" },
             { q: "215. Which one of the following will not include in the definition of basic wages as per the Employee Provident Fund and Miscellaneous Provisions Act.1952?", o: ["Dearness allowance;", "Overtime;", "Cash value for consideration", "All the above."], c: "All the above." },
-            { q: "216. The contribution of employer to insurance fund is-", o: ["1%", "10%", "12%", "None of the above."], c: "1%" }, // EDLI contribution is 0.5% by employer, admin charges extra. This might be an old rate or specific scheme.
-            { q: "217. Contribution of 10% to PF is applicable to-", o: ["Any establishment in which less than 20 employees are employed;", "Any establishment declared as sick industrial company", "Jute company:", "All of the above."], c: "All of the above." }, // Standard rate is 12%. 10% for specific industries/conditions.
-            { q: "218. The minimum administrative charge payable by the employer to the fund is-", o: ["Rs.75", "Rs.500", "Rs.1,000", "None of the above"], c: "Rs.500" }, // For EPF.
-            { q: "219. The maximum penalty recoverable from the employer who makes the default in payment of any contribution to the fund is-", o: ["5%", "10%", "15%", "25%"], c: "25%" }, // Damages can be up to 100% of arrear amount, levied at varying rates based on delay period.
+            { q: "216. The contribution of employer to insurance fund is-", o: ["1%", "10%", "12%", "None of the above."], c: "1%" },
+            { q: "217. Contribution of 10% to PF is applicable to-", o: ["Any establishment in which less than 20 employees are employed;", "Any establishment declared as sick industrial company", "Jute company:", "All of the above."], c: "All of the above." },
+            { q: "218. The minimum administrative charge payable by the employer to the fund is-", o: ["Rs.75", "Rs.500", "Rs.1,000", "None of the above"], c: "Rs.500" },
+            { q: "219. The maximum penalty recoverable from the employer who makes the default in payment of any contribution to the fund is-", o: ["5%", "10%", "15%", "25%"], c: "25%" },
             { q: "220. Withdrawal from PF may not be allowed for-", o: ["Marriage of the employer:", "Post matriculation education of children;", "For the purchase of a dwelling place;", "For illness in certain cases."], c: "Marriage of the employer:" },
             { q: "221. The Employees' Pension Scheme provides for-", o: ["Superannuation pension:", "Orphanage pension;", "Both (a) and (b);", "None of (a) or (b)."], c: "Both (a) and (b);" },
             { q: "222. Contribution of the employer to employees' pension scheme is-", o: ["8.33%", "10%", "12%", "None of the above"], c: "8.33%" },
-            { q: "223. The following cannot be nominated for the purposes of EPF Act-", o: ["Wife:", "Sons of a deceased sons who have attained majority;", "Father in law;", "Unmarried daughter."], c: "Sons of a deceased sons who have attained majority;" }, // And father-in-law. Nomination is for family members.
+            { q: "223. The following cannot be nominated for the purposes of EPF Act-", o: ["Wife:", "Sons of a deceased sons who have attained majority;", "Father in law;", "Unmarried daughter."], c: "Sons of a deceased sons who have attained majority;" },
             { q: "224. While filing appeal to EPF Appellate Tribunal the employer has to deposit ____ of the amount due from him.", o: ["25%", "50%", "75%", "None of the above"], c: "75%" },
-            { q: "225. The contribution shall be paid in a bank within, ____ days of the last day of the calendar month in which the contribution fall due for any wage period.", o: ["7", "14", "21", "15"], c: "21" }, // For ESI, it's 15 days. For EPF, it's also 15 days from close of month. This might be specific.
+            { q: "225. The contribution shall be paid in a bank within, ____ days of the last day of the calendar month in which the contribution fall due for any wage period.", o: ["7", "14", "21", "15"], c: "21" },
             { q: "226. An appeal shall lie to High Court from the orders of ESI within ____ days from the date of order of the ESI Court.", o: ["30", "60", "90", "None of the above."], c: "60" },
             { q: "227. A member of the Corporation shall cease to be a member if he fails to attend ____ consecutive meeting", o: ["3", "5", "7", "None of the above."], c: "3" },
             { q: "228. ESI Fund consists of-", o: ["Contribution;", "Grants from governments;", "Donations;", "All the above"], c: "All the above" },
@@ -540,13 +571,13 @@
             { q: "230. Who among the following will not be considered as an employee?", o: ["Canteen workers", "Casual workers;", "Partners:", "Part time employee"], c: "Partners:" },
             { q: "231. Who, among the following, is not the Principal Employer?", o: ["Occupier of the factory;", "Owner of the factory;", "Legal representative of the owner;", "Legal representative of the contractor."], c: "Legal representative of the contractor." },
             { q: "232. Seasonal factory is the one which is engaged for a period not exceeding ____ in a year.", o: ["7 months", "6 months;", "3 months", "None of the above."], c: "7 months" },
-            { q: "233. Which, among the following, will not be included in the definition of 'wages'?", o: ["Payment made on authorized leave;", "Travelling allowance;", "Payment made on lock out:", "Payment made for lay off."], c: "Travelling allowance;" }, // For ESI Act.
+            { q: "233. Which, among the following, will not be included in the definition of 'wages'?", o: ["Payment made on authorized leave;", "Travelling allowance;", "Payment made on lock out:", "Payment made for lay off."], c: "Travelling allowance;" },
             { q: "234. ESI Corporation is a-", o: ["Partnership firm;", "Limited Liability Partnership:", "Body Corporate:", "Hindu Undivided Family."], c: "Body Corporate:" },
             { q: "235. The minimum rate of wages on time work basis may be fixed in accordance with", o: ["by the hour, or", "by the day; or", "by the month", "all of the above"], c: "all of the above" },
-            { q: "236. Section ____ deal with Eligibility for Bonus.", o: ["6", "8", "18", "20"], c: "20" }, // Section 8 of Payment of Bonus Act deals with eligibility.
+            { q: "236. Section ____ deal with Eligibility for Bonus.", o: ["6", "8", "18", "20"], c: "20" },
             { q: "237. Every Inspector-cum-Facilitator appointed under sub-section (1) shall be deemed to be public servant within the meaning of section ____ of the Indian Penal Code.", o: ["15", "18", "21", "26"], c: "21" },
-            { q: "238. Section 56 talks about the", o: ["composition of offences", "offences by companies.", "penalties for offences", "power of officers"], c: "composition of offences" }, // This refers to Code of Wages, 2019.
-            { q: "239. Which one of the following is not correct in regard to share certificate?", o: ["The Company Secretary shall issue the share certificate.", "The share certificate shall be issued in pursuance of a resolution of the Board:", "Every share certificate shall be distinguishedto its distinctive number.", "The shares may be in the dematerializedform"], c: "The Company Secretary shall issue the share certificate." }, // It's signed by directors, and CS if any.
+            { q: "238. Section 56 talks about the", o: ["composition of offences", "offences by companies.", "penalties for offences", "power of officers"], c: "composition of offences" },
+            { q: "239. Which one of the following is not correct in regard to share certificate?", o: ["The Company Secretary shall issue the share certificate.", "The share certificate shall be issued in pursuance of a resolution of the Board:", "Every share certificate shall be distinguishedto its distinctive number.", "The shares may be in the dematerializedform"], c: "The Company Secretary shall issue the share certificate." },
             { q: "240. If a company does not have a common seal, the share certificate shall be signed by-", o: ["Two directors", "One director and Company Secretary;", "Either (a) or (b);", "None of the above."], c: "Either (a) or (b);" },
             { q: "241. In case of unlisted company the duplicate share certificate shall be issued within a period of-", o: ["45 days", "3 months", "6 months", "None of the above."], c: "3 months" },
             { q: "242. The Bonus shares may be issued out of the-", o: ["Free reserves;", "Securities premium account;", "Capital redemption reserve account;", "Any of the above."], c: "Any of the above." },
@@ -579,21 +610,21 @@
             { q: "269. The following is the disadvantage of business ethics:", o: ["Through increasing morale and trust business can increase their market share", "Publicity due to well and ethical performance", "Acceptance of products of the company by the public", "Diversity in achievements"], c: "Diversity in achievements" }, 
             { q: "270. A sale is complete when the following is transferred from one.", o: ["Money", "Ownership", "Usage", "None of the above"], c: "Ownership" },
             { q: "271. The Consideration in contract of sale must be:", o: ["Immovable", "Movable", "Price", "None of the above"], c: "Price" },
-            { q: "272. The subject matter of the contract must be:", o: ["Sale", "Product", "Service", "None of the above"], c: "Sale" }, // More accurately, "Goods".
+            { q: "272. The subject matter of the contract must be:", o: ["Sale", "Product", "Service", "None of the above"], c: "Sale" },
             { q: "273. On which date was the Sale of Goods enforced?", o: ["1948", "1930", "1932", "1951"], c: "1930" },
             { q: "274. As per Sale of Goods Act, this is not included:", o: ["Growing crop", "Money", "Table", "Goodwill"], c: "Money" },
-            { q: "275. The term property as used in the sale of goods act, 1930 means", o: ["possession", "Ownership", "ownership and possession both", "the subject matter of contract of sale"], c: "the subject matter of contract of sale" }, // Corrected: Was "Ownership". Property in goods means ownership. Subject matter is the goods themselves.
-            { q: "276. The doctrine of caveat emptor applies", o: ["in case of implied conditions and warranties", "when the buyer does not intimate the purpose to the seller and depends upon his own skill and judgement", "when goods are sold by sample", "when goods are sold by description"], c: "when the buyer does not intimate the purpose to the seller and depends upon his own skill and judgement" }, // Corrected: Was "when goods are sold by sample"
+            { q: "275. The term property as used in the sale of goods act, 1930 means", o: ["possession", "Ownership", "ownership and possession both", "the subject matter of contract of sale"], c: "the subject matter of contract of sale" },
+            { q: "276. The doctrine of caveat emptor applies", o: ["in case of implied conditions and warranties", "when the buyer does not intimate the purpose to the seller and depends upon his own skill and judgement", "when goods are sold by sample", "when goods are sold by description"], c: "when the buyer does not intimate the purpose to the seller and depends upon his own skill and judgement" },
             { q: "277. Under Sale of Goods Act, which of the delivery of goods is called as delivery by attornment?", o: ["Actual", "Symbolic", "Constructive", "Physical"], c: "Constructive" },
             { q: "278. Where the price of the goods under a contract of sale is to be fixed by the valuation of a third party who fails to fix the valuation, but goods are supplied to the buyer, under section 10 of the Sale of Goods Act, 1930, the buyer is", o: ["liable to pay the reasonable price of the goods.", "liable to pay the minimum price of the goods.", "not liable to pay any price until fixed by the value", "liable to pay the maximum retail price."], c: "liable to pay the reasonable price of the goods." },
             { q: "279. In case of breach of warranty the buyer can", o: ["repudiate the contract", "Claim damages only", "return the goods", "refuse to pay the price"], c: "Claim damages only" },
             { q: "280. The main objective of a contract of sale is", o: ["transfer of possession of goods", "transfer of property in goods", "delivery of goods", "payment of price"], c: "transfer of property in goods" },
             { q: "281. Risks follows ownership", o: ["only when goods have been delivered", "only when price has been paid", "whether delivery has been made or not", "even when price has not been paid"], c: "whether delivery has been made or not" },
             { q: "282. In an agreement to sell, the seller can sue for price if", o: ["the goods have been delivered to the buyer", "the goods have not been delivered to the buyer", "there is a specific agreement", "None of the above"], c: "there is a specific agreement" },
-            { q: "283. Where there is an unconditional contract for the sale of specific goods in a deliverable state, the property in the goods passes to the buyer when", o: ["the goods are delivered to the buyer", "the price is paid by the buyer", "the contract is made", "the buyer accepts the goods"], c: "the contract is made" }, // Corrected: Was "the price is paid by the buyer"
+            { q: "283. Where there is an unconditional contract for the sale of specific goods in a deliverable state, the property in the goods passes to the buyer when", o: ["the goods are delivered to the buyer", "the price is paid by the buyer", "the contract is made", "the buyer accepts the goods"], c: "the contract is made" },
             { q: "284. If the contract is silent as to the party who is to appropriate the goods", o: ["the buyer is to appropriate", "goods seller is to appropriate", "the party who under the contract is first to act is to appropriate", "any party may aprropriate"], c: "the party who under the contract is first to act is to appropriate" },
             { q: "285. Where there is no specific agreement as to place, the goods sold are to be delivered at the place", o: ["at which they are at the time of sale", "of the buyer", "desired by the buyer", "to be determined by the seller"], c: "at which they are at the time of sale" },
-            { q: "286. A seller delivers goods in excess of the quantity ordered for. The buyer may", o: ["accept the whole", "reject the whole", "accept the goods ordered for and return the excess", "None of these"], c: "accept the whole" }, // Buyer has options: accept all, reject all, or accept contract qty & reject rest.
+            { q: "286. A seller delivers goods in excess of the quantity ordered for. The buyer may", o: ["accept the whole", "reject the whole", "accept the goods ordered for and return the excess", "None of these"], c: "accept the whole" },
             { q: "287. Where the neglect or refusal of the buyer to take delivery of goods amounts to a repudiation of the contract, the seller may sue for the", o: ["price or damages", "price only", "damages only", "both for price and damages"], c: "price or damages" },
             { q: "288. The lien of an unpaid seller depends on", o: ["possession", "title", "ownership", "Whether the buyer has paid the price or not"], c: "possession" },
             { q: "289. An unpaid seller has not given notice of resale to the buyer there is a profit. The unpaid seller", o: ["is bound to hand it over to the buyer", "is not bound to hand it over to the buyer", "The buyer can recover it from the unpaid seller", "The buyer must compensate the unpaid seller"], c: "is bound to hand it over to the buyer" },
@@ -609,6 +640,7 @@
             { q: "299. Unless otherwise agreed, where goods are delivered to the buyer and he rejects them", o: ["he is not bound to return them to the seller", "it is sufficient if he intimates to the seller that he has rejected the goods", "he is bound to deliver them to the seller", "he may keep them with him"], c: "it is sufficient if he intimates to the seller that he has rejected the goods" },
             { q: "300. if a seller makes use of pretended bidding at an auction to raise the price the sale is", o: ["voidable at the option of the buyer", "void", "valid", "illegal"], c: "voidable at the option of the buyer" }
         ];
+        // --- END OF QUESTION DATA ---
 
 
         let currentQuestionIndex = 0;
@@ -635,23 +667,19 @@
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
 
-        // Updated for 5 sets of 60 questions each (Total 300 questions)
         const questionsPerSet = [60, 60, 60, 60, 60]; 
         const setStartIndices = [0, 60, 120, 180, 240]; 
 
         function populateSetSelector() {
-            setSelectorElement.innerHTML = ''; // Clear existing options
+            setSelectorElement.innerHTML = '';
             questionsPerSet.forEach((num, index) => {
-                // Ensure we don't create set options if there are no questions for that set
                 if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
                 
                 const option = document.createElement('option');
                 option.value = index; 
                 const startQ = setStartIndices[index] + 1;
-                // Calculate actual endQ based on available questions or set size
                 const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
                 
-                // Only add the set if it actually contains questions
                 if (startQ <= endQ) {
                     option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
                     setSelectorElement.appendChild(option);
@@ -670,7 +698,6 @@
         }
 
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
             for (let i = 0; i < setStartIndices.length; i++) {
                 const setStartIndex = setStartIndices[i];
                 const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
@@ -682,7 +709,6 @@
                     return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-             // Fallback for the last set if not perfectly caught
             const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
             if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
                  setSelectorElement.value = lastSetIndex;
@@ -714,7 +740,6 @@
             const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
             questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-            // Updated line for fill-in-the-blanks visibility
             questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
 
             optionsContainerElement.innerHTML = ''; 
@@ -745,9 +770,11 @@
                 optionsContainerElement.appendChild(optionElement);
             });
 
-            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
-            nextButton.disabled = !questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length;
+            // *** CHANGE: Always enable the next button ***
+            nextButton.disabled = false; 
             prevButton.disabled = (currentQuestionIndex === 0);
+            
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
 
             questionHeaderElement.style.display = 'block';
             questionTextElement.style.display = 'block';
@@ -761,7 +788,6 @@
 
             questionsAttemptedState[currentQuestionIndex] = true;
             userAnswers[currentQuestionIndex] = selectedOptionText;
-            nextButton.disabled = false; 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.c;
@@ -788,10 +814,11 @@
             if (questionsAttemptedState[currentQuestionIndex]) return;
 
             let optionIndex = -1;
-            if (key === 'a' || key === '1') optionIndex = 0;
-            else if (key === 'b' || key === '2') optionIndex = 1;
-            else if (key === 'c' || key === '3') optionIndex = 2;
-            else if (key === 'd' || key === '4') optionIndex = 3;
+            const keyLower = key.toLowerCase();
+            if (keyLower === 'a' || keyLower === '1') optionIndex = 0;
+            else if (keyLower === 'b' || keyLower === '2') optionIndex = 1;
+            else if (keyLower === 'c' || keyLower === '3') optionIndex = 2;
+            else if (keyLower === 'd' || keyLower === '4') optionIndex = 3;
 
             if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
                 const optionDiv = optionsContainerElement.children[optionIndex];
@@ -802,19 +829,12 @@
         }
 
         function nextQuestionHandler() {
-            if (!questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length) {
-                return; 
-            }
-            if (currentQuestionIndex === questionsData.length - 1 && questionsAttemptedState[currentQuestionIndex]) {
-                currentQuestionIndex++; 
-                showCompletionMessage();
-            } 
-            else if (currentQuestionIndex < questionsData.length - 1) {
+            // *** CHANGE: Removed check that prevents skipping ***
+            if (currentQuestionIndex < questionsData.length - 1) {
                 currentQuestionIndex++;
                 loadQuestion();
-            }
-             else if (currentQuestionIndex >= questionsData.length) { 
-                 showCompletionMessage(); 
+            } else {
+                showCompletionMessage();
             }
         }
 
@@ -842,12 +862,12 @@
 
         document.addEventListener('keydown', (event) => {
             if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
-                return; // Allow arrow keys for dropdown navigation
+                return;
             }
-            if (event.key.toLowerCase() === 'escape') return; // Allow escape, maybe for closing modals in future
+            if (event.key.toLowerCase() === 'escape') return;
 
             if (completionMessageElement.style.display === 'block') { 
-                 event.preventDefault(); // Prevent actions if quiz is complete
+                 event.preventDefault();
                  return;
             }
 
