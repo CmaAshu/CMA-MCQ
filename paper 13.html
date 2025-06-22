@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Quiz - Corporate and Economic Laws (Paper-13)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #scoreboard-container {
+            background: #9370DB; /* Purple */
+            color: #ffffff; 
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        #set-navigation-container {
+            background: #4169E1; /* Royal Blue */
+            color: #ffffff; 
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #scoreboard {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        #scoreboard span {
+            margin: 0 10px;
+        }
+        #scoreboard .correct { color: #d4edda; } 
+        #scoreboard .incorrect { color: #f8d7da; } 
+        #scoreboard .accuracy { color: #e0e0e0; } 
+
+
+        #set-navigation-container label {
+            margin-right: 10px;
+            font-weight: 500;
+            color: #ffffff; 
+        }
+
+        #set-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #fff; 
+            color: #333; 
+        }
+
+        #quiz-container {
+            background: #FFDAB9; /* Light Saffron (PeachPuff) */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            color: #333; 
+        }
+
+        #question-header {
+            font-size: 0.9em;
+            color: #4A4A4A; 
+            margin-bottom: 15px;
+            text-align: right;
+            border-bottom: 1px solid #FFBFA0; 
+            padding-bottom: 10px;
+        }
+
+        #question-text {
+            font-size: 1.15em;
+            margin-bottom: 25px;
+            color: #2c3e50; 
+            font-weight: 500;
+        }
+
+        .options-container {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            background: #FFF8E1; 
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #FFECB3; 
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            color: #333; 
+        }
+
+        .option:not(.disabled):hover {
+            background: #FFF0C1; 
+            border-color: #FFE082;
+        }
+        
+        .option.correct-answer {
+            background: #d4edda !important; 
+            border-color: #c3e6cb !important;
+            color: #155724 !important;
+        }
+
+        .option.incorrect-selection {
+            background: #f8d7da !important; 
+            border-color: #f5c6cb !important;
+            color: #721c24 !important;
+        }
+        .option.user-selected-display { 
+            /* Styles to indicate this was the user's picked option when reviewing */
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #495057;
+            background-color: #FFECB3; 
+            padding: 3px 7px;
+            border-radius: 4px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .option.correct-answer .option-letter {
+            background-color: #28a745 !important;
+            color: white !important;
+        }
+        .option.incorrect-selection .option-letter {
+            background-color: #dc3545 !important;
+            color: white !important;
+        }
+
+        #navigation-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        #prev-btn {
+            background-color: #6c757d; 
+        }
+       
+        #prev-btn:disabled, #next-btn:disabled {
+             background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+         #prev-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+        }
+
+
+        #completion-message {
+            text-align: center;
+            font-size: 1.6em;
+            color: #28a745;
+            padding: 30px;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            border-radius: 8px;
+        }
+        #instagram-link {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+        }
+        #instagram-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #instagram-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            #scoreboard-container,
+            #set-navigation-container, 
+            #quiz-container {
+                padding: 15px;
+            }
+            #scoreboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            #scoreboard span {
+                margin: 3px 0;
+            }
+            #question-text {
+                font-size: 1.05em;
+            }
+            .option {
+                padding: 10px;
+            }
+            button {
+                padding: 10px 15px; 
+                font-size: 14px;
+            }
+            #set-selector {
+                width: 100%;
+                margin-top: 5px;
+            }
+            #set-navigation-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="scoreboard-container">
+        <div id="scoreboard">
+            <span id="correct-count">Correct: 0</span>
+            <span id="incorrect-count">Incorrect: 0</span>
+            <span id="attempted-count">Attempted: 0</span>
+            <span id="accuracy-rate">Accuracy: N/A</span>
+        </div>
+    </div>
+
+    <div id="set-navigation-container">
+        <label for="set-selector">Switch to Set:</label>
+        <select id="set-selector"></select>
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-header">Loading quiz...</div>
+        <div id="question-text"></div>
+        <div class="options-container" id="options-container">
+            </div>
+        <div id="navigation-buttons">
+            <button id="prev-btn">Previous Question</button>
+            <button id="next-btn">Next Question</button>
+        </div>
+        <div id="completion-message" style="display:none;">
+            Quiz Completed! Thank you for participating.
+        </div>
+    </div>
+
+    <div id="instagram-link">
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh</a>
+    </div>
+
+    <script>
+        const questionsData = [
+            { q: "How many minimum members are required to form a public limited company?", o: ["3", "4", "6", "7"], c: "7" },
+            { q: "In order to be a Govt. Company, 51% shares shall be held by: -", o: ["Central Govt.", "State Govt.", "Both Central and State Govt, jointly", "Any or all of the above"], c: "Any or all of the above" },
+            { q: "In case of 'limited' companies, what is limited?", o: ["Shares", "Liability of members", "Capital of the company", "Powers of the shareholders"], c: "Liability of members" },
+            { q: "Restriction in transfer of shares can be there in", o: ["Private Ltd. company", "Public Ltd. Company", "Govt. company", "Unlimited company"], c: "Private Ltd. company" },
+            { q: "Foreign company is a company, registered out of India and,", o: ["Having a place of business in India", "Conducts any business in India", "Need not have any business in India", "Either (1) or (2)"], c: "Either (1) or (2)" },
+            { q: "Company which do not have any significant accounting transaction is called", o: ["Asocial Company", "Non-functional company", "Dormant company", "Sleeping company"], c: "Dormant company" },
+            { q: "Life Insurance Corporation is:", o: ["A statutory corp. but not PFI", "A statutory corp. and PFI", "Govt. Company", "None of the above"], c: "A statutory corp. and PFI" },
+            { q: "Persons who sign the MOA are called:", o: ["Promoters", "Shareholders", "Subscribers to MOA", "Members"], c: "Subscribers to MOA" },
+            { q: "Certificate of incorporation is issued by: -", o: ["Regional director", "Registrar of companies", "Central Govt.", "None of the above"], c: "Registrar of companies" },
+            { q: "Declaration by professional at the time of incorporation of a company means declaration by", o: ["Practicing CS", "Practicing CA", "Practicing CMA", "Any of the above."], c: "Any of the above." },
+            { q: "Change of registered office within a city, town or village requires", o: ["Special Resolution", "Board Resolution", "Approval of CG", "None of the above"], c: "Board Resolution" },
+            { q: "Section 8 companies cannot:", o: ["Generate surplus", "Make profit", "Distribute dividend", "Profit is to given to GOVL"], c: "Distribute dividend" },
+            { q: "ABC Ltd. is registered in India with 100% shares being held by KYZ Ltd., a company registered in UK having no business in India. ABC Ltd. is a:", o: ["An Indian Company", "Foreign company", "Wholly owned subsidiary of a foreign company but Indian Company", "Does not come under definition of foreign company"], c: "An Indian Company" },
+            { q: "ABC Ltd. has 35% shares in XYZ Ltd. The majority of directors of XYZ Ltd. are appointed and removed by ABC Ltd. XYZ Ltd. is:", o: ["Subsidiary of ABC Ltd..", "Not a subsidiary of ABC Ltd.", "Depends on Board of ABC Ltd.", "Depends on Board of XYZ Ltd."], c: "Subsidiary of ABC Ltd.." },
+            { q: "A guarantee company is similar to:", o: ["Unlimited company", "LLP", "Partnership", "Sole proprietorship"], c: "LLP" },
+            { q: "Once a company is converted into LLP, intimation to ROC has to been made within:", o: ["10 days", "15days.", "20days", "25 days"], c: "15days." },
+            { q: "Which chapter of the Companies Act, 2013, deals with foreign companies?", o: ["XX", "XXI", "XXII", "XXIII"], c: "XXII" },
+            { q: "In case of secured debentures of public issue, the security is created I favour of:", o: ["Public", "SEBI", "Merchant banker", "Debenture trustee"], c: "Debenture trustee" },
+            { q: "Fully convertible debenture is a:", o: ["debt instrument", "equity instrument", "hybrid instrument", "None of the above"], c: "debt instrument" },
+            { q: "Register of deposit:", o: ["is voluntary", "is mandatory but particulars may vary", "is mandatory with particulars as per Rules", "Not to be maintained at all"], c: "is mandatory with particulars as per Rules" },
+            { q: "A debenture trustee can be:", o: ["Any bank", "Any NBFC", "any merchant banker", "Any entity registered with SEBI as such"], c: "Any entity registered with SEBI as such" },
+            { q: "'loan' in parlance to Companies Act, means:", o: ["short term loan for revenue purpose", "long term loans", "cash credit", "working capital"], c: "cash credit" },
+            { q: "In case of deposits by the company.", o: ["no brokerage can be given", "any amount of brokerage can be given", "rate of brokerage shall be as per RBI Regulations", "rate of brokerage shall be as per SEB Regulations"], c: "rate of brokerage shall be as per RBI Regulations" },
+            { q: "Once declared in AGM, dividend", o: ["May be revoked", "Cannot be revoked", "May be reduced", "Payment can be delayed"], c: "Cannot be revoked" },
+            { q: "IEPF stands for", o: ["Investor Employment and Protection Fund", "Investor Education and Publicity Fund", "Investor Entrepreneurship and Protection", "Investor Education and Protection Fund"], c: "Investor Education and Protection Fund" },
+            { q: "Once declared, the amount of dividend shall be transferred to special dividend A/c within", o: ["3 days", "5 days", "10 days", "15 days"], c: "5 days" },
+            { q: "A practicing Chartered Accountant may be appointed as Auditor for term of:", o: ["3 yrs", "5 yrs", "8 yrs", "10 yrs"], c: "5 yrs" },
+            { q: "Directors Responsibility Statement is a part of: -", o: ["Annual Accounts", "Auditors' Report", "Board Report", "None of the above"], c: "Board Report" },
+            { q: "NFRA stands for.", o: ["National Financial Reporting Authority", "National Fiscal Reporting Authority", "Non-Financial Reporting Authority", "National Financial Reforms Authority"], c: "National Financial Reporting Authority" },
+            { q: "A statutory Auditor shall be-", o: ["ACS", "CMA", "Practicing CA", "Any of the above"], c: "Practicing CA" },
+            { q: "In normal course, the Board's Report is signed by -", o: ["Chairman without Authority of Board", "Chairman with Authority of Board", "MD", "Any director"], c: "Chairman with Authority of Board" },
+            { q: "CAG stands for:", o: ["Controller of Audit of Govt.", "Comptroller of Auditor General", "Company Auditor General", "None of the above"], c: "Comptroller of Auditor General" },
+            { q: "The Financial statements are to be filed with the Registrar within-", o: ["15 days of AGM", "31st October of any year", "30 days of AGM", "60 days of AGM"], c: "30 days of AGM" },
+            { q: "In case of private company, internal auditor has to be appointed if the turnover is:", o: ["Rs. 100 Crores or more", "Rs. 150 Crores or more", "Rs. 200 Crores or more", "Rs. 300 Crores or more"], c: "Rs. 200 Crores or more" },
+            { q: "Auditors Report is addressed to:", o: ["Board of directors", "Central Govt.", "Audit Committee", "Shareholders"], c: "Shareholders" },
+            { q: "CARO 2020 is effective from: -", o: ["1.4.2019", "1.4.2020", "1.4.2021", "1.4.2022"], c: "1.4.2021" },
+            { q: "First Auditor is appointed by-", o: ["CG", "CAG", "Board of Directors", "Shareholders"], c: "Board of Directors" },
+            { q: "Auditor can render the following additional service to the company where he is auditor:", o: ["Internal Audit", "Accounting and book keeping", "Investment Advisory services", "None of the above"], c: "None of the above" },
+            { q: "Additional director's tenure is up to", o: ["Next Board meeting", "Next AGM", "5 years from the date of appointment", "Date of superannuation"], c: "Next AGM" },
+            { q: "Alternate director may be appointed when the additional is out of India for at least", o: ["1 month", "2 months", "3 months", "4 months"], c: "3 months" },
+            { q: "A women director has to be there is the company is:", o: ["A listed company", "With turnover of Rs.300 crore or more", "Either of the above", "None of the above"], c: "Either of the above" },
+            { q: "Section 184 of the Companies Act provides for:", o: ["Ordinary", "Board", "Special", "None"], c: "None" },
+            { q: "A whole time director is appointed for a term of:", o: ["2 yrs", "3 yrs.", "5 yrs.", "10 yrs."], c: "5 yrs." },
+            { q: "If a person other than retiring director is proposed, a cheque of is to be deposited with the proposal.", o: ["Rs.50,000", "Rs.75.000", "Rs.1 lakh", "Rs.2 lakhs"], c: "Rs.1 lakh" },
+            { q: "A director may be appointed by small shareholder. Small shareholder means, shareholders who hold shares worth of face value of maximum.", o: ["Rs.5,000", "Rs. 10,000", "Rs.15,000", "Rs.20,000"], c: "Rs.20,000" },
+            { q: "A company may remove a director with-", o: ["Board Resolution", "Ordinary resolution of shareholders", "Special Resolution of shareholders", "Approval of ROC"], c: "Ordinary resolution of shareholders" },
+            { q: "Managing Director's appointment is ratified in AGM through-", o: ["Ordinary", "Special", "No AGM resolution is required", "None of the above"], c: "Ordinary" },
+            { q: "Section 203 provides for appointment of", o: ["KMP", "CS", "MD", "WTD"], c: "KMP" },
+            { q: "The eligibility and conditions of appointment of MD is mentioned in Schedule", o: ["I", "II", "IV", "V"], c: "V" },
+            { q: "Maximum remuneration to all managerial personnel is-", o: ["5%", "8%", "11%", "15%"], c: "11%" },
+            { q: "Independent directors are not entitled to get-", o: ["Sitting fee", "Reimbursement of expenses", "Stock option", "Commission on profit"], c: "Stock option" },
+            { q: "Board's Report is addressed to-", o: ["Central Govt.", "Stock exchange", "Members", "ROC"], c: "Members" },
+            { q: "Power of Board of directors may be restricted subject to:", o: ["Companies Act", "Articles of Association", "Resolution of general meeting", "Any or all of the above"], c: "Any or all of the above" },
+            { q: "Related party transaction is provided under Schedule:", o: ["188", "189", "190", "191"], c: "188" },
+            { q: "Majority of audit committee members shall be:", o: ["Executive director", "Non-executive", "Independent", "None of the above"], c: "Independent" },
+            { q: "Independent directors, separately. shall meet in a calendar year.", o: ["Once", "Twice", "Thrice", "Not meet"], c: "Once" },
+            { q: "For Board meeting, quorum as per the Act is:", o: ["One third of the total no. of directors", "Two third of the total no. of directors", "One third of the total no. of director or two, whichever is higher", "Half of the total no. of directors"], c: "One third of the total no. of director or two, whichever is higher" },
+            { q: "If of the directors require that a resolution under circulation be placed in the Board meeting for decision, it has to be complied with", o: ["All director", "Two-third", "One-third", "Three-fourth"], c: "One-third" },
+            { q: "Minutes of the Board meeting are to be signed by-", o: ["Chairman of the company", "Chairman of the present meeting or next meeting", "Chairman of the company, whether he was present in the meeting or not", "None of the above"], c: "Chairman of the present meeting or next meeting" },
+            { q: "Minutes of Board meeting are to be preserved for-", o: ["5 yrs", "8 yrs", "10 yrs", "permanently"], c: "permanently" },
+            { q: "Minutes are supposed to be kept at:", o: ["Registered office", "Head office", "Any office", "Any of the above"], c: "Registered office" },
+            { q: "SFIO stands for", o: ["Serious Fraud Institution Office", "Serious Fraud Investigating Organization", "Serious Fraud Investigating Office", "None of the above"], c: "Serious Fraud Investigating Office" },
+            { q: "The decision to authorize buy back by Board can be made by-", o: ["Resolution by circulation", "Only in board meeting", "Any of the above", "None of the above"], c: "Only in board meeting" },
+            { q: "In case chairman is executive, at least of the Board members shall be independent director.", o: ["1/3rd", "2/3rd", "1/2 half", "Majority"], c: "1/2 half" },
+            { q: "Majority of members of the audit committee shall be-", o: ["Executive directors", "Non-executive director", "Nominated director", "Independent directors"], c: "Independent directors" },
+            { q: "Board of directors are supposed to address their report to", o: ["Central Govt.", "NCLT", "SEBI", "None of the above"], c: "SEBI" },
+            { q: "The provisions relating to investigation are provided in which chapter of the Act?", o: ["XIIB", "XIII", "XIV", "XV"], c: "XIV" },
+            { q: "If a company wants to punish an employee or officer of a company, it has to take permission of:", o: ["ROC", "CG", "NCLT", "High Court"], c: "NCLT" },
+            { q: "The investigating officer has the power of inspection, taking evidence etc. as per", o: ["Civil Procedure Code", "Criminal Procedure Code", "Companies Act", "None of the above"], c: "Civil Procedure Code" },
+            { q: "In case of merger, the transferor company is:", o: ["Continues to exist", "Dissolved", "Shall have to go through liquidation process", "Goes under the tribunal control"], c: "Dissolved" },
+            { q: "The Auditors has to confirm in the scheme that", o: ["It is in conformity with the Accounting Standard", "It is in compliance with the Companies Act", "Both (1) and (2)", "None of the above"], c: "It is in conformity with the Accounting Standard" },
+            { q: "On amalgamation, the following are transferred to the transferee company", o: ["Rights", "Liabilities", "Both above", "None of the above"], c: "Both above" },
+            { q: "When a transferor company is a listed company and transferee company is any unlisted company, the transferee company", o: ["Becomes a listed company", "Continues to an unlisted company and can never be a listed company", "Continues to be an unlisted company unless it is listed by complying with listing requirement", "Any of the above"], c: "Continues to be an unlisted company unless it is listed by complying with listing requirement" },
+            { q: "Powers of the majority is subject", o: ["Companies Act", "Common law", "Memorandum of association", "All of the above"], c: "All of the above" },
+            { q: "Any Act done by directors beyond authority, is considered as;", o: ["unauthorized", "illegal", "ultra vires", "None of the above"], c: "ultra vires" },
+            { q: "A case of oppression, application may be made on:", o: ["fraud on minority", "ultra vires act", "breach of duty", "Any or all of the above"], c: "Any or all of the above" },
+            { q: "Application has to be made for relief of oppression to", o: ["Central Govt.", "NCLT", "ROC", "None of the above"], c: "ROC" },
+            { q: "Powers of the tribunal is listed in section:", o: ["240", "241", "242", "243"], c: "242" },
+            { q: "Statutory auditor can also function as:", o: ["Internal Auditor", "Financial Adviser", "Accounting Solutions Advisor", "Tax Auditor"], c: "Tax Auditor" },
+            { q: "A CFO of a company has to be a:", o: ["Chartered accountant", "Cost accountant", "MBA", "None of the above."], c: "None of the above." },
+            { q: "Sitting fee of Board meetings and Board Committee meetings:", o: ["shall have to be same", "may not be same", "shall have to be different", "None of the above"], c: "may not be same" },
+            { q: "Disclosure of interest by director is:", o: ["one time feature at the time of appointment", "annual feature", "event based, being interested due to some event", "all or any of the above"], c: "all or any of the above" },
+            { q: "Quorum of aboard meeting is total strength of the Board:", o: ["1/4th", "1/3rd", "half", "1/3rd or two whichever is higher"], c: "1/3rd or two whichever is higher" },
+            { q: "In case of merger of A ltd with B Ltd., A ITd is:", o: ["liquidated", "dissolved", "sold", "closed down"], c: "dissolved" },
+            { q: "Dividend Distribution Policy of a company is decided by:", o: ["Board of directors", "shareholders in general meeting", "Stock exchange", "SEBI"], c: "Board of directors" },
+            { q: "Companies shall not make investment through more than layer of investment companies", o: ["1", "2", "3", "4"], c: "1" },
+            { q: "Rate of interest in deposit is guided by", o: ["SEBI", "RBI", "MCA", "MOF"], c: "RBI" },
+            { q: "No eligible company shall accept or renew deposit from its members up to:", o: ["5%", "10%", "15%", "20%"], c: "10%" },
+            { q: "Interim dividend is decided by:", o: ["Board of Directors", "AGM", "CMD", "Audit Committee"], c: "Board of Directors" },
+            { q: "Books of accounts can be inspected by:", o: ["MD only", "any director", "any shareholder", "any public on payment of fees"], c: "any director" },
+            { q: "Accounting Standards are prescribed by:", o: ["Central Govt", "SEBI", "Institute of Chartered Accountants of India", "None of the above"], c: "Central Govt" },
+            { q: "The Board Report is signed by:", o: ["MD", "any director", "CS", "None of the above"], c: "None of the above" },
+            { q: "Zenith Ltd. Is a company registered in USA and doing business in USA. As per Indian law, this is a:", o: ["foreign company", "not a foreign company", "It will be a foreign company once it starts business in India", "both (2) and (3) is correct."], c: "both (2) and (3) is correct." },
+            { q: "A sectorial company is supposed to comply with:", o: ["Companies act only", "Sectorial laws only", "Both Companies Act and sector laws", "All statements are correct"], c: "Both Companies Act and sector laws" },
+            { q: "Articles of association can be altered by:", o: ["Ordinary resolution", "Special resolution", "Resolution requiring special notice", "None of the above"], c: "Special resolution" },
+            { q: "Shifting of register office from one state to another, would require", o: ["special resolution only", "special resolution and Central Govt. (CG) approval", "only CG approval", "only Board approval"], c: "special resolution and Central Govt. (CG) approval" },
+            { q: "The following members of a company shall have the right to apply under Section 241, for oppression namely:", o: ["in the case of a company having a share capital, not less than one hundred members of the company:", "or not less than one tenth of the total number of its members, whichever is less, or any member or members holding not less than one tenth of the issued share capital of the company;", "in the case of a company not having a share capital, not less than one-fifth of the total number of its members.", "Any of the above."], c: "Any of the above." },
+            { q: "The Insolvency and Bankruptcy Code passed by the Parliament in the year:", o: ["2014", "2015", "2016", "2017"], c: "2016" },
+            { q: "The Code applies to:", o: ["All companies registered under Companies Act;", "LLP", "Partnership", "All of the above"], c: "All of the above" },
+            { q: "The Code applies to:", o: ["Bank", "Insurance company", "Asset reconstruction company", "None of the above"], c: "None of the above" },
+            { q: "An entity in favour of whom security interest is created is called:", o: ["unsecured creditor", "financial creditor", "operational creditor", "secured creditor"], c: "secured creditor" },
+            { q: "In normal course, the corporate insolvency resolution process shall be completed within a period of days from the date of admission of the application.", o: ["120", "180", "210", "240"], c: "180" },
+            { q: "The RP has to manage the company as:", o: ["Loosing concern", "Going concern", "Selling concern", "Profitable concern"], c: "Going concern" },
+            { q: "As per section 22(1) The first meeting of the COC will be held within days of constitution", o: ["5", "6", "7", "8"], c: "7" },
+            { q: "A Resolution Professional may be replaced with of the voting rights of the Committee of Creditors", o: ["51", "66", "75", "80"], c: "66" },
+            { q: "The adjudicating authority in case of personal insolvency is:", o: ["NCLT", "Debt Recovery Tribunal", "RBI", "SEBI"], c: "Debt Recovery Tribunal" },
+            { q: "During bankruptcy proceeding, bankrupt, shall:", o: ["not be appointed as trustee, public servant election of local authority,", "not to act as director, taking part in formation of companies", "disclose in all transaction about the bankruptcy proceedings.", "all or any of the above"], c: "not be appointed as trustee, public servant, election of local authority," },
+            { q: "Under Insolvency Bankruptcy code 2016 where extension of time is requested, the Corporate Resolution process shall be completed within a period of from the date of admission of the application to initiate such process.", o: ["60 days", "90 days", "180 days", "240 days"], c: "180 days" },
+            { q: "Insolvency and Bankruptcy code 2016 is not applicable on:", o: ["Financial Service Providers", "Partnership Firms and Individuals", "Limited Liability Partnership (LLP)", "Companies Incorporated under Companies Act"], c: "Financial Service Providers" },
+            { q: "With the introduction of IB code, the following laws have been repealed:", o: ["Chapter XIX and Chapter XX of Companies Act, 2013", "Part VIA, Part VII and Section 391 of Companies Act, 1956", "SICA Act, 1985", "All the above."], c: "All the above." },
+            { q: "The Insolvency and Bankruptcy Board has power of Court in respect of issue of summons, discovery and production of books, inspection of books/registers and issue of commissions for examination of witnesses:", o: ["Session Court", "High Court", "Supreme Court", "Civil Court"], c: "Civil Court" },
+            { q: "The following institutions are insolvency professional agency", o: ["Institute of Cost Accountants of India", "Institute of Chartered Accountants of India", "Institute of Company Secretaries", "All of them"], c: "Institute of Cost Accountants of India" }
+        ];
+
+        let userAnswers = new Array(questionsData.length).fill(null);
+        let questionsAttemptedFlags = new Array(questionsData.length).fill(false);
+        let currentQuestionIndex = 0;
+        let score = { correct: 0, incorrect: 0 };
+
+        const questionHeaderElement = document.getElementById('question-header');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const completionMessageElement = document.getElementById('completion-message');
+        const setSelectorElement = document.getElementById('set-selector');
+
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const attemptedCountElement = document.getElementById('attempted-count');
+        const accuracyRateElement = document.getElementById('accuracy-rate');
+        
+        const questionsPerSet = [50, 50, 50, 50, 26]; 
+        const setStartIndices = [0, 50, 100, 150, 200]; 
+
+
+        function populateSetSelector() {
+            setSelectorElement.innerHTML = ''; // Clear existing options
+            questionsPerSet.forEach((num, index) => {
+                const option = document.createElement('option');
+                option.value = index; 
+                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
+                setSelectorElement.appendChild(option);
+            });
+            setSelectorElement.addEventListener('change', (event) => {
+                const selectedSetIndex = parseInt(event.target.value);
+                currentQuestionIndex = setStartIndices[selectedSetIndex];
+                displayQuizElements();
+                loadQuestion();
+            });
+        }
+        
+        function displayQuizElements() {
+            completionMessageElement.style.display = 'none';
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            document.getElementById('navigation-buttons').style.display = 'flex';
+        }
+
+
+        function getCurrentSetInfo(index) {
+            let cumulativeQuestions = 0;
+            for (let i = 0; i < questionsPerSet.length; i++) {
+                cumulativeQuestions += questionsPerSet[i];
+                if (index < cumulativeQuestions) {
+                    if (setSelectorElement.value != i) { 
+                         setSelectorElement.value = i;
+                    }
+                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                }
+            }
+            //This will handle the last set if the loop doesn't catch it
+            const lastSetIndex = questionsPerSet.length - 1;
+            if (setSelectorElement.value != lastSetIndex) {
+                setSelectorElement.value = lastSetIndex;
+            }
+            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+        }
+        
+        function updateScoreboard() {
+            correctCountElement.textContent = `Correct: ${score.correct}`;
+            incorrectCountElement.textContent = `Incorrect: ${score.incorrect}`;
+            const attempted = score.correct + score.incorrect;
+            attemptedCountElement.textContent = `Attempted: ${attempted}`;
+            if (attempted > 0) {
+                const accuracy = (score.correct / attempted * 100).toFixed(1);
+                accuracyRateElement.textContent = `Accuracy: ${accuracy}%`;
+            } else {
+                accuracyRateElement.textContent = `Accuracy: N/A`;
+            }
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
+            if (currentQuestionIndex >= questionsData.length) {
+                showCompletionMessage();
+                return;
+            }
+            displayQuizElements(); 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const setInfo = getCurrentSetInfo(currentQuestionIndex);
+
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+
+            optionsContainerElement.innerHTML = '';
+            const questionAlreadyAnswered = questionsAttemptedFlags[currentQuestionIndex];
+
+            currentQuestion.o.forEach((optionText, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.dataset.optionText = optionText; 
+
+                const optionLetter = String.fromCharCode(65 + index);
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                
+                if (questionAlreadyAnswered) {
+                    optionElement.classList.add('disabled');
+                    if (optionText === currentQuestion.c) {
+                        optionElement.classList.add('correct-answer');
+                    }
+                    if (optionText === userAnswers[currentQuestionIndex] && optionText !== currentQuestion.c) {
+                        optionElement.classList.add('incorrect-selection');
+                    }
+                     if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('user-selected-display');
+                    }
+                } else {
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
+                }
+                optionsContainerElement.appendChild(optionElement);
+            });
+            
+            prevButton.disabled = currentQuestionIndex === 0;
+            // MODIFICATION: Always enable the next button to allow skipping
+            nextButton.disabled = false; 
+            
+            if (currentQuestionIndex >= questionsData.length -1) {
+                nextButton.textContent = "Show Results";
+            } else {
+                 nextButton.textContent = "Next Question";
+            }
+        }
+
+        function handleOptionSelection(selectedDiv, selectedOptionText) {
+            if (questionsAttemptedFlags[currentQuestionIndex]) return; 
+
+            questionsAttemptedFlags[currentQuestionIndex] = true;
+            userAnswers[currentQuestionIndex] = selectedOptionText;
+            nextButton.disabled = false; 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const correctAnswerText = currentQuestion.c;
+
+            selectedDiv.classList.add('user-selected-display');
+
+            if (selectedOptionText === correctAnswerText) {
+                selectedDiv.classList.add('correct-answer');
+                score.correct++;
+            } else {
+                selectedDiv.classList.add('incorrect-selection');
+                score.incorrect++;
+                Array.from(optionsContainerElement.children).forEach(optDiv => {
+                    if (optDiv.dataset.optionText === correctAnswerText) {
+                        optDiv.classList.add('correct-answer');
+                    }
+                });
+            }
+            
+            Array.from(optionsContainerElement.children).forEach(optDiv => {
+                const newOptDiv = optDiv.cloneNode(true);
+                optDiv.parentNode.replaceChild(newOptDiv, optDiv);
+                newOptDiv.classList.add('disabled');
+            });
+
+            updateScoreboard();
+             if (currentQuestionIndex >= questionsData.length -1) {
+                nextButton.textContent = "Show Results";
+            }
+        }
+        
+        function selectOptionByKey(key) {
+            if (questionsAttemptedFlags[currentQuestionIndex]) return;
+
+            let optionIndex = -1;
+            if (key === 'a' || key === '1') optionIndex = 0;
+            else if (key === 'b' || key === '2') optionIndex = 1;
+            else if (key === 'c' || key === '3') optionIndex = 2;
+            else if (key === 'd' || key === '4') optionIndex = 3;
+
+            if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
+                const optionDiv = optionsContainerElement.children[optionIndex];
+                if (optionDiv && !optionDiv.classList.contains('disabled')) {
+                    handleOptionSelection(optionDiv, optionDiv.dataset.optionText);
+                }
+            }
+        }
+
+        function nextQuestionHandler() {
+            if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showCompletionMessage();
+            }
+        }
+
+        function prevQuestionHandler() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+        
+        function showCompletionMessage() {
+            questionHeaderElement.style.display = 'none';
+            questionTextElement.style.display = 'none';
+            optionsContainerElement.style.display = 'none';
+            document.getElementById('navigation-buttons').style.display = 'none';
+            completionMessageElement.style.display = 'block';
+            const attempted = score.correct + score.incorrect;
+            const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+        }
+
+        nextButton.addEventListener('click', nextQuestionHandler);
+        prevButton.addEventListener('click', prevQuestionHandler);
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key.toLowerCase();
+            
+            // MODIFICATION: Allow skipping with keyboard shortcuts
+            if (key === 'arrowright' || key === ' ' || key === 'enter') {
+                event.preventDefault();
+                nextQuestionHandler();
+            } else if (key === 'arrowleft') {
+                event.preventDefault();
+                prevQuestionHandler();
+            } else if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                if (currentQuestionIndex < questionsData.length && !questionsAttemptedFlags[currentQuestionIndex]) {
+                    event.preventDefault();
+                    selectOptionByKey(key);
+                }
+            }
+        });
+
+        populateSetSelector();
+        loadQuestion();
+        updateScoreboard(); 
+    </script>
+</body>
+</html>

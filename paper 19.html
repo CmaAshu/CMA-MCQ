@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Quiz - Indirect Tax Laws and Practice (Paper 19)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #scoreboard-container {
+            background: #9370DB; /* Purple */
+            color: #ffffff; 
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        #set-navigation-container {
+            background: #4169E1; /* Royal Blue */
+            color: #ffffff; 
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #scoreboard {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        #scoreboard span {
+            margin: 0 10px;
+        }
+        #scoreboard .correct { color: #d4edda; } 
+        #scoreboard .incorrect { color: #f8d7da; } 
+        #scoreboard .accuracy { color: #e0e0e0; } 
+
+
+        #set-navigation-container label {
+            margin-right: 10px;
+            font-weight: 500;
+            color: #ffffff; 
+        }
+
+        #set-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #fff; 
+            color: #333; 
+        }
+
+        #quiz-container {
+            background: #FFDAB9; /* Light Saffron (PeachPuff) */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            color: #333; 
+        }
+
+        #question-header {
+            font-size: 0.9em;
+            color: #4A4A4A; 
+            margin-bottom: 15px;
+            text-align: right;
+            border-bottom: 1px solid #FFBFA0; 
+            padding-bottom: 10px;
+        }
+
+        #question-text {
+            font-size: 1.15em;
+            margin-bottom: 25px;
+            color: #2c3e50; 
+            font-weight: 500;
+        }
+
+        .options-container {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            background: #FFF8E1; 
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #FFECB3; 
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            color: #333; 
+        }
+
+        .option:not(.disabled):hover {
+            background: #FFF0C1; 
+            border-color: #FFE082;
+        }
+        
+        .option.correct-answer {
+            background: #d4edda !important; 
+            border-color: #c3e6cb !important;
+            color: #155724 !important;
+        }
+
+        .option.incorrect-selection {
+            background: #f8d7da !important; 
+            border-color: #f5c6cb !important;
+            color: #721c24 !important;
+        }
+        .option.user-selected-display { 
+            /* Styles to indicate this was the user's picked option when reviewing */
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #495057;
+            background-color: #FFECB3; 
+            padding: 3px 7px;
+            border-radius: 4px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .option.correct-answer .option-letter {
+            background-color: #28a745 !important;
+            color: white !important;
+        }
+        .option.incorrect-selection .option-letter {
+            background-color: #dc3545 !important;
+            color: white !important;
+        }
+
+        #navigation-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        #prev-btn {
+            background-color: #6c757d; 
+        }
+       
+        #prev-btn:disabled, #next-btn:disabled {
+             background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+         #prev-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+        }
+
+
+        #completion-message {
+            text-align: center;
+            font-size: 1.6em;
+            color: #28a745;
+            padding: 30px;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            border-radius: 8px;
+        }
+        #instagram-link {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+        }
+        #instagram-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #instagram-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            #scoreboard-container,
+            #set-navigation-container, 
+            #quiz-container {
+                padding: 15px;
+            }
+            #scoreboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            #scoreboard span {
+                margin: 3px 0;
+            }
+            #question-text {
+                font-size: 1.05em;
+            }
+            .option {
+                padding: 10px;
+            }
+            button {
+                padding: 10px 15px; 
+                font-size: 14px;
+            }
+            #set-selector {
+                width: 100%;
+                margin-top: 5px;
+            }
+            #set-navigation-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="scoreboard-container">
+        <div id="scoreboard">
+            <span id="correct-count">Correct: 0</span>
+            <span id="incorrect-count">Incorrect: 0</span>
+            <span id="attempted-count">Attempted: 0</span>
+            <span id="accuracy-rate">Accuracy: N/A</span>
+        </div>
+    </div>
+
+    <div id="set-navigation-container">
+        <label for="set-selector">Switch to Set:</label>
+        <select id="set-selector"></select>
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-header">Loading quiz...</div>
+        <div id="question-text"></div>
+        <div class="options-container" id="options-container">
+            </div>
+        <div id="navigation-buttons">
+            <button id="prev-btn">Previous Question</button>
+            <button id="next-btn">Next Question</button>
+        </div>
+        <div id="completion-message" style="display:none;">
+            Quiz Completed! Thank you for participating.
+        </div>
+    </div>
+
+    <div id="instagram-link">
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh</a>
+    </div>
+
+    <script>
+        const questionsData = [
+            { q: "Goods within the meaning of supply does not includes:", o: ["Movable property", "Money and securities", "Actionable claim other than specified actionable claims", "All of the above"], c: "Money and securities" },
+            { q: "Items out of the purview of supply are provided in:", o: ["Schedule I", "Schedule II", "Schedule III", "None of the above"], c: "Schedule III" },
+            { q: "M/s R Associates of Chennai received certain consultancy services from A Inc. of USA. Both are not related person. The services received is without any consideration. Does the same classify as supply?", o: ["Yes. Being import of services in the course of business", "No. Since, party to the contract are not related", "On the prior approval of the Government", "None of the above"], c: "No. Since, party to the contract are not related" },
+            { q: "X Ltd. Transferred certain assets forming part of business assets. The same was transferred free of cost without any consideration as a part of corporate social responsibility (CSR). What shall be the classification of such supply? X Ltd. Not availed Input Tax Credit on such assets.", o: ["Supply of goods", "Supply of services", "Does not qualify as supply", "Supply of goods and services or both"], c: "Does not qualify as supply" },
+            { q: "While repairing the factory shed, few goods were also supplied along with the labour service. Whether it is a:", o: ["Composite Supply", "Mixed Supply", "Works Contract Service", "None of the above"], c: "Works Contract Service" },
+            { q: "What would be the tax rate applicable in case of mixed supply?", o: ["Tax rate as applicable on supply attracting the lowest rate of tax", "Tax rate as applicable on supply attracting the highest rate of tax", "Tax @ 28%", "None of the above"], c: "Tax rate as applicable on supply attracting the highest rate of tax" },
+            { q: "A person purchases a bundle of toothpaste along with Tooth brush. Toothpaste under this case is liable to GST @12% and tooth brush for instance is liable to GST @18% and is sold as a single unit for a single price. What shall be the tax rate applicable in case of such supply?", o: ["18%", "12%", "6%", "Nil"], c: "18%" },
+            { q: "As per the CGST Act, 2017, the term 'works contract' includes:", o: ["Construction. fabrication, completion, erection, installation, etc. of movable property", "Construction, fabrication, completion, erection, installation, etc. of immovable property", "Both (a) and (b)", "None of the above"], c: "Construction, fabrication, completion, erection, installation, etc. of immovable property" },
+            { q: "Which of the following are naturally bundled?", o: ["Hotel provides short-term accommodation and restaurant services", "Hotel provides short-term accommodation and coaching or teaching Indirect Taxes", "Hotel provides short-term accommodation and repairing services of customer watches", "Hotel provides short-term accommodation"], c: "Hotel provides short-term accommodation and restaurant services" },
+            { q: "What is the threshold limit of turnover in the preceding financial year for opting to pay tax under composition scheme for States other than special category States?", o: ["20 lacs", "10 lacs", "50 lacs", "1.5 crore"], c: "1.5 crore" },
+            { q: "What is the rate applicable under CGST to a registered person being a manufacturer opting to pay taxes under composition scheme?", o: ["2.50%", "1%", "0.50%", "No composition for manufacturer"], c: "0.50%" },
+            { q: "Mr. Ram, a trader in Delhi has opted for composition scheme of taxation under GST. Determine the rate of total GST payable by him under composition scheme:", o: ["0.5% CGST & 0.5% SGST", "2.5% CGST & 2.5% UTGST", "5% IGST", "5% of UTGST"], c: "0.5% CGST & 0.5% SGST" },
+            { q: "Can a registered person under composition scheme claim input tax credit?", o: ["Yes", "No", "Input tax credit on inward supply of goods only can be claimed", "Input tax credit on inward supply of services only can be claimed"], c: "No" },
+            { q: "What will happen if the turnover of a registered person opting to pay taxes under composition scheme during the year 2024-25 crosses threshold limit?", o: ["He can continue under composition scheme till the end of the financial year", "He will be liable to pay tax at normal rates of GST on the entire turnover for the financial year 2024-25", "He will cease to remain under the composition scheme with immediate effect", "He will cease to remain under the composition scheme from the quarter following the quarter in which the aggregate turnover exceeds threshold limit"], c: "He will cease to remain under the composition scheme with immediate effect" },
+            { q: "Aggregate turnover does not include-", o: ["Inward supplies on which tax is payable on reverse charge basis", "Exempt supplies", "Export of goods or services or both", "Inter-State supplies of persons having the same PAN number"], c: "Inward supplies on which tax is payable on reverse charge basis" },
+            { q: "X Ltd. has provided following information for the month of January 2024: (i) Intra-State outward supply 8,00,000/- (ii) Inter-State exempt outward supply ₹5,00,000/- (iii) Turnover of exported goods  10,00,000/- (iv) Payment made to GTA  80,000/- (ITC not availed by GTA) Calculate the aggregate turnover of X Ltd.", o: ["28,00,000/-", "23,80,000/-", " 23,00,000/-", "18,00,000/-"], c: " 23,00,000/-" },
+            { q: "The person was operating in regular scheme. Now in financial year 2022-23, he wants to opt for the composition scheme. Which form he must file to provide details of the input tax credit in respect of the stock of goods held with him on the day preceding the date of opting in composition scheme?", o: ["Form GST ITC-01", "Form GST ITC-02", "Form GST ITC-03", "Form GST ITC-04"], c: "Form GST ITC-03" },
+            { q: "The person was operating under normal scheme, but now he wants to convert in composition scheme so which form he must file?", o: ["Form GST CMP-01", "Form GST CMP-02", "Form GST CMP-03", "Form GST CMP-04"], c: "Form GST CMP-02" },
+            { q: "In which form can the person file for withdrawal of composition scheme?", o: ["Form GST CMP-01", "Form GST CMP-02", "Form GST CMP-03", "Form GST CMP-04"], c: "Form GST CMP-04" },
+            { q: "What document shall a person under composition scheme issue to its customer?", o: ["Bill of supply", "Tax invoice", "Invoice", "Debit note"], c: "Bill of supply" },
+            { q: "Which return must be filed by the composition dealer?", o: ["GSTR-3B", "GSTR-5", "GSTR-4", "GSTR-6"], c: "GSTR-4" },
+            { q: "Calculate the tax to be paid by Mr. C, a composition dealer who supplied laptops being a trader from the following data: (i) Cost of purchases ₹3,00,000 plus GST 12%. (ii) Profit Margin 40% on cost of purchases.", o: ["4.704", "7.404", "4,074", "None of the above"], c: "4.704" },
+            { q: "If the show cause notice in Form GST CMP-05 has been issued on 15th March 2019, then by when can the taxpayer (composition dealer) submit his reply?", o: ["Within 90 days", "Within 180 days", "Within 15 days", "Within 60 days"], c: "Within 15 days" },
+            { q: "Service provider other than section 10 of CGST Act, 2017 can opt to pay GST under composition scheme only when", o: ["whose aggregate turnover in the preceding financial year was Rs.50 lakh or below", "whose aggregate turnover in the preceding financial year was Rs.150 lakh or below", "whose aggregate turnover in the preceding financial year was Rs.75 lakh or below", "whose aggregate turnover in the preceding financial year was below Rs.50 lakh"], c: "whose aggregate turnover in the preceding financial year was Rs.50 lakh or below" },
+            { q: "Under section of CGST Act and section of IGST Act, Government can issue a general exemption notification", o: ["Section 11(1) of the CGST Act & Section 6(1) of the IGST Act", "Section 6(1) of the IGST Act & Section 11(1) of the CGST Act", "Section 11(2) of the CGST Act & Section 6(2) of the IGST Act", "Section 11(3) of the CGST Act & Section 6(3) of the IGST Act"], c: "Section 11(1) of the CGST Act & Section 6(1) of the IGST Act" },
+            { q: "Under section of CGST Act and section of IGST Act. Government exemption by way of special order", o: ["Section 11(2) of the CGST Act & Section 6(2) of the IGST Act", "Section 6(2) of the IGST Act & Section 11(2) of the CGST Act", "Section 11(1) of the CGST Act & Section 6(2) of the IGST Act", "Section 11(3) of the CGST Act & Section 6(3) of the IGST Act"], c: "Section 11(2) of the CGST Act & Section 6(2) of the IGST Act" },
+            { q: "Services by a hotel, inn, guest house, club or campsite are not exempted for residential/lodging purposes-", o: ["If the actual tariff for a unit of accommodation is below Rs. 10,000", "irrespective of tariff value for a unit of accommodation", "If the actual tariff for a unit of accommodation is exactly Rs.1,000", "If the actual tariff for a unit of accommodation is above Rs.1,000"], c: "irrespective of tariff value for a unit of accommodation" },
+            { q: "One of the following is exempted from GST-", o: ["Any business exhibition", "A business exhibition in India", "A business exhibition outside India", "None of the above"], c: "A business exhibition outside India" },
+            { q: "Exemption can be claimed at stage even if not claimed at prior stage.", o: ["Adjudication, Investigation", "Investigation, Adjudication", "None of the above", "Any"], c: "Adjudication, Investigation" },
+            { q: "Levy of GST on Priority Sector Lending Certificate (PSLC) under", o: ["Exempted supply of goods", "Reverse Charge Mechanism (RCM)", "Forward Charge", "Partial Reverse Charge Mechanism"], c: "Reverse Charge Mechanism (RCM)" },
+            { q: "Mr. A, who has opted for composition levy, supplies goods worth Rs.24,300 to Mr. B and issues an invoice dated 25.09.20XX for Rs.24,300. and Mr. B pays Rs.25,000 on 1.10.20XX against such supply of goods. The excess Rs. 700 (being less than Rs.1,000) is adjusted in the next invoice for supply of goods issued on 5.01.20XX. Identify the time of supply and value of supply:", o: ["For Rs.25,000- 1.10.20XX", "For Rs.24,300- 25.09.20XX and for Rs.700-1.10.20XX", "For Rs.24,300 25.09.20XX and for Rs.700- 5.10.20XX.", "(b) or (c) at the option of supplier, who has opted for composition levy"], c: "(b) or (c) at the option of supplier, who has opted for composition levy" },
+            { q: "ABC Ltd has purchased for its customer 50 vouchers date 20th Aug 20XX worth 500 each from Ram Pvt. Ltd. a footwear manufacturing company. The vouchers were issued by Ram Pvt. Ltd on 20th Sep 20XX. The vouchers can be encashed at retail outlets of Ram Pvt. Ltd. The employees of ABC Ltd. enchased the same on 1st Oct 20XX. Determine the time of supply of vouchers.", o: ["20th Aug 20XX", "20th Sep 20XX", "1st Oct 20XX", "None of the above"], c: "20th Sep 20XX" },
+            { q: "Determine the amount of GST in case of supply of service of ₹10,00,000 on 4th Sep 20XX and invoice has also been issued on the same date. The date of payment is 30th Aug 20XX. The CGST rate has been increased from 5% to 12% w.e.f. Ist Sep 20XX", o: ["₹50,000", "₹1,00,000", "₹70,000", "₹1,20,000"], c: "₹1,20,000" },
+            { q: "There was decrease in tax rate from 28% to 18% w.e.f. 1.09.2024. Which of the following rate is applicable if the supplier has not opted for composition levy and supplies goods to Customer? Further, Goods were removed from its factory on 31.08.2024; delivered at buyer place on 2.02.2024; invoice is issued on 31.08.2024 and payment is received on 4.09.2024.", o: ["18% as it is lower of the two", "28% as date of invoice and dispatch of goods from factory, has happened before change of rate", "18% as both, payment and completion of supply, has happened after change of rate", "none of the above"], c: "28% as date of invoice and dispatch of goods from factory, has happened before change of rate" },
+            { q: "Money transferred service provided to foreign entity by Indian supplier of service is intermediary service and subject to", o: ["CGST & SGST", "CGST & UTGST", "IGST", "UTGST"], c: "IGST" },
+            { q: "If RR shipping Co. located in Chennai charges ocean freight charges for transport of goods to USA for a customer located in Hyderabad, the place of supply of service will be", o: ["Chennai", "USA", "Hyderabad", "None of the above"], c: "Hyderabad" },
+            { q: "Agency fees paid to foreign banks for arranging finance is", o: ["Export of service", "Import of service", "Tax free service", "None of the above"], c: "Import of service" },
+            { q: "Mr. Ram a second-hand car dealer purchased a second hand car for 2,50,000. He sold he same car to Mr. Lakshman for  3,00,000. Determine value of supply?", o: ["3,00,000", "₹2.50,000", "₹50,000", "None of the above"], c: "₹50,000" },
+            { q: "Thomas Cook Forex Pvt. Ltd. being a registered person under GST purchased 2000 USD from M/s R Academy at the rate of INR 30 per USD. Actual exchange rate at that time was 270 per Dollar. RBI reference rate not available. What shall be the value of such supply", o: ["1,30,000", "1,40,000", "2.00,000", "None of the above"], c: "1,40,000" },
+            { q: "What will be the value of supply if X & Co., supply Sony television set for 285000 along with the exchange of an old TV and if the price of the Sony television set without exchange is ₹1,00,000, the open market value of the Sony television set is:", o: ["85,000", "₹1,00,000", "15.000", "1,15,000"], c: "₹1,00,000" },
+            { q: "The time limit to pay the value of supply with taxes to the supplier to avail the input tax credit is", o: ["3 months", "6 months", "180 Days", "Till the date of filling of annual return."], c: "180 Days" },
+            { q: "As per Rule 42(2) of the CGST Rules, 2017 where the aggregate of the amount calculated finally in respect of ineligible credit exceeds the aggregate of the amounts determined under rule 42(1)(i) and (j), such excess shall be added to the output tax liability of the registered person in the month not later than the month of", o: ["March following the end of the financial year to which such credit relates", "June following the end of the financial year to which such credit relates", "September following the end of the financial year to which such credit relates", "None of the above"], c: "September following the end of the financial year to which such credit relates" },
+            { q: "As per Rule 42(2) of the CGST Rules, 2017 where the aggregate of the amount calculated finally in respect of ineligible credit exceeds the aggregate of the amounts determined under rule 42(1)(i) and (j), such excess shall be added to the output tax liability of the registered person in the month not later than the month of September following the end of the financial year to which such credit relates and the said person shall be liable to pay on the said excess amount at the rate specified in sub-section (1) of Section 50 for the period starting from thelst day of April of the succeeding financial year till the date of payment", o: ["interest 24% p.a.", "interest 18% p.a.", "interest 28% p.a.", "interest 12% p.a."], c: "interest 18% p.a." },
+            { q: "Banking company or Financial Institution have an option of claiming:", o: ["Eligible Credit or 50% credit", "Only 50% Credit", "Only Eligible credit", "Eligible credit and 50% credit"], c: "Eligible Credit or 50% credit" },
+            { q: "An assessee obtains new registration, voluntary registration, change of scheme from composition to regular scheme and from exempted goods/services to taxable goods/services. It can avail credit on inputs lying in stock. What is the time limit for taking said credit?", o: ["3 years from the date of invoice", "1 years from the date of invoice", "5 years from the date of invoice", "None of the above"], c: "1 years from the date of invoice" },
+            { q: "Maximum time limit for availing ITC is", o: ["The date of filing of annual return", "30th November of the following financial year", "Earliest of above two", "Later of above two."], c: "Earliest of above two" },
+            { q: "In case of supply of plant & machinery on which ITC is taken, tax to be paid on is", o: ["Amount equal to ITC availed less 5% for every quarter or part thereof", "Tax on transaction value", "Higher of above two", "Lower of above two"], c: "Higher of above two" },
+            { q: "Mr. C, a practicing Cost Accountant purchased 3 laptops each having tax element of ₹1,25,000 in his firm name. Two laptops he utilized in his office whereas one laptop he gifted to his sister. What is the amount of ineligible ITC?", o: ["₹1.25,000", "₹2.50,000", "₹2,75,000", "None of the above"], c: "₹1.25,000" },
+            { q: "ABC Pvt Ltd. purchased a machinery on 15th July 2023 for 10 lacs on which IGST was paid @ 18%. He availed the ITC & utilized the capital goods. On 16th October 2024 he sold the machinery as second hand goods for 27,50,000. Calculate the amount of ITC that needs to be paid.", o: ["1,26,000", "1,35,000", "Lower of (a) or (b)", "Higher of (a) or (b)"], c: "1,35,000" },
+            { q: "Mr. Ajay purchased goods from Mr. Chethan, a composition dealer worth 100,000. Since Mr. Chethan was trader so he was supposed to pay only 1% of his turnover as his tax. The item so purchased was otherwise taxable at 12%. What is the amount of credit which Mr. Ajay is eligible to take?", o: ["990", "12,000", "1,000", "Not eligible to claim credit"], c: "Not eligible to claim credit" },
+            { q: "What is the rate of TDS?", o: ["1%", "4%", "5%", "18%"], c: "1%" },
+            { q: "What is the due date for payment of TDS?", o: ["Last day of the month to which payment relates", "Within 10 days of the subsequent month", "Within 20 days of the subsequent month", "Within 15 days of the subsequent month"], c: "Within 10 days of the subsequent month" },
+            { q: "What is the due date for issue of TDS Certificate?", o: ["The date of payment of TDS", "Within 10 days from the date of payment of TDS", "Within 20 days from the date of payment of TDS", "Within 05 days from the date of payment of TDS"], c: "Within 05 days from the date of payment of TDS" },
+            { q: "Every registered person required to deduct tax at source under section 51 shall furnish return, in for the month in which such deductions have been made within 10 days after the end of such month.", o: ["Form GSTR-5", "Form GSTR-6", "Form GSTR-7", "Form GSTR-8"], c: "Form GSTR-7" },
+            { q: "When should the e-commerce operator remit the amount of TCS to government and file the necessary returns with the government?", o: ["Within 10 days after the end of the month in which such amount was collected", "Within 10 days after the end of the month in which such amount was collected, but no time limit for filing the return", "Within 10 days after the end of the month in which such amount was collected, but no time limit for paying the money", "No time limit for both"], c: "Within 10 days after the end of the month in which such amount was collected" },
+            { q: "When an e-commerce operator is required to register under GST?", o: ["When he is required to collect tax at source u/s 52", "When his aggregate turnover exceeds the threshold limit", "It is mandatory to register irrespective of the threshold limit.", "When he is required to collect tax at source u/s 52 and his aggregate turnover exceeds the threshold limit."], c: "It is mandatory to register irrespective of the threshold limit." },
+            { q: "The validity period of E-Way Bill is said to initiate when:", o: ["Part A is completely filled", "Part B is completely Filled", "Both Parts are filled completely", "None of the above"], c: "Both Parts are filled completely" },
+            { q: "E-Way bill generation facility of a person paying tax under regular scheme will be blocked if he has not furnished the returns for a consecutive period of?", o: ["2 months", "2 tax periods", "3 tax periods", "6 tax periods"], c: "2 tax periods" },
+            { q: "What shall be the validity of E-Way bill in case of vehicles other than over dimensional cargo?", o: ["One day per 200 kms.", "One day per 20 kms.", "Both (a) & (b)", "None of the above"], c: "One day per 200 kms." },
+            { q: "Zero rated supply includes:", o: ["Export of goods and services.", "Supply of goods and services to a SEZ developer or SEZ Unit", "Supply of goods and services by a SEZ developer or SEZ Unit", "Both (a) and (b)"], c: "Both (a) and (b)" },
+            { q: "Refund application is to be filed before the expiry of from the relevant date.", o: ["Two years", "One year", "180 days", "260 days"], c: "Two years" },
+            { q: "Refund shall not be paid to the applicant if the amount of refund is less than-", o: ["1,000", " 5.000", "7,000", "10,000"], c: "1,000" },
+            { q: "Refunds would be allowed on a provisional basis in case of refund claims on account of zero-rated supplies of goods and/or services made by registered persons. At what percentage, would such provisional refunds be granted?", o: ["70%", "65%", "80%", "90%"], c: "90%" },
+            { q: "Late fee for annual return for a tax payer having an aggregate turnover up to 25 crore in the relevant financial year is:", o: ["50 for everyday subject to a maximum of 0.04% of turnover in the State or Union Territory", "100 for everyday subject to a maximum of 0.25% of turnover in the State or Union Territory", "250 for everyday subject to a maximum of 0.50% of turnover in the State or Union Territory", "100 for everyday subject to a maximum of 0.50% of turnover in the State or Union Territory."], c: "100 for everyday subject to a maximum of 0.25% of turnover in the State or Union Territory" },
+            { q: "Every registered person whose aggregate turnover during a financial year exceeds 2 crore rupees shall get his accounts audited and furnish a copy of audited annual accounts and a reconciliation statement, duly certified, in-", o: ["Form GSTR-9", "Form GSTR-9C", "Form GSTR-11", "Form GSTR-11A"], c: "Form GSTR-9C" },
+            { q: "The Appellant Authority for Advance Ruling shall comprise of:", o: ["Chief Commissioner of Central tax as designated by the Board and Commissioner of State tax/Union Territory tax, having jurisdiction over the applicant.", "Principal Chief Commissioner of Central tax and Commissioner of State tax/union Territory tax, having jurisdiction over the applicant.", "Two sitting High Court Judges.", "None of the above."], c: "Chief Commissioner of Central tax as designated by the Board and Commissioner of State tax/Union Territory tax, having jurisdiction over the applicant." },
+            { q: "Appeal before AAAR can be filed within how many days?", o: ["30 days", "60 days", "90 days", "120 days"], c: "30 days" },
+            { q: "As per section 69(2) of CGST Act, 2017, where a person is arrested under sub-section (1) for an offence specified under sub- section (5) of section 132, the officer authorised to arrest the person shall inform such person of the grounds of arrest and produce him before a Magistrate within hours:", o: ["four", "twenty-four", "twenty-five", "twenty-six"], c: "twenty-four" },
+            { q: "What action should be taken by an assessee to satisfy with anti-profiteering provision?", o: ["Reduce rate of tax on any supply of goods or services, if such assessee has got the benefit of such reduced rate", "Pass on the benefit of input tax credit, if such assessee has got such input tax credit", "Both (a) and (b)", "none of the above"], c: "Both (a) and (b)" },
+            { q: "1,00,000 MT goods are imported for 10 lakh but goods actually received are 95,000 MT. In this case, value of goods liable to duty is-", o: ["10,00,000", "9,50,000", "50,000", "10,50,000"], c: "9,50,000" },
+            { q: "Assessable value of goods is 25,00,000 (US $10,000 at 250 per US $) as per bill of entry for warehousing and BCD is 15%. The goods were cleared from warehouse on date when BCD is 10% and rate is?  60 per $. IGST & GST Cess is NIL and Social Welfare Surcharge is 10%. Total duty =", o: ["55,000", "66,000", "82,500", " 99,000"], c: "66,000" },
+            { q: "Calculate Free on Board value from following: Ex-factory price of exporter- 10,000; Expenses upto loading of goods by foreign exporter-₹12,000. Post importation cost-₹8000:", o: ["30,000", "22,000", "18,000", "22,250"], c: "22,000" },
+            { q: "Calculate Cost of transport/handling under Rule 10(2)(a) if FoB and insurance cost [total] is $5000:", o: ["$2,500", "$6,000", "$1,000", "None of the above"], c: "$1,000" },
+            { q: "From following data, find out the assessable value of imported goods: Cost of the machine at the factory of the exporting country- $ 5,000; Transport charges incurred by the exporter from his factory to the port for shipment- $ 250; Handling charges paid for loading the machine in the ship- $25; Buying commission paid by the importer- $25; Freight charges from exporting country to India (including handling charges $ 100)-$500. Exchange rate to be considered: $1 S=245$.", o: ["2.62.545.47", "2,37,375.00", "2,59,875.00", "None of the above"], c: "2,62,545.47" },
+            { q: "Compute value: Machinery imported from USA by air (FOB price)- $8,000; Accessories compulsorily supplied along with the machinery $ 2,000; Air freight $2400; Insurance charges not available; Local agent's commission to be paid in Indian Currency- 18,600; Exchange rate US $ 1  248:", o: ["4,98,600", " 6.03.929.25", "5,98,320", "None of the above."], c: "5,98,320" },
+            { q: "Determine price to be taken for computing deductive value in rule 7: Sale quantity-80 units @ 290, 50 units @ 95, 25 units @ 105, 40 units @  100:", o: ["105", "₹100", "95", "90"], c: "90" },
+            { q: "Computed value DOES NOT consist of:", o: ["cost of materials and fabrication or other processing employed in producing the imported goods.", "reasonable profit of foreign exporter", "the cost or value of all other expenses under rule 10(2)", "reasonable profit of Indian importer."], c: "reasonable profit of Indian importer." },
+            { q: "The proper officer shall have the powers to raise doubts on the truth or accuracy of the declared value based on certain reasons which may include:", o: ["the sale involves an abnormal discount or abnormal reduction from ordinary competitive price.", "the sale involves special discounts limited to exclusive agents.", "Both (a) & (b)", "None of the above."], c: "Both (a) & (b)" },
+            { q: "Does the Adjudicating Authority inclu Value of Personal Computer is 1,10,000 and Personal Effects is ₹60,000 and duty-free allowance is 1,00,000. What is the value of the baggage liable to duty?", o: ["50,000", "₹60,000", "70,000", "₹10,000"], c: "₹10,000" },
+            { q: "After visiting UK for 10 days, Mr. K brought to India a laptop computer valued at 276,000, personal effects valued at ₹1,20,000 and a personal computer for 72,000. What is the customs Duty payable?", o: ["22,000", "8,470", " 10,000", " 15,000"], c: "8,470" },
+            { q: "The current limit of 1 lakh per annum for duty free import of samples in terms of NT 154/94-Customs, dated 13.7.1994 is enhanced to:", o: ["230 lakh per annum (w.e.f. 27.2.2010)", "23 lakh per annum (w.e.f. 27.2.2010)", "13 lakh per annum (w.e.f. 27.2.2010)", "23 lakh per month (w.e.f. 27.2.2010)."], c: "23 lakh per annum (w.e.f. 27.2.2010)" },
+            { q: "A Gentleman passenger returning to India having resided abroad for more than a year shall be allowed clearance free of duty jewellery in his bona fide baggage to the extent of the following:", o: [" 50,000", "₹1,00,000", "1,50,000", "None of the above."], c: " 50,000" },
+            { q: "A Lady passenger returning to India having resided abroad for more than a year shall be allowed clearance free of duty jewellery in his bona fide baggage to the extent of the following:", o: ["50,000", "₹1,00,000", "1,50,000", "None of the above."], c: "₹1,00,000" },
+            { q: "A person, who is engaged in a profession abroad, or is transferring his residence to India after stayed abroad more than 2 years can bring, used household items without payment of duty up to:", o: ["₹50,00,000", " 25,00,000", "₹5,00,000", "50,000"], c: "₹5,00,000" },
+            { q: "Section 58 the Principal Commissioner of Customs or Commissioner of Customs may, subject to such conditions as may be prescribed, license a wherein dutiable goods imported by or on behalf of the licensee may be deposited.", o: ["private warehouse", "public warehouse", "special warehouse", "warehouse"], c: "private warehouse" },
+            { q: "grants the permission for manufacturing or other operations in the bonded facility.", o: ["Assistant Commissioner of Customs", "Deputy Commissioner of Customs", "Additional Commissioner of Customs", "Commissioner of Customs"], c: "Commissioner of Customs" },
+            { q: "At present manufacture, and other operations in which bonded warehouse is not allowed?", o: ["Public Bonded Warehouse", "Special Bonded warehouses", "Only Private Bonded warehouse", "Both (a) and (b)"], c: "Both (a) and (b)" },
+            { q: "Maximum duty drawback rate @ on FOB value of exports.", o: ["45%", "15%", "25%", "33%"], c: "33%" },
+            { q: "Once a is cleared for home consumption, the bond submitted by the importer gets debited automatically in the customs automated system and the details shall be made available electronically to the Jurisdictional Custom Officer", o: ["Bill of Entry", "Shipping Bill", "Entry inwards", "Enty outwards"], c: "Bill of Entry" },
+            { q: "Full form of IIN", o: ["Import of goods at concessional rate of duty Identification Number", "Import of Goods at Concessional Rate Identification Number", "Import of Goods Identification Number", "Import at Concessional Rate Identification Number"], c: "Import of Goods at Concessional Rate Identification Number" },
+            { q: "The importer who intends to avail the benefit of an exemption notification shall mention the as indicated in sub-rule (2) of rule 4 of Customs (Import of goods at Concessional rate of duty) Rules, and continuity bond number and details while filing the", o: ["IIN", "NII, Bill of Entry", "Bill of Entry", "Both (a) & (c)"], c: "Both (a) & (c)" },
+            { q: "The importer shall submit a monthly statement on the common portal in the Form IGCR-3 (Import of Goods at Concessional Rate of Duty) appended to these rules by the day of the following month.", o: ["Tenth", "Twentieth", "Fiftieth", "Eleventh"], c: "Tenth" },
+            { q: "Value of goods to be exported as gift can't exceed in a licensing year", o: [" 7,00,000.00", "₹10,00,000.00", "₹50,00,000.00", "₹5,00,000.00"], c: "₹5,00,000.00" },
+            { q: "Minimum value addition required to be achieved under DFIA is", o: ["10%", "15%", "20%", "5%"], c: "20%" },
+            { q: "Only projects having a minimum investment of in plant & machinery shall be considered for establishment as EOUs.", o: ["1 crore", "10 crores or above", "Below 35 crores", "100 crores or above"], c: "1 crore" },
+            { q: "Status holders shall be entitled to export freely exportable items (excluding Gems and Jewelry, Articles of Gold and precious metals) on free of cost basis for export promotion subject to an annual limit of", o: ["Rupees One Crore or @2% of average annual export realization during preceding three licensing years, whichever is lower.", "8% of average annual export realization during preceding 3 licencing years", "2% of average annual export realization during preceding 3 licencing years", "8% of average annual export realization during preceding 2 licencing years"], c: "Rupees One Crore or @2% of average annual export realization during preceding three licensing years, whichever is lower." },
+            { q: "The companies or industries flexibility to allow a maximum of their employees to work from home and along with prior permission to temporarily remove goods such as laptops, computers, electronic equipment, etc., from the SEZ unit to a domestic tariff area without payment of duty.", o: ["50%", "100%", "25%", "15%"], c: "50%" },
+            { q: "In case the developer submit the proposal to the State Government for The SEZ approval, then state government forwards this proposal to the Board of Approval (BoA) along with its recommendation within.", o: ["five days", "forty days", "fifty-five days", "forty-five days"], c: "forty-five days" },
+            { q: "When an SEZ supplies goods/services to a Domestic Tariff Area (DTA), it is exempt from paying taxes, although the receiver in the DTA has to pay:", o: ["IGST under reverse charge mechanism (RCM).", "CGST and SGST under reverse charge mechanism (RCM).", "CGST and UTGST under reverse charge mechanism (RCM).", "IGST under forward charge"], c: "IGST under reverse charge mechanism (RCM)." }
+        ];
+
+        let userAnswers = new Array(questionsData.length).fill(null);
+        let questionsAttemptedFlags = new Array(questionsData.length).fill(false);
+        let currentQuestionIndex = 0;
+        let score = { correct: 0, incorrect: 0 };
+
+        const questionHeaderElement = document.getElementById('question-header');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const completionMessageElement = document.getElementById('completion-message');
+        const setSelectorElement = document.getElementById('set-selector');
+
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const attemptedCountElement = document.getElementById('attempted-count');
+        const accuracyRateElement = document.getElementById('accuracy-rate');
+        
+        const questionsPerSet = [50, 49]; 
+        const setStartIndices = [0, 50]; 
+
+
+        function populateSetSelector() {
+            setSelectorElement.innerHTML = ''; // Clear existing options
+            questionsPerSet.forEach((num, index) => {
+                const option = document.createElement('option');
+                option.value = index; 
+                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
+                setSelectorElement.appendChild(option);
+            });
+            setSelectorElement.addEventListener('change', (event) => {
+                const selectedSetIndex = parseInt(event.target.value);
+                currentQuestionIndex = setStartIndices[selectedSetIndex];
+                displayQuizElements();
+                loadQuestion();
+            });
+        }
+        
+        function displayQuizElements() {
+            completionMessageElement.style.display = 'none';
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            document.getElementById('navigation-buttons').style.display = 'flex';
+        }
+
+
+        function getCurrentSetInfo(index) {
+            let cumulativeQuestions = 0;
+            for (let i = 0; i < questionsPerSet.length; i++) {
+                cumulativeQuestions += questionsPerSet[i];
+                if (index < cumulativeQuestions) {
+                    if (setSelectorElement.value != i) { 
+                         setSelectorElement.value = i;
+                    }
+                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                }
+            }
+            //This will handle the last set if the loop doesn't catch it
+            const lastSetIndex = questionsPerSet.length - 1;
+            if (setSelectorElement.value != lastSetIndex) {
+                setSelectorElement.value = lastSetIndex;
+            }
+            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+        }
+        
+        function updateScoreboard() {
+            correctCountElement.textContent = `Correct: ${score.correct}`;
+            incorrectCountElement.textContent = `Incorrect: ${score.incorrect}`;
+            const attempted = score.correct + score.incorrect;
+            attemptedCountElement.textContent = `Attempted: ${attempted}`;
+            if (attempted > 0) {
+                const accuracy = (score.correct / attempted * 100).toFixed(1);
+                accuracyRateElement.textContent = `Accuracy: ${accuracy}%`;
+            } else {
+                accuracyRateElement.textContent = `Accuracy: N/A`;
+            }
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
+            if (currentQuestionIndex >= questionsData.length) {
+                showCompletionMessage();
+                return;
+            }
+            displayQuizElements(); 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const setInfo = getCurrentSetInfo(currentQuestionIndex);
+
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+
+            optionsContainerElement.innerHTML = '';
+            const questionAlreadyAnswered = questionsAttemptedFlags[currentQuestionIndex];
+
+            currentQuestion.o.forEach((optionText, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.dataset.optionText = optionText; 
+
+                const optionLetter = String.fromCharCode(65 + index);
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                
+                if (questionAlreadyAnswered) {
+                    optionElement.classList.add('disabled');
+                    if (optionText === currentQuestion.c) {
+                        optionElement.classList.add('correct-answer');
+                    }
+                    if (optionText === userAnswers[currentQuestionIndex] && optionText !== currentQuestion.c) {
+                        optionElement.classList.add('incorrect-selection');
+                    }
+                     if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('user-selected-display');
+                    }
+                } else {
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
+                }
+                optionsContainerElement.appendChild(optionElement);
+            });
+            
+            prevButton.disabled = currentQuestionIndex === 0;
+            // MODIFICATION: Always enable the next button to allow skipping
+            nextButton.disabled = false; 
+            
+            if (currentQuestionIndex >= questionsData.length -1) {
+                nextButton.textContent = "Show Results";
+            } else {
+                 nextButton.textContent = "Next Question";
+            }
+        }
+
+        function handleOptionSelection(selectedDiv, selectedOptionText) {
+            if (questionsAttemptedFlags[currentQuestionIndex]) return; 
+
+            questionsAttemptedFlags[currentQuestionIndex] = true;
+            userAnswers[currentQuestionIndex] = selectedOptionText;
+            nextButton.disabled = false; 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const correctAnswerText = currentQuestion.c;
+
+            selectedDiv.classList.add('user-selected-display');
+
+            if (selectedOptionText === correctAnswerText) {
+                selectedDiv.classList.add('correct-answer');
+                score.correct++;
+            } else {
+                selectedDiv.classList.add('incorrect-selection');
+                score.incorrect++;
+                Array.from(optionsContainerElement.children).forEach(optDiv => {
+                    if (optDiv.dataset.optionText === correctAnswerText) {
+                        optDiv.classList.add('correct-answer');
+                    }
+                });
+            }
+            
+            Array.from(optionsContainerElement.children).forEach(optDiv => {
+                const newOptDiv = optDiv.cloneNode(true);
+                optDiv.parentNode.replaceChild(newOptDiv, optDiv);
+                newOptDiv.classList.add('disabled');
+            });
+
+            updateScoreboard();
+             if (currentQuestionIndex >= questionsData.length -1) {
+                nextButton.textContent = "Show Results";
+            }
+        }
+        
+        function selectOptionByKey(key) {
+            if (questionsAttemptedFlags[currentQuestionIndex]) return;
+
+            let optionIndex = -1;
+            if (key === 'a' || key === '1') optionIndex = 0;
+            else if (key === 'b' || key === '2') optionIndex = 1;
+            else if (key === 'c' || key === '3') optionIndex = 2;
+            else if (key === 'd' || key === '4') optionIndex = 3;
+
+            if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
+                const optionDiv = optionsContainerElement.children[optionIndex];
+                if (optionDiv && !optionDiv.classList.contains('disabled')) {
+                    handleOptionSelection(optionDiv, optionDiv.dataset.optionText);
+                }
+            }
+        }
+
+        function nextQuestionHandler() {
+            if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showCompletionMessage();
+            }
+        }
+
+        function prevQuestionHandler() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+        
+        function showCompletionMessage() {
+            questionHeaderElement.style.display = 'none';
+            questionTextElement.style.display = 'none';
+            optionsContainerElement.style.display = 'none';
+            document.getElementById('navigation-buttons').style.display = 'none';
+            completionMessageElement.style.display = 'block';
+            const attempted = score.correct + score.incorrect;
+            const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+        }
+
+        nextButton.addEventListener('click', nextQuestionHandler);
+        prevButton.addEventListener('click', prevQuestionHandler);
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key.toLowerCase();
+            
+            // MODIFICATION: Allow skipping with keyboard shortcuts
+            if (key === 'arrowright' || key === ' ' || key === 'enter') {
+                event.preventDefault();
+                nextQuestionHandler();
+            } else if (key === 'arrowleft') {
+                event.preventDefault();
+                prevQuestionHandler();
+            } else if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                if (currentQuestionIndex < questionsData.length && !questionsAttemptedFlags[currentQuestionIndex]) {
+                    event.preventDefault();
+                    selectOptionByKey(key);
+                }
+            }
+        });
+
+        populateSetSelector();
+        loadQuestion();
+        updateScoreboard(); 
+    </script>
+</body>
+</html>

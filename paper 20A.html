@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Quiz - Strategic Performance Management & Business Valuation (Paper 20A)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #scoreboard-container {
+            background: #9370DB; /* Purple */
+            color: #ffffff; 
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        #set-navigation-container {
+            background: #4169E1; /* Royal Blue */
+            color: #ffffff; 
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #scoreboard {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        #scoreboard span {
+            margin: 0 10px;
+        }
+        #scoreboard .correct { color: #d4edda; } 
+        #scoreboard .incorrect { color: #f8d7da; } 
+        #scoreboard .accuracy { color: #e0e0e0; } 
+
+
+        #set-navigation-container label {
+            margin-right: 10px;
+            font-weight: 500;
+            color: #ffffff; 
+        }
+
+        #set-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #fff; 
+            color: #333; 
+        }
+
+        #quiz-container {
+            background: #FFDAB9; /* Light Saffron (PeachPuff) */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            color: #333; 
+        }
+
+        #question-header {
+            font-size: 0.9em;
+            color: #4A4A4A; 
+            margin-bottom: 15px;
+            text-align: right;
+            border-bottom: 1px solid #FFBFA0; 
+            padding-bottom: 10px;
+        }
+
+        #question-text {
+            font-size: 1.15em;
+            margin-bottom: 25px;
+            color: #2c3e50; 
+            font-weight: 500;
+        }
+
+        .options-container {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            background: #FFF8E1; 
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #FFECB3; 
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            color: #333; 
+        }
+
+        .option:not(.disabled):hover {
+            background: #FFF0C1; 
+            border-color: #FFE082;
+        }
+        
+        .option.correct-answer {
+            background: #d4edda !important; 
+            border-color: #c3e6cb !important;
+            color: #155724 !important;
+        }
+
+        .option.incorrect-selection {
+            background: #f8d7da !important; 
+            border-color: #f5c6cb !important;
+            color: #721c24 !important;
+        }
+        .option.user-selected-display { 
+            /* Styles to indicate this was the user's picked option when reviewing */
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #495057;
+            background-color: #FFECB3; 
+            padding: 3px 7px;
+            border-radius: 4px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .option.correct-answer .option-letter {
+            background-color: #28a745 !important;
+            color: white !important;
+        }
+        .option.incorrect-selection .option-letter {
+            background-color: #dc3545 !important;
+            color: white !important;
+        }
+
+        #navigation-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        #prev-btn {
+            background-color: #6c757d; 
+        }
+       
+        #prev-btn:disabled, #next-btn:disabled {
+             background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+         #prev-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+        }
+
+
+        #completion-message {
+            text-align: center;
+            font-size: 1.6em;
+            color: #28a745;
+            padding: 30px;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            border-radius: 8px;
+        }
+        #instagram-link {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+        }
+        #instagram-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #instagram-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            #scoreboard-container,
+            #set-navigation-container, 
+            #quiz-container {
+                padding: 15px;
+            }
+            #scoreboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            #scoreboard span {
+                margin: 3px 0;
+            }
+            #question-text {
+                font-size: 1.05em;
+            }
+            .option {
+                padding: 10px;
+            }
+            button {
+                padding: 10px 15px; 
+                font-size: 14px;
+            }
+            #set-selector {
+                width: 100%;
+                margin-top: 5px;
+            }
+            #set-navigation-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="scoreboard-container">
+        <div id="scoreboard">
+            <span id="correct-count">Correct: 0</span>
+            <span id="incorrect-count">Incorrect: 0</span>
+            <span id="attempted-count">Attempted: 0</span>
+            <span id="accuracy-rate">Accuracy: N/A</span>
+        </div>
+    </div>
+
+    <div id="set-navigation-container">
+        <label for="set-selector">Switch to Set:</label>
+        <select id="set-selector"></select>
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-header">Loading quiz...</div>
+        <div id="question-text"></div>
+        <div class="options-container" id="options-container">
+            </div>
+        <div id="navigation-buttons">
+            <button id="prev-btn">Previous Question</button>
+            <button id="next-btn">Next Question</button>
+        </div>
+        <div id="completion-message" style="display:none;">
+            Quiz Completed! Thank you for participating.
+        </div>
+    </div>
+
+    <div id="instagram-link">
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh</a>
+    </div>
+
+    <script>
+        const questionsData = [
+            { q: "Performance management is a key concept in the field of", o: ["Human Resource Management", "Financial Management", "Technical Analysis", "Marketing Management"], c: "Human Resource Management" },
+            { q: "Operation management", o: ["The most important issues of performance management are", "It is a continuous process", "Alignment with strategic goal", "None of the above"], c: "Alignment with strategic goal" },
+            { q: "The- ratios are used to compare financial statements of different size companies or the same company over different periods.", o: ["Common size", "DuPont", "Liquidity", "P/E"], c: "Common size" },
+            { q: "Trend analysis is an important tool of financial statement analysis and is also known as", o: ["Horizontal analysis", "Vertical analysis", "Pyramid method", "None of the above"], c: "Horizontal analysis" },
+            { q: "is an important aspect of well-defined Procure to Pay process", o: ["Supply chain management", "Strategic management", "Operations management", "Vendor management"], c: "Vendor management" },
+            { q: "Vendor relationship management is an extension of the relationship", o: ["Supply chain management", "Buyer-supplier", "Porter's value chain", "Value analysis"], c: "Buyer-supplier" },
+            { q: "is also referred as the 'focal' company is supply chain management", o: ["Original equipment manufacturer", "Original band manufacturer", "Both (a) and (b)", "None of the above"], c: "Both (a) and (b)" },
+            { q: "Reverse mapping is a bottom up approach used in", o: ["Strategy formulation", "Strategy implementation", "Formulation of operational plan", "Formulation of tactical plan"], c: "Strategy formulation" },
+            { q: "The top key performance indicators (KPIs) of the Order to Cash (O2C) are", o: ["Process cycle time", "Days sales outstanding (DSO)", "On-time delivery performance", "All of the above"], c: "All of the above" },
+            { q: "The main forms of Customer Relationship Management (CRM) are", o: ["Strategic CRM", "Operational CRM", "Analytical CRM", "All of the above"], c: "All of the above" },
+            { q: "What is one of the vary basic parameters of the financial Performance of a company?", o: ["Employee Satisfaction", "Customer Profitability", "Production efficiency", "Innovation rate"], c: "Customer Profitability" },
+            { q: "How does an organisation benefit from a comprehensive knowledge of customers ?", o: ["By improving employee retention", "By enhancing supply chain efficiency", "By Retaining existing profitable customers and luring in new ones", "By Increasing Production speed"], c: "By Retaining existing profitable customers and luring in new ones" },
+            { q: "What is the Primary strategy of an organisation to positively impact its market share 2", o: ["Increase product prices", "Reduce production costs", "Lure in new customers", "Enhance employee benefits"], c: "Lure in new customers" },
+            { q: "Which model has a tactical orientation in evaluating the financial performance of an organisation?", o: ["Customer lifetime value model", "Customer profitability Analysis", "Balanced Scorecard", "Six Sigma"], c: "Customer profitability Analysis" },
+            { q: "What are the first signs of financial distress in a company?", o: ["Declining employee morale", "Increased production costs", "Loss of customers impacting cashflows", "Decreasing customer"], c: "Loss of customers impacting cashflows" },
+            { q: "Which of the following is not one of the main parts of the Kaplan-Norton balanced scorecard concept? Balancing", o: ["financial and non-financial measurements.", "cash flows and non-cash flows.", "short term and long term measurements.", "leading and lagging indicators"], c: "cash flows and non-cash flows." },
+            { q: "According to Kaplan & Norton, which of the balanced scorecard perspectives serves as the focus of the other perspectives?", o: ["Financial", "Customer.", "Internal business processes", "Learning & growth"], c: "Financial" },
+            { q: "According to Norton and Kaplan, the balanced scorecard should be used as", o: ["control system", "diagnostic system", "strategic system", "None of the above"], c: "strategic system" },
+            { q: "Given the following information for a business: Asset turnover = 3.50, Equity multiplier = 1 Return on Equity = 30% using the Dupont analysis, the net profit margin is", o: ["8.57%", "5.87%", "7.65%", "6.75%"], c: "8.57%" },
+            { q: "What is the missing item in this formula?Return on Equity (ROE) = Equity multiplier", o: ["Asset turnover", "Financial leverage", "Return on Assets", "Net profit margin"], c: "Return on Assets" },
+            { q: "One of the following is not a specific type of Benchmarking", o: ["Generic Benchmarking", "Internal Benchmarking", "External Benchmarking", "Competitive Benchmarking"], c: "External Benchmarking" },
+            { q: "Six Sigma is a business-driven, multi-dimensional structured approach to", o: ["Reducing process variability", "Lowering Defects", "Improving Processes", "All of the above"], c: "All of the above" },
+            { q: "Small/Mid-sized Six Sigma projects are executed by professionals titled as:", o: ["Champion", "Green Belt", "Black Belt", "Site Champion"], c: "Green Belt" },
+            { q: "Mura and Muri refer to and ---- respectively", o: ["Unevenness, waste", "Unevenness, overburden", "Overburden, waste", "Overburden, poka-yoke"], c: "Unevenness, overburden" },
+            { q: "Variations in the quality characteristic of a product is due to", o: ["chance causes", "assignable causes", "both (a) and (b)", "neither (a) nor (b)"], c: "both (a) and (b)" },
+            { q: "What is the primary purpose of the BSC ?", o: ["To increased production speed", "To reduce employee turnover", "To translate vision, mission and strategy into tangible objectives and measures", "To enhance product innovation"], c: "To translate vision, mission and strategy into tangible objectives and measures" },
+            { q: "Which of the following is not one of the critical management processes accomplished by the BSC ?", o: ["Clarity and translate vision and strategy", "Communicate and link strategic objectives and measures", "Improve employee benefits and Incentives", "Enhance strategic feedback and learning"], c: "Improve employee benefits and Incentives" },
+            { q: "Which of the following statements best describes the main goal of benchmarking according to the defination provided?", o: ["To replicate the exact processes of successful companies", "To create unique internal standards for measuring quality", "To Provide an external standard for measuring internal activities and identify improvement opportunities", "To innovate new processes without considering external comparisons"], c: "To Provide an external standard for measuring internal activities and identify improvement opportunities" },
+            { q: "What are the two methodologies used for the deployment of Six Sigma ?", o: ["DMMI & DMAD", "DMAIC & DMADV", "DMAC & DMMV", "IDMAC & DMADV"], c: "DMAIC & DMADV" },
+            { q: "Which Six sigma methodology is used to develop new processes or products ?", o: ["DMAIC", "DMADV", "DMAC", "DMID"], c: "DMADV" },
+            { q: "Which phase of the DMADV Process involves creating high-level design and evaluating design capability to select the best design ?", o: ["Define", "Measure", "Analyze", "Verify"], c: "Analyze" },
+            { q: "What is the first stepin the DMAIC Process?", o: ["Measure the current process and collect relevant data", "Define the process improvement goals consistent with customer demands and enterprise strategy", "Analyze to verify the relationship and casual of factors", "Control to ensure variances are corrected"], c: "Define the process improvement goals consistent with customer demands and enterprise strategy" },
+            { q: "What does the PDCA cycle stand for?", o: ["Plan-Do-Check-Adjust", "Plan-Do-Check-Act", "Prepare-Do-Check- Analyze", "Plan-Design-Check-Act"], c: "Plan-Do-Check-Act" },
+            { q: "What does the 'S' in the PDSA cycle stand for?", o: ["Simplify", "Study", "Solve", "Systemize"], c: "Study" },
+            { q: "Which phase of the PDCA cycle is associated with 'Sales'?", o: ["Plan", "Do", "Check", "Act"], c: "Check" },
+            { q: "What does MIS stand for?", o: ["Management Information system", "Marketing Information system", "Manufacturing Information System", "Monetary Information system"], c: "Management Information system" },
+            { q: "What are the three elements of MIS method in the text?", o: ["Management, Information, System.", "Data, Process, Output", "Collection, Analysis, Reporting", "Planning, Implementation, Monitoring"], c: "Management, Information, System." },
+            { q: "The relationship between the economy and an economic indicator can be", o: ["Procyclic", "Countercyclic", "Acyclic", "All of the above"], c: "All of the above" },
+            { q: "Key Performance Indicator (KPI) is defined as", o: ["A vision statement that outlines a company's successful strategy", "An executive officer's ability to lead his division", "A performance measurement tool to gauge how a company is doing", "A growth strategy that takes competition into account"], c: "A performance measurement tool to gauge how a company is doing" },
+            { q: "Pareto improvement is an action that makes", o: ["Both the person better off", "At least one person worse off", "At least one person worse off without making anyone better off", "At least one person better off without making anyone worse off."], c: "At least one person better off without making anyone worse off." },
+            { q: "On the basis of timing an economic indicator is", o: ["Leading", "Lagged", "Coincident", "All of the above"], c: "All of the above" },
+            { q: "Which of the following is a characteristic of a perfectly competitive market?", o: ["Firms are price setters", "There are few sellers in the market;", "Firms can exit and enter the market freely;", "All of these"], c: "Firms can exit and enter the market freely;" },
+            { q: "In order to maximize profits, a firm should produce at the output level for which:", o: ["Average cost is minimized;", "Marginal revenue equals marginal cost;", "Marginal cost is minimized;", "Price minus average cost is as large as possible"], c: "Marginal revenue equals marginal cost;" },
+            { q: "A firm's marginal revenue is defined as:", o: ["The ratio of total revenue to total quantity produced:", "The additional output produced by lowering price:", "The additional revenue received due to technical innovation:", "The additional revenue received when selling one more unit of output."], c: "The additional revenue received when selling one more unit of output." },
+            { q: "One of the following is not a Competition based pricing method.", o: ["Going rate pricing", "Sealed bid pricing", "Marginal cost pricing", "Trade association based pricing"], c: "Marginal cost pricing" },
+            { q: "The pricing of niche products is appropriate to", o: ["Perceived value pricing", "Penetration pricing", "Differential pricing", "Full cost pricing"], c: "Perceived value pricing" },
+            { q: "One of the below mentioned in not a modern theory of the firm", o: ["Baumol's sales maximisation", "Shareholder's wealth maximisation", "Marri's model of maximisation of Firm's Growth rate", "Williamson's model of managerial discretion"], c: "Shareholder's wealth maximisation" },
+            { q: "What is the role of a Perfectly competitive firm in the market?", o: ["Price Maker", "Price taker", "Price setter", "Price Influencer"], c: "Price taker" },
+            { q: "In a Perfectly competitive Market, what does the demand curve facing the firm look like?", o: ["Downward slopping", "Upward slopping", "Vertical", "Horizontal"], c: "Horizontal" },
+            { q: "At what point does a perfectly competitive firm maximize its total profits in the short run?", o: ["Where MR = MC", "Where MC > MR", "Where MR > MC", "Where MR <MC"], c: "Where MR = MC" }
+        ];
+
+        let userAnswers = new Array(questionsData.length).fill(null);
+        let questionsAttemptedFlags = new Array(questionsData.length).fill(false);
+        let currentQuestionIndex = 0;
+        let score = { correct: 0, incorrect: 0 };
+
+        const questionHeaderElement = document.getElementById('question-header');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const completionMessageElement = document.getElementById('completion-message');
+        const setSelectorElement = document.getElementById('set-selector');
+
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const attemptedCountElement = document.getElementById('attempted-count');
+        const accuracyRateElement = document.getElementById('accuracy-rate');
+        
+        const questionsPerSet = [50, 50, 50, 35]; 
+        const setStartIndices = [0, 50, 100, 150]; 
+
+
+        function populateSetSelector() {
+            setSelectorElement.innerHTML = ''; // Clear existing options
+            questionsPerSet.forEach((num, index) => {
+                const option = document.createElement('option');
+                option.value = index; 
+                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
+                setSelectorElement.appendChild(option);
+            });
+            setSelectorElement.addEventListener('change', (event) => {
+                const selectedSetIndex = parseInt(event.target.value);
+                currentQuestionIndex = setStartIndices[selectedSetIndex];
+                displayQuizElements();
+                loadQuestion();
+            });
+        }
+        
+        function displayQuizElements() {
+            completionMessageElement.style.display = 'none';
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            document.getElementById('navigation-buttons').style.display = 'flex';
+        }
+
+
+        function getCurrentSetInfo(index) {
+            let cumulativeQuestions = 0;
+            for (let i = 0; i < questionsPerSet.length; i++) {
+                cumulativeQuestions += questionsPerSet[i];
+                if (index < cumulativeQuestions) {
+                    if (setSelectorElement.value != i) { 
+                         setSelectorElement.value = i;
+                    }
+                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                }
+            }
+            //This will handle the last set if the loop doesn't catch it
+            const lastSetIndex = questionsPerSet.length - 1;
+            if (setSelectorElement.value != lastSetIndex) {
+                setSelectorElement.value = lastSetIndex;
+            }
+            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+        }
+        
+        function updateScoreboard() {
+            correctCountElement.textContent = `Correct: ${score.correct}`;
+            incorrectCountElement.textContent = `Incorrect: ${score.incorrect}`;
+            const attempted = score.correct + score.incorrect;
+            attemptedCountElement.textContent = `Attempted: ${attempted}`;
+            if (attempted > 0) {
+                const accuracy = (score.correct / attempted * 100).toFixed(1);
+                accuracyRateElement.textContent = `Accuracy: ${accuracy}%`;
+            } else {
+                accuracyRateElement.textContent = `Accuracy: N/A`;
+            }
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
+            if (currentQuestionIndex >= questionsData.length) {
+                showCompletionMessage();
+                return;
+            }
+            displayQuizElements(); 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const setInfo = getCurrentSetInfo(currentQuestionIndex);
+
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+
+            optionsContainerElement.innerHTML = '';
+            const questionAlreadyAnswered = questionsAttemptedFlags[currentQuestionIndex];
+
+            currentQuestion.o.forEach((optionText, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.dataset.optionText = optionText; 
+
+                const optionLetter = String.fromCharCode(65 + index);
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                
+                if (questionAlreadyAnswered) {
+                    optionElement.classList.add('disabled');
+                    if (optionText === currentQuestion.c) {
+                        optionElement.classList.add('correct-answer');
+                    }
+                    if (optionText === userAnswers[currentQuestionIndex] && optionText !== currentQuestion.c) {
+                        optionElement.classList.add('incorrect-selection');
+                    }
+                     if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('user-selected-display');
+                    }
+                } else {
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
+                }
+                optionsContainerElement.appendChild(optionElement);
+            });
+            
+            prevButton.disabled = currentQuestionIndex === 0;
+            // MODIFICATION: Always enable the next button to allow skipping
+            nextButton.disabled = false; 
+            
+            if (currentQuestionIndex >= questionsData.length -1) {
+                nextButton.textContent = "Show Results";
+            } else {
+                 nextButton.textContent = "Next Question";
+            }
+        }
+
+        function handleOptionSelection(selectedDiv, selectedOptionText) {
+            if (questionsAttemptedFlags[currentQuestionIndex]) return; 
+
+            questionsAttemptedFlags[currentQuestionIndex] = true;
+            userAnswers[currentQuestionIndex] = selectedOptionText;
+            nextButton.disabled = false; 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const correctAnswerText = currentQuestion.c;
+
+            selectedDiv.classList.add('user-selected-display');
+
+            if (selectedOptionText === correctAnswerText) {
+                selectedDiv.classList.add('correct-answer');
+                score.correct++;
+            } else {
+                selectedDiv.classList.add('incorrect-selection');
+                score.incorrect++;
+                Array.from(optionsContainerElement.children).forEach(optDiv => {
+                    if (optDiv.dataset.optionText === correctAnswerText) {
+                        optDiv.classList.add('correct-answer');
+                    }
+                });
+            }
+            
+            Array.from(optionsContainerElement.children).forEach(optDiv => {
+                const newOptDiv = optDiv.cloneNode(true);
+                optDiv.parentNode.replaceChild(newOptDiv, optDiv);
+                newOptDiv.classList.add('disabled');
+            });
+
+            updateScoreboard();
+             if (currentQuestionIndex >= questionsData.length -1) {
+                nextButton.textContent = "Show Results";
+            }
+        }
+        
+        function selectOptionByKey(key) {
+            if (questionsAttemptedFlags[currentQuestionIndex]) return;
+
+            let optionIndex = -1;
+            if (key === 'a' || key === '1') optionIndex = 0;
+            else if (key === 'b' || key === '2') optionIndex = 1;
+            else if (key === 'c' || key === '3') optionIndex = 2;
+            else if (key === 'd' || key === '4') optionIndex = 3;
+
+            if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
+                const optionDiv = optionsContainerElement.children[optionIndex];
+                if (optionDiv && !optionDiv.classList.contains('disabled')) {
+                    handleOptionSelection(optionDiv, optionDiv.dataset.optionText);
+                }
+            }
+        }
+
+        function nextQuestionHandler() {
+            if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showCompletionMessage();
+            }
+        }
+
+        function prevQuestionHandler() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+        
+        function showCompletionMessage() {
+            questionHeaderElement.style.display = 'none';
+            questionTextElement.style.display = 'none';
+            optionsContainerElement.style.display = 'none';
+            document.getElementById('navigation-buttons').style.display = 'none';
+            completionMessageElement.style.display = 'block';
+            const attempted = score.correct + score.incorrect;
+            const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+        }
+
+        nextButton.addEventListener('click', nextQuestionHandler);
+        prevButton.addEventListener('click', prevQuestionHandler);
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key.toLowerCase();
+            
+            // MODIFICATION: Allow skipping with keyboard shortcuts
+            if (key === 'arrowright' || key === ' ' || key === 'enter') {
+                event.preventDefault();
+                nextQuestionHandler();
+            } else if (key === 'arrowleft') {
+                event.preventDefault();
+                prevQuestionHandler();
+            } else if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                if (currentQuestionIndex < questionsData.length && !questionsAttemptedFlags[currentQuestionIndex]) {
+                    event.preventDefault();
+                    selectOptionByKey(key);
+                }
+            }
+        });
+
+        populateSetSelector();
+        loadQuestion();
+        updateScoreboard(); 
+    </script>
+</body>
+</html>

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Quiz - Direct Tax Laws and International Taxation (Paper 15)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #scoreboard-container {
+            background: #9370DB; /* Purple */
+            color: #ffffff; 
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        #set-navigation-container {
+            background: #4169E1; /* Royal Blue */
+            color: #ffffff; 
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #scoreboard {
+            display: flex;
+            justify-content: space-around;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        #scoreboard span {
+            margin: 0 10px;
+        }
+        #scoreboard .correct { color: #d4edda; } 
+        #scoreboard .incorrect { color: #f8d7da; } 
+        #scoreboard .accuracy { color: #e0e0e0; } 
+
+
+        #set-navigation-container label {
+            margin-right: 10px;
+            font-weight: 500;
+            color: #ffffff; 
+        }
+
+        #set-selector {
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            font-size: 1em;
+            background-color: #fff; 
+            color: #333; 
+        }
+
+        #quiz-container {
+            background: #FFDAB9; /* Light Saffron (PeachPuff) */
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 800px;
+            margin-bottom: 20px;
+            color: #333; 
+        }
+
+        #question-header {
+            font-size: 0.9em;
+            color: #4A4A4A; 
+            margin-bottom: 15px;
+            text-align: right;
+            border-bottom: 1px solid #FFBFA0; 
+            padding-bottom: 10px;
+        }
+
+        #question-text {
+            font-size: 1.15em;
+            margin-bottom: 25px;
+            color: #2c3e50; 
+            font-weight: 500;
+        }
+
+        .options-container {
+            margin-bottom: 20px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            background: #FFF8E1; 
+            padding: 12px 15px;
+            margin-bottom: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid #FFECB3; 
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+            color: #333; 
+        }
+
+        .option:not(.disabled):hover {
+            background: #FFF0C1; 
+            border-color: #FFE082;
+        }
+        
+        .option.correct-answer {
+            background: #d4edda !important; 
+            border-color: #c3e6cb !important;
+            color: #155724 !important;
+        }
+
+        .option.incorrect-selection {
+            background: #f8d7da !important; 
+            border-color: #f5c6cb !important;
+            color: #721c24 !important;
+        }
+        .option.user-selected-display { 
+            /* Styles to indicate this was the user's picked option when reviewing */
+        }
+
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .option-letter {
+            font-weight: bold;
+            margin-right: 10px;
+            color: #495057;
+            background-color: #FFECB3; 
+            padding: 3px 7px;
+            border-radius: 4px;
+            min-width: 20px;
+            text-align: center;
+        }
+        
+        .option.correct-answer .option-letter {
+            background-color: #28a745 !important;
+            color: white !important;
+        }
+        .option.incorrect-selection .option-letter {
+            background-color: #dc3545 !important;
+            color: white !important;
+        }
+
+        #navigation-buttons {
+            display: flex;
+            justify-content: space-between; 
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #007bff; 
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+        #prev-btn {
+            background-color: #6c757d; 
+        }
+       
+        #prev-btn:disabled, #next-btn:disabled {
+             background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+         #prev-btn:hover:not(:disabled) {
+            background-color: #5a6268;
+        }
+
+
+        #completion-message {
+            text-align: center;
+            font-size: 1.6em;
+            color: #28a745;
+            padding: 30px;
+            border: 1px solid #c3e6cb;
+            background-color: #d4edda;
+            border-radius: 8px;
+        }
+        #instagram-link {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 1.1em;
+            color: #555;
+        }
+        #instagram-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #instagram-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            #scoreboard-container,
+            #set-navigation-container, 
+            #quiz-container {
+                padding: 15px;
+            }
+            #scoreboard {
+                flex-direction: column;
+                align-items: center;
+            }
+            #scoreboard span {
+                margin: 3px 0;
+            }
+            #question-text {
+                font-size: 1.05em;
+            }
+            .option {
+                padding: 10px;
+            }
+            button {
+                padding: 10px 15px; 
+                font-size: 14px;
+            }
+            #set-selector {
+                width: 100%;
+                margin-top: 5px;
+            }
+            #set-navigation-container label {
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="scoreboard-container">
+        <div id="scoreboard">
+            <span id="correct-count">Correct: 0</span>
+            <span id="incorrect-count">Incorrect: 0</span>
+            <span id="attempted-count">Attempted: 0</span>
+            <span id="accuracy-rate">Accuracy: N/A</span>
+        </div>
+    </div>
+
+    <div id="set-navigation-container">
+        <label for="set-selector">Switch to Set:</label>
+        <select id="set-selector"></select>
+    </div>
+
+    <div id="quiz-container">
+        <div id="question-header">Loading quiz...</div>
+        <div id="question-text"></div>
+        <div class="options-container" id="options-container">
+            </div>
+        <div id="navigation-buttons">
+            <button id="prev-btn">Previous Question</button>
+            <button id="next-btn">Next Question</button>
+        </div>
+        <div id="completion-message" style="display:none;">
+            Quiz Completed! Thank you for participating.
+        </div>
+    </div>
+
+    <div id="instagram-link">
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh</a>
+    </div>
+
+    <script>
+        const questionsData = [
+            // Direct Tax Laws and International Taxation (Paper 15) - Total 98 Questions
+            // Set 1: Questions 1-50
+            { q: "1. As per section 115JB, every taxpayer being a company is liable to pay MAT, if the Income tax payable on the total income, computed as per the provisions of the Income-tax Act in respect of any year is less than ____", o: ["15.50%", "18.00%", "15.00%", "20.00%"], c: "15.00%" },
+            { q: "2. MAT shall not apply to any income accruing or arising to a company from:", o: ["Life insurance business", "Banking business", "Business of transmission of electricity", "All of the above"], c: "Life insurance business" },
+            { q: "3. Book profit for the purposes of section 115JB means net profi tas shown in the Statement of the Profit and Loss prepared in accordance with ____ of the Companies Act as increased and decreased by certain items prescribed in this regard..", o: ["Schedule V", "Schedule IV", "Schedule III", "Schedule II"], c: "Schedule III" },
+            { q: "4. Every company to whom the provisions of MAT apply is required to obtain a report from a chartered accountant in Form No. ____ on or before the due date of fi ling the return of income.", o: ["29", "29A", "29B", "29C"], c: "29B" },
+            { q: "5. While computing book profi t u/s 115JB, one of the following is required to be reduced from the net profit:", o: ["Unabsorbed Depreciation as per books of account", "Brought forward business loss as per books of account", "Brought forward loss or unabsorbed depreciation, whichever is less as per books of account", "Income-tax paid or payable if not already debited to the Statement of Profit and Loss"], c: "Brought forward loss or unabsorbed depreciation, whichever is less as per books of account" },
+            { q: "6. What is the due date of filling the return of income in case of a company who is required to furnish a report in Form No. 3CEB under section 92E?", o: ["September 30 of the assessment year", "November 30 of the assessment the year", "July 31 of the assessment year", "June 30 of relevant assessment the year"], c: "November 30 of the assessment the year" },
+            { q: "7. One of the following, can be carried forward even return of income is fi led after due date:", o: ["Unabsorbed Depreciation", "Business Loss", "Short term capital loss", "Long term capital loss"], c: "Unabsorbed Depreciation" },
+            { q: "8. Return filed under following sections can be revised u/s 139(5):", o: ["139(1)", "139(4)", "139(5)", "All of the above"], c: "All of the above" },
+            { q: "9. Assessment under following section is termed as scrutiny assessment", o: ["143(3)", "144", "Both of the above", "None of the above"], c: "143(3)" },
+            { q: "10. When an assessee has paid advance tax more than the tax due on the returned income and the return is fi led before the 'due date' specifi ed in section 139(1), the refund amount is eligible for interest (@ ____", o: ["1% per month", "2% per month", "%% per month", "1.50% per month"], c: "2% per month" }, // PDF ans 2. Usually 0.5% per month or part thereof.
+            { q: "11. Any mistake which is apparent from the record in any order passed by the Assessing Officer can be rectified under section ____", o: ["154", "147", "143", "254"], c: "154" },
+            { q: "12. In case of an application made by the assessee u/s 154, the income-tax authority shall rectify the order/refuse the rectification within ____ from the end of the month in which the application is received by the authority.", o: ["4 years", "2 years", "1 year", "6 months"], c: "6 months" },
+            { q: "13. An appeal to the Commissioner of Income-tax (Appeals) shall be fi led in Form No. ____", o: ["35", "36", "34C", "35B"], c: "35" },
+            { q: "14. The Joint Commissioner of Income-tax (Appeals) is the ____ appellate authority", o: ["First", "Second", "Third", "Fourth"], c: "First" },
+            { q: "15. Provisions relating to advance ruling are provided in sections ____", o: ["80C to 80U", "245A to 245L", "237 to 245", "245N to 245V"], c: "245N to 245V" },
+            { q: "16. Assessing Officer or the assessee, as the case may be, on receipt of notice that an appeal against the order of the Commissioner (Appeals) has been fi led by the other party, may fi le a memorandum of cross objection with the Tribunal in Form ____ and within ____ days of receipt of notice that appeal has been filed by the other party.", o: ["Form 36A; 15 days", "Form 36A; 45 days", "Form 36A; 30 days", "Form 36; 60 days"], c: "Form 36A; 30 days" },
+            { q: "17. Where revision u/s 264 has been initiated by the assessee, the application must be made within ____ from the date on which the order in question was communicated to the assessee or the date on which he otherwise came to know of it, whichever is earlier.", o: ["1 year", "4 years", "2 years", "30 days"], c: "1 year" },
+            { q: "18. Prosecution can be launched and the taxpayer can be punished if he commits wilful failure to produce before the tax authorities the accounts and documents as demanded u/s ____", o: ["154", "147", "143(1)", "142(1)"], c: "142(1)" },
+            { q: "19. If a person fails to comply with the provisions relating to PAN (i.e. obtaining PAN, quoting PAN, etc.), then penalty can be levied under section ____", o: ["270A", "272", "272A", "272B"], c: "272B" },
+            { q: "20. If during any proceeding, it is found that in the books of account maintained by any person there is a false entry or an omission of any entry which is relevant for computation of total income of such person, to evade tax liability, penalty u/s 271AD or Rs. ____ is levied", o: ["A sum equal to the aggregate amount of such false or omitted entry.", "Rs. 5,000 (subject to maximum of Rs. 1,00,000)", "2% of the amount of such entry", "None of the above"], c: "A sum equal to the aggregate amount of such false or omitted entry." },
+            { q: "21. If the amount of income in respect of which the penalty is imposed or imposable for the relevant year(s) exceeds Rs. ____ then no order reducing or waiving the penalty under section 273A(1) shall be made by the Principal Commissioner or Commissioner, except with the previous approval of the Principal Chief Commissioner or Chief Commissioner or Principal Director General or Director General, as the case may be.", o: ["1,00,000", "2,00,000", "5,00,000", "10,00,000"], c: "5,00,000" },
+            { q: "22. Principal Commissioner or Commissioner of Income-tax is empowered to grant relief from penalty to taxpayers in genuine cases. Such power is granted under section 273A and section ____", o: ["273B", "273AA", "273", "274"], c: "273AA" },
+            { q: "23. In case of amalgamation, eligible loss of amalgamating company shall be available to the amalgamated company for:", o: ["Such loss shall be treated as loss of the previous year in which amalgamation took place", "Remaining tenure available to the successor fully", "5 years", "3 years"], c: "Such loss shall be treated as loss of the previous year in which amalgamation took place" },
+            { q: "24. In the year of restructuring, depreciation shall be:", o: ["apportioned between successor and predecessor on the basis of number of days", "available to the successor company fully", "available to the predecessor company fully", "None of the above"], c: "apportioned between successor and predecessor on the basis of number of days" },
+            { q: "25. Countries that employ explicit policies designed to attract international trade oriented activities by minimization of taxes and reduction or elimination of other restrictions on business operations is described as", o: ["Tax Planning", "Tax Havens", "Tax Avoidance", "Tax Management"], c: "Tax Havens" },
+            { q: "26. A is using a motor car for his personal purposes, but charges as business expenditure. This is the case of:", o: ["Tax Planning", "Tax Avoidance", "Tax Evasion", "Tax Management"], c: "Tax Evasion" },
+            { q: "27. CBDT stands for:", o: ["Central Board of Direct Tax", "Central Board of Double Tax", "Central Bank of Direct Tax", "None of the above"], c: "Central Board of Direct Tax" },
+            { q: "28. Sec. 130 deals with:", o: ["Faceless jurisdiction of the income-tax authority", "Jurisdiction of the income-tax authority", "Jurisdiction of the CBDT", "None of the above"], c: "Faceless jurisdiction of the income-tax authority" },
+            { q: "29. As per section 178(3), the ____ of a company has to intimate the tax authority before he parts with any of the assets of the company or the properties in his hands and has to set aside the amount if any intimated to him by the tax authorities.", o: ["Managing Director", "Manager", "Chartered Accountant", "Liquidator"], c: "Liquidator" },
+            { q: "30. Equalisation levy shall be payable @ ____", o: ["6%", "5%", "2%", "None of the above"], c: "6%" },
+            { q: "31. ICDS VIII deals with:", o: ["Government Grants", "Revenue recognition", "Construction Contract", "Securities"], c: "Securities" },
+            { q: "32. ICDS is applicable in case of income under the head:", o: ["Profits and gains from Business or Profession", "Capital Gains", "Income from House Property", "All heads of income"], c: "Profits and gains from Business or Profession" },
+            { q: "33. The Black Money (Undisclosed Foreign Income and Assets) and Imposition of Tax Act, 2015 extends to:", o: ["Whole of India", "Whole of India excluding Jammu and Kashmir", "Whole of India excluding Jammu and Kashmir and Arunachal Pradesh", "None of the above"], c: "Whole of India" },
+            { q: "34. The rate of tax provided by the Black Money (Undisclosed Foreign Income and Assets) and Imposition of Tax Act, 2015 is:", o: ["30%", "60%", "50%", "None of the above"], c: "30%" },
+            { q: "35. Which among the following is a progressive tax", o: ["Custom duty", "GST", "sales tax", "Income tax"], c: "Income tax" },
+            { q: "36. Which one of the following is not a tax saving investment", o: ["Home Loan Principal Repayment", "Public Provident fund (PPF)", "Life Insurance Premium", "Fixed Deposits"], c: "Fixed Deposits" },
+            { q: "37. In the Income Tax Act, ____ is a certificate which an employer gives to his employees. It certifies the amount of tax deducted by the employer from the salary of employee", o: ["Form 16", "Form 12", "Form 15", "Form 26AS"], c: "Form 16" },
+            { q: "38. What percentage of tax is taxable on Long-Term capital gain arising from transfer of securities, bonds, units, debenture", o: ["12%", "10%", "20%", "5%"], c: "10%" },
+            { q: "39. As per sub-section (8A) of section 139 of the Income tax Act, a person may furnish an updated return of his income for the previous year relevant to such assessment year, with in ____ from the end of assessement year", o: ["6 Months", "12 Months", "24 Months", "36 Months"], c: "24 Months" },
+            { q: "40. Minimum alternate Tax is", o: ["Tax Imposed on companies which pays zero or no tax", "Minimum income tax on individual", "Tax paid on Luxury goods", "Surcharge on High Networth Individual"], c: "Tax Imposed on companies which pays zero or no tax" },
+            { q: "41. Period upto which AMT credit can be carried forward", o: ["10 Years", "12 Years", "15 Years", "8 Years"], c: "15 Years" },
+            { q: "42. If the recipient of income doesn't furnish his PAN to deductor then TDS is to be deducted at which rate?", o: ["5%", "10%", "20%", "15 %"], c: "20%" },
+            { q: "43. What are the conditions to be fulfilled for charging of income under the head capital gains", o: ["There must be a capital asset", "There must be a transfer of such capital asset", "The transfer of such capital asset has been affected during the previous year", "All of the above"], c: "All of the above" },
+            { q: "44. The maximum amount of exemption of gift from a non relative is", o: ["50000", "10000", "100000", "25000"], c: "50000" },
+            { q: "45. The last date of filling of return of income of individual is", o: ["31st July of the assessment year", "30th September of the assessment year", "31st March of the assessment year", "31st August of the assessment year"], c: "31st July of the assessment year" },
+            { q: "46. Return filed after the due date is called", o: ["Revised Return", "Belated return", "Defective return", "Verification of Return"], c: "Belated return" },
+            { q: "47. Sole Proprietor is liable to tax at which rate", o: ["30%", "25%", "10%", "Slab Rate"], c: "Slab Rate" },
+            { q: "48. Capital asset excludes all except", o: ["Stock-in-trade", "Jewellery", "Personal effects", "Agricultural land in India"], c: "Jewellery" },
+            { q: "49. Long-term Capital Loss can only be set off against", o: ["Long-term capital loss", "Short-term capital loss", "Long-term capital gain", "All of the above"], c: "Long-term capital gain" },
+            { q: "50. ICDS IV deals with", o: ["Construction Contracts", "Valuation of Inventories", "Revenue Recognition", "Securities"], c: "Revenue Recognition" },
+            
+            // Set 2: Questions 51-98
+            { q: "51. Under which section interest shall be charged to deferment of advance tax", o: ["234A", "234B", "234C", "234D"], c: "234C" },
+            { q: "52. For filling return of Income in respect of various entities, the Income-tax Act, 1961 has prescribed -", o: ["One due date", "Two due dates", "Three due dates", "Four due dates"], c: "Three due dates" },
+            { q: "53. The return of a company has to be verified by", o: ["The Managing director or Director", "The General manager", "The Secretary", "The Manager"], c: "The Managing director or Director" },
+            { q: "54. The due date of filling of return for a company with a business loss of Rs.130,000 for AY 2024-25 is", o: ["31st July, 2024", "30th September, 2024", "31st October, 2024", "31st August, 2024"], c: "31st October, 2024" },
+            { q: "55. Mr.Ram has Received a sum of Rs.51000 on 15.09.2023 from relatives on the occasion of his marriage", o: ["Entire Rs. 51,000 is chargeable to tax", "Only Rs. 1000 is chargeable to tax", "Entire Rs.51,000 is exempt from tax", "Only 50% i.e Rs.25.500 is chargeable to tax"], c: "Entire Rs.51,000 is exempt from tax" },
+            { q: "56. The rate of TDS on rental payments of plant, machinery or equipment is -", o: ["2%", "5%", "10%", "1%"], c: "2%" },
+            { q: "57. Mr.Ram a resident indian, wins  10,000 in a lottery. Which of the statement is true?", o: ["Tax is deductible u/s194B @30%", "Tax is deductible u/s194B @30.9%", "No tax is deductible at source", "None of the above."], c: "No tax is deductible at source" }, // Tax is deductible only if winning exceeds 10,000
+            { q: "58. X Ltd., a domestic company not opting for the provisions of section 115BAA, has a total income of Rs. 10,01,00,000 for AY 2024-25. The gross receipts of X Ltd.for PY 2021-22 is Rs.260 Crore. The tax liability of X Ltd. For AY 2024-25 is -", o: ["Rs.2.68.25,000", "Rs. 2,68,50,000", "Rs. 2,91,49,120", "Rs.3,34,88,000"], c: "Rs. 2,68,50,000" },
+            { q: "59. Who among the following is not mandated to file the return of income under section 139 for AY 2024-25?", o: ["XYZ Pvt. Ltd., having incurred a loss of 2 1,50,000 during the year", "Mr. Monohar, aged 66 years, having a total income of 3,50,000 before deduction under section 80C of ₹ 1,50,000.", "Mr. jay, who travelled to Dubai during the year, spent 4,50,000on his travel and hotel stay", "Ms Sita, a non-resident having assets worth 2 crores in india and 5 Crores outside india has not earned or received any income in india."], c: "Ms Sita, a non-resident having assets worth 2 crores in india and 5 Crores outside india has not earned or received any income in india." },
+            { q: "60. A public charitable trust having it's object medical relief to poor, running a medical shop in which it has commercial receipts which exceeds 20% of total receipts. Wheather such trust can claim application based exemption in relation to receipts of medical shop", o: ["No, due to provisio of section 2(15) it loses the status of charitable", "Yes, provided such business in incidental to the attainment of the object of the trust.", "Yes, provided separate books of account are maintained in respect of such income.", "Yes, but subject to (B) and (C) above"], c: "Yes, but subject to (B) and (C) above" },
+            { q: "61. Sec.91 deals with", o: ["Bilateral Relief", "Unilateral Relief", "Both (a) and (b)", "None of the above"], c: "Unilateral Relief" },
+            { q: "62. In respect of DTAA, generally, India follows:", o: ["UN model", "UK Model", "OECD Model", "US Model"], c: "UN model" },
+            { q: "63. Section ____ deals with methods of computation of arm's length price.", o: ["94", "93", "92C", "91"], c: "92C" },
+            { q: "64. As per section ____ when any specified domestic transaction is carried out between associated enterprises, the said transaction should be carried out at arm's length price.", o: ["90", "91", "92", "90A"], c: "92" },
+            { q: "65. When an assessee fails to furnish any information relating to a specified domestic transaction, the quantum of penalty as a percentage of value of the transaction would be", o: ["2%", "1%", "5%", "3%"], c: "2%" },
+            { q: "66. As per sec. 94B, interest expenses claimed by an entity to its associated enterprises shall be restricted to ____ of its earnings before interest, taxes, depreciation and amortization (EBITDA) or interest paid or payable to associated enterprise, whichever is less.", o: ["30%", "25%", "20%", "50%"], c: "30%" },
+            { q: "67. Advance Pricing Agreement shall be valid for such period not exceeding ____ consecutive previous years as may be specified in the agreement.", o: ["5", "3", "10", "2"], c: "5" },
+            { q: "68. Arm's length price is to be determined by applying.", o: ["Resale Price Method", "Fair Market Value Method", "Stamp Duty Value Method", "Indexed Cost of Acquisition Method"], c: "Resale Price Method" }, // One of the methods.
+            { q: "69. The provisions of sec.92 will apply only if the aggregate value of specified domestic transactions entered into by the taxpayer during the year exceeds a sum of ____", o: ["100 crore", "5 crore", "10 crore", "20 crore"], c: "20 crore" },
+            { q: "70. Uncontrolled transaction means a transaction between ____ whether resident or non-resident", o: ["enterprises other than associated enterprises", "associated enterprises", "any enterprises", "None of the above"], c: "enterprises other than associated enterprises" },
+            { q: "71. Information and documents required to maintained u/s 92D shall be kept and maintained for a period of ____ from the end of the relevant assessment year.", o: ["8 years", "5 years", "10 years", "16 years"], c: "8 years" },
+            { q: "72. If any person fails to keep and maintain any such information and document as required by sec. 92D in respect of an international transaction or specified domestic transaction, the Assessing Officer or Commissioner (Appeals) may direct that such person shall pay, by way of penalty, a sum equal to", o: ["Rs. 5,00,000", "2% of the value of each international transaction or specified domestic transaction entered into by such person", "Rs. 1,00,000", "1% of the value of each international transaction or specified domestic transaction entered into by such person"], c: "2% of the value of each international transaction or specified domestic transaction entered into by such person" },
+            { q: "73. General Anti Avoidance Rule (GAAR) is applicable from", o: ["01-04-2018", "01-04-2017", "01-07-2017", "01-07-2018"], c: "01-04-2018" }, // AY 2018-19 onwards, so applicable from PY 2017-18 i.e. 01-04-2017. PDF answer is 1.
+            { q: "74. GAAR provisions shall not apply to", o: ["an arrangement where the tax benefit in the relevant assessment year arising, in aggregate, to all the parties to the arrangement does not exceed a sum of 3 crore", "an arrangement where the tax benefit in the relevant assessment year arising, in aggregate, to all the parties to the arrangement does not exceed a sum of 5 crore", "an arrangement where the tax benefit in the relevant assessment year arising, in aggregate , to all the parties to the arrangement does not exceed a sum of 1 crore", "None of the above"], c: "an arrangement where the tax benefit in the relevant assessment year arising, in aggregate, to all the parties to the arrangement does not exceed a sum of 3 crore" },
+            { q: "75. Two enterprises shall be deemed to be an associated enterprise when one enterprise directly holds shares carrying:", o: ["26% or less of the voting power in the other enterprise", "25% of the voting power in the other enterprise", "26% or more of the voting power in the other enterprise", "None of the above"], c: "26% or more of the voting power in the other enterprise" },
+            { q: "76. Generally, two enterprises shall be deemed to be associated enterprise when one enterprise holds, directly or indirectly 26% or more ____ in the other enterprise", o: ["Equity shares", "Preference Shares", "Compulsorily convertible debentures", "Non-convertible debentures"], c: "Equity shares" },
+            { q: "77. Two enterprises shall be deemed to be associated enterprises if a loan advanced by one enterprise to the other enterprise constitutes", o: ["50% or more of the book value of the total assets of the other enterprise.", "Less than 50% of the book value of the total assets of the other enterprise.", "More than 51% of the book value of the total assets of the other enterprise.", "51% or more of the book value of the total assets of the other enterprise."], c: "51% or more of the book value of the total assets of the other enterprise." },
+            { q: "78. Zero India Private Ltd. borrowed Rs 500 crores from an Indian Bank. Y Inc. (USA) guaranteed the borrowings of Indian Company. Select the correct statement:", o: ["Both are associated enterprises when the Y Inc. guarantees Rs 40 crores on behalf of Zero India", "Both are associated enterprises when the Y Inc. guarantees Rs 49 crores on behalf of Zero India", "Both are associated enterprises when the Y Inc. guarantees Rs 50 crores on behalf of Zero India", "Both are associated enterprises irrespective of amount of guarantee made by Y Inc."], c: "Both are associated enterprises when the Y Inc. guarantees Rs 50 crores on behalf of Zero India" }, // Guarantee of 10% or more. 10% of 500 Cr is 50 Cr.
+            { q: "79. Two enterprises shall be deemed to be associated enterprises when-", o: ["50% or less of raw materials and consumables required for the manufacturing of goods by one enterprise, are supplied by the other enterprise.", "At least 80% of raw materials and consumables required for the manufacturing of goods by one enterprise, are supplied by the other enterprise.", "90% or more of raw materials and consumables required for the manufacturing of goods by one enterprise, are supplied by the other enterprise", "None of the above"], c: "90% or more of raw materials and consumables required for the manufacturing of goods by one enterprise, are supplied by the other enterprise" },
+            { q: "80. Under transfer pricing, International Transaction 'Means'", o: ["Transactions between two or more Associated Enterprises either or both of whom are non-residents", "Transactions between three or more Associated Enterprises who are non-residents", "Transactions between two or more Associated Enterprises who are residents", "None of the above"], c: "Transactions between two or more Associated Enterprises either or both of whom are non-residents" },
+            { q: "81. The International transaction shall be in nature of:", o: ["Purchase, sale or lease of tangible or intangible property", "Provision of services or lending or borrowing money; or", "Any other transaction having a bearing on the profits, income, losses or assets of the enterprises", "All of the above"], c: "All of the above" },
+            { q: "82. Failure to keep and maintain information and documentation as required by Section 92D would attract penalty u/s 271AA for :-", o: ["@50% of the value of international transaction entered into by a taxpayer", "2% of the value of international transaction or specified domestic transaction entered into by a taxpayer for which documents are not kept", "@2% of the value of all transactions. entered into by a taxpayer", "None of the above"], c: "2% of the value of international transaction or specified domestic transaction entered into by a taxpayer for which documents are not kept" },
+            { q: "83. The aggregate of Specified Domestic transactions entered into by the assessee in the previous year should exceed a sum of ____ to be considered as specified domestic transaction.", o: ["Rs 1 crore", "Rs 20 crore", "Rs 10 crore", "None of the above"], c: "Rs 20 crore" },
+            { q: "84. The order of the Transfer Pricing Officer determining the arm's length price of an international transaction or specified domestic transaction is binding on the :-", o: ["Assessing Officer", "CIT(A)", "Both A and B", "None of the above"], c: "Assessing Officer" },
+            { q: "85. Secondary Adjustment means :-", o: ["Any transfer pricing adjustment which is made on the basis of arm's length price of international transaction", "An adjustment in the books of accounts of the assessee and its Associated Enterprise to reflect that the actual allocation of profits are consistent with the transfer price", "Any transfer pricing adjustment which is made on the basis of arm's length price of specified domestic transaction", "Both A and C"], c: "An adjustment in the books of accounts of the assessee and its Associated Enterprise to reflect that the actual allocation of profits are consistent with the transfer price" },
+            { q: "86. Secondary Adjustment shall be made when Primary Adjustment to transfer price:-", o: ["has been made suo motu by the assessee in his return of income", "has been made by the Assessing Officer but it was not accepted by the assessee", "has been determined by TPO", "None of the above"], c: "has been made suo motu by the assessee in his return of income" },
+            { q: "87. In case of secondary adjustment, where international transaction is denominated in INR, then the interest income on excess money available with Associated Enterprise shall be computed as per which of the following rate of interest :-", o: ["One-year marginal cost of lending fund of SBI as on April 1 of PY+3.25%", "LIBOR as on September 30 of PY +3%", "LIBOR as on September 30 of PY +3.25%", "None of the above"], c: "One-year marginal cost of lending fund of SBI as on April 1 of PY+3.25%" },
+            { q: "88. In case of secondary adjustment, where international transaction is denominated in foreign currency then the interest income on excess money available with Associated Enterprise shall be computed as per rate of interest :-", o: ["One-year marginal cost of lending fund of SBI as on April 1 of PY+3.2596", "LIBOR as on September 30 of PY +3%", "LIBOR as on September 30 of PY +3.25%", "None of the above"], c: "LIBOR as on September 30 of PY +3%" },
+            { q: "89. The maximum validity period of Advance Pricing Agreement shall be :-", o: ["5 consecutive years", "4 consecutive years", "3 previous years", "10 previous years"], c: "5 consecutive years" },
+            { q: "90. The CBDT may declare Advance Pricing Agreement to be void ab initio, with the approval of Central Government where: -", o: ["There is change in law after signing of Advance Pricing Agreement", "Advance Pricing Agreement has been obtained by way of fraud or misrepresentation of facts", "There is change in facts after signing of Advance Pricing Agreement", "All of the above"], c: "Advance Pricing Agreement has been obtained by way of fraud or misrepresentation of facts" },
+            { q: "91. The pre-filing consultation :-", o: ["Shall not bind the CBDT or the proposed applicant to initiate APA process", "Shall be deemed to imply that the person has applied for entering into an APA.", "Is optional for person unleading to file an APA", "Both A and C"], c: "Both A and C" },
+            { q: "92. As per Section 92CD modified return for first of PY in respect of rollback year shall be furnished within..... months from the end of the month in which Advance Pricing Agreement was entered.", o: ["1 month", "2 month", "3 month", "None of the above"], c: "3 month" },
+            { q: "93. Ram Ltd., Kolkata having international transactions exceeding Rs. 100 crore omitted to furnish report required under section 92E. How much is the penalty leviable for the failure to furnish report under section 92E?", o: ["Rs. 1 lakh", "Rs.50 lakh", "Rs.1 crore", "Rs. 2 crore"], c: "Rs. 1 lakh" },
+            { q: "94. GAAR stands for -", o: ["Government anti-avoidance rules", "General anti-avoidance rules", "General agreement-avoidance rules", "Government anti-agreement rules"], c: "General anti-avoidance rules" },
+            { q: "95. Tax haven is a place where -", o: ["Tax rates are very high", "There is no tax on income", "Tax rates are very low", "There is no tax on income or tax rates are very low"], c: "There is no tax on income or tax rates are very low" },
+            { q: "96. In the assessement of Laxmi (P) Ltd. there was increase in income by way of arm's length price adjustment of Rs. 200 lakhs. The assessee decided to pay additional inome-tax instead of making secondary adjustment. What is the tax rate at which the additional income-tax is payable by assessee ?", o: ["10.92%", "16.692%", "20.9664%", "23.296%"], c: "20.9664%" },
+            { q: "97. Rs. 15,000 arising in country B with which India has DTAA, has been taxed in the hands of Mr. kabir as well as Ms. Yamini. This is an instance of ____ and the remedy for the same is through ____", o: ["Economic Double Taxation DTAA", "Economic Double Taxation Mutual Agreement Procedure", "Jurisdictional Double Taxation, DTAA", "Jurisdictional Double Taxation. Mutual Agreement Procedure"], c: "Economic Double Taxation Mutual Agreement Procedure" },
+            { q: "98. Transfer pricing provision should not be applied in cases where the adoption of the arm's length price would result in a", o: ["Reducing the tax payable in India", "Increasing the tax payable in India", "Increasing the expenditure of the Indian company", "Both A and C"], c: "Both A and C" }
+        ];
+
+        let userAnswers = new Array(questionsData.length).fill(null);
+        let questionsAttemptedFlags = new Array(questionsData.length).fill(false);
+        let currentQuestionIndex = 0;
+        let score = { correct: 0, incorrect: 0 };
+
+        const questionHeaderElement = document.getElementById('question-header');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const completionMessageElement = document.getElementById('completion-message');
+        const setSelectorElement = document.getElementById('set-selector');
+
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const attemptedCountElement = document.getElementById('attempted-count');
+        const accuracyRateElement = document.getElementById('accuracy-rate');
+
+        const questionsPerSet = [50, 48];
+        const setStartIndices = [0, 50]; 
+
+        function populateSetSelector() {
+            setSelectorElement.innerHTML = ''; // Clear existing options
+            questionsPerSet.forEach((num, index) => {
+                const option = document.createElement('option');
+                option.value = index; 
+                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
+                setSelectorElement.appendChild(option);
+            });
+            setSelectorElement.addEventListener('change', (event) => {
+                const selectedSetIndex = parseInt(event.target.value);
+                currentQuestionIndex = setStartIndices[selectedSetIndex];
+                displayQuizElements();
+                loadQuestion();
+            });
+        }
+        
+        function displayQuizElements() {
+            completionMessageElement.style.display = 'none';
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            document.getElementById('navigation-buttons').style.display = 'flex';
+        }
+
+
+        function getCurrentSetInfo(index) {
+            let cumulativeQuestions = 0;
+            for (let i = 0; i < questionsPerSet.length; i++) {
+                cumulativeQuestions += questionsPerSet[i];
+                if (index < cumulativeQuestions) {
+                    if (setSelectorElement.value != i) { 
+                         setSelectorElement.value = i;
+                    }
+                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                }
+            }
+            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+        }
+        
+        function updateScoreboard() {
+            correctCountElement.textContent = `Correct: ${score.correct}`;
+            incorrectCountElement.textContent = `Incorrect: ${score.incorrect}`;
+            const attempted = score.correct + score.incorrect;
+            attemptedCountElement.textContent = `Attempted: ${attempted}`;
+            if (attempted > 0) {
+                const accuracy = (score.correct / attempted * 100).toFixed(1);
+                accuracyRateElement.textContent = `Accuracy: ${accuracy}%`;
+            } else {
+                accuracyRateElement.textContent = `Accuracy: N/A`;
+            }
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
+            if (currentQuestionIndex >= questionsData.length) {
+                showCompletionMessage();
+                return;
+            }
+            displayQuizElements(); 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const setInfo = getCurrentSetInfo(currentQuestionIndex);
+
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+
+            optionsContainerElement.innerHTML = '';
+            const questionAlreadyAnswered = questionsAttemptedFlags[currentQuestionIndex];
+
+            currentQuestion.o.forEach((optionText, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.dataset.optionText = optionText; 
+
+                const optionLetter = String.fromCharCode(65 + index);
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                
+                if (questionAlreadyAnswered) {
+                    optionElement.classList.add('disabled');
+                    if (optionText === currentQuestion.c) {
+                        optionElement.classList.add('correct-answer');
+                    }
+                    if (optionText === userAnswers[currentQuestionIndex] && optionText !== currentQuestion.c) {
+                        optionElement.classList.add('incorrect-selection');
+                    }
+                     if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('user-selected-display');
+                    }
+                } else {
+                    optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
+                }
+                optionsContainerElement.appendChild(optionElement);
+            });
+            
+            prevButton.disabled = currentQuestionIndex === 0;
+            // MODIFICATION: Always enable the next button to allow skipping
+            nextButton.disabled = false; 
+            
+            if (currentQuestionIndex >= questionsData.length -1) {
+                nextButton.textContent = "Show Results";
+            } else {
+                 nextButton.textContent = "Next Question";
+            }
+        }
+
+        function handleOptionSelection(selectedDiv, selectedOptionText) {
+            if (questionsAttemptedFlags[currentQuestionIndex]) return; 
+
+            questionsAttemptedFlags[currentQuestionIndex] = true;
+            userAnswers[currentQuestionIndex] = selectedOptionText;
+            nextButton.disabled = false; 
+
+            const currentQuestion = questionsData[currentQuestionIndex];
+            const correctAnswerText = currentQuestion.c;
+
+            selectedDiv.classList.add('user-selected-display');
+
+            if (selectedOptionText === correctAnswerText) {
+                selectedDiv.classList.add('correct-answer');
+                score.correct++;
+            } else {
+                selectedDiv.classList.add('incorrect-selection');
+                score.incorrect++;
+                Array.from(optionsContainerElement.children).forEach(optDiv => {
+                    if (optDiv.dataset.optionText === correctAnswerText) {
+                        optDiv.classList.add('correct-answer');
+                    }
+                });
+            }
+            
+            Array.from(optionsContainerElement.children).forEach(optDiv => {
+                const newOptDiv = optDiv.cloneNode(true);
+                optDiv.parentNode.replaceChild(newOptDiv, optDiv);
+                newOptDiv.classList.add('disabled');
+            });
+
+            updateScoreboard();
+             if (currentQuestionIndex >= questionsData.length -1) {
+                nextButton.textContent = "Show Results";
+            }
+        }
+        
+        function selectOptionByKey(key) {
+            if (questionsAttemptedFlags[currentQuestionIndex]) return;
+
+            let optionIndex = -1;
+            if (key === 'a' || key === '1') optionIndex = 0;
+            else if (key === 'b' || key === '2') optionIndex = 1;
+            else if (key === 'c' || key === '3') optionIndex = 2;
+            else if (key === 'd' || key === '4') optionIndex = 3;
+
+            if (optionIndex !== -1 && optionIndex < optionsContainerElement.children.length) {
+                const optionDiv = optionsContainerElement.children[optionIndex];
+                if (optionDiv && !optionDiv.classList.contains('disabled')) {
+                    handleOptionSelection(optionDiv, optionDiv.dataset.optionText);
+                }
+            }
+        }
+
+        function nextQuestionHandler() {
+            if (currentQuestionIndex < questionsData.length - 1) {
+                currentQuestionIndex++;
+                loadQuestion();
+            } else {
+                showCompletionMessage();
+            }
+        }
+
+        function prevQuestionHandler() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+        
+        function showCompletionMessage() {
+            questionHeaderElement.style.display = 'none';
+            questionTextElement.style.display = 'none';
+            optionsContainerElement.style.display = 'none';
+            document.getElementById('navigation-buttons').style.display = 'none';
+            completionMessageElement.style.display = 'block';
+            const attempted = score.correct + score.incorrect;
+            const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+        }
+
+        nextButton.addEventListener('click', nextQuestionHandler);
+        prevButton.addEventListener('click', prevQuestionHandler);
+
+        document.addEventListener('keydown', (event) => {
+            const key = event.key.toLowerCase();
+            
+            // MODIFICATION: Allow skipping with keyboard shortcuts
+            if (key === 'arrowright' || key === ' ' || key === 'enter') {
+                event.preventDefault();
+                nextQuestionHandler();
+            } else if (key === 'arrowleft') {
+                event.preventDefault();
+                prevQuestionHandler();
+            } else if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                if (currentQuestionIndex < questionsData.length && !questionsAttemptedFlags[currentQuestionIndex]) {
+                    event.preventDefault();
+                    selectOptionByKey(key);
+                }
+            }
+        });
+
+        populateSetSelector();
+        loadQuestion();
+        updateScoreboard(); 
+    </script>
+</body>
+</html>
