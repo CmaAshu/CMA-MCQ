@@ -3,27 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ Quiz - Risk Management in Banking and Insurance (Paper 20B)</title>
+    <title>MCQ Quiz - Risk Management in Banking and Insurance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
 
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         #scoreboard-container {
-            background: #9370DB; /* Purple */
-            color: #ffffff; 
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), #0228fa);
+            background-size: 200% 200%;
+            animation: gradient-animation 10s ease infinite;
+            color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +55,76 @@
         }
         
         #set-navigation-container {
-            background: #4169E1; /* Royal Blue */
-            color: #ffffff; 
+            background: linear-gradient(135deg, #04bf26, #ADFF2F, #32cd32);
+            background-size: 200% 200%;
+            animation: gradient-animation 10s ease infinite;
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFDAB9; /* Light Saffron (PeachPuff) */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #4A4A4A; 
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #FFBFA0; 
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; 
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,69 +135,83 @@
         .option {
             display: flex;
             align-items: center;
-            background: #FFF8E1; 
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #FFECB3; 
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #FFF0C1; 
-            border-color: #FFE082;
+            background: #fff59d;
+            border-color: #f2e70c;
+        }
+
+        .option.selected { 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important;
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important;
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
-        .option.user-selected-display { 
-            /* Styles to indicate this was the user's picked option when reviewing */
-        }
-
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057;
-            background-color: #FFECB3; 
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
+        .option.selected .option-letter {
+            background-color: var(--primary-blue); 
+            color: white;
+            transform: scale(1.1);
+        }
+
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important;
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important;
+            background-color: #ef4444 !important; 
             color: white !important;
         }
+
 
         #navigation-buttons {
             display: flex;
             justify-content: space-between; 
+            align-items: center;
             margin-top: 25px;
         }
 
         button {
-            background-color: #007bff; 
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -176,44 +219,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
         }
+        
         #prev-btn {
-            background-color: #6c757d; 
-        }
-       
-        #prev-btn:disabled, #next-btn:disabled {
-             background-color: #cccccc;
-            cursor: not-allowed;
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3;
+            background-color: #0637c9;
+            transform: translateY(-2px);
         }
-         #prev-btn:hover:not(:disabled) {
-            background-color: #5a6268;
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
-
+        button:disabled {
+            background-color: #4b5563; 
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.6;
+        }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745;
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -243,6 +291,16 @@
             button {
                 padding: 10px 15px; 
                 font-size: 14px;
+            }
+            #navigation-buttons {
+                flex-direction: column; 
+            }
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
             }
             #set-selector {
                 width: 100%;
@@ -276,8 +334,8 @@
         <div class="options-container" id="options-container">
             </div>
         <div id="navigation-buttons">
-            <button id="prev-btn">Previous Question</button>
-            <button id="next-btn">Next Question</button>
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
         </div>
         <div id="completion-message" style="display:none;">
             Quiz Completed! Thank you for participating.
@@ -285,115 +343,121 @@
     </div>
 
     <div id="instagram-link">
-        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh</a>
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash??tosh </a>
     </div>
 
     <script>
+        // --- START OF QUESTION DATA ---
         const questionsData = [
-            { q: "When the risk of losses in on or off-balance sheet positions arising from movement in market prices, it is called as", o: ["Operational Risk", "Market Risk", "Liquidity Risk", "Account Risk"], c: "Market Risk" },
-            { q: "The risk that arises from the possibility of non-payment of loans by the borrowers is known as", o: ["Credit Risks.", "Market Risks", "Moral Hazard", "Business Risk"], c: "Credit Risks." },
-            { q: "The major component of Market risk is", o: ["Interest rate risk", "Equity risk", "Commodity risk", "All of the above"], c: "All of the above" },
-            { q: "When a bank's image and public standing is in doubt and leads to the public's loss of confidence in a bank, it is called as", o: ["Reputational risk", "Moral Hazard", "Operational risk", "None of the above"], c: "Reputational risk" },
-            { q: "Legal Risk is known as", o: ["When the actions can lead to the entire financial system coming to a standstill.", "When there is a financial loss to the bank arising from legal suits filed against the bank or by a bank for applying a law wrongly.", "When a bank chooses the wrong strategy or follows a longterm-business strategy which might lead to its failure.", "All of the above"], c: "When there is a financial loss to the bank arising from legal suits filed against the bank or by a bank for applying a law wrongly." },
-            { q: "Bonds Are", o: ["Fixed Income Securities.", "Permanent Income Securities.", "Fluctuating Income Securities.", "Matured Income Securities"], c: "Fixed Income Securities." },
-            { q: "Zero Coupon Bond Makes:", o: ["No Coupon Payment", "Interest Payment Every Month", "Is Not Traded", "Has No Maturity Date"], c: "No Coupon Payment" },
-            { q: "YTM stands for:", o: ["Yield To Maturity", "Yield To Money", "Yield To Market", "Yield To Motive"], c: "Yield To Maturity" },
-            { q: "Normal Yield Curve is:", o: ["Upward Sloping", "Downward Sloping", "Straight Line", "All of the above"], c: "Upward Sloping" },
-            { q: "Swaptions are:", o: ["Options On Swaps", "Options And Futures", "Options On Forwards", "Options On MIBOR"], c: "Options On Swaps" },
-            { q: "Price Sensitivities are:", o: ["Lower For Longer Tenor Bonds", "Same For All Tenor Bonds", "Higher For Longer Tenor Bonds", "Higher For Shorter Tenor Bonds"], c: "Higher For Longer Tenor Bonds" },
-            { q: "A Safe Haven for investors money is:", o: ["Equity Market", "Debt Market", "Speculative Market", "All of the above"], c: "Debt Market" },
-            { q: "A fall in interest rates will make prices of Government Securities:", o: ["Go Down", "Go Up", "Remain Unchanged", "None of these"], c: "Go Up" },
-            { q: "IRF Stands For:", o: ["Interest Rate Futures", "Interest Rate Forwards", "Interest Rate Fixed", "Interest Rate Fluctuating"], c: "Interest Rate Futures" },
-            { q: "To hedge the interest rate risk on $4 million of Treasury bonds with $100,000 futures contracts, you would need to purchase:", o: ["4 contracts.", "20 contracts.", "25 contracts.", "40 contracts."], c: "40 contracts." },
-            { q: "Rise in interest rates the market value of that asset or liability. Conversely falling interest rates the market value of assets or liabilities.", o: ["Increases, Decreases.", "Decreases, Increases.", "Both Ways.", "None of the above.."], c: "Decreases, Increases." },
-            { q: "The economic value of a bank can be viewed as the present value of the bank's expected", o: ["Cash Flows.", "Net Cash Flows.", "Gross Cash Flows.", "None of the above."], c: "Net Cash Flows." },
-            { q: "Proliferation of NPA results in increasing", o: ["It is not a maturity mismatch.", "Maturity mismatch.", "Sometimes it is a mismatch.", "None of the above."], c: "Maturity mismatch." },
-            { q: "The risk arises when the technology system may got malfunction is classified as", o: ["System Risk.", "Technology Risk.", "Operational Risk.", "Support Risk."], c: "Operational Risk." },
-            { q: "The risk which arises from insufficient Capital available to balance the sudden decrease in assets value is classified as", o: ["Insolvency Risk.", "Solvency Risk.", "Balanced Risk.", "Unbalanced Risk."], c: "Insolvency Risk." },
-            { q: "Which of the following is not a type of credit risk?", o: ["Default risk.", "Credit spread risk.", "Intrinsic risk.", "Basis risk."], c: "Intrinsic risk." },
-            { q: "Risk of a portfolio with overexposure in the steel sector will be", o: ["More than systematic risk.", "Equal to intrinsic risk.", "Less than intrinsic risk.", "None of these."], c: "More than systematic risk." },
-            { q: "The risk that arises due to worsening of credit quality is:", o: ["Intrinsic risk.", "Credit spread risk.", "Portfolio risk.", "Counterparty risk."], c: "Credit spread risk." },
-            { q: "The model that combines five financial ratios using reported accounting information and equity values to produce an objective measure of borrower's financial health is", o: ["Altman's Z Score.", " Credit Metrics .", "Credit Risk+.", "None of the above."], c: "Altman's Z Score." },
-            { q: "A transaction where financial securities are issued against the cash flow generated from a pool of assets is called", o: ["Securitization.", "Credit Default Swaps.", "Credit Linked Notes.", "Total Return Swaps."], c: "Securitization." },
-            { q: "The objective of liquidity management is to", o: ["Ensure profitability.", "Ensure liquidity.", "Either of two.", "Both."], c: "Both." },
-            { q: "Banks need liquidity to", o: ["Meet deposit withdrawal.", "Fund loan demands.", "Both of them.", "None of them.."], c: "Both of them." },
-            { q: "Who formulates BASEL guidelines?", o: ["World Bank", "IMF", "G20 group of governors", "BCBS"], c: "BCBS" },
-            { q: "When did India started implementing BASEL-I guidelines?", o: ["1988", "1990", "1991", "1992"], c: "1992" },
-            { q: "Which of the following is the correct definition of Probability of default (PD)?", o: ["It measures the remaining economic maturity of the exposure", "It is the estimated amount outstanding in a loan commitment if default occurs", "It measures the proportion of the exposure that will be lost if Default occurs", "It measures the likelihood that the borrower will default over a given time horizon"], c: "It measures the likelihood that the borrower will default over a given time horizon" },
-            { q: "Which of the following is the correct definition of Loss Given Default (LGD)?", o: ["It measures the remaining economic maturity of the exposure", "It is the estimated amount outstanding in a loan commitment if default occurs", "It measures the proportion of the exposure that will be lost if Default occurs", "It measures the likelihood that the borrower will default over a given time horizon"], c: "It measures the proportion of the exposure that will be lost if Default occurs" },
-            { q: "Which of the following is the correct definition of Exposure at Default (EAD)?", o: ["It measures the remaining economic maturity of the exposure", "It is estimated amount outstanding in a loan commitment if default occurs", "It measures the proportion of the exposure that will be lost if Default occurs", "It measures the likelihood that the borrower will default over a given time horizon"], c: "It is estimated amount outstanding in a loan commitment if default occurs" },
-            { q: "In line with BASEL-II guidelines, what was the minimum percentage CRAR prescribed by Reserve Bank of India?", o: ["9%", "8%", "7%", "6%"], c: "9%" },
-            { q: "Which of the following is/are risks face by the bank?", o: ["Credit Risk", "Market Risk", "Income Risk", "(a) and (b)"], c: "(a) and (b)" },
-            { q: "What is the effect on the capital requirement of a bank if it takes exposure to riskier assets?", o: ["More capital is required", "Less capital is required", "No change in capital requirement", "None of these"], c: "More capital is required" },
-            { q: "A sovereign credit rating is the credit rating of a, i.e., a national government.", o: ["Sovereign entity.", "Multinational company.", "Banks.", "Firm."], c: "Sovereign entity." },
-            { q: "The risk that a government may default on its debt obligation", o: ["Political risk.", "Sovereign risk.", "Transfer risk.", "Transaction risk."], c: "Sovereign risk." },
-            { q: "A floating exchange rate", o: ["Is determined by the national governments involved.", "Remains extremely stable over a long period.", "Is determined by the actions of central banks.", "Is allowed to vary accordingly to market forces."], c: "Is allowed to vary accordingly to market forces." },
-            { q: "In India, settlement risk is largely mitigated by settlements through", o: ["Clearing Corporation of India (CCIL).", "FIMMDA.", "Both of the above.", "None of the above."], c: "Clearing Corporation of India (CCIL)." },
-            { q: "risk arises if a country suddenly suspends or imposes a moratorium on foreign payments because of Balance of payments or other problems.", o: ["Mismatch risk", "Transaction risk", "Open position risk", "Sovereign risk"], c: "Sovereign risk" },
-            { q: "If a firm has a stock-based insolvency in both book and market value terms and liquidates:", o: ["The payoff will not be 100% to all investors.", "The unsecured creditors are likely to get less than full value.", "The equity holders typically should receive nothing.", "All of the above."], c: "All of the above." },
-            { q: "Bankruptcy reorganizations are used by management to:", o: ["Forestall the inevitable liquidation in all cases", "Provide time to turn the business around.", "Allow the courts time to set up an administrative structure.", "All of the above."], c: "Provide time to turn the business around." },
-            { q: "Financial distress can be best described by which of the following situations in which the firm is forced to take corrective action.", o: ["Cash payments are delayed to creditors.", "The market value of the stock declines by 10%.", "The firm's operating cash flow are insufficient to pay current obligations.", "Cash distributions are eliminated because the board of directors considers the surplus account to be low."], c: "The firm's operating cash flow are insufficient to pay current obligations." },
-            { q: "Which of the following is not a type of risk in the Banking Sector?", o: ["Credit Risk", "Operational Risk", "Market Risk", "Account Risk"], c: "Account Risk" },
-            { q: "Operational Risk is the risk of", o: ["When borrowers or counterparties fail to meet contractual obligations.", "The unpredictability of equity markets, commodity prices, interest rates, and credit spreads.", "Loss due to errors, interruptions, or damages caused by people, systems, or processes.", "All of the above"], c: "Loss due to errors, interruptions, or damages caused by people, systems, or processes." },
-            { q: "When the risk of losses in on- or off-balance sheet positions arising from movement in market prices, it is called as", o: ["Operational Risk", "Market Risk", "Liquidity Risk", "Account Risk"], c: "Market Risk" },
-            { q: "'Payments credited to the wrong account' is an example of which Risk?", o: ["Credit Risk", "Operational Risk", "Market Risk", "Liquidity Risk"], c: "Operational Risk" },
-            { q: "risk arises because the financial system is one intricate and connected network.", o: ["Credit", "Operational", "Market Risk", "Systemic"], c: "Systemic" },
-            { q: "The major component of Market risk is", o: ["Interest rate risk", "Equity risk", "Commodity risk", "All of the above"], c: "All of the above" },
-            { q: "risk is the potential loss due to changes in the value of a bank's assets or liabilities resulting from exchange rate fluctuations.", o: ["Interest rate.", "Equity", "Foreign exchange.", "Commodity"], c: "Foreign exchange." },
-            { q: "is the oldest form of off balance sheet financing.", o: ["leasing", "hire purchasing", "Joint venture", "none of these"], c: "leasing" },
-            { q: "In the mid-2000s, a number of banks lost billions of dollars on failing mortgage loans. The risk of such occurrences would be categorized as:", o: ["off balance sheet risk", "operational risk", "credit risk", "technology risk"], c: "credit risk" },
-            { q: "The risk of 'insolvency' is basically the risk of:", o: ["borrowers not paying off lenders in a timely fashion.", "machinery breakdowns", "not being able to find a buyer for an asset", "asset value falling below liability value"], c: "asset value falling below liability value" },
-            { q: "Credit risk that is related to pervasive, economy-wide factors, would be termed:", o: ["off balance sheet risk", "country risk", "systematic risk", "firm specific risk"], c: "systematic risk" },
-            { q: "Deposit insurance shifts most of the financial risk of bank failures from depositors to", o: ["Borrowers", "The bank's creditors", "The bank's stockholders", "The federal government"], c: "The federal government" },
-            { q: "The payoffs for financial derivatives are linked to:", o: ["securities that will be issued in the future.", "the volatility of interest rates", "previously issued securities.", "government regulations specifying allowable rates of return."], c: "previously issued securities." },
-            { q: "Financial derivatives include:", o: ["stocks", "bonds.", "futures", "none of the above."], c: "futures" },
-            { q: "A Letter of Undertaking is an instrument, which allows customers of a bank, to raise:", o: ["short-term foreign currency", "long-term foreign currency", "both", "none of these"], c: "short-term foreign currency" },
-            { q: "One very basic example of an unsecured open-end loan commitment:", o: ["Credit card", "debit card", "cash credit", "overdraft facility"], c: "Credit card" },
-            { q: "A bank assesses its operations and activities against a menu of potential operational risk vulnerabilities is called:", o: ["Self-Risk Assessment", "Risk Mapping", "Key Risk Indicators", "none of these"], c: "Self-Risk Assessment" },
-            { q: "A nomination can be made only in favour of:", o: ["Parents", "Spouse and children", "Spouse", "Any individual"], c: "Any individual" },
-            { q: "Select the expanded form of SA as commonly used in life insurance.", o: ["Sum Assured", "Surrender of Assurance", "Supplementary Assurance", "Stamp Act"], c: "Sum Assured" },
-            { q: "Which product offered by insurance companies that, unlike a pure insurance policy, gives investors both insurance and investment under a single integrated plan?", o: ["Money Back Plan", "Endowment Plans", "Term Insurance Plans", "Unit-linked insurance plan"], c: "Unit-linked insurance plan" },
-            { q: "In which Policy, if the policyholder survives till the end of this period, the risk cover lapses, and no insurance benefit payment is made to him/her?", o: ["Money Back Plan", "Endowment Plans", "Term Insurance Plans", "Unit-linked insurance plan"], c: "Term Insurance Plans" },
-            { q: "In which Policy, the insurer agrees to pay the assured or his nominees a specified sum of money on his death or on the maturity of the policy whichever is earlier?", o: ["Money Back Plan", "Endowment Plans", "Term Insurance Plans.", "Unit-linked insurance plan"], c: "Endowment Plans" },
-            { q: "As per the Insurance Act, every insurer has to prepare at the end of financial year:", o: ["Balance Sheet", "Profit and Loss Account", "Revenue Account for each class of Insurance business", "All of the above"], c: "All of the above" },
-            { q: "are agents but they can sell policies of several life and non-life insurance companies at a time.", o: ["Loss assessors", "Brokers", "Insure", "Insured Insurance Awareness MCQS LIC Assistant Exam 2019"], c: "Brokers" },
-            { q: "is a voluntary termination of the contract by the policy holders.", o: ["Report", "Surrender", "Prospectus", "Cover note"], c: "Surrender" },
-            { q: "Which of the following is contract between two insures i.e. original insurer and another insurer?", o: ["Premium", "Cover note", "Reinsurance", "Co-insurance"], c: "Reinsurance" },
-            { q: "Which of the following involves proportionate sharing of the insurance among more than one insurer?", o: ["Premium", "Cover note", "Reinsurance", "Co-insurance"], c: "Co-insurance" },
-            { q: "When the amount for which a subject matter is insured is more than its actual value, it is called", o: ["Premium", "Cover note", "Reinsurance", "Double Insurance"], c: "Double Insurance" },
-            { q: "A person whose risk is insured is called......", o: ["Insured", "merchandiser", "marketer", "Agents"], c: "Insured" },
-            { q: "When was life insurance sector nationalized?", o: ["1952", "1956", "1986", "1984"], c: "1956" },
-            { q: "Risk retention means----", o: ["Saving money to pay for the losses", "Accepting and agreeing to finance the loss oneself", "Not taking up any activity which is risky", "Insuring the risk"], c: "Accepting and agreeing to finance the loss oneself" },
-            { q: "Pure risk was grouped:", o: ["Property Risk", "Personal Risk", "Liability risk", "All the above"], c: "All the above" },
-            { q: "The risk which arises because of change in major economic. Social, cultural and political factors are", o: ["Particular Risk", "Fundamental Risk", "Speculative Risk", "Dynamic Risk"], c: "Fundamental Risk" },
-            { q: "Insurance covers.", o: ["Protect assets", "Prevents loss", "Reduces the impact of loss", "Insurances immortality"], c: "Reduces the impact of loss" },
-            { q: "Choose the correct Option: Statement A: Commercial contracts are subject to the principle of 'Caveat Emptor' Statement B: Insurance contracts are also subject to the principle of 'Caveat Emptor'", o: ["Both statements are correct", "Both statements are wrong", "Statement A is correct", "Statement B is correct"], c: "Statement A is correct" },
-            { q: "Insurable interest means: Statement A: Legal right to insure. Statement B: Have suffered financial loss.", o: ["Both statements are correct", "Both statements are wrong", "Statement A is correct", "Statement B is correct"], c: "Both statements are correct" },
-            { q: "One of the fundamental principles of life insurance is:", o: ["There is an insurer & policyholder", "Utmost good faith", "Insurable interest", "Both b & c"], c: "Both b & c" },
-            { q: "Facts which need to be disclosed:", o: ["Facts of common knowledge", "Facts which lessen the risks", "Facts which everyone is supposed to know in general", "Family History"], c: "Family History" },
-            { q: "The duty of disclosure of material facts arises in life insurance:", o: ["only during the proposal stage", "Only during the policy period if there is a change in risk", "Only at the time of renewal", "All of the above"], c: "All of the above" },
-            { q: "increases the frequency of loss.", o: ["Peril", "Subjective risk", "Hazard", "Objective risk"], c: "Hazard" },
-            { q: "hazard increases the probability of loss due to dishonesty or character defects of an insured person.", o: ["Moral", "Morale", "Legal", "Physical"], c: "Moral" },
-            { q: "Master policy is issued for", o: ["Term insurance schemes", "permanent insurance", "individual insurance", "group insurance schemes."], c: "group insurance schemes." },
-            { q: "Subrogation means", o: ["something of monetary value", "to make good loss", "payment of premium", "transfer of rights of an insured to another person"], c: "transfer of rights of an insured to another person" },
-            { q: "risks happen within a stable environment and are constant over an observed period of time.", o: ["Speculative", "Pure", "Dynamic", "Static"], c: "Static" },
-            { q: "Which among the following is not a pure risk?", o: ["Personal risk", "Property risk", "Loss of income risk", "Strategic risk"], c: "Strategic risk" },
-            { q: "Which of the following method reduces the chance of loss to zero?", o: ["Risk Transferring", "Risk avoidance", "Risk retention", "Risk reduction"], c: "Risk avoidance" },
-            { q: "refers to the manner in which the risk control measures that have been implemented shall be financed.", o: ["Risk financing", "Risk retention", "Risk transfer", "Risk sharing"], c: "Risk financing" },
-            { q: "is the most famous tool of risk management.", o: ["Certainty risk", "Insurance", "Loss prevention", "Uncertainty risk"], c: "Insurance" },
-            { q: "is still the most leading channel in India for distributing insurance products.", o: ["Brokers", "Agency power", "Insurance market", "National market"], c: "Agency power" },
-            { q: "An insurance agent represents the", o: ["Insured", "Insurer", "Government", "Adjustment bureau"], c: "Insurer" },
-            { q: "is a whole life policy that insures two lives with the proceeds payable on the second (later) death.", o: ["Survivorship life insurance policy", "Group life insurance", "Joint life insurance", "Prepaid insurance"], c: "Survivorship life insurance policy" },
-            { q: "The is formed with four subsidiary companies.", o: ["Life insurance Corporation of India", "ICICI Prudential Life Insurance Company", "General Insurance Corporation of India", "Bajaj Allianz General Insurance Company"], c: "General Insurance Corporation of India" },
-            { q: "Which of the following is not a concern of the insurance regulatory framework?", o: ["It has to safeguard the interests of the customers.", "It has to safeguard the interests of the stakeholders.", "It has to ensure the financial soundness of the insurance industry.", "It has to help in the healthy growth of the insurance market."], c: "It has to safeguard the interests of the stakeholders." },
-            { q: "Which of these is not an element of life insurance?", o: ["Grace period", "Nomination and assignment", "Policyholder", "Paid-up value"], c: "Policyholder" }
+            { q: "1. When the risk of losses in on or off-balance sheet positions arising from movement in market prices, it is called as", o: ["Operational Risk", "Market Risk", "Liquidity Risk", "Account Risk"], c: "Market Risk" },
+            { q: "2. The risk that arises from the possibility of non-payment of loans by the borrowers is known as", o: ["Credit Risks.", "Market Risks", "Moral Hazard", "Business Risk"], c: "Credit Risks." },
+            { q: "3. The major component of Market risk is", o: ["Interest rate risk", "Equity risk", "Commodity risk", "All of the above"], c: "All of the above" },
+            { q: "4. When a bank's image and public standing is in doubt and leads to the public's loss of confidence in a bank, it is called as", o: ["Reputational risk", "Moral Hazard", "Operational risk", "None of the above"], c: "Reputational risk" },
+            { q: "5. Legal Risk is known as", o: ["When the actions can lead to the entire financial system coming to a standstill.", "When there is a financial loss to the bank arising from legal suits filed against the bank or by a bank for applying a law wrongly.", "When a bank chooses the wrong strategy or follows a longterm- business strategy which might lead to its failure.", "All of the above"], c: "When there is a financial loss to the bank arising from legal suits filed against the bank or by a bank for applying a law wrongly." },
+            { q: "6. Bonds Are", o: ["Fixed Income Securities.", "Permanent Income Securities.", "Fluctuating Income Securities.", "Matured Income Securities"], c: "Fixed Income Securities." },
+            { q: "7. Zero Coupon Bond Makes:", o: ["No Coupon Payment", "Interest Payment Every Month", "Is Not Traded", "Has No Maturity Date"], c: "No Coupon Payment" },
+            { q: "8. YTM stands for:", o: ["Yield To Maturity", "Yield To Money", "Yield To Market", "Yield To Motive"], c: "Yield To Maturity" },
+            { q: "9. Normal Yield Curve is:", o: ["Upward Sloping", "Downward Sloping", "Straight Line", "All of the above"], c: "Upward Sloping" },
+            { q: "10. Swaptions are:", o: ["Options On Swaps", "Options And Futures", "Options On Forwards", "Options On MIBOR"], c: "Options On Swaps" },
+            { q: "11. Price Sensitivities are:", o: ["Lower For Longer Tenor Bonds", "Same For All Tenor Bonds", "Higher For Longer Tenor Bonds", "Higher For Shorter Tenor Bonds"], c: "Higher For Longer Tenor Bonds" },
+            { q: "12. A Safe Haven for investors money is:", o: ["Equity Market", "Debt Market", "Speculative Market", "All of the above"], c: "Debt Market" },
+            { q: "13. A fall in interest rates will make prices of Government Securities:", o: ["Go Down", "Go Up", "Remain Unchanged", "None of these"], c: "Go Up" },
+            { q: "14. IRF Stands For:", o: ["Interest Rate Futures", "Interest Rate Forwards", "Interest Rate Fixed", "Interest Rate Fluctuating"], c: "Interest Rate Futures" },
+            { q: "15. To hedge the interest rate risk on $4 million of Treasury bonds with $100,000 futures contracts, you would need to purchase:", o: ["4 contracts.", "20 contracts.", "25 contracts.", "40 contracts."], c: "40 contracts." },
+            { q: "16. Rise in interest rates ____ the market value of that asset or liability. Conversely falling interest rates ____ the market value of assets or liabilities.", o: ["Increases, Decreases.", "Decreases, Increases.", "Both Ways.", "None of the above.."], c: "Decreases, Increases." },
+            { q: "17. The economic value of a bank can be viewed as the present value of the bank's expected", o: ["Cash Flows.", "Net Cash Flows.", "Gross Cash Flows.", "None of the above."], c: "Net Cash Flows." },
+            { q: "18. Proliferation of NPA results in increasing", o: ["It is not a maturity mismatch.", "Maturity mismatch.", "Sometimes it is a mismatch.", "None of the above."], c: "Maturity mismatch." },
+            { q: "19. The risk arises when the technology system may got malfunction is classified as", o: ["System Risk.", "Technology Risk.", "Operational Risk.", "Support Risk."], c: "Technology Risk." },
+            { q: "20. The risk which arises from insufficient Capital available to balance the sudden decrease in assets value is classified as", o: ["Insolvency Risk.", "Solvency Risk.", "Balanced Risk.", "Unbalanced Risk."], c: "Solvency Risk." },
+            { q: "21. Which of the following is not a type of credit risk?", o: ["Default risk.", "Credit spread risk.", "Intrinsic risk.", "Basis risk."], c: "Basis risk." },
+            { q: "22. Risk of a portfolio with overexposure in the steel sector will be", o: ["More than systematic risk.", "Equal to intrinsic risk.", "Less than intrinsic risk.", "None of these."], c: "More than systematic risk." },
+            { q: "23. The risk that arises due to worsening of credit quality is:", o: ["Intrinsic risk.", "Credit spread risk.", "Portfolio risk.", "Counterparty risk."], c: "Credit spread risk." },
+            { q: "24. The model that combines five financial ratios using reported accounting information and equity values to produce an objective measure of borrower's financial health is", o: ["Altman's Z Score.", "Credit Metrics .", "Credit Risk+.", "None of the above."], c: "Altman's Z Score." },
+            { q: "25. A transaction where financial securities are issued against the cash flow generated from a pool of assets is called", o: ["Securitization.", "Credit Default Swaps.", "Credit Linked Notes.", "Total Return Swaps."], c: "Securitization." },
+            { q: "26. The objective of liquidity management is to", o: ["Ensure profitability.", "Ensure liquidity.", "Either of two.", "Both."], c: "Both." },
+            { q: "27. Banks need liquidity to", o: ["Meet deposit withdrawal.", "Fund loan demands.", "Both of them.", "None of them.."], c: "Both of them." },
+            { q: "28. Who formulates BASEL guidelines?", o: ["World Bank", "IMF", "G20 group of governors", "BCBS"], c: "BCBS" },
+            { q: "29. When did India started implementing BASEL-I guidelines?", o: ["1988", "1990", "1991", "1992"], c: "1992" },
+            { q: "30. Which of the following is the correct definition of Probability of default (PD)?", o: ["It measures the remaining economic maturity of the exposure", "It is the estimated amount outstanding in a loan commitment if default occurs", "It measures the proportion of the exposure that will be lost if Default occurs", "It measures the likelihood that the borrower will default over a given time horizon"], c: "It measures the likelihood that the borrower will default over a given time horizon" },
+            { q: "31. Which of the following is the correct definition of Loss Given Default (LGD)?", o: ["It measures the remaining economic maturity of the exposure", "It is the estimated amount outstanding in a loan commitment if default occurs", "It measures the proportion of the exposure that will be lost if Default occurs", "It measures the likelihood that the borrower will default over a given time horizon"], c: "It measures the proportion of the exposure that will be lost if Default occurs" },
+            { q: "32. Which of the following is the correct definition of Exposure at Default (EAD)?", o: ["It measures the remaining economic maturity of the exposure", "It is estimated amount outstanding in a loan commitment if default occurs", "It measures the proportion of the exposure that will be lost if Default occurs", "It measures the likelihood that the borrower will default over a given time horizon"], c: "It is estimated amount outstanding in a loan commitment if default occurs" },
+            { q: "33. In line with BASEL-II guidelines, what was the minimum percentage CRAR prescribed by Reserve Bank of India?", o: ["9%", "8%", "7%", "6%"], c: "9%" },
+            { q: "34. Which of the following is/are risks face by the bank?", o: ["Credit Risk", "Market Risk", "Income Risk", "(a) and (b)"], c: "(a) and (b)" },
+            { q: "35. What is the effect on the capital requirement of a bank if it takes exposure to riskier assets?", o: ["More capital is required", "Less capital is required", "No change in capital requirement", "None of these"], c: "More capital is required" },
+            { q: "36. A sovereign credit rating is the credit rating of a, i.e., a national government.", o: ["Sovereign entity.", "Multinational company.", "Banks.", "Firm."], c: "Sovereign entity." },
+            { q: "37. The risk that a government may default on its debt obligation", o: ["Political risk.", "Sovereign risk.", "Transfer risk.", "Transaction risk."], c: "Sovereign risk." },
+            { q: "38. A floating exchange rate", o: ["Is determined by the national governments involved.", "Remains extremely stable over a long period.", "Is determined by the actions of central banks.", "Is allowed to vary accordingly to market forces."], c: "Is allowed to vary accordingly to market forces." },
+            { q: "39. In India, settlement risk is largely mitigated by settlements through", o: ["Clearing Corporation of India (CCIL).", "FIMMDA.", "Both of the above.", "None of the above."], c: "Clearing Corporation of India (CCIL)." },
+            { q: "40. ____ risk arises if a country suddenly suspends or imposes a moratorium on foreign payments because of Balance of payments or other problems.", o: ["Mismatch risk", "Transaction risk", "Open position risk", "Sovereign risk"], c: "Sovereign risk" },
+            { q: "41. If a firm has a stock-based insolvency in both book and market value terms and liquidates:", o: ["The payoff will not be 100% to all investors.", "The unsecured creditors are likely to get less than full value.", "The equity holders typically should receive nothing.", "All of the above."], c: "All of the above." },
+            { q: "42. Bankruptcy reorganizations are used by management to:", o: ["Forestall the inevitable liquidation in all cases", "Provide time to turn the business around.", "Allow the courts time to set up an administrative structure.", "All of the above."], c: "Provide time to turn the business around." },
+            { q: "43. Financial distress can be best described by which of the following situations in which the firm is forced to take corrective action.", o: ["Cash payments are delayed to creditors.", "The market value of the stock declines by 10%.", "The firm's operating cash flow are insufficient to pay current obligations.", "Cash distributions are eliminated because the board of directors considers the surplus account to be low."], c: "The firm's operating cash flow are insufficient to pay current obligations." },
+            { q: "44. Which of the following is not a type of risk in the Banking Sector?", o: ["Credit Risk", "Operational Risk", "Market Risk", "Account Risk"], c: "Account Risk" },
+            { q: "45. Operational Risk is the risk of", o: ["When borrowers or counterparties fail to meet contractual obligations.", "The unpredictability of equity markets, commodity prices, interest rates, and credit spreads.", "Loss due to errors, interruptions, or damages caused by people, systems, or processes.", "All of the above"], c: "Loss due to errors, interruptions, or damages caused by people, systems, or processes." },
+            { q: "46. When the risk of losses in on- or off-balance sheet positions arising from movement in market prices, it is called as", o: ["Operational Risk", "Market Risk", "Liquidity Risk", "Account Risk"], c: "Market Risk" },
+            { q: "47. 'Payments credited to the wrong account' is an example of which Risk?", o: ["Credit Risk", "Operational Risk", "Market Risk", "Liquidity Risk"], c: "Operational Risk" },
+            { q: "48. ____ risk arises because the financial system is one intricate and connected network.", o: ["Credit", "Operational", "Market Risk", "Systemic"], c: "Systemic" },
+            { q: "49. The major component of Market risk is", o: ["Interest rate risk", "Equity risk", "Commodity risk", "All of the above"], c: "All of the above" },
+            { q: "50. ____ risk is the potential loss due to changes in the value of a bank's assets or liabilities resulting from exchange rate fluctuations.", o: ["Interest rate.", "Equity", "Foreign exchange.", "Commodity"], c: "Foreign exchange." },
+            { q: "51. ____ is the oldest form of off balance sheet financing.", o: ["leasing", "hire purchasing", "Joint venture", "none of these"], c: "leasing" },
+            { q: "52. In the mid-2000s, a number of banks lost billions of dollars on failing mortgage loans. The risk of such occurrences would be categorized as:", o: ["off balance sheet risk", "operational risk", "credit risk", "technology risk"], c: "credit risk" },
+            { q: "53. The risk of 'insolvency' is basically the risk of:", o: ["borrowers not paying off lenders in a timely fashion.", "machinery breakdowns", "not being able to find a buyer for an asset", "asset value falling below liability value"], c: "asset value falling below liability value" },
+            { q: "54. Credit risk that is related to pervasive, economy-wide factors, would be termed:", o: ["off balance sheet risk", "country risk", "systematic risk", "firm specific risk"], c: "systematic risk" },
+            { q: "55. Deposit insurance shifts most of the financial risk of bank failures from depositors to", o: ["Borrowers", "The bank's creditors", "The bank's stockholders", "The federal government"], c: "The federal government" },
+            { q: "56. The payoffs for financial derivatives are linked to:", o: ["securities that will be issued in the future.", "the volatility of interest rates", "previously issued securities.", "government regulations specifying allowable rates of return."], c: "previously issued securities." },
+            { q: "57. Financial derivatives include:", o: ["stocks", "bonds.", "futures", "none of the above."], c: "futures" },
+            { q: "58. A Letter of Undertaking is an instrument, which allows customers of a bank, to raise:", o: ["short-term foreign currency", "long-term foreign currency", "both", "none of these"], c: "short-term foreign currency" },
+            { q: "59. One very basic example of an unsecured open-end loan commitment:", o: ["Credit card", "debit card", "cash credit", "overdraft facility"], c: "Credit card" },
+            { q: "60. A bank assesses its operations and activities against a menu of potential operational risk vulnerabilities is called:", o: ["Self-Risk Assessment", "Risk Mapping", "Key Risk Indicators", "none of these"], c: "Self-Risk Assessment" },
+            { q: "61. A nomination can be made only in favour of:", o: ["Parents", "Spouse and children", "Spouse", "Any individual"], c: "Any individual" },
+            { q: "62. Select the expanded form of SA as commonly used in life insurance.", o: ["Sum Assured", "Surrender of Assurance", "Supplementary Assurance", "Stamp Act"], c: "Sum Assured" },
+            { q: "63. Which product offered by insurance companies that, unlike a pure insurance policy, gives investors both insurance and investment under a single integrated plan?", o: ["Money Back Plan", "Endowment Plans", "Term Insurance Plans", "Unit-linked insurance plan"], c: "Unit-linked insurance plan" },
+            { q: "64. In which Policy, if the policyholder survives till the end of this period, the risk cover lapses, and no insurance benefit payment is made to him/her?", o: ["Money Back Plan", "Endowment Plans", "Term Insurance Plans", "Unit-linked insurance plan"], c: "Term Insurance Plans" },
+            { q: "65. In which Policy, the insurer agrees to pay the assured or his nominees a specified sum of money on his death or on the maturity of the policy whichever is earlier?", o: ["Money Back Plan", "Endowment Plans", "Term Insurance Plans.", "Unit-linked insurance plan"], c: "Endowment Plans" },
+            { q: "66. As per the Insurance Act, every insurer has to prepare at the end of financial year:", o: ["Balance Sheet", "Profit and Loss Account", "Revenue Account for each class of Insurance business", "All of the above"], c: "All of the above" },
+            { q: "67. ____ are agents but they can sell policies of several life and non-life insurance companies at a time.", o: ["Loss assessors", "Brokers", "Insure", "Insured Insurance Awareness MCQS LIC Assistant Exam 2019"], c: "Brokers" },
+            { q: "68. ____ is a voluntary termination of the contract by the policy holders.", o: ["Report", "Surrender", "Prospectus", "Cover note"], c: "Surrender" },
+            { q: "69. Which of the following is contract between two insures i.e. original insurer and another insurer?", o: ["Premium", "Cover note", "Reinsurance", "Co-insurance"], c: "Reinsurance" },
+            { q: "70. Which of the following involves proportionate sharing of the insurance among more than one insurer?", o: ["Premium", "Cover note", "Reinsurance", "Co-insurance"], c: "Co-insurance" },
+            { q: "71. When the amount for which a subject matter is insured is more than its actual value, it is called", o: ["Premium", "Cover note", "Reinsurance", "Double Insurance"], c: "Double Insurance" },
+            { q: "72. A person whose risk is insured is called......", o: ["Insured", "merchandiser", "marketer", "Agents"], c: "Insured" },
+            { q: "73. When was life insurance sector nationalized?", o: ["1952", "1956", "1986", "1984"], c: "1956" },
+            { q: "74. Risk retention means----", o: ["Saving money to pay for the losses", "Accepting and agreeing to finance the loss oneself", "Not taking up any activity which is risky", "Insuring the risk"], c: "Accepting and agreeing to finance the loss oneself" },
+            { q: "75. Pure risk was grouped:", o: ["Property Risk", "Personal Risk", "Liability risk", "All the above"], c: "All the above" },
+            { q: "76. The risk which arises because of change in major economic. Social, cultural and political factors are", o: ["Particular Risk", "Fundamental Risk", "Speculative Risk", "Dynamic Risk"], c: "Fundamental Risk" },
+            { q: "77. Insurance covers.", o: ["Protect assets", "Prevents loss", "Reduces the impact of loss", "Insurances immortality"], c: "Reduces the impact of loss" },
+            { q: "78. Choose the correct Option: Statement A: Commercial contracts are subject to the principle of 'Caveat Emptor' Statement B: Insurance contracts are also subject to the principle of 'Caveat Emptor'", o: ["Both statements are correct", "Both statements are wrong", "Statement A is correct", "Statement B is correct"], c: "Statement A is correct" },
+            { q: "79. Insurable interest means: Statement A: Legal right to insure. Statement B: Have suffered financial loss.", o: ["Both statements are correct", "Both statements are wrong", "Statement A is correct", "Statement B is correct"], c: "Both statements are correct" },
+            { q: "80. One of the fundamental principles of life insurance is:", o: ["There is an insurer & policyholder", "Utmost good faith", "Insurable interest", "Both b & c"], c: "Both b & c" },
+            { q: "81. Facts which need to be disclosed:", o: ["Facts of common knowledge", "Facts which lessen the risks", "Facts which everyone is supposed to know in general", "Family History"], c: "Family History" },
+            { q: "82. The duty of disclosure of material facts arises in life insurance:", o: ["only during the proposal stage", "Only during the policy period if there is a change in risk", "Only at the time of renewal", "All of the above"], c: "All of the above" },
+            { q: "83. ____ increases the frequency of loss.", o: ["Peril", "Subjective risk", "Hazard", "Objective risk"], c: "Hazard" },
+            { q: "84. ____ hazard increases the probability of loss due to dishonesty or character defects of an insured person.", o: ["Moral", "Morale", "Legal", "Physical"], c: "Moral" },
+            { q: "85. Master policy is issued for", o: ["Term insurance schemes", "permanent insurance", "individual insurance", "group insurance schemes."], c: "group insurance schemes." },
+            { q: "86. Subrogation means", o: ["something of monetary value", "to make good loss", "payment of premium", "transfer of rights of an insured to another person"], c: "transfer of rights of an insured to another person" },
+            { q: "87. ____ risks happen within a stable environment and are constant over an observed period of time.", o: ["Speculative", "Pure", "Dynamic", "Static"], c: "Static" },
+            { q: "88. Which among the following is not a pure risk?", o: ["Personal risk", "Property risk", "Loss of income risk", "Strategic risk"], c: "Strategic risk" },
+            { q: "89. Which of the following method reduces the chance of loss to zero?", o: ["Risk Transferring", "Risk avoidance", "Risk retention", "Risk reduction"], c: "Risk avoidance" },
+            { q: "90. ____ refers to the manner in which the risk control measures that have been implemented shall be financed.", o: ["Risk financing", "Risk retention", "Risk transfer", "Risk sharing"], c: "Risk financing" },
+            { q: "91. ____ is the most famous tool of risk management.", o: ["Certainty risk", "Insurance", "Loss prevention", "Uncertainty risk"], c: "Insurance" },
+            { q: "92. ____ is still the most leading channel in India for distributing insurance products.", o: ["Brokers", "Agency power", "Insurance market", "National market"], c: "Agency power" },
+            { q: "93. An insurance agent represents the", o: ["Insured", "Insurer", "Government", "Adjustment bureau"], c: "Insurer" },
+            { q: "94. ____ is a whole life policy that insures two lives with the proceeds payable on the second (later) death.", o: ["Survivorship life insurance policy", "Group life insurance", "Joint life insurance", "Prepaid insurance"], c: "Survivorship life insurance policy" },
+            { q: "95. The ____ is formed with four subsidiary companies.", o: ["ICICI Prudential Life Insurance Company", "General Insurance Corporation of India", "Bajaj Allianz General Insurance Company", "Life insurance Corporation of India"], c: "General Insurance Corporation of India" },
+            { q: "96. Which of the following is not a concern of the insurance regulatory framework?", o: ["It has to safeguard the interests of the customers.", "It has to safeguard the interests of the stakeholders.", "It has to ensure the financial soundness of the insurance industry.", "It has to help in the healthy growth of the insurance market."], c: "It has to safeguard the interests of the stakeholders." },
+            { q: "97. Which of these is not an element of life insurance?", o: ["Grace period", "Nomination and assignment", "Policyholder", "Paid-up value"], c: "Policyholder" }
         ];
 
-        let userAnswers = new Array(questionsData.length).fill(null);
-        let questionsAttemptedFlags = new Array(questionsData.length).fill(false);
         let currentQuestionIndex = 0;
-        let score = { correct: 0, incorrect: 0 };
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
 
+        let score = {
+            correct: 0,
+            incorrect: 0
+        };
+
+        // DOM Elements
         const questionHeaderElement = document.getElementById('question-header');
         const questionTextElement = document.getElementById('question-text');
         const optionsContainerElement = document.getElementById('options-container');
@@ -401,58 +465,61 @@
         const prevButton = document.getElementById('prev-btn');
         const completionMessageElement = document.getElementById('completion-message');
         const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
 
         const correctCountElement = document.getElementById('correct-count');
         const incorrectCountElement = document.getElementById('incorrect-count');
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
-        
-        const questionsPerSet = [50, 47]; 
-        const setStartIndices = [0, 50]; 
 
+        // Configuration for 97 questions into 3 sets
+        const questionsPerSet = [32, 32, 33]; 
+        const setStartIndices = [0, 32, 64]; 
 
         function populateSetSelector() {
             setSelectorElement.innerHTML = ''; // Clear existing options
             questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
                 const option = document.createElement('option');
                 option.value = index; 
-                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
-                setSelectorElement.appendChild(option);
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
             });
             setSelectorElement.addEventListener('change', (event) => {
                 const selectedSetIndex = parseInt(event.target.value);
                 currentQuestionIndex = setStartIndices[selectedSetIndex];
-                displayQuizElements();
+                completionMessageElement.style.display = 'none';
+                questionHeaderElement.style.display = 'block';
+                questionTextElement.style.display = 'block';
+                optionsContainerElement.style.display = 'block';
+                navigationButtons.style.display = 'flex'; 
                 loadQuestion();
             });
         }
-        
-        function displayQuizElements() {
-            completionMessageElement.style.display = 'none';
-            questionHeaderElement.style.display = 'block';
-            questionTextElement.style.display = 'block';
-            optionsContainerElement.style.display = 'block';
-            document.getElementById('navigation-buttons').style.display = 'flex';
-        }
-
 
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
-            for (let i = 0; i < questionsPerSet.length; i++) {
-                cumulativeQuestions += questionsPerSet[i];
-                if (index < cumulativeQuestions) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
                     if (setSelectorElement.value != i) { 
-                         setSelectorElement.value = i;
+                         setSelectorElement.value = i; 
                     }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-            //This will handle the last set if the loop doesn't catch it
-            const lastSetIndex = questionsPerSet.length - 1;
-            if (setSelectorElement.value != lastSetIndex) {
-                setSelectorElement.value = lastSetIndex;
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
             }
-            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
         }
         
         function updateScoreboard() {
@@ -469,97 +536,87 @@
         }
 
         function loadQuestion() {
-            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
-            if (currentQuestionIndex >= questionsData.length) {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
                 showCompletionMessage();
                 return;
             }
-            displayQuizElements(); 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
             questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
 
-            optionsContainerElement.innerHTML = '';
-            const questionAlreadyAnswered = questionsAttemptedFlags[currentQuestionIndex];
-
+            optionsContainerElement.innerHTML = ''; 
             currentQuestion.o.forEach((optionText, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.classList.add('option');
                 optionElement.dataset.optionText = optionText; 
 
-                const optionLetter = String.fromCharCode(65 + index);
+                const optionLetter = String.fromCharCode(65 + index); 
                 optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
                 
-                if (questionAlreadyAnswered) {
+                if (questionsAttemptedState[currentQuestionIndex]) { 
                     optionElement.classList.add('disabled');
-                    if (optionText === currentQuestion.c) {
-                        optionElement.classList.add('correct-answer');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
                     }
-                    if (optionText === userAnswers[currentQuestionIndex] && optionText !== currentQuestion.c) {
-                        optionElement.classList.add('incorrect-selection');
-                    }
-                     if (optionText === userAnswers[currentQuestionIndex]) {
-                        optionElement.classList.add('user-selected-display');
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
                     }
                 } else {
                     optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
                 }
                 optionsContainerElement.appendChild(optionElement);
             });
-            
-            prevButton.disabled = currentQuestionIndex === 0;
-            // MODIFICATION: Always enable the next button to allow skipping
-            nextButton.disabled = false; 
-            
-            if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            } else {
-                 nextButton.textContent = "Next Question";
-            }
+
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
+            // The button is no longer disabled based on answer state to allow skipping.
+            nextButton.disabled = false;
+            prevButton.disabled = (currentQuestionIndex === 0);
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
         }
 
         function handleOptionSelection(selectedDiv, selectedOptionText) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return; 
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
 
-            questionsAttemptedFlags[currentQuestionIndex] = true;
+            questionsAttemptedState[currentQuestionIndex] = true;
             userAnswers[currentQuestionIndex] = selectedOptionText;
-            nextButton.disabled = false; 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.c;
 
-            selectedDiv.classList.add('user-selected-display');
-
-            if (selectedOptionText === correctAnswerText) {
-                selectedDiv.classList.add('correct-answer');
-                score.correct++;
-            } else {
-                selectedDiv.classList.add('incorrect-selection');
-                score.incorrect++;
-                Array.from(optionsContainerElement.children).forEach(optDiv => {
-                    if (optDiv.dataset.optionText === correctAnswerText) {
-                        optDiv.classList.add('correct-answer');
-                    }
-                });
-            }
-            
             Array.from(optionsContainerElement.children).forEach(optDiv => {
-                const newOptDiv = optDiv.cloneNode(true);
-                optDiv.parentNode.replaceChild(newOptDiv, optDiv);
-                newOptDiv.classList.add('disabled');
+                optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
+                    }
+                }
             });
-
             updateScoreboard();
-             if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            }
         }
         
         function selectOptionByKey(key) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return;
+            if (questionsAttemptedState[currentQuestionIndex]) return;
 
             let optionIndex = -1;
             if (key === 'a' || key === '1') optionIndex = 0;
@@ -576,11 +633,17 @@
         }
 
         function nextQuestionHandler() {
-            if (currentQuestionIndex < questionsData.length - 1) {
+            // Removed the check that prevented skipping questions.
+            if (currentQuestionIndex === questionsData.length - 1) {
+                currentQuestionIndex++; 
+                showCompletionMessage();
+            } 
+            else if (currentQuestionIndex < questionsData.length - 1) {
                 currentQuestionIndex++;
                 loadQuestion();
-            } else {
-                showCompletionMessage();
+            }
+             else if (currentQuestionIndex >= questionsData.length) { 
+                 showCompletionMessage(); 
             }
         }
 
@@ -595,34 +658,42 @@
             questionHeaderElement.style.display = 'none';
             questionTextElement.style.display = 'none';
             optionsContainerElement.style.display = 'none';
-            document.getElementById('navigation-buttons').style.display = 'none';
+            navigationButtons.style.display = 'none'; 
             completionMessageElement.style.display = 'block';
             const attempted = score.correct + score.incorrect;
             const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
-            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
+        // Event Listeners
         nextButton.addEventListener('click', nextQuestionHandler);
         prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+                return;
+            }
+            if (event.key.toLowerCase() === 'escape') return; 
+
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault(); 
+                 return;
+            }
+
             const key = event.key.toLowerCase();
-            
-            // MODIFICATION: Allow skipping with keyboard shortcuts
-            if (key === 'arrowright' || key === ' ' || key === 'enter') {
+            if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                event.preventDefault();
+                selectOptionByKey(key);
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
                 event.preventDefault();
                 nextQuestionHandler();
-            } else if (key === 'arrowleft') {
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
                 event.preventDefault();
                 prevQuestionHandler();
-            } else if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
-                if (currentQuestionIndex < questionsData.length && !questionsAttemptedFlags[currentQuestionIndex]) {
-                    event.preventDefault();
-                    selectOptionByKey(key);
-                }
             }
         });
 
+        // Initial setup
         populateSetSelector();
         loadQuestion();
         updateScoreboard(); 
