@@ -300,7 +300,7 @@
     </div>
 
     <div id="group1SubjectsContainer" class="group-container">
-        <button class="back-button" onclick="showGroupSelection()">← Back to Group Selection</button>
+        <button class="back-button" onclick="history.back()">← Back to Group Selection</button>
         <h2 class="group-title">Group I - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card"><h3>Paper 5: Business Laws & Ethics</h3><p>Review your grasp of various business laws and ethical considerations.</p><a href="law sets.html">Start Quiz</a></div>
@@ -311,7 +311,7 @@
     </div>
 
     <div id="group2SubjectsContainer" class="group-container">
-        <button class="back-button" onclick="showGroupSelection()">← Back to Group Selection</button>
+        <button class="back-button" onclick="history.back()">← Back to Group Selection</button>
         <h2 class="group-title">Group II - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card"><h3>Paper 9: Operations & Strategic Management</h3><p>Tackle questions on operations, supply chain, and strategic planning.</p><a href="omsm sets.html">Start Quiz</a></div>
@@ -322,7 +322,7 @@
     </div>
 
     <div id="group3SubjectsContainer" class="group-container">
-        <button class="back-button" onclick="showGroupSelection()">← Back to Group Selection</button>
+        <button class="back-button" onclick="history.back()">← Back to Group Selection</button>
         <h2 class="group-title">Group III - CMA Final Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card"><h3>Paper 13: Corporate & Economic Laws</h3><p>Master the complexities of corporate governance and economic regulations.</p><a href="paper 13.html">Start Quiz</a></div>
@@ -333,7 +333,7 @@
     </div>
 
     <div id="group4SubjectsContainer" class="group-container">
-        <button class="back-button" onclick="showGroupSelection()">← Back to Group Selection</button>
+        <button class="back-button" onclick="history.back()">← Back to Group Selection</button>
         <h2 class="group-title">Group IV - CMA Final Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card"><h3>Paper 17: Cost and Management Audit</h3><p>Explore the principles and practices of cost auditing and management audit.</p><a href="paper 17.html">Start Quiz</a></div>
@@ -358,36 +358,83 @@
         const groupChoiceContainer = document.getElementById('groupChoiceContainer');
         const groupContainers = document.querySelectorAll('.group-container');
 
-        function showGroupSubjects(groupIdToShow) {
+        /**
+         * Displays the subjects for a specific group and manages browser history.
+         * @param {string} groupIdToShow - The ID of the group container to display.
+         * @param {boolean} [push=true] - Whether to push a new state to the browser history.
+         */
+        function showGroupSubjects(groupIdToShow, push = true) {
+            if (push) {
+                // Add this view to the browser's history to enable back/forward navigation.
+                // A hash is added to the URL.
+                history.pushState({ groupId: groupIdToShow }, `Group - ${groupIdToShow}`, `#${groupIdToShow}`);
+            }
+
             groupChoiceContainer.style.display = 'none';
             groupContainers.forEach(container => container.style.display = 'none');
 
             const groupToShow = document.getElementById(groupIdToShow);
             if (groupToShow) {
                 groupToShow.style.display = 'block';
+                // Animate the cards appearing.
                 const quizCards = groupToShow.querySelectorAll('.quiz-card');
                 quizCards.forEach((card, index) => {
                     card.classList.remove('animate-fadeInUp');
-                    void card.offsetWidth; // Trigger reflow
+                    void card.offsetWidth; // Trigger a reflow to restart the animation.
                     card.classList.add('animate-fadeInUp');
                     card.style.animationDelay = `${index * 0.1}s`;
                 });
             }
         }
 
-        function showGroupSelection() {
+        /**
+         * Displays the main group selection screen.
+         * @param {boolean} [push=true] - Whether to push a new state to the browser history.
+         */
+        function showGroupSelection(push = true) {
+             if (push) {
+                // This state represents the main selection screen with a clean URL.
+                history.pushState({ groupId: null }, 'Group Selection', window.location.pathname);
+            }
             groupChoiceContainer.style.display = 'grid';
             groupContainers.forEach(container => container.style.display = 'none');
+             // Animate the group choice cards.
              const choiceCards = document.querySelectorAll('.group-choice-card');
              choiceCards.forEach((card, index) => {
                 card.classList.remove('animate-fadeInUp');
-                void card.offsetWidth;
+                void card.offsetWidth; // Trigger a reflow to restart the animation.
                 card.classList.add('animate-fadeInUp');
                 card.style.animationDelay = `${0.3 + index * 0.1}s`;
             });
         }
 
-        document.addEventListener('DOMContentLoaded', showGroupSelection);
+        // Listen for the popstate event, which is triggered by browser back/forward buttons
+        // or by calls to history.back().
+        window.addEventListener('popstate', (event) => {
+            // Check the state to determine which view to show.
+            if (event.state && event.state.groupId) {
+                // If a groupId exists in the state, show that subject view.
+                showGroupSubjects(event.state.groupId, false); // "false" prevents creating a new, duplicate history entry.
+            } else {
+                // Otherwise, show the main group selection.
+                showGroupSelection(false);
+            }
+        });
+
+        // On initial page load, determine the correct view based on the URL.
+        document.addEventListener('DOMContentLoaded', () => {
+            const initialGroupId = window.location.hash.substring(1);
+            // If there's a group ID in the URL (e.g., from a bookmark or refresh), show that group.
+            if (initialGroupId && document.getElementById(initialGroupId)) {
+                // Use replaceState to set the initial state without creating a back-able history entry.
+                history.replaceState({ groupId: initialGroupId }, `Group - ${initialGroupId}`, `#${initialGroupId}`);
+                showGroupSubjects(initialGroupId, false);
+            } else {
+                // Otherwise, show the main group selection page.
+                history.replaceState({ groupId: null }, 'Group Selection', window.location.pathname);
+                showGroupSelection(false);
+            }
+        });
     </script>
 
 </body>
