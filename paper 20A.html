@@ -3,27 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ Quiz - Strategic Performance Management & Business Valuation (Paper 20A)</title>
+    <title>MCQ Quiz - Strategic Performance Management & Business Valuation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-yellow: #f2e70c;
+            --primary-green: #04bf26;
+            --primary-blue: #0637c9;
+            --primary-purple: #57039c;
+            --subject-tile-bg: #FFC300;
+            --quiz-button-bg: #0228fa;
+            --kbd-button-bg: #04bf26;
+            --dark-bg: #111827;
+            --light-text: #f3f4f6;
+            --medium-text: #9ca3af;
+            --dark-text: #1f2937;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: var(--dark-bg);
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            color: var(--light-text);
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
 
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         #scoreboard-container {
-            background: #9370DB; /* Purple */
-            color: #ffffff; 
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple), #0228fa);
+            background-size: 200% 200%;
+            animation: gradient-animation 10s ease infinite;
+            color: #ffffff;
             padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
@@ -31,71 +55,76 @@
         }
         
         #set-navigation-container {
-            background: #4169E1; /* Royal Blue */
-            color: #ffffff; 
+            background: linear-gradient(135deg, #04bf26, #ADFF2F, #32cd32);
+            background-size: 200% 200%;
+            animation: gradient-animation 10s ease infinite;
+            color: var(--dark-text);
             padding: 15px 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 800px;
             margin-bottom: 15px;
             text-align: center;
+            font-weight: 500;
         }
 
         #scoreboard {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             font-size: 0.95em;
             font-weight: 500;
         }
 
         #scoreboard span {
-            margin: 0 10px;
+            margin: 5px 10px;
         }
-        #scoreboard .correct { color: #d4edda; } 
-        #scoreboard .incorrect { color: #f8d7da; } 
-        #scoreboard .accuracy { color: #e0e0e0; } 
+        #scoreboard .correct { color: #a7f3d0; } 
+        #scoreboard .incorrect { color: #fecaca; } 
+        #scoreboard .accuracy { color: #e5e7eb; } 
 
 
         #set-navigation-container label {
             margin-right: 10px;
-            font-weight: 500;
-            color: #ffffff; 
+            font-weight: 600;
+            color: var(--dark-text);
         }
 
         #set-selector {
             padding: 8px 12px;
-            border-radius: 5px;
-            border: 1px solid #ced4da;
+            border-radius: 6px;
+            border: 1px solid #4b5563;
             font-size: 1em;
-            background-color: #fff; 
-            color: #333; 
+            background-color: #f3f4f6; 
+            color: var(--dark-text); 
         }
 
         #quiz-container {
-            background: #FFDAB9; /* Light Saffron (PeachPuff) */
+            background: var(--subject-tile-bg);
+            border: 1px solid #d97706;
             padding: 25px 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 90%;
             max-width: 800px;
             margin-bottom: 20px;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         #question-header {
             font-size: 0.9em;
-            color: #4A4A4A; 
+            color: #4b5563;
             margin-bottom: 15px;
             text-align: right;
-            border-bottom: 1px solid #FFBFA0; 
+            border-bottom: 1px solid #d97706;
             padding-bottom: 10px;
         }
 
         #question-text {
             font-size: 1.15em;
             margin-bottom: 25px;
-            color: #2c3e50; 
+            color: var(--dark-text); 
             font-weight: 500;
         }
 
@@ -106,69 +135,83 @@
         .option {
             display: flex;
             align-items: center;
-            background: #FFF8E1; 
+            background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 1px solid #FFECB3; 
+            border: 1px solid #fff9c4;
             transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: #333; 
+            color: var(--dark-text); 
         }
 
         .option:not(.disabled):hover {
-            background: #FFF0C1; 
-            border-color: #FFE082;
+            background: #fff59d;
+            border-color: #f2e70c;
+        }
+
+        .option.selected { 
+            font-weight: 600; 
+            border-color: var(--primary-blue);
+            background-color: #dbeafe; 
+            color: var(--primary-blue);
         }
         
         .option.correct-answer {
-            background: #d4edda !important; 
-            border-color: #c3e6cb !important;
-            color: #155724 !important;
+            background: #d1fae5 !important; 
+            border-color: #10b981 !important;
+            color: #065f46 !important; 
+            font-weight: 600;
         }
 
         .option.incorrect-selection {
-            background: #f8d7da !important; 
-            border-color: #f5c6cb !important;
-            color: #721c24 !important;
+            background: #fee2e2 !important; 
+            border-color: #ef4444 !important;
+            color: #991b1b !important; 
+            font-weight: 600;
         }
-        .option.user-selected-display { 
-            /* Styles to indicate this was the user's picked option when reviewing */
-        }
-
         .option.disabled {
             cursor: not-allowed;
-            opacity: 0.7;
+            opacity: 0.9;
         }
 
         .option-letter {
             font-weight: bold;
-            margin-right: 10px;
-            color: #495057;
-            background-color: #FFECB3; 
-            padding: 3px 7px;
-            border-radius: 4px;
-            min-width: 20px;
+            margin-right: 12px;
+            color: var(--light-text); 
+            background-color: var(--medium-text); 
+            padding: 4px 8px;
+            border-radius: 6px;
+            min-width: 22px;
             text-align: center;
+            transition: all 0.2s ease;
         }
         
+        .option.selected .option-letter {
+            background-color: var(--primary-blue); 
+            color: white;
+            transform: scale(1.1);
+        }
+
         .option.correct-answer .option-letter {
-            background-color: #28a745 !important;
+            background-color: #10b981 !important; 
             color: white !important;
         }
         .option.incorrect-selection .option-letter {
-            background-color: #dc3545 !important;
+            background-color: #ef4444 !important; 
             color: white !important;
         }
+
 
         #navigation-buttons {
             display: flex;
             justify-content: space-between; 
+            align-items: center;
             margin-top: 25px;
         }
 
         button {
-            background-color: #007bff; 
+            background-color: var(--quiz-button-bg); 
             color: white;
             border: none;
             padding: 12px 25px;
@@ -176,44 +219,49 @@
             text-decoration: none;
             display: inline-block;
             font-size: 16px;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            font-weight: 600;
         }
+        
         #prev-btn {
-            background-color: #6c757d; 
-        }
-       
-        #prev-btn:disabled, #next-btn:disabled {
-             background-color: #cccccc;
-            cursor: not-allowed;
+            background-color: #374151;
         }
 
         button:hover:not(:disabled) {
-            background-color: #0056b3;
+            background-color: #0637c9;
+            transform: translateY(-2px);
         }
-         #prev-btn:hover:not(:disabled) {
-            background-color: #5a6268;
+        
+        #prev-btn:hover:not(:disabled) {
+            background-color: #4b5563;
         }
 
-
+        button:disabled {
+            background-color: #4b5563; 
+            cursor: not-allowed;
+            box-shadow: none;
+            opacity: 0.6;
+        }
         #completion-message {
             text-align: center;
             font-size: 1.6em;
-            color: #28a745;
+            color: var(--primary-green);
             padding: 30px;
-            border: 1px solid #c3e6cb;
-            background-color: #d4edda;
+            border: 1px solid #04bf26;
+            background-color: #1f2937;
             border-radius: 8px;
         }
         #instagram-link {
             margin-top: 30px;
             text-align: center;
             font-size: 1.1em;
-            color: #555;
+            color: var(--medium-text);
         }
         #instagram-link a {
-            color: #007bff;
+            color: var(--primary-yellow);
             text-decoration: none;
             font-weight: bold;
         }
@@ -243,6 +291,16 @@
             button {
                 padding: 10px 15px; 
                 font-size: 14px;
+            }
+            #navigation-buttons {
+                flex-direction: column; 
+            }
+            #navigation-buttons button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            #navigation-buttons button:last-child {
+                margin-bottom: 0;
             }
             #set-selector {
                 width: 100%;
@@ -276,8 +334,8 @@
         <div class="options-container" id="options-container">
             </div>
         <div id="navigation-buttons">
-            <button id="prev-btn">Previous Question</button>
-            <button id="next-btn">Next Question</button>
+            <button id="prev-btn">Previous (&larr; or /)</button>
+            <button id="next-btn">Next (Enter or &rarr;)</button>
         </div>
         <div id="completion-message" style="display:none;">
             Quiz Completed! Thank you for participating.
@@ -285,68 +343,210 @@
     </div>
 
     <div id="instagram-link">
-        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh</a>
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash??tosh </a>
     </div>
 
     <script>
+        // --- START OF QUESTION DATA ---
         const questionsData = [
-            { q: "Performance management is a key concept in the field of", o: ["Human Resource Management", "Financial Management", "Technical Analysis", "Marketing Management"], c: "Human Resource Management" },
-            { q: "Operation management", o: ["The most important issues of performance management are", "It is a continuous process", "Alignment with strategic goal", "None of the above"], c: "Alignment with strategic goal" },
-            { q: "The- ratios are used to compare financial statements of different size companies or the same company over different periods.", o: ["Common size", "DuPont", "Liquidity", "P/E"], c: "Common size" },
-            { q: "Trend analysis is an important tool of financial statement analysis and is also known as", o: ["Horizontal analysis", "Vertical analysis", "Pyramid method", "None of the above"], c: "Horizontal analysis" },
-            { q: "is an important aspect of well-defined Procure to Pay process", o: ["Supply chain management", "Strategic management", "Operations management", "Vendor management"], c: "Vendor management" },
-            { q: "Vendor relationship management is an extension of the relationship", o: ["Supply chain management", "Buyer-supplier", "Porter's value chain", "Value analysis"], c: "Buyer-supplier" },
-            { q: "is also referred as the 'focal' company is supply chain management", o: ["Original equipment manufacturer", "Original band manufacturer", "Both (a) and (b)", "None of the above"], c: "Both (a) and (b)" },
-            { q: "Reverse mapping is a bottom up approach used in", o: ["Strategy formulation", "Strategy implementation", "Formulation of operational plan", "Formulation of tactical plan"], c: "Strategy formulation" },
-            { q: "The top key performance indicators (KPIs) of the Order to Cash (O2C) are", o: ["Process cycle time", "Days sales outstanding (DSO)", "On-time delivery performance", "All of the above"], c: "All of the above" },
-            { q: "The main forms of Customer Relationship Management (CRM) are", o: ["Strategic CRM", "Operational CRM", "Analytical CRM", "All of the above"], c: "All of the above" },
-            { q: "What is one of the vary basic parameters of the financial Performance of a company?", o: ["Employee Satisfaction", "Customer Profitability", "Production efficiency", "Innovation rate"], c: "Customer Profitability" },
-            { q: "How does an organisation benefit from a comprehensive knowledge of customers ?", o: ["By improving employee retention", "By enhancing supply chain efficiency", "By Retaining existing profitable customers and luring in new ones", "By Increasing Production speed"], c: "By Retaining existing profitable customers and luring in new ones" },
-            { q: "What is the Primary strategy of an organisation to positively impact its market share 2", o: ["Increase product prices", "Reduce production costs", "Lure in new customers", "Enhance employee benefits"], c: "Lure in new customers" },
-            { q: "Which model has a tactical orientation in evaluating the financial performance of an organisation?", o: ["Customer lifetime value model", "Customer profitability Analysis", "Balanced Scorecard", "Six Sigma"], c: "Customer profitability Analysis" },
-            { q: "What are the first signs of financial distress in a company?", o: ["Declining employee morale", "Increased production costs", "Loss of customers impacting cashflows", "Decreasing customer"], c: "Loss of customers impacting cashflows" },
-            { q: "Which of the following is not one of the main parts of the Kaplan-Norton balanced scorecard concept? Balancing", o: ["financial and non-financial measurements.", "cash flows and non-cash flows.", "short term and long term measurements.", "leading and lagging indicators"], c: "cash flows and non-cash flows." },
-            { q: "According to Kaplan & Norton, which of the balanced scorecard perspectives serves as the focus of the other perspectives?", o: ["Financial", "Customer.", "Internal business processes", "Learning & growth"], c: "Financial" },
-            { q: "According to Norton and Kaplan, the balanced scorecard should be used as", o: ["control system", "diagnostic system", "strategic system", "None of the above"], c: "strategic system" },
-            { q: "Given the following information for a business: Asset turnover = 3.50, Equity multiplier = 1 Return on Equity = 30% using the Dupont analysis, the net profit margin is", o: ["8.57%", "5.87%", "7.65%", "6.75%"], c: "8.57%" },
-            { q: "What is the missing item in this formula?Return on Equity (ROE) = Equity multiplier", o: ["Asset turnover", "Financial leverage", "Return on Assets", "Net profit margin"], c: "Return on Assets" },
-            { q: "One of the following is not a specific type of Benchmarking", o: ["Generic Benchmarking", "Internal Benchmarking", "External Benchmarking", "Competitive Benchmarking"], c: "External Benchmarking" },
-            { q: "Six Sigma is a business-driven, multi-dimensional structured approach to", o: ["Reducing process variability", "Lowering Defects", "Improving Processes", "All of the above"], c: "All of the above" },
-            { q: "Small/Mid-sized Six Sigma projects are executed by professionals titled as:", o: ["Champion", "Green Belt", "Black Belt", "Site Champion"], c: "Green Belt" },
-            { q: "Mura and Muri refer to and ---- respectively", o: ["Unevenness, waste", "Unevenness, overburden", "Overburden, waste", "Overburden, poka-yoke"], c: "Unevenness, overburden" },
-            { q: "Variations in the quality characteristic of a product is due to", o: ["chance causes", "assignable causes", "both (a) and (b)", "neither (a) nor (b)"], c: "both (a) and (b)" },
-            { q: "What is the primary purpose of the BSC ?", o: ["To increased production speed", "To reduce employee turnover", "To translate vision, mission and strategy into tangible objectives and measures", "To enhance product innovation"], c: "To translate vision, mission and strategy into tangible objectives and measures" },
-            { q: "Which of the following is not one of the critical management processes accomplished by the BSC ?", o: ["Clarity and translate vision and strategy", "Communicate and link strategic objectives and measures", "Improve employee benefits and Incentives", "Enhance strategic feedback and learning"], c: "Improve employee benefits and Incentives" },
-            { q: "Which of the following statements best describes the main goal of benchmarking according to the defination provided?", o: ["To replicate the exact processes of successful companies", "To create unique internal standards for measuring quality", "To Provide an external standard for measuring internal activities and identify improvement opportunities", "To innovate new processes without considering external comparisons"], c: "To Provide an external standard for measuring internal activities and identify improvement opportunities" },
-            { q: "What are the two methodologies used for the deployment of Six Sigma ?", o: ["DMMI & DMAD", "DMAIC & DMADV", "DMAC & DMMV", "IDMAC & DMADV"], c: "DMAIC & DMADV" },
-            { q: "Which Six sigma methodology is used to develop new processes or products ?", o: ["DMAIC", "DMADV", "DMAC", "DMID"], c: "DMADV" },
-            { q: "Which phase of the DMADV Process involves creating high-level design and evaluating design capability to select the best design ?", o: ["Define", "Measure", "Analyze", "Verify"], c: "Analyze" },
-            { q: "What is the first stepin the DMAIC Process?", o: ["Measure the current process and collect relevant data", "Define the process improvement goals consistent with customer demands and enterprise strategy", "Analyze to verify the relationship and casual of factors", "Control to ensure variances are corrected"], c: "Define the process improvement goals consistent with customer demands and enterprise strategy" },
-            { q: "What does the PDCA cycle stand for?", o: ["Plan-Do-Check-Adjust", "Plan-Do-Check-Act", "Prepare-Do-Check- Analyze", "Plan-Design-Check-Act"], c: "Plan-Do-Check-Act" },
-            { q: "What does the 'S' in the PDSA cycle stand for?", o: ["Simplify", "Study", "Solve", "Systemize"], c: "Study" },
-            { q: "Which phase of the PDCA cycle is associated with 'Sales'?", o: ["Plan", "Do", "Check", "Act"], c: "Check" },
-            { q: "What does MIS stand for?", o: ["Management Information system", "Marketing Information system", "Manufacturing Information System", "Monetary Information system"], c: "Management Information system" },
-            { q: "What are the three elements of MIS method in the text?", o: ["Management, Information, System.", "Data, Process, Output", "Collection, Analysis, Reporting", "Planning, Implementation, Monitoring"], c: "Management, Information, System." },
-            { q: "The relationship between the economy and an economic indicator can be", o: ["Procyclic", "Countercyclic", "Acyclic", "All of the above"], c: "All of the above" },
-            { q: "Key Performance Indicator (KPI) is defined as", o: ["A vision statement that outlines a company's successful strategy", "An executive officer's ability to lead his division", "A performance measurement tool to gauge how a company is doing", "A growth strategy that takes competition into account"], c: "A performance measurement tool to gauge how a company is doing" },
-            { q: "Pareto improvement is an action that makes", o: ["Both the person better off", "At least one person worse off", "At least one person worse off without making anyone better off", "At least one person better off without making anyone worse off."], c: "At least one person better off without making anyone worse off." },
-            { q: "On the basis of timing an economic indicator is", o: ["Leading", "Lagged", "Coincident", "All of the above"], c: "All of the above" },
-            { q: "Which of the following is a characteristic of a perfectly competitive market?", o: ["Firms are price setters", "There are few sellers in the market;", "Firms can exit and enter the market freely;", "All of these"], c: "Firms can exit and enter the market freely;" },
-            { q: "In order to maximize profits, a firm should produce at the output level for which:", o: ["Average cost is minimized;", "Marginal revenue equals marginal cost;", "Marginal cost is minimized;", "Price minus average cost is as large as possible"], c: "Marginal revenue equals marginal cost;" },
-            { q: "A firm's marginal revenue is defined as:", o: ["The ratio of total revenue to total quantity produced:", "The additional output produced by lowering price:", "The additional revenue received due to technical innovation:", "The additional revenue received when selling one more unit of output."], c: "The additional revenue received when selling one more unit of output." },
-            { q: "One of the following is not a Competition based pricing method.", o: ["Going rate pricing", "Sealed bid pricing", "Marginal cost pricing", "Trade association based pricing"], c: "Marginal cost pricing" },
-            { q: "The pricing of niche products is appropriate to", o: ["Perceived value pricing", "Penetration pricing", "Differential pricing", "Full cost pricing"], c: "Perceived value pricing" },
-            { q: "One of the below mentioned in not a modern theory of the firm", o: ["Baumol's sales maximisation", "Shareholder's wealth maximisation", "Marri's model of maximisation of Firm's Growth rate", "Williamson's model of managerial discretion"], c: "Shareholder's wealth maximisation" },
-            { q: "What is the role of a Perfectly competitive firm in the market?", o: ["Price Maker", "Price taker", "Price setter", "Price Influencer"], c: "Price taker" },
-            { q: "In a Perfectly competitive Market, what does the demand curve facing the firm look like?", o: ["Downward slopping", "Upward slopping", "Vertical", "Horizontal"], c: "Horizontal" },
-            { q: "At what point does a perfectly competitive firm maximize its total profits in the short run?", o: ["Where MR = MC", "Where MC > MR", "Where MR > MC", "Where MR <MC"], c: "Where MR = MC" }
+            { q: "1. Performance management is a key concept in the field of", o: ["Human Resource Management", "Financial Management", "Technical Analysis", "Marketing Management"], c: "Human Resource Management" },
+            { q: "2. Operation management", o: ["The most important issues of performance management are", "It is a continuous process", "Alignment with strategic goal", "None of the above"], c: "Alignment with strategic goal" },
+            { q: "3. The ____ ratios are used to compare financial statements of different size companies or the same company over different periods.", o: ["Common size", "DuPont", "Liquidity", "P/E"], c: "Common size" },
+            { q: "4. Trend analysis is an important tool of financial statement analysis and is also known as", o: ["Horizontal analysis", "Vertical analysis", "Pyramid method", "None of the above"], c: "Horizontal analysis" },
+            { q: "5. ____ is an important aspect of well-defined Procure to Pay process", o: ["Supply chain management", "Strategic management", "Operations management", "Vendor management"], c: "Vendor management" },
+            { q: "6. Vendor relationship management is an extension of the ____ relationship", o: ["Supply chain management", "Buyer-supplier", "Porter's value chain", "Value analysis"], c: "Buyer-supplier" },
+            { q: "7. ____ is also referred as the 'focal' company is supply chain management", o: ["Original equipment manufacturer", "Original band manufacturer", "Both (a) and (b)", "None of the above"], c: "Original equipment manufacturer" },
+            { q: "8. Reverse mapping is a bottom up approach used in", o: ["Strategy formulation", "Strategy implementation", "Formulation of operational plan", "Formulation of tactical plan"], c: "Strategy implementation" },
+            { q: "9. The top key performance indicators (KPIs) of the Order to Cash (O2C) are", o: ["Process cycle time", "Days sales outstanding (DSO)", "On-time delivery performance", "All of the above"], c: "All of the above" },
+            { q: "10. The main forms of Customer Relationship Management (CRM) are", o: ["Strategic CRM", "Operational CRM", "Analytical CRM", "All of the above"], c: "All of the above" },
+            { q: "11. What is one of the vary basic parameters of the financial Performance of a company?", o: ["Employee Satisfaction", "Customer Profitability", "Production efficiency", "Innovation rate"], c: "Customer Profitability" },
+            { q: "12. How does an organisation benefit from a comprehensive knowledge of customers ?", o: ["By improving employee retention", "By enhancing supply chain efficiency", "By Retaining existing profitable customers and luring in new ones", "By Increasing Production speed"], c: "By Retaining existing profitable customers and luring in new ones" },
+            { q: "13. What is the Primary strategy of an organisation to positively impact its market share?", o: ["Increase product prices", "Reduce production costs", "Lure in new customers", "Enhance employee benefits"], c: "Lure in new customers" },
+            { q: "14. Which model has a tactical orientation in evaluating the financial performance of an organisation?", o: ["Customer lifetime value model", "Customer profitability Analysis", "Balanced Scorecard", "Six Sigma"], c: "Customer profitability Analysis" },
+            { q: "15. What are the first signs of financial distress in a company?", o: ["Declining employee morale", "Increased production costs", "Loss of customers impacting cashflows", "Decreasing customer satisfaction"], c: "Loss of customers impacting cashflows" },
+            { q: "16. Which of the following is not one of the main parts of the Kaplan-Norton balanced scorecard concept? Balancing", o: ["financial and non-financial measurements.", "cash flows and non-cash flows.", "short term and long term measurements.", "leading and lagging indicators"], c: "cash flows and non-cash flows." },
+            { q: "17. According to Kaplan & Norton, which of the balanced scorecard perspectives serves as the focus of the other perspectives?", o: ["Financial", "Customer.", "Internal business processes", "Learning & growth"], c: "Financial" },
+            { q: "18. According to Norton and Kaplan, the balanced scorecard should be used as", o: ["control system", "diagnostic system", "strategic system", "None of the above"], c: "strategic system" },
+            { q: "19. Given the following information for a business: Asset turnover = 3.50, Equity multiplier = 1, Return on Equity = 30% using the Dupont analysis, the net profit margin is", o: ["8.57%", "5.87%", "7.65%", "6.75%"], c: "8.57%" },
+            { q: "20. What is the missing item in this formula? Return on Equity (ROE) = ____ * Equity multiplier", o: ["Asset turnover", "Financial leverage", "Return on Assets", "Net profit margin"], c: "Return on Assets" },
+            { q: "21. One of the following is not a specific type of Benchmarking", o: ["Generic Benchmarking", "Internal Benchmarking", "External Benchmarking", "Competitive Benchmarking"], c: "External Benchmarking" },
+            { q: "22. Six Sigma is a business-driven, multi-dimensional structured approach to", o: ["Reducing process variability", "Lowering Defects", "Improving Processes", "All of the above"], c: "All of the above" },
+            { q: "23. Small/Mid-sized Six Sigma projects are executed by professionals titled as:", o: ["Champion", "Green Belt", "Black Belt", "Site Champion"], c: "Green Belt" },
+            { q: "24. Mura and Muri refer to ____ and ____ respectively", o: ["Unevenness, waste", "Unevenness, overburden", "Overburden, waste", "Overburden, poka-yoke"], c: "Unevenness, overburden" },
+            { q: "25. Variations in the quality characteristic of a product is due to", o: ["chance causes", "assignable causes", "both (a) and (b)", "neither (a) nor (b)"], c: "both (a) and (b)" },
+            { q: "26. What is the primary purpose of the BSC ?", o: ["To increased production speed", "To reduce employee turnover", "To translate vision, mission and strategy into tangible objectives and measures", "To enhance product innovation"], c: "To translate vision, mission and strategy into tangible objectives and measures" },
+            { q: "27. Which of the following is not one of the critical management processes accomplished by the BSC ?", o: ["Clarity and translate vision and strategy", "Communicate and link strategic objectives and measures", "Improve employee benefits and Incentives", "Enhance strategic feedback and learning"], c: "Improve employee benefits and Incentives" },
+            { q: "28. Which of the following statements best describes the main goal of benchmarking according to the defination provided?", o: ["To replicate the exact processes of successful companies", "To create unique internal standards for measuring quality", "To Provide an external standard for measuring internal activities and identify improvement opportunities", "To innovate new processes without considering external comparisons"], c: "To Provide an external standard for measuring internal activities and identify improvement opportunities" },
+            { q: "29. What are the two methodologies used for the deployment of Six Sigma ?", o: ["DMMI & DMAD", "DMAIC & DMADV", "DMAC & DMMV", "IDMAC & DMADV"], c: "DMAIC & DMADV" },
+            { q: "30. Which Six sigma methodology is used to develop new processes or products ?", o: ["DMAIC", "DMADV", "DMAC", "DMID"], c: "DMADV" },
+            { q: "31. Which phase of the DMADV Process involves creating high-level design and evaluating design capability to select the best design ?", o: ["Define", "Measure", "Design", "Verify"], c: "Design" },
+            { q: "32. What is the first stepin the DMAIC Process?", o: ["Measure the current process and collect relevant data", "Define the process improvement goals consistent with customer demands and enterprise strategy", "Analyze to verify the relationship and casual of factors", "Control to ensure variances are corrected"], c: "Define the process improvement goals consistent with customer demands and enterprise strategy" },
+            { q: "33. What does the PDCA cycle stand for?", o: ["Plan-Do-Check-Adjust", "Plan-Do-Check-Act", "Prepare-Do-Check-Analyze", "Plan-Design-Check-Act"], c: "Plan-Do-Check-Act" },
+            { q: "34. What does the 'S' in the PDSA cycle stand for?", o: ["Simplify", "Study", "Solve", "Systemize"], c: "Study" },
+            { q: "35. Which phase of the PDCA cycle is associated with 'Sales'?", o: ["Plan", "Do", "Check", "Act"], c: "Check" },
+            { q: "36. What does MIS stand for?", o: ["Management Information system", "Marketing Information system", "Manufacturing Information System", "Monetary Information system"], c: "Management Information system" },
+            { q: "37. What are the three elements of MIS method in the text?", o: ["Management, Information, System.", "Data, Process, Output", "Collection, Analysis, Reporting", "Planning, Implementation, Monitoring"], c: "Management, Information, System." },
+            { q: "38. The relationship between the economy and an economic indicator can be", o: ["Procyclic", "Countercyclic", "Acyclic", "All of the above"], c: "All of the above" },
+            { q: "39. Key Performance Indicator (KPI) is defined as", o: ["A vision statement that outlines a company's successful strategy", "An executive officer's ability to lead his division", "A performance measurement tool to gauge how a company is doing", "A growth strategy that takes competition into account"], c: "A performance measurement tool to gauge how a company is doing" },
+            { q: "40. Pareto improvement is an action that makes", o: ["Both the person better off", "At least one person worse off", "At least one person worse off without making anyone better off", "At least one person better off without making anyone worse off."], c: "At least one person better off without making anyone worse off." },
+            { q: "41. On the basis of timing an economic indicator is", o: ["Leading", "Lagged", "Coincident", "All of the above"], c: "All of the above" },
+            { q: "42. Which of the following is a characteristic of a perfectly competitive market?", o: ["Firms are price setters", "There are few sellers in the market;", "Firms can exit and enter the market freely;", "All of these"], c: "Firms can exit and enter the market freely;" },
+            { q: "43. In order to maximize profits, a firm should produce at the output level for which:", o: ["Average cost is minimized;", "Marginal revenue equals marginal cost;", "Marginal cost is minimized;", "Price minus average cost is as large as possible"], c: "Marginal revenue equals marginal cost;" },
+            { q: "44. A firm's marginal revenue is defined as:", o: ["The ratio of total revenue to total quantity produced:", "The additional output produced by lowering price:", "The additional revenue received due to technical innovation:", "The additional revenue received when selling one more unit of output."], c: "The additional revenue received when selling one more unit of output." },
+            { q: "45. One of the following is not a Competition based pricing method.", o: ["Going rate pricing", "Sealed bid pricing", "Marginal cost pricing", "Trade association based pricing"], c: "Marginal cost pricing" },
+            { q: "46. The pricing of niche products is appropriate to", o: ["Perceived value pricing", "Penetration pricing", "Differential pricing", "Full cost pricing"], c: "Perceived value pricing" },
+            { q: "47. One of the below mentioned in not a modern theory of the firm", o: ["Baumol's sales maximisation", "Shareholder's wealth maximisation", "Marri's model of maximisation of Firm's Growth rate", "Williamson's model of managerial discretion"], c: "Shareholder's wealth maximisation" },
+            { q: "48. What is the role of a Perfectly competitive firm in the market?", o: ["Price Maker", "Price taker", "Price setter", "Price Influencer"], c: "Price taker" },
+            { q: "49. In a Perfectly competitive Market, what does the demand curve facing the firm look like?", o: ["Downward slopping", "Upward slopping", "Vertical", "Horizontal"], c: "Horizontal" },
+            { q: "50. At what point does a perfectly competitive firm maximize its total profits in the short run?", o: ["Where MR = MC", "Where MC > MR", "Where MR > MC", "Where MR < MC"], c: "Where MR = MC" },
+            { q: "51. If the price (P) is equal to average cost (AC), what is the profit condition of the firm?", o: ["The firm incurs a loss", "The firm breaks even", "The firms earn super normal profit", "The firm shuts down"], c: "The firm breaks even" },
+            { q: "52. What happens if the price (P) is smaller than the average variable cost (AVC)?", o: ["The firm incurs a loss but continues operating", "The firm earns a profit", "The firms minimizes total losses by shutting down", "The firm break even"], c: "The firms minimizes total losses by shutting down" },
+            { q: "53. What will happen in the long run if firms in a perfectly competitive industry are earning profits in the short run?", o: ["Market Prices will increase", "Firms will exit the industry", "Market price will decline as supply increases", "The firms will continue earning super normal profits"], c: "Market price will decline as supply increases" },
+            { q: "54. What is the shutdown point for a firm in the short run?", o: ["P > AC", "P > MC", "P < AVC", "P = AVC"], c: "P < AVC" },
+            { q: "55. What is the profit condition for a firm when the price (P) exceeds average cost (AC)?", o: ["The firm is incurring a loss", "The firm Break even", "The firm earns super normal profit", "The firm shuts down"], c: "The firm earns super normal profit" },
+            { q: "56. In long-run equilibrium, where do all firms in a perfectly competitive industry produce?", o: ["Where P = lowest average cost", "Where P > AC", "Where P < AC", "Where P > AVC"], c: "Where P = lowest average cost" },
+            { q: "57. Which two conditions summarize short-term profit maximization for a perfectly competitive firm ?", o: ["MR > AC & Slope of MR > Slope of MC", "MR > AVC & Slope of MR < Slope of MC", "MR = MC & Slope of MR < Slope of MC", "MR = MC & Slope of MR > Slope of MC"], c: "MR = MC & Slope of MR > Slope of MC" },
+            { q: "58. One of the following is cannot be classified as systematic risk.", o: ["Interest rate risk", "Political risk", "Credit risk", "Foreign exchange risk"], c: "Credit risk" },
+            { q: "59. Risk management strategies are", o: ["Avoid risk, Reduce risk, Retain risk, Combine risk", "Transfer risk, share risk, Hedge risk", "Both (a) and (b)", "None of the above"], c: "Both (a) and (b)" },
+            { q: "60. Systematic risk is measured by", o: ["Alpha", "Beta", "Gamma", "Delta"], c: "Beta" },
+            { q: "61. The elements of ERM includes", o: ["Risk identification", "Risk assessment", "Risk response", "All of the above"], c: "All of the above" },
+            { q: "62. The goal of ERM as provided in Committee of Sponsoring Organisation's (COSO) ERM-Integrated Framework is to provide companies with", o: ["key principles and concepts", "common language", "clear direction and guidance regarding the management enterprise risks", "All of the above"], c: "All of the above" },
+            { q: "63. Unique risk is also referred as", o: ["Systematic risk", "Operational risk", "Default risk", "Non-systematic risk"], c: "Non-systematic risk" },
+            { q: "64. When rij = -1 (given that i and j are two securities comprising the portfolio)", o: ["the overall portfolio risk can be completely eliminated", "nothing to help reduce risk", "systematic risk can be diversified", "political risk can be diversified"], c: "the overall portfolio risk can be completely eliminated" },
+            { q: "65. The standard error (SE) of the sample mean loss distribution is equal to the", o: ["standard deviation of the population multiplied by the square root of the sample size.", "standard deviation of the population multiplied by the cube root of the sample size", "standard deviation of the population divided by the square root of the sample size", "standard deviation of the population divided by the cube root of the sample size."], c: "standard deviation of the population divided by the square root of the sample size" },
+            { q: "66. One of the following is not a qualitative method used for determining the level of risk of a business.", o: ["Brainstorming", "Computer simulation", "Evaluation for multidisciplinary groups", "Judgment of specialists and experts (Delphi Technique)"], c: "Computer simulation" },
+            { q: "67. A colour coded version of the risk map is known as", o: ["Red-Blue risk map", "Red-Yellow map", "Heat Map", "None of the above"], c: "Heat Map" },
+            { q: "68. Which type of risk is considered non-diversifiable and affects all investnents and securities?", o: ["Unsystematic risk", "Credit risk", "systematic risk", "Liquidity risk"], c: "systematic risk" },
+            { q: "69. what type of systematic risk occurs due to variations in the market interest rates?", o: ["Interest rate risk", "Purchasing power risk", "Market risk", "Foreign exchange risk"], c: "Interest rate risk" },
+            { q: "70. Which risk is associated with the overall tendency of security prices to move collectively due to social, political and economic events?", o: ["Market risk", "Liquidity risk", "Credit risk", "Operational risk"], c: "Market risk" },
+            { q: "71. What type of systematic risk arises from uncertainities of purchasing power due to inflation?", o: ["Market risk", "Interest rate risk", "Purchsaing power risk", "Foreign exchange risk"], c: "Purchsaing power risk" },
+            { q: "72. Political instability in a country leading to business risks for companies operating there is an example of which type of risk", o: ["Political risk", "Market risk", "Operational risk", "Interest rate risk"], c: "Political risk" },
+            { q: "73. What type of risk is associated with the difficulty of selling an asset quickly without a price discount?", o: ["Liquidity risk", "Credit risk", "Market risk", "Operational risk"], c: "Liquidity risk" },
+            { q: "74. The risk arising from a company's failure to meet its financial obligations, such as not paying interest or principal on time, is known as", o: ["Market risk", "Credit risk", "Operational risk", "Liquidity risk"], c: "Credit risk" },
+            { q: "75. What is a key requirement for effectively executing strategy and delivering performance in today's changing risk landscape?", o: ["Focusing solely on financial risks", "Ignoring non-financial risks with potential impact on organisational value drivers", "Leveraging historical comparisons of KRIS & KPIS", "Identifying,assessing,evaluating and managing non-financial risks"], c: "Identifying,assessing,evaluating and managing non-financial risks" },
+            { q: "76. Which of the following is not a method of risk management strategy", o: ["Avoidance", "Retention", "Hedging", "Transfer"], c: "Hedging" },
+            { q: "77. What is another term for the strategy of risk retention ?", o: ["Reduction", "Avoidance", "Transfer", "Acceptance"], c: "Acceptance" },
+            { q: "78. What does VaR stand for in finance?", o: ["Value at Risk", "Value Assessment Ratio", "Volatility Analysis Report", "Variable Asset Return"], c: "Value at Risk" },
+            { q: "79. How is VaR defined?", o: ["The average loss scenario arising from fluctuations in the value of a portfolio over a given period of time", "The best-case scenario for a portfolio's value over a specific time frame", "The wrost loss scenario arising from unexpected fluctuations in the value of a portfolio over a given period of time, at a specific confidence level.", "The expected return from a portfolio over a given period of time."], c: "The wrost loss scenario arising from unexpected fluctuations in the value of a portfolio over a given period of time, at a specific confidence level." },
+            { q: "80. When was the Basel Committee on Banking Supervision (BCBS) established, and what was it's purpose?", o: ["Established in 1988 to provide recommendations on banking regulations", "Established in 1971 to replace the Bretton woods system", "Established in 1974 by central bankers from G-10 countries to rebuild international financial structure", "Established in 2018 to regulate global banking operations"], c: "Established in 1974 by central bankers from G-10 countries to rebuild international financial structure" },
+            { q: "81. Where is the headquarters of the Basel committee on banking supervision (BCBS)?", o: ["New York, USA", "Geneva, Switzerland", "London.UK", "Basel, Switzerland"], c: "Basel, Switzerland" },
+            { q: "82. What is the primary objectives of bank supervision according to the Basel committee core principles ?", o: ["Maximizing profits for banks", "Protecting depositor's interests", "Promoting risky investment strategies", "Minimizing regulatory oversight"], c: "Protecting depositor's interests" },
+            { q: "83. Which Basel accord is referred to as the basel capital accord and was documented in 1988?", o: ["Basel II", "Basel III", "Basel I", "Basel IV"], c: "Basel I" },
+            { q: "84. What are the three catagories of risk under Basel II?", o: ["Market risk, operational risk and liquidity risk", "Credit risk, Market risk and liquidity risk", "Credit risk, Market risk and operational risk", "Credit risk, liquidity risk and Interest rate risk"], c: "Credit risk, Market risk and operational risk" },
+            { q: "85. Which of the following is NOT one of the specific issues addressed by Basel III guidelines ?", o: ["Enhanced quality and quantity of capital instruments", "Introduction of new global liquidity standards", "Relaxation of leverage ratio requirements", "Revision of credit Risk weights"], c: "Relaxation of leverage ratio requirements" },
+            { q: "86. What is the main focus of Basel III guidelines regarding risk management?", o: ["Encouraging excessive risk-taking behaviour", "Reducing regulatory oversight", "strengthening the minimum capital requirements outlined in Basel I & II", "Enhancing market stability through sound compensation practices"], c: "strengthening the minimum capital requirements outlined in Basel I & II" },
+            { q: "87. What does a Z-score lower than 1.81 indicate about a company's financial status?", o: ["The company is financially safe and healthy", "The company is in a grey area with a moderate chance of filing for bank", "The company is in financial distress and has a high probability of going bankrupt", "The company is unlikely to file for bankruptcy"], c: "The company is in financial distress and has a high probability of going bankrupt" },
+            { q: "88. How is a Z-score of 2.99 and above interpreted in terms of a company's financial health ?", o: ["The company is financially safe and healthy", "The company is in a grey zone with a moderate chance of filing for bankruptcy", "The company is unlikely to file for bankruptcy", "The company is in distress and has a high probability of going bankrupt"], c: "The company is financially safe and healthy" },
+            { q: "89. The price that would be received to sell an asset or paid to transfer a liability in an orderly transaction between market participants at the measurement date.", o: ["Investment Value", "Fair Value", "Fair market value", "Equitable Value"], c: "Fair Value" },
+            { q: "90. This is the estimated price for the transfer of an asset or liability between identified knowledgeable and willing parties that reflects the respective interests of those parties", o: ["Market Value", "Liquidation Value", "Equitable Value", "Investment Value"], c: "Equitable Value" },
+            { q: "91. Liquidation Value can be determined under what premises:", o: ["an orderly transaction with a typical marketing period:", "a forced transaction with a shortened marketing period", "both", "none of the above"], c: "both" },
+            { q: "92. The amount that would be realised when an asset or group of assets are sold on a piecemeal basis", o: ["Fair Market Value", "Market Value", "Investment Value", "Liquidation Value"], c: "Liquidation Value" },
+            { q: "93. Companies that grow and earn a return on capital that exceeds their cost of capital create value.", o: ["Alfred Marshall", "Black scholes", "Michael Porter", "None of the above"], c: "Alfred Marshall" },
+            { q: "94. The price a willing buyer would pay a willing seller in a transaction on the open market.", o: ["Market Value", "Fair Value", "Equitable Value", "Investment Value"], c: "Market Value" },
+            { q: "95. Fair Value is defined as the price that would be received to sell an asset or paid to transfer a ____ in an orderly transaction between market participants at the measurement date", o: ["Asset", "Liability", "Equity", "None of the above"], c: "Liability" },
+            { q: "96. The current use may be, but is ____ the highest and best use", o: ["Not necessarily", "necessarily", "Either a or b", "none of the above"], c: "Not necessarily" },
+            { q: "97. ____ is the use, that would produce the highest value for an asset.", o: ["Current Use", "Existing Use", "Best Use", "Highest and best use"], c: "Highest and best use" },
+            { q: "98. In Orderly Transactions the reasonable period of time to find a purchaser vary by asset type and market conditions", o: ["Yes", "No", "May", "May not"], c: "Yes" },
+            { q: "99. Tangible assets are usually valued using any of the premises except", o: ["Forced Sale", "Going Concern", "Orderly liquidation", "Highest and best use"], c: "Highest and best use" },
+            { q: "100. When to apply Income approach?", o: ["where the asset does not have any market comparable or comparable transaction", "where the asset has fewer relevant market comparables", "where the asset is an income producing asset for which the future cash flows are available and can reasonably be projected", "All of the above"], c: "All of the above" },
+            { q: "101. Key inputs of Discounted Cash Flow (DCF) Method are", o: ["Cashflow", "Terminal Value", "Discount Rate", "All of the above"], c: "All of the above" },
+            { q: "102. Which ratio reveals the number of times company can make its interest payments from its operating profit", o: ["Debt-Equity Rato", "Interest Coverage Ratio", "Both", "None of the above"], c: "Interest Coverage Ratio" },
+            { q: "103. The price-earnings ratio is calculated as;", o: ["MPS/EPS", "EPS/MPS", "MPS/BV", "any of the above"], c: "MPS/EPS" },
+            { q: "104. When did the Insolvency and Bankruptcy Code 2016 receive the President's assent?", o: ["5th August 2016", "28th May 2016", "5th May 2016", "15th June 2016"], c: "28th May 2016" },
+            { q: "105. The term related party is defined in ____ of the Insolvency and Bankruptcy Code, 2016:", o: ["Section 5 (22)", "Section 5 (23)", "Section 5 (24)", "Section 5 (25)"], c: "Section 5 (24)" },
+            { q: "106. How much time is given to start-ups and small and medium enterprises (SMEs) to complete the resolution process in Fast-track insolvency process?", o: ["30 days", "60 days", "90 days", "45 days"], c: "90 days" },
+            { q: "107. Who can initiate an Insolvency Resolution Process under the Code ?", o: ["Debtor", "Creditor", "Insolvency resolution Professional", "all of the above"], c: "all of the above" },
+            { q: "108. What is the minimum amount of default for being admitted into Corporate Insolvency Resolution Process (CIRP)", o: ["50 lakhs", "75 Lakhs", "₹90 Lakhs", "₹1 Crore"], c: "₹1 Crore" },
+            { q: "109. During voluntary liquidation, who is required to make declaration of solvency ?", o: ["Partners", "Directors", "Debtor", "Creditor"], c: "Directors" },
+            { q: "110. Whom does the IRP appoint to determine the liquidation value of the corporate debtor?", o: ["Liquidator", "CA", "Director", "Registered valuers"], c: "Registered valuers" },
+            { q: "111. Any arrangement entered into by a company or its holding company in contravention of the provisions of this section shall be -", o: ["Voidable", "Void", "Voidable at the option of others", "Valid"], c: "Voidable" },
+            { q: "112. Under sec 230(3), In case of a listed company, the documents related to notice of meeting under should be sent to -", o: ["SEBI", "NSE", "BSE", "all of the above"], c: "all of the above" },
+            { q: "113. What is the punishment for a valuer for contravening the provisions of this section 247 with the intention to defraud the company or its members?", o: ["Fine of ₹1 lacs-₹5 lacs", "Imprisonment may extend to one year", "both", "None"], c: "both" },
+            { q: "114. Central Registry of Securitization Asset Reconstruction and security Interest (CERSAI) is under which provision?", o: ["SEBI Act, 1992", "SARFAESI Act, 2002", "RBI Act, 1934", "Banking Regulation, 1949"], c: "SARFAESI Act, 2002" },
+            { q: "115. Acquisition of financial assets by any asset reconstruction company from any originator", o: ["Reconstruction", "Default", "Securitisation", "Amalgamation"], c: "Securitisation" },
+            { q: "116. Which of the following assets is an asset or account of a borrower, which has been classified by a bank or financial institution and sub-standard, doubtful or loss asset, in accordance with the directions or guidelines relating to asset classification issued by RBI", o: ["Underlying Assets", "Operating Assets", "Performing Assets", "Non Performing Assets"], c: "Non Performing Assets" },
+            { q: "117. Which Company can act as an agent for any bank or financial institution for the purpose of recovering their dues from the borrower on payment of such fees or charges as may be mutually agreed upon between the parties", o: ["securitisation company", "reconstruction company", "Both", "None"], c: "Both" },
+            { q: "118. Which of the following acts gave birth to the Asset Reconstruction Company?", o: ["Banking regulation act 1949", "SEBI Act 1992", "Companies Act 2013", "SARFAESI Act 2002"], c: "SARFAESI Act 2002" },
+            { q: "119. Market price per share of a firm having equity capital of ₹100,000 consisting of shares of ₹10 each, profit after tax of ₹82,000 & P/E ratio of 8 is", o: ["65.70", "10.25", "65.60", "1.03"], c: "65.60" },
+            { q: "120. If the rate at which the company can borrow funds from the financial institutions is 11 percent and the tax rate applicable to the company is 30 percent. The Post Tax Cost of Debt would be", o: ["15.71 percent", "7.7 percent", "0.3 percent", "3.3 percent"], c: "7.7 percent" },
+            { q: "121. If the 10 Year Government bond yield is 7.5% and the BSE Sensex return over the last one year is 15%. Assuming the company's Beta is 1.2, what is the Required return on Equity?", o: ["15.6 Percent", "16.6 Percent", "16.5 Percent", "17 Percent"], c: "16.5 Percent" },
+            { q: "122. If a company has a P/E ratio of 20 and a ROE (Return on Equity) of 15% then the Market to Book Value Ratio is-", o: ["3 times", "0.03", "Cannot be calculated from the given information", "None of the above"], c: "3 times" },
+            { q: "123. If an all equity firm has cash from operating Activities amounting to ₹60 lakhs, Depreciation ₹30 lakhs, increase in non-cash working capital ₹25 lakhs and capital expenditure ₹20 lakhs, its Free cash flows to Equity amounts to (in Lakhs)", o: ["40 lakhs", "45 lakhs", "60 lakhs", "90 lakhs"], c: "45 lakhs" },
+            { q: "124. Assume that in a stock market, the CAPM is working. A company has presently beta of 0.84 and its going to finance its new project through debt. This would increase its Debt/Equity Ratio to 1.56 from the existing 1.26. Due to increased Debt/Equity Ratio, the company's beta would", o: ["Increase", "Decrease", "remain unchanged", "Nothing can be concluded"], c: "Increase" },
+            { q: "125. Which one is the advantage of DCF valuation", o: ["Its not based upon an asset's fundamentals", "It is not the right way to think about what an investor would get when buying an asset", "it forces an investor to think about the underlying features of the firm and understand its business", "All of these"], c: "it forces an investor to think about the underlying features of the firm and understand its business" },
+            { q: "126. X ltd's share beta factor is 1.40. The risk free rate of interest on government securities is 9%. The expected rate of return on the company equity shares is 16%. The cost of equity capital based on CAMP is", o: ["15.8 Percent", "16 Percent", "18.8 Percent", "19. Percent"], c: "18.8 Percent" },
+            { q: "127. The sensitivity of an asset's return to the return on the market index is referred to as its", o: ["Beta", "Delta", "gama", "alpha"], c: "Beta" },
+            { q: "128. The additional return required by investors to invest in equities rather than a risk-free asset is known as", o: ["Equity risk premium", "unique risk", "firm-specific risk", "systematic risk"], c: "Equity risk premium" },
+            { q: "129. Which theory describes money received in the current time it has more worth than money received in future", o: ["Cash value of money", "Time value of money", "Storage value of money", "Lead value of money"], c: "Time value of money" },
+            { q: "130. A project assumed monetary gain or loss by discounting entire cash inflows and outflows by utilising the necessary rate of return is listed as", o: ["Net recorded cash value", "Net discounted value", "Net future value", "Net present value"], c: "Net present value" },
+            { q: "131. The cash flows method, utilized by the internal rate of return and net present value method are", o: ["Future cash flows", "Lean cash flows", "Discounted cash flows", "Vertical cash flows"], c: "Discounted cash flows" },
+            { q: "132. Which method in a capital budgeting is based on the discounted cash flow?", o: ["Net equity budgeting method", "Net capital budgeting method", "Net future value method", "Net present value method"], c: "Net present value method" },
+            { q: "133. Cash flows are a project's revenue and are indicated by", o: ["Positive numbers", "Negative numbers", "Relative number", "Hurdle number"], c: "Positive numbers" },
+            { q: "134. In which payback period a due cash flows are discounted with the cost of capital of the project is categorised as", o: ["Discounted project cost", "Discounted cash flows", "Discounted rate of return", "Discounted payback period"], c: "Discounted payback period" },
+            { q: "135. Which of the following most likely represents an interpretation of a high P/E ratio of a stock?", o: ["A company shares are currently overpriced.", "A company shares are currently underpriced.", "A company shares are currently fairly priced.", "None of the above"], c: "A company shares are currently overpriced." },
+            { q: "136. High P/E ratios tend to indicate that a company may", o: ["grow quickly", "grow at the same speed as the average company", "grow slowly", "not grow"], c: "grow quickly" },
+            { q: "137. ____ is equal to (common shareholders' equity/common shares outstanding)", o: ["Book value per share", "Liquidation value per share", "Market value per share", "Tobin's Q"], c: "Book value per share" },
+            { q: "138. 8% bond of Face Value 100 is selling for 96. What would be its Current Yield?", o: ["8%", "12%", "8.33%", "None of the above"], c: "8.33%" },
+            { q: "139. Certain costs are excluded in valuing inventory are", o: ["Abnormal amounts of wasted materials, labour, or other production costs", "Storage costs unless they are essential to the production process", "Selling costs.", "All of the above"], c: "All of the above" },
+            { q: "140. In the absence of any information, valuers must consider valuing such unquoted investments at their", o: ["Net Asset Values under cost approach", "P/BV under market approach", "PECV under Income approach", "the Discounted Cash Flow (DCF) approach"], c: "the Discounted Cash Flow (DCF) approach" },
+            { q: "141. Fixed income securities that usually carry a fixed rate of interest and can be issued by government or corporate is", o: ["Debentures", "NSC", "Bond", "None of the above"], c: "Bond" },
+            { q: "142. Bonds typically pay interest periodically at a pre specified rate of interest the rate at which this interest is paid is known as", o: ["Coupon", "Bond Yield", "Bond Price", "None of the above"], c: "Coupon" },
+            { q: "143. The rate of return required by the bond holders from the bond is known as the", o: ["Bond Price", "Call Option", "Bond Yield", "Coupon"], c: "Bond Yield" },
+            { q: "144. Option which entitles the bondholders to put the bonds back to the issuer for redemption before the maturity date.", o: ["Put Option", "Call Option", "Coupon", "None of the above"], c: "Put Option" },
+            { q: "145. Current yield of bonds selling at par would be equal to the coupon interest rate, is it true?", o: ["TRUE", "FALSE", "Maybe", "Either of the above"], c: "TRUE" },
+            { q: "146. Current yield of bonds selling at a premium would be more than the coupon interest rate", o: ["True", "False", "Maybe", "Either of the above"], c: "False" },
+            { q: "147. Interest rate risk refers to the risk that bond prices will ____ as interest rates rise", o: ["Rise", "Stay constant", "Fall", "None of the above"], c: "Fall" },
+            { q: "148. Reinvestment Risk refers to the risk that the proceeds from a bond will be reinvested at a ____ than the bond originally provided", o: ["Higher rate", "Lower rate", "Same rate", "Sligthly higher rate"], c: "Lower rate" },
+            { q: "149. A ____ is an option issued by a company to buy a stated number of shares of stock at a specified price.", o: ["Warrant", "Bond", "Puttable bond", "None of the above"], c: "Warrant" },
+            { q: "150. ____ is one in which the bondholder has the right to sell the issue back to the issuer at a specified price is one in which the bondholder has the right to sell the issue back to the issuer at a specified price on a designated dates", o: ["Puttable bond", "Warrant", "Bond", "None of the above"], c: "Puttable bond" },
+            { q: "151. A ____ grants the bondholder the right to convert the bond into a specified number of issuing company's shares", o: ["Call Option", "Put Option", "Conversion Option", "Warrant"], c: "Conversion Option" },
+            { q: "152. Price of a Callable bond =", o: ["Price of an Option-free bond - Price of embedded call option.", "Price of an Option-free bond + Price of embedded call option", "Price of Option-free bond + Price of Embedded Option", "None of the above"], c: "Price of an Option-free bond - Price of embedded call option." },
+            { q: "153. Price of a Puttable Bond =", o: ["Price of an Option-free bond - Price of embedded call option", "Price of an Option-free bond + Price of embedded call option", "Price of Option-free bond + Price of Embedded Option", "None of the above"], c: "Price of Option-free bond + Price of Embedded Option" },
+            { q: "154. Which IND AS states that, 'An intangible asset is an identifiable non-monetary asset without physical substance.'", o: ["IND AS 38", "IND AS 113", "IND AS 19", "IND AS 12"], c: "IND AS 38" },
+            { q: "155. EVA =", o: ["Net Operating Profit After Tax - Currency Cost of Capital", "Net operating Profit After tax - (Capital Employed x Cost of Capital)", "Net Operating Profit After Tax + Currency Cost of Capital", "Both a and b"], c: "Net operating Profit After tax - (Capital Employed x Cost of Capital)" },
+            { q: "156. Market value Added (MVA) is the difference between the ____ of a firm and the ____ contributed by investors", o: ["Current market value, Capital", "Book value, Capital", "Book Value, Debt", "None of the above"], c: "Current market value, Capital" },
+            { q: "157. If MVA is positive, the firm has added value. If it is negative the firm has destroyed value. Is it correct or not?", o: ["Incorrect", "Partly Correct", "Partly Incorrect", "Correct"], c: "Correct" },
+            { q: "158. A ____ MVA means that the value of the actions and investments of management is less than the value of the capital contributed to the company by the capital markets, meaning wealth or value has been destroyed", o: ["Positive", "Negative", "Constant", "None of the above"], c: "Negative" },
+            { q: "159. The aim of the company should be to maximize", o: ["MVA", "EVA", "Both", "None of the above"], c: "MVA" },
+            { q: "160. Asset-Liability management can be used to manage", o: ["Exchange Risk", "Interest Rate Risk", "Default Risk", "Both a and b above"], c: "Both a and b above" },
+            { q: "161. An Investment is risk free when actual returns are always ____ the expected results.", o: ["Equal to", "Less than", "More than", "Depends upon circumstances"], c: "Equal to" },
+            { q: "162. If the Value of target Co. is ₹500 Million and the value of acquiring company is ₹800 Million. Present value of cost savings if the two companies are merged together is ₹100 million. Acquiring company expects the cost of integration as ₹80 million and the shareholders of Target Co. are expecting a deal premium to be paid of 15 percent over their company's value. what is the value of Combined entity?", o: ["1400 million", "1345 million", "1445 million", "1540 million"], c: "1345 million" },
+            { q: "163. X ltd has 100 crores worth of common equity on its balance sheet comprising of 50 lakhs shares. The company's market value Added (MVA) is ₹24 crores. What is company's stock price?", o: ["230", "238", "248", "264"], c: "248" },
+            { q: "164. A firm's current assets and current liabilities are 1600 and 1000 respectively. How much can it borrow on a short-term basis without reducing the current ratio below 1.25?", o: ["1000", "1200", "1400", "1600"], c: "1400" },
+            { q: "165. Identify which of the following is not a financial liability", o: ["X ltd has 1 lakh ₹10 ordinary shares issued", "X ltd has 1 lakh 8% ₹10 redeemable preference shares issued", "X Ltd has ₹2,00,000 of 6% bonds issued", "Both (A) and (B)"], c: "X ltd has 1 lakh ₹10 ordinary shares issued" },
+            { q: "166. In 2018, Walmart acquired 77 percent stake in Flipkart India for USD 16 billion. Is it an example of merger or acquisition?", o: ["Acquistion", "Merger", "Both", "None of these"], c: "Acquistion" },
+            { q: "167. Acquisitions create value when the cash flows of the combined companies are greater than the sum of their individual values. Is it true?", o: ["FALSE", "TRUE", "May be", "None of these"], c: "TRUE" },
+            { q: "168. Value gap is the difference between ____ and ____", o: ["Synergy value and purchase price", "Intrinsic value and purchase price", "Market value and purchase price", "Intrinsic value and Synergy value"], c: "Intrinsic value and purchase price" },
+            { q: "169. ____ refers to the excess that an acquirer pays over the market trading value of the target company's shares being acquired.", o: ["purchase premium", "acquisiton premium", "Both", "None of these"], c: "purchase premium" },
+            { q: "170. ____ are those where an acquirer intends to run the company themselves. There are significant changes in the way the company operates.", o: ["Financial Acquisition", "Strategic acquisitions", "Hostile takeover", "None of these"], c: "Strategic acquisitions" },
+            { q: "171. ____ are often done by Private Equities, Venture Capitalists and portfolio companies who acquirer a company purely for their value and normally do not make significant operational changes", o: ["Financial Acquisition", "Strategic acquisitions", "Hostile takeover", "None of these"], c: "Financial Acquisition" },
+            { q: "172. If the combined entity is more than the sum of its parts, the transaction is said to have created ----", o: ["Combined Value", "Net Worth", "Synergies", "Economic gains"], c: "Synergies" },
+            { q: "173. The merger of one or more companies with another company or the merger of two or more companies to form one company is called", o: ["Demerger", "Acquisition", "Amalgamation", "Slump sale"], c: "Amalgamation" },
+            { q: "174. The difference between the current market value of a firm and the capital contributed by investors is", o: ["Economic Value Added", "Market Value Added", "Enterprise Value Added", "Book value Added"], c: "Market Value Added" },
+            { q: "175. Future retail Ltd and Reliance Ltd go into liquidation and a new company Reliance Retail Ltd is formed. It is a case of:", o: ["Absorption", "External reconstruction", "Amalgamation", "Take over"], c: "Amalgamation" },
+            { q: "176. Net assets minus capital reserve is", o: ["Goodwill", "General reserves", "Purchase consideration", "None of the above"], c: "Purchase consideration" },
+            { q: "177. If purchase consideration is more than net assets of the transferor company, then difference will be shown as:", o: ["Goodwill account", "Capital reserve account", "General reserve account", "None of the above"], c: "Goodwill account" },
+            { q: "178. In the books of Transferor Company, shares received from the new company are recorded at:", o: ["Face value", "Market Price", "Intrinsic value of shares", "None of the above"], c: "Market Price" },
+            { q: "179. Intangible assets are treated as ____ assets.", o: ["Fictitious assets", "Fixed assets", "Cash and cash equivalents", "Marketable securities"], c: "Fixed assets" },
+            { q: "180. EVA is ____ related to shareholder's value", o: ["directly", "inversely", "not related", "None of the above"], c: "directly" },
+            { q: "181. Which is not a, human-capital related intangible assets?", o: ["Trained workforce", "Employment agreements", "Union Contracts", "Design patent"], c: "Design patent" },
+            { q: "182. When amalgamation is in the nature of merger, the accounting method to be followed is:", o: ["Equity method", "Purchase method", "Pooling of interests method", "Consolidated method"], c: "Pooling of interests method" },
+            { q: "183. What are the tax consequences of a taxable merger?", o: ["Selling shareholders can defer any capital gain until they sell their shares in the merged company", "Depreciation tax shield is unchanged by merger", "Selling shareholders must recognize any capital gain", "Depreciable value of assets will remain unchanged"], c: "Selling shareholders must recognize any capital gain" },
+            { q: "184. The Income tax Act, 1961 define 'amalgamation' under Section", o: ["1(1B)", "2(1B)", "3(B)", "2(2B)"], c: "2(1B)" },
+            { q: "185. ____ grant a company the right to issue stock options to existing shareholders enabling them to purchase additional shares of stock at significantly discounted prices.", o: ["Poison pills", "Poison puts", "Share repurchase", "None of these"], c: "Poison pills" }
         ];
 
-        let userAnswers = new Array(questionsData.length).fill(null);
-        let questionsAttemptedFlags = new Array(questionsData.length).fill(false);
-        let currentQuestionIndex = 0;
-        let score = { correct: 0, incorrect: 0 };
 
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(questionsData.length).fill(null); 
+        let questionsAttemptedState = new Array(questionsData.length).fill(false); 
+
+        let score = {
+            correct: 0,
+            incorrect: 0
+        };
+
+        // DOM Elements
         const questionHeaderElement = document.getElementById('question-header');
         const questionTextElement = document.getElementById('question-text');
         const optionsContainerElement = document.getElementById('options-container');
@@ -354,58 +554,61 @@
         const prevButton = document.getElementById('prev-btn');
         const completionMessageElement = document.getElementById('completion-message');
         const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
 
         const correctCountElement = document.getElementById('correct-count');
         const incorrectCountElement = document.getElementById('incorrect-count');
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
-        
-        const questionsPerSet = [50, 50, 50, 35]; 
-        const setStartIndices = [0, 50, 100, 150]; 
 
+        // Configuration for 185 questions into 5 sets
+        const questionsPerSet = [37, 37, 37, 37, 37]; 
+        const setStartIndices = [0, 37, 74, 111, 148]; 
 
         function populateSetSelector() {
             setSelectorElement.innerHTML = ''; // Clear existing options
             questionsPerSet.forEach((num, index) => {
+                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+                
                 const option = document.createElement('option');
                 option.value = index; 
-                option.textContent = `Set ${index + 1} (Q ${setStartIndices[index] + 1} - ${setStartIndices[index] + num})`;
-                setSelectorElement.appendChild(option);
+                const startQ = setStartIndices[index] + 1;
+                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
+                
+                if (startQ <= endQ) {
+                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                    setSelectorElement.appendChild(option);
+                }
             });
             setSelectorElement.addEventListener('change', (event) => {
                 const selectedSetIndex = parseInt(event.target.value);
                 currentQuestionIndex = setStartIndices[selectedSetIndex];
-                displayQuizElements();
+                completionMessageElement.style.display = 'none';
+                questionHeaderElement.style.display = 'block';
+                questionTextElement.style.display = 'block';
+                optionsContainerElement.style.display = 'block';
+                navigationButtons.style.display = 'flex'; 
                 loadQuestion();
             });
         }
-        
-        function displayQuizElements() {
-            completionMessageElement.style.display = 'none';
-            questionHeaderElement.style.display = 'block';
-            questionTextElement.style.display = 'block';
-            optionsContainerElement.style.display = 'block';
-            document.getElementById('navigation-buttons').style.display = 'flex';
-        }
-
 
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
-            for (let i = 0; i < questionsPerSet.length; i++) {
-                cumulativeQuestions += questionsPerSet[i];
-                if (index < cumulativeQuestions) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
                     if (setSelectorElement.value != i) { 
-                         setSelectorElement.value = i;
+                         setSelectorElement.value = i; 
                     }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
                 }
             }
-            //This will handle the last set if the loop doesn't catch it
-            const lastSetIndex = questionsPerSet.length - 1;
-            if (setSelectorElement.value != lastSetIndex) {
-                setSelectorElement.value = lastSetIndex;
+            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
+            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
+                 setSelectorElement.value = lastSetIndex;
             }
-            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
         }
         
         function updateScoreboard() {
@@ -422,97 +625,87 @@
         }
 
         function loadQuestion() {
-            if (currentQuestionIndex < 0) currentQuestionIndex = 0;
-            if (currentQuestionIndex >= questionsData.length) {
+            if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
+            if (currentQuestionIndex >= questionsData.length) { 
                 showCompletionMessage();
                 return;
             }
-            displayQuizElements(); 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const setInfo = getCurrentSetInfo(currentQuestionIndex);
 
             questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
 
-            optionsContainerElement.innerHTML = '';
-            const questionAlreadyAnswered = questionsAttemptedFlags[currentQuestionIndex];
-
+            optionsContainerElement.innerHTML = ''; 
             currentQuestion.o.forEach((optionText, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.classList.add('option');
                 optionElement.dataset.optionText = optionText; 
 
-                const optionLetter = String.fromCharCode(65 + index);
+                const optionLetter = String.fromCharCode(65 + index); 
                 optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
                 
-                if (questionAlreadyAnswered) {
+                if (questionsAttemptedState[currentQuestionIndex]) { 
                     optionElement.classList.add('disabled');
-                    if (optionText === currentQuestion.c) {
-                        optionElement.classList.add('correct-answer');
+                    if (optionText === userAnswers[currentQuestionIndex]) {
+                        optionElement.classList.add('selected');
+                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                            optionElement.classList.add('correct-answer');
+                        } else {
+                            optionElement.classList.add('incorrect-selection');
+                        }
                     }
-                    if (optionText === userAnswers[currentQuestionIndex] && optionText !== currentQuestion.c) {
-                        optionElement.classList.add('incorrect-selection');
-                    }
-                     if (optionText === userAnswers[currentQuestionIndex]) {
-                        optionElement.classList.add('user-selected-display');
+                    if (optionText === currentQuestion.c) { 
+                         optionElement.classList.add('correct-answer'); 
                     }
                 } else {
                     optionElement.addEventListener('click', () => handleOptionSelection(optionElement, optionText));
                 }
                 optionsContainerElement.appendChild(optionElement);
             });
-            
-            prevButton.disabled = currentQuestionIndex === 0;
-            // MODIFICATION: Always enable the next button to allow skipping
-            nextButton.disabled = false; 
-            
-            if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            } else {
-                 nextButton.textContent = "Next Question";
-            }
+
+            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
+            // The button is no longer disabled based on answer state to allow skipping.
+            nextButton.disabled = false;
+            prevButton.disabled = (currentQuestionIndex === 0);
+
+            questionHeaderElement.style.display = 'block';
+            questionTextElement.style.display = 'block';
+            optionsContainerElement.style.display = 'block';
+            navigationButtons.style.display = 'flex';
+            completionMessageElement.style.display = 'none';
         }
 
         function handleOptionSelection(selectedDiv, selectedOptionText) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return; 
+            if (questionsAttemptedState[currentQuestionIndex]) return; 
 
-            questionsAttemptedFlags[currentQuestionIndex] = true;
+            questionsAttemptedState[currentQuestionIndex] = true;
             userAnswers[currentQuestionIndex] = selectedOptionText;
-            nextButton.disabled = false; 
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.c;
 
-            selectedDiv.classList.add('user-selected-display');
-
-            if (selectedOptionText === correctAnswerText) {
-                selectedDiv.classList.add('correct-answer');
-                score.correct++;
-            } else {
-                selectedDiv.classList.add('incorrect-selection');
-                score.incorrect++;
-                Array.from(optionsContainerElement.children).forEach(optDiv => {
-                    if (optDiv.dataset.optionText === correctAnswerText) {
-                        optDiv.classList.add('correct-answer');
-                    }
-                });
-            }
-            
             Array.from(optionsContainerElement.children).forEach(optDiv => {
-                const newOptDiv = optDiv.cloneNode(true);
-                optDiv.parentNode.replaceChild(newOptDiv, optDiv);
-                newOptDiv.classList.add('disabled');
+                optDiv.classList.add('disabled'); 
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
+                    optDiv.classList.add('selected');
+                    if (selectedOptionText === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        optDiv.classList.add('incorrect-selection'); 
+                        score.incorrect++;
+                    }
+                }
             });
-
             updateScoreboard();
-             if (currentQuestionIndex >= questionsData.length -1) {
-                nextButton.textContent = "Show Results";
-            }
         }
         
         function selectOptionByKey(key) {
-            if (questionsAttemptedFlags[currentQuestionIndex]) return;
+            if (questionsAttemptedState[currentQuestionIndex]) return;
 
             let optionIndex = -1;
             if (key === 'a' || key === '1') optionIndex = 0;
@@ -529,11 +722,17 @@
         }
 
         function nextQuestionHandler() {
-            if (currentQuestionIndex < questionsData.length - 1) {
+            // Removed the check that prevented skipping questions.
+            if (currentQuestionIndex === questionsData.length - 1) {
+                currentQuestionIndex++; 
+                showCompletionMessage();
+            } 
+            else if (currentQuestionIndex < questionsData.length - 1) {
                 currentQuestionIndex++;
                 loadQuestion();
-            } else {
-                showCompletionMessage();
+            }
+             else if (currentQuestionIndex >= questionsData.length) { 
+                 showCompletionMessage(); 
             }
         }
 
@@ -548,34 +747,42 @@
             questionHeaderElement.style.display = 'none';
             questionTextElement.style.display = 'none';
             optionsContainerElement.style.display = 'none';
-            document.getElementById('navigation-buttons').style.display = 'none';
+            navigationButtons.style.display = 'none'; 
             completionMessageElement.style.display = 'block';
             const attempted = score.correct + score.incorrect;
             const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
-            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect. <br> Accuracy: ${accuracy}%`;
+            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
+        // Event Listeners
         nextButton.addEventListener('click', nextQuestionHandler);
         prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+                return;
+            }
+            if (event.key.toLowerCase() === 'escape') return; 
+
+            if (completionMessageElement.style.display === 'block') { 
+                 event.preventDefault(); 
+                 return;
+            }
+
             const key = event.key.toLowerCase();
-            
-            // MODIFICATION: Allow skipping with keyboard shortcuts
-            if (key === 'arrowright' || key === ' ' || key === 'enter') {
+            if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
+                event.preventDefault();
+                selectOptionByKey(key);
+            } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
                 event.preventDefault();
                 nextQuestionHandler();
-            } else if (key === 'arrowleft') {
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
                 event.preventDefault();
                 prevQuestionHandler();
-            } else if (['a', 'b', 'c', 'd', '1', '2', '3', '4'].includes(key)) {
-                if (currentQuestionIndex < questionsData.length && !questionsAttemptedFlags[currentQuestionIndex]) {
-                    event.preventDefault();
-                    selectOptionByKey(key);
-                }
             }
         });
 
+        // Initial setup
         populateSetSelector();
         loadQuestion();
         updateScoreboard(); 
