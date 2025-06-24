@@ -53,7 +53,7 @@
             margin-bottom: 30px;
             border-radius: 16px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 40px rgba(87, 3, 156, 0.5);
-            animation: animated-gradient 6s ease infinite; /* Faster animation */
+            animation: animated-gradient 6s ease infinite;
         }
 
         .header-container {
@@ -136,7 +136,7 @@
             background-size: 200% 200%;
             position: relative;
             overflow: hidden;
-            animation: animated-gradient 5s ease infinite; /* Faster animation */
+            animation: animated-gradient 5s ease infinite;
         }
         
         .group-choice-card:before {
@@ -164,8 +164,21 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
         }
         .group-choice-card p { font-size: 0.95rem; color: var(--light-text); opacity: 0.8; }
+        
+        /* === UPDATED STYLES START HERE === */
 
-        .group-container { display: none; width: 100%; max-width: 900px; margin-bottom: 40px; }
+        .group-container {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 40px;
+            background-color: rgba(23, 31, 44, 0.5); /* Semi-transparent dark bg */
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(55, 65, 81, 0.7);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
 
         .back-button {
             display: inline-block; background-color: #374151; /* Gray 700 */
@@ -176,9 +189,20 @@
         .back-button:hover { background-color: #4b5563; /* Gray 600 */ transform: translateY(-2px); }
 
         .group-title {
-            font-size: 2.2rem; font-weight: 700; color: var(--primary-yellow);
-            text-align: center; margin-bottom: 30px; padding-bottom: 15px;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
             border-bottom: 2px solid var(--primary-blue);
+            /* Animated gradient text */
+            background: linear-gradient(90deg, var(--primary-yellow), var(--primary-green), var(--primary-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: animated-gradient 3s linear infinite;
         }
 
         .quiz-grid {
@@ -187,54 +211,84 @@
         }
 
         .quiz-card {
-            border-radius: 12px; padding: 25px; text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex; flex-direction: column; justify-content: space-between;
-            min-height: 190px;
-            /* New blue gradient */
-            background: linear-gradient(135deg, #0ea5e9, #3b82f6, #0ea5e9);
-            background-size: 250% 250%;
-            border: 1px solid #1e40af; /* Dark blue border */
-            animation: animated-gradient 5s ease infinite; /* Faster animation */
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+            /* Glassmorphism effect */
+            background: rgba(31, 41, 55, 0.25); /* Gray-800 with 25% opacity */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
         }
 
+        .quiz-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+            transform: skewX(-25deg);
+        }
+        
         .quiz-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(14, 165, 233, 0.4);
+            transform: translateY(-10px) scale(1.03);
+            border-color: rgba(242, 231, 12, 0.5); /* --primary-yellow */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 20px rgba(242, 231, 12, 0.4);
+        }
+
+        .quiz-card:hover:before {
+            left: 150%;
         }
 
         .quiz-card h3 {
-            font-size: 1.2rem; font-weight: 600;
-            color: var(--light-text); /* Light text for better contrast */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-            margin-bottom: 10px;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--light-text);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
         }
 
         .quiz-card p {
             font-size: 0.9rem;
-            color: var(--light-text); /* Light text for better contrast */
-            opacity: 0.9;
+            color: var(--medium-text); /* Using medium-text for better contrast */
             margin-bottom: 20px;
             flex-grow: 1;
         }
 
         .quiz-card a {
             display: inline-block;
-            color: var(--light-text);
-            padding: 12px 24px; border-radius: 8px; text-decoration: none;
-            font-weight: 700; transition: all 0.3s ease;
+            color: var(--dark-bg);
+            background: var(--primary-yellow);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
             margin-top: auto;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(135deg, var(--primary-purple), #4f46e5, var(--primary-purple));
-            background-size: 250% 250%;
-            animation: animated-gradient 4s ease infinite; /* Faster animation */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid transparent;
         }
 
         .quiz-card a:hover {
+            background: transparent;
+            color: var(--primary-yellow);
+            border-color: var(--primary-yellow);
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(87, 3, 156, 0.5);
+            box-shadow: 0 6px 20px rgba(242, 231, 12, 0.4);
         }
+
+        /* === UPDATED STYLES END HERE === */
 
         .footer-credit {
             margin-top: 40px; padding: 20px; font-size: 0.9em;
@@ -261,6 +315,7 @@
         @media (max-width: 768px) {
             .main-title { font-size: 2.2rem; }
             .group-choice-container { grid-template-columns: 1fr; }
+            .group-container { padding: 20px; }
         }
     </style>
 </head>
@@ -300,7 +355,7 @@
     </div>
 
     <div id="group1SubjectsContainer" class="group-container">
-        <button class="back-button" onclick="history.back()">← Back to Group Selection</button>
+        <a class="back-button" onclick="history.back()">← Back to Group Selection</a>
         <h2 class="group-title">Group I - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card"><h3>Paper 5: Business Laws & Ethics</h3><p>Review your grasp of various business laws and ethical considerations.</p><a href="law sets.html">Start Quiz</a></div>
@@ -311,7 +366,7 @@
     </div>
 
     <div id="group2SubjectsContainer" class="group-container">
-        <button class="back-button" onclick="history.back()">← Back to Group Selection</button>
+        <a class="back-button" onclick="history.back()">← Back to Group Selection</a>
         <h2 class="group-title">Group II - CMA Inter Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card"><h3>Paper 9: Operations & Strategic Management</h3><p>Tackle questions on operations, supply chain, and strategic planning.</p><a href="omsm sets.html">Start Quiz</a></div>
@@ -322,7 +377,7 @@
     </div>
 
     <div id="group3SubjectsContainer" class="group-container">
-        <button class="back-button" onclick="history.back()">← Back to Group Selection</button>
+        <a class="back-button" onclick="history.back()">← Back to Group Selection</a>
         <h2 class="group-title">Group III - CMA Final Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card"><h3>Paper 13: Corporate & Economic Laws</h3><p>Master the complexities of corporate governance and economic regulations.</p><a href="paper 13.html">Start Quiz</a></div>
@@ -333,7 +388,7 @@
     </div>
 
     <div id="group4SubjectsContainer" class="group-container">
-        <button class="back-button" onclick="history.back()">← Back to Group Selection</button>
+        <a class="back-button" onclick="history.back()">← Back to Group Selection</a>
         <h2 class="group-title">Group IV - CMA Final Syllabus 2022</h2>
         <div class="quiz-grid">
             <div class="quiz-card"><h3>Paper 17: Cost and Management Audit</h3><p>Explore the principles and practices of cost auditing and management audit.</p><a href="paper 17.html">Start Quiz</a></div>
@@ -365,8 +420,6 @@
          */
         function showGroupSubjects(groupIdToShow, push = true) {
             if (push) {
-                // Add this view to the browser's history to enable back/forward navigation.
-                // A hash is added to the URL.
                 history.pushState({ groupId: groupIdToShow }, `Group - ${groupIdToShow}`, `#${groupIdToShow}`);
             }
 
@@ -376,7 +429,6 @@
             const groupToShow = document.getElementById(groupIdToShow);
             if (groupToShow) {
                 groupToShow.style.display = 'block';
-                // Animate the cards appearing.
                 const quizCards = groupToShow.querySelectorAll('.quiz-card');
                 quizCards.forEach((card, index) => {
                     card.classList.remove('animate-fadeInUp');
@@ -393,44 +445,42 @@
          */
         function showGroupSelection(push = true) {
              if (push) {
-                // This state represents the main selection screen with a clean URL.
                 history.pushState({ groupId: null }, 'Group Selection', window.location.pathname);
             }
             groupChoiceContainer.style.display = 'grid';
             groupContainers.forEach(container => container.style.display = 'none');
-             // Animate the group choice cards.
              const choiceCards = document.querySelectorAll('.group-choice-card');
              choiceCards.forEach((card, index) => {
                 card.classList.remove('animate-fadeInUp');
-                void card.offsetWidth; // Trigger a reflow to restart the animation.
+                void card.offsetWidth; // Trigger a reflow.
                 card.classList.add('animate-fadeInUp');
                 card.style.animationDelay = `${0.3 + index * 0.1}s`;
             });
         }
 
-        // Listen for the popstate event, which is triggered by browser back/forward buttons
-        // or by calls to history.back().
         window.addEventListener('popstate', (event) => {
-            // Check the state to determine which view to show.
             if (event.state && event.state.groupId) {
-                // If a groupId exists in the state, show that subject view.
-                showGroupSubjects(event.state.groupId, false); // "false" prevents creating a new, duplicate history entry.
+                showGroupSubjects(event.state.groupId, false);
             } else {
-                // Otherwise, show the main group selection.
                 showGroupSelection(false);
             }
         });
+        
+        // I also modified the back button to use history.back() for better UX,
+        // which works with the history management already in place.
+        document.querySelectorAll('.back-button').forEach(button => {
+            button.onclick = (e) => {
+                e.preventDefault();
+                history.back();
+            };
+        });
 
-        // On initial page load, determine the correct view based on the URL.
         document.addEventListener('DOMContentLoaded', () => {
             const initialGroupId = window.location.hash.substring(1);
-            // If there's a group ID in the URL (e.g., from a bookmark or refresh), show that group.
             if (initialGroupId && document.getElementById(initialGroupId)) {
-                // Use replaceState to set the initial state without creating a back-able history entry.
                 history.replaceState({ groupId: initialGroupId }, `Group - ${initialGroupId}`, `#${initialGroupId}`);
                 showGroupSubjects(initialGroupId, false);
             } else {
-                // Otherwise, show the main group selection page.
                 history.replaceState({ groupId: null }, 'Group Selection', window.location.pathname);
                 showGroupSelection(false);
             }
