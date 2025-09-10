@@ -116,8 +116,8 @@
         }
 
         .prepogy-logo {
-            width: 120px;
-            height: 120px;
+            width: 100px; /* smaller size for mobile */
+            height: 100px; /* smaller size for mobile */
             background: transparent;
             border-radius: 30px;
             display: flex;
@@ -126,6 +126,7 @@
             margin: 0 auto;
             position: relative;
             overflow: hidden;
+            transition: width 0.3s ease, height 0.3s ease;
         }
 
         .main-title {
@@ -164,6 +165,7 @@
             max-width: 800px;
             margin: 0 auto 60px;
             padding: 0 20px;
+            display: none; /* Hidden on mobile by default */
         }
 
         .shortcuts-guide {
@@ -405,6 +407,16 @@
         .floating-element:nth-child(3) { top: 30%; left: 80%; animation-delay: 4s; }
         .floating-element:nth-child(4) { top: 80%; left: 70%; animation-delay: 6s; }
         .floating-element:nth-child(5) { top: 50%; left: 90%; animation-delay: 1s; }
+        
+        @media (min-width: 768px) {
+            .prepogy-logo {
+                width: 150px; /* larger size for desktop */
+                height: 150px; /* larger size for desktop */
+            }
+            .shortcuts-guide-wrapper {
+                display: block; /* Visible on desktop */
+            }
+        }
 
         @media (max-width: 768px) {
             .group-choice-container {
@@ -732,6 +744,9 @@
     </script>
 </body>
 </html>
+
+
+
 
 
 
