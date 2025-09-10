@@ -461,6 +461,45 @@
                 text-align: center;
             }
         }
+
+        .footer-credit {
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #a0aec0;
+            text-align: center;
+            width: 100%;
+        }
+        .footer-credit a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .footer-credit a:hover {
+            text-decoration: underline;
+        }
+        .footer-credit .heart-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin: 0 2px;
+            vertical-align: middle;
+            fill: #ef4444;
+        }
+        .jai-hind {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .jai-hind img {
+            width: 28px;
+            height: auto;
+            margin-left: 10px;
+        }
     </style>
 </head>
 
@@ -627,6 +666,19 @@
         </div>
     </div>
 
+    <footer class="footer-credit">
+        <p>
+            Developed with&nbsp;
+            <svg class="heart-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
+            &nbsp;by&nbsp;
+            <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank" rel="noopener noreferrer">Ash🔱tosh</a>
+        </p>
+        <p class="jai-hind">
+            जय हिन्द
+            <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="Indian Flag">
+        </p>
+    </footer>
+
     <script>
         function showGroupSubjects(groupId, pushState = true) {
             // Hide all containers
@@ -767,6 +819,7 @@
     </script>
 </body>
 </html>
+
 
 
 
