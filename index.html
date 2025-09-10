@@ -122,30 +122,15 @@
         .prepogy-logo {
             width: 120px;
             height: 120px;
-            background: var(--gradient-rainbow);
+            background: transparent;
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
-            font-weight: 800;
-            color: white;
             box-shadow: 0 20px 40px rgba(139, 95, 191, 0.3);
             margin: 0 auto;
             position: relative;
             overflow: hidden;
-        }
-
-        .prepogy-logo::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
         }
 
         .main-title {
@@ -465,7 +450,7 @@
 
     <div class="header-wrapper animate-fadeInUp">
         <div class="logo-container animate-floating">
-            <div class="prepogy-logo animate-glow">P</div>
+            <div class="prepogy-logo animate-glow"><img src="prep.png" alt="Prepogy Logo" style="width: 100%; height: auto;"></div>
         </div>
         <div class="header-container">
             <h1 class="main-title">Prepogy</h1>
