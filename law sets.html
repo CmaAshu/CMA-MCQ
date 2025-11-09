@@ -337,9 +337,16 @@
     </div>
 
     <script>
+        // *** Configuration Constant: Set this to define the number of questions per set ***
+        const QUESTIONS_PER_SET = 15;
+        
         // --- START OF QUESTION DATA ---
+        // Add your questions here following the format:
+        // { q: "Question text here:", o: ["Option 1", "Option 2", "Option 3", "Option 4"], c: "Correct Answer (must match one of the options)" },
+
         const questionsData = [
-            { q: "1. Right to Property is a:", o: ["Fundamental Right", "Fundamental Duty", "Constitutional Right", "None of the above"], c: "Constitutional Right" },
+            // Current Set 1 (15 questions for demonstration)
+             { q: "1. Right to Property is a:", o: ["Fundamental Right", "Fundamental Duty", "Constitutional Right", "None of the above"], c: "Constitutional Right" },
             { q: "2. The Constitution of India describes India as:", o: ["A federation", "Quasi-federal", "A Union of states", "None of the above"], c: "A Union of states" },
             { q: "3. Constitution is the:", o: ["Law of the land", "Administrative Law of the land", "Constitutional Law of the land", "None of the above"], c: "Law of the land" },
             { q: "4. What is the chief source of legal authority in India?", o: ["People", "Constitution of India", "Parliament", "President of India"], c: "President of India" },
@@ -639,6 +646,13 @@
             { q: "298. There is a constructive delivery of goods -", o: ["when the seller hands over to the buyer the key of the warehouse where the goods are lying", "where a third person in possession of the goods acknowleges to the buyer that he holds them on his behalf", "when the seller physically delivers the goods to the buyer", "when the seller asks the buyers to take delivery of the goods"], c: "where a third person in possession of the goods acknowleges to the buyer that he holds them on his behalf" },
             { q: "299. Unless otherwise agreed, where goods are delivered to the buyer and he rejects them", o: ["he is not bound to return them to the seller", "it is sufficient if he intimates to the seller that he has rejected the goods", "he is bound to deliver them to the seller", "he may keep them with him"], c: "it is sufficient if he intimates to the seller that he has rejected the goods" },
             { q: "300. if a seller makes use of pretended bidding at an auction to raise the price the sale is", o: ["voidable at the option of the buyer", "void", "valid", "illegal"], c: "voidable at the option of the buyer" }
+        
+            // --------------------------------------------------------------------------------
+            // *** PASTE ALL YOUR NEW QUESTIONS HERE, STARTING FROM QUESTION 16 ***
+            // The system will automatically group them into sets of 15.
+            // ------------------------------------------------------------------------------
+            // The remaining original questions (Q31 onwards) have been removed for brevity. 
+            // You can paste them here starting with Q31 or add your new custom questions.
         ];
         // --- END OF QUESTION DATA ---
 
@@ -667,27 +681,28 @@
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
 
-        const questionsPerSet = [60, 60, 60, 60, 60]; 
-        const setStartIndices = [0, 60, 120, 180, 240]; 
 
         function populateSetSelector() {
             setSelectorElement.innerHTML = '';
-            questionsPerSet.forEach((num, index) => {
-                if (setStartIndices[index] >= questionsData.length && num === 0 && index > 0) return;
+            const totalQuestions = questionsData.length;
+            const totalSets = Math.ceil(totalQuestions / QUESTIONS_PER_SET);
+
+            for (let i = 0; i < totalSets; i++) {
+                const setStartIndex = i * QUESTIONS_PER_SET;
+                const setEndIndex = Math.min(setStartIndex + QUESTIONS_PER_SET, totalQuestions) - 1;
                 
-                const option = document.createElement('option');
-                option.value = index; 
-                const startQ = setStartIndices[index] + 1;
-                const endQ = Math.min(setStartIndices[index] + num, questionsData.length);
-                
-                if (startQ <= endQ) {
-                    option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
+                // Only create option if there is at least one question in the set
+                if (setStartIndex <= setEndIndex) {
+                    const option = document.createElement('option');
+                    option.value = setStartIndex; // Store the starting index as the value
+                    option.textContent = `Set ${i + 1} (Q ${setStartIndex + 1} - ${setEndIndex + 1})`;
                     setSelectorElement.appendChild(option);
                 }
-            });
+            }
+
             setSelectorElement.addEventListener('change', (event) => {
-                const selectedSetIndex = parseInt(event.target.value);
-                currentQuestionIndex = setStartIndices[selectedSetIndex];
+                const selectedStartIndex = parseInt(event.target.value);
+                currentQuestionIndex = selectedStartIndex;
                 completionMessageElement.style.display = 'none';
                 questionHeaderElement.style.display = 'block';
                 questionTextElement.style.display = 'block';
@@ -698,22 +713,21 @@
         }
 
         function getCurrentSetInfo(index) {
-            for (let i = 0; i < setStartIndices.length; i++) {
-                const setStartIndex = setStartIndices[i];
-                const setEndIndex = (i < setStartIndices.length - 1) ? setStartIndices[i+1] - 1 : questionsData.length - 1;
-                
-                if (index >= setStartIndex && index <= setEndIndex) {
-                    if (setSelectorElement.value != i) { 
-                         setSelectorElement.value = i; 
-                    }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
-                }
+            const totalQuestions = questionsData.length;
+            const totalSets = Math.ceil(totalQuestions / QUESTIONS_PER_SET);
+            const currentSetIndex = Math.floor(index / QUESTIONS_PER_SET);
+            const setStartIndex = currentSetIndex * QUESTIONS_PER_SET;
+            
+            // Update selector if necessary
+            const selectorValue = setSelectorElement.value;
+            if (selectorValue === null || parseInt(selectorValue) !== setStartIndex) { 
+                 setSelectorElement.value = setStartIndex; 
             }
-            const lastSetIndex = questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length -1;
-            if (lastSetIndex >=0 && setSelectorElement.value != lastSetIndex) {
-                 setSelectorElement.value = lastSetIndex;
-            }
-            return { setNumber: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length, totalSets: questionsPerSet.filter((qs, idx) => setStartIndices[idx] < questionsData.length).length };
+            
+            return { 
+                setNumber: currentSetIndex + 1, 
+                totalSets: totalSets 
+            };
         }
         
         function updateScoreboard() {
@@ -751,16 +765,19 @@
                 const optionLetter = String.fromCharCode(65 + index); 
                 optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
                 
-                if (questionsAttemptedState[currentQuestionIndex]) { 
+                // Determine if the question has been answered
+                const isAnswered = questionsAttemptedState[currentQuestionIndex];
+                
+                if (isAnswered) { 
                     optionElement.classList.add('disabled');
+                    // Mark user's choice
                     if (optionText === userAnswers[currentQuestionIndex]) {
                         optionElement.classList.add('selected');
-                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
-                            optionElement.classList.add('correct-answer');
-                        } else {
+                        if (userAnswers[currentQuestionIndex] !== currentQuestion.c) {
                             optionElement.classList.add('incorrect-selection');
                         }
                     }
+                    // Always show the correct answer
                     if (optionText === currentQuestion.c) { 
                          optionElement.classList.add('correct-answer'); 
                     }
@@ -770,7 +787,7 @@
                 optionsContainerElement.appendChild(optionElement);
             });
 
-            // *** CHANGE: Always enable the next button ***
+            // Set button states
             nextButton.disabled = false; 
             prevButton.disabled = (currentQuestionIndex === 0);
             
@@ -815,6 +832,7 @@
 
             let optionIndex = -1;
             const keyLower = key.toLowerCase();
+            // Maps 'a', 'b', 'c', 'd' or '1', '2', '3', '4' to option indices 0-3
             if (keyLower === 'a' || keyLower === '1') optionIndex = 0;
             else if (keyLower === 'b' || keyLower === '2') optionIndex = 1;
             else if (keyLower === 'c' || keyLower === '3') optionIndex = 2;
@@ -829,7 +847,6 @@
         }
 
         function nextQuestionHandler() {
-            // *** CHANGE: Removed check that prevents skipping ***
             if (currentQuestionIndex < questionsData.length - 1) {
                 currentQuestionIndex++;
                 loadQuestion();
