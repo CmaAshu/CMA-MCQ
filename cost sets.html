@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ Quiz - Cost Accounting</title>
+    <title>MCQ Quiz - Cost Accounting (Paper 8)</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -26,6 +26,7 @@
             margin: 0;
             padding: 20px;
             background-color: var(--dark-bg);
+            /* Background pattern retained from original file */
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
             color: var(--light-text);
             display: flex;
@@ -117,6 +118,11 @@
             color: var(--dark-text); 
             font-weight: 500;
         }
+        
+        /* Style for rendering mathematical/numerical content clearly */
+        #question-text strong {
+            font-weight: 700;
+        }
 
         .options-container {
             margin-bottom: 20px;
@@ -124,7 +130,7 @@
 
         .option {
             display: flex;
-            align-items: center;
+            align-items: start; 
             background: #fffde7;
             padding: 12px 15px;
             margin-bottom: 12px;
@@ -175,6 +181,8 @@
             min-width: 22px;
             text-align: center;
             transition: all 0.2s ease;
+            flex-shrink: 0;
+            margin-top: 2px;
         }
         
         .option.selected .option-letter {
@@ -333,308 +341,402 @@
     </div>
 
     <div id="instagram-link">
-        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4r" target="_blank">Ash🔱tosh </a>
+        Follow on Instagram: <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank">Ash🔱tosh </a>
     </div>
 
     <script>
-        // --- START OF QUESTION DATA ---
+        /*
+         * Quiz Data Structure:
+         * q: Question text (string)
+         * o: Array of 4 option strings
+         * c: Correct option index (1 for OPTION 1, 2 for OPTION 2, etc.)
+         * Note: All 392 questions from the original Cost Accounting question bank are included here.
+         */
         const questionsData = [
-            { q: "1. Prime Cost is:", o: ["All costs incurred in manufacturing a product", "the total of direct costs", "the material cost of a product", "the cost of operating a department"], c: "the total of direct costs" },
-            { q: "2. A company employs three drivers to deliver goods to its customers. The salaries paid to these drivers are:", o: ["a part of prime cost", "a direct production expense", "a production overhead", "a selling & distribution overhead"], c: "a selling & distribution overhead" },
-            { q: "3. A company has to pay a Rs. 1 per unit royalty to the designer of a product which it manufactures and sells. The royalty charge would be classified in the company's accounts as a", o: ["Direct expense", "Production overhead", "Administrative overhead", "Selling overhead"], c: "Direct expense" },
-            { q: "4. ____ is a method of dealing with overheads which involves spreading common costs over cost centers on the basis of benefit received.", o: ["overhead absorption", "overhead apportionment", "overhead allocation", "overhead analysis"], c: "overhead apportionment" },
-            { q: "5. Which of the following classification is meant for distinction between direct cost and indirect cost?", o: ["Function", "Element", "Variability", "Controllability"], c: "Element" },
-            { q: "6. Which of the following is applicable for Cost Control?", o: ["It is related with the future", "It is a corrective function", "It ends when the targets are achieved", "It challenges the standards set"], c: "It ends when the targets are achieved" },
-            { q: "7. ____ is anything for which a separate measurement of cost is required", o: ["Cost driver", "Cost centre", "Cost unit", "Cost object"], c: "Cost object" },
-            { q: "8. Ticket counter in a Metro Station is an example of", o: ["Profit centre", "Investment centre", "Cost centre", "Revenue centre"], c: "Revenue centre" },
-            { q: "9. Which of the following is an example of functional classification of cost?", o: ["Direct labour cost", "Direct material cost", "Factory overhead", "Indirect material cost"], c: "Factory overhead" },
-            { q: "10. Absorption costing is also referred as", o: ["Historical costing", "Traditional costing", "Full costing", "All of the above terms"], c: "All of the above terms" },
-            { q: "11. the main purpose of cost accounting is", o: ["to maintain profit", "to help in inventory valuation", "to enter into price War with competitive firms", "to provide information to management for decision-making"], c: "to provide information to management for decision-making" },
-            { q: "12. ____ is anything for which a separate measurement is required", o: ["cost unit", "cost object", "cost driver", "cost sentre"], c: "cost object" },
-            { q: "13. Which of the following is true about Cost Control", o: ["It is a corrective function", "It challenges the set standards", "It ends when targets achieved", "It is concerned with future"], c: "It ends when targets achieved" },
-            { q: "14. Cost Units used in Power Sector is:", o: ["Kilo-meter (K.Μ.)", "Kilo-Watt-Hour (kWh)", "Number of Electric Points", "Machine Hours"], c: "Kilo-Watt-Hour (kWh)" },
-            { q: "15. Process Costing method is suitable for:", o: ["Transport Sector", "Chemical Industries", "Dam Construction", "Furniture-making"], c: "Chemical Industries" },
-            { q: "16. distinction between Direct Cost and Indirect Cost is an example of ____ classification.", o: ["By element", "By Function", "By controllability", "By Variability"], c: "By element" },
-            { q: "17. The advantage of using IT in Cost Accounting does not include", o: ["Single point data entry", "stock needs to be reconciled with goods received note", "reduction in multiplicity of documents", "integration of various functions."], c: "stock needs to be reconciled with goods received note" },
-            { q: "18. A taxi provider charges minimum Rs.80 thereafter Rs. 12 per kilometer of distance travelled, the behaviour of conveyance Cost is", o: ["fixed cost", "semi-variable", "variable", "administrative cost"], c: "semi-variable" },
-            { q: "19. A Ltd. Has three Production Departments, and each department has machines, which of the following cannot be treated as Cost Centre for cost allocation:", o: ["Machines under the production Production Department", "Pruction Departments", "Both Production Department and Machines", "A Ltd."], c: "A Ltd." },
-            { q: "20. Which of the following is an example of functional classification of cost?", o: ["Semi-variable costs", "Fixed Cost", "Administrative overhead", "indirect Overheads"], c: "Administrative overhead" },
-            { q: "21. Cost which are ascertained after they have been incurred are known as", o: ["sunk costs", "Imputed Costs", "Historical Costs", "Oppurtunity Costs"], c: "Historical Costs" },
-            { q: "22. Generally, for the purpose of Cost sheet preparation, costs are classified on the basis of -", o: ["Functions", "variablity", "relevance", "nature"], c: "Functions" },
-            { q: "23. Which of the following items is not excluded while preparing a cost sheet?", o: ["Goodwill written off", "provision for taxation", "property tax on factory building", "Transfer to reserves"], c: "property tax on factory building" },
-            { q: "24. What is prime cost", o: ["Total direct cost only", "Total Indirect Costs only", "Total Non-Production Costs", "Total Production Costs"], c: "Total direct cost only" },
-            { q: "25. Which of the following does not form part of prime cost", o: ["Cost of Packing", "cost of transportation paid to bring materials to factory", "GST paid on Raw materials (where input credit cannot be claimed)", "overtime premium paid to workers"], c: "Cost of Packing" },
-            { q: "26. Which of these is not an objective of Cost Accounting?", o: ["Ascertainment of Cost", "Determination of Selling Price", "Cost Control and Cost reduction", "Assisting Shareholders in decision making"], c: "Assisting Shareholders in decision making" },
-            { q: "27. Which of the following are direct expenses? (1) Cost of Special Designs, drawings or layout, (2) Hire of Tools or Equipment for a particular job. (3) Salesman's wages, (4) Rent, rates and Insurance of a factory,", o: ["(1) and (2)", "(1) and (3)", "(2) and (3)", "(3) and (4)"], c: "(1) and (2)" },
-            { q: "28. Salary paid to plant Supervisor is a part of", o: ["Direct expenses", "Factory Overheads", "Quality Control Cost", "administrative cost"], c: "Factory Overheads" },
-            { q: "29. Depreciation of Director's Laptop is treated as a part of:", o: ["Administration Overheads", "Factory Overheads", "IT infrastructure Cost", "Research & Development Cost"], c: "Administration Overheads" },
-            { q: "30. A manufacturing Company has set-up a lab for testing of products for compliance with standards. Salary of this Lab Staff are part of", o: ["Works Overheads", "Quality Control Cost", "Direct Expenses.", "Reearch & Development Cost"], c: "Quality Control Cost" },
-            { q: "31. Audit fees paid to external Statutory Auditors is part of", o: ["Administration Cost", "Production Cost", "Selling & distribution Costs", "Quality Costrol Cost"], c: "Administration Cost" },
-            { q: "32. Salary paid to factory stores is a part of", o: ["Factory Overheads", "Production Cost", "Direct Employee Cost", "Direct Material Cost"], c: "Factory Overheads" },
-            { q: "33. Canteen Expenses for factory workers are part of -", o: ["Factory Overheads", "Administration cost", "marketing cost", "direct expenses"], c: "Factory Overheads" },
-            { q: "34. A company pays Royalty to State Government on the basis of production, it is treated as:", o: ["Direct material cost", "Quality Control Cost", "Direct Expenses", "Administrative Overhead"], c: "Direct Expenses" },
-            { q: "35. Which of the following is not an element of Works Overhead?", o: ["Store Keeper's Salary", "Plant Manager's salary", "Sales Manager's Salary", "Product Inspector's Salary"], c: "Sales Manager's Salary" },
-            { q: "36. A profit centre is a centre", o: ["Where the manager has the responsibility of generating and maximising profits", "Which is concerned with earning an adequate Return on Investment", "Both of the above", "Which manages cost"], c: "Where the manager has the responsibility of generating and maximising profits" },
-            { q: "37. Responsibility Centre can be categorised into:", o: ["Cost Centres only", "Profit Centres only", "Investment Centres only", "Cost Centres, Profit Centres and Investment Centres"], c: "Cost Centres, Profit Centres and Investment Centres" },
-            { q: "38. Cost Unit is defined as:", o: ["Unit of quantity of product, service or time in relation to which costs may be ascertained or expressed", "A location, person or an item of equipment or a group of these for which costs are ascertained and used for cost control.", "Centres having the responsibility of generating and maximising profits", "Centres concerned with earning an adequate return on investment"], c: "Unit of quantity of product, service or time in relation to which costs may be ascertained or expressed" },
-            { q: "39. Fixed cost is a cost:", o: ["Which changes in total in proportion to changes in output", "which is partly fixed and partly variable in relation to output", "Which do not change in total during a given period despise changes in output", "which remains same for each unit of output"], c: "Which do not change in total during a given period despise changes in output" },
-            { q: "40. Uncontrollable costs are the costs which ____ be influenced by the action of a specified member of an undertaking.", o: ["can not", "can", "may or may not", "must"], c: "can not" },
-            { q: "41. Element/s of Cost of a product are:", o: ["Material only", "Labour only", "Expenses only", "Material, Labour and expenses"], c: "Material, Labour and expenses" },
-            { q: "42. Abnormal cost is the cost:", o: ["Cost normally incurred at a given level of output", "Cost not normally incurred at a given level of output", "Cost which is charged to customer", "Cost which is included in the cost of the product"], c: "Cost not normally incurred at a given level of output" },
-            { q: "43. Conversion cost includes cost of converting ____ into ____.", o: ["Raw material, WIP", "Raw material. Finished goods", "WIP, Finished goods", "Finished goods, Saleable goods"], c: "Raw material. Finished goods" },
-            { q: "44. Sunk costs are:", o: ["relevant for decision making", "Not relevant for decision making", "cost to be incurred in future", "future costs"], c: "Not relevant for decision making" },
-            { q: "45. Calculate the prime cost from the following information: Direct material purchased: Rs. 1,00,000 Direct material consumed: Rs. 90,000 Direct labour: Rs60,000 Direct expenses: Rs. 20,000 Manufacturing overheads: Rs. 30,000", o: ["Rs. 1,80,000", "Rs. 2,00,000", "Rs. 1,70,000", "Rs. 2,10,000"], c: "Rs. 1,70,000" },
-            { q: "46. Total cost of a product: Rs. 10,000 Profit: 25% on Selling Price Profit is:", o: ["Rs. 2.500", "Rs. 3,000", "Rs. 3,333", "Rs. 2,000"], c: "Rs. 3,333" },
-            { q: "47. Calculate cost of sales from the following: Net Works cost: Rs. 2,00,000 Office & Administration Overheads: Rs. 1,00,000 Opening stock of WIP: Rs. 10,000 Closing Stock of WIP: Rs. 20.000 Closing stock of finished goods: Rs. 30,000 There was no opening stock of finished goods. Selling overheads: Rs. 10,000", o: ["Rs. 2,70,000", "Rs. 2,80,000", "Rs. 3,00,000", "Rs. 3,20,000"], c: "Rs. 2,80,000" },
-            { q: "48. Which of the following is considered as normal loss of material?", o: ["Pilferage", "Loss due to accident", "Loss due to careless handling of material", "None of these"], c: "Loss due to careless handling of material" },
-            { q: "49. The most important element of cost is-", o: ["Material", "Labour", "Overheads", "All of these"], c: "Material" },
-            { q: "50. Direct material is a -", o: ["Adiministration Cost", "Selling and Distribution cost", "All of these", "None of these"], c: "None of these" },
-            { q: "51. Which of the following is considered as accounting record?", o: ["Bin Card", "Bill of material", "Store Ledger", "None of these"], c: "Store Ledger" },
-            { q: "52. Direct material can be classified as:", o: ["Fixed cost", "Semi-Variable cost", "Vaiable Cost", "Prime cost"], c: "Vaiable Cost" },
-            { q: "53. In which of the following methods of pricing, costs lag behind the current economic values?", o: ["Replacement price method", "Last in first out price method", "First in first out price method", "Weighted average price method"], c: "First in first out price method" },
-            { q: "54. In which of the following methods, issues of materials are priced at pre-determined rate?", o: ["Replacement price method", "Inflated price method", "Specific price method", "Standard price method"], c: "Standard price method" },
-            { q: "55. Which of the following methods smoothes out the effect of fluctuations when material prices fluctuate widely?", o: ["FIFO", "Simple Average", "LIFO", "Weighted average"], c: "Weighted average" },
-            { q: "56. In which of the following incentive plan of payment, wages on time basis are not Guaranteed?", o: ["Halsey plan", "Rowan plan", "Taylor's differential piece rate system", "Gantt's task and bonus system"], c: "Taylor's differential piece rate system" },
-            { q: "57. Cost of idle time arising due to non-availability of raw material is:", o: ["Charged to costing profit and loss A/c", "Charged to factory overheads", "Recovered by inflating the wage rate", "Ignored"], c: "Charged to costing profit and loss A/c" },
-            { q: "58. When overtime is required for meeting urgent orders, overtime premium should be", o: ["Charged to costing profit and loss A/c", "Charged to overhead costs", "Charged to respective jobs", "Ignored"], c: "Charged to overhead costs" },
-            { q: "59. Labour turnover is measured by", o: ["Number of workers replaced average number of workers", "Number of workers left/number in the beginning plus number at the end", "Number of workers joining/number in the beginning of the period", "All of these"], c: "Number of workers replaced average number of workers" },
-            { q: "60. Idle time is", o: ["Time spent by workers in factory", "Time spent by workers in office", "Time spent by workers off their work", "Time spent by workers on their job"], c: "Time spent by workers off their work" },
-            { q: "61. Over time is:", o: ["Actual hours being more than normal time", "Actual hours being more than standard time", "Standard hours being more than actual hours", "Actual hours being less than standard time"], c: "Actual hours being more than normal time" },
-            { q: "62. Labour productivity is measured by comparing", o: ["Total output with total man-hours", "Added value for the product with total wage cost", "Actual time and standard time", "All of the above"], c: "All of the above" },
-            { q: "63. If the time saved is less than 50% of the standard time, then the wages under Rowan and Halsey premium plan on comparison gives:", o: ["Equal wages under two plans", "More wages to workers under Halsey Plan than Rowan Plan", "More wages to workers under Rowan Plan than Halsey Plan", "None of the above"], c: "More wages to workers under Rowan Plan than Halsey Plan" },
-            { q: "64. Under Taylor's differential piece rate scheme, if a worker fails to complete the task within the standard time, then he is paid", o: ["83% of the piece work rate", "175% of the piece work rate", "67% of the piece work rate", "125% of the piece work rate"], c: "83% of the piece work rate" },
-            { q: "65. Direct Expenses ____ includes imputed cost.", o: ["Shall", "Shall not", "Shall be", "None of these"], c: "Shall not" },
-            { q: "66. Direct Expenses that does not meet the test of materiality can be ____ part of overhead.", o: ["Treated", "Not treated", "All of these", "None of these"], c: "Treated" },
-            { q: "67. Example of Direct Expenses.", o: ["Rent", "Royalty charged on production", "Bonus to employee", "None of these"], c: "Royalty charged on production" },
-            { q: "68. The allotment of whole items of cost to a cost centre or cost unit is called", o: ["Cost allocation", "Cost apportionment", "Overhead absorption", "None of the above"], c: "Cost allocation" },
-            { q: "69. Directors remuneration and expenses form a part of:", o: ["Production overhead", "Administration overhead", "Selling overhead", "Distribution overhead"], c: "Administration overhead" },
-            { q: "70. Charging to a cost center those overheads that result solely for the existence of that cost Center is known as", o: ["Allocation", "Apportionment", "Absorption", "Allotment"], c: "Allocation" },
-            { q: "71. Absorption means:", o: ["Charging of overheads to cost centres", "Charging of overhead to cost units", "Charging of overheads to cost centres or cost units", "None of the above"], c: "Charging of overhead to cost units" },
-            { q: "72. When the amount of under or over absorption is significant, it should be disposed of by:", o: ["Transferring to costing profit and loss account", "The use of supplementary rates", "Carrying over as a deferred charge to the next accounting year", "None of the above"], c: "The use of supplementary rates" },
-            { q: "73. Selling and distribution overheads are absorbed on the basis of:", o: ["rate per unit.", "percentage on works cost.", "percentage on selling price of each unit.", "Any of the above"], c: "Any of the above" },
-            { q: "74. Primary packing cost is a part of:", o: ["Direct material cost", "Distribution overhead", "Selling overhead", "Production cost"], c: "Production cost" },
-            { q: "75. Normal capacity of a plant refers to the difference between:", o: ["Maximum capacity and practical capacity", "Maximum capacity and actual capacity", "Practical capacity and estimated idle capacity as revealed by long term sales trend", "Practical capacity and normal capacity"], c: "Practical capacity and estimated idle capacity as revealed by long term sales trend" },
-            { q: "76. When the amount of overhead absorbed is less than the amount of overhead incurred, it is called:", o: ["Under absorption of overhead", "Over absorption of overhead", "Proper absorption of overhead", "None of the above"], c: "Under absorption of overhead" },
-            { q: "77. ____ is a scientific and accurate method of factory overhead absorption.", o: ["Percentage of prime cost method", "Machine hour rate method", "Percentage of direct material cost method", "Percentage of direct labour cost method"], c: "Machine hour rate method" },
-            { q: "78. Which of these is not a Material control technique:", o: ["ABC Analysis", "Fixation of raw material levels", "Maintaining stores ledger", "Control over slow moving and non moving items"], c: "Maintaining stores ledger" },
-            { q: "79. Out of the following, what is not the work of purchase department:", o: ["Receiving purchase requisition", "Exploring the sources of material supply", "Preparation and execution of purchase orders", "Accounting for material received"], c: "Accounting for material received" },
-            { q: "80. Bin Card is a:", o: ["Quantitative as well as value wise records of material received, issued and balance;", "Quantitative record of material received, issued and balance", "Value wise records of material received, issued and balance", "a record of labour attendance"], c: "Quantitative record of material received, issued and balance" },
-            { q: "81. Stores Ledger is a:", o: ["Quantitative as well as value wise records of material received, issued and balance;", "Quantitative record of material received, issued and balance", "Value wise records of material received, issued and balance", "a record of labour attendance"], c: "Quantitative as well as value wise records of material received, issued and balance;" },
-            { q: "82. Re-order level is calculated as:", o: ["Maximum consumption x Maximum re-order period", "Minimum consumption x Minimum re-order period", "1/2 of (Minimum + Maximum consumption)", "Maximum level - Minimum level"], c: "Maximum consumption x Maximum re-order period" },
-            { q: "83. Economic order quantity is that quantity at which cost of holding and carrying inventory is", o: ["Maximum and equal", "Minimum and equal", "It can be maximum or minimum depending upon case to case.", "Minimum and unequal"], c: "Minimum and equal" },
-            { q: "84. ABC analysis is an inventory control technique in which:", o: ["Inventory levels are maintained", "Inventory is classified into A, B and C category with A being the highest quantity, lowest value.", "Inventory is classified into A, B and C Category with A being the lowest quantity, highest value", "Either b or c."], c: "Inventory is classified into A, B and C Category with A being the lowest quantity, highest value" },
-            { q: "85. Which one out of the following is not an inventory valuation method?", o: ["FIFO", "LIFO", "Weighted Average", "EOQ"], c: "EOQ" },
-            { q: "86. In case of rising prices (inflation), FIFO method will:", o: ["provide lowest value of closing stock and profit", "provide highest value of closing stock and profit", "provide highest value of closing stock but lowest value of profit", "provide highest value of profit but lowest value of closing stock"], c: "provide highest value of closing stock and profit" },
-            { q: "87. In case of rising prices (inflation), LIFO will:", o: ["provide lowest value of closing stock and profit", "provide highest value of closing stock and profit", "provide highest value of closing stock but lowest value of profit", "provide highest value of profit but lowest value of closing stock"], c: "provide lowest value of closing stock and profit" },
-            { q: "88. Calculate Re-order level from the following: Consumption per week: 100-200 units Delivery period: 14-28 days", o: ["5600 units", "800 units", "1400 units", "200 units"], c: "5600 units" },
-            { q: "89. Calculate EOQ (approx.) from the following details: Annual Consumption: 24000 units Ordering cost: Rs. 10 per order Purchase price: Rs. 100 per unit Carrying cost: 5%", o: ["310", "400", "290", "300"], c: "310" },
-            { q: "90. Calculate the value of closing stock from the following according to FIFO method: 1st January, 2024: Opening balance: 50 units @ Rs. 4 Receipts: 5th January, 2024: 100 units @ Rs. 5 12th January, 2024: 200 units @ Rs. 4.50 Issues: 2nd January, 2024: 30 units 18th January, 2024: 150 units", o: ["Rs. 765", "Rs. 805", "Rs. 786", "Rs. 700"], c: "Rs. 765" },
-            { q: "91. Calculate the value of closing stock from the following according to LIFO method: 1st January, 2024: Opening balance: 50 units @ Rs. 4 Receipts: 5th January, 2024: 100 units @ Rs. 5 12th January, 2024: 200 units @ Rs. 4.50 Issues: 2nd January, 2024: 30 units 18th January, 2024: 150 units", o: ["Rs. 765", "Rs. 805", "Rs. 786", "Rs. 700"], c: "Rs. 805" },
-            { q: "92. Calculate the value of closing stock from the following according to Weighted Average method: 1st January, 2024: Opening balance: 50 units @ Rs. 4 Receipts: 5th January, 2024: 100 units @ Rs. 5 12th January, 2024: 200 units @ Rs. 4.50 Issues: 2nd January, 2024: 30 units 18th January, 2024: 150 units", o: ["Rs. 765", "Rs. 805", "Rs. 786", "Rs. 700"], c: "Rs. 786" },
-            { q: "93. Cost of abnormal wastage is:", o: ["Charged to the product cost", "Charged to the profit & loss account", "charged partly to the product and partly profit & loss account", "not charged at all."], c: "Charged to the profit & loss account" },
-            { q: "94. Calculate re-order level from the following: Safety stock: 1000 units Consumption per week: 500 units It takes 12 weeks to reach material from the date of ordering.", o: ["1000 units", "6000 units", "3000 units", "7000 units"], c: "7000 units" },
-            { q: "95. From the following information, calculate the extra cost of material by following EOQ: Annual consumption: 45000 units Ordering cost per order: Rs.10 Carrying cost per unit per annum: Rs.10 Purchase price per unit: Rs.50 Re-order quantity at present: 45000 units There is discount of 10% per unit in case of purchase of 45000 units in bulk.", o: ["No saving", "Rs. 2,00,000", "Rs. 2,22,010", "Rs. 2,990"], c: "Rs. 2,990" },
-            { q: "96. Which of the following is an abnormal cause of Idle time:", o: ["Time taken by workers to travel the distance between the main gate of factory and place of their work", "Time lost between the finish of one job and starting of next job", "Time spent to meet their personal needs like taking lunch, tea etc", "Machine break downs"], c: "Machine break downs" },
-            { q: "97. If overtime is resorted to at the desire of the customer, then the overtime premium:", o: ["should be charged to costing profit and loss account;", "should not be charged at all", "should be charged to the job directly", "should be charged to the highest profit making department"], c: "should be charged to the job directly" },
-            { q: "98. Labour turnover means:", o: ["Turnover generated by labour", "Rate of change in composition of labour force during a specified period", "Either of the above", "Both of the above"], c: "Rate of change in composition of labour force during a specified period" },
-            { q: "99. Which of the following is not an avoidable cause of labour turnover:", o: ["Dissatisfaction with Job", "Lack of training facilities", "Low wages and allowances", "Disability, making a worker unfit for work"], c: "Disability, making a worker unfit for work" },
-            { q: "100. Costs associated with the labour turnover can be categorised into:", o: ["Preventive Costs only", "Replacement costs only", "Both of the above", "Machine costs"], c: "Both of the above" },
-            { q: "101. Calculate workers left and discharged from the following: Labour turnover rates are 20%, 10% and 6% respectively under Flux method, Replacement method and Separation method. No. of workers replaced during the quarter is 80.", o: ["112", "80", "48", "64"], c: "48" },
-            { q: "102. Calculate workers recruited and joined from the following: Labour turnover rates are 20%, 10% and 6% respectively under Flux method, Replacement method and Separation method. No. of workers replaced during the quarter is 80.", o: ["112", "80", "48", "64"], c: "112" },
-            { q: "103. Calculate the labour turnover rate according to replacement method from the following: No. of workers on the payroll: - At the beginning of the month: 500 At the end of the month: 600 During the month, 5 workers left, 20 workers were discharged and 75 workers were recruited. Of these, 10 workers were recruited in the vacancies of those leaving and while the rest were engaged for an expansion scheme.", o: ["4.55%", "1.82%", "6%", "3%"], c: "1.82%" },
-            { q: "104. Calculate the labour turnover rate according to Separation method from the following: No. of workers on the payroll: -At the beginning of the month: 500 At the end of the month: 600 During the month, 5 workers left, 20 workers were discharged and 75 workers were recruited. Of these, 10 workers were recruited in the vacancies of those leaving and while the rest were engaged for an expansion scheme.", o: ["4.55%", "1.82%", "6%", "3%"], c: "4.55%" },
-            { q: "105. A worker is allowed 60 hours to complete the job on a guaranteed wage of Rs. 10 per hour. Under the Rowan Plan, he gets an hourly wage of Rs. 12 per hour. For the same saving in time, how much he will get under the Halsey Plan?", o: ["Rs.720", "Rs.540", "Rs.600", "Rs.900"], c: "Rs.540" },
-            { q: "106. Overhead refers to:", o: ["Direct or Prime Cost", "All Indirect costs", "only Factory indirect costs", "Only indirect expenses"], c: "All Indirect costs" },
-            { q: "107. Allotment of whole item of cost to a cost centre or cost unit is known as:", o: ["Cost Apportionment", "Cost Allocation", "Cost Absorption", "Machine hour rate"], c: "Cost Allocation" },
-            { q: "108. Which of the following is not a method of cost absorption?", o: ["Percentage of direct material cost", "Machine hour rate", "Labour hour rate", "Repeated distribution method"], c: "Repeated distribution method" },
-            { q: "109. Service departments costs should be allocated to:", o: ["Only Service departments", "Only Production departments", "Both Production and service departments", "None of the production and service departments"], c: "Both Production and service departments" },
-            { q: "110. Most suitable basis for apportioning insurance of machine would be:", o: ["Floor Area", "Value of Machines", "No. of Workers", "No. of Machines"], c: "Value of Machines" },
-            { q: "111. Blanket overhead rate is:", o: ["One single overhead absorption rate for the whole factory", "Rate which is blank or nil rate", "rate in which multiple overhead rates are calculated for each production department, service department etc", "Always a machine hour rate"], c: "One single overhead absorption rate for the whole factory" },
-            { q: "112. AT Co makes a single product and is preparing its material usage budget for next year. Each unit of product requires 2kg of material, and 5,000 units of product are to be produced next year. Opening inventory of material is budgeted to be 800 kg and AT co budgets to increase material inventory at the end of next year by 20%. The material usage budget for next year is:", o: ["8,000 Kg", "9,840 kg", "10,000 Kg", "10,160 Kg"], c: "10,000 Kg" },
-            { q: "113. During a period 17, 500 labour hours were worked at a standard cost of Rs. 6.50 per hour. The labour efficiency variance was Rs. 7,800 favourable. How many standard hours were produced?", o: ["1200", "16300", "17500", "18700"], c: "18700" },
-            { q: "114. In most of the manufacturing industries, the most important element of cost is", o: ["material", "Labour", "overheads", "None of the above"], c: "material" },
-            { q: "115. Which of the following is NOT considered to be Normal loss of Materials ?", o: ["Loss due to accidents", "Pilferage", "Loss due to breaking the bulk", "Loss due to transfering of liquid materials fromcontainer to another"], c: "Loss due to breaking the bulk" },
-            { q: "116. Which of following is NOT considered as Normal loss of material?", o: ["evaporation due to prevalent weather conditions", "Loss due to pilferage", "Loss due to breaking the bulk", "Loss due to transferring of liquid materials from container to another"], c: "Loss due to pilferage" },
-            { q: "117. At the economic ordering quantity level, the following is true on an annual basis:", o: ["Ordering Cost is minimum", "Carrying Cost is minimum", "Ordering Cost is equal to the Carrying Cost", "Purchase Price is minimum"], c: "Ordering Cost is equal to the Carrying Cost" },
-            { q: "118. Continuous Stock Taking is a part of:", o: ["Annual Stock Taking", "Perpetual Inventory", "ABC Analysis", "Bin Cards"], c: "Perpetual Inventory" },
-            { q: "119. In which of the following methods, issues of materials are priced at pre-determined rate?", o: ["Inflated Price Method", "Standard price method", "Replacement Price Method", "Market Price Method"], c: "Standard price method" },
-            { q: "120. When Material prices Fluctuate widely, the method of pricing that gives absurd results is -", o: ["Simple Average Price", "Weighted Average price", "Moving Average Price", "Inflated Price"], c: "Inflated Price" },
-            { q: "121. When prices fluctuate widely, the method that will smooth out the effect of fluctuations is", o: ["Simple Average Price", "Weighted Average price", "FIFO", "LIFO"], c: "Weighted Average price" },
-            { q: "122. Under the FSN system of Inventory Control, Inventory is Classified on the basis of:", o: ["Volumne of materail consumption", "Frequently of usage of items of inventory", "Criticality of the item of inventory of production", "Value of Items of Inventory"], c: "Frequently of usage of items of inventory" },
-            { q: "123. Form used for making a formal request to the Purchasing Department to purchase materials is a-", o: ["material transfer note", "Purchase Requisition Note", "Shop Credit Note", "Material requisition note"], c: "Purchase Requisition Note" },
-            { q: "124. Classification of Materials on the basis of their Importance in Value is called:", o: ["EOQ Analysis", "Stock level analysis", "ABC Analysis", "Value analysis"], c: "ABC Analysis" },
-            { q: "125. For Return of Excess Materials from Production Department to stores, the document used is:", o: ["Material return note", "Stores debit note", "Material specification", "All the above (same)"], c: "All the above (same)" },
-            { q: "126. Which of the following is NOT related to a standard list of materials and components?", o: ["Consumption Statement", "bill of materials", "list", "Material list"], c: "Consumption Statement" },
-            { q: "127. Which of the following is NOT recorded on a Bin card?", o: ["material received from supplier", "material issued to production depts", "Inter department transfers", "Loss of materials"], c: "Inter department transfers" },
-            { q: "128. What is the formula for Re-order level?", o: ["Minimum Usage x minimum lead time", "Maximum Usage x maximum lead time", "Maximum Usage x minimum lead time", "Minimum Usage x maximum lead time"], c: "Maximum Usage x maximum lead time" },
-            { q: "129. (ROL+ROQ (-) minimum usage x minimum lead time) is the computation formula for....", o: ["Maximum level", "Minimum level", "Average level", "danger level"], c: "Maximum level" },
-            { q: "130. Inventory turnover ratio is expressed in", o: ["Rupees", "Percentage", "times", "Any of the above"], c: "times" },
-            { q: "131. Generally, a ____ T/o and ____ days Average Inventory held is preferable", o: ["High, less", "Low, high", "Low low", "high, high"], c: "High, less" },
-            { q: "132. Pricing of Materials in the order in which they are purchased is called ____ method", o: ["Specific Identification", "FIFO", "LIFO", "Orderly"], c: "FIFO" },
-            { q: "133. Landed cost of materials does not include.....", o: ["Cost of Containers", "Carriage Inwards", "Stock Insurance", "Unloading Charges"], c: "Stock Insurance" },
-            { q: "134. Cost of abnormal loss of materials is", o: ["Debited to costing P &L", "Credited to Costing P&L", "InCluded In Landed Cost", "Included in OH"], c: "Debited to costing P &L" },
-            { q: "135. Idle time is the time under which", o: ["Full wages are paid to workers", "No output is produced by the workers", "Both (a) and (b)", "None of the above"], c: "Both (a) and (b)" },
-            { q: "136. When a direct Worker is paid on a monthly fixed salary basis, the following is true:", o: ["There is no idle time lost", "There is no idle time cost", "Idle time cost is separated and treated as overhead", "salari is fully treated as factory overhead cost"], c: "There is no idle time lost" },
-            { q: "137. Time and Motion study is conducted by", o: ["Time Keeping Department", "Personnel Department", "Payroll Department", "Engineering Department"], c: "Engineering Department" },
-            { q: "138. Wages sheet is generally prepared by-", o: ["Time Keeping Department", "Personnel Department", "Payroll Department", "Engineering Department"], c: "Payroll Department" },
-            { q: "139. For reducing the labour cost per unit, which of the following factors is most important?", o: ["Low wage rate", "Longer hours of work", "Higher Productivity or Efficiency", "Strict control and supervison"], c: "Higher Productivity or Efficiency" },
-            { q: "140. Time Booking refers to a method wherein ____ of an employees is recorded", o: ["Attendance", "book keeping details", "Health Status", "Time spent on a particulars job"], c: "Time spent on a particulars job" },
-            { q: "141. Employee Cost includes", o: ["wages and salaries", "Allowances and incentives", "Payment for Overtime", "All of the above"], c: "All of the above" },
-            { q: "142. Standard Time of a job is 60 hours and guaranteed time rate is rs 90 per hour. What is the amount of wages under Rowan plan if job is completed in 48 hours?", o: ["rs 1620", "rs 1728", "rs 1800", "rs 1440"], c: "rs 1728" },
-            { q: "143. Standard Time of a job is 60 hours and guaranteed time rate is rs 90 per hour. What is the amount of wages under Halsey plan if job is completed in 48 hours?", o: ["rs 1620", "rs 1440", "rs 180", "rs 1728"], c: "rs 1440" },
-            { q: "144. If Overtime is required for meeting urgent orders, the Overtime premium should be charged as -", o: ["Respective job", "Over head Cost", "Costing P& L a/c", "None of above"], c: "Respective job" },
-            { q: "145. Keeping a rocord of total time spent by the worker inside the factory is called", o: ["Time keeping", "Time Booking", "Time Managing", "Time Recording"], c: "Time keeping" },
-            { q: "146. Wages attributable to Normal idle Time is treated as", o: ["Direct Wages", "Producction OH", "Either of the above", "None of the above"], c: "Either of the above" },
-            { q: "147. In the context of Labour Turnover, Number of Workers left and discharged is called-", o: ["Accession", "Replacement", "new replacement", "Separation"], c: "Separation" },
-            { q: "148. (Hours worked X Rate per hour) is the computation of wages under", o: ["Incentive System", "Piece rate System", "Attendance System", "Time rate System"], c: "Time rate System" },
-            { q: "149. Under Halsey System, generally Bonus is computed as ____ x (Time Saved x Rate per hour)", o: ["30%", "50%", "70%", "Actual Hrs/Std. Hrs"], c: "50%" },
-            { q: "150. A worker will earn ____ wages under Halsey and Rowan System, if time Saved equals -", o: ["Equal", "More under Halsey", "More under Rowan", "Cannot say"], c: "Equal" },
-            { q: "151. Labour Efficiency (based on time) is given by the Formula", o: ["Std Time/Actual Time", "Actual time/std time", "Idle Time/Std time", "Idle Time/Actual Time"], c: "Std Time/Actual Time" },
-            { q: "152. If wages per day of 8 hours is rs 500, std outputis 100 units. Actual Output is 120,piece rate wages-", o: ["rs 500", "rs 600", "rs 62.5", "rs 5"], c: "rs 600" },
-            { q: "153. If Std Time is 8 hours, Actual time is 6 hours,rate per hour is Rs. 100, Rwan Wages =", o: ["Rs. 600", "Rs. 150", "Rs. 750", "Rs. 700"], c: "Rs. 750" },
-            { q: "154. If Actual Output in 8 hours is 700 units, Standard Output is 90 units per hour, Efficiency Ratio is", o: ["97.22%", "102.86%", "100%", "77.78%"], c: "97.22%" },
-            { q: "155. Fixed over costs are not effected in monetary terms during a fiven period by a change in Output. But this statement is valid provided", o: ["Increase in Output is not Substantial", "Increase in Output is substantial", "Both (a) and (b)", "None of the above"], c: "Increase in Output is not Substantial" },
-            { q: "156. ____ Capacity is defined as actually utilised capacity of a plant.", o: ["theoretical", "Installed", "Practical", "Idle"], c: "Practical" },
-            { q: "157. Maximum Possible Productive Capacity of a plant when no operating time is lost is its:", o: ["Normal Capacity", "Practical Capacity", "Theoretical Capacity", "Capacity based on Sales Expectancy"], c: "Theoretical Capacity" },
-            { q: "158. Charging of common Overheads cost to various cost centres, using appropriate bases is known as -", o: ["Allocation", "Apportionment", "Absorption", "Re-Apportionment"], c: "Apportionment" },
-            { q: "159. Distribution of service Department Overheads Cost to production Departments using different assumptions and methods is known as", o: ["Allocation", "Apportionment", "Absorption", "Re- Apportionment"], c: "Re- Apportionment" },
-            { q: "160. ____ packing Cost is part of", o: ["Production cost", "Selling Cost", "Distribution Cost", "It may be any of the above"], c: "It may be any of the above" },
-            { q: "161. Which of the following is not treated as a Manufacturing Overhead ?", o: ["Lubricants", "Cotton Waste", "apportioned administration overheads", "Night Shift allowance paid to a factory Worker due to general work pressure"], c: "Night Shift allowance paid to a factory Worker due to general work pressure" },
-            { q: "162. The difference between Actual Factory Overhead and Absorbed Factory Overhead will be usually at the minimum level, provided pre-determined overhead rate is based on:", o: ["Maximum capacity", "Direct Labour Hours", "Machine Hours", "Normal Capacity"], c: "Normal Capacity" },
-            { q: "163. When Absorbed Overhead is Higher than the amount of Overhead incurred, it is called", o: ["Under absorption of overhead", "Over absorption of overhead", "Proper absorption of overhead", "reabsorption of overhead"], c: "Over absorption of overhead" },
-            { q: "164. Which of the following overhead cost may not be apportioned on the basis of Direct Wages?", o: ["Worker's Holiday pay", "Perquisites to workers", "ESI Contribution", "Managerial Salaries"], c: "Managerial Salaries" },
-            { q: "165. The following is an example of direct expenses as per CAS-10:", o: ["Special raw material which is a substantial part of the prime cost", "Travelling expenses to site.", "Overtime charges paid to direct worker to complete work before time.", "Catalogue of prices of finished products."], c: "Travelling expenses to site." },
-            { q: "166. CAS 21 stands for:", o: ["Capacity Determination", "Joint Cost", "Direct Expenses", "None of these"], c: "None of these" },
-            { q: "167. Standard deals with the cost of service cost center is:", o: ["CAS-9", "CAS-13", "CAS-16", "CAS22"], c: "CAS-13" },
-            { q: "168. Which standards deals with the principles and methods of determining depreciation and amortization cost?", o: ["CAS 9", "CAS 12", "CAS 15", "CAS 16"], c: "CAS 16" },
-            { q: "169. Which standards deals with determination of averages/equalized transportation cost?", o: ["CAS 5", "CAS 6", "CAS 9", "CAS 22"], c: "CAS 5" },
-            { q: "170. Which standard deals with the principles and methods of determining the manufacturing Cost of excisable goods?", o: ["CAS 2", "CAS 12", "CAS 15", "CAS 22"], c: "CAS 22" },
-            { q: "171. ____ deals with the principles and methods of determining the production or operation overheads.", o: ["CAS-3", "CAS-5", "CAS-9", "CAS-16"], c: "CAS-3" },
-            { q: "172. CAS 13 stands for:", o: ["Joint Cost", "Interest and financing charges", "Employee Cost", "Cost of Service cost centre"], c: "Cost of Service cost centre" },
-            { q: "173. Which of the following items is not included in preparation of cost sheet?", o: ["Carriage inward", "Purchase returns", "Sales Commission", "Interest paid"], c: "Interest paid" },
-            { q: "174. Which of the following items is not excluded while preparing a cost sheet?", o: ["Goodwill written off", "Provision for taxation", "Property tax on Factory building", "Transfer to reserves"], c: "Property tax on Factory building" },
-            { q: "175. Which of the following are direct expenses? (1) The cost of special designs, drawings or layouts, (2) The hire of tools or equipment for a particular job,(3) Salesman's wages, (4) Rent, rates and insurance of a factory", o: ["(1) and (2)", "(1) and (3)", "(1) and (4)", "(3) and (4)"], c: "(1) and (2)" },
-            { q: "176. What is prime cost?", o: ["Total direct cost only", "Total indirect costs only", "Total non-production costs", "Total production costs"], c: "Total direct cost only" },
-            { q: "177. Which of the following is not an element of works overhead?", o: ["Sales manager's salary", "Plant manager's salary", "Factory repairman's wages", "Product inspector's salary"], c: "Sales manager's salary" },
-            { q: "178. For the purpose of Cost Sheet preparation, costs are classified based on:", o: ["Functions", "Relevance", "Variability", "Nature"], c: "Functions" },
-            { q: "179. Salary paid to an office supervisor is a part of:", o: ["Direct expenses", "Administration cost", "Quality control cost", "Factory overheads"], c: "Administration cost" },
-            { q: "180. Audit fees paid to cost auditors is part of", o: ["Selling and distribution cost", "Production cost", "Administration cost", "Not recorded in the cost sheet"], c: "Administration cost" },
-            { q: "181. A company has set up a laboratory for testing of products for compliance with standards. Salary of this laboratory stuffs are part of:", o: ["Direct expenses", "Quality control cost", "Works overheads", "Research and development cost"], c: "Quality control cost" },
-            { q: "182. Canteen expenses for factory workers are part of:", o: ["Administration cost", "Factory overhead", "Marketing cost", "None of the above"], c: "Factory overhead" },
-            { q: "183. Which of the following does not form part of prime cost?", o: ["GST paid on raw materials (input credit can be claimed)", "Cost of transportation paid to bring materials to factory", "Cost of packing", "Overtime premium paid to workers"], c: "Overtime premium paid to workers" },
-            { q: "184. A company pays royalty to State Government on the basis of production, it is treated as:", o: ["Direct expenses", "Factory overheads", "Direct Material Cost", "Administration Cost"], c: "Direct expenses" },
-            { q: "185. In Reconciliation Statements, expenses shown only in financial accounts are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Added to costing profit"], c: "Added to costing profit" },
-            { q: "186. In Reconciliation Statement, expenses shown only in cost accounts are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Deducted from costing profit"], c: "Deducted from costing profit" },
-            { q: "187. In Reconciliation Statement, transfers to reserves are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Added to costing profit"], c: "Added to financial profit" },
-            { q: "188. In Reconciliation Statement, incomes shown only in financial accounts are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Deducted from costing profit"], c: "Added to financial profit" },
-            { q: "189. In Reconciliation Statement, Closing Stock undervalued in Financial Accounts is", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Added to costing profit"], c: "Added to financial profit" },
-            { q: "190. Under non-integrated accounting system:", o: ["Separate ledgers are maintained for cost and financial accounts", "Same ledger is maintained for cost and financial accounts by accountants", "(A) and (B) both", "None of the above"], c: "Separate ledgers are maintained for cost and financial accounts" },
-            { q: "191. Under non-integrated system of accounting, purchase of raw material is debited to:", o: ["Purchase account", "Material control account/stores ledger control account", "General ledger adjustment account", "None of the above"], c: "Material control account/stores ledger control account" },
-            { q: "192. When costing loss is Rs. 5,600, administrative overhead under-absorbed being Rs. 600, the loss as per financial accounts should be", o: ["Rs.5000", "Rs.5600", "Rs.6200", "None of the above"], c: "Rs.6200" },
-            { q: "193. Which of the following items should be added to costing profit to arrive at financial profit?", o: ["Income tax paid", "Over absorption of works overhead", "Interest paid on debentures", "All of the above"], c: "Over absorption of works overhead" },
-            { q: "194. Integral accounts eliminate the necessity of operating", o: ["Cost Ledger control accoun", "Store Ledger control account", "Overhead adjustment account", "None of the above"], c: "Cost Ledger control accoun" },
-            { q: "195. Under Non- integrated accounting system, the amount made to complete double entry is:", o: ["Finished goods control account", "Work in progress control account", "stores ledger control accounts", "General ledger adjustment account"], c: "General ledger adjustment account" },
-            { q: "196. Under the Non-Integrated Accounting System -", o: ["Same ledger is maintained for Cost and financial Accounts by Accountants", "Separate ledgers are maintained for Cost and Financial Accounts", "All transactions relating to incomes. Expenditures, Assets and Liabilities are completely recorderd", "Product-wise or department wise information is not maintained"], c: "Separate ledgers are maintained for Cost and Financial Accounts" },
-            { q: "197. Notional Costs -", o: ["May be included in Integrated Accounts", "may be Included in Non - Integrated accounts", "Cannot Be included in Non-intergrated Accounts", "are not accounted at all in Ingrated or Non-integrated Accounts"], c: "may be Included in Non - Integrated accounts" },
-            { q: "198. Which account is to be debited if materials worth rs 500 are returned to vendor under Non-Ingrated Accounts", o: ["Cost Ledger control account", "finished goods control Account", "WIP Control Account", "General ledger adjustment account"], c: "General ledger adjustment account" },
-            { q: "199. What is the journal Entry under Integrated System for recording Sales made?", o: ["No entry", "Dr sales, Cr General Ledger Adjustment", "Dr. cash or bank Cr. Sales", "Dr. General Ledger Adjsutment, Cr sales"], c: "Dr. General Ledger Adjsutment, Cr sales" },
-            { q: "200. Which of the following items is most likely to be included in Cost Accounts?", o: ["Notional Rent", "Donations", "Transfer to General Reserve", "Rent Receivable"], c: "Notional Rent" },
-            { q: "201. Job costing is used in:", o: ["Furniture making", "Repair shops", "Printing press", "All of the above"], c: "All of the above" },
-            { q: "202. In a job cost system, costs are accumulated", o: ["On a monthly basis", "By specific job", "By department or process", "By kind of material used"], c: "By specific job" },
-            { q: "203. The most suitable cost system where the products differ in type of material and work performed is:", o: ["Operating Costing", "Job costing", "Process costing", "All of these."], c: "Job costing" },
-            { q: "204. Cost Price is not fixed in case of:", o: ["Cost plus contracts", "Escalation clause", "De escalation clause", "All of the above"], c: "Cost plus contracts" },
-            { q: "205. Most of the expenses are direct in:", o: ["Job costing", "Batch costing", "Contact costing", "None of the above"], c: "Contact costing" },
-            { q: "206. Cost plus contract is usually entered into those cases where", o: ["Cost can be easily estimated", "Cost of certified and uncertified work", "Cost of certified work, cost of uncertified work and amount of profit transferred to Profit and Loss Account", "Determination of contract cost with reasonable accuracy is not possible"], c: "Determination of contract cost with reasonable accuracy is not possible" },
-            { q: "207. In order to determine cost of the products or services, different business firms follow:", o: ["Different techniques of costing", "Uniform costing", "Different methods of costing", "None of the above"], c: "Different methods of costing" },
-            { q: "208. In case product produced or jobs undertaken are of diverse system, the system of costing to be used should be:", o: ["Operating Costing", "Process Costing", "Job Costing", "None of the above"], c: "Job Costing" },
-            { q: "209. Job Costing is:", o: ["Suitable where similar products are produced on mass scale", "Methods of costing used for non-standard and non-repetitive products", "Technique of costing", "Applicable to all industries regardless of the products or services provided"], c: "Methods of costing used for non-standard and non-repetitive products" },
-            { q: "210. Batch costing is a type of:", o: ["Direct Costing", "Process Costing", "job Costing", "Differential Costing"], c: "job Costing" },
-            { q: "211. Batch costing is similar to that under job costing except with the difference that:", o: ["Process becomes a cost unit", "Job becomes a cost unit", "Batch become the cost unit instead of a job", "None of the above"], c: "Batch become the cost unit instead of a job" },
-            { q: "212. Economic batch quantity is that size of the batch of production where:", o: ["Carrying cost is minimum", "Set-up cost of machine is minimum", "Average cost is minimum", "Both A. and B"], c: "Both A. and B" },
-            { q: "213. Which of the following documents are used in job costing to record the issue of direct materials to a job?", o: ["Purchase order", "Purchase requisition", "Goods received note", "Material requisition"], c: "Material requisition" },
-            { q: "214. Which of the following statements is true?", o: ["Batch costing is a variant of jobs costing", "Job cost sheet may be used for estimating profit of jobs", "Job costing cannot be used in conjunction with marginal costing", "In cost plus contracts, the contractor runs a risk of incurring a loss"], c: "Job cost sheet may be used for estimating profit of jobs" },
-            { q: "215. Which of the statement is true?", o: ["Job costing can be suitably used for concerns producing any specific product uniformly", "Job costing cannot be used in companies applying standard costing", "Job cost sheet may be prepared to facilitate routing and scheduling of the job", "Neither A, nor B, nor C"], c: "Neither A, nor B, nor C" },
-            { q: "216. The type of process loss that should not be allowed to affect the cost of good units is called:", o: ["Standard LoSS", "Normal Loss", "Abnormal Loss", "Seasonal Loss"], c: "Abnormal Loss" },
-            { q: "217. Spoilage that occurs under inefficient operating conditions and is generally controllable is called", o: ["Normal defectives", "Abnormal spoilage", "Normal spoilage", "None of the above"], c: "Abnormal spoilage" },
-            { q: "218. In which of the following situations an abnormal gain in a process occurs:", o: ["When normal loss is equal to actual loss", "When the actual output is greater than the planned output", "When actual loss is more than the expected", "When actual loss is less than the expected loss"], c: "When the actual output is greater than the planned output" },
-            { q: "219. The value of abnormal loss is equal to:", o: ["Total cost of materials", "Total process cost less cost of scrap", "Total process cost less realisable value of normal loss less value of transferred out goods", "Total process cost less realisable value of normal loss"], c: "Total process cost less realisable value of normal loss" },
-            { q: "220. A process account is debited by abnormal gain, the value is determined as:", o: ["Equal to the value of good units less closing stock", "Equal to the value of normal loss", "Cost of good units less realisable value of normal loss", "Cost of good unit less realisable value of actual loss"], c: "Cost of good units less realisable value of normal loss" },
-            { q: "221. In sugar manufacturing industry molasses is also produced along with sugar. Molasses may be of small value as compared with the value of sugar and is known as:", o: ["Joint product", "Common product", "By-product", "None of them"], c: "By-product" },
-            { q: "222. Method of apportioning joint costs on the basis of output of each joint product at the point of split-offs is known as:", o: ["Physical unit method", "Sales value method", "Average cost method", "Marginal cost and contribution method"], c: "Physical unit method" },
-            { q: "223. The main purposes of accounting of joint products and by-products is to:", o: ["Determine the replacement cost", "Determine the opportunity cost", "Determine profit or loss on each product line", "None of the above"], c: "Determine profit or loss on each product line" },
-            { q: "224. Under net realisable value method of apportioning joint costs to joint products, the selling & distribution cost is:", o: ["Ignored", "Deducted from sales value", "Deducted from further processing", "Added to joint cost"], c: "Deducted from sales value" },
-            { q: "225. Which of the following is an example of by-product:", o: ["Mustard seeds and mustard oil", "Diesel and Petrol in an oil refinery", "Edible oils and oil cakes", "Curd and butter in a diary"], c: "Edible oils and oil cakes" },
-            { q: "226. Which of following methods can be used when the joint products are of unequal quantity and used for captive consumption:", o: ["Physical units method", "Net realisable value method", "Technical estimates, using market value of similar goods", "Market value at spit-off method"], c: "Technical estimates, using market value of similar goods" },
-            { q: "227. Cost of a particular service under operating costing is ascertained by preparing:", o: ["Cost sheet", "Process account", "Job cost sheet", "Production account"], c: "Job cost sheet" },
-            { q: "228. Operating costing is applicable to:", o: ["Hospitals", "Cinemas", "Transport undertaking", "All of the above"], c: "All of the above" },
-            { q: "229. Composite cost unit for a hospital is:", o: ["Per day", "Per bed", "Per patient day", "Per patient"], c: "Per patient day" },
-            { q: "230. Cost units used in power sector is called:", o: ["Number of hours", "Number of electric points", "Kilowatt-hour (KWH)", "Kilo meter (K.Μ.)"], c: "Kilowatt-hour (KWH)" },
-            { q: "231. Absolute Tonne-Km is an example of:", o: ["Composite unit for bus operation", "Composite unit of transport sector", "Composite unit for oil and natural gas", "Composite unit in power sector"], c: "Composite unit of transport sector" },
-            { q: "232. In process costing, a joint product is", o: ["a product which is later divided into many parts", "a product which is produced simultaneously with other products and is of similar value to at least one of the other products.", "A product which is produced simultaneously with other products but which is of a greater value than any of the other products.", "a product produced jointly with another organization"], c: "a product which is produced simultaneously with other products and is of similar value to at least one of the other products." },
-            { q: "233. Process B had no opening inventory. 13,500 units of raw material were transferred in at Rs. 4.50 per unit. Additional material at Rs.1.25per unit was added in process. Labour and overheads were Rs. 6.25 per completed unit and Rs. 2.50 per unit incomplete. If 11,750 completed units were transferred out, what was the closing inventory in Process B?", o: ["Rs. 6562.50", "Rs. 12,250.00", "Rs. 14,437.50", "Rs. 25,375.00"], c: "Rs. 14,437.50" },
-            { q: "234. A process costing system for J Co used an input of 3,500Kg of materials at Rs.20 per Kg and labour hours of 2,750 at Rs.25 per hour. Normal loss is 20% and losses can be sold at a scrap value of Rs.5per Kg. Output was 2,950 Kg. What is the value of the output?", o: ["Rs. 142,485", "Rs. 146,183", "Rs. 149,746", "Rs. 152.986"], c: "Rs. 142,485" },
-            { q: "235. In process costing, if an abnormal loss arises, the process account is generally", o: ["Debited with the scrap value of the abnormal loss units", "Debited with the full production cost of the abnormal loss. units", "Credited with the scrap value of the abnormal loss units", "Credited with the full production cost of the abnormal loss units"], c: "Credited with the full production cost of the abnormal loss units" },
-            { q: "236. Which of the following statements is/are correct? 1. A materials requisition note is used to record the issue of direct material to a specific job. 2. A typical job cost will contain actual costs for material, labour and production overheads, and non-production overheads are often added as a percentage of total production cost 3. The job costing method can be applied in costing batches", o: ["(1) only", "(1) and (2) only", "(1) and (3) only", "(2) and (3) only"], c: "(1) and (3) only" },
-            { q: "237. A job is budgeted to require 3,300 productive hours after incurring 25% idle time. If the total labour cost budgeted for the job is Rs.36,300. What is the labour cost per hour( to the nearest cent)?", o: ["Rs. 8.25", "Rs. 8.80", "Rs. 11.00", "Rs. 14.67"], c: "Rs. 8.25" },
-            { q: "238. A company calculates the prices of jobs by adding overheads to the prime cost and adding 30% to total costs as a profit margin. Job number Y256 was sold for Rs. 1690 and incurred overheads of Rs. 694. What was the prime cost of the job?", o: ["Rs. 489", "Rs. 606", "Rs. 996", "Rs. 1300"], c: "Rs. 606" },
-            { q: "239. State which of the following are the characteristics of service costing? 1. High levels of indirect costs as a proportion of total costs 2. Use of composite cost units 3. Use of equivalent units", o: ["(1) and (2) only", "(1) only", "(2) only", "(2) and (3) only"], c: "(1) and (2) only" },
-            { q: "240. Which of the following organisations should not be advised to use service costing?", o: ["Hospital", "Distribution service", "Maintenance division of a manufacturing company", "A light engineering company"], c: "Maintenance division of a manufacturing company" },
-            { q: "241. In case of joint products, the main objective of accounting of the cost is to apportion the joint costs incurred up to the split off point. For cost apportionment one company has chosen Physical Quantity Method. Three joint products 'A', 'B' and 'C' are produced in the same process. Up to the point of split off the total production of A, B and C is 60,000 kg, out of which 'A' produces 30,000 kg and joint costs are Rs. 3,60,000. Joint costs allocated to product A is:", o: ["Rs. 1.20.000", "Rs. 60,000", "Rs. 1,80,000", "None of the these"], c: "Rs. 1,80,000" },
-            { q: "242. A transport company is running five buses between two towns, which are 50 kms apart. Seating capacity of each bus is 50 passengers. Actually passengers carried by each bus were 75% of seating capacity. All buses ran on all days of the month. Each bus made one round trip per day. Passenger kms are:", o: ["2,81,250", "1,87,500", "5,62,500", "None of the above"], c: "5,62,500" },
-            { q: "243. The cost of a product under marginal costing system includes:", o: ["Prime cost plus variable overhead", "Prime cost plus fixed overhead", "Prime cost plus factory overhead", "Only prime cost"], c: "Prime cost plus variable overhead" },
-            { q: "244. The difference between absorption costing and marginal costing is in regard to the treatment of:", o: ["Direct materials", "Fixed overhead", "Prime cost", "Variable overhead"], c: "Fixed overhead" },
-            { q: "245. Fixed costs are treated as:", o: ["Overhead costs", "Prime costs", "Period costs", "Conversion costs"], c: "Period costs" },
-            { q: "246. When sales and production (in units) are same then profits under:", o: ["Marginal costing is lower than that of absorption costing", "Marginal costing is higher than that of absorption costing", "Marginal costing is equal to that of absorption costing", "None of the above"], c: "Marginal costing is equal to that of absorption costing" },
-            { q: "247. When sales exceeds production (in units) then profit under:", o: ["Marginal costing is higher than that of absorption costing", "Marginal costing is equal to that of absorption costing", "Marginal costing is lower than that of absorption costing", "None of the above"], c: "Marginal costing is higher than that of absorption costing" },
-            { q: "248. which of the following factors responsible for change in the break even point?", o: ["change in selling price", "change in variable cost", "change in fixed cost", "all of the above"], c: "all of the above" },
-            { q: "249. Variable cost -", o: ["Remains fixed in total", "Remains fixed per unit", "Varies per unit", "Nor increase or decrease"], c: "Remains fixed per unit" },
-            { q: "250. Marginal Costing technique follows the following basic of classification:", o: ["Element wise", "Function Wise", "Behaviour wise", "Identifiability wise"], c: "Behaviour wise" },
-            { q: "251. P/V ratio will increase if the:", o: ["There is a decrease in fixed cost", "There is an increase in fixed cost", "There is a decrease in selling price per unit.", "There is a decrease in variable cost per unit."], c: "There is a decrease in variable cost per unit." },
-            { q: "252. The technique of differential cost is adopted when:", o: ["To ascertain P/V ratio", "To ascertain marginal cost", "To ascertain cost per unit", "To make choice between two or more alternative courses of action"], c: "To make choice between two or more alternative courses of action" },
-            { q: "253. Which of the following would not be used to estimate standard direct material prices?", o: ["The availability of bulk purchase discounts", "Purchase contracts already agreed", "The forecast movement of prices in the market", "Performance standards in operation"], c: "Performance standards in operation" },
-            { q: "254. What is an attainable standard?", o: ["A standard which includes no allowance for losses, waste and inefficiencies. It represents the level of performance which is attainable under perfect operating conditions", "A standard which includes some allowance for losses, waste and inefficiencies. It represents the level of performance which is attainable. under efficient operating conditions", "A standard which is based on currently attainable operating conditions", "A standard which is kept unchanged, to show the trend in costs"], c: "A standard which includes some allowance for losses, waste and inefficiencies. It represents the level of performance which is attainable. under efficient operating conditions" },
-            { q: "255. Budgets are shown in-Terms:", o: ["Qualitative", "Quantitative", "Materialistic", "both (b) and (c)"], c: "both (b) and (c)" },
-            { q: "256. Which of the following is not an element of master budget?", o: ["Capital Expenditure Budget", "Production Schedule", "Operating Expenses Budget", "All above the above"], c: "Production Schedule" },
-            { q: "257. Which of the following is not a potential benefit of using a budget?", o: ["Enhanced coordination of firm activities", "More motivated managers", "Improved inter-departmental communication", "More accurate external financial statements"], c: "More accurate external financial statements" },
-            { q: "258. Which of the following is a long-term budget?", o: ["Master Budget", "Flexible Budget", "Cash Budget", "Capital Budget"], c: "Capital Budget" },
-            { q: "259. Materials become key factor, if", o: ["quota restrictions exist", "insufficient advertisement prevails", "there is low demand", "there is no problem with supplies of materials"], c: "quota restrictions exist" },
-            { q: "260. The difference between fixed cost and variable cost assumes significance in the preparation of the following budget:", o: ["Master Budget", "Flexible Budget", "Cash Budget", "Capital Budget"], c: "Flexible Budget" },
-            { q: "261. The budget that is prepared first of all is", o: ["Master budget", "Sales budget assuming that it is the key factor", "Cash Budget", "Capital expenditure budget"], c: "Sales budget assuming that it is the key factor" },
-            { q: "262. Sales budget is a", o: ["expenditure budget", "functional budget", "master budget", "None of these"], c: "functional budget" },
-            { q: "263. When a company wants to prepare a factory overhead budget in which the estimated costs are directly derived from the estimates of activity levels, which of the following budget should be prepared by the company?", o: ["Flexible budget", "Fixed budget", "Master budget", "R & D budget"], c: "Flexible budget" },
-            { q: "264. Which of the following budgets facilitates classification of fixed and variable costs:", o: ["Capital expenditure budget", "Flexible budget", "Cash budget", "Raw materials budget"], c: "Flexible budget" },
-            { q: "265. The entire budget organisation is controlled and headed by a senior executive known as:", o: ["General Manager", "Accountant", "Budget Controller", "None of the above"], c: "Budget Controller" },
-            { q: "266. Which of the following is a long-term budget?", o: ["Master Budget", "Flexible Budget", "Cash Budge", "Capital Budget"], c: "Capital Budget" },
-            { q: "267. A flexible budget requires a careful study of", o: ["Fixed, semi-fixed and variable expenses", "Past and current expenses", "Overheads, selling and administrative expenses", "None of these."], c: "Fixed, semi-fixed and variable expenses" },
-            { q: "268. The basic difference between a fixed budget and flexible budget is that a fixed budget", o: ["is concerned with a single level of activity, while flexible budget is prepared for different levels of activity", "is concerned with fixed costs, while flexible budget is concerned with variable costs", "is fixed while flexible budget changes", "None of these"], c: "is concerned with a single level of activity, while flexible budget is prepared for different levels of activity" },
-            { q: "269. Which of the following is not a reason for an idle time variance?", o: ["Wage rate increase", "Machine breakdown", "Illness or injury to worker", "Non- availability of material"], c: "Wage rate increase" },
-            { q: "270. During September, 300 labour hours were worked for a total cost of Rs. 4800. The variable overhead expenditure variance was Rs. 600 (A). Overheads are assumed to be related to direct labour hours of active working. What was the standard cost per labour hour?", o: ["Rs. 14", "Rs. 16.50", "Rs. 17.50", "Rs. 18"], c: "Rs. 14" },
-            { q: "271. Which of the following would explain an adverse variable production overhead efficiency variance? 1. Employees were of a lower skill level than specified in the standard 2. Unexpected idle time resulted from a series of machine breakdown 3. Poor Quality material was difficult to process", o: ["(1), (2) and (3)", "(1) and (2)", "(2) and (3)", "(1) and (3)"], c: "(1) and (3)" },
-            { q: "272. Budgeted sales of X for March are 18000 units. At the end of the production process for X. 10% of production units are scrapped as defective. Opening inventories of X for March are budgeted to be 15000 units and closing inventories will be 11,400 units. All inventories of finished goods must have successfully passed the quality control check. The production budget for X for March, in units is:", o: ["12960", "14400", "15840", "16000"], c: "16000" },
-            { q: "273. CG Co manufactures a single product T. Budgeted production output of product T during June is 200 units. Each unit of product T requires 6 labour hours for completion and CG Co anticipates 20 per cent idle time. Labour is paid at a rate of Rs.7 per hour. The direct labour cost budget for March is", o: ["Rs. 6,720", "Rs. 8,400", "Rs. 10,080", "Rs. 10,500"], c: "Rs. 10,500" },
-            { q: "274. A Local Authority is preparing cash Budget for its refuse disposal department. Which of the following items would not be included in the cash budget?", o: ["Capital cost of a new collection vehicle", "Depreciation of the machinery", "Operatives wages", "Fuel for the collection Vehicles"], c: "Depreciation of the machinery" },
-            { q: "275. The actual output of 162,500 units and actual fixed costs of Rs. 87000 were exactly as budgeted. However, the actual expenditure of Rs. 300,000 was Rs. 18,000 over budget. What was the budget variable cost per unit?", o: ["Rs. 1.20", "Rs. 1.31", "Rs.1.42", "Rs. 1.50"], c: "Rs. 1.20" },
-            { q: "276. A ltd is a manufacturing company that has no production resource limitations for the foreseeable future. The Managing Director has asked the company mangers to coordinate the preparation of their budgets for the next financial year. In what order should the following budgets be prepared? 1) Sales budget (2) Cash budget (3) Production budget (4) Purchase budget (5) Finished goods inventory budget", o: ["(2), (3), (4), (5), (1)", "(1), (5), (3), (4), (2)", "(1), (4), (5), (3), (2)", "(4), (5), (3), (1), (2)"], c: "(1), (5), (3), (4), (2)" },
-            { q: "277. S produces and sells one product, P, for which the data are as follows: Selling price Rs. 28 Variable cost Rs. 16 Fixed cost Rs. 4 The fixed costs are based on a budgeted production and sales level of 25,000 units for the next period. Due to market changes both the selling price and the variable cost are expected to increase above the budgeted level in the next period. If the selling price and variable cost per unit increase by 10% and 8% respectively, by how much must sales volume change, compared with the original budgeted level, in order to achieve the original budgeted profit for the period?", o: ["10.1% decrease", "11.2% decrease", "13.3% decrease", "16.0% decrease"], c: "11.2% decrease" },
-            { q: "278. A company makes a single product and incurs fixed costs of Rs. 30,000 per annum. Variable cost per unit is Rs. 5 and each unit sells for Rs. 15. Annual sales demand is 7,000 units. The breakeven point is:", o: ["2,000 units", "3,000 units", "4.000 units", "6,000 units"], c: "3,000 units" },
-            { q: "279. A company manufactures a single product for which cost and selling price data are as follows: Selling price per unit - Rs. 12 Variable cost per unit - Rs. 8 Fixed cost for a period - Rs. 98,000 Budgeted sales for a period - 30,000 units The margin of safety, expressed as a percentage of budgeted sales,is:", o: ["20%", "25%", "72%", "125%"], c: "20%" },
-            { q: "280. A company's break even point is 6,000 units per annum. The selling price is Rs. 90 per unit and the variable cost is Rs. 40 per unit. What are the company's annual fixed costs?", o: ["Rs. 120", "Rs. 2,40,000", "Rs. 3,00,000", "Rs. 5,40,000"], c: "Rs. 3,00,000" },
-            { q: "281. After inviting tenders for supply of raw materials, two quotations are received as follows- Supplier P Rs. 2.20 per unit, Supplier Q Rs. 2.10 per unit plus Rs. 2,000 fixed charges irrespective of the units ordered. The order quantity for which the purchase price per unit will be the same-", o: ["22,000 units", "20,000 units", "21.000 units", "None of the above."], c: "20,000 units" },
-            { q: "282. The cost per unit of a product manufactured in a factory amounts to Rs. 160 (75% variable) when the production is 10,000 units. When production increases by 25%, the cost of production will be Rs. ____ per unit.", o: ["Rs. 145", "Rs. 150", "Rs. 152", "Rs. 140"], c: "Rs. 152" },
-            { q: "283. In 'make or buy' decision, it is profitable to buy from outside only when the supplier's price is below the firm's own", o: ["Fixed Cost", "Variable Cost", "Total Cost", "Prime Cost"], c: "Variable Cost" },
-            { q: "284. A budget which is prepared in a manner so as to give the budgeted cost for any level of activity is known as:", o: ["Master budget", "Zero base budget", "Functional budget", "Flexible budget"], c: "Flexible budget" },
-            { q: "285. ____ is a summary of all functional budgets in a capsule form.", o: ["Functional Budget", "Master Budget", "Long Period Budget", "Flexible Budget"], c: "Master Budget" },
-            { q: "286. ____ is a detailed budget of cash receipts and cash expenditure incorporating both revenue and capital items.", o: ["Cash Budget", "Capital Expenditure Budget", "Sales Budget", "Overhead Budget"], c: "Cash Budget" },
-            { q: "287. Following information is available of XYZ Limited for quarter ended June, 2023 Fixed cost Rs. 5,00,000 Variable cost Rs. 10 per unit Selling price Rs. 15 per unit Output level 1,50,000 units What will be amount of profit earned during the quarter using the marginal costing technique?", o: ["Rs. 2.50,000", "Rs. 10,00,000", "Rs. 5,00,000", "Rs. 17,50,000"], c: "Rs. 2.50,000" },
-            { q: "288. The P/v ratio of a company is 50% and margin of safety is 40%. If present sales is Rs. 30,00,000 then Break Even Point in Rs. will be:", o: ["Rs. 9,00,000", "Rs. 18,00,000", "Rs. 5,00,000", "None of the above"], c: "Rs. 18,00,000" },
-            { q: "289. Following information is available of PQR for year ended March, 2013: 4,000 units in process, 3,800 units output, 10% of input is normal wastage, Rs. 2.50 per unit is scrap value and Rs. 46,000 incurred towards total process cost then amount on account of abnormal gain to be transferred to Costing P&L will be:-", o: ["Rs. 2.500", "Rs. 2,000", "Rs. 4,000", "Rs. 3,500"], c: "Rs. 2.500" },
-            { q: "290. In element-wise classification of overheads, which one of the following is not included", o: ["Fixed overheads", "Indirect labour", "Indirect materials", "Indirect expenditure."], c: "Fixed overheads" },
-            { q: "291. When the sales increase from Rs. 40,000 to Rs. 60,000 and profit increases by Rs. 5,000, the P/V ratio is:", o: ["20%", "30%", "25%", "40%"], c: "25%" },
-            { q: "292. In activity based costing, costs are accumulated by activity. Such Accumulated Amounts are called -", o: ["Cost drivers", "Cost objects", "Cost pools", "Cost Benefits Analysis"], c: "Cost pools" },
-            { q: "293. Steps in ABC Include -", o: ["Identification of activities and their respective costs", "Identification of cost Driver of each activity and computation of an allocation rate per activity", "Allocation of Overhead Cost to products/services based on the activities involved", "all of the above"], c: "all of the above" },
-            { q: "294. Which of the following is not a benefit of ABC?", o: ["Accurate cost allocation", "Improved decision making", "Better control on activity and costs", "reduction of prime cost"], c: "reduction of prime cost" },
-            { q: "295. The key elements of Activity Based Budgeting are -", o: ["Type of Activity to be performed", "Quantity of activity to bee performed", "Cost of activity to be performed", "all of the above"], c: "all of the above" }
+            { q: "Prime Cost is:", o: ["All costs incurred in manufacturing a product", "the total of direct costs", "the material cost of a product", "the cost of operating a department"], c: 2 },
+            { q: "A company employs three drivers to deliver goods to its customers. The salaries paid to these drivers are:", o: ["a part of prime cost", "a direct production expense", "a production overhead", "a selling & distribution overhead"], c: 4 },
+            { q: "A company has to pay a $\\text{Rs. } 1$ per unit royalty to the designer of a product which it manufactures and sells. The royalty charge would be classified in the company's accounts as a", o: ["Direct expense", "Production overhead", "Administrative overhead", "Selling overhead"], c: 1 },
+            { q: "$____$ is a method of dealing with overheads which involves spreading common costs over cost centers on the basis of benefit received.", o: ["overhead absorption", "overhead apportionment", "overhead allocation", "overhead analysis"], c: 2 },
+            { q: "Which of the following classification is meant for distinction between direct cost and indirect cost?", o: ["Function", "Element", "Variability", "Controllability"], c: 2 },
+            { q: "Which of the following is applicable for Cost Control?", o: ["It is related with the future", "It is a corrective function", "It ends when the targets are achieved", "It challenges the standards set"], c: 3 },
+            { q: "$____$ is anything for which a separate measurement of cost is required", o: ["Cost driver", "Cost centre", "Cost unit", "Cost object"], c: 4 },
+            { q: "Ticket counter in a Metro Station is an example of", o: ["Profit centre", "Investment centre", "Cost centre", "Revenue centre"], c: 4 },
+            { q: "Absorption costing is also referred as", o: ["Historical costing", "Traditional costing", "Full costing", "All of the above terms"], c: 4 },
+            { q: "the main purpose of cost accounting is", o: ["to maintain profit", "to help in inventory valuation", "to enter into price War with competitive firms", "to provide information to management for decision-making"], c: 4 },
+            { q: "$____$ is anything for which a separate measurement is required", o: ["cost unit", "cost object", "cost driver", "cost sentre"], c: 2 },
+            { q: "Which of the following is true about Cost Control", o: ["It is a corrective function", "It challenges the set standards", "It ends when targets achieved", "It is concerned with future"], c: 3 },
+            { q: "Cost Units used in Power Sector is:", o: ["Kilo-meter (K.M.)", "Kilo-Watt-Hour (kWh)", "Number of Electric Points", "Machine Hours"], c: 2 },
+            { q: "Process Costing method is suitable for:", o: ["Transport Sector", "Chemical Industries", "Dam Construction", "Furniture-making"], c: 2 },
+            { q: "distinction between Direct Cost and Indirect Cost is an example of $____$ classification.", o: ["By element", "By Function", "By controllability", "By Variability"], c: 1 },
+            { q: "The advantage of using IT in Cost Accounting does not include", o: ["Single point data entry", "stock needs to be reconciled with goods received note", "reduction in multiplicity of documents", "integration of various functions"], c: 2 },
+            { q: "A taxi provider charges minimum $\\text{Rs. } 80$ thereafter $\\text{Rs. } 12$ per kilometer of distance travelled, the behaviour of conveyance Cost is", o: ["fixed cost", "semi-variable", "variable", "administrative cost"], c: 2 },
+            { q: "A Ltd. Has three Production Departments, and each department has machines, which of the following cannot be treated as Cost Centre for cost allocation:", o: ["Machines under the production Production Department", "Pruction Departments", "Both Production Department and Machines", "A Ltd."], c: 4 },
+            { q: "Which of the following is an example of functional classification of cost?", o: ["Semi-variable costs", "Fixed Cost", "Administrative overhead", "indirect Overheads"], c: 3 },
+            { q: "Cost which are ascertained after they have been incurred are known as", o: ["sunk costs", "Imputed Costs", "Historical Costs", "Oppurtunity Costs"], c: 3 },
+            { q: "Generally, for the purpose of Cost sheet preparation, costs are classified on the basis of -", o: ["Functions", "variablity", "relevance", "nature"], c: 1 },
+            { q: "What is prime cost", o: ["Total direct cost only", "Total Indirect Costs only", "Total Non-Production Costs", "Total Production Costs"], c: 1 },
+            { q: "Which of the following does not form part of prime cost", o: ["Cost of Packing", "cost of transportation paid to bring materials to factory", "GST paid on Raw materials (where input credit cannot be claimed)", "overtime premium paid to workers"], c: 1 },
+            { q: "Which of these is not an objective of Cost Accounting?", o: ["Ascertainment of Cost", "Determination of Selling Price", "Cost Control and Cost reduction", "Assisting Shareholders in decision making"], c: 4 },
+            { q: "Which of the following are direct expenses? (1) Cost of Special Designs drawings or layout, (2) Hire of Tools or Equipment for a particular job, (3) Salesman's wages, (4) Rent, rates and Insurance of a factory,", o: ["(1) and (2)", "(1) and (3)", "(2) and (3)", "(3) and (4)"], c: 1 },
+            { q: "Salary paid to plant Supervisor is a part of", o: ["Direct expenses", "Factory Overheads", "Quality Control Cost", "administrative cost"], c: 2 },
+            { q: "Depreciation of Director's Laptop is treated as a part of:", o: ["Administration Overheads", "Factory Overheads", "IT infrastructure Cost", "Research & Development Cost"], c: 1 },
+            { q: "A manufacturing Company has set-up a lab for testing of products for compliance with standards. Salary of this Lab Staff are part of:", o: ["Works Overheads", "Quality Control Cost", "Direct Expenses", "Reearch & Development Cost"], c: 2 },
+            { q: "Audit fees paid to external Statutory Auditors is part of", o: ["Administration Cost", "Production Cost", "Selling & distribution Costs", "Quality Costrol Cost"], c: 1 },
+            { q: "Salary paid to factory stores is a part of", o: ["Factory Overheads", "Production Cost", "Direct Employee Cost", "Direct Material Cost"], c: 1 },
+            { q: "Canteen Expenses for factory workers are part of -", o: ["Factory Overheads", "Administration cost", "marketing cost", "direct expenses"], c: 1 },
+            { q: "A company pays Royalty to State Government on the basis of production, it is treated as:", o: ["Direct material cost", "Quality Control Cost", "Direct Expenses", "Administrative Overhead"], c: 3 },
+            { q: "Which of the following is not an element of Works Overhead?", o: ["Store Keeper's Salary", "Plant Manager's salary", "Sales Manager's Salary", "Product Inspector's Salary"], c: 3 },
+            { q: "A profit centre is a centre", o: ["Where the manager has the responsibility of generating and maximising profits", "Which is concerned with earning an adequate Return on Investment", "Both of the above", "Which manages cost"], c: 1 },
+            { q: "Responsibility Centre can be categorised into:", o: ["Cost Centres only", "Profit Centres only", "Investment Centres only", "Cost Centres, Profit Centres and Investment Centres"], c: 4 },
+            { q: "Cost Unit is defined as:", o: ["Unit of quantity of product, service or time in relation to which costs may be ascertained or expressed", "A location, person or an item of equipment or a group of these for which costs are ascertained and used for cost control.", "Centres having the responsibility of generating and maximising profits", "Centres concerned with earning an adequate return on investment"], c: 1 },
+            { q: "Fixed cost is a cost:", o: ["Which changes in total in proportion to changes in output", "which is partly fixed and partly variable in relation to output", "Which do not change in total during a given period despite changes in output", "which remains same for each unit of output"], c: 3 },
+            { q: "Uncontrollable costs are the costs which $____$ be influenced by the action of a specified member of an undertaking.", o: ["can not", "can", "may or may not", "must"], c: 1 },
+            { q: "Element/s of Cost of a product are:", o: ["Material only", "Labour only", "Expenses only", "Material, Labour and expenses"], c: 2 },
+            { q: "Abnormal cost is the cost:", o: ["Cost normally incurred at a given level of output", "Cost not normally incurred at a given level of output", "Cost which is charged to customer", "Cost which is included in the cost of the product"], c: 2 },
+            { q: "Conversion cost includes cost of converting$____$into$____$", o: ["Raw material, WIP", "Raw material, Finished goods", "WIP, Finished goods", "Finished goods, Saleable goods"], c: 2 },
+            { q: "Sunk costs are:", o: ["relevant for decision making", "Not relevant for decision making", "cost to be incurred in future", "future costs"], c: 2 },
+            { q: "Calculate the prime cost from the following information: Direct material purchased: $\\text{Rs. } 1,00,000$, Direct material consumed: $\\text{Rs. } 90,000$, Direct labour: $\\text{Rs. } 60,000$, Direct expenses: $\\text{Rs. } 20,000$, Manufacturing overheads: $\\text{Rs. } 30,000$", o: ["$\\text{Rs. } 1,80,000$", "$\\text{Rs. } 2,00,000$", "$\\text{Rs. } 1,70,000$", "$\\text{Rs. } 2,10,000$"], c: 3 },
+            { q: "Total cost of a product: $\\text{Rs. } 10,000$, Profit: $25\%$ on Selling Price. Profit is:", o: ["$\\text{Rs. } 2,500$", "$\\text{Rs. } 3,000$", "$\\text{Rs. } 3,333$", "$\\text{Rs. } 2,000$"], c: 3 },
+            { q: "Calculate cost of sales from the following: Net Works cost: $\\text{Rs. } 2,00,000$, Office & Administration Overheads: $\\text{Rs. } 1,00,000$, Opening stock of WIP: $\\text{Rs. } 10,000$, Closing Stock of WIP: $\\text{Rs. } 20,000$, Closing stock of finished goods: $\\text{Rs. } 30,000$. There was no opening stock of finished goods. Selling overheads: $\\text{Rs. } 10,000$", o: ["$\\text{Rs. } 2,70,000$", "$\\text{Rs. } 2,80,000$", "$\\text{Rs. } 3,00,000$", "$\\text{Rs. } 3,20,000$"], c: 2 },
+            { q: "Which of the following is considered as normal loss of material?", o: ["Pilferage", "Loss due to accident", "Loss due to careless handling of material", "None of these"], c: 3 },
+            { q: "The most important element of cost is-", o: ["Material", "Labour", "Overheads", "All of these"], c: 1 },
+            { q: "Direct material is a", o: ["Adiministration Cost", "Selling and Distribution cost", "All of these", "None of these"], c: 4 },
+            { q: "Which of the following is considered as accounting record?", o: ["Bin Card", "Bill of material", "Store Ledger", "None of these"], c: 3 },
+            { q: "Direct material can be classified as:", o: ["Fixec cost", "Semi-Variable cost", "Vaiable Cost", "Prime cost"], c: 3 },
+            { q: "In which of the following methods of pricing, costs lag behind the current economic values?", o: ["Replacement price method", "Last in first out price method", "First in first out price method", "Weighted average price method"], c: 3 },
+            { q: "In which of the following methods, issues of materials are priced at pre-determined rate?", o: ["Replacement price method", "Inflated price method", "Specific price method", "Standard price method"], c: 4 },
+            { q: "Which of the following methods smoothes out the effect of fluctuations when material prices fluctuate widely?", o: ["FIFO", "Simple Average", "LIFO", "Weighted average"], c: 4 },
+            { q: "In which of the following incentive plan of payment, wages on time basis are not Guaranteed?", o: ["Halsey plan", "Rowan plan", "Taylor's differential piece rate system", "Gantt's task and bonus system"], c: 3 },
+            { q: "Cost of idle time arising due to non-availability of raw material is:", o: ["Charged to costing profit and loss A/c", "Charged to factory overheads", "Recovered by inflating the wage rate", "Ignored"], c: 1 },
+            { q: "When overtime is required for meeting urgent orders, overtime premium should be", o: ["Charged to costing profit and loss A/c", "Charged to overhead costs", "Charged to respective jobs", "Ignored"], c: 2 },
+            { q: "Labour turnover is measured by", o: ["Number of workers replaced $\\text{/}$ average number of workers", "Number of workers left $\\text{/}$ number in the beginning plus number at the end", "Number of workers joining $\\text{/}$ number in the beginning of the period", "All of these"], c: 1 },
+            { q: "Idle time is", o: ["Time spent by workers in factory", "Time spent by workers in office", "Time spent by workers off their work", "Time spent by workers on their job"], c: 3 },
+            { q: "Over time is:", o: ["Actual hours being more than normal time", "Actual hours being more than standard time", "Standard hours being more than actual hours", "Actual hours being less than standard time"], c: 1 },
+            { q: "Labour productivity is measured by comparing", o: ["Total output with total man-hours", "Added value for the product with total wage cost", "Actual time and standard time", "All of the above"], c: 4 },
+            { q: "If the time saved is less than $50\\%$ of the standard time, then the wages under Rowan and Halsey premium plan on comparison gives:", o: ["Equal wages under two plans", "More wages to workers under Halsey Plan than Rowan Plan", "More wages to workers under Rowan Plan than Halsey Plan", "None of the above"], c: 3 },
+            { q: "Under Taylor's differential piece rate scheme, if a worker fails to complete the task within the standard time, then he is paid", o: ["$83\\%$ of the piece work rate", "$175\\%$ of the piece work rate", "$67\\%$ of the piece work rate", "$125\\%$ of the piece work rate"], c: 1 },
+            { q: "Direct Expenses includes imputed cost.", o: ["Shall", "Shall not", "Shall be", "None of these"], c: 2 },
+            { q: "Direct Expenses that does not meet the test of materiality can be $____$ part of overhead.", o: ["Treated", "Not treated", "All of the these", "None of these"], c: 1 },
+            { q: "Example of Direct Expenses.", o: ["Rent", "Royalty charged on production", "Bonus to employee", "None of these"], c: 2 },
+            { q: "The allotment of whole items of cost centres or cost unit is called:", o: ["Cost allocation", "Cost apportionment", "Overhead absorption", "None of the above"], c: 1 },
+            { q: "Directors remuneration and expenses form a part of:", o: ["Production overhead", "Administration overhead", "Selling overhead", "Distribution overhead"], c: 2 },
+            { q: "Charging to a cost center those overheads that result solely for the existence of that cost Center is known as", o: ["Allocation", "Apportionment", "Absorption", "Allotment"], c: 1 },
+            { q: "Absorption means:", o: ["Charging of overheads to cost centres", "Charging of overhead to cost units", "Charging of overheads to cost centres or cost units", "None of the above"], c: 2 },
+            { q: "When the amount of under or over absorption is significant, it should be disposed of by:", o: ["Transferring to costing profit and loss account", "The use of supplementary rates", "Carrying over as a deferred charge to the next accounting year", "None of the above"], c: 2 },
+            { q: "Selling and distribution overheads are absorbed on the basis of:", o: ["rate per unit.", "percentage on works cost.", "percentage on selling price of each unit.", "Any of the above"], c: 4 },
+            { q: "Primary packing cost is a part of:", o: ["Direct material cost", "Distribution overhead", "Selling overhead", "Production cost"], c: 4 },
+            { q: "Normal capacity of a plant refers to the difference between:", o: ["Maximum capacity and practical capacity", "Maximum capacity and actual capacity", "Practical capacity and estimated idle capacity as revealed by long term sales trend", "Practical capacity and normal capacity"], c: 3 },
+            { q: "When the amount of overhead absorbed is less than the amount of overhead incurred, it is called:", o: ["Under absorption of overhead", "Over absorption of overhead", "Proper absorption of overhead", "None of the above"], c: 1 },
+            { q: "$____$ is a scientific and accurate method of factory overhead absorption.", o: ["Percentage of prime cost method", "Machine hour rate method", "Percentage of direct material cost method", "Percentage of direct labour cost method"], c: 2 },
+            { q: "Which of these is not a Material control technique:", o: ["ABC Analysis", "Fixation of raw material levels", "Maintaining stores ledger", "Control over slow moving and non moving items"], c: 3 },
+            { q: "Out of the following, what is not the work of purchase department:", o: ["Receiving purchase requisition", "Exploring the sources of material supply", "Preparation and execution of purchase orders", "Accounting for material received"], c: 4 },
+            { q: "Bin Card is a:", o: ["Quantitative as well as value wise records of material received. issued and balance:", "Quantitative record of material received, issued and balance", "Value wise records of material received, issued and balance", "a record of labour attendance"], c: 2 },
+            { q: "Stores Ledger is a:", o: ["Quantitative as well as value wise records of material received, issued and balance:", "Quantitative record of material received, issued and balance", "Value wise records of material received, issued and balance", "a record of labour attendance"], c: 1 },
+            { q: "Re-order level is calculated as:", o: ["Maximum consumption $\\text{x}$ Maximum re-order period", "Minimum consumption $\\text{x}$ Minimum re-order period", "$1/2$ of (Minimum $+$ Maximum consumption)", "Maximum level - Minimum level"], c: 1 },
+            { q: "Economic order quantity is that quantity at which cost of holding and carrying inventory is", o: ["Maximum and equal", "Minimum and equal", "It can be maximum or minimum depending upon case to case.", "Minimum and unequal"], c: 4 },
+            { q: "ABC analysis is an inventory control technique in which:", o: ["Inventory levels are maintained", "Inventory is classified into A, B and C category with A being the highest quantity, lowest value.", "Inventory is classified into A, B and C Category with A being the lowest quantity, highest value", "Either b or c."], c: 3 },
+            { q: "Which one out of the following is not an inventory valuation method?", o: ["FIFO", "LIFO", "Weighted Average", "EOQ"], c: 4 },
+            { q: "In case of rising prices (inflation), FIFO method will:", o: ["provide lowest value of closing stock and profit", "provide highest value of closing stock and profit", "provide highest value of closing stock but lowest value of profit", "provide highest value of profit but lowest value of closing stock"], c: 2 },
+            { q: "In case of rising prices (inflation), LIFO will:", o: ["provide lowest value of closing stock and profit", "provide highest value of closing stock and profit", "provide highest value of closing stock but lowest value of profit", "provide highest value of profit but lowest value of closing stock"], c: 1 },
+            { q: "Calculate Re-order level from the following: Consumption per week: $100-200$ units Delivery period: $14-28$ days", o: ["$5,600$ units", "$800$ units", "$1,400$ units", "$200$ units"], c: 2 },
+            { q: "Calculate EOQ (approx.) from the following details: Annual Consumption: $24,000$ units, Ordering cost: $\\text{Rs. } 10$ per order, Purchase price: $\\text{Rs. } 100$ per unit, Carrying cost: $5\\%$", o: ["$310$", "$400$", "$290$", "$300$"], c: 1 },
+            { q: "Calculate the value of closing stock from the following according to FIFO method: $1\text{st January}, 2024$: Opening balance: $50$ units $@ \text{Rs. } 4$. Receipts: $5\text{th January}, 2024$; $100$ units $@ \text{Rs. } 5$. $12\text{th January}, 2024$: $200$ units $@ \text{Rs. } 4.50$. Issues: $2\text{nd January}, 2024$: $30$ units. $18\text{th January}, 2024$: $150$ units", o: ["$\\text{Rs. } 765$", "$\\text{Rs. } 805$", "$\\text{Rs. } 786$", "$\\text{Rs. } 700$"], c: 1 },
+            { q: "Calculate the value of closing stock from the following according to LIFO method: $1\text{st January}, 2024$: Opening balance: $50$ units $@ \text{Rs. } 4$. Receipts: $5\text{th January}, 2024$: $100$ units $@ \text{Rs. } 5$. $12\text{th January}, 2024$: $200$ units $@ \text{Rs. } 4.50$. Issues: $2\text{nd January}, 2024$: $30$ units. $18\text{th January}, 2024$: $150$ units", o: ["$\\text{Rs. } 765$", "$\\text{Rs. } 805$", "$\\text{Rs. } 786$", "$\\text{Rs. } 700$"], c: 2 },
+            { q: "Calculate the value of closing stock from the following according to Weighted Average method: $1\text{st January}, 2024$: Opening balance: $50$ units $@ \text{Rs. } 4$. Receipts: $5\text{th January}, 2024$: $100$ units $@ \text{Rs. } 5$. $12\text{th January}, 2024$: $200$ units $@ \text{Rs. } 4.50$. Issues: $2\text{nd January}, 2024$: $30$ units. $18\text{th January}, 2024$: $150$ units", o: ["$\\text{Rs. } 765$", "$\\text{Rs. } 805$", "$\\text{Rs. } 786$", "$\\text{Rs. } 700$"], c: 3 },
+            { q: "Cost of abnormal wastage is:", o: ["Charged to the product cost", "Charged to the profit & loss account", "charged partly to the product and partly profit & loss account", "not charged at all."], c: 2 },
+            { q: "Calculate re-order level from the following: Safety stock: $1,000$ units Consumption per week: $500$ units It takes $12$ weeks to reach material from the date of ordering.", o: ["$1,000$ units", "$6,000$ units", "$3,000$ units", "$7,000$ units"], c: 4 },
+            { q: "From the following information, calculate the extra cost of material by following EOQ: Annual consumption: $=45,000$ units, Ordering cost per order: $=\text{Rs. } 10$. Carrying cost per unit per annum: $=\text{Rs. } 10$. Purchase price per unit $=\text{Rs. } 50$. Re-order quantity at present $=45,000$ units. There is discount of $10\\%$ per unit in case of purchase of $45,000$ units in bulk.", o: ["No saving", "$\\text{Rs. } 2,00,000$", "$\\text{Rs. } 2,22,010$", "$\\text{Rs. } 2,990$"], c: 4 },
+            { q: "Which of the following is an abnormal cause of Idle time:", o: ["Time taken by workers to travel the distance between the main gate of factory and place of their work", "Time lost between the finish of one job and starting of next job", "Time spent to meet their personal needs like taking lunch, tea etc", "Machine break downs"], c: 4 },
+            { q: "If overtime is resorted to at the desire of the customer, then the overtime premium:", o: ["should be charged to costing profit and loss account;", "should not be charged at all", "should be charged to the job directly", "should be charged to the highest profit making department"], c: 3 },
+            { q: "Labour turnover means:", o: ["Turnover generated by labour", "Rate of change in composition of labour force during a specified period", "Either of the above", "Both of the above"], c: 2 },
+            { q: "Which of the following is not an avoidable cause of labour turnover:", o: ["Dissatisfaction with Job", "Lack of training facilities", "Low wages and allowances", "Disability, making a worker unfit for work"], c: 4 },
+            { q: "Costs associated with the labour turnover can be categorised into:", o: ["Preventive Costs only", "Replacement costs only", "Both of the above", "Machine costs"], c: 3 },
+            { q: "Calculate workers left and discharged from the following: Labour turnover rates are $20\\%$, $10\\%$ and $6\\%$ respectively under Flux method, Replacement method and Separation method. No. of workers replaced during the quarter is $80$.", o: ["$112$", "$80$", "$48$", "$64$"], c: 3 },
+            { q: "Calculate workers recruited and joined from the following: Labour turnover rates are $20\\%$, $10\\%$ and $6\\%$ respectively under Flux method, Replacement method and Separation method. No. of workers replaced during the quarter is $80$", o: ["$112$", "$80$", "$48$", "$64$"], c: 1 },
+            { q: "Calculate the labour turnover rate according to replacement method from the following: No. of workers on the payroll: At the beginning of the month: $500$. At the end of the month: $600$. During the month, $5$ workers left, $20$ workers were discharged and $75$ workers were recruited. Of these, $10$ workers were recruited in the vacancies of those leaving and while the rest were engaged for an expansion scheme.", o: ["$4.55\\%$", "$1.82\\%$", "$6\\%$", "$3\\%$"], c: 2 },
+            { q: "Calculate the labour turnover rate according to Separation method from the following: No. of workers on the payroll: At the beginning of the month: $500$. At the end of the month: $600$. During the month, $5$ workers left, $20$ workers were discharged and $75$ workers were recruited. Of these, $10$ workers were recruited in the vacancies of those leaving and while the rest were engaged for an expansion scheme.", o: ["$4.55\\%$", "$1.82\\%$", "$6\\%$", "$3\\%$"], c: 1 },
+            { q: "A worker is allowed $60$ hours to complete the job on a guaranteed wage of $\\text{Rs. } 10$ per hour. Under the Rowan Plan, he gets an hourly wage of $\\text{Rs. } 12$ per hour. For the same saving in time, how much he will get under the Halsey Plan?", o: ["$\\text{Rs. } 720$", "$\\text{Rs. } 540$", "$\\text{Rs. } 600$", "$\\text{Rs. } 900$"], c: 2 },
+            { q: "Overhead refers to:", o: ["Direct or Prime Cost", "All Indirect costs", "only Factory indirect costs", "Only indirect expenses"], c: 2 },
+            { q: "Allotment of whole item of cost to a cost centre or cost unit is known as:", o: ["Cost Apportionment", "Cost Allocation", "Cost Absorption", "Machine hour rate"], c: 2 },
+            { q: "Which of the following is not a method of cost absorption?", o: ["Percentage of direct material cost", "Machine hour rate", "Labour hour rate", "Repeated distribution method"], c: 4 },
+            { q: "Service departments costs should be allocated to:", o: ["Only Service departments", "Only Production departments", "Both Production and service departments", "None of the production and service departments"], c: 3 },
+            { q: "Most suitable basis for apportioning insurance of machine would be:", o: ["Floor Area", "Value of Machines", "No. of Workers", "No. of Machines"], c: 2 },
+            { q: "Blanket overhead rate is:", o: ["One single overhead absorption rate for the whole factory", "Rate which is blank or nil rate", "rate in which multiple overhead rates are calculated for each production department, service department etc", "Always a machine hour rate"], c: 1 },
+            { q: "AT Co makes a single product and is preparing its material usage budget for next year. Each unit of product requires $2\text{kg}$ of material, and $5,000$ units of product are to be produced next year. Opening inventory of material is budgeted to be $800\text{kg}$ and AT co budgets to increase material inventory at the end of next year by $20\\%$ The material usage budget for next year is:", o: ["$8,000\text{ Kg}$", "$9,840\text{ kg}$", "$10,000\text{ Kg}$", "$10,160\text{ Kg}$"], c: 3 },
+            { q: "During a period $17, 500$ labour hours were worked at a standard cost of $\\text{Rs. } 6.50$ per hour. The labour efficiency variance was $\\text{Rs. } 7,800$ favourable. How many standard hours were produced?", o: ["$1200$", "$16,300$", "$17,500$", "$18,700$"], c: 4 },
+            { q: "In most of the manufacturing industries, the most important element of cost is", o: ["material", "Labour", "overheads", "None of the above"], c: 1 },
+            { q: "Which of the following is NOT considered to be Normal loss of Materials?", o: ["Loss due to accidents", "Pilferage", "Loss due to breaking the bulk", "Loss due to transfering of liquid materials from container to another"], c: 3 },
+            { q: "Which of following is NOT considered as Normal loss of material?", o: ["Loss due to evaporation due to prevalent weather conditions", "Loss due to pilferage", "Loss due to breaking the bulk", "Loss due to transferring of liquid materials from container to another"], c: 2 },
+            { q: "At the economic ordering quantity level, the following is true on an annual basis:", o: ["Ordering Cost is minimum", "Carrying Cost is minimum", "Ordering Cost is equal to the Carrying Cost", "Purchase Price is minimum"], c: 3 },
+            { q: "Continuous Stock Taking is a part of:", o: ["Annual Stock Taking", "Perpetual Inventory", "ABC Analysis", "Bin Cards"], c: 2 },
+            { q: "In which of the following methods, issues of materials are priced at pre-determined rate?", o: ["Inflated Price Method", "Standard price method", "Replacement Price Method", "Market Price Method"], c: 2 },
+            { q: "When Material prices Fluctuate widely, the method of pricing that gives absurd results is -", o: ["Simple Average Price", "Weighted Average price", "Moving Average Price", "Inflated Price"], c: 4 },
+            { q: "When prices fluctuate widely, the method that will smooth out the effect of fluctuations is", o: ["Simple Average Price", "Weighted Average price", "FIFO", "LIFO"], c: 2 },
+            { q: "Under the FSN system of Inventory Control, Inventory is Classified on the basis of:", o: ["Volumne of materail consumption", "Frequently of usage of items of inventory", "Criticality of the item of inventory of production", "Value of Items of Inventory"], c: 2 },
+            { q: "Form used for making a formal request to the Purchasing Department to purchase materials is a-", o: ["material transfer note", "Purchase Requisition Note", "Bill of materials", "Material requisition note"], c: 2 },
+            { q: "Classification of Materials on the basis of their Importance in Value is called:", o: ["EOQ Analysis", "Stock level analysis", "ABC Analysis", "Value analysis"], c: 3 },
+            { q: "For Return of Excess Materials from Production Department to stores, the document used is:", o: ["Material return note", "Stores debit note", "Shop Credit Note", "All the above (same)"], c: 4 },
+            { q: "Which of the following is NOT related to a standard list of materials and components?", o: ["Consumption Statement", "bill of materials", "Material specification list", "Material list"], c: 1 },
+            { q: "Which of the following is NOT recorded on a Bin card?", o: ["material received from supplier", "material issued to production depts", "Inter department transfers", "Loss of materials"], c: 3 },
+            { q: "What is the formula for Re-order level?", o: ["Minimum Usage $\\text{x}$ minimum lead time", "Minimum Usage $\\text{x}$ maximum lead time", "Maximum Usage $\\text{x}$ minimum lead time", "Maximum Usage $\\text{x}$ maximum lead time"], c: 4 },
+            { q: "(ROL+ROQ (-) minimum usage $\\text{x}$ minimum lead time) is the computation formula for....", o: ["Maximum level", "Minimum level", "Average level", "danger level"], c: 1 },
+            { q: "Inventory turnover ratio is expressed in", o: ["Rupees", "Percentage", "times", "Any of the above"], c: 3 },
+            { q: "Generally, a $____\text{ T/o and } ____$ days Average Inventory held is preferable", o: ["High, less", "Low, high", "Low low", "high, high"], c: 1 },
+            { q: "Pricing of Materials in the order in which they are purchased is called $____$ method", o: ["Specific Identification", "FIFO", "LIFO", "Orderly"], c: 2 },
+            { q: "Landed cost of materials does not include.....", o: ["Cost of Containers", "Carriage Inwards", "Stock Insurance", "Unloading Charges"], c: 3 },
+            { q: "Cost of abnormal loss of materials is", o: ["Debited to costing $\\text{P & L}$", "Credited to Costing $\\text{P&L}$", "InCluded In Landed Cost", "Included in $\\text{OH}$"], c: 1 },
+            { q: "Idle time is the time under which", o: ["Full wages are paid to workers", "No output is produced by the workers", "Both (a) and (b)", "None of the above"], c: 3 },
+            { q: "When a direct Worker is paid on a monthly fixed salary basis, the following is true:", o: ["There is no idle time lost", "There is no idle time cost", "Idle time cost is separated and treated as overhead", "salari is fully treated as factory overhead cost"], c: 1 },
+            { q: "Time and Motion study is conducted by", o: ["Time Keeping Department", "Personnel Department", "Payroll Department", "Engineering Department"], c: 4 },
+            { q: "Wages sheet is generally prepared by-", o: ["Time Keeping Department", "Personnel Department", "Payroll Department", "Engineering Department"], c: 3 },
+            { q: "For reducing the labour cost per unit, which of the following factors is most important?", o: ["Low wage rate", "Longer hours of work", "Higher Productivity or Efficiency", "Strict control and supervison"], c: 3 },
+            { q: "Time Booking refers to a method wherein $____$ of an employees is recorded", o: ["Attendance", "book keeping details", "Health Status", "Time spent on a particulars job"], c: 4 },
+            { q: "Employee Cost includes", o: ["wages and salaries", "Allowances and incentives", "Payment for Overtime", "All of the above"], c: 4 },
+            { q: "Standard Time of a job is $60$ hours and guaranteed time rate is $\\text{Rs. } 90$ per hour. What is the amount of wages under Rowan plan if job is completed in $48$ hours?", o: ["$\\text{Rs. } 1,620$", "$\\text{Rs. } 1,728$", "$\\text{Rs. } 1,800$", "$\\text{Rs. } 1,440$"], c: 2 },
+            { q: "Standard Time of a job is $60$ hours and guaranteed time rate is $\\text{Rs. } 90$ per hour. What is the amount of wages under Halsey plan if job is completed in $48$ hours?", o: ["$\\text{Rs. } 1,620$", "$\\text{Rs. } 1,440$", "$\\text{Rs. } 180$", "$\\text{Rs. } 1,728$"], c: 2 },
+            { q: "If Overtime is required for meeting urgent orders, the Overtime premium should be charged as -", o: ["Respective job", "Over head Cost", "Costing $\\text{P & L a/c}$", "None of above"], c: 1 },
+            { q: "Keeping a rocord of total time spent by the worker inside the factory is called", o: ["Time keeping", "Time Booking", "Time Managing", "Time Recording"], c: 1 },
+            { q: "Wages attributable to Normal idle Time is treated as", o: ["Direct Wages", "Producction $\\text{OH}$", "Either of the above", "None of the above"], c: 3 },
+            { q: "In the context of Labour Turnover Number of Workers left and discharged is called-", o: ["Accession", "Replacement", "new replacement", "Separation"], c: 4 },
+            { q: "(Hours worked $\\text{X}$ Rate per hour) is the computation of wages under", o: ["Incentive System", "Piece rate System", "Attendance System", "Time rate System"], c: 4 },
+            { q: "Under Halsey System generally Bonus is computed as $____ \text{x (Time Saved x Rate per hour)}$", o: ["$30\\%$", "$50\\%$", "$70\\%$", "Actual $\\text{Hrs}/\text{Std. Hrs}$"], c: 2 },
+            { q: "A worker will earn wages under Halsey and Rowan System, if time Saved equals $____$", o: ["$50\\%$ of Std Time", "$50\\%$ of Actual Time", "$1/2$ of Total Time", "$1/2$ of Lost time"], c: 1 },
+            { q: "Labour Efficiency (based on time) is given by the Formula", o: ["Std Time $\\text{/}$ Actual Time", "Actual time $\\text{/}$ std time", "Idle Time $\\text{/}$ Std time", "Idle Time $\\text{/}$ Actual Time"], c: 1 },
+            { q: "If wages per day of $8$ hours is $\\text{Rs. } 500$, std output is $100$ units, Actual Output is $120$, piece rate wages-", o: ["$\\text{Rs. } 500$", "$\\text{Rs. } 600$", "$\\text{Rs. } 62.5$", "$\\text{Rs. } 5$"], c: 2 },
+            { q: "If Std Time is $8$ hours, Actual time is $6$ hours, rate per hour is $\\text{Rs. } 100$, Rwan Wages =", o: ["$\\text{Rs. } 600$", "$\\text{Rs. } 150$", "$\\text{Rs. } 750$", "$\\text{Rs. } 700$"], c: 3 },
+            { q: "If Actual Output in $8$ hours is $700$ units, Standard Output is $90$ units per hour, Efficiency Ratio is", o: ["$97.22\\%$", "$102.86\\%$", "$100\\%$", "$77.78\\%$"], c: 1 },
+            { q: "Fixed over costs are not effected in monetary terms during a fiven period by a change in Output. But this statement is valid provided", o: ["Increase in Output is not Substantial", "Increase in Output is substantial", "Both (a) and (b)", "None of the above"], c: 1 },
+            { q: "$____$ Capacity is defined as actually utilised capacity of a plant.", o: ["theoretical", "Installed", "Practical", "Idle"], c: 3 },
+            { q: "Maximum Possible Productive Capacity of a plant when no operating time is lost is its:", o: ["Normal Capacity", "Practical Capacity", "Theoretical Capacity", "Capacity based on Sales Expectancy"], c: 3 },
+            { q: "Charging of common Overheads cost to various cost centres, using appropriate bases is known as -", o: ["Allocation", "Apportionment", "Absorption", "Re- Apportionment"], c: 2 },
+            { q: "Distribution of service Department Overheads Cost to production Departments using different assumptions and methods is known as", o: ["Allocation", "Apportionment", "Absorption", "Re- Apportionment"], c: 4 },
+            { q: "packing Cost is part of", o: ["Production cost", "Selling Cost", "Distribution Cost", "It may be any of the above"], c: 4 },
+            { q: "Which of the following is not treated as a Manufacturing Overhead ?", o: ["Lubricants", "Cotton Waste", "apportioned administration overheads", "Night Shift allowance paid to a factory Worker due to general work pressure"], c: 4 },
+            { q: "The difference between Actual Factory Overhead and Absorbed Factory Overhead will be usually at the minimum level, provided pre-determined overhead rate is based on:", o: ["Maximum capacity", "Direct Labour Hours", "Machine Hours", "Normal Capacity"], c: 4 },
+            { q: "When Absorbed Overhead is Higher than the amount of Overhead incurred, it is called.", o: ["Under absorption of overhead", "Over absorption of overhead", "Proper absorption of overhead.", "reabsorption of overhead"], c: 2 },
+            { q: "Which of the following overhead cost may not be apportioned on the basis of Direct Wages?", o: ["Worker's Holiday pay", "Perquisites to workers", "ESI Contribution", "Managerial Salaries"], c: 4 },
+            { q: "The following is an example of direct expenses as per $\\text{CAS}-10$:", o: ["Special raw material which is a substantial part of the prime cost", "Travelling expenses to site.", "Overtime charges paid to direct worker to complete work before time.", "Catalogue of prices of finished products."], c: 2 },
+            { q: "CAS $21$ stands for:", o: ["Capacity Determination", "Joint Cost", "Direct Expenses", "None of these"], c: 4 },
+            { q: "Standard deals with the cost of service cost center is:", o: ["CAS-9", "CAS-13", "CAS-16", "CAS-22"], c: 2 },
+            { q: "Which standards deals with the principles and methods of determining depreciation and amortization cost?", o: ["CAS 9", "CAS 12", "CAS 15", "CAS 16"], c: 4 },
+            { q: "Which standards deals with determination of averages/equalized transportation cost?", o: ["CAS 5", "CAS 6", "CAS 9", "CAS 16"], c: 1 },
+            { q: "Which standards deals with the principles and methods of determining the manufacturing Cost of excisable goods?", o: ["CAS 2", "CAS 12", "CAS 15", "CAS 22"], c: 4 },
+            { q: "$____$ deals with the principles and methods of determining the production or operation overheads.", o: ["CAS-3", "CAS-5", "CAS-9", "CAS-16"], c: 1 },
+            { q: "CAS $13$ stands for:", o: ["Joint Cost", "Interest and financing charges", "Employee Cost", "Cost of Service cost centre"], c: 4 },
+            { q: "Which of the following items is not included in preparation of cost sheet?", o: ["Carriage inward", "Purchase returns", "Sales Commission", "Interest paid"], c: 4 },
+            { q: "Which of the following items is not excluded while preparing a cost sheet?", o: ["Goodwill written off", "Provision for taxation", "Property tax on Factory building", "Transfer to reserves"], c: 3 },
+            { q: "Which of the following are direct expenses? (1) The cost of special designs, drawings or layouts, (2) The hire of tools or equipment for a particular job. (3) Salesman's wages, (4) Rent, rates and insurance of a factory", o: ["(1) and (2)", "(1) and (3)", "(1) and (4)", "(3) and (4)"], c: 1 },
+            { q: "What is prime cost?", o: ["Total direct cost only", "Total indirect costs only", "Total non-production costs", "Total production costs"], c: 1 },
+            { q: "Which of the following is not an element of works overhead?", o: ["Sales manager's salary", "Plant manager's salary", "Factory repairman's wages", "Product inspector's salary"], c: 1 },
+            { q: "For the purpose of Cost Sheet preparation, costs are classified based on:", o: ["Functions", "Relevance", "Variability", "Nature"], c: 1 },
+            { q: "Salary paid to an office supervisor is a part of:", o: ["Direct expenses", "Administration cost", "Quality control cost", "Factory overheads"], c: 2 },
+            { q: "Audit fees paid to cost auditors is part of", o: ["Selling and distribution cost", "Production cost", "Administration cost", "Not recorded in the cost sheet"], c: 3 },
+            { q: "A company has set up a laboratory for testing of products for compliance with standards. Salary of this laboratory stuffs are part of:", o: ["Direct expenses", "Quality control cost", "Works overheads", "Research and development cost"], c: 2 },
+            { q: "Canteen expenses for factory workers are part of:", o: ["Administration cost", "Factory overhead", "Marketing cost", "None of the above"], c: 2 },
+            { q: "Which of the following does not form part of prime cost?", o: ["GST paid on raw materials (input credit can be claimed)", "Cost of transportation paid to bring materials to factory", "Cost of packing", "Overtime premium paid to workers"], c: 4 },
+            { q: "A company pays royalty to State Government on the basis of production, it is treated as:", o: ["Direct expenses", "Factory overheads", "Direct Material Cost", "Administration Cost"], c: 1 },
+            { q: "In Reconciliation Statements, expenses shown only in financial accounts are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Added to costing profit"], c: 4 },
+            { q: "In Reconciliation Statement, expenses shown only in cost accounts are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Deducted from costing profit"], c: 2 },
+            { q: "In Reconciliation Statement, transfers to reserves are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Added to costing profit"], c: 1 },
+            { q: "In Reconciliation Statement, incomes shown only in financial accounts are:", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Deducted from costing profit"], c: 2 },
+            { q: "In Reconciliation Statement, Closing Stock undervalued in Financial Accounts is", o: ["Added to financial profit", "Deducted from financial profit", "Ignored", "Added to costing profit"], c: 1 },
+            { q: "Under non-integrated accounting system:", o: ["Separate ledgers are maintained for cost and financial accounts", "Same ledger is maintained for cost and financial accounts by accountants", "(A) and (B) both", "None of the above"], c: 1 },
+            { q: "Under non-integrated system of accounting, purchase of raw material is debited to:", o: ["Purchase account", "Material control account/stores ledger control account", "General ledger adjustment account", "None of the above"], c: 2 },
+            { q: "When costing loss is $\\text{Rs. } 5,600$, administrative overhead under-absorbed being $\\text{Rs. } 600$, the loss as per financial accounts should be", o: ["$\\text{Rs. } 5,000$", "$\\text{Rs. } 5,600$", "$\\text{Rs. } 6,200$", "None of the above"], c: 3 },
+            { q: "Which of the following items should be added to costing profit to arrive at financial profit?", o: ["Income tax paid", "Over absorption of works overhead", "Interest paid on debentures", "All of the above"], c: 2 },
+            { q: "Integral accounts eliminate the necessity of operating", o: ["Cost Ledger control accoun", "Store Ledger control account", "Overhead adjustment account", "None of the above"], c: 1 },
+            { q: "Under Non- integrated accounting system, the amount made to complete double entry is:", o: ["Finished goods control account", "Work in progress control account", "stores ledger control accounts", "General ledger adjustment account"], c: 4 },
+            { q: "Under the Non- Integrated Accounting System -", o: ["Same ledger is maintained for Cost and financial Accounts by Accountants", "Separate ledgers are maintained for Cost and Financial Accounts", "All transactions relating to incomes, Expenditures, Assets and Liabilities are completely recorderd", "Product-wise or department wise information is not maintained"], c: 2 },
+            { q: "Notional Costs -", o: ["May be included in Integrated Accounts", "may be Included in Non - Integrated accounts", "Cannot Be included in Non-intergrated Accounts", "are not accounted at all in Ingrated or Non-integrated Accounts"], c: 2 },
+            { q: "Which account is to be debited if materials worth $\\text{Rs. } 500$ are returned to vendor under Non-Ingrated Accounts", o: ["Cost Ledger control account", "finished goods control Account", "WIP Control Account", "General ledger adjustment account"], c: 4 },
+            { q: "What is the journal Entry under Integrated System for recording Sales made?", o: ["No entry", "Dr sales, Cr General Ledger Adjustment", "Dr. cash or bank Cr. Sales", "Dr. General Ledger Adjsutment, Cr sales Receivable"], c: 4 },
+            { q: "Which of the following items is most likely to be included in Cost Accounts?", o: ["Notional Rent", "Donations", "Transfer to General Reserve", "Rent"], c: 1 },
+            { q: "Job costing is used in:", o: ["Furniture making", "Repair shops", "Printing press", "All of the above"], c: 4 },
+            { q: "In a job cost system, costs are accumulated", o: ["On a monthly basis", "By specific job", "By department or process", "By kind of material used"], c: 2 },
+            { q: "The most suitable cost system where the products differ in type of material and work performed is:", o: ["Operating Costing", "Job costing", "Process costing", "All of these."], c: 2 },
+            { q: "Cost Price is not fixed in case of:", o: ["Cost plus contracts", "Escalation clause", "De escalation clause", "All of the above"], c: 1 },
+            { q: "Most of the expenses are direct in:", o: ["Job costing", "Batch costing", "Contact costing", "None of the above"], c: 3 },
+            { q: "Cost plus contract is usually entered into those cases where", o: ["Cost can be easily estimated", "Cost of certified and uncertified work", "Cost of certified work, cost of uncertified work and amount of profit transferred to Profit and Loss Account", "Determination of contract cost with reasonable accuracy is not possible"], c: 4 },
+            { q: "In order to determine cost of the products or services, different business firms follow:", o: ["Different techniques of costing", "Uniform costing", "Different methods of costing", "None of the above"], c: 3 },
+            { q: "In case product produced or jobs undertaken are of diverse system, the system of costing to be used should be:", o: ["Operating Costing", "Process Costing", "Job Costing", "None of the above"], c: 3 },
+            { q: "Job Costing is:", o: ["Suitable where similar products are produced on mass scale", "Methods of costing used for non-standard and non-repetitive products", "Technique of costing", "Applicable to all industries regardless of the products or services provided"], c: 2 },
+            { q: "Batch costing is a type of:", o: ["Direct Costing", "Process Costing", "job Costing", "Differential Costing"], c: 3 },
+            { q: "Batch costing is similar to that under job costing except with the difference that:", o: ["Process becomes a cost unit", "Job becomes a cost unit", "Batch become the cost unit instead of a job", "None of the above"], c: 3 },
+            { q: "Economic batch quantity is that size of the batch of production where:", o: ["Carrying cost is minimum", "Set-up cost of machine is minimum", "Average cost is minimum", "Both A. and B."], c: 4 },
+            { q: "Which of the following documents are used in job costing to record the issue of direct materials to a job?", o: ["Purchase order", "Purchase requisition", "Goods received note", "Material requisition"], c: 4 },
+            { q: "Which of the following statements is true?", o: ["Batch costing is a variant of jobs costing", "Job cost sheet may be used for estimating profit of jobs", "Job costing cannot be used in companies applying standard costing", "In cost plus contracts, the contractor runs a risk of incurring a loss"], c: 2 },
+            { q: "Which of the statement is true?", o: ["Job costing can be suitably used for concerns producing any specific product uniformly", "Job cost sheet may be prepared to facilitate routing and scheduling of the job", "Job costing cannot be used in conjunction with marginal costing", "Neither A, nor B, nor C"], c: 4 },
+            { q: "The type of process loss that should not be allowed to affect the cost of good units is called:", o: ["Standard Loss", "Normal Loss", "Abnormal Loss", "Seasonal Loss"], c: 3 },
+            { q: "Spoilage that occurs under inefficient operating conditions and is generally controllable is called", o: ["Normal defectives", "Abnormal spoilage", "Normal spoilage", "None of the above"], c: 2 },
+            { q: "In which of the following situations an abnormal gain in a process occurs:", o: ["When normal loss is equal to actual loss", "When the actual output is greater than the planned output", "When actual loss is more than the expected", "When actual loss is less than the expected loss"], c: 2 },
+            { q: "The value of abnormal loss is equal to:", o: ["Total cost of materials", "Total process cost less cost of scrap", "Total process cost less realisable value of normal loss less value of transferred out goods", "Total process cost less realisable value of normal loss"], c: 4 },
+            { q: "A process account is debited by abnormal gain, the value is determined as:", o: ["Equal to the value of good units less closing stock", "Equal to the value of normal loss", "Cost of good units less realisable value of normal loss", "Cost of good unit less realisable value of actual loss"], c: 3 },
+            { q: "In sugar manufacturing industry molasses is also produced along with sugar. Molasses may be of small value as compared with the value of sugar and is known as:", o: ["Joint product", "Common product", "By-product", "None of them"], c: 3 },
+            { q: "Method of apportioning joint costs on the basis of output of each joint product at the point of split-offs is known as:", o: ["Physical unit method", "Sales value method", "Average cost method", "Marginal cost and contribution method"], c: 1 },
+            { q: "The main purposes of accounting of joint products and by-products is to:", o: ["Determine the replacement cost", "Determine the opportunity cost", "Determine profit or loss on each product line", "None of the above"], c: 3 },
+            { q: "Under net realisable value method of apportioning joint costs to joint products, the selling & distribution cost is:", o: ["Ignored", "Deducted from sales value", "Deducted from further processing cost", "Added to joint cost"], c: 2 },
+            { q: "Which of the following is an example of by-product:", o: ["Mustard seeds and mustard oil", "Diesel and Petrol in an oil refinery", "Edible oils and oil cakes", "Curd and butter in a diary"], c: 3 },
+            { q: "Which of following methods can be used when the joint products are of unequal quantity and used for captive consumption:", o: ["Physical units method", "Net realisable value method", "Technical estimates, using market value of similar goods", "Market value at spit-off method"], c: 3 },
+            { q: "Cost of a particular service under operating costing is ascertained by preparing:", o: ["Cost sheet", "Process account", "Job cost sheet", "Production account"], c: 3 },
+            { q: "Operating costing is applicable to:", o: ["Hospitals", "Cinemas", "Transport undertaking", "All of the above"], c: 4 },
+            { q: "Composite cost unit for a hospital is:", o: ["Per day", "Per bed", "Per patient day", "Per patient"], c: 3 },
+            { q: "Cost units used in power sector is called:", o: ["Number of hours", "Number of electric points", "Kilowatt-hour (KWH)", "Kilo meter (K.M.)"], c: 3 },
+            { q: "Absolute Tonne-Km is an example of:", o: ["Composite unit for bus operation", "Composite unit of transport sector", "Composite unit for oil and natural gas", "Composite unit in power sector"], c: 2 },
+            { q: "In process costing, a joint product is", o: ["a product which is later divided into many parts", "a product which is produced simultaneously with other products and is of similar value to at least one of the other products.", "A product which is produced simultaneously with other products but which is of a greater value than any of the other products.", "a product produced jointly with another organization"], c: 2 },
+            { q: "Process $\\text{B had no opening inventory. } 13,500\text{ units of raw material were transferred in at } \text{Rs. } 4.50\text{ per unit. Additional material at } \text{Rs. } 1.25\text{per unit was added in process. Labour and overheads were } \text{Rs. } 6.25\text{ per completed unit and } \text{Rs. } 2.50\text{ per unit incomplete. If } 11,750\text{ completed units were transferred out, what was the closing inventory in Process B?}$", o: ["$\\text{Rs. } 6,562.50$", "$\\text{Rs. } 12,250.00$", "$\\text{Rs. } 14,437.50$", "$\\text{Rs. } 25,375.00$"], c: 3 },
+            { q: "A process costing system for J Co used an input of $3,500\text{Kg of materials at } \text{Rs. } 20\text{ per Kg and labour hours of } 2,750\text{ at } \text{Rs. } 25\text{ per hour. Normal loss is } 20\%\text{ and losses can be sold at a scrap value of } \text{Rs. } 5\text{per Kg. Output was } 2,950\text{ Kg. What is the value of the output?}$", o: ["$\\text{Rs. } 142,485$", "$\\text{Rs. } 146,183$", "$\\text{Rs. } 149,746$", "$\\text{Rs. } 152,986$"], c: 1 },
+            { q: "In process costing, if an abnormal loss arises, the process account is generally", o: ["Debited with the scrap value of the abnormal loss units", "Debited with the full production cost of the abnormal loss units", "Credited with the scrap value of the abnormal loss units", "Credited with the full production cost of the abnormal loss units"], c: 4 },
+            { q: "Which of the following statements is/are correct? $1.\text{ A materials requisition note is used to record the issue of direct material to a specific job. } 2.\text{ A typical job cost will contain actual costs for material, labour and production overheads, and non-production overheads are often added as a percentage of total production cost } 3.\text{ The job costing method can be applied in costing batches}$", o: ["(1) only", "(1) and (2) only", "(1) and (3) only", "(2) and (3) only"], c: 3 },
+            { q: "A job is budgeted to require $3,300$ productive hours after incurring $25\\%$ idle time. If the total labour cost budgeted for the job is $\\text{Rs. } 36,300$. What is the labour cost per hour (to the nearest cent)?", o: ["$\\text{Rs. } 8.25$", "$\\text{Rs. } 8.80$", "$\\text{Rs. } 11.00$", "$\\text{Rs. } 14.67$"], c: 1 },
+            { q: "A company calculates the prices of jobs by adding overheads to the prime cost and adding $30\\%$ to total costs as a profit margin. Job number $\text{Y}256\text{ was sold for } \text{Rs. } 1,690\text{ and incurred overheads of } \text{Rs. } 694$. What was the prime cost of the job?", o: ["$\\text{Rs. } 489$", "$\\text{Rs. } 606$", "$\\text{Rs. } 996$", "$\\text{Rs. } 1,300$"], c: 2 },
+            { q: "State which of the following are the characteristics of service costing? $1.\text{ High levels of indirect costs as a proportion of total costs } 2.\text{ Use of composite cost units } 3.\text{ Use of equivalent units}$", o: ["(1) only", "(1) and (2) only", "(2) only", "(2) and (3) only"], c: 2 },
+            { q: "Which of the following organisations should not be advised to use service costing?", o: ["Distribution service", "Hospital", "Maintenance division of a manufacturing company", "A light engineering company"], c: 3 },
+            { q: "In case of joint products, the main objective of accounting of the cost is to apportion the joint costs incurred up to the split off point. For cost apportionment one company has chosen Physical Quantity Method. Three joint products 'A', 'B' and 'C' are produced in the same process. Up to the point of split off the total production of A, B and C is $60,000\text{ kg, out of which } \text{'A' produces } 30,000\text{ kg and joint costs are } \text{Rs. } 3,60,000\text{. Joint costs allocated to product A is:}$", o: ["$\\text{Rs. } 1,20,000$", "$\\text{Rs. } 60,000$", "$\\text{Rs. } 1,80,000$", "None of the these"], c: 3 },
+            { q: "A transport company is running five buses between two towns, which are $50\text{ kms apart}$. Seating capacity of each bus is $50$ passengers. Actually passengers carried by each bus were $75\\%$ of seating capacity. All buses ran on all days of the month. Each bus made one round trip per day. Passenger kms are:", o: ["$2,81,250$", "$1,87,500$", "$5,62,500$", "None of the above"], c: 3 },
+            { q: "The cost of a product under marginal costing system includes:", o: ["Prime cost plus variable overhead", "Prime cost plus fixed overhead", "Prime cost plus factory overhead", "Only prime cost"], c: 2 },
+            { q: "The difference between absorption costing and marginal costing is in regard to the treatment of:", o: ["Direct materials", "Fixed overhead", "Prime cost", "Variable overhead"], c: 2 },
+            { q: "Fixed costs are treated as:", o: ["Overhead costs", "Prime costs", "Period costs", "Conversion costs."], c: 3 },
+            { q: "When sales and production (in units) are same then profits under:", o: ["Marginal costing is lower than that of absorption costing", "Marginal costing is higher than that of absorption costing", "Marginal costing is equal to that of absorption costing", "None of the above"], c: 3 },
+            { q: "When sales exceeds production (in units) then profit under:", o: ["Marginal costing is higher than that of absorption costing", "Marginal costing is equal to that of absorption costing", "Marginal costing is lower than that of absorption costing", "None of the above"], c: 1 },
+            { q: "which of the following factors responsible for change in the break even point?", o: ["change in selling price", "change in variable cost", "change in fixed cost", "all of the above"], c: 4 },
+            { q: "Variable cost-", o: ["Remains fixed in total", "Remains fixed per unit", "Varies per unit", "Nor increase or decrease"], c: 2 },
+            { q: "Marginal Costing technique follows the following basic of classification:", o: ["Element wise", "Function Wise", "Behaviour wise", "Identifiability wise"], c: 3 },
+            { q: "P/V ratio will increase if the:", o: ["There is a decrease in fixed cost", "There is an increase in fixed cost", "There is a decrease in selling price per unit.", "There is a decrease in variable cost per unit."], c: 4 },
+            { q: "The technique of differential cost is adopted when:", o: ["To ascertain P/V ratio", "To ascertain marginal cost", "To ascertain cost per unit", "To make choice between two or more alternative courses of action"], c: 4 },
+            { q: "Which of the following would not be used to estimate standard direct material prices?", o: ["The availability of bulk purchase discounts", "Purchase contracts already agreed", "The forecast movement of prices in the market", "Performance standards in operation"], c: 4 },
+            { q: "What is an attainable standard?", o: ["A standard which includes no allowance for losses, waste and inefficiencies. It represents the level of performance which is attainable under perfect operating conditions", "A standard which includes some allowance for losses, waste and inefficiencies. It represents the level of performance which is attainable under efficient operating conditions", "A standard which is based on currently attainable operating conditions", "A standard which is kept unchanged, to show the trend in costs"], c: 2 },
+            { q: "Budgets are shown in-Terms:", o: ["Qualitative", "Quantitative", "Materialistic", "both (b) and (c)"], c: 4 },
+            { q: "Which of the following is not an element of master budget?", o: ["Capital Expenditure Budget", "Production Schedule", "Operating Expenses Budget", "All above the above"], c: 2 },
+            { q: "Which of the following is not a potential benefit of using a budget?", o: ["Enhanced coordination of firm activities", "More motivated managers", "Improved inter-departmental communication", "More accurate external financial statements"], c: 4 },
+            { q: "Which of the following is a long-term budget?", o: ["Master Budget", "Flexible Budget", "Cash Budget", "Capital Budget"], c: 4 },
+            { q: "Materials become key factor, if", o: ["quota restrictions exist", "insufficient advertisement prevails", "there is low demand", "there is no problem with supplies of materials"], c: 1 },
+            { q: "The difference between fixed cost and variable cost assumes significance in the preparation of the following budget:", o: ["Master Budget", "Flexible Budget", "Cash Budget", "Capital Budget"], c: 2 },
+            { q: "The budget that is prepared first of all is", o: ["Master budget", "Sales budget assuming that it is the key factor", "Cash Budget", "Capital expenditure budget"], c: 2 },
+            { q: "Sales budget is a", o: ["expenditure budget", "functional budget", "master budget", "None of these"], c: 2 },
+            { q: "When a company wants to prepare a factory overhead budget in which the estimated costs are directly derived from the estimates of activity levels, which of the following budget should be prepared by the company?", o: ["Flexible budget", "Fixed budget", "Master budget", "R & D budget"], c: 1 },
+            { q: "Which of the following budgets facilitates classification of fixed and variable costs:", o: ["Capital expenditure budget", "Flexible budget", "Cash budget", "Raw materials budget"], c: 2 },
+            { q: "The entire budget organisation is controlled and headed by a senior executive known as:", o: ["General Manager", "Accountant", "Budget Controller", "None of the above"], c: 3 },
+            { q: "A flexible budget requires a careful study of", o: ["Fixed, semi-fixed and variable expenses", "Past and current expenses", "Overheads, selling and administrative expenses", "None of these."], c: 1 },
+            { q: "The basic difference between a fixed budget and flexible budget is that a fixed budget", o: ["is concerned with a single level of activity, while flexible budget is prepared for different levels of activity", "Is concerned with fixed costs, while flexible budget is concerned with variable costs", "is fixed while flexible budget changes", "None of these"], c: 1 },
+            { q: "Which of the following is not a reason for an idle time variance?", o: ["Wage rate increase", "Machine breakdown", "Illness or injury to worker", "Non- availability of material"], c: 1 },
+            { q: "During September, $300$ labour hours were worked for a total cost of $\\text{Rs. } 4,800$. The variable overhead expenditure variance was $\\text{Rs. } 600\text{ (A)}$. Overheads are assumed to be related to direct labour hours of active working. What was the standard cost per labour hour?", o: ["$\\text{Rs. } 14$", "$\\text{Rs. } 16.50$", "$\\text{Rs. } 17.50$", "$\\text{Rs. } 18$"], c: 1 },
+            { q: "Which of the following would explain an adverse variable production overhead efficiency variance? $1.\text{ Employees were of a lower skill level than specified in the standard. } 2.\text{ Unexpected idle time resulted from a series of machine breakdown } 3.\text{ Poor Quality material was difficult to process}$", o: ["(1), (2) and (3)", "(1) and (2)", "(2) and (3)", "(1) and (3)"], c: 4 },
+            { q: "Budgeted sales of X for March are $18,000$ units. At the end of the production process for X, $10\\%$ of production units are scrapped as defective. Opening inventories of X for March are budgeted to be $15,000$ units and closing inventories will be $11,400$ units. All inventories of finished goods must have successfully passed the quality control check. The production budget for X for March, in units is:", o: ["$12,960$", "$14,400$", "$15,840$", "$16,000$"], c: 4 },
+            { q: "CG Co manufactures a single product T. Budgeted production output of product T during June is $200$ units. Each unit of product T requires $6$ labour hours for completion and CG Co anticipates $20\text{ per cent idle time}$. Labour is paid at a rate of $\\text{Rs. } 7$ per hour. The direct labour cost budget for March is", o: ["$\\text{Rs. } 6,720$", "$\\text{Rs. } 8,400$", "$\\text{Rs. } 10,080$", "$\\text{Rs. } 10,500$"], c: 4 },
+            { q: "A Local Authority is preparing cash Budget for its refuse disposal department. Which of the following items would not be included in the cash budget?", o: ["Capital cost of a new collection vehicle", "Depreciation of the machinery", "Operatives wages", "Fuel for the collection Vehicles"], c: 2 },
+            { q: "The actual output of $1,62,500$ units and actual fixed costs of $\\text{Rs. } 87,000$ were exactly as budgeted. However, the actual expenditure of $\\text{Rs. } 3,00,000$ was $\\text{Rs. } 18,000$ over budget. What was the budget variable cost per unit?", o: ["$\\text{Rs. } 1.20$", "$\\text{Rs. } 1.31$", "$\\text{Rs. } 1.42$", "$\\text{Rs. } 1.50$"], c: 1 },
+            { q: "A ltd is a manufacturing company that has no production resource limitations for the foreseeable future. The Managing Director has asked the company mangers to coordinate the preparation of their budgets for the next financial year. In what order should the following budgets be prepared? $1)\text{ Sales budget } (2)\text{ Cash budget } (3)\text{ Production budget } (4)\text{ Purchase budget } (5)\text{ Finished goods inventory budget}$", o: ["(2), (3), (4), (5), (1)", "(1), (5), (3), (4), (2)", "(1), (4), (5), (3), (2)", "(4), (5), (3), (1), (2)"], c: 2 },
+            { q: "S produces and sells one product, P, for which the data are as follows: Selling price $\\text{Rs. } 28$. Variable cost $\\text{Rs. } 16$. Fixed cost $\\text{Rs. } 4$. The fixed costs are based on a budgeted production and sales level of $25,000$ units for the next period. Due to market changes both the selling price and the variable cost are expected to increase above the budgeted level in the next period. If the selling price and variable cost per unit increase by $10\\%$ and $8\\%$ respectively, by how much must sales volume change, compared with the original budgeted level, in order to achieve the original budgeted profit for the period?", o: ["$10.1\\%$ decrease", "$11.2\\%$ decrease", "$13.3\\%$ decrease", "$16.0\\%$ decrease"], c: 2 },
+            { q: "A company makes a single product and incurs fixed costs of $\\text{Rs. } 30,000$ per annum. Variable cost per unit is $\\text{Rs. } 5$ and each unit sells for $\\text{Rs. } 15$. Annual sales demand is $7,000$ units. The breakeven point is:", o: ["$2,000\text{ units}$", "$3,000\text{ units}$", "$4,000\text{ units}$", "$6,000\text{ units}$"], c: 2 },
+            { q: "A company manufactures a single product for which cost and selling price data are as follows: Selling price per unit - $\\text{Rs. } 12$. Variable cost per unit - $\\text{Rs. } 8$. Fixed cost for a period - $\\text{Rs. } 98,000$. Budgeted sales for a period - $30,000$ units. The margin of safety, expressed as a percentage of budgeted sales, is:", o: ["$20\\%$", "$25\\%$", "$72\\%$", "$125\\%$"], c: 1 },
+            { q: "A company's break even point is $6,000$ units per annum. The selling price is $\\text{Rs. } 90$ per unit and the variable cost is $\\text{Rs. } 40$ per unit. What are the company's annual fixed costs?", o: ["$\\text{Rs. } 120$", "$\\text{Rs. } 2,40,000$", "$\\text{Rs. } 3,00,000$", "$\\text{Rs. } 5,40,000$"], c: 3 },
+            { q: "After inviting tenders for supply of raw materials, two quotations are received as follows- Supplier P $\\text{Rs. } 2.20$ per unit, Supplier Q $\\text{Rs. } 2.10$ per unit plus $\\text{Rs. } 2,000$ fixed charges irrespective of the units ordered. The order quantity for which the purchase price per unit will be the same-", o: ["$22,000\text{ units}$", "$20,000\text{ units}$", "$21,000\text{ units}$", "None of the above."], c: 2 },
+            { q: "The cost per unit of a product manufactured in a factory amounts to $\\text{Rs. } 160\text{ (}75\%\text{ variable)}$ when the production is $10,000\text{ units}$. When production increases by $25\%$, the cost of production will be $\\text{Rs. } ____$ per unit.", o: ["$\\text{Rs. } 145$", "$\\text{Rs. } 150$", "$\\text{Rs. } 152$", "$\\text{Rs. } 140$"], c: 3 },
+            { q: "In 'make or buy' decision, it is profitable to buy from outside only when the supplier's price is below the firm's own", o: ["Fixed Cost", "Variable Cost", "Total Cost", "Prime Cost"], c: 2 },
+            { q: "A budget which is prepared in a manner so as to give the budgeted cost for any level of activity is known as:", o: ["Master budget", "Zero base budget", "Functional budget", "Flexible budget"], c: 4 },
+            { q: "$____$ is a summary of all functional budgets in a capsule form.", o: ["Functional Budget", "Master Budget", "Long Period Budget", "Flexible Budget"], c: 2 },
+            { q: "$____$ is a detailed budget of cash receipts and cash expenditure incorporating both revenue and capital items.", o: ["Cash Budget", "Capital Expenditure Budget", "Sales Budget", "Overhead Budget"], c: 1 },
+            { q: "Following information is available of $\\text{XYZ Limited}$ for quarter ended June. $2023$. Fixed cost $\\text{Rs. } 5,00,000$. Variable cost $\\text{Rs. } 10$ per unit. Selling price $\\text{Rs. } 15$ per unit. Output level $1,50,000$ units. What will be amount of profit earned during the quarter using the marginal costing technique?", o: ["$\\text{Rs. } 2,50,000$", "$\\text{Rs. } 10,00,000$", "$\\text{Rs. } 5,00,000$", "$\\text{Rs. } 17,50,000$"], c: 1 },
+            { q: "The $\\text{P/v ratio of a company is } 50\%\text{ and margin of safety is } 40\%\text{. If present sales is } \text{Rs. } 30,00,000\text{ then Break Even Point in Rs. will be:}$", o: ["$\\text{Rs. } 9,00,000$", "$\\text{Rs. } 18,00,000$", "$\\text{Rs. } 5,00,000$", "None of the above"], c: 2 },
+            { q: "Following information is available of $\\text{PQR}$ for year ended March, $2013$: $4,000\text{ units in process}$, $3,800\text{ units output}$, $10\\%$ of input is normal wastage, $\\text{Rs. } 2.50\text{ per unit is scrap value and } \text{Rs. } 46,000\text{ incurred towards total process cost then amount on account of abnormal gain to be transferred to Costing P&L will be:-}$", o: ["$\\text{Rs. } 2,500$", "$\\text{Rs. } 2,000$", "$\\text{Rs. } 4,000$", "$\\text{Rs. } 3,500$"], c: 1 },
+            { q: "In element-wise classification of overheads, which one of the following is not included", o: ["Fixed overheads", "Indirect labour", "Indirect materials", "Indirect expenditure."], c: 1 },
+            { q: "When the sales increase from $\\text{Rs. } 40,000\text{ to } \text{Rs. } 60,000\text{ and profit increases by } \text{Rs. } 5,000\text{, the P/V ratio is:}$", o: ["$20\\%$", "$30\\%$", "$25\\%$", "$40\\%$"], c: 3 },
+            { q: "In activity based costing, costs are accumulated by activity. Such Accumulated Amounts are called -", o: ["Cost drivers", "Cost objects", "Cost pools", "Cost Benefits Analysis"], c: 3 },
+            { q: "Steps in $\\text{ABC Include}$ -", o: ["Identification of activities and their respective costs", "Identification of cost Driver of each activity and computation of an allocation rate per activity", "Allocation of Overhead Cost to products/services based on the activities involved", "all of the above"], c: 4 },
+            { q: "Which of the following is not a benefit of ABC?", o: ["Accurate cost allocation", "Improved decision making", "Better control on activity and costs", "reduction of prime cost"], c: 4 },
+            { q: "The key elements of Activity Based Budgeting are-", o: ["Type of Activity to be performed", "Quantity of activity to bee performed", "Cost of activity to be performed", "all of the above"], c: 4 },
+            { q: "The primary objective of Cost Accounting is to:", o: ["Prepare financial statements", "Determine the economic stability of a company", "Ascertain the cost of products and services", "Audit the financial records"], c: 3 },
+            { q: "Which of the following best describes the difference between cost control and cost reduction?", o: ["Cost control is preventive cost reduction is corrective", "Cost control is corrective; cost reduction is preventive", "Both are identical", "Cost control focuses on increasing sales"], c: 1 },
+            { q: "In a manufacturing process, normal loss is treated as:", o: ["Abnormal cost and debited to Costing $\\text{P&L}$", "Charged to a specific job", "Included in the cost of good output", "Ignored in cost accounting"], c: 3 },
+            { q: "When preparing a cost sheet, which of the following is excluded from prime cost?", o: ["Direct materials", "Direct labour", "Direct expenses", "Factory overheads"], c: 4 },
+            { q: "Which of the following is NOT considered in marginal costing?", o: ["Variable cost", "Fixed cost", "Direct material cost", "Direct labor cost"], c: 2 },
+            { q: "The purpose of CAS (Cost Accounting Standards) is to:", o: ["Ensure uniform cost accounting practices", "Reduce financial reporting fraud", "Set global accounting standards", "Determine tax liability"], c: 1 },
+            { q: "CAS-$18$ deals with:", o: ["Transport Cost", "Research and Development Cost", "Sales Promotion Cost", "Packing Cost"], c: 2 },
+            { q: "Cost Accounting Records include:", o: ["Cost ledgers only", "Job cost sheets, cost ledgers, cost memorandum", "Cost sheet only", "Budget reports only"], c: 2 },
+            { q: "Which of the following is not covered under CAS-$1$: Classification of Cost?", o: ["Cost by nature", "Cost by behavior", "Cost by traceability", "Cost by ownership"], c: 4 },
+            { q: "Joint costs incurred before separation point are dealt under:", o: ["CAS-$19$", "CAS-$22$", "CAS-$6$", "CAS-$9$"], c: 1 },
+            { q: "A company purchases raw material worth $\\text{Rs. } 1,00,000$. Freight inward is $\\text{Rs. } 5,000$, and handling charges $\\text{Rs. } 2,000$. As per $\\text{CAS}-6$, material cost is:", o: ["$\\text{Rs. } 1,00,000$", "$\\text{Rs. } 1,05,000$", "$\\text{Rs. } 1,07,000$", "$\\text{Rs. } 1,02,000$"], c: 3 },
+            { q: "Which of the following is a direct material cost as per $\\text{CAS}-6$?", o: ["Wages of procurement staff", "Freight paid for raw materials", "Insurance of factory", "Depreciation on delivery trucks"], c: 2 },
+            { q: "Which of the following should NOT be included in Employee Cost (CAS-$7$)?", o: ["Salary & wages", "Retirement benefits", "Travel reimbursement for official trip", "Dividend paid to employees as shareholders"], c: 4 },
+            { q: "A company orders $5,000$ units of material. Ordering cost per order $\\text{Rs. } 200$. Carrying cost per unit per year is $\\text{Rs. } 25$. What is the EOQ?", o: ["$100$ units", "$1,000$ units", "$2,000$ units", "$632$ units"], c: 4 },
+            { q: "If minimum stock (safety stock) is $500$ units, lead time is $10$ days, average usage $100$ units $\\text{/}$ day, what is reorder level?", o: ["$1,500$ units", "$500$ units", "$1,000$ units", "$2,000$ units"], c: 1 },
+            { q: "Inventory has slow moving material not used for year, what should be done?", o: ["Keep at cost, await usage", "Mark down to NRV or write off partly", "Transfer to scrap", "Treat as non-current asset"], c: 2 },
+            { q: "In inventory control, \"Danger level\" indicates:", o: ["Level above which storage costs shoot up", "Stock level below which emergency purchase is needed", "Stock level to trigger regular orders", "Level equal to minimum stock $+$ reorder level"], c: 2 },
+            { q: "In setting quantitative levels of inventory, which is correct sequence (from highest to lowest)?", o: ["Danger level $>$ Re-order level $>$ Maximum level", "Maximum level $>$ Re-order level $>$ Minimum level", "Re-order level $>$ Maximum level $>$ Danger level", "Safety stock $>$ Maximum stock $>$ Reorder level"], c: 2 },
+            { q: "A company has the following inventory data: Re-order level $=1,500\text{ units}$; Re-order quantity $=1,200\text{ units}$; Minimum consumption $=80\text{ units/day}$; Maximum consumption $=120\text{ units/day}$; Lead time $=10\text{ to } 15\text{ days}$. What is the Maximum Level of inventory (in units)?", o: ["$2,100\text{ units}$", "$3,900\text{ units}$", "$1,900\text{ units}$", "$3,000\text{ units}$"], c: 3 },
+            { q: "Which of the following is NOT a part of employee cost?", o: ["Wages", "Bonus", "Interest on capital", "Provident fund contribution"], c: 3 },
+            { q: "A worker's standard time is $10$ hours; actual time taken is $8$ hours; wage rate is $\\text{Rs. } 50/\text{hour}$. Bonus under Halsey Plan is:", o: ["$\\text{Rs. } 50$", "$\\text{Rs. } 75$", "$\\text{Rs. } 100$", "$\\text{Rs. } 125$"], c: 1 },
+            { q: "A company had $1,200$ employees at the beginning of July and $1,400\text{ at the end}$. During the month: $50$ workers left voluntarily, $30$ were discharged, and $100$ workers were recruited, but only $40$ were replacements. What is the Labour Turnover Ratio using the Separation Method?", o: ["$6.15\\%$", "$7.14\\%$", "$6.25\\%$", "$8\\%$"], c: 1 },
+            { q: "A worker is paid under the Rowan Plan. Standard Time $=20\text{ hours}$, Time Taken $16$ hours, Rate $\\text{Rs. } 50/\text{hour}$. What are the total earnings?", o: ["$\\text{Rs. } 850$", "$\\text{Rs. } 1,050$", "$\\text{Rs. } 950$", "$\\text{Rs. } 960$"], c: 4 },
+            { q: "Which plan shares wages based on time saved, with fixed percentage to worker?", o: ["Halsey Plan", "Rowan Plan", "Taylor Plan", "Gantt Plan"], c: 1 },
+            { q: "In Rowan Plan, the bonus is calculated based on:", o: ["Proportion of time saved to standard time", "Fixed percentage of wages", "Total output produced", "Total hours worked"], c: 1 },
+            { q: "If a direct expense becomes abnormally high due to emergency (e.g., courier), how is it treated?", o: ["Charged to cost of goods sold", "Included in direct expenses", "Ignored in cost accounting", "Transferred to Costing Profit $\\text{& Loss A/c}$"], c: 4 },
+            { q: "A contractor pays $\\text{Rs. } 5,000\text{ as a one-time fee to use a patented method for a single job}$. How should this cost be treated?", o: ["Indirect Expense", "Charged to general overhead", "Direct Expense", "Capitalized"], c: 3 },
+            { q: "Budgeted overhead $=\\text{Rs. } 1,50,000$. Budgeted machine hours $30,000$; Actual hours $=28,000$. Actual overhead $\\text{Rs. } 1,35,000$. Was overhead over or under-absorbed?", o: ["Over-absorbed by $\\text{Rs. } 10,000$", "Under-absorbed by $\\text{Rs. } 25,000$", "Over-absorbed by $\\text{Rs. } 5,000$", "Under-absorbed by $\\text{Rs. } 10,000$"], c: 3 },
+            { q: "A company has two departments: Dept $\text{A and Dept B}$. Absorption rates: Dept $\text{A}=\text{Rs. } 60/\text{hr}$. Dept $\text{B}=\text{Rs. } 50/\text{hr}$. Actual overheads: $\text{A}=\text{Rs. } 3,00,000\text{, B}=\text{Rs. } 2,50,000$. Actual hours: $\text{A}=4,500\text{ hrs, B}=4,800\text{ hrs}$. What is total under/over-absorption?", o: ["Under-absorbed by $\\text{Rs. } 40,000$", "Over-absorbed by $\\text{Rs. } 20,000$", "Under-absorbed by $\\text{Rs. } 10,000$", "Over-absorbed by $\\text{Rs. } 10,000$"], c: 1 },
+            { q: "Which of the following is the most appropriate base for absorbing factory overhead in a labour-intensive industry?", o: ["Machine hours", "Direct material cost", "Direct labour hours", "Units produced"], c: 3 },
+            { q: "Which of the following is the most appropriate basis for apportioning canteen expenses among production departments?", o: ["Floor area", "Number of employees", "Machine hours", "Value of output"], c: 2 },
+            { q: "In a non-integral costing system, which of the following is true?", o: ["Only cost accounts are maintained, no financial books", "Cost and financial books are merged", "Separate cost books are maintained, and reconciliation is done with financial books", "Cost ledger control account is not required"], c: 3 },
+            { q: "Which of the following is TRUE about reconciliation between cost and financial accounts?", o: ["Only timing differences are adjusted", "Only valuation differences are adjusted", "Both timing and valuation differences are adjusted", "No adjustments are needed if integral accounting is used"], c: 3 },
+            { q: "When the cost accounts show under absorption of overhead, it means:", o: ["Actual overhead $>$ Absorbed overhead", "Actual overhead $<$ Absorbed overhead", "They are equal", "It has no effect on profit"], c: 1 },
+            { q: "The purpose of preparing a cost reconciliation statement is to:", o: ["Find errors in costing records only", "Adjust financial profit to costing profit", "Show the difference between financial profit and costing profit and explain it", "Omit abnormal items"], c: 3 },
+            { q: "In cost accounts, depreciation is charged at $10\\%$ on machinery of $\\text{Rs. } 2,00,000$, while in financial accounts depreciation is charged at $15\\%$. What will be the difference in profit due to this?", o: ["$\\text{Rs. } 10,000\text{ higher in cost accounts}$", "$\\text{Rs. } 10,000\text{ lower in cost accounts}$", "$\\text{Rs. } 20,000\text{ higher in financial accounts}$", "No difference"], c: 1 },
+            { q: "In cost books, closing stock is valued at $\\text{Rs. } 80,000$. In financial books, the same is valued at $\\text{Rs. } 90,000$. If cost profit is $\\text{Rs. } 1,00,000$, then financial profit is:", o: ["$\\text{Rs. } 1,10,000$", "$\\text{Rs. } 90,000$", "$\\text{Rs. } 1,20,000$", "$\\text{Rs. } 80,000$"], c: 1 },
+            { q: "The selling price of a product is $\\text{Rs. } 20\text{ per unit}$, variable cost $\\text{Rs. } 12\text{ per unit}$ and fixed cost is $\\text{Rs. } 2,00,000$. The break-even sales (in $\\text{Rs.}$ ) is:", o: ["$\\text{Rs. } 5,00,000$", "$\\text{Rs. } 4,00,000$", "$\\text{Rs. } 6,00,000$", "$\\text{Rs. } 3,00,000$"], c: 1 },
+            { q: "If the break-even sales is $\\text{Rs. } 10,00,000\text{ and fixed cost is } \text{Rs. } 2,00,000\text{, the P/V ratio is:}$", o: ["$20\\%$", "$25\\%$", "$15\\%$", "$18\\%$"], c: 2 },
+            { q: "The margin of safety can be improved by:", o: ["Increasing fixed costs", "Increasing variable costs", "Reducing selling price", "Increasing selling price"], c: 4 },
+            { q: "If the budgeted $\\text{P/V ratio is } 40\%\text{ and break-even sales is } \text{Rs. } 5,00,000\text{, the fixed cost is:}$", o: ["$\\text{Rs. } 2,00,000$", "$\\text{Rs. } 3,00,000$", "$\\text{Rs. } 1,50,000$", "$\\text{Rs. } 4,00,000$"], c: 1 },
+            { q: "In marginal costing, fixed costs are transferred to:", o: ["Cost of sales", "Costing profit and loss $\\text{A/c}$", "Production overhead $\\text{A/c}$", "Closing stock"], c: 2 },
+            { q: "The most important factor in a budget is:", o: ["Sales", "Production", "Material", "The key factor"], c: 4 },
+            { q: "A master budget is prepared for:", o: ["The top management", "The functional manager", "The workers", "All employees"], c: 1 },
+            { q: "The formula for $\\text{P/V ratio is:}$", o: ["Fixed cost $\\text{/}$ Break-even sales", "Contribution $\\text{/}$ Sales", "Sales $\\text{/}$ Variable cost", "Profit $\\text{/}$ Sales"], c: 2 },
+            { q: "A flexible budget is based on:", o: ["Fixed costs only", "Variable costs only", "Fixed, semi-fixed and variable costs", "Past data"], c: 3 },
+            { q: "Which of the following variances will be zero if the actual output is equal to the budgeted output and the fixed overhead absorption rate is based on the actual output?", o: ["Fixed overhead efficiency variance", "Fixed overhead capacity variance", "Fixed overhead volume variance", "Fixed overhead expenditure variance"], c: 3 },
+            { q: "The difference between flexible budget and fixed budget is that the flexible budget:", o: ["Is based on a single activity level", "Is based on various activity levels", "Deals with fixed costs only", "Deals with variable costs only"], c: 2 },
+            { q: "If actual hours of work are less than the standard hours, then the labour efficiency variance is:", o: ["Adverse", "Favorable", "Zero", "Not applicable"], c: 2 },
+            { q: "The fixed overhead expenditure variance is calculated by:", o: ["Actual fixed overhead $-$ Budgeted fixed overhead", "Budgeted fixed overhead $-$ Absorbed fixed overhead", "Actual output $\\text{x}$ Standard rate $-$ Actual fixed overhead", "Actual hours $\\text{x}$ Standard rate $-$ Actual fixed overhead"], c: 1 },
+            { q: "The formula for $\\text{P/V ratio is}$:", o: ["Fixed Cost $\\text{/}$ Sales", "Contribution $\\text{/}$ Sales", "Profit $\\text{/}$ Sales", "Variable Cost $\\text{/}$ Sales"], c: 2 },
+            { q: "The marginal cost is the cost of producing:", o: ["One unit more", "Fixed units", "Variable units", "Minimum units"], c: 1 },
+            { q: "The excess of actual sales over break-even sales is called:", o: ["Total sales", "Margin of safety", "Contribution", "Fixed cost"], c: 2 },
+            { q: "At break-even point, contribution equals:", o: ["Variable cost", "Fixed cost", "Profit", "Sales"], c: 2 },
+            { q: "In absorption costing, closing stock is valued at:", o: ["Prime cost", "Total cost", "Marginal cost", "Factory cost"], c: 2 },
+            { q: "In marginal costing, closing stock is valued at:", o: ["Prime cost", "Total cost", "Marginal cost", "Factory cost"], c: 3 },
+            { q: "The difference between marginal costing and absorption costing is reconciled by the difference in the treatment of:", o: ["Fixed overheads in opening stock and closing stock", "Variable overheads in opening stock and closing stock", "Direct materials", "Direct labour"], c: 1 },
+            { q: "The maximum amount of loss that a firm can incur is equal to:", o: ["Fixed cost", "Variable cost", "Total cost", "Selling price"], c: 1 },
+            { q: "When fixed costs increase, the break-even point:", o: ["Increases", "Decreases", "Remains same", "Cannot be determined"], c: 1 },
+            { q: "When variable costs increase, the P/V ratio:", o: ["Increases", "Decreases", "Remains same", "Cannot be determined"], c: 2 },
+            { q: "Which of the following is not a functional budget?", o: ["Sales budget", "Production budget", "Cash budget", "Master budget"], c: 4 },
+            { q: "A capital expenditure budget is a:", o: ["Short-term budget", "Long-term budget", "Functional budget", "Flexible budget"], c: 2 },
+            { q: "Zero-based budgeting involves:", o: ["Starting the budget from zero every year", "Using last year's budget as the base", "Budgeting only for new activities", "Budgeting based on expected profit"], c: 1 },
+            { q: "Which of the following is a cost element in $\\text{ABC}$?", o: ["Cost pool", "Cost driver", "Cost object", "All of the above"], c: 1 },
+            { q: "In $\\text{ABC}$, the term 'cost driver' refers to:", o: ["The cause of an activity's cost", "The recipient of the cost", "The final product cost", "The total cost of an activity"], c: 1 },
+            { q: "The final output of $\\text{ABC}$ is the accurate allocation of $____$ costs.", o: ["Direct", "Indirect (Overheads)", "Variable", "Fixed"], c: 2 },
+            { q: "Which cost method uses Cost $-$ Cost of Goods Sold $=$ Gross Profit?", o: ["Marginal Costing", "Activity Based Costing", "Absorption Costing", "Target Costing"], c: 3 },
+            { q: "The main purpose of $\\text{ABC}$ is to:", o: ["Simplify record keeping", "Increase contribution margin", "Allocate overheads more accurately", "Reduce fixed costs"], c: 3 },
+            { q: "Which is most likely to be a volume-related cost driver?", o: ["Number of set-ups", "Number of orders processed", "Number of direct labour hours", "Number of inspections"], c: 3 },
+            { q: "Which statement is true under marginal costing?", o: ["Fixed costs are included in inventory valuation", "Profit is always lower than absorption costing", "The valuation of finished goods is higher than absorption costing", "Profit is based on sales volume"], c: 4 },
+            { q: "In service costing, the challenge is typically caused by:", o: ["High volume of direct material", "Low proportion of direct labour cost", "Difficulty in finding a composite cost unit", "High proportion of fixed and indirect costs"], c: 4 },
+            { q: "In operating costing for a transport company, the standing charges typically include:", o: ["Fuel costs", "Driver's wages", "Depreciation of vehicles", "Tyre replacements"], c: 3 },
+            { q: "An example of a running and maintenance cost in a hospital's operating cost sheet would be:", o: ["Nurses' salaries", "Rent of the building", "Electricity charges for the $\\text{OT}$", "Depreciation of beds"], c: 3 },
+            { q: "In process costing, the quantity of equivalent units is calculated using the concept of:", o: ["FIFO only", "LIFO only", "Weighted average only", "All of the above or standard costing"], c: 4 },
+            { q: "The loss which must be borne by the process and included in the cost of good production is:", o: ["Abnormal loss", "Abnormal gain", "Normal loss", "Standard loss"], c: 3 },
+            { q: "What is the accounting treatment of $\\text{Abnormal Gain}$?", o: ["It is credited to the relevant process $\\text{A/c}$", "It is debited to the Costing $\\text{P\&L A/c}$", "It is valued at standard cost and debited to the relevant process $\\text{A/c}$", "It is ignored"], c: 3 },
+            { q: "In case of joint products, what is the treatment of the net realizable value of by-products?", o: ["Added to the sales revenue of joint products", "Deducted from the total joint cost", "Credited to the general profit and loss account", "Treated as a selling expense"], c: 2 },
+            { q: "Which method is appropriate for apportioning joint costs when subsequent processing is significant?", o: ["Physical Unit Method", "Market Value at Split-off Method", "Net Realizable Value Method", "Average Unit Cost Method"], c: 3 },
+            { q: "A contract is $75\\%$ complete. Total contract price $\\text{Rs. } 10,00,000$. Costs incurred to date $\\text{Rs. } 6,00,000$. Estimated cost to complete $\\text{Rs. } 2,00,000$. Cash received $\\text{Rs. } 7,00,000$. The profit recognized for the period should be:", o: ["$\\text{Rs. } 1,50,000$", "$\\text{Rs. } 75,000$", "$\\text{Rs. } 50,000$", "Zero"], c: 2 },
+            { q: "Which of the following is characteristic of a contract lasting more than one accounting period?", o: ["The profit is recognized only upon completion of the contract", "The profit is recognized on the basis of percentage of completion", "It is treated as job costing", "All costs are treated as fixed costs"], c: 2 },
+            { q: "In contract costing, the value of certified work is determined by:", o: ["Architect/Surveyor", "Contractor", "Customer", "Cost Accountant"], c: 1 },
+            { q: "In job costing, the costs are compiled on a:", o: ["Per month basis", "Per department basis", "Per $\\text{unit}$ basis", "Per $\\text{job}$ basis"], c: 4 },
+            { q: "Batch costing is most suitable for:", o: ["Chemical industry", "Toy manufacturing", "Ship building", "Public utility services"], c: 2 },
+            { q: "What is the key difference between job costing and batch costing?", o: ["Job costing uses total cost; batch costing uses marginal cost", "Job costing is for single items; batch costing is for groups of items", "Job costing is for long-term projects; batch costing is for short-term projects", "Job costing is mandatory; batch costing is optional"], c: 2 },
+            { q: "In the reconciliation statement, when Cost $\\text{A/c}$ profit is the starting point, overheads over-absorbed are:", o: ["Added", "Deducted", "Ignored", "Treated as income"], c: 1 },
+            { q: "In the reconciliation statement, when Cost $\\text{A/c}$ profit is the starting point, income tax paid is:", o: ["Added", "Deducted", "Ignored", "Treated as expense"], c: 3 },
+            { q: "Which is the control account used in a non-integrated system to complete the double entry for transactions affecting the financial ledger?", o: ["Stores Ledger Control $\\text{A/c}$", "WIP Control $\\text{A/c}$", "Finished Goods Control $\\text{A/c}$", "General Ledger Adjustment $\\text{A/c}$"], c: 4 },
+            { q: "If the closing stock in the Cost $\\text{A/c}$ is valued higher than in the Financial $\\text{A/c}$, this difference causes costing profit to be:", o: ["Lower", "Higher", "Equal", "Unchanged"], c: 2 },
+            { q: "The main ledger maintained in a non-integrated system that records the factory material and overheads is the:", o: ["Financial Ledger", "Cost Ledger", "General Ledger", "Creditors Ledger"], c: 2 },
+            { q: "The purpose of a master budget is to provide a comprehensive plan that integrates:", o: ["Financial budgets only", "Operating budgets only", "All functional budgets and the projected financial statements", "Only fixed and variable costs"], c: 3 }
         ];
+
 
         let currentQuestionIndex = 0;
         let userAnswers = new Array(questionsData.length).fill(null); 
@@ -659,16 +761,32 @@
         const incorrectCountElement = document.getElementById('incorrect-count');
         const attemptedCountElement = document.getElementById('attempted-count');
         const accuracyRateElement = document.getElementById('accuracy-rate');
+        
+        // --- Set Configuration for 392 Questions (Set Size = 40) ---
+        const totalQuestions = questionsData.length;
+        const setSize = 15; 
+        const numSets = Math.ceil(totalQuestions / setSize); // 392/40 = 9.8 -> 10 sets
+        const questionsPerSet = [];
+        const setStartIndices = [];
 
-        const questionsPerSet = [37, 37, 37, 37, 37, 37, 37, 36]; 
-        const setStartIndices = [0, 37, 74, 111, 148, 185, 222, 259]; 
+        for(let i = 0; i < numSets; i++) {
+            setStartIndices.push(i * setSize);
+            const size = Math.min(setSize, totalQuestions - (i * setSize));
+            questionsPerSet.push(size);
+        }
+        // --- End Set Configuration ---
+
 
         function populateSetSelector() {
+            setSelectorElement.innerHTML = ''; 
             questionsPerSet.forEach((num, index) => {
+                if (num === 0) return;
+                
                 const option = document.createElement('option');
                 option.value = index; 
                 const startQ = setStartIndices[index] + 1;
                 const endQ = setStartIndices[index] + num;
+                
                 option.textContent = `Set ${index + 1} (Q ${startQ} - ${endQ})`;
                 setSelectorElement.appendChild(option);
             });
@@ -685,23 +803,40 @@
         }
 
         function getCurrentSetInfo(index) {
-            let cumulativeQuestions = 0;
-            for (let i = 0; i < questionsPerSet.length; i++) {
-                cumulativeQuestions += questionsPerSet[i];
-                if (index < cumulativeQuestions) {
+            for (let i = 0; i < setStartIndices.length; i++) {
+                const setStartIndex = setStartIndices[i];
+                const setEndIndex = setStartIndex + questionsPerSet[i] - 1;
+                
+                if (index >= setStartIndex && index <= setEndIndex) {
                     if (setSelectorElement.value != i) { 
                          setSelectorElement.value = i; 
                     }
-                    return { setNumber: i + 1, totalSets: questionsPerSet.length };
+                    return { setNumber: i + 1, totalSets: numSets };
                 }
             }
-            return { setNumber: questionsPerSet.length, totalSets: questionsPerSet.length };
+            return { setNumber: numSets, totalSets: numSets };
         }
         
         function updateScoreboard() {
+            score.correct = 0;
+            score.incorrect = 0;
+            let attempted = 0;
+
+            for (let i = 0; i < questionsData.length; i++) {
+                if (questionsAttemptedState[i]) {
+                    attempted++;
+                    const currentQuestion = questionsData[i];
+                    const correctAnswerText = currentQuestion.o[currentQuestion.c - 1]; 
+                    if (userAnswers[i] === correctAnswerText) {
+                        score.correct++;
+                    } else {
+                        score.incorrect++;
+                    }
+                }
+            }
+            
             correctCountElement.textContent = `Correct: ${score.correct}`;
             incorrectCountElement.textContent = `Incorrect: ${score.incorrect}`;
-            const attempted = score.correct + score.incorrect;
             attemptedCountElement.textContent = `Attempted: ${attempted}`;
             if (attempted > 0) {
                 const accuracy = (score.correct / attempted * 100).toFixed(1);
@@ -709,6 +844,22 @@
             } else {
                 accuracyRateElement.textContent = `Accuracy: N/A`;
             }
+        }
+
+        function cleanText(text) {
+            let cleaned = text;
+            // Remove \text{} and \Rs.
+            cleaned = cleaned.replace(/\\text{([^}]+)}/g, '$1'); 
+            // Replace \Rs. with Rs.
+            cleaned = cleaned.replace(/\\Rs\./g, 'Rs.');
+            // Replace LaTeX math delimiters ($)
+            cleaned = cleaned.replace(/\$/g, ''); 
+            // Replace \times
+            cleaned = cleaned.replace(/\\times/g, 'x');
+            // Remove \dots
+            cleaned = cleaned.replace(/\\dots/g, '...');
+            
+            return cleaned.trim();
         }
 
         function loadQuestion() {
@@ -720,30 +871,38 @@
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const setInfo = getCurrentSetInfo(currentQuestionIndex);
+            
+            const correctAnswerText = currentQuestion.o[currentQuestion.c - 1]; 
 
-            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${questionsData.length} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
-            questionTextElement.innerHTML = currentQuestion.q.replace(/____/g, '<span style="text-decoration: underline;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+            questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
+            
+            let qText = cleanText(currentQuestion.q);
+            qText = qText.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
+            questionTextElement.innerHTML = qText;
 
             optionsContainerElement.innerHTML = ''; 
             currentQuestion.o.forEach((optionText, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.classList.add('option');
+                // Store the raw option text (with Rs, %, etc.) for comparison
                 optionElement.dataset.optionText = optionText; 
-
+                
+                let cleanedOptionText = cleanText(optionText);
+                
                 const optionLetter = String.fromCharCode(65 + index); 
-                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${optionText}</span>`;
+                optionElement.innerHTML = `<span class="option-letter">${optionLetter}</span> <span class="option-text">${cleanedOptionText}</span>`;
                 
                 if (questionsAttemptedState[currentQuestionIndex]) { 
                     optionElement.classList.add('disabled');
                     if (optionText === userAnswers[currentQuestionIndex]) {
                         optionElement.classList.add('selected');
-                        if (userAnswers[currentQuestionIndex] === currentQuestion.c) {
+                        if (userAnswers[currentQuestionIndex] === correctAnswerText) {
                             optionElement.classList.add('correct-answer');
                         } else {
                             optionElement.classList.add('incorrect-selection');
                         }
                     }
-                    if (optionText === currentQuestion.c) {
+                    if (optionText === correctAnswerText) { 
                          optionElement.classList.add('correct-answer'); 
                     }
                 } else {
@@ -752,8 +911,9 @@
                 optionsContainerElement.appendChild(optionElement);
             });
 
-            nextButton.textContent = (currentQuestionIndex === questionsData.length - 1) ? "Finish Quiz" : "Next (Enter or →)";
-            nextButton.disabled = !questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length;
+            nextButton.textContent = (currentQuestionIndex === totalQuestions - 1) ? "Finish Quiz" : "Next (Enter or →)";
+            nextButton.disabled = false; 
+
             prevButton.disabled = (currentQuestionIndex === 0);
 
             questionHeaderElement.style.display = 'block';
@@ -768,26 +928,20 @@
 
             questionsAttemptedState[currentQuestionIndex] = true;
             userAnswers[currentQuestionIndex] = selectedOptionText;
-            nextButton.disabled = false; 
 
             const currentQuestion = questionsData[currentQuestionIndex];
-            const correctAnswerText = currentQuestion.c;
+            const correctAnswerText = currentQuestion.o[currentQuestion.c - 1]; 
 
+            
             Array.from(optionsContainerElement.children).forEach(optDiv => {
                 optDiv.classList.add('disabled'); 
-                if (optDiv === selectedDiv) {
+                if (optDiv.dataset.optionText === correctAnswerText) { 
+                    optDiv.classList.add('correct-answer');
+                }
+                if (optDiv === selectedDiv) { 
                     optDiv.classList.add('selected');
-                    if (selectedOptionText === correctAnswerText) {
-                        optDiv.classList.add('correct-answer');
-                        score.correct++;
-                    } else {
-                        optDiv.classList.add('incorrect-selection');
-                        score.incorrect++;
-                        Array.from(optionsContainerElement.children).forEach(innerOptDiv => {
-                            if (innerOptDiv.dataset.optionText === correctAnswerText) {
-                                innerOptDiv.classList.add('correct-answer');
-                            }
-                        });
+                    if (selectedOptionText !== correctAnswerText) {
+                        optDiv.classList.add('incorrect-selection'); 
                     }
                 }
             });
@@ -812,18 +966,15 @@
         }
 
         function nextQuestionHandler() {
-            if (!questionsAttemptedState[currentQuestionIndex] && currentQuestionIndex < questionsData.length) {
-                return; 
-            }
-            if (currentQuestionIndex === questionsData.length - 1 && questionsAttemptedState[currentQuestionIndex]) {
+            if (currentQuestionIndex === totalQuestions - 1) {
                 currentQuestionIndex++; 
                 showCompletionMessage();
             } 
-            else if (currentQuestionIndex < questionsData.length - 1) {
+            else if (currentQuestionIndex < totalQuestions - 1) {
                 currentQuestionIndex++;
                 loadQuestion();
             }
-             else if (currentQuestionIndex >= questionsData.length) { 
+             else if (currentQuestionIndex >= totalQuestions) { 
                  showCompletionMessage(); 
             }
         }
@@ -840,18 +991,26 @@
             questionTextElement.style.display = 'none';
             optionsContainerElement.style.display = 'none';
             navigationButtons.style.display = 'none'; 
+            setSelectorElement.parentElement.style.display = 'none'; 
+            
             completionMessageElement.style.display = 'block';
             const attempted = score.correct + score.incorrect;
             const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
+            
             completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
         }
 
+        // Event Listeners for Navigation/Interaction
         nextButton.addEventListener('click', nextQuestionHandler);
         prevButton.addEventListener('click', prevQuestionHandler);
 
         document.addEventListener('keydown', (event) => {
-            if (event.key.toLowerCase() === 'escape') return;
-            if (completionMessageElement.style.display === 'block') {
+            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+                return;
+            }
+            if (event.key.toLowerCase() === 'escape') return; 
+
+            if (completionMessageElement.style.display === 'block') { 
                  event.preventDefault(); 
                  return;
             }
@@ -863,7 +1022,7 @@
             } else if ((key === 'enter' || key === 'arrowright' || key === ' ') && !nextButton.disabled) { 
                 event.preventDefault();
                 nextQuestionHandler();
-            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) {
+            } else if ((key === '/' || key === 'arrowleft') && !prevButton.disabled) { 
                 event.preventDefault();
                 prevQuestionHandler();
             }
