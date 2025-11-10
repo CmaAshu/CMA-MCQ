@@ -8,7 +8,7 @@
     <title>Prepogy - CMA MCQ Practice Platform | prepogy.fun</title>
     <meta name="description" content="Excel in your ICMAI exams with Prepogy, the ultimate CMA MCQ practice platform. Access a vast question bank for Inter and Final groups (Syllabus 2022) based on the official resources. Start your targeted practice today!">
     <meta name="keywords" content="CMA MCQ, ICMAI preparation, CMA exam, prepogy, CMA practice tests, CMA Inter, CMA Final, Syllabus 2022, Cost Accountant MCQ, cma inter law, cma inter law quiz, cma final quiz, CMA Inter Financial Accounting, CMA Inter Cost Accounting, CMA Final Strategic Financial Management, CMA Final Strategic Cost Management, ICMAI MCQ Bank, CMA Exam Preparation India">
-    
+
     <!-- OG Meta Tags for Social Media & Search Engines -->
     <meta property="og:title" content="Prepogy - CMA MCQ Practice Platform">
     <meta property="og:description" content="The ultimate platform to practice MCQs for the ICMAI CMA Inter and Final exams (Syllabus 2022).">
@@ -19,11 +19,11 @@
     <!-- Favicon -->
     <link rel="icon" href="prep.png" type="image/png">
     <link rel="apple-touch-icon" href="prep.png">
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <!-- Structured Data for Search Engines (Schema.org) -->
     <script type="application/ld+json">
     {
@@ -34,80 +34,53 @@
       "logo": "https://prepogy.fun/prep.png"
     }
     </script>
-    
+
     <style>
         :root {
-            --prepogy-purple: #8b5fbf;
-            --prepogy-light-purple: #b794d4;
-            --prepogy-dark-purple: #6b46c1;
-            --accent-gold: #ffd700;
-            --accent-orange: #ff8c42;
-            --accent-pink: #ff6b9d;
-            --accent-cyan: #4fd1c7;
-            --accent-green: #48bb78;
-            
-            --gradient-purple: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-rainbow: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
-            --gradient-sunset: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-            --gradient-ocean: linear-gradient(135deg, #667eea 0%, #4facfe 100%);
-            --gradient-green: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            /* Light Theme Palette - Educational and Vibrant (Yellow, Blue, Purple emphasis) */
+            --primary-blue: #4a7dff; /* Bright Blue */
+            --secondary-purple: #9b59b6; /* Deep Purple */
+            --accent-yellow: #f1c40f; /* Vibrant Yellow */
+            --accent-green: #2ecc71;
+            --accent-red: #e74c3c;
+            --text-dark: #2c3e50;
+            --text-light: #5e6d82;
+            --background-white: #ffffff;
+            --card-light: #fdfefe;
+            --border-light: #e0e0e0;
+
+            /* Gradients for colorful headers/buttons */
+            --gradient-primary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* Cyan to Blue */
+            --gradient-secondary: linear-gradient(135deg, #9b59b6 0%, #6b46c1 100%); /* Purple tones */
+            --gradient-cta: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            --gradient-title: linear-gradient(45deg, var(--accent-yellow), var(--secondary-purple), var(--primary-blue));
         }
 
-        @keyframes floating {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(139, 95, 191, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(139, 95, 191, 0.6); }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+        /* --- Educational Animations (Smooth and Purposeful) --- */
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.95) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulseBorder {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(74, 125, 255, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(74, 125, 255, 0); }
         }
 
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
+        /* --- Light Theme Base with Geometric Shapes --- */
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            background-attachment: fixed;
-            color: #ffffff;
+            background-color: var(--background-white);
+            color: var(--text-dark);
             overflow-x: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: -1;
+            /* Subtle Geometric Pattern: Circles (Blue), Squares (Yellow), Triangles (Purple) */
+            background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='160' height='160' fill='%23ffffff'/%3E%3Cg fill-opacity='0.1'%3E%3Ccircle fill='%234a7dff' cx='80' cy='80' r='15'/%3E%3Crect fill='%23f1c40f' x='10' y='10' width='30' height='30' transform='rotate(45 25 25)'/%3E%3Cpath fill='%239b59b6' d='M130 140 L110 160 L150 160 Z'/%3E%3Ccircle fill='%239b59b6' cx='40' cy='120' r='12'/%3E%3Crect fill='%234a7dff' x='100' y='50' width='25' height='25' transform='rotate(-20 112.5 62.5)'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 160px 160px;
         }
 
         .animate-fadeInUp {
@@ -115,43 +88,50 @@
         }
 
         .animate-scaleIn {
-            animation: scaleIn 0.6s ease-out forwards;
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        .animate-floating {
-            animation: floating 6s ease-in-out infinite;
+        /* Hidden in this theme */
+        .floating-elements {
+            display: none;
         }
-
+        
         .header-wrapper {
             text-align: center;
             padding: 60px 20px 40px;
             position: relative;
+            background-color: var(--background-white);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         .logo-container {
             display: inline-block;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
         }
 
         .prepogy-logo {
-            width: 100px; /* smaller size for mobile */
-            height: 100px; /* smaller size for mobile */
-            background: transparent;
-            border-radius: 30px;
+            width: 120px;
+            height: 120px;
+            border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto;
-            position: relative;
             overflow: hidden;
-            transition: width 0.3s ease, height 0.3s ease;
+            box-shadow: 0 0 0 5px var(--primary-blue), 0 5px 15px rgba(0, 0, 0, 0.1); 
+            animation: pulseBorder 4s infinite;
         }
 
         .main-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
-            background: var(--gradient-rainbow);
+            background: var(--gradient-title); /* Uses Yellow, Purple, Blue */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -162,61 +142,60 @@
 
         .subtitle {
             font-size: 1.2rem;
-            color: #a0aec0;
-            font-weight: 300;
+            color: var(--text-light);
+            font-weight: 400;
             margin-bottom: 10px;
         }
 
         .website-url {
             font-size: 1rem;
-            color: var(--accent-cyan);
+            color: var(--secondary-purple);
             font-weight: 500;
             text-decoration: none;
             transition: all 0.3s ease;
         }
 
         .website-url:hover {
-            color: var(--accent-gold);
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            color: var(--primary-blue);
+            text-decoration: underline;
         }
 
         .info-section {
             max-width: 800px;
             margin: -20px auto 40px;
             padding: 25px 30px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            background: var(--card-light);
+            border-radius: 15px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
             text-align: center;
-            color: #d1d5db;
+            color: var(--text-light);
         }
 
         .info-section i {
-            color: var(--accent-cyan);
-            font-size: 1.5rem;
+            color: var(--accent-green);
+            font-size: 1.8rem;
             margin-bottom: 10px;
+            display: block;
         }
 
         .shortcuts-guide-wrapper {
             max-width: 800px;
             margin: 0 auto 60px;
             padding: 0 20px;
-            display: none; /* Hidden on mobile by default */
+            display: none;
         }
 
         .shortcuts-guide {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
+            background: var(--card-light);
+            border-radius: 15px;
             padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-light);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
 
         .shortcuts-guide h3 {
-            color: var(--accent-gold);
+            color: var(--secondary-purple);
             font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 20px;
@@ -235,23 +214,33 @@
             justify-content: space-between;
             align-items: center;
             padding: 12px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-light);
+            color: var(--text-dark);
+        }
+        
+        .shortcuts-guide li:last-child {
+            border-bottom: none;
         }
 
         .shortcuts-guide kbd {
-            background: var(--gradient-green);
+            background: var(--accent-green);
             color: white;
-            padding: 8px 12px;
-            border-radius: 8px;
+            padding: 6px 10px;
+            border-radius: 6px;
             font-size: 0.9rem;
             font-weight: 600;
             margin: 0 4px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 5px rgba(46, 204, 113, 0.4);
+            transition: transform 0.1s ease;
+        }
+        
+        .shortcuts-guide kbd:active {
+            transform: scale(0.95);
         }
 
         .group-choice-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
@@ -259,56 +248,44 @@
         }
 
         .group-choice-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
+            background: var(--card-light);
+            border-radius: 20px;
             padding: 40px 30px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
             position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             overflow: hidden;
         }
 
-        .group-choice-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-rainbow);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
-        }
-
-        .group-choice-card:nth-child(1) { border-color: var(--accent-pink); }
-        .group-choice-card:nth-child(2) { border-color: var(--accent-cyan); }
-        .group-choice-card:nth-child(3) { border-color: var(--accent-gold); }
-        .group-choice-card:nth-child(4) { border-color: var(--accent-green); }
+        /* Individual Card Colors (Blue, Purple, Yellow, Green) */
+        .group-choice-card:nth-child(1) { border-color: var(--primary-blue); } 
+        .group-choice-card:nth-child(2) { border-color: var(--secondary-purple); } 
+        .group-choice-card:nth-child(3) { border-color: var(--accent-yellow); } 
+        .group-choice-card:nth-child(4) { border-color: var(--accent-green); } 
 
         .group-choice-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .group-choice-card:hover::before {
-            opacity: 0.1;
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .group-choice-card h2 {
             font-size: 1.8rem;
             font-weight: 700;
             margin: 0 0 10px;
-            color: #ffffff;
+            color: var(--text-dark);
         }
+        
+        .group-choice-card:nth-child(1) h2 { color: var(--primary-blue); }
+        .group-choice-card:nth-child(2) h2 { color: var(--secondary-purple); }
+        .group-choice-card:nth-child(3) h2 { color: var(--accent-yellow); }
+        .group-choice-card:nth-child(4) h2 { color: var(--accent-green); }
 
         .group-choice-card p {
             font-size: 1rem;
-            color: #a0aec0;
+            color: var(--text-light);
             margin: 0;
             font-weight: 400;
         }
@@ -324,27 +301,27 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--gradient-purple);
+            background: var(--gradient-cta); /* Uses Blue and Purple */
             color: white;
             padding: 12px 24px;
-            border-radius: 25px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
             margin-bottom: 30px;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(139, 95, 191, 0.3);
+            box-shadow: 0 5px 15px rgba(74, 125, 255, 0.4);
         }
 
         .back-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(139, 95, 191, 0.4);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(74, 125, 255, 0.6);
         }
 
         .group-title {
             text-align: center;
             font-size: 2.5rem;
             font-weight: 700;
-            background: var(--gradient-sunset);
+            background: var(--gradient-secondary); /* Purple Tones */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -353,51 +330,41 @@
 
         .quiz-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 25px;
         }
 
         .quiz-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            backdrop-filter: blur(20px);
-            border-radius: 20px;
+            background: var(--card-light);
+            border-radius: 15px;
             padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
-
-        .quiz-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .quiz-card:hover::before {
-            left: 100%;
-        }
-
+        
         .quiz-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .quiz-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: #ffffff;
-            margin: 0 0 15px;
+            color: var(--text-dark);
+            margin: 0 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quiz-card h3 i {
+            color: var(--primary-blue);
+            font-size: 1.4rem;
         }
 
         .quiz-card p {
-            color: #a0aec0;
+            color: var(--text-light);
             font-size: 0.95rem;
             line-height: 1.6;
             margin: 0 0 20px;
@@ -405,54 +372,29 @@
 
         .quiz-card a {
             display: inline-block;
-            background: var(--gradient-ocean);
+            background: var(--gradient-cta);
             color: white;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(79, 209, 199, 0.3);
+            box-shadow: 0 4px 10px rgba(74, 125, 255, 0.3);
         }
 
         .quiz-card a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(79, 209, 199, 0.4);
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(74, 125, 255, 0.5);
         }
-
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .floating-element {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: var(--gradient-rainbow);
-            border-radius: 50%;
-            opacity: 0.1;
-            animation: floating 8s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .floating-element:nth-child(2) { top: 60%; left: 20%; animation-delay: 2s; }
-        .floating-element:nth-child(3) { top: 30%; left: 80%; animation-delay: 4s; }
-        .floating-element:nth-child(4) { top: 80%; left: 70%; animation-delay: 6s; }
-        .floating-element:nth-child(5) { top: 50%; left: 90%; animation-delay: 1s; }
         
+        /* Mobile and Desktop Responsiveness */
         @media (min-width: 768px) {
             .prepogy-logo {
-                width: 150px; /* larger size for desktop */
-                height: 150px; /* larger size for desktop */
+                width: 150px;
+                height: 150px;
             }
             .shortcuts-guide-wrapper {
-                display: block; /* Visible on desktop */
+                display: block;
             }
         }
 
@@ -461,23 +403,11 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            
             .quiz-grid {
                 grid-template-columns: 1fr;
             }
-            
             .main-title {
-                font-size: 2rem;
-            }
-            
-            .shortcuts-guide {
-                padding: 20px;
-            }
-            
-            .shortcuts-guide li {
-                flex-direction: column;
-                gap: 10px;
-                text-align: center;
+                font-size: 2.2rem;
             }
         }
 
@@ -485,16 +415,19 @@
             margin-top: 40px;
             padding: 20px;
             font-size: 0.9em;
-            color: #a0aec0;
+            color: var(--text-light);
             text-align: center;
             width: 100%;
+            border-top: 1px solid var(--border-light);
         }
         .footer-credit a {
-            color: var(--accent-gold);
+            color: var(--secondary-purple);
             text-decoration: none;
             font-weight: 600;
+            transition: color 0.3s ease;
         }
         .footer-credit a:hover {
+            color: var(--primary-blue);
             text-decoration: underline;
         }
         .footer-credit .heart-icon {
@@ -503,7 +436,7 @@
             height: 18px;
             margin: 0 2px;
             vertical-align: middle;
-            fill: #ef4444;
+            fill: var(--accent-red);
         }
         .jai-hind {
             font-size: 1.1em;
@@ -523,17 +456,12 @@
 </head>
 
 <body>
-    <!-- Floating Background Elements -->
-    <div class="floating-elements">
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-        <div class="floating-element"></div>
-    </div>
+    <!-- Floating Background Elements (Hidden in this theme) -->
+    <div class="floating-elements"></div>
 
     <div class="header-wrapper animate-fadeInUp">
-        <div class="logo-container animate-floating">
+        <div class="logo-container">
+            <!-- Animation now applied via pulseBorder on the logo -->
             <div class="prepogy-logo"><img src="prep.png" alt="Prepogy Logo" style="width: 100%; height: auto;"></div>
         </div>
         <div class="header-container">
@@ -544,7 +472,7 @@
 
     <div class="info-section animate-fadeInUp" style="animation-delay: 0.1s;">
         <i class="fas fa-book-open"></i>
-        <p>Sharpen your skills with a comprehensive collection of Multiple Choice Questions sourced directly from the official MCQ bank of the Institute of Cost Accountants of India (ICMAI). This platform is designed to help you practice, evaluate your understanding, and excel in your CMA examinations.</p>
+        <p>Sharpen your skills with a **comprehensive collection of Multiple Choice Questions** sourced directly from the official MCQ bank of the Institute of Cost Accountants of India (ICMAI). This platform is designed to help you practice, evaluate your understanding, and excel in your CMA examinations.</p>
     </div>
 
     <div class="shortcuts-guide-wrapper animate-fadeInUp" style="animation-delay: 0.15s;">
@@ -709,6 +637,9 @@
     </footer>
 
     <script>
+        // Check if the current environment is a blob URL (like in the Canvas preview)
+        const isBlob = window.location.protocol === 'blob:';
+
         function showGroupSubjects(groupId, pushState = true) {
             // Hide all containers
             document.querySelectorAll('.group-container').forEach(container => {
@@ -721,20 +652,21 @@
             if (groupContainer) {
                 groupContainer.style.display = 'block';
                 
-                // Add animation to quiz cards
+                // Add scale-in animation to quiz cards
                 const quizCards = groupContainer.querySelectorAll('.quiz-card');
                 quizCards.forEach((card, index) => {
                     card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
+                    card.style.animation = 'none'; // Reset animation
+                    
+                    // Trigger new animation after a short delay
                     setTimeout(() => {
-                        card.style.transition = 'all 0.5s ease';
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, index * 100);
+                        card.style.animation = `scaleIn 0.5s ease-out forwards ${index * 0.1}s`;
+                    }, 50);
                 });
                 
-                if (pushState) {
-                    const groupName = groupContainer.querySelector('.group-title').textContent;
+                if (pushState && !isBlob) {
+                    const groupTitleElement = groupContainer.querySelector('.group-title');
+                    const groupName = groupTitleElement ? groupTitleElement.textContent : 'Group Details';
                     history.pushState({ groupId: groupId }, groupName, `#${groupId.replace('SubjectsContainer', '')}`);
                 }
             }
@@ -749,8 +681,20 @@
             // Show group choice container
             document.getElementById('groupChoiceContainer').style.display = 'grid';
             
-            if (pushState) {
-                history.pushState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
+            // Apply scale-in animation to group choice cards
+            document.querySelectorAll('.group-choice-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.animation = 'none';
+                setTimeout(() => {
+                    card.style.animation = `scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards ${index * 0.15}s`;
+                }, 50);
+            });
+            
+            if (pushState && !isBlob) {
+                // Use history.replaceState to set the initial state without changing the URL
+                // This is often needed on first load, even if pushState is restricted. 
+                // However, since replaceState is failing, we must check for blob.
+                history.replaceState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
             }
         }
 
@@ -767,26 +711,39 @@
         document.querySelectorAll('.back-button').forEach(button => {
             button.onclick = (e) => {
                 e.preventDefault();
-                history.back();
+                // Since history manipulation is tricky in this environment, 
+                // we'll explicitly call showGroupSelection instead of relying solely on history.back()
+                if (!isBlob) {
+                    history.back();
+                } else {
+                    showGroupSelection();
+                }
             };
         });
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', () => {
             const initialGroupId = window.location.hash.substring(1);
-            if (initialGroupId && document.getElementById(initialGroupId + 'SubjectsContainer')) {
-                history.replaceState({ groupId: initialGroupId + 'SubjectsContainer' }, `Group - ${initialGroupId}`, `#${initialGroupId}`);
-                showGroupSubjects(initialGroupId + 'SubjectsContainer', false);
+            const fullGroupId = initialGroupId ? initialGroupId + 'SubjectsContainer' : null;
+            
+            if (fullGroupId && document.getElementById(fullGroupId)) {
+                // Only replace state if not a blob environment
+                if (!isBlob) {
+                    history.replaceState({ groupId: fullGroupId }, `Group - ${initialGroupId}`, `#${initialGroupId}`);
+                }
+                showGroupSubjects(fullGroupId, false);
             } else {
-                history.replaceState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
+                if (!isBlob) {
+                    history.replaceState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
+                }
                 showGroupSelection(false);
             }
         });
 
-        // Add interactive hover effects
+        // Add hover effects for a delightful interaction
         document.querySelectorAll('.group-choice-card, .quiz-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
+                this.style.transform = 'translateY(-8px) scale(1.02)';
             });
             
             card.addEventListener('mouseleave', function() {
@@ -797,40 +754,44 @@
         // Smooth scrolling for better UX
         document.documentElement.style.scrollBehavior = 'smooth';
 
-        // Add particle effect on click
+        // Add a gentle, subtle confetti effect on click
         document.addEventListener('click', function(e) {
-            createParticles(e.clientX, e.clientY);
+            // Only fire particles for cards, buttons, or links
+            if (e.target.closest('.group-choice-card, .quiz-card a, .back-button')) {
+                createParticles(e.clientX, e.clientY);
+            }
         });
 
         function createParticles(x, y) {
-            for (let i = 0; i < 5; i++) {
+            const colors = ['#4a7dff', '#9b59b6', '#2ecc71', '#f1c40f', '#ff8c42'];
+            for (let i = 0; i < 8; i++) {
                 const particle = document.createElement('div');
                 particle.style.position = 'fixed';
                 particle.style.left = x + 'px';
                 particle.style.top = y + 'px';
-                particle.style.width = '4px';
-                particle.style.height = '4px';
-                particle.style.background = 'var(--gradient-rainbow)';
+                particle.style.width = '6px';
+                particle.style.height = '6px';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
                 particle.style.borderRadius = '50%';
                 particle.style.pointerEvents = 'none';
                 particle.style.zIndex = '9999';
-                particle.style.opacity = '0.7';
+                particle.style.opacity = '0.9';
                 
                 document.body.appendChild(particle);
                 
-                const angle = (Math.PI * 2 * i) / 5;
-                const velocity = 2;
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 4 + 2;
                 const dx = Math.cos(angle) * velocity;
                 const dy = Math.sin(angle) * velocity;
                 
-                let opacity = 0.7;
+                let opacity = 0.9;
                 let posX = 0;
                 let posY = 0;
                 
                 const animate = () => {
                     posX += dx;
                     posY += dy;
-                    opacity -= 0.02;
+                    opacity -= 0.03;
                     
                     particle.style.transform = `translate(${posX}px, ${posY}px)`;
                     particle.style.opacity = opacity;
@@ -848,19 +809,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
