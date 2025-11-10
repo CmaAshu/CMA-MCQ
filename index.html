@@ -54,6 +54,8 @@
             --gradient-secondary: linear-gradient(135deg, #9b59b6 0%, #6b46c1 100%); /* Purple tones */
             --gradient-cta: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
             --gradient-title: linear-gradient(45deg, var(--accent-yellow), var(--secondary-purple), var(--primary-blue));
+            /* STRONGER, MORE VISIBLE HEADER GRADIENT */
+            --gradient-header-bg: linear-gradient(135deg, #e6e9f0 0%, #f6f8f9 100%); 
         }
 
         /* --- Educational Animations (Smooth and Purposeful) --- */
@@ -70,6 +72,11 @@
         @keyframes pulseBorder {
             0%, 100% { box-shadow: 0 0 0 0 rgba(74, 125, 255, 0.4); }
             50% { box-shadow: 0 0 0 6px rgba(74, 125, 255, 0); }
+        }
+        
+        @keyframes subtleShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
         /* --- Light Theme Base with Geometric Shapes --- */
@@ -100,15 +107,45 @@
             text-align: center;
             padding: 60px 20px 40px;
             position: relative;
-            background-color: var(--background-white);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            z-index: 10;
+            overflow: hidden; /* Contains the pseudo-element shapes */
+            background: var(--gradient-header-bg); 
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            margin-bottom: 20px;
         }
 
+        /* Layered Shapes for Header Aesthetics */
+        .header-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                /* Blue Circle */
+                radial-gradient(circle at 10% 20%, rgba(74, 125, 255, 0.1), transparent 50%),
+                /* Yellow Square */
+                linear-gradient(45deg, rgba(241, 196, 15, 0.1) 25%, transparent 25%),
+                /* Purple Triangle */
+                linear-gradient(135deg, transparent 50%, rgba(155, 89, 182, 0.1) 50%);
+            background-size: 400px 400px, 150px 150px, 300px 300px;
+            background-position: 10% 50%, 80% 10%, 40% 90%;
+            opacity: 0.8;
+            pointer-events: none;
+            z-index: -1;
+            /* Subtle animation for the background shapes */
+            animation: subtleShift 20s ease-in-out infinite alternate;
+        }
+        
         .logo-container {
             display: inline-block;
             margin-bottom: 20px;
             position: relative;
             transition: transform 0.3s ease;
+            z-index: 1; /* Ensure logo is above the shapes */
         }
 
         .logo-container:hover {
@@ -138,6 +175,11 @@
             margin: 20px 0 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-title:hover {
+            transform: translateY(-2px);
         }
 
         .subtitle {
@@ -162,7 +204,7 @@
 
         .info-section {
             max-width: 800px;
-            margin: -20px auto 40px;
+            margin: 0px auto 40px; 
             padding: 25px 30px;
             background: var(--card-light);
             border-radius: 15px;
