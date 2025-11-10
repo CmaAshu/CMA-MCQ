@@ -8,7 +8,7 @@
     <title>Prepogy - CMA MCQ Practice Platform | prepogy.fun</title>
     <meta name="description" content="Excel in your ICMAI exams with Prepogy, the ultimate CMA MCQ practice platform. Access a vast question bank for Inter and Final groups (Syllabus 2022) based on the official resources. Start your targeted practice today!">
     <meta name="keywords" content="CMA MCQ, ICMAI preparation, CMA exam, prepogy, CMA practice tests, CMA Inter, CMA Final, Syllabus 2022, Cost Accountant MCQ, cma inter law, cma inter law quiz, cma final quiz, CMA Inter Financial Accounting, CMA Inter Cost Accounting, CMA Final Strategic Financial Management, CMA Final Strategic Cost Management, ICMAI MCQ Bank, CMA Exam Preparation India">
-
+    
     <!-- OG Meta Tags for Social Media & Search Engines -->
     <meta property="og:title" content="Prepogy - CMA MCQ Practice Platform">
     <meta property="og:description" content="The ultimate platform to practice MCQs for the ICMAI CMA Inter and Final exams (Syllabus 2022).">
@@ -19,11 +19,11 @@
     <!-- Favicon -->
     <link rel="icon" href="prep.png" type="image/png">
     <link rel="apple-touch-icon" href="prep.png">
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+    
     <!-- Structured Data for Search Engines (Schema.org) -->
     <script type="application/ld+json">
     {
@@ -34,58 +34,77 @@
       "logo": "https://prepogy.fun/prep.png"
     }
     </script>
-
+    
     <style>
         :root {
-            /* Light Theme Palette - Educational and Vibrant (Yellow, Blue, Purple emphasis) */
-            --primary-blue: #4a7dff; /* Bright Blue */
-            --secondary-purple: #9b59b6; /* Deep Purple */
-            --accent-yellow: #f1c40f; /* Vibrant Yellow */
-            --accent-green: #2ecc71;
-            --accent-red: #e74c3c;
-            --text-dark: #2c3e50;
-            --text-light: #5e6d82;
-            --background-white: #ffffff;
-            --card-light: #fdfefe;
-            --border-light: #e0e0e0;
-
-            /* Gradients for colorful headers/buttons */
-            --gradient-primary: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); /* Cyan to Blue */
-            --gradient-secondary: linear-gradient(135deg, #9b59b6 0%, #6b46c1 100%); /* Purple tones */
-            --gradient-cta: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
-            --gradient-title: linear-gradient(45deg, var(--accent-yellow), var(--secondary-purple), var(--primary-blue));
+            /* New Light & Colourful Theme Palette */
+            --theme-purple: #8b5fbf;
+            --theme-blue: #4A90E2;
+            --theme-yellow: #F5A623; /* A slightly deeper yellow for better contrast */
+            --theme-pink: #ff6b9d;
+            --theme-cyan: #4fd1c7;
+            --theme-green: #48bb78;
+            --text-dark: #333333;
+            --text-light: #555555;
+            --bg-light: #f7faff; /* Very light blue background */
+            --bg-white: #ffffff;
+            --border-light: #e0e6ed;
             
-            /* NEW: Clean, static light gradient for the header background */
-            --gradient-header-bg: linear-gradient(160deg, #f0f4ff 0%, #e6e9ff 35%, #fbf0ff 100%);
+            /* New Gradients */
+            --gradient-colorful: linear-gradient(135deg, var(--theme-purple), var(--theme-blue), var(--theme-pink), var(--theme-yellow));
+            --gradient-sunset: linear-gradient(135deg, var(--theme-pink) 0%, var(--theme-yellow) 100%);
+            --gradient-ocean: linear-gradient(135deg, var(--theme-blue) 0%, var(--theme-cyan) 100%);
+            --gradient-purple-blue: linear-gradient(135deg, var(--theme-purple) 0%, var(--theme-blue) 100%);
         }
 
-        /* --- Educational Animations (Smooth and Purposeful) --- */
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.95) translateY(10px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
+        /* --- New Animations --- */
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
 
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
-        @keyframes pulseBorder {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(74, 125, 255, 0.4); }
-            50% { box-shadow: 0 0 0 6px rgba(74, 125, 255, 0); }
-        }
-        
-        /* Removed subtleShift keyframe */
 
-        /* --- Light Theme Base with Geometric Shapes --- */
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* New rising shapes animation */
+        @keyframes rise {
+            from {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.5;
+            }
+            to {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* --- Base & Header Styles --- */
+
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--background-white);
-            color: var(--text-dark);
+            background-color: var(--bg-light); /* Light background */
+            color: var(--text-dark); /* Dark text */
             overflow-x: hidden;
-            /* Subtle Geometric Pattern: Circles (Blue), Squares (Yellow), Triangles (Purple) */
-            background-image: url("data:image/svg+xml,%3Csvg width='160' height='160' viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='160' height='160' fill='%23ffffff'/%3E%3Cg fill-opacity='0.1'%3E%3Ccircle fill='%234a7dff' cx='80' cy='80' r='15'/%3E%3Crect fill='%23f1c40f' x='10' y='10' width='30' height='30' transform='rotate(45 25 25)'/%3E%3Cpath fill='%239b59b6' d='M130 140 L110 160 L150 160 Z'/%3E%3Ccircle fill='%239b59b6' cx='40' cy='120' r='12'/%3E%3Crect fill='%234a7dff' x='100' y='50' width='25' height='25' transform='rotate(-20 112.5 62.5)'/%3E%3C/g%3E%3C/svg%3E");
-            background-size: 160px 160px;
         }
 
         .animate-fadeInUp {
@@ -93,132 +112,108 @@
         }
 
         .animate-scaleIn {
-            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation: scaleIn 0.6s ease-out forwards;
         }
 
-        /* Hidden in this theme */
-        .floating-elements {
-            display: none;
+        .animate-floating {
+            animation: floating 6s ease-in-out infinite;
         }
-        
+
         .header-wrapper {
             text-align: center;
             padding: 60px 20px 40px;
             position: relative;
-            z-index: 10;
-            overflow: hidden; 
-            /* SIMPLIFIED: Static Gradient */
-            background: var(--gradient-header-bg); 
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-            margin-bottom: 20px;
-            transition: all 0.3s ease; 
         }
 
-        /* Removed complex Layered Shapes pseudo-element */
-        .header-wrapper::before {
-            content: none; /* Explicitly remove the pseudo element content */
-        }
-        
         .logo-container {
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             position: relative;
-            transition: transform 0.3s ease;
-            z-index: 1; /* Ensure logo is above the shapes */
-        }
-
-        .logo-container:hover {
-            transform: scale(1.05);
         }
 
         .prepogy-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 25px;
+            width: 100px; /* smaller size for mobile */
+            height: 100px; /* smaller size for mobile */
+            background: transparent;
+            border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 0 0 5px var(--primary-blue), 0 5px 15px rgba(0, 0, 0, 0.1); 
-            animation: pulseBorder 4s infinite;
+            transition: width 0.3s ease, height 0.3s ease;
         }
 
         .main-title {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
-            background: var(--gradient-title); /* Uses Yellow, Purple, Blue */
+            background: var(--gradient-colorful); /* New colorful gradient */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin: 20px 0 10px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: transform 0.3s ease;
-        }
-        
-        .main-title:hover {
-            transform: translateY(-2px);
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: var(--text-light);
-            font-weight: 400;
+            color: var(--text-light); /* Lighter dark text */
+            font-weight: 300;
             margin-bottom: 10px;
         }
 
         .website-url {
             font-size: 1rem;
-            color: var(--secondary-purple);
+            color: var(--theme-blue);
             font-weight: 500;
             text-decoration: none;
             transition: all 0.3s ease;
         }
 
         .website-url:hover {
-            color: var(--primary-blue);
+            color: var(--theme-purple);
             text-decoration: underline;
         }
 
+        /* --- Info & Shortcut Sections --- */
+
         .info-section {
             max-width: 800px;
-            margin: 0px auto 40px; 
+            margin: -20px auto 40px;
             padding: 25px 30px;
-            background: var(--card-light);
-            border-radius: 15px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            background: var(--bg-white); /* White background */
+            border-radius: 20px;
+            border: 1px solid var(--border-light); /* Light border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
             text-align: center;
-            color: var(--text-light);
+            color: var(--text-light); /* Lighter dark text */
         }
 
         .info-section i {
-            color: var(--accent-green);
-            font-size: 1.8rem;
+            color: var(--theme-blue); /* Theme color */
+            font-size: 1.5rem;
             margin-bottom: 10px;
-            display: block;
         }
 
         .shortcuts-guide-wrapper {
             max-width: 800px;
             margin: 0 auto 60px;
             padding: 0 20px;
-            display: none;
+            display: none; /* Hidden on mobile by default */
         }
 
         .shortcuts-guide {
-            background: var(--card-light);
-            border-radius: 15px;
+            background: var(--bg-white); /* White background */
+            border-radius: 20px;
             padding: 30px;
-            border: 1px solid var(--border-light);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border-light); /* Light border */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
         }
 
         .shortcuts-guide h3 {
-            color: var(--secondary-purple);
+            color: var(--theme-purple); /* Theme color */
             font-size: 1.4rem;
             font-weight: 600;
             margin-bottom: 20px;
@@ -240,30 +235,23 @@
             border-bottom: 1px solid var(--border-light);
             color: var(--text-dark);
         }
-        
-        .shortcuts-guide li:last-child {
-            border-bottom: none;
-        }
 
         .shortcuts-guide kbd {
-            background: var(--accent-green);
+            background: var(--theme-blue); /* Theme color */
             color: white;
-            padding: 6px 10px;
-            border-radius: 6px;
+            padding: 8px 12px;
+            border-radius: 8px;
             font-size: 0.9rem;
             font-weight: 600;
             margin: 0 4px;
-            box-shadow: 0 2px 5px rgba(46, 204, 113, 0.4);
-            transition: transform 0.1s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        
-        .shortcuts-guide kbd:active {
-            transform: scale(0.95);
-        }
+
+        /* --- Group & Quiz Cards --- */
 
         .group-choice-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
@@ -271,44 +259,39 @@
         }
 
         .group-choice-card {
-            background: var(--card-light);
-            border-radius: 20px;
+            background: var(--bg-white); /* White background */
+            border-radius: 25px;
             padding: 40px 30px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 2px solid var(--border-light); /* Light border */
             position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
         }
-
-        /* Individual Card Colors (Blue, Purple, Yellow, Green) */
-        .group-choice-card:nth-child(1) { border-color: var(--primary-blue); } 
-        .group-choice-card:nth-child(2) { border-color: var(--secondary-purple); } 
-        .group-choice-card:nth-child(3) { border-color: var(--accent-yellow); } 
-        .group-choice-card:nth-child(4) { border-color: var(--accent-green); } 
+        
+        /* Using theme colors for card borders */
+        .group-choice-card:nth-child(1) { border-color: var(--theme-purple); }
+        .group-choice-card:nth-child(2) { border-color: var(--theme-blue); }
+        .group-choice-card:nth-child(3) { border-color: var(--theme-yellow); }
+        .group-choice-card:nth-child(4) { border-color: var(--theme-pink); }
 
         .group-choice-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); /* Stronger shadow on hover */
         }
 
         .group-choice-card h2 {
             font-size: 1.8rem;
             font-weight: 700;
             margin: 0 0 10px;
-            color: var(--text-dark);
+            color: var(--text-dark); /* Dark text */
         }
-        
-        .group-choice-card:nth-child(1) h2 { color: var(--primary-blue); }
-        .group-choice-card:nth-child(2) h2 { color: var(--secondary-purple); }
-        .group-choice-card:nth-child(3) h2 { color: var(--accent-yellow); }
-        .group-choice-card:nth-child(4) h2 { color: var(--accent-green); }
 
         .group-choice-card p {
             font-size: 1rem;
-            color: var(--text-light);
+            color: var(--text-light); /* Lighter dark text */
             margin: 0;
             font-weight: 400;
         }
@@ -324,27 +307,27 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--gradient-cta); /* Uses Blue and Purple */
+            background: var(--gradient-purple-blue); /* Theme gradient */
             color: white;
             padding: 12px 24px;
-            border-radius: 30px;
+            border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
             margin-bottom: 30px;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(74, 125, 255, 0.4);
+            box-shadow: 0 8px 20px rgba(139, 95, 191, 0.2);
         }
 
         .back-button:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(74, 125, 255, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(139, 95, 191, 0.3);
         }
 
         .group-title {
             text-align: center;
             font-size: 2.5rem;
             font-weight: 700;
-            background: var(--gradient-secondary); /* Purple Tones */
+            background: var(--gradient-sunset); /* Theme gradient */
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -353,41 +336,36 @@
 
         .quiz-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 25px;
         }
 
         .quiz-card {
-            background: var(--card-light);
-            border-radius: 15px;
+            background: var(--bg-white); /* White background */
+            border-radius: 20px;
             padding: 30px;
-            border: 1px solid var(--border-light);
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-light); /* Light border */
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Soft shadow */
         }
-        
+
         .quiz-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); /* Stronger shadow on hover */
+            border-color: var(--theme-blue); /* Highlight border on hover */
         }
 
         .quiz-card h3 {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
-            color: var(--text-dark);
-            margin: 0 0 10px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .quiz-card h3 i {
-            color: var(--primary-blue);
-            font-size: 1.4rem;
+            color: var(--text-dark); /* Dark text */
+            margin: 0 0 15px;
         }
 
         .quiz-card p {
-            color: var(--text-light);
+            color: var(--text-light); /* Lighter dark text */
             font-size: 0.95rem;
             line-height: 1.6;
             margin: 0 0 20px;
@@ -395,29 +373,75 @@
 
         .quiz-card a {
             display: inline-block;
-            background: var(--gradient-cta);
+            background: var(--gradient-ocean); /* Theme gradient */
             color: white;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 25px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(74, 125, 255, 0.3);
+            box-shadow: 0 8px 20px rgba(79, 209, 199, 0.3);
         }
 
         .quiz-card a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 15px rgba(74, 125, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(79, 209, 199, 0.4);
         }
+
+        /* --- New Animated Shapes --- */
+        .shape-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -10;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            bottom: -150px; /* Start off-screen */
+            opacity: 0.3;
+            animation: rise 20s linear infinite;
+        }
+
+        .shape.circle {
+            border-radius: 50%;
+        }
+
+        .shape.square {
+            border-radius: 10%;
+        }
+
+        .shape.triangle {
+            width: 0;
+            height: 0;
+            background: transparent !important; /* Triangles are made with borders */
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 52px solid; /* This will be colored by JS/inline style or nth-child */
+        }
+
+        /* Shape-specific styles */
+        .shape1 { left: 10%; width: 80px; height: 80px; background: var(--theme-yellow); animation-duration: 22s; animation-delay: 0s; }
+        .shape2 { left: 20%; width: 50px; height: 50px; background: var(--theme-blue); animation-duration: 18s; animation-delay: 2s; }
+        .shape3 { left: 35%; border-bottom-color: var(--theme-purple); animation-duration: 25s; animation-delay: 4s; } /* Triangle */
+        .shape4 { left: 50%; width: 60px; height: 60px; background: var(--theme-pink); animation-duration: 20s; animation-delay: 0s; }
+        .shape5 { left: 65%; width: 40px; height: 40px; background: var(--theme-cyan); animation-duration: 15s; animation-delay: 5s; }
+        .shape6 { left: 80%; width: 100px; height: 100px; background: var(--theme-yellow); opacity: 0.2; animation-duration: 28s; animation-delay: 1s; }
+        .shape7 { left: 90%; border-bottom-color: var(--theme-blue); animation-duration: 23s; animation-delay: 3s; } /* Triangle */
+        .shape8 { left: 5%; width: 30px; height: 30px; background: var(--theme-purple); animation-duration: 17s; animation-delay: 6s; }
+
         
-        /* Mobile and Desktop Responsiveness */
         @media (min-width: 768px) {
             .prepogy-logo {
-                width: 150px;
-                height: 150px;
+                width: 150px; /* larger size for desktop */
+                height: 150px; /* larger size for desktop */
             }
             .shortcuts-guide-wrapper {
-                display: block;
+                display: block; /* Visible on desktop */
             }
         }
 
@@ -426,31 +450,41 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+            
             .quiz-grid {
                 grid-template-columns: 1fr;
             }
+            
             .main-title {
-                font-size: 2.2rem;
+                font-size: 2rem;
+            }
+            
+            .shortcuts-guide {
+                padding: 20px;
+            }
+            
+            .shortcuts-guide li {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
             }
         }
 
+        /* --- Footer --- */
         .footer-credit {
             margin-top: 40px;
             padding: 20px;
             font-size: 0.9em;
-            color: var(--text-light);
+            color: var(--text-light); /* Lighter dark text */
             text-align: center;
             width: 100%;
-            border-top: 1px solid var(--border-light);
         }
         .footer-credit a {
-            color: var(--secondary-purple);
+            color: var(--theme-purple); /* Theme color */
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
         }
         .footer-credit a:hover {
-            color: var(--primary-blue);
             text-decoration: underline;
         }
         .footer-credit .heart-icon {
@@ -459,12 +493,12 @@
             height: 18px;
             margin: 0 2px;
             vertical-align: middle;
-            fill: var(--accent-red);
+            fill: #ef4444;
         }
         .jai-hind {
             font-size: 1.1em;
             font-weight: 700;
-            color: var(--accent-green);
+            color: var(--theme-green); /* Kept green for the flag */
             margin-top: 15px;
             display: flex;
             align-items: center;
@@ -479,12 +513,20 @@
 </head>
 
 <body>
-    <!-- Floating Background Elements (Hidden in this theme) -->
-    <div class="floating-elements"></div>
+    <!-- New Animated Shapes Background -->
+    <div class="shape-container">
+        <div class="shape circle shape1"></div>
+        <div class="shape square shape2"></div>
+        <div class="shape triangle shape3"></div>
+        <div class="shape circle shape4"></div>
+        <div class="shape square shape5"></div>
+        <div class="shape circle shape6"></div>
+        <div class="shape triangle shape7"></div>
+        <div class="shape square shape8"></div>
+    </div>
 
     <div class="header-wrapper animate-fadeInUp">
-        <div class="logo-container">
-            <!-- Animation now applied via pulseBorder on the logo -->
+        <div class="logo-container animate-floating">
             <div class="prepogy-logo"><img src="prep.png" alt="Prepogy Logo" style="width: 100%; height: auto;"></div>
         </div>
         <div class="header-container">
@@ -495,7 +537,7 @@
 
     <div class="info-section animate-fadeInUp" style="animation-delay: 0.1s;">
         <i class="fas fa-book-open"></i>
-        <p>Sharpen your skills with a **comprehensive collection of Multiple Choice Questions** sourced directly from the official MCQ bank of the Institute of Cost Accountants of India (ICMAI). This platform is designed to help you practice, evaluate your understanding, and excel in your CMA examinations.</p>
+        <p>Sharpen your skills with a comprehensive collection of Multiple Choice Questions sourced directly from the official MCQ bank of the Institute of Cost Accountants of India (ICMAI). This platform is designed to help you practice, evaluate your understanding, and excel in your CMA examinations.</p>
     </div>
 
     <div class="shortcuts-guide-wrapper animate-fadeInUp" style="animation-delay: 0.15s;">
@@ -641,7 +683,7 @@
             <div class="quiz-card">
                 <h3><i class="fas fa-bolt"></i> Paper 20C: Entrepreneurship and Start Up (ENTS)</h3>
                 <p>Engage with  Entrepreneurship and Start Up (ENTS) concepts.</p>
-                <a href="paper 20C.html"><i class="fas fa-play"></a>
+                <a href="paper 20C.html"><i class="fas fa-play"></i> Start Quiz</a>
             </div>
         </div>
     </div>
@@ -660,9 +702,6 @@
     </footer>
 
     <script>
-        // Check if the current environment is a blob URL (like in the Canvas preview)
-        const isBlob = window.location.protocol === 'blob:';
-
         function showGroupSubjects(groupId, pushState = true) {
             // Hide all containers
             document.querySelectorAll('.group-container').forEach(container => {
@@ -675,21 +714,20 @@
             if (groupContainer) {
                 groupContainer.style.display = 'block';
                 
-                // Add scale-in animation to quiz cards
+                // Add animation to quiz cards
                 const quizCards = groupContainer.querySelectorAll('.quiz-card');
                 quizCards.forEach((card, index) => {
                     card.style.opacity = '0';
-                    card.style.animation = 'none'; // Reset animation
-                    
-                    // Trigger new animation after a short delay
+                    card.style.transform = 'translateY(20px)';
                     setTimeout(() => {
-                        card.style.animation = `scaleIn 0.5s ease-out forwards ${index * 0.1}s`;
-                    }, 50);
+                        card.style.transition = 'all 0.5s ease';
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
                 });
                 
-                if (pushState && !isBlob) {
-                    const groupTitleElement = groupContainer.querySelector('.group-title');
-                    const groupName = groupTitleElement ? groupTitleElement.textContent : 'Group Details';
+                if (pushState) {
+                    const groupName = groupContainer.querySelector('.group-title').textContent;
                     history.pushState({ groupId: groupId }, groupName, `#${groupId.replace('SubjectsContainer', '')}`);
                 }
             }
@@ -704,20 +742,8 @@
             // Show group choice container
             document.getElementById('groupChoiceContainer').style.display = 'grid';
             
-            // Apply scale-in animation to group choice cards
-            document.querySelectorAll('.group-choice-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.animation = 'none';
-                setTimeout(() => {
-                    card.style.animation = `scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards ${index * 0.15}s`;
-                }, 50);
-            });
-            
-            if (pushState && !isBlob) {
-                // Use history.replaceState to set the initial state without changing the URL
-                // This is often needed on first load, even if pushState is restricted. 
-                // However, since replaceState is failing, we must check for blob.
-                history.replaceState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
+            if (pushState) {
+                history.pushState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
             }
         }
 
@@ -734,87 +760,71 @@
         document.querySelectorAll('.back-button').forEach(button => {
             button.onclick = (e) => {
                 e.preventDefault();
-                // Since history manipulation is tricky in this environment, 
-                // we'll explicitly call showGroupSelection instead of relying solely on history.back()
-                if (!isBlob) {
-                    history.back();
-                } else {
-                    showGroupSelection();
-                }
+                history.back();
             };
         });
 
         // Initialize page
         document.addEventListener('DOMContentLoaded', () => {
             const initialGroupId = window.location.hash.substring(1);
-            const fullGroupId = initialGroupId ? initialGroupId + 'SubjectsContainer' : null;
-            
-            if (fullGroupId && document.getElementById(fullGroupId)) {
-                // Only replace state if not a blob environment
-                if (!isBlob) {
-                    history.replaceState({ groupId: fullGroupId }, `Group - ${initialGroupId}`, `#${initialGroupId}`);
-                }
-                showGroupSubjects(fullGroupId, false);
+            if (initialGroupId && document.getElementById(initialGroupId + 'SubjectsContainer')) {
+                history.replaceState({ groupId: initialGroupId + 'SubjectsContainer' }, `Group - ${initialGroupId}`, `#${initialGroupId}`);
+                showGroupSubjects(initialGroupId + 'SubjectsContainer', false);
             } else {
-                if (!isBlob) {
-                    history.replaceState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
-                }
+                history.replaceState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
                 showGroupSelection(false);
             }
         });
 
-        // Add hover effects for a delightful interaction
+        // Add interactive hover effects
         document.querySelectorAll('.group-choice-card, .quiz-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
+                // Hover effect is now handled by CSS :hover pseudo-class
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
+                // Hover effect is now handled by CSS :hover pseudo-class
             });
         });
 
         // Smooth scrolling for better UX
         document.documentElement.style.scrollBehavior = 'smooth';
 
-        // Add a gentle, subtle confetti effect on click
+        // Add particle effect on click
         document.addEventListener('click', function(e) {
-            // Only fire particles for cards, buttons, or links
-            if (e.target.closest('.group-choice-card, .quiz-card a, .back-button')) {
-                createParticles(e.clientX, e.clientY);
-            }
+            createParticles(e.clientX, e.clientY);
         });
 
         function createParticles(x, y) {
-            const colors = ['#4a7dff', '#9b59b6', '#2ecc71', '#f1c40f', '#ff8c42'];
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 5; i++) {
                 const particle = document.createElement('div');
                 particle.style.position = 'fixed';
                 particle.style.left = x + 'px';
                 particle.style.top = y + 'px';
-                particle.style.width = '6px';
-                particle.style.height = '6px';
-                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.width = '4px';
+                particle.style.height = '4px';
+                // Updated to new colorful gradient
+                particle.style.background = 'var(--gradient-colorful)';
                 particle.style.borderRadius = '50%';
                 particle.style.pointerEvents = 'none';
                 particle.style.zIndex = '9999';
-                particle.style.opacity = '0.9';
+                particle.style.opacity = '0.7';
                 
                 document.body.appendChild(particle);
                 
-                const angle = Math.random() * Math.PI * 2;
-                const velocity = Math.random() * 4 + 2;
+                const angle = (Math.PI * 2 * i) / 5;
+                const velocity = 2;
                 const dx = Math.cos(angle) * velocity;
                 const dy = Math.sin(angle) * velocity;
                 
-                let opacity = 0.9;
+                let opacity = 0.7;
                 let posX = 0;
                 let posY = 0;
                 
                 const animate = () => {
                     posX += dx;
                     posY += dy;
-                    opacity -= 0.03;
+                    opacity -= 0.02;
                     
                     particle.style.transform = `translate(${posX}px, ${posY}px)`;
                     particle.style.opacity = opacity;
