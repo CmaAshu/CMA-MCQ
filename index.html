@@ -388,7 +388,7 @@
             box-shadow: 0 12px 25px rgba(79, 209, 199, 0.4);
         }
 
-        /* --- New Animated Shapes --- */
+        /* --- New Animated Symbols --- */
         .shape-container {
             position: fixed;
             top: 0;
@@ -405,34 +405,34 @@
             bottom: -150px; /* Start off-screen */
             opacity: 0.3;
             animation: rise 20s linear infinite;
+            font-weight: 700; /* Make symbols bold */
+            color: var(--theme-purple); /* Default color, will be overridden */
+            line-height: 1;
+            display: block;
         }
-
-        .shape.circle {
-            border-radius: 50%;
-        }
-
-        .shape.square {
-            border-radius: 10%;
-        }
-
-        .shape.triangle {
-            width: 0;
-            height: 0;
-            background: transparent !important; /* Triangles are made with borders */
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-bottom: 52px solid; /* This will be colored by JS/inline style or nth-child */
-        }
-
-        /* Shape-specific styles */
-        .shape1 { left: 10%; width: 80px; height: 80px; background: var(--theme-yellow); animation-duration: 22s; animation-delay: 0s; }
-        .shape2 { left: 20%; width: 50px; height: 50px; background: var(--theme-blue); animation-duration: 18s; animation-delay: 2s; }
-        .shape3 { left: 35%; border-bottom-color: var(--theme-purple); animation-duration: 25s; animation-delay: 4s; } /* Triangle */
-        .shape4 { left: 50%; width: 60px; height: 60px; background: var(--theme-pink); animation-duration: 20s; animation-delay: 0s; }
-        .shape5 { left: 65%; width: 40px; height: 40px; background: var(--theme-cyan); animation-duration: 15s; animation-delay: 5s; }
-        .shape6 { left: 80%; width: 100px; height: 100px; background: var(--theme-yellow); opacity: 0.2; animation-duration: 28s; animation-delay: 1s; }
-        .shape7 { left: 90%; border-bottom-color: var(--theme-blue); animation-duration: 23s; animation-delay: 3s; } /* Triangle */
-        .shape8 { left: 5%; width: 30px; height: 30px; background: var(--theme-purple); animation-duration: 17s; animation-delay: 6s; }
+        
+        /* Symbol-specific styles with NEGATIVE delays AND LARGER FONT SIZES */
+        .shape1 { left: 10%; font-size: 55px; color: var(--theme-yellow); animation-duration: 22s; animation-delay: -2s; }
+        .shape2 { left: 20%; font-size: 45px; color: var(--theme-blue); animation-duration: 18s; animation-delay: -5s; }
+        .shape3 { left: 35%; font-size: 50px; color: var(--theme-purple); animation-duration: 25s; animation-delay: -7s; }
+        .shape4 { left: 50%; font-size: 55px; color: var(--theme-pink); animation-duration: 20s; animation-delay: -3s; }
+        .shape5 { left: 65%; font-size: 45px; color: var(--theme-cyan); animation-duration: 15s; animation-delay: -10s; }
+        .shape6 { left: 80%; font-size: 65px; color: var(--theme-yellow); opacity: 0.2; animation-duration: 28s; animation-delay: -1s; }
+        .shape7 { left: 90%; font-size: 50px; color: var(--theme-blue); animation-duration: 23s; animation-delay: -12s; }
+        .shape8 { left: 5%; font-size: 45px; color: var(--theme-purple); animation-duration: 17s; animation-delay: -8s; }
+        .shape9 { left: 75%; font-size: 40px; color: var(--theme-pink); animation-duration: 20s; animation-delay: -15s; }
+        .shape10 { left: 25%; font-size: 60px; color: var(--theme-cyan); animation-duration: 26s; animation-delay: -6s; }
+        /* Added 10 more shapes for frequency */
+        .shape11 { left: 15%; font-size: 45px; color: var(--theme-purple); animation-duration: 20s; animation-delay: -10s; }
+        .shape12 { left: 25%; font-size: 35px; color: var(--theme-cyan); animation-duration: 15s; animation-delay: -8s; }
+        .shape13 { left: 45%; font-size: 50px; color: var(--theme-yellow); animation-duration: 25s; animation-delay: -12s; }
+        .shape14 { left: 55%; font-size: 55px; color: var(--theme-blue); animation-duration: 22s; animation-delay: -19s; }
+        .shape15 { left: 60%; font-size: 40px; color: var(--theme-pink); animation-duration: 18s; animation-delay: -1s; }
+        .shape16 { left: 70%; font-size: 45px; color: var(--theme-purple); animation-duration: 24s; animation-delay: -6s; }
+        .shape17 { left: 85%; font-size: 50px; color: var(--theme-yellow); animation-duration: 20s; animation-delay: -15s; }
+        .shape18 { left: 95%; font-size: 40px; color: var(--theme-cyan); animation-duration: 16s; animation-delay: -4s; }
+        .shape19 { left: 30%; font-size: 35px; color: var(--theme-pink); animation-duration: 19s; animation-delay: -9s; }
+        .shape20 { left: 88%; font-size: 45px; color: var(--theme-blue); animation-duration: 23s; animation-delay: -17s; }
 
         
         @media (min-width: 768px) {
@@ -513,16 +513,29 @@
 </head>
 
 <body>
-    <!-- New Animated Shapes Background -->
+    <!-- New Animated Symbols Background -->
     <div class="shape-container">
-        <div class="shape circle shape1"></div>
-        <div class="shape square shape2"></div>
-        <div class="shape triangle shape3"></div>
-        <div class="shape circle shape4"></div>
-        <div class="shape square shape5"></div>
-        <div class="shape circle shape6"></div>
-        <div class="shape triangle shape7"></div>
-        <div class="shape square shape8"></div>
+        <!-- Increased frequency of ₹ -->
+        <div class="shape shape1">₹</div>
+        <div class="shape shape2">$</div>
+        <div class="shape shape3">₹</div> <!-- Changed from ¥ -->
+        <div class="shape shape4">€</div>
+        <div class="shape shape5">₹</div> <!-- Changed from + -->
+        <div class="shape shape6">−</div>
+        <div class="shape shape7">×</div>
+        <div class="shape shape8">÷</div>
+        <div class="shape shape9">₹</div>
+        <div class="shape shape10">$</div>
+        <div class="shape shape11">€</div>
+        <div class="shape shape12">+</div>
+        <div class="shape shape13">₹</div> <!-- Changed from ¥ -->
+        <div class="shape shape14">−</div>
+        <div class="shape shape15">÷</div>
+        <div class="shape shape16">₹</div>
+        <div class="shape shape17">×</div>
+        <div class="shape shape18">₹</div> <!-- Changed from $ -->
+        <div class="shape shape19">+</div>
+        <div class="shape shape20">€</div>
     </div>
 
     <div class="header-wrapper animate-fadeInUp">
@@ -530,315 +543,4 @@
             <div class="prepogy-logo"><img src="prep.png" alt="Prepogy Logo" style="width: 100%; height: auto;"></div>
         </div>
         <div class="header-container">
-            <h1 class="main-title">Prepogy</h1>
-            <p class="subtitle">Your Gateway to Mastering CMA MCQs</p>
-        </div>
-    </div>
-
-    <div class="info-section animate-fadeInUp" style="animation-delay: 0.1s;">
-        <i class="fas fa-book-open"></i>
-        <p>Sharpen your skills with a comprehensive collection of Multiple Choice Questions sourced directly from the official MCQ bank of the Institute of Cost Accountants of India (ICMAI). This platform is designed to help you practice, evaluate your understanding, and excel in your CMA examinations.</p>
-    </div>
-
-    <div class="shortcuts-guide-wrapper animate-fadeInUp" style="animation-delay: 0.15s;">
-        <div class="shortcuts-guide">
-            <h3><i class="fas fa-keyboard"></i> Keyboard Shortcuts Guide</h3>
-            <ul>
-                <li><span>Select Option A/B/C/D</span> <span><kbd>A</kbd><kbd>B</kbd><kbd>C</kbd><kbd>D</kbd> or <kbd>1</kbd><kbd>2</kbd><kbd>3</kbd><kbd>4</kbd></span></li>
-                <li><span>Next Question</span> <span><kbd>Enter</kbd> or <kbd>→</kbd> or <kbd>Space</kbd></span></li>
-                <li><span>Previous Question</span> <span><kbd>/</kbd> or <kbd>←</kbd></span></li>
-            </ul>
-        </div>
-    </div>
-
-    <div id="groupChoiceContainer" class="group-choice-container">
-        <div class="group-choice-card animate-scaleIn" style="animation-delay: 0.3s;" onclick="showGroupSubjects('group1SubjectsContainer')">
-            <h2><i class="fas fa-graduation-cap"></i> Inter Group I</h2>
-            <p>Syllabus 2022</p>
-        </div>
-        <div class="group-choice-card animate-scaleIn" style="animation-delay: 0.4s;" onclick="showGroupSubjects('group2SubjectsContainer')">
-            <h2><i class="fas fa-chart-line"></i> Inter Group II</h2>
-            <p>Syllabus 2022</p>
-        </div>
-        <div class="group-choice-card animate-scaleIn" style="animation-delay: 0.5s;" onclick="showGroupSubjects('group3SubjectsContainer')">
-            <h2><i class="fas fa-trophy"></i> Final Group III</h2>
-            <p>Syllabus 2022</p>
-        </div>
-        <div class="group-choice-card animate-scaleIn" style="animation-delay: 0.6s;" onclick="showGroupSubjects('group4SubjectsContainer')">
-            <h2><i class="fas fa-crown"></i> Final Group IV</h2>
-            <p>Syllabus 2022</p>
-        </div>
-    </div>
-
-    <div id="group1SubjectsContainer" class="group-container">
-        <a class="back-button" href="#"><i class="fas fa-arrow-left"></i> Back to Group Selection</a>
-        <h2 class="group-title">Group I - CMA Inter Syllabus 2022</h2>
-        <div class="quiz-grid">
-            <div class="quiz-card">
-                <h3><i class="fas fa-balance-scale"></i> Paper 5: Business Laws & Ethics</h3>
-                <p>Review your grasp of various business laws and ethical considerations.</p>
-                <a href="law sets.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-calculator"></i> Paper 6: Financial Accounting</h3>
-                <p>Dive into MCQs covering fundamental accounting concepts and standards.</p>
-                <a href="fin acc sets.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-receipt"></i> Paper 7: Direct & Indirect Taxation</h3>
-                <p>Assess your understanding of direct tax laws and indirect tax (GST) provisions.</p>
-                <a href="dt sets.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-coins"></i> Paper 8: Cost Accounting</h3>
-                <p>Challenge yourself with MCQs on cost ascertainment, analysis, and control.</p>
-                <a href="cost sets.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="group2SubjectsContainer" class="group-container">
-        <a class="back-button" href="#"><i class="fas fa-arrow-left"></i> Back to Group Selection</a>
-        <h2 class="group-title">Group II - CMA Inter Syllabus 2022</h2>
-        <div class="quiz-grid">
-            <div class="quiz-card">
-                <h3><i class="fas fa-cogs"></i> Paper 9: Operations Management & Strategic Management</h3>
-                <p>Tackle questions on operations, supply chain, and strategic planning.</p>
-                <a href="omsm sets.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-building"></i> Paper 10: CORPORATE ACCOUNTING AND AUDITING</h3>
-                <p>Test your knowledge on corporate accounting principles and auditing standards.</p>
-                <a href="ca audit set.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-chart-bar"></i> Paper 11: Financial Management & Business Data Analytics</h3>
-                <p>Explore questions on financial decision-making and data analysis techniques.</p>
-                <a href="fmda set.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-laptop"></i> Paper 12: Management Accounting</h3>
-                <p>Engage with MCQs on management accounting tools for decision support.</p>
-                <a href="MA set.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="group3SubjectsContainer" class="group-container">
-        <a class="back-button" href="#"><i class="fas fa-arrow-left"></i> Back to Group Selection</a>
-        <h2 class="group-title">Group III - CMA Final Syllabus 2022</h2>
-        <div class="quiz-grid">
-            <div class="quiz-card">
-                <h3><i class="fas fa-university"></i> Paper 13: Corporate Laws & Compliance</h3>
-                <p>Master the complexities of corporate governance and economic regulations.</p>
-                <a href="paper 13.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-chart-area"></i> Paper 14: Strategic Financial Management</h3>
-                <p>Dive deep into advanced financial strategies, derivatives, and portfolio management.</p>
-                <a href="paper 14.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-file-invoice-dollar"></i> Paper 16: Strategic Cost Management-Decision Making</h3>
-                <p>Challenge yourself with modern cost management techniques and decision making.</p>
-                <a href="paper 15.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-search-dollar"></i> Paper 15: Direct Tax Laws and International Taxation</h3>
-                <p>Test your knowledge on direct tax planning, and international tax treaties.</p>
-                <a href="paper 16.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-        </div>
-    </div>
-
-    <div id="group4SubjectsContainer" class="group-container">
-        <a class="back-button" href="#"><i class="fas fa-arrow-left"></i> Back to Group Selection</a>
-        <h2 class="group-title">Group IV - CMA Final Syllabus 2022</h2>
-        <div class="quiz-grid">
-            <div class="quiz-card">
-                <h3><i class="fas fa-clipboard-check"></i> Paper 17: Cost and Management Audit</h3>
-                <p>Explore the principles and practices of cost auditing and management audit.</p>
-                <a href="paper 17.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-file-alt"></i> Paper 18: Corporate Financial Reporting</h3>
-                <p>Test your understanding of Ind AS, financial statement analysis, and reporting.</p>
-                <a href="paper 18.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-money-bill"></i> Paper 19: Indirect Taxation</h3>
-                <p>Assess your skills in GST, customs law, and foreign trade policies.</p>
-                <a href="paper 19.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-bullseye"></i> Paper 20A: Strategic Performance Management and Business Valuation</h3>
-                <p>Engage with strategic performance management and business valuation concepts.</p>
-                <a href="paper 20A.html"><i class="fas fa-play"></i> Start Quiz</a>
-                 </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-piggy-bank"></i> Paper 20B: RISK MANAGEMENT IN BANKING AND INSURANCE (RMBI)</h3>
-                <p>Engage with RISK MANAGEMENT IN BANKING AND INSURANCE (RMBI) concepts.</p>
-                <a href="paper 20B.html"><i class="fas fa-play"></i> Start Quiz</a>
-                 </div>
-            <div class="quiz-card">
-                <h3><i class="fas fa-bolt"></i> Paper 20C: Entrepreneurship and Start Up (ENTS)</h3>
-                <p>Engage with  Entrepreneurship and Start Up (ENTS) concepts.</p>
-                <a href="paper 20C.html"><i class="fas fa-play"></i> Start Quiz</a>
-            </div>
-        </div>
-    </div>
-
-    <footer class="footer-credit">
-        <p>
-            Developed with&nbsp;
-            <svg class="heart-icon" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path></svg>
-            &nbsp;by&nbsp;
-            <a href="https://www.instagram.com/ashu.ig?igsh=ams5eWxhd2NuNGs4" target="_blank" rel="noopener noreferrer">Ash🔱tosh</a>
-        </p>
-        <p class="jai-hind">
-            जय हिन्द
-            <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="Indian Flag">
-        </p>
-    </footer>
-
-    <script>
-        function showGroupSubjects(groupId, pushState = true) {
-            // Hide all containers
-            document.querySelectorAll('.group-container').forEach(container => {
-                container.style.display = 'none';
-            });
-            document.getElementById('groupChoiceContainer').style.display = 'none';
-            
-            // Show selected group
-            const groupContainer = document.getElementById(groupId);
-            if (groupContainer) {
-                groupContainer.style.display = 'block';
-                
-                // Add animation to quiz cards
-                const quizCards = groupContainer.querySelectorAll('.quiz-card');
-                quizCards.forEach((card, index) => {
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        card.style.transition = 'all 0.5s ease';
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, index * 100);
-                });
-                
-                if (pushState) {
-                    const groupName = groupContainer.querySelector('.group-title').textContent;
-                    history.pushState({ groupId: groupId }, groupName, `#${groupId.replace('SubjectsContainer', '')}`);
-                }
-            }
-        }
-
-        function showGroupSelection(pushState = true) {
-            // Hide all group containers
-            document.querySelectorAll('.group-container').forEach(container => {
-                container.style.display = 'none';
-            });
-            
-            // Show group choice container
-            document.getElementById('groupChoiceContainer').style.display = 'grid';
-            
-            if (pushState) {
-                history.pushState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
-            }
-        }
-
-        // Handle browser back/forward
-        window.addEventListener('popstate', (event) => {
-            if (event.state && event.state.groupId) {
-                showGroupSubjects(event.state.groupId, false);
-            } else {
-                showGroupSelection(false);
-            }
-        });
-        
-        // Handle back button clicks
-        document.querySelectorAll('.back-button').forEach(button => {
-            button.onclick = (e) => {
-                e.preventDefault();
-                history.back();
-            };
-        });
-
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', () => {
-            const initialGroupId = window.location.hash.substring(1);
-            if (initialGroupId && document.getElementById(initialGroupId + 'SubjectsContainer')) {
-                history.replaceState({ groupId: initialGroupId + 'SubjectsContainer' }, `Group - ${initialGroupId}`, `#${initialGroupId}`);
-                showGroupSubjects(initialGroupId + 'SubjectsContainer', false);
-            } else {
-                history.replaceState({ groupId: null }, 'Prepogy - CMA MCQ Practice', window.location.pathname);
-                showGroupSelection(false);
-            }
-        });
-
-        // Add interactive hover effects
-        document.querySelectorAll('.group-choice-card, .quiz-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                // Hover effect is now handled by CSS :hover pseudo-class
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                // Hover effect is now handled by CSS :hover pseudo-class
-            });
-        });
-
-        // Smooth scrolling for better UX
-        document.documentElement.style.scrollBehavior = 'smooth';
-
-        // Add particle effect on click
-        document.addEventListener('click', function(e) {
-            createParticles(e.clientX, e.clientY);
-        });
-
-        function createParticles(x, y) {
-            for (let i = 0; i < 5; i++) {
-                const particle = document.createElement('div');
-                particle.style.position = 'fixed';
-                particle.style.left = x + 'px';
-                particle.style.top = y + 'px';
-                particle.style.width = '4px';
-                particle.style.height = '4px';
-                // Updated to new colorful gradient
-                particle.style.background = 'var(--gradient-colorful)';
-                particle.style.borderRadius = '50%';
-                particle.style.pointerEvents = 'none';
-                particle.style.zIndex = '9999';
-                particle.style.opacity = '0.7';
-                
-                document.body.appendChild(particle);
-                
-                const angle = (Math.PI * 2 * i) / 5;
-                const velocity = 2;
-                const dx = Math.cos(angle) * velocity;
-                const dy = Math.sin(angle) * velocity;
-                
-                let opacity = 0.7;
-                let posX = 0;
-                let posY = 0;
-                
-                const animate = () => {
-                    posX += dx;
-                    posY += dy;
-                    opacity -= 0.02;
-                    
-                    particle.style.transform = `translate(${posX}px, ${posY}px)`;
-                    particle.style.opacity = opacity;
-                    
-                    if (opacity > 0) {
-                        requestAnimationFrame(animate);
-                    } else {
-                        particle.remove();
-                    }
-                };
-                
-                animate();
-            }
-        }
-    </script>
-</body>
-</html>
+    
