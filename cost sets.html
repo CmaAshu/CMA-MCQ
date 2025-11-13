@@ -3,354 +3,498 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCQ Quiz - Cost Accounting (Paper 8)</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Paper 7: Direct & Indirect Taxation | Prepogy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
-            --primary-yellow: #f2e70c;
-            --primary-green: #04bf26;
-            --primary-blue: #0637c9;
-            --primary-purple: #57039c;
-            --subject-tile-bg: #FFC300;
-            --quiz-button-bg: #0228fa;
-            --kbd-button-bg: #04bf26;
-            --dark-bg: #111827;
-            --light-text: #f3f4f6;
-            --medium-text: #9ca3af;
-            --dark-text: #1f2937;
+            /* Theme Palette from Index */
+            --theme-purple: #8b5fbf;
+            --theme-blue: #4A90E2;
+            --theme-yellow: #F5A623;
+            --theme-pink: #ff6b9d;
+            --theme-cyan: #4fd1c7;
+            --theme-green: #48bb78;
+            --text-dark: #333333;
+            --text-light: #555555;
+            --bg-light: #f7faff;
+            --bg-white: #ffffff;
+            --border-light: #e0e6ed;
+            
+            /* Gradients */
+            --gradient-colorful: linear-gradient(135deg, var(--theme-purple), var(--theme-blue), var(--theme-pink), var(--theme-yellow));
+            --gradient-ocean: linear-gradient(135deg, var(--theme-blue) 0%, var(--theme-cyan) 100%);
+            --gradient-purple-blue: linear-gradient(135deg, var(--theme-purple) 0%, var(--theme-blue) 100%);
         }
 
+        /* --- Animations --- */
+        @keyframes rise {
+            from { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+            to { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .animate-slideInRight {
+            animation: slideInRight 0.4s ease-out;
+        }
+
+        @keyframes pop {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotateZ(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotateZ(360deg); opacity: 0; }
+        }
+        .confetti-particle {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+
+        /* --- Base Styles --- */
         body {
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
             margin: 0;
             padding: 20px;
-            background-color: var(--dark-bg);
-            /* Background pattern retained from original file */
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23272c44' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            color: var(--light-text);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        #scoreboard-container {
-            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
-            color: #ffffff;
-            padding: 15px 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            width: 90%;
+        /* --- Background Shapes --- */
+        .shape-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: -1; overflow: hidden;
+        }
+        .shape {
+            position: absolute; bottom: -150px; opacity: 0.3;
+            animation: rise 20s linear infinite;
+            font-weight: 700; line-height: 1; display: block;
+        }
+        /* A few shapes for context */
+        .shape1 { left: 10%; font-size: 55px; color: var(--theme-yellow); animation-duration: 22s; animation-delay: -2s; }
+        .shape2 { left: 20%; font-size: 45px; color: var(--theme-blue); animation-duration: 18s; animation-delay: -5s; }
+        .shape3 { left: 80%; font-size: 65px; color: var(--theme-purple); opacity: 0.2; animation-duration: 28s; animation-delay: -1s; }
+        .shape4 { left: 50%; font-size: 55px; color: var(--theme-pink); animation-duration: 20s; animation-delay: -3s; }
+        .shape5 { left: 70%; font-size: 45px; color: var(--theme-cyan); animation-duration: 25s; animation-delay: -8s; }
+        .shape6 { left: 90%; font-size: 60px; color: var(--theme-yellow); animation-duration: 19s; animation-delay: -4s; }
+
+
+        /* --- Main UI Components --- */
+        .quiz-wrapper {
+            width: 100%;
             max-width: 800px;
-            margin-bottom: 15px;
-            text-align: center;
+            z-index: 1;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease-out;
+            padding: 0 10px;
+        }
+
+        .home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gradient-purple-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(139, 95, 191, 0.2);
+        }
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(139, 95, 191, 0.3);
+        }
+        .home-btn i {
+            font-size: 0.9em;
         }
         
+        /* Set Navigation */
         #set-navigation-container {
-            background: linear-gradient(135deg, #04bf26, #ADFF2F);
-            color: var(--dark-text);
-            padding: 15px 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            width: 90%;
+            width: 100%;
             max-width: 800px;
-            margin-bottom: 15px;
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-light);
             text-align: center;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        #set-navigation-container label {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-right: 15px;
+            font-size: 1.1rem;
+            vertical-align: middle;
+        }
+        #set-selector {
+            padding: 10px 15px;
+            border-radius: 12px;
+            border: 2px solid var(--border-light);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
             font-weight: 500;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: border-color 0.3s;
+            vertical-align: middle;
+        }
+        #set-selector:hover {
+            border-color: var(--theme-blue);
+        }
+        #set-selector:focus {
+            outline: none;
+            border-color: var(--theme-blue);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.3);
         }
 
+
+        /* Scoreboard */
+        .scoreboard-container {
+            background: var(--gradient-purple-blue);
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(139, 95, 191, 0.2);
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 25px;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
         #scoreboard {
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            font-size: 0.95em;
+            font-size: 1rem;
             font-weight: 500;
+            gap: 10px;
         }
 
         #scoreboard span {
             margin: 5px 10px;
-        }
-        #scoreboard .correct { color: #a7f3d0; } 
-        #scoreboard .incorrect { color: #fecaca; } 
-        #scoreboard .accuracy { color: #e5e7eb; } 
-
-
-        #set-navigation-container label {
-            margin-right: 10px;
-            font-weight: 600;
-            color: var(--dark-text);
-        }
-
-        #set-selector {
-            padding: 8px 12px;
-            border-radius: 6px;
-            border: 1px solid #4b5563;
-            font-size: 1em;
-            background-color: #f3f4f6; 
-            color: var(--dark-text); 
-        }
-
-        #quiz-container {
-            background: var(--subject-tile-bg);
-            border: 1px solid #d97706;
-            padding: 25px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            width: 90%;
-            max-width: 800px;
-            margin-bottom: 20px;
-            color: var(--dark-text); 
+            text-align: center;
+        }
+        
+        /* Quiz Card */
+        .quiz-card {
+            background: var(--bg-white);
+            border-radius: 25px;
+            padding: 30px 40px;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            /* animation: fadeInUp 0.7s ease-out; */ /* We will trigger animation with JS */
+            position: relative;
+            overflow: hidden; /* To contain the slide-in animation */
         }
 
-        #question-header {
-            font-size: 0.9em;
-            color: #4b5563;
+        .question-container {
+             /* This container will hold the animated content */
+        }
+
+        .question-header {
+            color: var(--theme-blue);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 15px;
-            text-align: right;
-            border-bottom: 1px solid #d97706;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-light);
             padding-bottom: 10px;
         }
 
-        #question-text {
-            font-size: 1.15em;
-            margin-bottom: 25px;
-            color: var(--dark-text); 
-            font-weight: 500;
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            line-height: 1.6;
         }
         
-        /* Style for rendering mathematical/numerical content clearly */
-        #question-text strong {
-            font-weight: 700;
+        .question-text span.blank-span {
+            display: inline-block;
+            width: 60px;
+            height: 1.2em;
+            border-bottom: 2px solid var(--theme-purple);
+            margin: 0 4px;
+            vertical-align: bottom;
         }
 
+        /* Options */
         .options-container {
             margin-bottom: 20px;
         }
 
         .option {
             display: flex;
-            align-items: start; 
-            background: #fffde7;
-            padding: 12px 15px;
-            margin-bottom: 12px;
-            border-radius: 8px;
+            align-items: flex-start; /* Align with text start */
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border: 2px solid var(--border-light);
+            background-color: var(--bg-light);
+            border-radius: 15px;
             cursor: pointer;
-            border: 1px solid #fff9c4;
-            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-            color: var(--dark-text); 
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .option:last-child {
+            margin-bottom: 0;
         }
 
-        .option:not(.disabled):hover {
-            background: #fff59d;
-            border-color: #f2e70c;
+        .option:hover:not(.disabled) {
+            border-color: var(--theme-blue);
+            transform: translateX(5px);
+            background-color: #f0f7ff;
         }
 
+        .option-letter {
+            width: 35px;
+            height: 35px;
+            background: var(--bg-white);
+            border: 1px solid var(--border-light);
+            color: var(--text-light);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+            transition: all 0.3s;
+            margin-top: 2px; /* Align with first line of text */
+        }
+        .option-text {
+            flex-grow: 1;
+            line-height: 1.5;
+        }
+
+        /* States */
         .option.selected { 
-            font-weight: 600; 
-            border-color: var(--primary-blue);
-            background-color: #dbeafe; 
-            color: var(--primary-blue);
+            border-color: var(--theme-blue); 
+            background-color: #eef6ff; 
+        }
+        .option.selected .option-letter { 
+            background: var(--theme-blue); 
+            color: white; 
+            border-color: var(--theme-blue);
+        }
+
+        .option.correct-answer { 
+            border-color: var(--theme-green); 
+            background-color: #f0fff4; 
+            animation: pop 0.3s ease-out;
+        }
+        .option.correct-answer .option-letter { 
+            background: var(--theme-green); 
+            color: white;
+            border-color: var(--theme-green);
+        }
+
+        .option.incorrect-selection { 
+            border-color: var(--theme-pink); 
+            background-color: #fff0f6; 
+            animation: pop 0.3s ease-out;
+        }
+        .option.incorrect-selection .option-letter { 
+            background: var(--theme-pink); 
+            color: white;
+            border-color: var(--theme-pink);
         }
         
-        .option.correct-answer {
-            background: #d1fae5 !important; 
-            border-color: #10b981 !important;
-            color: #065f46 !important; 
-            font-weight: 600;
-        }
-
-        .option.incorrect-selection {
-            background: #fee2e2 !important; 
-            border-color: #ef4444 !important;
-            color: #991b1b !important; 
-            font-weight: 600;
-        }
         .option.disabled {
             cursor: not-allowed;
             opacity: 0.9;
         }
-
-        .option-letter {
-            font-weight: bold;
-            margin-right: 12px;
-            color: var(--light-text); 
-            background-color: var(--medium-text); 
-            padding: 4px 8px;
-            border-radius: 6px;
-            min-width: 22px;
-            text-align: center;
-            transition: all 0.2s ease;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-        
-        .option.selected .option-letter {
-            background-color: var(--primary-blue); 
-            color: white;
-            transform: scale(1.1);
-        }
-
-        .option.correct-answer .option-letter {
-            background-color: #10b981 !important; 
-            color: white !important;
-        }
-        .option.incorrect-selection .option-letter {
-            background-color: #ef4444 !important; 
-            color: white !important;
+        .option.disabled:not(.selected):not(.correct-answer):hover {
+            transform: none;
+            background-color: var(--bg-light);
         }
 
 
+        /* Navigation */
         #navigation-buttons {
             display: flex;
             justify-content: space-between; 
             align-items: center;
-            margin-top: 25px;
+            margin-top: 30px;
+            border-top: 1px solid var(--border-light);
+            padding-top: 25px;
         }
 
-        button {
-            background-color: var(--quiz-button-bg); 
+        .nav-btn {
+            background: var(--gradient-ocean);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 12px 28px;
             text-align: center;
             text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background-color 0.2s ease-in-out, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(2, 40, 250, 0.3);
+            transition: all 0.3s ease;
             font-weight: 600;
+            box-shadow: 0 8px 20px rgba(79, 209, 199, 0.3);
         }
         
         #prev-btn {
-            background-color: #374151;
+            background: var(--bg-white);
+            color: var(--text-light);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-light);
         }
-
-        button:hover:not(:disabled) {
-            background-color: #0637c9;
+        #prev-btn:hover:not(:disabled) {
+            background: #f9fafb;
             transform: translateY(-2px);
         }
-        
-        #prev-btn:hover:not(:disabled) {
-            background-color: #4b5563;
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(79, 209, 199, 0.4);
         }
 
-        button:disabled {
-            background-color: #4b5563; 
+        .nav-btn:disabled {
+            background: #e0e6ed;
+            color: #9ca3af;
             cursor: not-allowed;
             box-shadow: none;
-            opacity: 0.6;
+            opacity: 0.7;
         }
+        
         #completion-message {
             text-align: center;
-            font-size: 1.6em;
-            color: var(--primary-green);
-            padding: 30px;
-            border: 1px solid #04bf26;
-            background-color: #1f2937;
-            border-radius: 8px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--theme-purple);
+            padding: 40px;
+            animation: fadeInUp 0.5s ease-out;
         }
-        #instagram-link {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 1.1em;
-            color: var(--medium-text);
+        #completion-message .final-score {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-top: 15px;
+            font-weight: 400;
         }
-        #instagram-link a {
-            color: var(--primary-yellow);
-            text-decoration: none;
-            font-weight: bold;
-        }
-        #instagram-link a:hover {
-            text-decoration: underline;
-        }
-
+        
+        /* Responsive */
         @media (max-width: 600px) {
-            #scoreboard-container,
-            #set-navigation-container, 
-            #quiz-container {
-                padding: 15px;
-            }
-            #scoreboard {
+            body { padding: 10px; }
+            .quiz-card { padding: 20px; }
+            .question-text { font-size: 1.1rem; }
+            .option { padding: 12px; }
+            .nav-btn { padding: 10px 20px; font-size: 0.9rem; }
+            #navigation-buttons { flex-direction: column-reverse; gap: 15px; }
+            .nav-btn { width: 100%; justify-content: center; }
+            #scoreboard { flex-direction: column; align-items: stretch; gap: 5px; }
+            #scoreboard span { margin: 0; }
+            .top-bar { padding: 0; }
+            #set-navigation-container {
+                display: flex;
                 flex-direction: column;
-                align-items: center;
+                gap: 10px;
+                align-items: stretch;
             }
-            #scoreboard span {
-                margin: 3px 0;
-            }
-            #question-text {
-                font-size: 1.05em;
-            }
-            .option {
-                padding: 10px;
-            }
-            button {
-                padding: 10px 15px; 
-                font-size: 14px;
-            }
-            #navigation-buttons {
-                flex-direction: column; 
-            }
-            #navigation-buttons button {
-                width: 100%;
-                margin-bottom: 10px;
-            }
-            #navigation-buttons button:last-child {
-                margin-bottom: 0;
-            }
-            #set-selector {
-                width: 100%;
-                margin-top: 5px;
-            }
-            #set-navigation-container label {
-                display: block;
-                margin-bottom: 5px;
-            }
+            #set-selector { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <div id="scoreboard-container">
-        <div id="scoreboard">
-            <span id="correct-count">Correct: 0</span>
-            <span id="incorrect-count">Incorrect: 0</span>
-            <span id="attempted-count">Attempted: 0</span>
-            <span id="accuracy-rate">Accuracy: N/A</span>
+    <!-- Animated Symbols Background -->
+    <div class="shape-container">
+        <div class="shape shape1">₹</div>
+        <div class="shape shape2">$</div>
+        <div class="shape shape3">₹</div>
+        <div class="shape shape4">€</div>
+        <div class="shape shape5">₹</div>
+        <div class="shape shape6">×</div>
+    </div>
+
+    <div class="quiz-wrapper">
+        <div class="top-bar">
+            <a href="index.html" class="home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
         </div>
-    </div>
 
-    <div id="set-navigation-container">
-        <label for="set-selector">Switch to Set:</label>
-        <select id="set-selector"></select>
-    </div>
+        <div id="set-navigation-container">
+            <label for="set-selector"><i class="fas fa-layer-group"></i> Switch to Set:</label>
+            <select id="set-selector"></select>
+        </div>
 
-    <div id="quiz-container">
-        <div id="question-header">Loading quiz...</div>
-        <div id="question-text"></div>
-        <div class="options-container" id="options-container">
+        <div id="scoreboard-container" class="scoreboard-container">
+            <div id="scoreboard">
+                <span id="correct-count">Correct: 0</span>
+                <span id="incorrect-count">Incorrect: 0</span>
+                <span id="attempted-count">Attempted: 0</span>
+                <span id="accuracy-rate">Accuracy: N/A</span>
             </div>
-        <div id="navigation-buttons">
-            <button id="prev-btn">Previous (&larr; or /)</button>
-            <button id="next-btn">Next (Enter or &rarr;)</button>
         </div>
-        <div id="completion-message" style="display:none;">
-            Quiz Completed! Thank you for participating.
-        </div>
-    </div>
 
-    <div id="instagram-link">
-        Instagram: <a href="https://www.instagram.com/prepogy.fun?igsh=aHZxYTh5dWhycHZq" target="_blank">Ash🔱tosh </a>
+        <div id="quiz-container" class="quiz-card">
+            <!-- This container is new, for the animation -->
+            <div id="question-content-wrapper">
+                <div id="question-header">Loading quiz...</div>
+                <div id="question-text"></div>
+                <div class="options-container" id="options-container">
+                    <!-- Options will be dynamically inserted here -->
+                </div>
+            </div>
+            
+            <div id="navigation-buttons">
+                <button id="prev-btn" class="nav-btn"><i class="fas fa-chevron-left"></i> Previous</button>
+                <button id="next-btn" class="nav-btn">Next <i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div id="completion-message" style="display:none;">
+                <!-- Completion message dynamically inserted -->
+            </div>
+        </div>
     </div>
 
     <script>
         /*
-         * Quiz Data Structure:
-         * q: Question text (string)
-         * o: Array of 4 option strings
-         * c: Correct option index (1 for OPTION 1, 2 for OPTION 2, etc.)
-         * Note: All 392 questions from the original Cost Accounting question bank are included here.
+         * --- PASTE ALL YOUR QUESTIONS HERE ---
+         * The code will automatically divide them into sets of 15.
          */
         const questionsData = [
             { q: "Prime Cost is:", o: ["All costs incurred in manufacturing a product", "the total of direct costs", "the material cost of a product", "the cost of operating a department"], c: 2 },
@@ -737,7 +881,6 @@
             { q: "The purpose of a master budget is to provide a comprehensive plan that integrates:", o: ["Financial budgets only", "Operating budgets only", "All functional budgets and the projected financial statements", "Only fixed and variable costs"], c: 3 }
         ];
 
-
         let currentQuestionIndex = 0;
         let userAnswers = new Array(questionsData.length).fill(null); 
         let questionsAttemptedState = new Array(questionsData.length).fill(false); 
@@ -747,25 +890,10 @@
             incorrect: 0
         };
 
-        // DOM Elements
-        const questionHeaderElement = document.getElementById('question-header');
-        const questionTextElement = document.getElementById('question-text');
-        const optionsContainerElement = document.getElementById('options-container');
-        const nextButton = document.getElementById('next-btn');
-        const prevButton = document.getElementById('prev-btn');
-        const completionMessageElement = document.getElementById('completion-message');
-        const setSelectorElement = document.getElementById('set-selector');
-        const navigationButtons = document.getElementById('navigation-buttons'); 
-
-        const correctCountElement = document.getElementById('correct-count');
-        const incorrectCountElement = document.getElementById('incorrect-count');
-        const attemptedCountElement = document.getElementById('attempted-count');
-        const accuracyRateElement = document.getElementById('accuracy-rate');
-        
-        // --- Set Configuration for 392 Questions (Set Size = 40) ---
+        // --- Set Configuration ---
         const totalQuestions = questionsData.length;
-        const setSize = 15; 
-        const numSets = Math.ceil(totalQuestions / setSize); // 392/40 = 9.8 -> 10 sets
+        const setSize = 15; // You wanted 15 questions per set
+        const numSets = Math.ceil(totalQuestions / setSize);
         const questionsPerSet = [];
         const setStartIndices = [];
 
@@ -777,6 +905,24 @@
         // --- End Set Configuration ---
 
 
+        // DOM Elements
+        const questionHeaderElement = document.getElementById('question-header');
+        const questionTextElement = document.getElementById('question-text');
+        const optionsContainerElement = document.getElementById('options-container');
+        const nextButton = document.getElementById('next-btn');
+        const prevButton = document.getElementById('prev-btn');
+        const completionMessageElement = document.getElementById('completion-message');
+        const setSelectorElement = document.getElementById('set-selector');
+        const navigationButtons = document.getElementById('navigation-buttons'); 
+        const quizContainer = document.getElementById('quiz-container');
+        const questionContentWrapper = document.getElementById('question-content-wrapper');
+
+
+        const correctCountElement = document.getElementById('correct-count');
+        const incorrectCountElement = document.getElementById('incorrect-count');
+        const attemptedCountElement = document.getElementById('attempted-count');
+        const accuracyRateElement = document.getElementById('accuracy-rate');
+        
         function populateSetSelector() {
             setSelectorElement.innerHTML = ''; 
             questionsPerSet.forEach((num, index) => {
@@ -793,12 +939,13 @@
             setSelectorElement.addEventListener('change', (event) => {
                 const selectedSetIndex = parseInt(event.target.value);
                 currentQuestionIndex = setStartIndices[selectedSetIndex];
+                
+                // Reset visibility for quiz
                 completionMessageElement.style.display = 'none';
-                questionHeaderElement.style.display = 'block';
-                questionTextElement.style.display = 'block';
-                optionsContainerElement.style.display = 'block';
+                questionContentWrapper.style.display = 'block';
                 navigationButtons.style.display = 'flex'; 
-                loadQuestion();
+                
+                loadQuestion(false); // Load question without animation for set switch
             });
         }
 
@@ -808,13 +955,14 @@
                 const setEndIndex = setStartIndex + questionsPerSet[i] - 1;
                 
                 if (index >= setStartIndex && index <= setEndIndex) {
+                    // Update dropdown silently if needed
                     if (setSelectorElement.value != i) { 
                          setSelectorElement.value = i; 
                     }
                     return { setNumber: i + 1, totalSets: numSets };
                 }
             }
-            return { setNumber: numSets, totalSets: numSets };
+            return { setNumber: numSets, totalSets: numSets }; // Fallback
         }
         
         function updateScoreboard() {
@@ -822,7 +970,7 @@
             score.incorrect = 0;
             let attempted = 0;
 
-            for (let i = 0; i < questionsData.length; i++) {
+            for (let i = 0; i < totalQuestions; i++) {
                 if (questionsAttemptedState[i]) {
                     attempted++;
                     const currentQuestion = questionsData[i];
@@ -862,12 +1010,22 @@
             return cleaned.trim();
         }
 
-        function loadQuestion() {
+        function loadQuestion(animate = true) {
             if (currentQuestionIndex < 0) currentQuestionIndex = 0; 
-            if (currentQuestionIndex >= questionsData.length) { 
+            if (currentQuestionIndex >= totalQuestions) { 
                 showCompletionMessage();
                 return;
             }
+
+            // --- Animation ---
+            if (animate) {
+                questionContentWrapper.classList.remove('animate-slideInRight');
+                // Trigger reflow to restart animation
+                void questionContentWrapper.offsetWidth; 
+                questionContentWrapper.classList.add('animate-slideInRight');
+            }
+            // --- End Animation ---
+
 
             const currentQuestion = questionsData[currentQuestionIndex];
             const setInfo = getCurrentSetInfo(currentQuestionIndex);
@@ -877,14 +1035,14 @@
             questionHeaderElement.textContent = `Question ${currentQuestionIndex + 1} of ${totalQuestions} (Set ${setInfo.setNumber} of ${setInfo.totalSets})`;
             
             let qText = cleanText(currentQuestion.q);
-            qText = qText.replace(/____/g, '<span style="border-bottom: 1px solid #555; display: inline-block; min-width: 60px; padding: 0 2px;">&nbsp;&nbsp;</span>');
+            // Replaced ____ with a styled span
+            qText = qText.replace(/____/g, '<span class="blank-span"></span>');
             questionTextElement.innerHTML = qText;
 
             optionsContainerElement.innerHTML = ''; 
             currentQuestion.o.forEach((optionText, index) => {
                 const optionElement = document.createElement('div');
                 optionElement.classList.add('option');
-                // Store the raw option text (with Rs, %, etc.) for comparison
                 optionElement.dataset.optionText = optionText; 
                 
                 let cleanedOptionText = cleanText(optionText);
@@ -911,14 +1069,17 @@
                 optionsContainerElement.appendChild(optionElement);
             });
 
-            nextButton.textContent = (currentQuestionIndex === totalQuestions - 1) ? "Finish Quiz" : "Next (Enter or →)";
+            // Update button text and icons
+            if (currentQuestionIndex === totalQuestions - 1) {
+                nextButton.innerHTML = 'Finish Quiz <i class="fas fa-check"></i>';
+            } else {
+                nextButton.innerHTML = 'Next <i class="fas fa-chevron-right"></i>';
+            }
             nextButton.disabled = false; 
-
             prevButton.disabled = (currentQuestionIndex === 0);
 
-            questionHeaderElement.style.display = 'block';
-            questionTextElement.style.display = 'block';
-            optionsContainerElement.style.display = 'block';
+            // Ensure quiz container is visible
+            questionContentWrapper.style.display = 'block';
             navigationButtons.style.display = 'flex';
             completionMessageElement.style.display = 'none';
         }
@@ -932,7 +1093,6 @@
             const currentQuestion = questionsData[currentQuestionIndex];
             const correctAnswerText = currentQuestion.o[currentQuestion.c - 1]; 
 
-            
             Array.from(optionsContainerElement.children).forEach(optDiv => {
                 optDiv.classList.add('disabled'); 
                 if (optDiv.dataset.optionText === correctAnswerText) { 
@@ -972,42 +1132,122 @@
             } 
             else if (currentQuestionIndex < totalQuestions - 1) {
                 currentQuestionIndex++;
-                loadQuestion();
-            }
-             else if (currentQuestionIndex >= totalQuestions) { 
-                 showCompletionMessage(); 
+                loadQuestion(true); // Animate to next question
             }
         }
 
         function prevQuestionHandler() {
             if (currentQuestionIndex > 0) {
                 currentQuestionIndex--;
-                loadQuestion();
+                loadQuestion(false); // No animation for previous question
             }
         }
         
         function showCompletionMessage() {
-            questionHeaderElement.style.display = 'none';
-            questionTextElement.style.display = 'none';
-            optionsContainerElement.style.display = 'none';
+            // Hide quiz elements
+            questionContentWrapper.style.display = 'none';
             navigationButtons.style.display = 'none'; 
-            setSelectorElement.parentElement.style.display = 'none'; 
             
+            // Show completion message
             completionMessageElement.style.display = 'block';
             const attempted = score.correct + score.incorrect;
             const accuracy = attempted > 0 ? (score.correct / attempted * 100).toFixed(1) : "0.0";
             
-            completionMessageElement.innerHTML = `Quiz Completed! <br> Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect out of ${attempted} attempted. <br> Accuracy: ${accuracy}%`;
+            completionMessageElement.innerHTML = `Quiz Completed!
+                <div class="final-score">
+                    Final Score: ${score.correct} Correct, ${score.incorrect} Incorrect
+                    <br>
+                    Accuracy: ${accuracy}%
+                </div>`;
+            
+            // Scroll to top to see message
+            quizContainer.scrollIntoView({ behavior: 'smooth' });
+            createConfetti(); // Trigger confetti!
         }
 
-        // Event Listeners for Navigation/Interaction
+        // --- Visual Effects Functions ---
+
+        // 1. Particle Click Effect
+        function createParticles(x, y) {
+            const colors = ['var(--theme-purple)', 'var(--theme-blue)', 'var(--theme-pink)', 'var(--theme-yellow)', 'var(--theme-cyan)'];
+            for (let i = 0; i < 10; i++) { // Increased particle count for more "pop"
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                particle.style.width = (Math.random() * 5 + 3) + 'px'; // Random size
+                particle.style.height = particle.style.width;
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.borderRadius = '50%';
+                particle.style.pointerEvents = 'none';
+                particle.style.zIndex = '9999';
+                particle.style.opacity = '1';
+                
+                document.body.appendChild(particle);
+                
+                const angle = Math.random() * Math.PI * 2;
+                const velocity = Math.random() * 4 + 2;
+                const dx = Math.cos(angle) * velocity;
+                const dy = Math.sin(angle) * velocity;
+                let opacity = 1;
+                let transform = '';
+                
+                const animate = (timestamp) => {
+                    particle.style.transform = `translate(${dx * (1 - opacity) * 10}px, ${dy * (1 - opacity) * 10}px) scale(${opacity})`;
+                    opacity -= 0.03; // Fade faster
+                    
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        particle.remove();
+                    }
+                };
+                requestAnimationFrame(animate);
+            }
+        }
+        
+        // 2. Confetti Effect
+        function createConfetti() {
+            const colors = ['var(--theme-purple)', 'var(--theme-blue)', 'var(--theme-pink)', 'var(--theme-yellow)', 'var(--theme-cyan)'];
+            for (let i = 0; i < 100; i++) { // 100 particles for a good celebration
+                const particle = document.createElement('div');
+                particle.classList.add('confetti-particle');
+                particle.style.left = (Math.random() * 100) + 'vw';
+                particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.animationDelay = (Math.random() * 2) + 's'; // Stagger the fall
+                particle.style.width = (Math.random() * 8 + 5) + 'px';
+                particle.style.height = particle.style.width;
+                if(i % 2 === 0) {
+                    particle.style.borderRadius = '0'; // Make some square
+                    particle.style.height = (Math.random() * 5 + 5) + 'px';
+                }
+                document.body.appendChild(particle);
+
+                // Remove particle after animation ends
+                setTimeout(() => {
+                    particle.remove();
+                }, 3000);
+            }
+        }
+
+
+        // --- Event Listeners for Navigation/Interaction ---
         nextButton.addEventListener('click', nextQuestionHandler);
         prevButton.addEventListener('click', prevQuestionHandler);
+        
+        // Add particle click listener
+        document.addEventListener('click', function(e) {
+            // Don't trigger on scrollbar
+            if (e.clientX < document.documentElement.clientWidth && e.clientY < document.documentElement.clientHeight) {
+                createParticles(e.clientX, e.clientY);
+            }
+        });
+
 
         document.addEventListener('keydown', (event) => {
-            if (document.activeElement === setSelectorElement && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
-                return;
-            }
+            // Prevent shortcuts while dropdown is focused
+            if (document.activeElement === setSelectorElement) return;
+
             if (event.key.toLowerCase() === 'escape') return; 
 
             if (completionMessageElement.style.display === 'block') { 
@@ -1028,11 +1268,10 @@
             }
         });
 
-        // Initial setup
+        // --- Initial setup ---
         populateSetSelector();
-        loadQuestion();
+        loadQuestion(false); // Load first question without animation
         updateScoreboard(); 
     </script>
 </body>
 </html>
-
