@@ -513,24 +513,25 @@
         .insta-link {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); /* Instagram gradient */
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
+            gap: 8px; /* Reduced gap */
+            background: transparent;
+            color: var(--theme-purple); /* Match other links */
+            padding: 0; /* Remove padding */
+            border-radius: 0; /* Remove border-radius */
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 500; /* Less bold */
             margin-top: 20px;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            font-size: 1rem;
+            box-shadow: none; /* Remove shadow */
+            font-size: 0.95rem; /* Slightly smaller */
         }
         .insta-link:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            transform: none; /* Remove hover transform */
+            box-shadow: none; /* Remove hover shadow */
+            text-decoration: underline; /* Add underline on hover */
         }
         .insta-link i {
-            font-size: 1.2rem;
+            font-size: 1.1rem; /* Slightly smaller icon */
         }
     </style>
 </head>
