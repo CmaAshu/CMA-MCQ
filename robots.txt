@@ -1,1 +1,3 @@
 Sitemap:https://prepogy.fun/sitemap.xml
+User-agent: *
+Disallow:
