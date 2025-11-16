@@ -1,107 +1,103 @@
-<?xml version="1.0" encoding="utf-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<!--  created with sitemap generator https://octopus.do  -->
-
-    <url>
-        <loc>https://prepogy.fun</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/law-sets</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/fin-acc-sets</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/dt-sets</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/cost-sets</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/omsm-sets</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/ca-audit-set</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/fmda-set</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/ma-set</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/paper-13</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/paper-14</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/paper-15</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/paper-16</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/paper-17</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/paper-18</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/paper-19</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://prepogy.fun/paper-20a</loc>
-        <lastmod>2025-09-10</lastmod>
-        <changefreq>always</changefreq>
-        <priority>0.5</priority>
-    </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
+<url>
+<loc>https://prepogy.fun/</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>1.00</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/law%20sets.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/fin%20acc%20sets.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/dt%20sets.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/cost%20sets.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/omsm%20sets.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/ca%20audit%20set.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/fmda%20set.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/MA%20set.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2013.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2014.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2015.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2016.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2017.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2018.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2019.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2020A.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2020B.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/paper%2020C.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>https://prepogy.fun/index.html</loc>
+<lastmod>2025-11-15T16:24:37+00:00</lastmod>
+<priority>0.64</priority>
+</url>
 </urlset>
