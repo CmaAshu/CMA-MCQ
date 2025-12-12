@@ -13,7 +13,7 @@
     <meta property="og:title" content="Prepogy - CMA MCQ Practice Platform">
     <meta property="og:description" content="The ultimate platform to practice MCQs for the ICMAI CMA Inter and Final exams (Syllabus 2022).">
     <meta property="og:image" content="prep.png">
-    <meta property="og:url" content="https://prepogy.fun"> <!-- Replace with your actual domain -->
+    <meta property="og:url" content="https://prepogy.fun">
     <meta property="og:type" content="website">
 
     <!-- Favicon -->
@@ -40,13 +40,13 @@
             /* New Light & Colourful Theme Palette */
             --theme-purple: #8b5fbf;
             --theme-blue: #4A90E2;
-            --theme-yellow: #F5A623; /* A slightly deeper yellow for better contrast */
+            --theme-yellow: #F5A623;
             --theme-pink: #ff6b9d;
             --theme-cyan: #4fd1c7;
             --theme-green: #48bb78;
             --text-dark: #333333;
             --text-light: #555555;
-            --bg-light: #f7faff; /* Very light blue background */
+            --bg-light: #f7faff;
             --bg-white: #ffffff;
             --border-light: #e0e6ed;
             
@@ -371,6 +371,20 @@
             margin: 0 0 20px;
         }
 
+        /* Update selector for JS targeting */
+        .quiz-card a.quiz-start-link {
+            display: inline-block;
+            background: var(--gradient-ocean); /* Theme gradient */
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(79, 209, 199, 0.3);
+        }
+
+        /* Fallback for existing structure without class */
         .quiz-card a {
             display: inline-block;
             background: var(--gradient-ocean); /* Theme gradient */
@@ -532,6 +546,135 @@
         }
         .insta-link i {
             font-size: 1.1rem; /* Slightly smaller icon */
+        }
+
+        /* ============================
+           NEW MODAL STYLES
+           ============================ */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 10000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.6); 
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Flex display when modal is open */
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: var(--bg-white);
+            margin: auto;
+            padding: 30px;
+            border: 1px solid var(--border-light);
+            width: 90%; 
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+            animation: scaleIn 0.3s ease-out forwards;
+            text-align: center;
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--theme-purple);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .modal-body {
+            font-size: 1rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .modal-body strong {
+            color: #ef4444; /* Red color for emphasis */
+            font-weight: 600;
+        }
+
+        .modal-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--gradient-ocean);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(74, 144, 226, 0.39);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.23);
+        }
+
+        .btn-instagram {
+            background: #f09433; 
+            background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+            background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(220, 39, 67, 0.3);
+        }
+
+        .btn-instagram:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 39, 67, 0.2);
+        }
+
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: var(--text-dark);
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -745,6 +888,29 @@
         </p>
     </footer>
 
+    <!-- NEW MODAL COMPONENT -->
+    <div id="quizNoticeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2 class="modal-title"><i class="fas fa-exclamation-circle"></i> Important Notice</h2>
+            </div>
+            <div class="modal-body">
+                <p>Please note that some answers in the official MCQ bank are <strong>not correct</strong>, as noted in faculty MCQ videos.</p>
+                <p style="margin-top: 15px;">Kindly DM us those shortlisted questions along with the correct answers on our Instagram page.</p>
+                <p style="margin-top: 15px; font-size: 0.9em; color: var(--text-light);">Also, do follow our Insta page for upcoming updates!</p>
+            </div>
+            <div class="modal-footer">
+                <a href="https://www.instagram.com/prepogy.fun" target="_blank" class="modal-btn btn-instagram">
+                    <i class="fab fa-instagram"></i> Follow @prepogy.fun
+                </a>
+                <button id="proceedToQuizBtn" class="modal-btn btn-primary">
+                    <i class="fas fa-play"></i> Start Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         function showGroupSubjects(groupId, pushState = true) {
             // Hide all containers
@@ -836,6 +1002,8 @@
 
         // Add particle effect on click
         document.addEventListener('click', function(e) {
+            // Don't create particles if clicking inside the modal
+            if(e.target.closest('.modal-content')) return;
             createParticles(e.clientX, e.clientY);
         });
 
@@ -881,6 +1049,50 @@
                 };
                 
                 animate();
+            }
+        }
+
+        /* ============================
+           NEW MODAL LOGIC
+           ============================ */
+        const modal = document.getElementById("quizNoticeModal");
+        const closeBtn = document.querySelector(".close-modal");
+        const proceedBtn = document.getElementById("proceedToQuizBtn");
+        let targetUrl = '';
+
+        // Function to open modal
+        function openModal(e) {
+            e.preventDefault();
+            targetUrl = this.getAttribute('href');
+            modal.classList.add("show");
+        }
+
+        // Add event listener to all "Start Quiz" buttons
+        // Selects all links inside quiz-card
+        const quizButtons = document.querySelectorAll('.quiz-card a');
+        quizButtons.forEach(btn => {
+            btn.addEventListener('click', openModal);
+        });
+
+        // Close modal logic
+        closeBtn.onclick = function() {
+            modal.classList.remove("show");
+        }
+
+        // Close when clicking outside the modal content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.classList.remove("show");
+            }
+        }
+
+        // Proceed button logic
+        proceedBtn.onclick = function() {
+            if (targetUrl) {
+                window.location.href = targetUrl;
+            } else {
+                // Just close if no URL found (shouldn't happen)
+                modal.classList.remove("show");
             }
         }
     </script>
